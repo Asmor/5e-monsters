@@ -6,7 +6,7 @@
 	var sourceName = "Hoard of the Dragon Queen",
 		i, toAdd;
 
-	registerSource(sourceName, false);
+	registerSource(sourceName, true);
 
 	toAdd = [
 		[ "Ambush Drake", 88 ],
