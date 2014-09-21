@@ -39,8 +39,8 @@ ul {
     background-color: #222;
     color: #ddd;
     font-weight: bold; }
-  .monster-table--row__even-row {
-    background-color: #ddd; }
+  .monster-table--row {
+    border-bottom: 1px solid black; }
   .monster-table--section {
     font-size: 0.8rem;
     font-variant: small-caps; }

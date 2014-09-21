@@ -1,5 +1,4 @@
 /* global Controllers */
-/* global monstersFilter */
 "use strict";
 
 var monsterListApp = angular.module("monsterListApp", ["ui.router"]);
@@ -11,5 +10,3 @@ monsterListApp.config(function ($stateProvider, $urlRouterProvider) {
 	// Main menu page
 	$stateProvider.state("main", Controllers.main);
 });
-
-monsterListApp.filter("monstersFilter", monstersFilter);

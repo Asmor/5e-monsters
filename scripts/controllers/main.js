@@ -1,5 +1,6 @@
 /* global Controllers */
 /* global alignments */
+/* global checkMonster */
 /* global crs */
 /* global monsters */
 /* global sourceFilters */
@@ -27,5 +28,6 @@ Controllers.main = {
 		$scope.sources = sources;
 		$scope.tags = Object.keys(tags).sort();
 		$scope.types = types;
+		$scope.checkMonster = checkMonster;
 	},
 };
