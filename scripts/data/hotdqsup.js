@@ -3,7 +3,7 @@
 "use strict";
 
 (function () {
-	var sourceName = "Hoard of the Dragon Queen supplement",
+	var sourceName = "HotDQ supplement",
 		i, toAdd;
 
 	registerSource(sourceName, false);

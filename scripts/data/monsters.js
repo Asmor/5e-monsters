@@ -2,6 +2,42 @@
 /* global alignments */
 "use strict";
 
+// Custom
+addMonster({ name: "CR 0",		cr: "0", });
+addMonster({ name: "CR 1/2",	cr: "1/2", });
+addMonster({ name: "CR 1/4",	cr: "1/4", });
+addMonster({ name: "CR 1/8",	cr: "1/8", });
+addMonster({ name: "CR 1",		cr: "1", });
+addMonster({ name: "CR 2",		cr: "2", });
+addMonster({ name: "CR 3",		cr: "3", });
+addMonster({ name: "CR 4",		cr: "4", });
+addMonster({ name: "CR 5",		cr: "5", });
+addMonster({ name: "CR 6",		cr: "6", });
+addMonster({ name: "CR 7",		cr: "7", });
+addMonster({ name: "CR 8",		cr: "8", });
+addMonster({ name: "CR 9",		cr: "9", });
+addMonster({ name: "CR 10",		cr: "10", });
+addMonster({ name: "CR 11",		cr: "11", });
+addMonster({ name: "CR 12",		cr: "12", });
+addMonster({ name: "CR 13",		cr: "13", });
+addMonster({ name: "CR 14",		cr: "14", });
+addMonster({ name: "CR 15",		cr: "15", });
+addMonster({ name: "CR 16",		cr: "16", });
+addMonster({ name: "CR 17",		cr: "17", });
+addMonster({ name: "CR 18",		cr: "18", });
+addMonster({ name: "CR 19",		cr: "19", });
+addMonster({ name: "CR 20",		cr: "20", });
+addMonster({ name: "CR 21",		cr: "21", });
+addMonster({ name: "CR 22",		cr: "22", });
+addMonster({ name: "CR 23",		cr: "23", });
+addMonster({ name: "CR 24",		cr: "24", });
+addMonster({ name: "CR 25",		cr: "25", });
+addMonster({ name: "CR 26",		cr: "26", });
+addMonster({ name: "CR 27",		cr: "27", });
+addMonster({ name: "CR 28",		cr: "28", });
+addMonster({ name: "CR 29",		cr: "29", });
+addMonster({ name: "CR 30",		cr: "30", });
+
 // Monster Manual
 
 addMonster({
