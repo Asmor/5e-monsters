@@ -67,6 +67,14 @@ ul {
     left: 0;
     right: 0;
     overflow: auto; }
+  .encounter-builder--guidelines {
+    float: right; }
+  .encounter-builder--guidelines-active {
+    font-weight: bold; }
+  .encounter-builder--guidelines-values {
+    text-align: right;
+    padding-left: 5px;
+    padding-right: 20px; }
   .encounter-builder--header {
     padding: 5px;
     background-color: #000;
@@ -76,3 +84,6 @@ ul {
     top: 0;
     left: 0;
     right: 0; }
+  .encounter-builder--party-settings {
+    float: right;
+    padding-right: 20px; }

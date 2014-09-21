@@ -1,20 +1,55 @@
 <div
 	class="encounter-builder"
-	ng-class="{ 'encounter-builder__shown': encounterQty }"
+	ng-class="{ 'encounter-builder__shown': encounter.qty }"
 >
 	<div class="encounter-builder--header">
 		Encounter
-		Total XP: {{ encounterExp | number }}
-		<span ng-if="encounterQty > 1">
+		Total XP: {{ encounter.exp | number }}
+		<span ng-if="encounter.qty > 1">
 			Adjusted XP: {{ adjustedEncounterExp() | number }}
 		</span>
+		{{ encounterDifficulty() }}
+		<div class="encounter-builder--party-settings">
+			<label>
+				Players:
+				<select
+					ng-model="encounter.playerCount"
+					ng-options="count for count in [1,2,3,4,5,6,7,8]"
+				></select>
+			</label>
+			<label>
+				Level:
+				<select
+					ng-model="encounter.partyLevel"
+					ng-options="level as level.level for level in levels"
+				></select>
+			</label>
+		</div>
 	</div>
 	<div class="encounter-builder--body">
+		<table class="encounter-builder--guidelines">
+			<tr ng-class="{'encounter-builder--guidelines-active': encounterDifficulty() === 'Easy'}">
+				<td>Easy:</td>
+				<td class="encounter-builder--guidelines-values">{{ encounter.partyLevel.easy * encounter.playerCount | number }} exp</td>
+			</tr>
+			<tr ng-class="{'encounter-builder--guidelines-active': encounterDifficulty() === 'Medium'}">
+				<td>Medium:</td>
+				<td class="encounter-builder--guidelines-values">{{ encounter.partyLevel.medium * encounter.playerCount | number }} exp</td>
+			</tr>
+			<tr ng-class="{'encounter-builder--guidelines-active': encounterDifficulty() === 'Hard'}">
+				<td>Hard:</td>
+				<td class="encounter-builder--guidelines-values">{{ encounter.partyLevel.hard * encounter.playerCount | number }} exp</td>
+			</tr>
+			<tr ng-class="{'encounter-builder--guidelines-active': encounterDifficulty() === 'Deadly'}">
+				<td>Deadly:</td>
+				<td class="encounter-builder--guidelines-values">{{ encounter.partyLevel.deadly * encounter.playerCount | number }} exp</td>
+			</tr>
+		</table>
 		<table class="monster-table--table">
 			<tbody>
 				<tr
 					class="monster-table--row"
-					ng-repeat="(key, group) in encounter"
+					ng-repeat="(key, group) in encounter.groups"
 				>
 					<td>
 						<button ng-click="addMonster(group.monster)">

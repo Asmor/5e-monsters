@@ -20,6 +20,20 @@
 		overflow: auto;
 	}
 
+	&--guidelines {
+		float: right;
+	}
+
+	&--guidelines-active {
+		font-weight: bold;
+	}
+
+	&--guidelines-values {
+		text-align: right;
+		padding-left: 5px;
+		padding-right: 20px;
+	}
+
 	&--header {
 		@include header;
 
@@ -27,5 +41,10 @@
 		top: 0;
 		left: 0;
 		right: 0;
+	}
+
+	&--party-settings {
+		float: right;
+		padding-right: 20px;
 	}
 }
