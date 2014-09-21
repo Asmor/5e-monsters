@@ -1,58 +1,71 @@
 <div class="filters">
-	<label>
-		Size:
-		<select
-			ng-model="filters.size"
-			ng-options="size for size in sizes"
-		>
-			<option value="">Any</option>
-		</select>
-	</label>
-	<label>
-		Type:
-		<select
-			ng-model="filters.type"
-			ng-options="type for type in types"
-		>
-			<option value="">All</option>
-		</select>
-	</label>
-	<label>
-		Alignment:
-		<select
-			ng-model="filters.alignment"
-			ng-options="alignment as alignment.text for (key, alignment) in alignments"
-		>
-			<option value="">All</option>
-		</select>
-	</label>
-	CR:
-	<label>
-		Min:
-		<select
-			ng-model="filters.minCr"
-			ng-options="cr.value as cr.text for cr in crs"
-		>
-			<option value=""></option>
-		</select>
-	</label>
-	<label>
-		Max:
-		<select
-			ng-model="filters.maxCr"
-			ng-options="cr.value as cr.text for cr in crs"
-		>
-			<option value=""></option>
-		</select>
-	</label>
-</div>
-<div class="filters">
-	Sources:
-	<label class="filters--source"
-		ng-repeat="source in sources"
-		ng-class="{ 'filters--source__off': !filters.source[source] }"
-	>
-		<input type="checkbox" ng-model="filters.source[source]">
-		{{ source }}
-	</label>
+	<div class="filters--section">
+		<label>
+			Size:
+			<select
+				ng-model="filters.size"
+				ng-options="size for size in sizes"
+			>
+				<option value="">Any</option>
+			</select>
+		</label>
+	</div>
+	<div class="filters--section">
+		<label>
+			Type:
+			<select
+				ng-model="filters.type"
+				ng-options="type for type in types"
+			>
+				<option value="">All</option>
+			</select>
+		</label>
+	</div>
+	<div class="filters--section">
+		<label>
+			Alignment:
+			<select
+				ng-model="filters.alignment"
+				ng-options="alignment as alignment.text for (key, alignment) in alignments"
+			>
+				<option value="">All</option>
+			</select>
+		</label>
+	</div>
+	<div class="filters--section">
+		CR:
+		<label>
+			Min:
+			<select
+				ng-model="filters.minCr"
+				ng-options="cr.value as cr.text for cr in crs"
+			>
+				<option value=""></option>
+			</select>
+		</label>
+		<label>
+			Max:
+			<select
+				ng-model="filters.maxCr"
+				ng-options="cr.value as cr.text for cr in crs"
+			>
+				<option value=""></option>
+			</select>
+		</label>
+	</div>
+	<div class="filters--section">
+		Sources:
+		<ul>
+			<li
+				class="filters--source"
+				ng-repeat="source in sources"
+				ng-class="{ 'filters--source__off': !filters.source[source] }"
+			>
+				<label>
+					<input type="checkbox" ng-model="filters.source[source]">
+					{{ source }}
+				</label>
+			</li>
+		</ul>
+	</div>
 </div>

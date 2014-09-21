@@ -1,16 +1,24 @@
 .monster-table {
-	border: 1px solid #222;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: $sidebar-width;
+	right: 0;
+	overflow: auto;
 
-	> tbody, > thead {
-		> tr > td {
-			padding: 5px;
+	&--table {
+		> tbody, > thead {
+			> tr > td {
+				padding: 5px;
+			}
 		}
-	}
 
-	> thead {
-		background-color: #222;
-		color: #ddd;
-		font-weight: bold;
+		> thead {
+			background-color: #222;
+			color: #ddd;
+			font-weight: bold;
+		}
+
 	}
 
 	&--row {

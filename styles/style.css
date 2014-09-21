@@ -9,17 +9,33 @@ table {
 td {
   vertical-align: top; }
 
-.filters--source {
-  padding-right: 10px; }
+ul {
+  list-style-type: none; }
+
+.filters {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 250px;
+  padding: 5px;
+  overflow: auto; }
+  .filters--section {
+    padding-bottom: 10px; }
   .filters--source__off {
     color: #ddd;
     text-decoration: line-through; }
 
 .monster-table {
-  border: 1px solid #222; }
-  .monster-table > tbody > tr > td, .monster-table > thead > tr > td {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 250px;
+  right: 0;
+  overflow: auto; }
+  .monster-table--table > tbody > tr > td, .monster-table--table > thead > tr > td {
     padding: 5px; }
-  .monster-table > thead {
+  .monster-table--table > thead {
     background-color: #222;
     color: #ddd;
     font-weight: bold; }
@@ -30,7 +46,3 @@ td {
     font-variant: small-caps; }
   .monster-table--tags {
     font-style: italic; }
-
-.main-container {
-  width: 1000px;
-  margin: 20px auto; }

@@ -1,7 +1,17 @@
 .filters {
-	&--source {
-		padding-right: 10px;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: $sidebar-width;
+	padding: 5px;
+	overflow: auto;
 
+	&--section {
+		padding-bottom: 10px;
+	}
+
+	&--source {
 		&__off {
 			color: #ddd;
 			text-decoration: line-through;

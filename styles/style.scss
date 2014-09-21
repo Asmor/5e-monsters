@@ -1,9 +1,7 @@
 @import 'global';
 
+$sidebar-width: 250px;
+
 @import 'filters';
 @import 'monster-table';
 
-.main-container {
-	width: 1000px;
-	margin: 20px auto;
-}
