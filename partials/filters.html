@@ -52,7 +52,7 @@
 		ng-repeat="source in sources"
 		ng-class="{ 'filters--source__off': !filters.source[source] }"
 	>
-		{{ source }}
 		<input type="checkbox" ng-model="filters.source[source]">
+		{{ source }}
 	</label>
 </div>
