@@ -21,7 +21,7 @@ Controllers.main = {
 			source: sourceFilters,
 		};
 		$scope.monsters = monsters.sort(function (a, b) {
-			return a.name > b.name;
+			return (a.name > b.name) ? 1 : -1;
 		});
 		$scope.sizes = sizes;
 		$scope.sources = sources;
