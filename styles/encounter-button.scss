@@ -1,0 +1,13 @@
+.encounter-button {
+	height: 25px;
+	width: 25px;
+	text-align: center;
+	background-color: #ddd;
+	border: 1px solid #000;
+	border-radius: 2px;
+	cursor: pointer;
+
+	&:active {
+		background-color: #eee;
+	}
+}

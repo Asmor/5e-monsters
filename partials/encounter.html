@@ -52,11 +52,11 @@
 					ng-repeat="(key, group) in encounter.groups"
 				>
 					<td>
-						<button ng-click="addMonster(group.monster)">
-							+
+						<button ng-click="addMonster(group.monster)" class="encounter-button">
+							<i class="fa fa-plus"></i>
 						</button>
-						<button ng-click="removeMonster(group.monster)">
-							-
+						<button ng-click="removeMonster(group.monster)" class="encounter-button">
+							<i class="fa fa-minus"></i>
 						</button>
 					</td>
 					<td>
