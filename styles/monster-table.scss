@@ -6,6 +6,10 @@
 	right: 0;
 	overflow: auto;
 
+	&.monster-table__short {
+		bottom: $encounter-builder-height;
+	}
+
 	&--table {
 		> tbody, > thead {
 			> tr > td {
@@ -14,9 +18,7 @@
 		}
 
 		> thead {
-			background-color: #222;
-			color: #ddd;
-			font-weight: bold;
+			@include header;
 		}
 
 	}

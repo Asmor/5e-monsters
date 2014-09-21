@@ -1,0 +1,31 @@
+.encounter-builder {
+	display: none;
+	position: fixed;
+	bottom: 0;
+	left: $sidebar-width;
+	right: 0;
+	height: $encounter-builder-height;
+	box-sizing: border-box;
+
+	&__shown {
+		display: block;
+	}
+
+	&--body {
+		position: absolute;
+		top: 30px;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		overflow: auto;
+	}
+
+	&--header {
+		@include header;
+
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+	}
+}

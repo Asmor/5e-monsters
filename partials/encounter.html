@@ -1,0 +1,48 @@
+<div
+	class="encounter-builder"
+	ng-class="{ 'encounter-builder__shown': encounterQty }"
+>
+	<div class="encounter-builder--header">
+		Encounter
+		Total XP: {{ encounterExp | number }}
+		<span ng-if="encounterQty > 1">
+			Adjusted XP: {{ adjustedEncounterExp() | number }}
+		</span>
+	</div>
+	<div class="encounter-builder--body">
+		<table class="monster-table--table">
+			<tbody>
+				<tr
+					class="monster-table--row"
+					ng-repeat="(key, group) in encounter"
+				>
+					<td>
+						<button ng-click="addMonster(group.monster)">
+							+
+						</button>
+						<button ng-click="removeMonster(group.monster)">
+							-
+						</button>
+					</td>
+					<td>
+						{{ group.qty }}x {{ group.monster.name }}
+					</td>
+					<td>
+						CR: {{ group.monster.cr }}
+					</td>
+					<td>
+						XP: {{ group.monster.exp | number}}
+					</td>
+					<td>
+						<div
+							ng-repeat="source in group.monster.sources"
+							ng-show="filters.source[source.name]"
+						>
+							{{ source.name }} p.{{ source.page }}
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,7 +1,12 @@
 @import 'global';
+@import 'mixins';
 
 $sidebar-width: 250px;
+$encounter-builder-height: 250px;
+$encounter-builder-height-minimized: 20px;
+$encounter-builder-height-closed: 0;
 
 @import 'filters';
 @import 'monster-table';
+@import 'encounter-builder';
 

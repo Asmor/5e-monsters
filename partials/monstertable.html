@@ -1,7 +1,11 @@
-<div class="monster-table">
+<div
+	class="monster-table"
+	ng-class="{ 'monster-table__short': encounterQty }"
+>
 	<table class="monster-table--table">
 		<thead>
 			<tr>
+				<td></td>
 				<td ng-click="filters.sort = 'name'">
 					Name
 				</td>
@@ -29,6 +33,11 @@
 				ng-show="checkMonster(monster, filters)"
 			>
 				<td>
+					<button ng-click="addMonster(monster)">
+						+
+					</button>
+				</td>
+				<td>
 					<div class="monster-table--name">
 						{{ monster.name }}
 					</div>
@@ -46,7 +55,7 @@
 				<td><span ng-if="monster.alignment">
 					{{ monster.alignment.text }}
 				</span></td>
-				<td> {{ monster.cr.join(", ") }} </td>
+				<td> {{ monster.cr }} </td>
 				<td>
 					<div
 						ng-repeat="source in monster.sources"

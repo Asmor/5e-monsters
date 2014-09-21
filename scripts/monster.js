@@ -2,6 +2,7 @@
 /* exported addMonster */
 /* exported checkMonster */
 /* exported registerMonster */
+/* global expByCr */
 /* global tags */
 /* global monsters */
 /* global monstersByName */
@@ -19,8 +20,9 @@ function Monster(args) {
 	monster.legendary = args.legendary;
 	monster.lair = args.lair;
 	monster.sources = [];
+	monster.exp = expByCr[monster.cr];
 
-	monster.crSort = parseCr(monster.cr[0]);
+	monster.crSort = parseCr(monster.cr);
 	monster.sizeSort = parseSize(monster.size);
 	monster.searchable = [
 		monster.name,
@@ -106,11 +108,11 @@ function checkMonster(monster, filters) {
 		}
 	}
 
-	if ( filters.minCr && !meetsMinCr(monster, filters.minCr) ) {
+	if ( filters.minCr && monster.crSort < filters.minCr ) {
 		return false;
 	}
 
-	if ( filters.maxCr && !meetsMaxCr(monster, filters.maxCr) ) {
+	if ( filters.maxCr && monster.crSort > filters.maxCr ) {
 		return false;
 	}
 
@@ -123,32 +125,6 @@ function checkMonster(monster, filters) {
 	}
 
 	return true;
-}
-
-function meetsMinCr(monster, cr) {
-	var i, crValue;
-
-	for ( i = 0; i < monster.cr.length; i++ ) {
-		crValue = parseCr(monster.cr[i]);
-		if ( crValue >= cr ) {
-			return true;
-		}
-	}
-
-	return false;
-}
-
-function meetsMaxCr(monster, cr) {
-	var i, crValue;
-
-	for ( i = 0; i < monster.cr.length; i++ ) {
-		crValue = parseCr(monster.cr[i]);
-		if ( crValue <= cr ) {
-			return true;
-		}
-	}
-
-	return false;
 }
 
 function isInSource(monster, sources) {

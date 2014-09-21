@@ -33,10 +33,13 @@ ul {
   left: 250px;
   right: 0;
   overflow: auto; }
+  .monster-table.monster-table__short {
+    bottom: 250px; }
   .monster-table--table > tbody > tr > td, .monster-table--table > thead > tr > td {
     padding: 5px; }
   .monster-table--table > thead {
-    background-color: #222;
+    padding: 5px;
+    background-color: #000;
     color: #ddd;
     font-weight: bold; }
   .monster-table--row {
@@ -46,3 +49,30 @@ ul {
     font-variant: small-caps; }
   .monster-table--tags {
     font-style: italic; }
+
+.encounter-builder {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 250px;
+  right: 0;
+  height: 250px;
+  box-sizing: border-box; }
+  .encounter-builder__shown {
+    display: block; }
+  .encounter-builder--body {
+    position: absolute;
+    top: 30px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto; }
+  .encounter-builder--header {
+    padding: 5px;
+    background-color: #000;
+    color: #ddd;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0; }
