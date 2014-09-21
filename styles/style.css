@@ -1,0 +1,36 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif; }
+
+table {
+  border-collapse: collapse; }
+
+td {
+  vertical-align: top; }
+
+.filters--source {
+  padding-right: 10px; }
+  .filters--source__off {
+    color: #ddd;
+    text-decoration: line-through; }
+
+.monster-table {
+  border: 1px solid #222; }
+  .monster-table > tbody > tr > td, .monster-table > thead > tr > td {
+    padding: 5px; }
+  .monster-table > thead {
+    background-color: #222;
+    color: #ddd;
+    font-weight: bold; }
+  .monster-table--row__even-row {
+    background-color: #ddd; }
+  .monster-table--section {
+    font-size: 0.8rem;
+    font-variant: small-caps; }
+  .monster-table--tags {
+    font-style: italic; }
+
+.main-container {
+  width: 1000px;
+  margin: auto; }

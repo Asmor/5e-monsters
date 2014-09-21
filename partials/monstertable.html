@@ -1,0 +1,58 @@
+<table class="monster-table">
+	<thead>
+		<tr>
+			<td ng-click="filters.sort = 'name'">
+				Name
+			</td>
+			<td ng-click="filters.sort = 'size'">
+				Size
+			</td>
+			<td ng-click="filters.sort = 'type'">
+				Type
+			</td>
+			<td ng-click="filters.sort = 'alignment'">
+				Alignment
+			</td>
+			<td ng-click="filters.sort = 'cr'">
+				CR
+			</td>
+			<td>
+				Source
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+	<tr
+		ng-repeat="monster in monsters | monstersFilter:filters"
+		ng-class-even="'monster-table--row__even-row'"
+	>
+		<td>
+			<div class="monster-table--name">
+				{{ monster.name }}
+			</div>
+			<div ng-if="monster.section" class="monster-table--section">
+				{{ monster.section }}
+			</div>
+		</td>
+		<td> {{ monster.size }} </td>
+		<td>
+			{{ monster.type }}
+			<span ng-if="monster.tags" class="monster-table--tags">
+				({{ monster.tags.join(", ") }})
+			</span>
+		</td>
+		<td><span ng-if="monster.alignment">
+			{{ monster.alignment.text }}
+		</span></td>
+		<td> {{ monster.cr.join(", ") }} </td>
+		<td>
+			<div
+				ng-repeat="source in monster.sources"
+				ng-show="filters.source[source.name]"
+			>
+				{{ source.name }} p.{{ source.page }}
+			</div>
+		</td>
+	</tr>
+	</tbody>
+</table>

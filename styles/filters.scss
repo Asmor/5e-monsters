@@ -1,0 +1,10 @@
+.filters {
+	&--source {
+		padding-right: 10px;
+
+		&__off {
+			color: #ddd;
+			text-decoration: line-through;
+		}
+	}
+}

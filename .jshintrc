@@ -1,0 +1,8 @@
+{
+	"browser": true,
+	"devel": true,
+	"globalstrict": true,
+	"undef": true,
+	"unused": true,
+	"predef": [ "angular" ]
+}

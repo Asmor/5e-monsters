@@ -1,0 +1,30 @@
+.monster-table {
+	border: 1px solid #222;
+
+	> tbody, > thead {
+		> tr > td {
+			padding: 5px;
+		}
+	}
+
+	> thead {
+		background-color: #222;
+		color: #ddd;
+		font-weight: bold;
+	}
+
+	&--row {
+		&__even-row {
+			background-color: #ddd;
+		}
+	}
+
+	&--section {
+		font-size: 0.8rem;
+		font-variant: small-caps;
+	}
+
+	&--tags {
+		font-style: italic;
+	}
+}
