@@ -118,7 +118,7 @@ crs.push({ text: "0", value: 0 });
 crs.push({ text: "1/8", value: 0.125 });
 crs.push({ text: "1/4", value: 0.25 });
 crs.push({ text: "1/2", value: 0.5 });
-for ( i = 0; i < 25; i++ ) {
+for ( i = 1; i < 25; i++ ) {
 	crs.push({ text: i.toString(), value: i });
 }
 
