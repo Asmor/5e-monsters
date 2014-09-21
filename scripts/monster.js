@@ -22,6 +22,17 @@ function Monster(args) {
 
 	monster.crSort = parseCr(monster.cr[0]);
 	monster.sizeSort = parseSize(monster.size);
+	monster.searchable = [
+		monster.name,
+		monster.section,
+		monster.type,
+		monster.size,
+		(monster.alignment) ? monster.alignment.text : "",
+	].concat(
+		monster.cr
+	).concat(
+		monster.tags
+	).join("|").toLowerCase();
 }
 
 function addMonster(args) {
@@ -137,6 +148,10 @@ function checkMonster(monster, filters) {
 	}
 
 	if ( !isInSource(monster, filters.source) ) {
+		return false;
+	}
+
+	if ( filters.search && monster.searchable.indexOf(filters.search.toLowerCase()) === -1 ) {
 		return false;
 	}
 

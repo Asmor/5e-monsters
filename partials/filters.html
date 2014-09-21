@@ -1,5 +1,9 @@
 <div class="filters">
 	<div class="filters--section">
+		<input ng-model="filters.search" placeholder="Search...">
+		<button ng-click="filters.search = null">Clear</button>
+	</div>
+	<div class="filters--section">
 		<label>
 			Size:
 			<select
