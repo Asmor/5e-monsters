@@ -31,6 +31,8 @@
 				class="monster-table--row"
 				ng-repeat="monster in monsters | orderBy:monsterSort"
 				ng-show="checkMonster(monster, filters)"
+				ng-class="'monster-table--row__' + dangerZone(monster)"
+
 			>
 				<td>
 					<button ng-click="addMonster(monster)" class="encounter-button">

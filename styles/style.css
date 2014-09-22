@@ -1572,7 +1572,33 @@ ul {
   left: 0;
   width: 250px;
   padding: 5px;
-  overflow: auto; }
+  overflow: auto;
+  box-sizing: border-box; }
+  .filters--definition {
+    padding: 5px; }
+    .filters--definition__ludicrous {
+      background-color: #333;
+      color: #ddd; }
+    .filters--definition__deadly {
+      background-color: #fbb; }
+    .filters--definition__hard {
+      background-color: #fa8; }
+    .filters--definition__medium {
+      background-color: #ffb; }
+    .filters--definition__easy {
+      background-color: #cfb; }
+    .filters--definition__pair {
+      background-color: #bef; }
+    .filters--definition__group {
+      background-color: #ebf; }
+    .filters--definition__trivial {
+      background-color: #fff; }
+  .filters--guidelines-active {
+    font-weight: bold; }
+  .filters--guidelines-values {
+    text-align: right;
+    padding-left: 5px;
+    padding-right: 20px; }
   .filters--section {
     padding-bottom: 10px; }
   .filters--source__off {
@@ -1597,6 +1623,23 @@ ul {
     font-weight: bold; }
   .monster-table--row {
     border-bottom: 1px solid black; }
+    .monster-table--row__ludicrous {
+      background-color: #333;
+      color: #ddd; }
+    .monster-table--row__deadly {
+      background-color: #fbb; }
+    .monster-table--row__hard {
+      background-color: #fa8; }
+    .monster-table--row__medium {
+      background-color: #ffb; }
+    .monster-table--row__easy {
+      background-color: #cfb; }
+    .monster-table--row__pair {
+      background-color: #bef; }
+    .monster-table--row__group {
+      background-color: #ebf; }
+    .monster-table--row__trivial {
+      background-color: #fff; }
   .monster-table--section {
     font-size: 0.8rem;
     font-variant: small-caps; }
@@ -1620,14 +1663,6 @@ ul {
     left: 0;
     right: 0;
     overflow: auto; }
-  .encounter-builder--guidelines {
-    float: right; }
-  .encounter-builder--guidelines-active {
-    font-weight: bold; }
-  .encounter-builder--guidelines-values {
-    text-align: right;
-    padding-left: 5px;
-    padding-right: 20px; }
   .encounter-builder--header {
     padding: 5px;
     background-color: #000;
@@ -1637,9 +1672,6 @@ ul {
     top: 0;
     left: 0;
     right: 0; }
-  .encounter-builder--party-settings {
-    float: right;
-    padding-right: 20px; }
 
 .encounter-button {
   height: 25px;

@@ -72,4 +72,67 @@
 			</li>
 		</ul>
 	</div>
+	<div class="filters--section">
+		Group Info
+		<br>
+		<label>
+			Players:
+			<select
+				ng-model="encounter.playerCount"
+				ng-options="count for count in [1,2,3,4,5,6,7,8]"
+			></select>
+		</label>
+		<label>
+			Level:
+			<select
+				ng-model="encounter.partyLevel"
+				ng-options="level as level.level for level in levels"
+			></select>
+		</label>
+		<table class="filters--guidelines">
+			<tr ng-class="{'filters--guidelines-active': encounterDifficulty() === 'Easy'}">
+				<td>Easy:</td>
+				<td class="filters--guidelines-values">{{ encounter.partyLevel.easy * encounter.playerCount | number }} exp</td>
+			</tr>
+			<tr ng-class="{'filters--guidelines-active': encounterDifficulty() === 'Medium'}">
+				<td>Medium:</td>
+				<td class="filters--guidelines-values">{{ encounter.partyLevel.medium * encounter.playerCount | number }} exp</td>
+			</tr>
+			<tr ng-class="{'filters--guidelines-active': encounterDifficulty() === 'Hard'}">
+				<td>Hard:</td>
+				<td class="filters--guidelines-values">{{ encounter.partyLevel.hard * encounter.playerCount | number }} exp</td>
+			</tr>
+			<tr ng-class="{'filters--guidelines-active': encounterDifficulty() === 'Deadly'}">
+				<td>Deadly:</td>
+				<td class="filters--guidelines-values">{{ encounter.partyLevel.deadly * encounter.playerCount | number }} exp</td>
+			</tr>
+		</table>
+		<ul>
+			<li class="filters--definition filters--definition__ludicrous">
+				Ludicrous: You should not use these against this party
+			</li>
+			<li class="filters--definition filters--definition__deadly">
+				Deadly: One of these is a deadly challenge
+			</li>
+			<li class="filters--definition filters--definition__hard">
+				Hard: One of these is a hard challenge
+			</li>
+			<li class="filters--definition filters--definition__medium">
+				Medium: One of these is a medium challenge
+			</li>
+			<li class="filters--definition filters--definition__easy">
+				Easy: One of these is an easy challenge
+			</li>
+			<li class="filters--definition filters--definition__pair">
+				Pair: Two of these is a medium challenge
+			</li>
+			<li class="filters--definition filters--definition__group">
+				Group: Four of these is a medium challenge
+			</li>
+			<li class="filters--definition filters--definition__trivial">
+				Trivial: Eight or more of these is a medium challenge
+			</li>
+		</ul>
+	</div>
+
 </div>

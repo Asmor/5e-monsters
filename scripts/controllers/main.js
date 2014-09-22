@@ -52,6 +52,7 @@ Controllers.main = {
 			$scope.encounter.qty++;
 			$scope.encounter.exp += monster.cr.exp;
 		};
+
 		$scope.removeMonster = function (monster) {
 			$scope.encounter.groups[monster.name].qty--;
 			$scope.encounter.qty--;
@@ -60,6 +61,7 @@ Controllers.main = {
 				delete $scope.encounter.groups[monster.name];
 			}
 		};
+
 		$scope.adjustedEncounterExp = function () {
 			var qty = $scope.encounter.qty,
 				exp = $scope.encounter.exp,
@@ -102,10 +104,15 @@ Controllers.main = {
 
 			return Math.floor(exp * multipliers[multiplierCategory]);
 		};
+
 		$scope.encounterDifficulty = function () {
 			var exp = $scope.adjustedEncounterExp(),
 				count = $scope.encounter.playerCount,
 				level = $scope.encounter.partyLevel;
+
+			if ( exp === 0 ) {
+				return false;
+			}
 
 			if ( exp <= ( count * level.easy ) ) {
 				return "Easy";
@@ -140,6 +147,31 @@ Controllers.main = {
 			}
 
 			return monster.name;
+		};
+
+		$scope.dangerZone = function (monster) {
+			var count = $scope.encounter.playerCount,
+				level = $scope.encounter.partyLevel,
+				mediumExp = count * level.medium,
+				monsterExp = monster.cr.exp;
+
+			if ( monsterExp > count * level.deadly ) {
+				return "ludicrous";
+			} else if ( monsterExp > count * level.hard ) {
+				return "deadly";
+			} else if ( monsterExp > mediumExp ) {
+				return "hard";
+			} else if ( monsterExp > count * level.easy ) {
+				return "medium";
+			} else if ( monsterExp > mediumExp / 3 ) {
+				return "easy";
+			} else if ( monsterExp > mediumExp / 8 ) {
+				return "pair";
+			} else if ( monsterExp > mediumExp / 20 ) {
+				return "group";
+			} else {
+				return "trivial";
+			}
 		};
 	},
 };

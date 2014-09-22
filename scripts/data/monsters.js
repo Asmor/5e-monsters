@@ -4,9 +4,9 @@
 
 // Custom
 addMonster({ name: "CR 0",		cr: "0", });
-addMonster({ name: "CR 1/2",	cr: "1/2", });
-addMonster({ name: "CR 1/4",	cr: "1/4", });
 addMonster({ name: "CR 1/8",	cr: "1/8", });
+addMonster({ name: "CR 1/4",	cr: "1/4", });
+addMonster({ name: "CR 1/2",	cr: "1/2", });
 addMonster({ name: "CR 1",		cr: "1", });
 addMonster({ name: "CR 2",		cr: "2", });
 addMonster({ name: "CR 3",		cr: "3", });

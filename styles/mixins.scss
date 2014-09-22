@@ -4,3 +4,38 @@
 	color: #ddd;
 	font-weight: bold;
 }
+
+@mixin challenge-colors {
+	&__ludicrous {
+		background-color: #333;
+		color: #ddd;
+	}
+
+	&__deadly {
+		background-color: #fbb;
+	}
+
+	&__hard {
+		background-color: #fa8;
+	}
+
+	&__medium {
+		background-color: #ffb;
+	}
+
+	&__easy {
+		background-color: #cfb;
+	}
+
+	&__pair {
+		background-color: #bef;
+	}
+
+	&__group {
+		background-color: #ebf;
+	}
+
+	&__trivial {
+		background-color: #fff;
+	}
+}
