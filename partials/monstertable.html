@@ -29,7 +29,7 @@
 		<tbody>
 			<tr
 				class="monster-table--row"
-				ng-repeat="monster in monsters"
+				ng-repeat="monster in monsters | orderBy:monsterSort"
 				ng-show="checkMonster(monster, filters)"
 			>
 				<td>

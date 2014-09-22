@@ -119,5 +119,27 @@ Controllers.main = {
 				return "Ludicrous";
 			}
 		};
+
+		$scope.monsterSort = function (monster) {
+			var sort = $scope.filters.sort;
+
+			if ( sort === "size" ) {
+				return monster.sizeSort;
+			}
+
+			if ( sort === "type" ) {
+				return monster.type
+			}
+
+			if ( sort === "alignment" ) {
+				return (monster.alignment||{text:"zzzzz"}).text;
+			}
+
+			if ( sort === "cr" ) {
+				return monster.crSort;
+			}
+
+			return monster.name;
+		};
 	},
 };
