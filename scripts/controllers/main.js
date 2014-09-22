@@ -1,7 +1,7 @@
 /* global Controllers */
 /* global alignments */
 /* global checkMonster */
-/* global crs */
+/* global crInfo */
 /* global levels */
 /* global monsters */
 /* global sourceFilters */
@@ -18,7 +18,7 @@ Controllers.main = {
 	controller: function ($scope) {
 		window.scope = $scope;
 		$scope.alignments = alignments;
-		$scope.crs = crs;
+		$scope.crInfo = crInfo;
 		$scope.filters = {
 			source: sourceFilters,
 		};
@@ -50,12 +50,12 @@ Controllers.main = {
 
 			$scope.encounter.groups[monster.name].qty++;
 			$scope.encounter.qty++;
-			$scope.encounter.exp += monster.exp;
+			$scope.encounter.exp += monster.cr.exp;
 		};
 		$scope.removeMonster = function (monster) {
 			$scope.encounter.groups[monster.name].qty--;
 			$scope.encounter.qty--;
-			$scope.encounter.exp -= monster.exp;
+			$scope.encounter.exp -= monster.cr.exp;
 			if ( $scope.encounter.groups[monster.name].qty === 0 ) {
 				delete $scope.encounter.groups[monster.name];
 			}
@@ -128,7 +128,7 @@ Controllers.main = {
 			}
 
 			if ( sort === "type" ) {
-				return monster.type
+				return monster.type;
 			}
 
 			if ( sort === "alignment" ) {
@@ -136,7 +136,7 @@ Controllers.main = {
 			}
 
 			if ( sort === "cr" ) {
-				return monster.crSort;
+				return monster.cr.numeric;
 			}
 
 			return monster.name;

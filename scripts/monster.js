@@ -2,7 +2,7 @@
 /* exported addMonster */
 /* exported checkMonster */
 /* exported registerMonster */
-/* global expByCr */
+/* global crInfo */
 /* global tags */
 /* global monsters */
 /* global monstersByName */
@@ -12,7 +12,7 @@ function Monster(args) {
 	var monster = this;
 	monster.name = args.name;
 	monster.section = args.section;
-	monster.cr = args.cr;
+	monster.cr = crInfo[args.cr];
 	monster.type = args.type;
 	monster.tags = (args.tags) ? args.tags.sort() : undefined;
 	monster.size = args.size;
@@ -20,9 +20,7 @@ function Monster(args) {
 	monster.legendary = args.legendary;
 	monster.lair = args.lair;
 	monster.sources = [];
-	monster.exp = expByCr[monster.cr];
 
-	monster.crSort = parseCr(monster.cr);
 	monster.sizeSort = parseSize(monster.size);
 	monster.searchable = [
 		monster.name,
@@ -45,15 +43,6 @@ function addMonster(args) {
 
 	if (args.tags) {
 		register(tags, args.tags);
-	}
-}
-
-function parseCr(cr) {
-	switch ( cr ) {
-		case "1/8": return 0.125;
-		case "1/4": return 0.25;
-		case "1/2": return 0.5;
-		default: return parseInt( cr );
 	}
 }
 
@@ -108,11 +97,11 @@ function checkMonster(monster, filters) {
 		}
 	}
 
-	if ( filters.minCr && monster.crSort < filters.minCr ) {
+	if ( filters.minCr && monster.cr.numeric < filters.minCr ) {
 		return false;
 	}
 
-	if ( filters.maxCr && monster.crSort > filters.maxCr ) {
+	if ( filters.maxCr && monster.cr.numeric > filters.maxCr ) {
 		return false;
 	}
 

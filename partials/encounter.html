@@ -63,10 +63,10 @@
 						{{ group.qty }}x {{ group.monster.name }}
 					</td>
 					<td>
-						CR: {{ group.monster.cr }}
+						CR: {{ group.monster.cr.string }}
 					</td>
 					<td>
-						XP: {{ group.monster.exp | number}}
+						XP: {{ group.monster.cr.exp | number}}
 					</td>
 					<td>
 						<div
