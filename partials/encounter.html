@@ -5,9 +5,7 @@
 	<div class="encounter-builder--header">
 		Encounter
 		Total XP: {{ encounter.exp | number }}
-		<span ng-if="encounter.qty > 1">
-			Adjusted XP: {{ adjustedEncounterExp() | number }}
-		</span>
+		Adjusted XP: {{ adjustedEncounterExp() | number }}
 		{{ encounterDifficulty() }}
 	</div>
 	<div class="encounter-builder--body">

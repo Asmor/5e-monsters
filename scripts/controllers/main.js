@@ -77,16 +77,17 @@ Controllers.main = {
 			var qty = $scope.encounter.qty,
 				exp = $scope.encounter.exp,
 				multiplierCategory,
-				// 0 and 7 are repeats of 1 and 6, to handle large and small party adjustments
+				// 0 = a single monster against a large group
+				// last = a horde of monsters against a small group
 				multipliers = [
-					1,
+					0.5,
 					1,
 					1.5,
 					2,
 					2.5,
 					3,
 					4,
-					4,
+					5,
 				];
 
 			if ( qty === 0 ) {
@@ -186,15 +187,33 @@ Controllers.main = {
 		$scope.recalculateThreatLevels = function () {
 			var count = $scope.encounter.playerCount,
 				level = $scope.encounter.partyLevel,
-				mediumExp = count * level.medium;
+				mediumExp = count * level.medium,
+				singleMultiplier = 1,
+				pairMultiplier = 1.5,
+				groupMultiplier = 2,
+				trivialMultiplier = 2.5;
 
-			$scope.encounter.threat.deadly	= count * level.deadly;
-			$scope.encounter.threat.hard	= count * level.hard;
-			$scope.encounter.threat.medium	= mediumExp;
-			$scope.encounter.threat.easy	= count * level.easy;
-			$scope.encounter.threat.pair	= mediumExp / 3; // 2 monsters * 1.5 multiplier
-			$scope.encounter.threat.group	= mediumExp / 8; // 4 monsters * 2 multiplier
-			$scope.encounter.threat.trivial	= mediumExp / 20; // 8 monsters * 2.5 multiplier
+			if ( count < 3 ) {
+				// For small groups, increase multiplier
+				singleMultiplier = 1.5;
+				pairMultiplier = 2;
+				groupMultiplier = 2.5;
+				trivialMultiplier = 3;
+			} else if ( count > 5 ) {
+				// For large groups, reduce multiplier
+				singleMultiplier = 0.5;
+				pairMultiplier = 1;
+				groupMultiplier = 1.5;
+				trivialMultiplier = 2;
+			}
+
+			$scope.encounter.threat.deadly	= count * level.deadly / singleMultiplier;
+			$scope.encounter.threat.hard	= count * level.hard / singleMultiplier;
+			$scope.encounter.threat.medium	= mediumExp / singleMultiplier;
+			$scope.encounter.threat.easy	= count * level.easy / singleMultiplier;
+			$scope.encounter.threat.pair	= mediumExp / ( 2 * pairMultiplier );
+			$scope.encounter.threat.group	= mediumExp / ( 4 * groupMultiplier );
+			$scope.encounter.threat.trivial	= mediumExp / ( 8 * trivialMultiplier );
 		};
 
 		// Gotta get threat levels set up with initial values
