@@ -1,7 +1,7 @@
 /* global Controllers */
 "use strict";
 
-var monsterListApp = angular.module("monsterListApp", ["ui.router"]);
+var monsterListApp = angular.module("monsterListApp", ["ui.router", "ngTouch"]);
 
 monsterListApp.config(function ($stateProvider, $urlRouterProvider) {
 	// Default
