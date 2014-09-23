@@ -80,6 +80,7 @@
 			<select
 				ng-model="encounter.playerCount"
 				ng-options="count for count in [1,2,3,4,5,6,7,8]"
+				ng-change="recalculateThreatLevels()"
 			></select>
 		</label>
 		<label>
@@ -87,6 +88,7 @@
 			<select
 				ng-model="encounter.partyLevel"
 				ng-options="level as level.level for level in levels"
+				ng-change="recalculateThreatLevels()"
 			></select>
 		</label>
 		<table class="filters--guidelines">

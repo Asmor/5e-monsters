@@ -49,6 +49,7 @@ Controllers.main = {
 			groups: {},
 			playerCount: 4,
 			partyLevel: $scope.levels[0],
+			threat: {},
 		};
 		$scope.encounter.qty = 0;
 		$scope.encounter.exp = 0;
@@ -160,28 +161,43 @@ Controllers.main = {
 		};
 
 		$scope.dangerZone = function (monster) {
-			var count = $scope.encounter.playerCount,
-				level = $scope.encounter.partyLevel,
-				mediumExp = count * level.medium,
+			var threat = $scope.encounter.threat,
 				monsterExp = monster.cr.exp;
 
-			if ( monsterExp > count * level.deadly ) {
+			if ( monsterExp > threat.deadly ) {
 				return "ludicrous";
-			} else if ( monsterExp > count * level.hard ) {
+			} else if ( monsterExp > threat.hard ) {
 				return "deadly";
-			} else if ( monsterExp > mediumExp ) {
+			} else if ( monsterExp > threat.medium ) {
 				return "hard";
-			} else if ( monsterExp > count * level.easy ) {
+			} else if ( monsterExp > threat.easy ) {
 				return "medium";
-			} else if ( monsterExp > mediumExp / 3 ) {
+			} else if ( monsterExp > threat.pair ) {
 				return "easy";
-			} else if ( monsterExp > mediumExp / 8 ) {
+			} else if ( monsterExp > threat.group ) {
 				return "pair";
-			} else if ( monsterExp > mediumExp / 20 ) {
+			} else if ( monsterExp > threat.trivial ) {
 				return "group";
 			} else {
 				return "trivial";
 			}
 		};
+
+		$scope.recalculateThreatLevels = function () {
+			var count = $scope.encounter.playerCount,
+				level = $scope.encounter.partyLevel,
+				mediumExp = count * level.medium;
+
+			$scope.encounter.threat.deadly	= count * level.deadly;
+			$scope.encounter.threat.hard	= count * level.hard;
+			$scope.encounter.threat.medium	= mediumExp;
+			$scope.encounter.threat.easy	= count * level.easy;
+			$scope.encounter.threat.pair	= mediumExp / 3; // 2 monsters * 1.5 multiplier
+			$scope.encounter.threat.group	= mediumExp / 8; // 4 monsters * 2 multiplier
+			$scope.encounter.threat.trivial	= mediumExp / 20; // 8 monsters * 2.5 multiplier
+		};
+
+		// Gotta get threat levels set up with initial values
+		$scope.recalculateThreatLevels();
 	},
 };
