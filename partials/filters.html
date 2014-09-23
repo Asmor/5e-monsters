@@ -42,7 +42,7 @@
 			Min:
 			<select
 				ng-model="filters.minCr"
-				ng-options="cr.numeric as cr.string for cr in crInfo"
+				ng-options="cr.numeric as cr.string for (key, cr) in crInfo"
 			>
 				<option value=""></option>
 			</select>
@@ -51,7 +51,7 @@
 			Max:
 			<select
 				ng-model="filters.maxCr"
-				ng-options="cr.numeric as cr.string for cr in crInfo"
+				ng-options="cr.numeric as cr.string for (key, cr) in crInfo"
 			>
 				<option value=""></option>
 			</select>
