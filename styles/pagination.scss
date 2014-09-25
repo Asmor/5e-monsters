@@ -1,0 +1,39 @@
+.pagination-container {
+	position: fixed;
+	top: 0;
+	left: $sidebar-width;
+	right: 0;
+	height: $pagination-height;
+	text-align: center;
+	background-color: #000;
+
+	// Third-party class names ahoy!
+	.pagination {
+		display: inline-block;
+		> li {
+			display: inline-block;
+			font-weight: bold;
+			font-size: 1.5rem;
+			padding: 5px;
+			min-width: 30px;
+			text-align: center;
+
+			> a {
+				color: #ddd;
+				text-decoration: none;
+			}
+
+			&.active > a {
+				color: #d55;
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.pagination-container--size-controls {
+		color: #ddd;
+		position: fixed;
+		top: 10px;
+		right: 10px;
+	}
+}

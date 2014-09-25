@@ -1,0 +1,10 @@
+<div class="pagination-container">
+	<dir-pagination-controls></dir-pagination-controls>
+	<div class="pagination-container--size-controls">
+		Page size: 
+		<select
+			ng-model="filters.pageSize"
+			ng-options="page for page in [10, 25, 50, 100, 250, 500, 1000]"
+		></select>
+	</div>
+</div>
