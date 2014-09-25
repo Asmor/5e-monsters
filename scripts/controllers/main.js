@@ -31,6 +31,7 @@ Controllers.main = {
 		];
 		$scope.filters = {
 			source: sourceFilters,
+			pageSize: 10,
 		};
 		$scope.monsters = monsters.sort(function (a, b) {
 			return (a.name > b.name) ? 1 : -1;
@@ -162,6 +163,10 @@ Controllers.main = {
 		};
 
 		$scope.dangerZone = function (monster) {
+			if ( !monster ) {
+				return null;
+			}
+
 			var threat = $scope.encounter.threat,
 				monsterExp = monster.cr.exp;
 

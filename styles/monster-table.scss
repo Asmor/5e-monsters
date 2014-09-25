@@ -1,6 +1,6 @@
 .monster-table {
 	position: fixed;
-	top: 0;
+	top: $pagination-height;
 	bottom: 0;
 	left: $sidebar-width;
 	right: 0;
@@ -8,6 +8,16 @@
 
 	&.monster-table__short {
 		bottom: $encounter-builder-height;
+	}
+
+	&--column {
+		&__button {		width: 25px; }
+		&__name {		width: auto; }
+		&__size {		width: 100px; }
+		&__type {		width: 100px; }
+		&__alignment {	width: 100px; }
+		&__cr {			width: 25px; }
+		&__source {		width: 160px; }
 	}
 
 	&--table {
@@ -32,6 +42,10 @@
 	&--section {
 		font-size: 0.8rem;
 		font-variant: small-caps;
+	}
+
+	&--table {
+		width: 100%;
 	}
 
 	&--tags {

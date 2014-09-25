@@ -1,7 +1,8 @@
 /* global Controllers */
+/* global monstersFilter */
 "use strict";
 
-var monsterListApp = angular.module("monsterListApp", ["ui.router", "ngTouch"]);
+var monsterListApp = angular.module("monsterListApp", ["ui.router", "ngTouch", "angularUtils.directives.dirPagination"]);
 
 monsterListApp.config(function ($stateProvider, $urlRouterProvider) {
 	// Default
@@ -10,3 +11,4 @@ monsterListApp.config(function ($stateProvider, $urlRouterProvider) {
 	// Main menu page
 	$stateProvider.state("main", Controllers.main);
 });
+monsterListApp.filter("monstersFilter", monstersFilter);

@@ -5,23 +5,38 @@
 	<table class="monster-table--table">
 		<thead>
 			<tr>
-				<td></td>
-				<td ng-click="filters.sort = 'name'">
+				<td class="monster-table--column__button"></td>
+				<td
+					class="monster-table--column__name"
+					ng-click="filters.sort = 'name'"
+				>
 					Name
 				</td>
-				<td ng-click="filters.sort = 'size'">
+				<td
+					class="monster-table--column__size"
+					ng-click="filters.sort = 'size'"
+				>
 					Size
 				</td>
-				<td ng-click="filters.sort = 'type'">
+				<td
+					class="monster-table--column__type"
+					ng-click="filters.sort = 'type'"
+				>
 					Type
 				</td>
-				<td ng-click="filters.sort = 'alignment'">
+				<td
+					class="monster-table--column__alignment"
+					ng-click="filters.sort = 'alignment'"
+				>
 					Alignment
 				</td>
-				<td ng-click="filters.sort = 'cr'">
+				<td
+					class="monster-table--column__cr"
+					ng-click="filters.sort = 'cr'"
+				>
 					CR
 				</td>
-				<td>
+				<td class="monster-table--column__source">
 					Source
 				</td>
 			</tr>
@@ -29,8 +44,7 @@
 		<tbody>
 			<tr
 				class="monster-table--row"
-				ng-repeat="monster in monsters | orderBy:monsterSort"
-				ng-show="checkMonster(monster, filters)"
+				dir-paginate="monster in monsters | monstersFilter:filters | itemsPerPage: filters.pageSize"
 				ng-class="'monster-table--row__' + dangerZone(monster)"
 
 			>

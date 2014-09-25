@@ -1,6 +1,6 @@
 /* exported Monster */
 /* exported addMonster */
-/* exported checkMonster */
+/* exported monstersFilter */
 /* exported registerMonster */
 /* global crInfo */
 /* global tags */
@@ -68,6 +68,39 @@ function register(target, entries, propName) {
 	}
 }
 
+function monstersFilter() {
+	return function ( input, filters ) {
+		var output = [], i;
+
+		for ( i = 0; i < input.length; i++ ) {
+			if ( checkMonster(input[i], filters) ) {
+				output.push(input[i]);
+			}
+		}
+
+		// Monsters are already sorted by name
+		if ( filters.sort === "size" ) {
+			output.sort(function (a, b) {
+				return a.sizeSort - b.sizeSort;
+			});
+		} else if ( filters.sort === "type" ) {
+			output.sort(function (a, b) {
+				return (a.type > b.type) ? 1 : 0;
+			});
+		} else if ( filters.sort === "alignment" ) {
+			output.sort(function (a, b) {
+				return ((a.alignment||{text:"zzzzzzz"}).text > (b.alignment||{text:"zzzzzzz"}).text) ? 1 : 0;
+			});
+		} else if ( filters.sort === "cr" ) {
+			output.sort(function (a, b) {
+				return a.cr.numeric - b.cr.numeric;
+			});
+		}
+
+		return output;
+	};
+}
+
 function checkMonster(monster, filters) {
 	if ( filters.type && monster.type !== filters.type ) {
 		return false;
@@ -117,6 +150,10 @@ function checkMonster(monster, filters) {
 }
 
 function isInSource(monster, sources) {
+	if ( !monster ) {
+		return false;
+	}
+
 	for ( var i = 0; i < monster.sources.length; i++ ) {
 		if ( sources[monster.sources[i].name] ) {
 			return true;
