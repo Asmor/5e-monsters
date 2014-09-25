@@ -85,11 +85,11 @@ function monstersFilter() {
 			});
 		} else if ( filters.sort === "type" ) {
 			output.sort(function (a, b) {
-				return (a.type > b.type) ? 1 : 0;
+				return (a.type > b.type) ? 1 : -1;
 			});
 		} else if ( filters.sort === "alignment" ) {
 			output.sort(function (a, b) {
-				return ((a.alignment||{text:"zzzzzzz"}).text > (b.alignment||{text:"zzzzzzz"}).text) ? 1 : 0;
+				return ((a.alignment||{text:"zzzzzzz"}).text > (b.alignment||{text:"zzzzzzz"}).text) ? 1 : -1;
 			});
 		} else if ( filters.sort === "cr" ) {
 			output.sort(function (a, b) {
