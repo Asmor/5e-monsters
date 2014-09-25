@@ -40,7 +40,7 @@
 		[ "Cyclops", 16 ],
 		[ "Death Dog", 16 ],
 		[ "Deer", 16 ],
-		[ "Dire wolf", 16 ],
+		[ "Dire Wolf", 16 ],
 		[ "Doppelganger", 17 ],
 		[ "Draft Horse", 17 ],
 		[ "Eagle", 17 ],

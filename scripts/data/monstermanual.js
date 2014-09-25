@@ -117,7 +117,7 @@
 		[ "Demilich (in lair)", 48 ],
 		[ "Demilich (Acererak)", 49 ],
 		[ "Deva", 16 ],
-		[ "Dire wolf", 321 ],
+		[ "Dire Wolf", 321 ],
 		[ "Displacer beast", 81 ],
 		[ "Djinni", 144 ],
 		[ "Doppelganger", 82 ],

@@ -935,7 +935,7 @@ addMonster({
 	alignment: alignments.lg,
 });
 addMonster({
-	name: "Dire wolf",
+	name: "Dire Wolf",
 	section: "Misc Creatures",
 	cr: "1",
 	type: "Beast",
