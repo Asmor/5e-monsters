@@ -17,6 +17,7 @@ function Monster(args) {
 	monster.tags = (args.tags) ? args.tags.sort() : undefined;
 	monster.size = args.size;
 	monster.alignment = args.alignment;
+	monster.special = args.special;
 	monster.legendary = args.legendary;
 	monster.lair = args.lair;
 	monster.sources = [];
@@ -40,6 +41,10 @@ function addMonster(args) {
 
 	monsters.push(monster);
 	monstersByName[monster.name] = monster;
+
+	if ( !monster.special ) {
+		crInfo[monster.cr.string].monsters.push(monster);
+	}
 
 	if (args.tags) {
 		register(tags, args.tags);

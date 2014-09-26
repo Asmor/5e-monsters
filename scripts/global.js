@@ -1,6 +1,8 @@
 /* exported Controllers */
 /* exported alignments */
 /* exported crInfo */
+/* exported crList */
+/* exported getMultiplier */
 /* exported levels */
 /* exported monsters */
 /* exported monstersByName */
@@ -115,41 +117,52 @@ var monsters = [],
 		ce: { ce: true, text: "chaotic evil" },
 	},
 	crInfo = {
-		"0":	{ string: "0",		numeric: 0,		exp: 10 },
-		"1/8":	{ string: "1/8",	numeric: 0.125,	exp: 25 },
-		"1/4":	{ string: "1/4",	numeric: 0.25,	exp: 50 },
-		"1/2":	{ string: "1/2",	numeric: 0.5,	exp: 100 },
-		"1":	{ string: "1",		numeric: 1,		exp: 200 },
-		"2":	{ string: "2",		numeric: 2,		exp: 450 },
-		"3":	{ string: "3",		numeric: 3,		exp: 700 },
-		"4":	{ string: "4",		numeric: 4,		exp: 1100 },
-		"5":	{ string: "5",		numeric: 5,		exp: 1800 },
-		"6":	{ string: "6",		numeric: 6,		exp: 2300 },
-		"7":	{ string: "7",		numeric: 7,		exp: 2900 },
-		"8":	{ string: "8",		numeric: 8,		exp: 3900 },
-		"9":	{ string: "9",		numeric: 9,		exp: 5000 },
-		"10":	{ string: "10",		numeric: 10,	exp: 5900 },
-		"11":	{ string: "11",		numeric: 11,	exp: 7200 },
-		"12":	{ string: "12",		numeric: 12,	exp: 8400 },
-		"13":	{ string: "13",		numeric: 13,	exp: 10000 },
-		"14":	{ string: "14",		numeric: 14,	exp: 11500 },
-		"15":	{ string: "15",		numeric: 15,	exp: 13000 },
-		"16":	{ string: "16",		numeric: 16,	exp: 15000 },
-		"17":	{ string: "17",		numeric: 17,	exp: 18000 },
-		"18":	{ string: "18",		numeric: 18,	exp: 20000 },
-		"19":	{ string: "19",		numeric: 19,	exp: 22000 },
-		"20":	{ string: "20",		numeric: 20,	exp: 25000 },
-		"21":	{ string: "21",		numeric: 21,	exp: 33000 },
-		"22":	{ string: "22",		numeric: 22,	exp: 41000 },
-		"23":	{ string: "23",		numeric: 23,	exp: 50000 },
-		"24":	{ string: "24",		numeric: 24,	exp: 62000 },
-		"25":	{ string: "25",		numeric: 25,	exp: 75000 },
-		"26":	{ string: "26",		numeric: 26,	exp: 90000 },
-		"27":	{ string: "27",		numeric: 27,	exp: 105000 },
-		"28":	{ string: "28",		numeric: 28,	exp: 120000 },
-		"29":	{ string: "29",		numeric: 29,	exp: 135000 },
-		"30":	{ string: "30",		numeric: 30,	exp: 155000 },
+		"0":	{ string: "0",		numeric: 0,		exp: 10,		monsters: [] },
+		"1/8":	{ string: "1/8",	numeric: 0.125,	exp: 25,		monsters: [] },
+		"1/4":	{ string: "1/4",	numeric: 0.25,	exp: 50,		monsters: [] },
+		"1/2":	{ string: "1/2",	numeric: 0.5,	exp: 100,		monsters: [] },
+		"1":	{ string: "1",		numeric: 1,		exp: 200,		monsters: [] },
+		"2":	{ string: "2",		numeric: 2,		exp: 450,		monsters: [] },
+		"3":	{ string: "3",		numeric: 3,		exp: 700,		monsters: [] },
+		"4":	{ string: "4",		numeric: 4,		exp: 1100,		monsters: [] },
+		"5":	{ string: "5",		numeric: 5,		exp: 1800,		monsters: [] },
+		"6":	{ string: "6",		numeric: 6,		exp: 2300,		monsters: [] },
+		"7":	{ string: "7",		numeric: 7,		exp: 2900,		monsters: [] },
+		"8":	{ string: "8",		numeric: 8,		exp: 3900,		monsters: [] },
+		"9":	{ string: "9",		numeric: 9,		exp: 5000,		monsters: [] },
+		"10":	{ string: "10",		numeric: 10,	exp: 5900,		monsters: [] },
+		"11":	{ string: "11",		numeric: 11,	exp: 7200,		monsters: [] },
+		"12":	{ string: "12",		numeric: 12,	exp: 8400,		monsters: [] },
+		"13":	{ string: "13",		numeric: 13,	exp: 10000,		monsters: [] },
+		"14":	{ string: "14",		numeric: 14,	exp: 11500,		monsters: [] },
+		"15":	{ string: "15",		numeric: 15,	exp: 13000,		monsters: [] },
+		"16":	{ string: "16",		numeric: 16,	exp: 15000,		monsters: [] },
+		"17":	{ string: "17",		numeric: 17,	exp: 18000,		monsters: [] },
+		"18":	{ string: "18",		numeric: 18,	exp: 20000,		monsters: [] },
+		"19":	{ string: "19",		numeric: 19,	exp: 22000,		monsters: [] },
+		"20":	{ string: "20",		numeric: 20,	exp: 25000,		monsters: [] },
+		"21":	{ string: "21",		numeric: 21,	exp: 33000,		monsters: [] },
+		"22":	{ string: "22",		numeric: 22,	exp: 41000,		monsters: [] },
+		"23":	{ string: "23",		numeric: 23,	exp: 50000,		monsters: [] },
+		"24":	{ string: "24",		numeric: 24,	exp: 62000,		monsters: [] },
+		"25":	{ string: "25",		numeric: 25,	exp: 75000,		monsters: [] },
+		"26":	{ string: "26",		numeric: 26,	exp: 90000,		monsters: [] },
+		"27":	{ string: "27",		numeric: 27,	exp: 105000,	monsters: [] },
+		"28":	{ string: "28",		numeric: 28,	exp: 120000,	monsters: [] },
+		"29":	{ string: "29",		numeric: 29,	exp: 135000,	monsters: [] },
+		"30":	{ string: "30",		numeric: 30,	exp: 155000,	monsters: [] },
 	},
+	crList = [
+		crInfo["0"],	crInfo["1/8"],	crInfo["1/4"],	crInfo["1/2"],
+		crInfo["1"],	crInfo["2"],	crInfo["3"],	crInfo["4"],
+		crInfo["5"],	crInfo["6"],	crInfo["7"],	crInfo["8"],
+		crInfo["9"],	crInfo["10"],	crInfo["11"],	crInfo["12"],
+		crInfo["13"],	crInfo["14"],	crInfo["15"],	crInfo["16"],
+		crInfo["17"],	crInfo["18"],	crInfo["19"],	crInfo["20"],
+		crInfo["21"],	crInfo["22"],	crInfo["23"],	crInfo["24"],
+		crInfo["25"],	crInfo["26"],	crInfo["27"],	crInfo["28"],
+		crInfo["29"],	crInfo["30"],
+	],
 	levels = [
 		{ level: 1,		easy: 25,	medium: 50,		hard: 75,	deadly: 100 },
 		{ level: 2,		easy: 50,	medium: 100,	hard: 150,	deadly: 200 },
@@ -180,6 +193,46 @@ crs.push({ text: "1/4", value: 0.25 });
 crs.push({ text: "1/2", value: 0.5 });
 for ( i = 1; i < 25; i++ ) {
 	crs.push({ text: i.toString(), value: i });
+}
+
+function getMultiplier(playerCount, monsterCount) {
+	var multiplierCategory,
+		multipliers = [
+			0.5,
+			1,
+			1.5,
+			2,
+			2.5,
+			3,
+			4,
+			5,
+		];
+
+	if ( monsterCount === 0 ) {
+		return 0;
+	} else if ( monsterCount === 1 ) {
+		multiplierCategory = 1;
+	} else if ( monsterCount === 2 ) {
+		multiplierCategory = 2;
+	} else if ( monsterCount < 7 ) {
+		multiplierCategory = 3;
+	} else if ( monsterCount < 11 ) {
+		multiplierCategory = 4;
+	} else if ( monsterCount < 15 ) {
+		multiplierCategory = 5;
+	} else {
+		multiplierCategory = 6;
+	}
+
+	if ( playerCount < 3 ) {
+		// Increase multiplier for parties of one and two
+		multiplierCategory++;
+	} else if ( playerCount > 5 ) {
+		// Decrease multiplier for parties of six through eight
+		multiplierCategory--;
+	}
+
+	return multipliers[multiplierCategory];
 }
 
 function registerSource(name, initialState) {

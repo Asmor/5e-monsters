@@ -1,7 +1,9 @@
 /* global Controllers */
 /* global alignments */
 /* global checkMonster */
-/* global crInfo */
+/* global crList */
+/* global generateRandomEncounter */
+/* global getMultiplier */
 /* global levels */
 /* global monsters */
 /* global sourceFilters */
@@ -18,17 +20,7 @@ Controllers.main = {
 	controller: function ($scope) {
 		window.scope = $scope;
 		$scope.alignments = alignments;
-		$scope.crList = [
-			crInfo["0"],	crInfo["1/8"],	crInfo["1/4"],	crInfo["1/2"],
-			crInfo["1"],	crInfo["2"],	crInfo["3"],	crInfo["4"],
-			crInfo["5"],	crInfo["6"],	crInfo["7"],	crInfo["8"],
-			crInfo["9"],	crInfo["10"],	crInfo["11"],	crInfo["12"],
-			crInfo["13"],	crInfo["14"],	crInfo["15"],	crInfo["16"],
-			crInfo["17"],	crInfo["18"],	crInfo["19"],	crInfo["20"],
-			crInfo["21"],	crInfo["22"],	crInfo["23"],	crInfo["24"],
-			crInfo["25"],	crInfo["26"],	crInfo["27"],	crInfo["28"],
-			crInfo["29"],	crInfo["30"],
-		];
+		$scope.crList = crList;
 		$scope.filters = {
 			source: sourceFilters,
 			pageSize: 10,
@@ -54,15 +46,19 @@ Controllers.main = {
 		};
 		$scope.encounter.qty = 0;
 		$scope.encounter.exp = 0;
-		$scope.addMonster = function (monster) {
+		$scope.addMonster = function (monster, qty) {
+			if ( typeof qty === "undefined" ) {
+				qty = 1;
+			}
+
 			$scope.encounter.groups[monster.name] = $scope.encounter.groups[monster.name] || {
 				qty: 0,
 				monster: monster,
 			};
 
-			$scope.encounter.groups[monster.name].qty++;
-			$scope.encounter.qty++;
-			$scope.encounter.exp += monster.cr.exp;
+			$scope.encounter.groups[monster.name].qty += qty;
+			$scope.encounter.qty += qty;
+			$scope.encounter.exp += monster.cr.exp * qty;
 		};
 
 		$scope.removeMonster = function (monster) {
@@ -74,48 +70,25 @@ Controllers.main = {
 			}
 		};
 
+		$scope.getRandomEncounter = function () {
+			var monsters = generateRandomEncounter($scope.encounter.playerCount, $scope.encounter.partyLevel),
+				i;
+
+			$scope.encounter.qty = 0;
+			$scope.encounter.exp = 0;
+			$scope.encounter.groups = {};
+
+			for ( i = 0; i < monsters.length; i++ ) {
+				$scope.addMonster( monsters[i].monster, monsters[i].qty );
+			}
+		};
+
 		$scope.adjustedEncounterExp = function () {
 			var qty = $scope.encounter.qty,
 				exp = $scope.encounter.exp,
-				multiplierCategory,
-				// 0 = a single monster against a large group
-				// last = a horde of monsters against a small group
-				multipliers = [
-					0.5,
-					1,
-					1.5,
-					2,
-					2.5,
-					3,
-					4,
-					5,
-				];
+				multiplier = getMultiplier($scope.encounter.playerCount, qty);
 
-			if ( qty === 0 ) {
-				return 0;
-			} else if ( qty === 1 ) {
-				multiplierCategory = 1;
-			} else if ( qty === 2 ) {
-				multiplierCategory = 2;
-			} else if ( qty < 7 ) {
-				multiplierCategory = 3;
-			} else if ( qty < 11 ) {
-				multiplierCategory = 4;
-			} else if ( qty < 15 ) {
-				multiplierCategory = 5;
-			} else {
-				multiplierCategory = 6;
-			}
-
-			if ( $scope.encounter.playerCount < 3 ) {
-				// Increase multiplier for parties of one and two
-				multiplierCategory++;
-			} else if ( $scope.encounter.playerCount > 5 ) {
-				// Decrease multiplier for parties of six through eight
-				multiplierCategory--;
-			}
-
-			return Math.floor(exp * multipliers[multiplierCategory]);
+			return Math.floor(exp * multiplier);
 		};
 
 		$scope.encounterDifficulty = function () {
