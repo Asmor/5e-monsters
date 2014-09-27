@@ -2,6 +2,7 @@
 /* exported alignments */
 /* exported crInfo */
 /* exported crList */
+/* exported environments */
 /* exported getMultiplier */
 /* exported levels */
 /* exported monsters */
@@ -18,6 +19,22 @@ var Controllers = {};
 var monsters = [],
 	monstersByName = {},
 	crs = [],
+	environments = [
+		"aquatic",
+		"arctic",
+		"cave",
+		"coast",
+		"desert",
+		"dungeon",
+		"forest",
+		"grassland",
+		"mountain",
+		"planar",
+		"ruins",
+		"swamp",
+		"underground",
+		"urban",
+	],
 	sizes = [
 		"Tiny",
 		"Small",

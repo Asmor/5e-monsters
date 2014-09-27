@@ -46,6 +46,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Aarakocra" ],
 	size: "Medium",
+	environments: [ "mountain", "planar" ],
 	alignment: alignments.ng,
 });
 addMonster({
@@ -53,6 +54,7 @@ addMonster({
 	cr: "10",
 	type: "Aberration",
 	size: "Large",
+	environments: [ "aquatic", "coast" ],
 	alignment: alignments.le,
 	legendary: true,
 	lair: true,
@@ -62,6 +64,7 @@ addMonster({
 	section: "Yeti",
 	cr: "9",
 	type: "Monstrosity",
+	environments: [ "arctic", "cave", "mountain" ],
 	size: "Huge",
 	alignment: alignments.ce,
 });
@@ -72,6 +75,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "arctic", "desert", "dungeon", "forest", "grassland", "mountain", "swamp", "underground", "urban" ],
 	alignment: alignments.any,
 });
 addMonster({
@@ -80,6 +84,7 @@ addMonster({
 	cr: "14",
 	type: "Dragon",
 	size: "Huge",
+	environments: [ "swamp" ],
 	alignment: alignments.ce,
 	legendary: true,
 	lair: true,
@@ -90,6 +95,7 @@ addMonster({
 	cr: "17",
 	type: "Undead",
 	size: "Huge",
+	environments: [ "desert", "dungeon" ],
 	alignment: alignments.le,
 	legendary: true,
 	lair: true,
@@ -100,6 +106,7 @@ addMonster({
 	cr: "16",
 	type: "Dragon",
 	size: "Huge",
+	environments: [ "desert" ],
 	alignment: alignments.le,
 	legendary: true,
 	lair: true,
@@ -110,6 +117,7 @@ addMonster({
 	cr: "13",
 	type: "Dragon",
 	size: "Huge",
+	environments: [ "cave", "underground" ],
 	alignment: alignments.cg,
 	legendary: true,
 	lair: true,
@@ -120,6 +128,7 @@ addMonster({
 	cr: "15",
 	type: "Dragon",
 	size: "Huge",
+	environments: [ "coast" ],
 	alignment: alignments.lg,
 	legendary: true,
 	lair: true,
@@ -130,6 +139,7 @@ addMonster({
 	cr: "14",
 	type: "Dragon",
 	size: "Huge",
+	environments: [ "cave", "desert", "grassland" ],
 	alignment: alignments.cg,
 	legendary: true,
 	lair: true,
@@ -140,6 +150,7 @@ addMonster({
 	cr: "17",
 	type: "Dragon",
 	size: "Huge",
+	environments: [ "mountain", "ruins" ],
 	alignment: alignments.lg,
 	legendary: true,
 	lair: true,
@@ -150,6 +161,7 @@ addMonster({
 	cr: "15",
 	type: "Dragon",
 	size: "Huge",
+	environments: [ "forest" ],
 	alignment: alignments.le,
 	legendary: true,
 	lair: true,
@@ -160,6 +172,7 @@ addMonster({
 	cr: "17",
 	type: "Dragon",
 	size: "Huge",
+	environments: [ "mountain" ],
 	alignment: alignments.ce,
 	legendary: true,
 	lair: true,
@@ -170,6 +183,7 @@ addMonster({
 	cr: "16",
 	type: "Dragon",
 	size: "Huge",
+	environments: [ "arctic", "mountain" ],
 	alignment: alignments.lg,
 	legendary: true,
 	lair: true,
@@ -180,6 +194,7 @@ addMonster({
 	cr: "13",
 	type: "Dragon",
 	size: "Huge",
+	environments: [ "arctic", "cave", "underground" ],
 	alignment: alignments.ce,
 	legendary: true,
 	lair: true,
@@ -190,6 +205,7 @@ addMonster({
 	cr: "5",
 	type: "Elemental",
 	size: "Large",
+	environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "planar" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -198,6 +214,7 @@ addMonster({
 	cr: "2",
 	type: "Beast",
 	size: "Large",
+	environments: [ "coast", "grassland", "swamp" ],
 });
 addMonster({
 	name: "Ancient Black Dragon",
@@ -205,6 +222,7 @@ addMonster({
 	cr: "21",
 	type: "Dragon",
 	size: "Gargantuan",
+	environments: [ "swamp" ],
 	alignment: alignments.ce,
 	legendary: true,
 	lair: true,
@@ -215,6 +233,7 @@ addMonster({
 	cr: "23",
 	type: "Dragon",
 	size: "Gargantuan",
+	environments: [ "desert" ],
 	alignment: alignments.le,
 	legendary: true,
 	lair: true,
@@ -225,6 +244,7 @@ addMonster({
 	cr: "20",
 	type: "Dragon",
 	size: "Gargantuan",
+	environments: [ "cave", "underground" ],
 	alignment: alignments.cg,
 	legendary: true,
 	lair: true,
@@ -235,6 +255,7 @@ addMonster({
 	cr: "22",
 	type: "Dragon",
 	size: "Gargantuan",
+	environments: [ "coast" ],
 	alignment: alignments.lg,
 	legendary: true,
 	lair: true,
@@ -245,6 +266,7 @@ addMonster({
 	cr: "21",
 	type: "Dragon",
 	size: "Gargantuan",
+	environments: [ "cave", "desert", "grassland" ],
 	alignment: alignments.cg,
 	legendary: true,
 	lair: true,
@@ -255,6 +277,7 @@ addMonster({
 	cr: "24",
 	type: "Dragon",
 	size: "Gargantuan",
+	environments: [ "mountain", "ruins" ],
 	alignment: alignments.lg,
 	legendary: true,
 	lair: true,
@@ -265,6 +288,7 @@ addMonster({
 	cr: "22",
 	type: "Dragon",
 	size: "Gargantuan",
+	environments: [ "forest" ],
 	alignment: alignments.le,
 	legendary: true,
 	lair: true,
@@ -275,6 +299,7 @@ addMonster({
 	cr: "24",
 	type: "Dragon",
 	size: "Gargantuan",
+	environments: [ "mountain" ],
 	alignment: alignments.ce,
 	legendary: true,
 	lair: true,
@@ -285,6 +310,7 @@ addMonster({
 	cr: "23",
 	type: "Dragon",
 	size: "Gargantuan",
+	environments: [ "arctic", "mountain" ],
 	alignment: alignments.lg,
 	legendary: true,
 	lair: true,
@@ -295,6 +321,7 @@ addMonster({
 	cr: "20",
 	type: "Dragon",
 	size: "Gargantuan",
+	environments: [ "arctic", "cave", "underground" ],
 	alignment: alignments.ce,
 	legendary: true,
 	lair: true,
@@ -305,6 +332,7 @@ addMonster({
 	cr: "17",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "dungeon", "ruins" ],
 	alignment: alignments.ln,
 	legendary: true,
 	lair: true,
@@ -315,12 +343,14 @@ addMonster({
 	cr: "1",
 	type: "Construct",
 	size: "Medium",
+	environments: [ "dungeon", "ruins", "urban" ],
 });
 addMonster({
 	name: "Ankheg",
 	cr: "2",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "coast", "forest", "grassland", "underground" ],
 });
 addMonster({
 	name: "Ankylosaurus",
@@ -328,6 +358,7 @@ addMonster({
 	cr: "3",
 	type: "Beast",
 	size: "Huge",
+	environments: [ "grassland" ],
 });
 addMonster({
 	name: "Ape",
@@ -335,6 +366,7 @@ addMonster({
 	cr: "1/2",
 	type: "Beast",
 	size: "Medium",
+	environments: [ "forest" ],
 });
 addMonster({
 	name: "Arcanaloth",
@@ -343,6 +375,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Yugoloth" ],
 	size: "Medium",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -352,6 +385,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "ruins", "urban" ],
 	alignment: alignments.any,
 });
 addMonster({
@@ -361,6 +395,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "urban" ],
 	alignment: alignments.non_good,
 });
 addMonster({
@@ -369,6 +404,7 @@ addMonster({
 	cr: "0",
 	type: "Plant",
 	size: "Small",
+	environments: [ "forest", "grassland" ],
 });
 addMonster({
 	name: "Awakened Tree",
@@ -376,6 +412,7 @@ addMonster({
 	cr: "2",
 	type: "Plant",
 	size: "Huge",
+	environments: [ "forest" ],
 });
 addMonster({
 	name: "Axe Beak",
@@ -383,12 +420,14 @@ addMonster({
 	cr: "1/4",
 	type: "Beast",
 	size: "Large",
+	environments: [ "grassland" ],
 });
 addMonster({
 	name: "Azer",
 	cr: "2",
 	type: "Elemental",
 	size: "Medium",
+	environments: [ "underground", "planar" ],
 	alignment: alignments.ln,
 });
 addMonster({
@@ -397,6 +436,7 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Small",
+	environments: [ "forest", "grassland" ],
 });
 addMonster({
 	name: "Badger",
@@ -404,6 +444,7 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Tiny",
+	environments: [ "forest" ],
 });
 addMonster({
 	name: "Balor",
@@ -412,16 +453,8 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Demon" ],
 	size: "Huge",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ce,
-});
-addMonster({
-	name: "Bandit Captain",
-	section: "NPCs",
-	cr: "2",
-	type: "Humanoid",
-	tags: [ "any" ],
-	size: "Medium",
-	alignment: alignments.non_lawful,
 });
 addMonster({
 	name: "Bandit",
@@ -430,6 +463,17 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "arctic", "coast", "desert", "forest", "grassland", "mountain", "ruins", "urban" ],
+	alignment: alignments.non_lawful,
+});
+addMonster({
+	name: "Bandit Captain",
+	section: "NPCs",
+	cr: "2",
+	type: "Humanoid",
+	tags: [ "any" ],
+	size: "Medium",
+	environments: [ "arctic", "coast", "desert", "forest", "grassland", "mountain", "ruins", "urban" ],
 	alignment: alignments.non_lawful,
 });
 addMonster({
@@ -437,6 +481,7 @@ addMonster({
 	cr: "4",
 	type: "Undead",
 	size: "Medium",
+	environments: [ "dungeon", "forest", "ruins", "swamp" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -446,6 +491,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Devil" ],
 	size: "Medium",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -455,6 +501,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Demon" ],
 	size: "Large",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -462,6 +509,7 @@ addMonster({
 	cr: "3",
 	type: "Monstrosity",
 	size: "Medium",
+	environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground" ],
 });
 addMonster({
 	name: "Bat",
@@ -469,6 +517,7 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Tiny",
+	environments: [ "cave", "forest", "mountain", "underground", "urban" ],
 });
 addMonster({
 	name: "Bearded Devil",
@@ -477,6 +526,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Devil" ],
 	size: "Medium",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -484,14 +534,7 @@ addMonster({
 	cr: "11",
 	type: "Monstrosity",
 	size: "Huge",
-	alignment: alignments.ne,
-});
-addMonster({
-	name: "Beholder Zombie",
-	section: "Zombies",
-	cr: "5",
-	type: "Undead",
-	size: "Large",
+	environments: [ "cave", "mountain", "underground" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -500,6 +543,7 @@ addMonster({
 	cr: "13",
 	type: "Aberration",
 	size: "Large",
+	environments: [ "cave", "dungeon", "underground" ],
 	alignment: alignments.le,
 	legendary: true,
 	lair: true,
@@ -510,9 +554,19 @@ addMonster({
 	cr: "14",
 	type: "Aberration",
 	size: "Large",
+	environments: [ "cave", "dungeon", "underground" ],
 	alignment: alignments.le,
 	legendary: true,
 	lair: true,
+});
+addMonster({
+	name: "Beholder Zombie",
+	section: "Zombies",
+	cr: "5",
+	type: "Undead",
+	size: "Large",
+	environments: [ "cave", "dungeon", "underground" ],
+	alignment: alignments.ne,
 });
 addMonster({
 	name: "Berserker",
@@ -521,6 +575,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "arctic", "cave", "desert", "forest", "grassland", "mountain", "swamp", "urban" ],
 	alignment: alignments.any_chaotic,
 });
 addMonster({
@@ -528,6 +583,7 @@ addMonster({
 	section: "Misc Creatures",
 	cr: "1/2",
 	type: "Beast",
+	environments: [ "cave", "forest", "grassland", "mountain" ],
 	size: "Medium",
 });
 addMonster({
@@ -536,6 +592,7 @@ addMonster({
 	cr: "2",
 	type: "Dragon",
 	size: "Medium",
+	environments: [ "swamp" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -543,6 +600,7 @@ addMonster({
 	section: "Oozes",
 	cr: "4",
 	type: "Ooze",
+	environments: [ "dungeon" ],
 	size: "Large",
 });
 addMonster({
@@ -551,6 +609,7 @@ addMonster({
 	cr: "1/4",
 	type: "Fey",
 	size: "Medium",
+	environments: [ "forest", "grassland" ],
 	alignment: alignments.lg,
 });
 addMonster({
@@ -559,6 +618,7 @@ addMonster({
 	cr: "1/8",
 	type: "Beast",
 	size: "Small",
+	environments: [ "coast", "grassland", "mountain" ],
 });
 addMonster({
 	name: "Blue Dragon Wyrmling",
@@ -566,6 +626,7 @@ addMonster({
 	cr: "3",
 	type: "Dragon",
 	size: "Medium",
+	environments: [ "desert" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -574,6 +635,7 @@ addMonster({
 	cr: "7",
 	type: "Aberration",
 	size: "Large",
+	environments: [ "planar" ],
 	alignment: alignments.cn,
 });
 addMonster({
@@ -581,6 +643,7 @@ addMonster({
 	section: "Misc Creatures",
 	cr: "1/4",
 	type: "Beast",
+	environments: [ "forest", "grassland" ],
 	size: "Medium",
 });
 addMonster({
@@ -590,6 +653,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Devil" ],
 	size: "Large",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -598,6 +662,7 @@ addMonster({
 	cr: "4",
 	type: "Undead",
 	size: "Large",
+	environments: [ "dungeon", "ruins" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -606,6 +671,7 @@ addMonster({
 	cr: "1",
 	type: "Dragon",
 	size: "Medium",
+	environments: [ "cave", "underground" ],
 	alignment: alignments.cg,
 });
 addMonster({
@@ -614,6 +680,7 @@ addMonster({
 	cr: "2",
 	type: "Dragon",
 	size: "Medium",
+	environments: [ "coast" ],
 	alignment: alignments.lg,
 });
 addMonster({
@@ -621,6 +688,7 @@ addMonster({
 	section: "Misc Creatures",
 	cr: "1",
 	type: "Beast",
+	environments: [ "cave", "forest" ],
 	size: "Large",
 });
 addMonster({
@@ -630,6 +698,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Goblinoid" ],
 	size: "Medium",
+	environments: [ "cave", "dungeon", "forest", "mountain", "ruins", "urban" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -639,6 +708,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Goblinoid" ],
 	size: "Medium",
+	environments: [ "cave", "dungeon", "forest", "mountain", "ruins", "urban" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -646,6 +716,7 @@ addMonster({
 	cr: "5",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "cave", "desert", "grassland", "mountain", "underground" ],
 });
 addMonster({
 	name: "Bullywug",
@@ -653,6 +724,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Bullywug" ],
 	size: "Medium",
+	environments: [ "coast", "swamp" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -660,6 +732,7 @@ addMonster({
 	cr: "5",
 	type: "Fiend",
 	size: "Medium",
+	environments: [ "dungeon", "urban", "planar" ],
 	alignment: alignments.any_evil,
 });
 addMonster({
@@ -668,12 +741,14 @@ addMonster({
 	cr: "1/8",
 	type: "Beast",
 	size: "Large",
+	environments: [ "desert" ],
 });
 addMonster({
 	name: "Carrion Crawler",
 	cr: "2",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "cave", "dungeon", "underground" ],
 });
 addMonster({
 	name: "Cat",
@@ -681,12 +756,14 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Tiny",
+	environments: [ "urban" ],
 });
 addMonster({
 	name: "Centaur",
 	cr: "2",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "coast", "desert", "grassland" ],
 	alignment: alignments.ng,
 });
 addMonster({
@@ -696,6 +773,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Devil" ],
 	size: "Medium",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -705,6 +783,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Demon" ],
 	size: "Large",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -712,6 +791,7 @@ addMonster({
 	cr: "6",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "mountain" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -719,6 +799,7 @@ addMonster({
 	cr: "4",
 	type: "Aberration",
 	size: "Large",
+	environments: [ "aquatic", "coast" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -726,6 +807,7 @@ addMonster({
 	section: "Golems",
 	cr: "9",
 	type: "Construct",
+	environments: [ "dungeon", "ruins", "urban" ],
 	size: "Large",
 });
 addMonster({
@@ -733,6 +815,7 @@ addMonster({
 	cr: "8",
 	type: "Aberration",
 	size: "Large",
+	environments: [ "cave", "dungeon", "underground" ],
 	alignment: alignments.cn,
 });
 addMonster({
@@ -741,6 +824,7 @@ addMonster({
 	cr: "9",
 	type: "Giant",
 	size: "Huge",
+	environments: [ "mountain", "planar" ],
 	alignment: { ng: true, ne: true, text: "neutral good (50%) or neutral evil (50%)" },
 });
 addMonster({
@@ -748,6 +832,7 @@ addMonster({
 	cr: "1/2",
 	type: "Monstrosity",
 	size: "Small",
+	environments: [ "forest", "grassland", "swamp" ],
 });
 addMonster({
 	name: "Commoner",
@@ -756,6 +841,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "urban" ],
 	alignment: alignments.any,
 });
 addMonster({
@@ -764,6 +850,7 @@ addMonster({
 	cr: "1/4",
 	type: "Beast",
 	size: "Large",
+	environments: [ "forest", "swamp" ],
 });
 addMonster({
 	name: "Copper Dragon Wyrmling",
@@ -771,6 +858,7 @@ addMonster({
 	cr: "1",
 	type: "Dragon",
 	size: "Medium",
+	environments: [ "cave", "desert", "grassland" ],
 	alignment: alignments.cg,
 });
 addMonster({
@@ -778,6 +866,7 @@ addMonster({
 	cr: "4",
 	type: "Celestial",
 	size: "Medium",
+	environments: [ "planar" ],
 	alignment: alignments.lg,
 });
 addMonster({
@@ -785,6 +874,7 @@ addMonster({
 	section: "Misc Creatures",
 	cr: "0",
 	type: "Beast",
+	environments: [ "aquatic", "coast" ],
 	size: "Tiny",
 });
 addMonster({
@@ -792,6 +882,7 @@ addMonster({
 	cr: "0",
 	type: "Undead",
 	size: "Tiny",
+	environments: [ "dungeon", "ruins", "swamp" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -800,6 +891,7 @@ addMonster({
 	cr: "1/2",
 	type: "Beast",
 	size: "Large",
+	environments: [ "aquatic", "coast", "swamp" ],
 });
 addMonster({
 	name: "Cult Fanatic",
@@ -808,6 +900,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "dungeon", "urban" ],
 	alignment: alignments.non_good,
 });
 addMonster({
@@ -817,6 +910,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "dungeon", "urban" ],
 	alignment: alignments.non_good,
 });
 addMonster({
@@ -824,6 +918,7 @@ addMonster({
 	cr: "6",
 	type: "Giant",
 	size: "Huge",
+	environments: [ "cave", "coast", "grassland", "mountain", "ruins", "swamp" ],
 	alignment: alignments.cn,
 });
 addMonster({
@@ -832,12 +927,14 @@ addMonster({
 	cr: "11",
 	type: "Elemental",
 	size: "Large",
+	environments: [ "cave", "dungeon", "mountain", "underground", "planar" ],
 	alignment: alignments.ne,
 });
 addMonster({
 	name: "Darkmantle",
 	cr: "1/2",
 	type: "Monstrosity",
+	environments: [ "cave", "underground" ],
 	size: "Small",
 });
 addMonster({
@@ -846,6 +943,7 @@ addMonster({
 	cr: "1",
 	type: "Monstrosity",
 	size: "Medium",
+	environments: [ "desert", "grassland", "underground" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -853,6 +951,17 @@ addMonster({
 	cr: "17",
 	type: "Undead",
 	size: "Medium",
+	environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "urban" ],
+	alignment: alignments.ce,
+});
+addMonster({
+	name: "Death Slaad",
+	section: "Slaadi",
+	cr: "10",
+	type: "Aberration",
+	tags: [ "Shapechanger" ],
+	size: "Medium",
+	environments: [ "planar" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -861,6 +970,7 @@ addMonster({
 	cr: "14",
 	type: "Undead",
 	size: "Large",
+	environments: [ "cave", "dungeon", "underground" ],
 	alignment: alignments.le,
 	legendary: true,
 	lair: true,
@@ -871,18 +981,10 @@ addMonster({
 	cr: "15",
 	type: "Undead",
 	size: "Large",
+	environments: [ "cave", "dungeon", "underground" ],
 	alignment: alignments.le,
 	legendary: true,
 	lair: true,
-});
-addMonster({
-	name: "Death Slaad",
-	section: "Slaadi",
-	cr: "10",
-	type: "Aberration",
-	tags: [ "Shapechanger" ],
-	size: "Medium",
-	alignment: alignments.ce,
 });
 addMonster({
 	name: "Deep Gnome (Svirfneblin)",
@@ -890,6 +992,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Gnome" ],
 	size: "Small",
+	environments: [ "cave", "dungeon", "underground", "planar" ],
 	alignment: alignments.ng,
 });
 addMonster({
@@ -898,12 +1001,14 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Medium",
+	environments: [ "forest", "grassland" ],
 });
 addMonster({
 	name: "Demilich",
 	cr: "18",
 	type: "Undead",
 	size: "Tiny",
+	environments: [ "dungeon" ],
 	alignment: alignments.ne,
 	legendary: true,
 	lair: true,
@@ -913,6 +1018,7 @@ addMonster({
 	cr: "20",
 	type: "Undead",
 	size: "Tiny",
+	environments: [ "dungeon" ],
 	alignment: alignments.ne,
 	legendary: true,
 	lair: true,
@@ -922,6 +1028,7 @@ addMonster({
 	cr: "21",
 	type: "Undead",
 	size: "Tiny",
+	environments: [ "dungeon" ],
 	alignment: alignments.ne,
 	legendary: true,
 	lair: true,
@@ -932,6 +1039,7 @@ addMonster({
 	cr: "10",
 	type: "Celestial",
 	size: "Medium",
+	environments: [ "planar" ],
 	alignment: alignments.lg,
 });
 addMonster({
@@ -940,12 +1048,14 @@ addMonster({
 	cr: "1",
 	type: "Beast",
 	size: "Large",
+	environments: [ "arctic", "cave", "forest", "grassland" ],
 });
 addMonster({
 	name: "Displacer Beast",
 	cr: "3",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "forest", "grassland" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -954,6 +1064,7 @@ addMonster({
 	cr: "11",
 	type: "Elemental",
 	size: "Large",
+	environments: [ "arctic", "coast", "dungeon", "grassland", "planar" ],
 	alignment: alignments.cg,
 });
 addMonster({
@@ -962,6 +1073,7 @@ addMonster({
 	type: "Monstrosity",
 	tags: [ "Shapechanger" ],
 	size: "Medium",
+	environments: [ "dungeon", "ruins", "urban" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -970,12 +1082,14 @@ addMonster({
 	cr: "1/4",
 	type: "Beast",
 	size: "Large",
+	environments: [ "urban" ],
 });
 addMonster({
 	name: "Dragon Turtle",
 	cr: "17",
 	type: "Dragon",
 	size: "Gargantuan",
+	environments: [ "aquatic" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -985,6 +1099,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Demon" ],
 	size: "Small",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -992,7 +1107,18 @@ addMonster({
 	cr: "6",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "dungeon", "underground" ],
 	alignment: alignments.ce,
+});
+addMonster({
+	name: "Drow",
+	section: "Elves: Drow",
+	cr: "1/4",
+	type: "Humanoid",
+	tags: [ "Elf" ],
+	size: "Medium",
+	environments: [ "dungeon", "underground", "urban" ],
+	alignment: alignments.ne,
 });
 addMonster({
 	name: "Drow Elite Warrior",
@@ -1001,6 +1127,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Elf" ],
 	size: "Medium",
+	environments: [ "dungeon", "underground", "urban" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -1010,6 +1137,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Elf" ],
 	size: "Medium",
+	environments: [ "dungeon", "underground", "urban" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -1019,15 +1147,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Elf" ],
 	size: "Medium",
-	alignment: alignments.ne,
-});
-addMonster({
-	name: "Drow",
-	section: "Elves: Drow",
-	cr: "1/4",
-	type: "Humanoid",
-	tags: [ "Elf" ],
-	size: "Medium",
+	environments: [ "dungeon", "underground", "urban" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -1037,6 +1157,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "arctic", "cave", "coast", "desert", "forest", "grassland", "mountain", "swamp", "underground" ],
 	alignment: alignments.any,
 });
 addMonster({
@@ -1044,6 +1165,7 @@ addMonster({
 	cr: "1",
 	type: "Fey",
 	size: "Medium",
+	environments: [ "forest" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -1052,6 +1174,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Dwarf" ],
 	size: "Medium",
+	environments: [ "dungeon", "underground" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -1060,6 +1183,7 @@ addMonster({
 	cr: "1/4",
 	type: "Construct",
 	size: "Medium",
+	environments: [ "planar" ],
 	alignment: alignments.ln,
 });
 addMonster({
@@ -1068,6 +1192,7 @@ addMonster({
 	cr: "1/2",
 	type: "Elemental",
 	size: "Small",
+	environments: [ "dungeon", "ruins", "urban", "planar" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -1076,6 +1201,7 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Small",
+	environments: [ "arctic", "grassland", "mountain" ],
 });
 addMonster({
 	name: "Earth Elemental",
@@ -1083,6 +1209,7 @@ addMonster({
 	cr: "5",
 	type: "Elemental",
 	size: "Large",
+	environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "planar" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -1091,6 +1218,7 @@ addMonster({
 	cr: "11",
 	type: "Elemental",
 	size: "Large",
+	environments: [ "desert", "dungeon", "mountain", "planar" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -1099,6 +1227,7 @@ addMonster({
 	cr: "4",
 	type: "Beast",
 	size: "Huge",
+	environments: [ "grassland" ],
 });
 addMonster({
 	name: "Elk",
@@ -1106,6 +1235,7 @@ addMonster({
 	cr: "1/4",
 	type: "Beast",
 	size: "Large",
+	environments: [ "forest", "grassland" ],
 });
 addMonster({
 	name: "Empyrean",
@@ -1114,6 +1244,7 @@ addMonster({
 	tags: [ "Titan" ],
 	size: "Huge",
 	alignment: { cg: true, ne: true, text: "chaotic good (75%) or neutral evil (25%)" },
+	environments: [ "planar" ],
 	legendary: true,
 });
 addMonster({
@@ -1123,6 +1254,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Devil" ],
 	size: "Medium",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -1130,6 +1262,7 @@ addMonster({
 	cr: "2",
 	type: "Monstrosity",
 	size: "Medium",
+	environments: [ "cave", "dungeon", "forest", "ruins", "swamp", "underground" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -1137,20 +1270,63 @@ addMonster({
 	cr: "4",
 	type: "Giant",
 	size: "Large",
+	environments: [ "cave", "grassland", "mountain", "swamp" ],
 	alignment: alignments.ce,
 });
 addMonster({
-	name: "Faerie Dragon (red, orange, yellow)",
+	name: "Faerie Dragon (red)",
 	cr: "1",
 	type: "Dragon",
 	size: "Tiny",
+	environments: [ "forest", "grassland", "mountain", "ruins", "swamp" ],
 	alignment: alignments.cg,
 });
 addMonster({
-	name: "Faerie Dragon (green, blue, indigo, violet)",
+	name: "Faerie Dragon (orange)",
+	cr: "1",
+	type: "Dragon",
+	size: "Tiny",
+	environments: [ "forest", "grassland", "mountain", "ruins", "swamp" ],
+	alignment: alignments.cg,
+});
+addMonster({
+	name: "Faerie Dragon (yellow)",
+	cr: "1",
+	type: "Dragon",
+	size: "Tiny",
+	environments: [ "forest", "grassland", "mountain", "ruins", "swamp" ],
+	alignment: alignments.cg,
+});
+addMonster({
+	name: "Faerie Dragon (green)",
 	cr: "2",
 	type: "Dragon",
 	size: "Tiny",
+	environments: [ "forest", "grassland", "mountain", "ruins", "swamp" ],
+	alignment: alignments.cg,
+});
+addMonster({
+	name: "Faerie Dragon (blue)",
+	cr: "2",
+	type: "Dragon",
+	size: "Tiny",
+	environments: [ "forest", "grassland", "mountain", "ruins", "swamp" ],
+	alignment: alignments.cg,
+});
+addMonster({
+	name: "Faerie Dragon (indigo)",
+	cr: "2",
+	type: "Dragon",
+	size: "Tiny",
+	environments: [ "forest", "grassland", "mountain", "ruins", "swamp" ],
+	alignment: alignments.cg,
+});
+addMonster({
+	name: "Faerie Dragon (violet)",
+	cr: "2",
+	type: "Dragon",
+	size: "Tiny",
+	environments: [ "forest", "grassland", "mountain", "ruins", "swamp" ],
 	alignment: alignments.cg,
 });
 addMonster({
@@ -1159,6 +1335,7 @@ addMonster({
 	cr: "5",
 	type: "Elemental",
 	size: "Large",
+	environments: [ "cave", "coast", "desert", "dungeon", "grassland", "mountain", "ruins", "underground", "planar" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -1167,6 +1344,7 @@ addMonster({
 	cr: "9",
 	type: "Giant",
 	size: "Huge",
+	environments: [ "mountain", "planar" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -1175,6 +1353,7 @@ addMonster({
 	cr: "1",
 	type: "Elemental",
 	size: "Medium",
+	environments: [ "forest", "planar" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -1182,6 +1361,7 @@ addMonster({
 	cr: "4",
 	type: "Undead",
 	size: "Tiny",
+	environments: [ "dungeon", "ruins" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -1190,12 +1370,14 @@ addMonster({
 	cr: "5",
 	type: "Construct",
 	size: "Medium",
+	environments: [ "dungeon", "ruins" ],
 });
 addMonster({
 	name: "Flumph",
 	cr: "1/8",
 	type: "Aberration",
 	size: "Small",
+	environments: [ "dungeon", "underground" ],
 	alignment: alignments.lg,
 });
 addMonster({
@@ -1204,6 +1386,7 @@ addMonster({
 	cr: "1/8",
 	type: "Beast",
 	size: "Tiny",
+	environments: [ "forest" ],
 });
 addMonster({
 	name: "Flying Sword",
@@ -1211,12 +1394,14 @@ addMonster({
 	cr: "1/4",
 	type: "Construct",
 	size: "Small",
+	environments: [ "dungeon", "ruins", "urban" ],
 });
 addMonster({
 	name: "Fomorian",
 	cr: "8",
 	type: "Giant",
 	size: "Huge",
+	environments: [ "cave", "underground" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -1225,6 +1410,7 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Tiny",
+	environments: [ "aquatic", "coast", "forest", "swamp" ],
 });
 addMonster({
 	name: "Frost Giant",
@@ -1232,6 +1418,7 @@ addMonster({
 	cr: "8",
 	type: "Giant",
 	size: "Huge",
+	environments: [ "arctic", "mountain", "planar" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -1239,6 +1426,7 @@ addMonster({
 	cr: "6",
 	type: "Elemental",
 	size: "Medium",
+	environments: [ "cave", "dungeon", "mountain", "underground", "planar" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -1246,6 +1434,7 @@ addMonster({
 	cr: "2",
 	type: "Elemental",
 	size: "Medium",
+	environments: [ "dungeon", "urban" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -1254,6 +1443,7 @@ addMonster({
 	cr: "1/2",
 	type: "Plant",
 	size: "Large",
+	environments: [ "cave", "dungeon", "underground" ],
 });
 addMonster({
 	name: "Gelatinous Cube",
@@ -1261,6 +1451,7 @@ addMonster({
 	cr: "2",
 	type: "Ooze",
 	size: "Large",
+	environments: [ "dungeon" ],
 });
 addMonster({
 	name: "Ghast",
@@ -1268,6 +1459,7 @@ addMonster({
 	cr: "2",
 	type: "Undead",
 	size: "Medium",
+	environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "urban" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -1275,6 +1467,7 @@ addMonster({
 	cr: "4",
 	type: "Undead",
 	size: "Medium",
+	environments: [ "cave", "dungeon", "ruins", "swamp", "underground", "urban" ],
 	alignment: alignments.any,
 });
 addMonster({
@@ -1283,6 +1476,7 @@ addMonster({
 	cr: "1",
 	type: "Undead",
 	size: "Medium",
+	environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "urban" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -1291,6 +1485,7 @@ addMonster({
 	cr: "7",
 	type: "Beast",
 	size: "Huge",
+	environments: [ "forest" ],
 });
 addMonster({
 	name: "Giant Badger",
@@ -1298,6 +1493,7 @@ addMonster({
 	cr: "1/4",
 	type: "Beast",
 	size: "Medium",
+	environments: [ "forest", "grassland" ],
 });
 addMonster({
 	name: "Giant Bat",
@@ -1305,6 +1501,7 @@ addMonster({
 	cr: "1/4",
 	type: "Beast",
 	size: "Large",
+	environments: [ "cave", "dungeon", "forest", "ruins", "swamp", "underground" ],
 });
 addMonster({
 	name: "Giant Boar",
@@ -1312,6 +1509,7 @@ addMonster({
 	cr: "2",
 	type: "Beast",
 	size: "Large",
+	environments: [ "forest", "grassland" ],
 });
 addMonster({
 	name: "Giant Centipede",
@@ -1319,6 +1517,7 @@ addMonster({
 	cr: "1/4",
 	type: "Beast",
 	size: "Small",
+	environments: [ "cave", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground" ],
 });
 addMonster({
 	name: "Giant Constrictor Snake",
@@ -1326,6 +1525,7 @@ addMonster({
 	cr: "2",
 	type: "Beast",
 	size: "Huge",
+	environments: [ "forest", "grassland", "swamp" ],
 });
 addMonster({
 	name: "Giant Crab",
@@ -1333,6 +1533,7 @@ addMonster({
 	cr: "1/8",
 	type: "Beast",
 	size: "Medium",
+	environments: [ "aquatic", "coast" ],
 });
 addMonster({
 	name: "Giant Crocodile",
@@ -1340,6 +1541,7 @@ addMonster({
 	cr: "5",
 	type: "Beast",
 	size: "Huge",
+	environments: [ "aquatic", "coast", "swamp" ],
 });
 addMonster({
 	name: "Giant Eagle",
@@ -1348,6 +1550,7 @@ addMonster({
 	type: "Beast",
 	size: "Large",
 	alignment: alignments.ng,
+	environments: [ "grassland", "mountain" ],
 });
 addMonster({
 	name: "Giant Elk",
@@ -1355,6 +1558,7 @@ addMonster({
 	cr: "2",
 	type: "Beast",
 	size: "Huge",
+	environments: [ "forest", "grassland" ],
 });
 addMonster({
 	name: "Giant Fire Beetle",
@@ -1362,6 +1566,7 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Small",
+	environments: [ "cave", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground" ],
 });
 addMonster({
 	name: "Giant Frog",
@@ -1369,6 +1574,7 @@ addMonster({
 	cr: "1/4",
 	type: "Beast",
 	size: "Medium",
+	environments: [ "aquatic", "coast", "forest", "swamp" ],
 });
 addMonster({
 	name: "Giant Goat",
@@ -1376,6 +1582,7 @@ addMonster({
 	cr: "1/2",
 	type: "Beast",
 	size: "Large",
+	environments: [ "forest", "grassland", "mountain" ],
 });
 addMonster({
 	name: "Giant Hyena",
@@ -1383,6 +1590,7 @@ addMonster({
 	cr: "1",
 	type: "Beast",
 	size: "Large",
+	environments: [ "coast", "desert", "forest", "grassland" ],
 });
 addMonster({
 	name: "Giant Lizard",
@@ -1390,6 +1598,7 @@ addMonster({
 	cr: "1/4",
 	type: "Beast",
 	size: "Large",
+	environments: [ "cave", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground" ],
 });
 addMonster({
 	name: "Giant Octopus",
@@ -1397,6 +1606,7 @@ addMonster({
 	cr: "1",
 	type: "Beast",
 	size: "Large",
+	environments: [ "aquatic" ],
 });
 addMonster({
 	name: "Giant Owl",
@@ -1404,6 +1614,7 @@ addMonster({
 	cr: "1/4",
 	type: "Beast",
 	size: "Large",
+	environments: [ "forest", "grassland", "urban" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -1412,6 +1623,7 @@ addMonster({
 	cr: "1/4",
 	type: "Beast",
 	size: "Medium",
+	environments: [ "forest", "grassland", "swamp" ],
 });
 addMonster({
 	name: "Giant Rat",
@@ -1419,6 +1631,7 @@ addMonster({
 	cr: "1/8",
 	type: "Beast",
 	size: "Small",
+	environments: [ "cave", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "urban" ],
 });
 addMonster({
 	name: "Giant Scorpion",
@@ -1426,6 +1639,7 @@ addMonster({
 	cr: "3",
 	type: "Beast",
 	size: "Large",
+	environments: [ "cave", "coast", "desert", "dungeon", "grassland", "ruins", "swamp", "underground" ],
 });
 addMonster({
 	name: "Giant Sea Horse",
@@ -1433,6 +1647,7 @@ addMonster({
 	cr: "1/2",
 	type: "Beast",
 	size: "Large",
+	environments: [ "aquatic" ],
 });
 addMonster({
 	name: "Giant Shark",
@@ -1440,6 +1655,7 @@ addMonster({
 	cr: "5",
 	type: "Beast",
 	size: "Huge",
+	environments: [ "aquatic" ],
 });
 addMonster({
 	name: "Giant Spider",
@@ -1447,6 +1663,7 @@ addMonster({
 	cr: "1",
 	type: "Beast",
 	size: "Large",
+	environments: [ "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "urban" ],
 });
 addMonster({
 	name: "Giant Toad",
@@ -1454,6 +1671,7 @@ addMonster({
 	cr: "1",
 	type: "Beast",
 	size: "Large",
+	environments: [ "aquatic", "coast", "forest", "swamp" ],
 });
 addMonster({
 	name: "Giant Vulture",
@@ -1461,6 +1679,7 @@ addMonster({
 	cr: "1",
 	type: "Beast",
 	size: "Large",
+	environments: [ "desert", "grassland", "ruins" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -1469,6 +1688,7 @@ addMonster({
 	cr: "1/2",
 	type: "Beast",
 	size: "Medium",
+	environments: [ "forest" ],
 });
 addMonster({
 	name: "Giant Weasel",
@@ -1476,6 +1696,7 @@ addMonster({
 	cr: "1/8",
 	type: "Beast",
 	size: "Medium",
+	environments: [ "forest", "grassland" ],
 });
 addMonster({
 	name: "Giant Wolf Spider",
@@ -1483,12 +1704,14 @@ addMonster({
 	cr: "1/4",
 	type: "Beast",
 	size: "Medium",
+	environments: [ "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "urban" ],
 });
 addMonster({
 	name: "Gibbering Mouther",
 	cr: "2",
 	type: "Aberration",
 	size: "Medium",
+	environments: [ "cave", "dungeon", "underground", "planar" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -1498,6 +1721,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Gith" ],
 	size: "Medium",
+	environments: [ "xswamp", "planar" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -1507,6 +1731,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Gith" ],
 	size: "Medium",
+	environments: [ "planar" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -1516,6 +1741,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Gith" ],
 	size: "Medium",
+	environments: [ "planar" ],
 	alignment: alignments.ln,
 });
 addMonster({
@@ -1525,6 +1751,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Gith" ],
 	size: "Medium",
+	environments: [ "planar" ],
 	alignment: alignments.ln,
 });
 addMonster({
@@ -1534,6 +1761,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Demon" ],
 	size: "Large",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -1543,6 +1771,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "urban" ],
 	alignment: alignments.any,
 });
 addMonster({
@@ -1552,6 +1781,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Gnoll" ],
 	size: "Medium",
+	environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "urban" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -1561,6 +1791,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Gnoll" ],
 	size: "Medium",
+	environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "urban" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -1570,6 +1801,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Gnoll" ],
 	size: "Medium",
+	environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "urban" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -1578,6 +1810,7 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Medium",
+	environments: [ "grassland", "urban" ],
 });
 addMonster({
 	name: "Goblin",
@@ -1586,6 +1819,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Goblinoid" ],
 	size: "Small",
+	environments: [ "cave", "dungeon", "forest", "grassland", "mountain", "ruins", "urban" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -1595,6 +1829,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Goblinoid" ],
 	size: "Small",
+	environments: [ "cave", "dungeon", "forest", "grassland", "mountain", "ruins", "urban" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -1603,6 +1838,7 @@ addMonster({
 	cr: "3",
 	type: "Dragon",
 	size: "Medium",
+	environments: [ "mountain", "ruins" ],
 	alignment: alignments.lg,
 });
 addMonster({
@@ -1610,6 +1846,7 @@ addMonster({
 	cr: "5",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "mountain", "ruins" ],
 });
 addMonster({
 	name: "Goristro",
@@ -1618,6 +1855,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Demon" ],
 	size: "Huge",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -1626,6 +1864,7 @@ addMonster({
 	cr: "1/2",
 	type: "Ooze",
 	size: "Medium",
+	environments: [ "dungeon" ],
 });
 addMonster({
 	name: "Gray Slaad",
@@ -1633,6 +1872,7 @@ addMonster({
 	cr: "9",
 	type: "Aberration",
 	size: "Medium",
+	environments: [ "planar" ],
 	alignment: alignments.cn,
 });
 addMonster({
@@ -1641,6 +1881,7 @@ addMonster({
 	cr: "2",
 	type: "Dragon",
 	size: "Medium",
+	environments: [ "forest" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -1649,6 +1890,7 @@ addMonster({
 	cr: "3",
 	type: "Fey",
 	size: "Medium",
+	environments: [ "forest", "swamp" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -1657,6 +1899,7 @@ addMonster({
 	cr: "8",
 	type: "Aberration",
 	size: "Large",
+	environments: [ "planar" ],
 	alignment: alignments.cn,
 });
 addMonster({
@@ -1664,6 +1907,7 @@ addMonster({
 	cr: "3",
 	type: "Aberration",
 	size: "Medium",
+	environments: [ "dungeon", "underground" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -1672,6 +1916,7 @@ addMonster({
 	cr: "2",
 	type: "Monstrosity",
 	size: "Medium",
+	environments: [ "cave", "dungeon", "underground" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -1680,6 +1925,7 @@ addMonster({
 	cr: "7",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "cave", "dungeon", "underground" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -1687,6 +1933,7 @@ addMonster({
 	cr: "2",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "arctic", "coast", "grassland", "mountain" ],
 });
 addMonster({
 	name: "Grimlock",
@@ -1695,6 +1942,7 @@ addMonster({
 	tags: [ "Grimlock" ],
 	size: "Medium",
 	alignment: alignments.ne,
+	environments: [ "cave", "dungeon", "underground" ],
 });
 addMonster({
 	name: "Guard",
@@ -1703,6 +1951,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "urban" ],
 	alignment: alignments.any,
 });
 addMonster({
@@ -1711,6 +1960,7 @@ addMonster({
 	cr: "10",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "cave", "coast", "forest", "ruins" ],
 	alignment: alignments.lg,
 });
 addMonster({
@@ -1719,6 +1969,7 @@ addMonster({
 	cr: "11",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "dungeon", "ruins" ],
 	alignment: alignments.ln,
 	legendary: true,
 	lair: true,
@@ -1729,6 +1980,7 @@ addMonster({
 	cr: "1",
 	type: "Giant",
 	size: "Large",
+	environments: [ "arctic", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "urban" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -1737,6 +1989,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Human" ],
 	size: "Medium",
+	environments: [ "arctic", "coast", "desert", "grassland", "mountain", "urban" ],
 	alignment: alignments.any,
 });
 addMonster({
@@ -1744,6 +1997,7 @@ addMonster({
 	cr: "1",
 	type: "Monstrosity",
 	size: "Medium",
+	environments: [ "coast", "forest", "mountain" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -1752,12 +2006,14 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Tiny",
+	environments: [ "grassland", "mountain" ],
 });
 addMonster({
 	name: "Hell Hound",
 	cr: "3",
 	type: "Fiend",
 	size: "Medium",
+	environments: [ "dungeon", "urban", "planar" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -1765,6 +2021,7 @@ addMonster({
 	cr: "4",
 	type: "Construct",
 	size: "Medium",
+	environments: [ "dungeon", "ruins", "urban" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -1774,6 +2031,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Demon" ],
 	size: "Large",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -1782,6 +2040,7 @@ addMonster({
 	cr: "5",
 	type: "Giant",
 	size: "Huge",
+	environments: [ "arctic", "coast", "grassland" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -1789,6 +2048,7 @@ addMonster({
 	cr: "1",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "mountain" ],
 });
 addMonster({
 	name: "Hobgoblin",
@@ -1797,6 +2057,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Goblinoid" ],
 	size: "Medium",
+	environments: [ "arctic", "coast", "grassland", "mountain", "urban" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -1806,6 +2067,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Goblinoid" ],
 	size: "Medium",
+	environments: [ "arctic", "coast", "grassland", "mountain", "urban" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -1815,6 +2077,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Goblinoid" ],
 	size: "Medium",
+	environments: [ "arctic", "coast", "grassland", "mountain", "urban" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -1822,6 +2085,7 @@ addMonster({
 	cr: "0",
 	type: "Construct",
 	size: "Tiny",
+	environments: [ "dungeon", "urban" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -1829,6 +2093,7 @@ addMonster({
 	cr: "3",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "dungeon", "underground" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -1838,6 +2103,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Devil" ],
 	size: "Large",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -1846,12 +2112,14 @@ addMonster({
 	cr: "2",
 	type: "Beast",
 	size: "Large",
+	environments: [ "aquatic" ],
 });
 addMonster({
 	name: "Hydra",
 	cr: "8",
 	type: "Monstrosity",
 	size: "Huge",
+	environments: [ "aquatic", "cave", "coast", "dungeon", "forest", "mountain", "ruins", "swamp", "underground" ],
 });
 addMonster({
 	name: "Hyena",
@@ -1859,6 +2127,7 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Medium",
+	environments: [ "forest", "grassland" ],
 });
 addMonster({
 	name: "Ice Devil",
@@ -1867,6 +2136,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Devil" ],
 	size: "Large",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -1875,6 +2145,7 @@ addMonster({
 	cr: "1/2",
 	type: "Elemental",
 	size: "Small",
+	environments: [ "arctic", "dungeon", "urban", "planar" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -1884,6 +2155,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Demon", "Shapechanger" ],
 	size: "Tiny",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -1891,6 +2163,7 @@ addMonster({
 	cr: "2",
 	type: "Aberration",
 	size: "Tiny",
+	environments: [ "dungeon", "underground" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -1898,6 +2171,7 @@ addMonster({
 	cr: "6",
 	type: "Elemental",
 	size: "Medium",
+	environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "urban", "planar" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -1906,6 +2180,7 @@ addMonster({
 	cr: "16",
 	type: "Construct",
 	size: "Large",
+	environments: [ "dungeon", "ruins", "urban" ],
 });
 addMonster({
 	name: "Jackal",
@@ -1913,6 +2188,7 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Small",
+	environments: [ "desert", "grassland" ],
 });
 addMonster({
 	name: "Jackalwere",
@@ -1920,6 +2196,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Shapechanger" ],
 	size: "Medium",
+	environments: [ "desert", "grassland", "urban" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -1928,6 +2205,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Kenku" ],
 	size: "Medium",
+	environments: [ "arctic", "coast", "desert", "forest", "grassland", "mountain", "ruins", "urban" ],
 	alignment: alignments.cn,
 });
 addMonster({
@@ -1936,6 +2214,7 @@ addMonster({
 	cr: "3",
 	type: "Beast",
 	size: "Huge",
+	environments: [ "aquatic" ],
 });
 addMonster({
 	name: "Knight",
@@ -1944,6 +2223,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "urban" ],
 	alignment: alignments.any,
 });
 addMonster({
@@ -1953,6 +2233,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Kobold" ],
 	size: "Small",
+	environments: [ "cave", "dungeon", "mountain", "underground" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -1961,6 +2242,7 @@ addMonster({
 	type: "Monstrosity",
 	tags: [ "Titan" ],
 	size: "Gargantuan",
+	environments: [ "aquatic", "coast" ],
 	alignment: alignments.ce,
 	legendary: true,
 	lair: true,
@@ -1972,6 +2254,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Kuo-toa" ],
 	size: "Medium",
+	environments: [ "aquatic", "coast" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -1981,6 +2264,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Kuo-toa" ],
 	size: "Medium",
+	environments: [ "aquatic", "coast" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -1990,6 +2274,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Kuo-toa" ],
 	size: "Medium",
+	environments: [ "aquatic", "coast" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -1997,6 +2282,7 @@ addMonster({
 	cr: "4",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "desert", "ruins" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2006,6 +2292,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Devil" ],
 	size: "Medium",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -2013,6 +2300,7 @@ addMonster({
 	cr: "21",
 	type: "Undead",
 	size: "Medium",
+	environments: [ "dungeon", "ruins", "urban" ],
 	alignment: alignments.any_evil,
 	legendary: true,
 	lair: true,
@@ -2022,6 +2310,7 @@ addMonster({
 	cr: "22",
 	type: "Undead",
 	size: "Medium",
+	environments: [ "dungeon", "ruins", "urban" ],
 	alignment: alignments.any_evil,
 	legendary: true,
 	lair: true,
@@ -2032,6 +2321,7 @@ addMonster({
 	cr: "1",
 	type: "Beast",
 	size: "Large",
+	environments: [ "grassland" ],
 });
 addMonster({
 	name: "Lizard",
@@ -2039,6 +2329,7 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Tiny",
+	environments: [ "cave", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground" ],
 });
 addMonster({
 	name: "Lizard King/Queen",
@@ -2047,6 +2338,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Lizardfolk" ],
 	size: "Medium",
+	environments: [ "coast", "dungeon", "forest", "grassland", "swamp" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2056,6 +2348,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Lizardfolk" ],
 	size: "Medium",
+	environments: [ "coast", "dungeon", "forest", "grassland", "swamp" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -2065,6 +2358,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Lizardfolk" ],
 	size: "Medium",
+	environments: [ "coast", "dungeon", "forest", "grassland", "swamp" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -2074,6 +2368,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "urban" ],
 	alignment: alignments.any,
 });
 addMonster({
@@ -2082,6 +2377,7 @@ addMonster({
 	cr: "1/2",
 	type: "Elemental",
 	size: "Small",
+	environments: [ "cave", "dungeon", "mountain", "urban", "planar" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -2089,6 +2385,7 @@ addMonster({
 	cr: "1/2",
 	type: "Elemental",
 	size: "Small",
+	environments: [ "dungeon", "ruins", "urban", "planar" ],
 	alignment: alignments.cn,
 });
 addMonster({
@@ -2097,6 +2394,7 @@ addMonster({
 	cr: "6",
 	type: "Beast",
 	size: "Huge",
+	environments: [ "arctic" ],
 });
 addMonster({
 	name: "Manes",
@@ -2105,6 +2403,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Demon" ],
 	size: "Small",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2112,6 +2411,7 @@ addMonster({
 	cr: "3",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "arctic", "cave", "coast", "grassland", "mountain", "ruins" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -2120,6 +2420,7 @@ addMonster({
 	cr: "11",
 	type: "Elemental",
 	size: "Large",
+	environments: [ "aquatic", "coast", "dungeon", "swamp", "planar" ],
 	alignment: alignments.cn,
 });
 addMonster({
@@ -2129,6 +2430,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Demon" ],
 	size: "Large",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2137,12 +2439,14 @@ addMonster({
 	cr: "1/8",
 	type: "Beast",
 	size: "Medium",
+	environments: [ "urban" ],
 });
 addMonster({
 	name: "Medusa",
 	cr: "6",
 	type: "Monstrosity",
 	size: "Medium",
+	environments: [ "cave", "dungeon", "mountain", "ruins", "urban" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -2151,6 +2455,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Merfolk" ],
 	size: "Medium",
+	environments: [ "aquatic" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -2158,6 +2463,7 @@ addMonster({
 	cr: "2",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "aquatic" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2167,6 +2473,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Yugoloth" ],
 	size: "Medium",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -2175,6 +2482,7 @@ addMonster({
 	type: "Monstrosity",
 	tags: [ "Shapechanger" ],
 	size: "Medium",
+	environments: [ "dungeon" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -2191,14 +2499,7 @@ addMonster({
 	cr: "7",
 	type: "Aberration",
 	size: "Medium",
-	alignment: alignments.le,
-});
-addMonster({
-	name: "Minotaur Skeleton",
-	section: "Skeletons",
-	cr: "2",
-	type: "Undead",
-	size: "Large",
+	environments: [ "dungeon", "underground", "urban" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -2206,7 +2507,17 @@ addMonster({
 	cr: "3",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "cave", "dungeon", "ruins", "underground" ],
 	alignment: alignments.ce,
+});
+addMonster({
+	name: "Minotaur Skeleton",
+	section: "Skeletons",
+	cr: "2",
+	type: "Undead",
+	size: "Large",
+	environments: [ "dungeon", "underground", "urban" ],
+	alignment: alignments.le,
 });
 addMonster({
 	name: "Monodrone",
@@ -2214,6 +2525,7 @@ addMonster({
 	cr: "1/8",
 	type: "Construct",
 	size: "Medium",
+	environments: [ "planar" ],
 	alignment: alignments.ln,
 });
 addMonster({
@@ -2222,6 +2534,7 @@ addMonster({
 	cr: "1/4",
 	type: "Elemental",
 	size: "Small",
+	environments: [ "coast", "dungeon", "forest", "swamp", "urban", "planar" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -2230,16 +2543,7 @@ addMonster({
 	cr: "1/8",
 	type: "Beast",
 	size: "Medium",
-});
-addMonster({
-	name: "Mummy Lord",
-	section: "Mummies",
-	cr: "15",
-	type: "Undead",
-	size: "Medium",
-	alignment: alignments.le,
-	legendary: true,
-	lair: true,
+	environments: [ "urban" ],
 });
 addMonster({
 	name: "Mummy",
@@ -2247,7 +2551,19 @@ addMonster({
 	cr: "3",
 	type: "Undead",
 	size: "Medium",
+	environments: [ "desert", "dungeon" ],
 	alignment: alignments.le,
+});
+addMonster({
+	name: "Mummy Lord",
+	section: "Mummies",
+	cr: "15",
+	type: "Undead",
+	size: "Medium",
+	environments: [ "desert", "dungeon" ],
+	alignment: alignments.le,
+	legendary: true,
+	lair: true,
 });
 addMonster({
 	name: "Myconid Adult",
@@ -2255,6 +2571,7 @@ addMonster({
 	cr: "1/2",
 	type: "Plant",
 	size: "Medium",
+	environments: [ "underground" ],
 	alignment: alignments.ln,
 });
 addMonster({
@@ -2263,6 +2580,7 @@ addMonster({
 	cr: "2",
 	type: "Plant",
 	size: "Large",
+	environments: [ "underground" ],
 	alignment: alignments.ln,
 });
 addMonster({
@@ -2271,6 +2589,7 @@ addMonster({
 	cr: "0",
 	type: "Plant",
 	size: "Small",
+	environments: [ "underground" ],
 	alignment: alignments.ln,
 });
 addMonster({
@@ -2280,6 +2599,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Demon" ],
 	size: "Large",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2288,6 +2608,7 @@ addMonster({
 	cr: "1/4",
 	type: "Plant",
 	size: "Medium",
+	environments: [ "forest", "grassland", "swamp" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -2296,6 +2617,7 @@ addMonster({
 	cr: "5",
 	type: "Fiend",
 	size: "Medium",
+	environments: [ "underground", "planar" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -2303,6 +2625,7 @@ addMonster({
 	cr: "3",
 	type: "Fiend",
 	size: "Large",
+	environments: [ "swamp", "planar" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -2312,6 +2635,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "urban" ],
 	alignment: alignments.any,
 });
 addMonster({
@@ -2319,6 +2643,7 @@ addMonster({
 	cr: "2",
 	type: "Aberration",
 	size: "Medium",
+	environments: [ "dungeon", "ruins", "urban" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -2328,6 +2653,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Yugoloth" ],
 	size: "Large",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -2336,6 +2662,7 @@ addMonster({
 	cr: "2",
 	type: "Ooze",
 	size: "Large",
+	environments: [ "dungeon" ],
 });
 addMonster({
 	name: "Octopus",
@@ -2343,14 +2670,7 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Small",
-});
-addMonster({
-	name: "Ogre Zombie",
-	section: "Zombies",
-	cr: "2",
-	type: "Undead",
-	size: "Large",
-	alignment: alignments.ne,
+	environments: [ "aquatic" ],
 });
 addMonster({
 	name: "Ogre",
@@ -2358,7 +2678,17 @@ addMonster({
 	cr: "2",
 	type: "Giant",
 	size: "Large",
+	environments: [ "dungeon", "forest", "mountain", "swamp" ],
 	alignment: alignments.ce,
+});
+addMonster({
+	name: "Ogre Zombie",
+	section: "Zombies",
+	cr: "2",
+	type: "Undead",
+	size: "Large",
+	environments: [ "dungeon", "forest", "mountain", "swamp" ],
+	alignment: alignments.ne,
 });
 addMonster({
 	name: "Oni",
@@ -2366,7 +2696,18 @@ addMonster({
 	cr: "7",
 	type: "Giant",
 	size: "Large",
+	environments: [ "dungeon", "grassland", "ruins", "urban" ],
 	alignment: alignments.le,
+});
+addMonster({
+	name: "Orc",
+	section: "Orcs",
+	cr: "1/2",
+	type: "Humanoid",
+	tags: [ "Orc" ],
+	size: "Medium",
+	environments: [ "arctic", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "urban" ],
+	alignment: alignments.ce,
 });
 addMonster({
 	name: "Orc Eye of Gruumsh",
@@ -2375,6 +2716,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Orc" ],
 	size: "Medium",
+	environments: [ "arctic", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "urban" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2384,15 +2726,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Orc" ],
 	size: "Medium",
-	alignment: alignments.ce,
-});
-addMonster({
-	name: "Orc",
-	section: "Orcs",
-	cr: "1/2",
-	type: "Humanoid",
-	tags: [ "Orc" ],
-	size: "Medium",
+	environments: [ "arctic", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "urban" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2402,6 +2736,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Orc" ],
 	size: "Medium",
+	environments: [ "arctic", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "urban" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2409,6 +2744,7 @@ addMonster({
 	cr: "5",
 	type: "Aberration",
 	size: "Large",
+	environments: [ "cave", "dungeon", "ruins", "swamp", "underground" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -2417,12 +2753,14 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Tiny",
+	environments: [ "forest", "urban" ],
 });
 addMonster({
 	name: "Owlbear",
 	cr: "3",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "forest", "mountain" ],
 });
 addMonster({
 	name: "Panther",
@@ -2430,12 +2768,14 @@ addMonster({
 	cr: "1/4",
 	type: "Beast",
 	size: "Medium",
+	environments: [ "forest" ],
 });
 addMonster({
 	name: "Pegasus",
 	cr: "2",
 	type: "Celestial",
 	size: "Large",
+	environments: [ "mountain" ],
 	alignment: alignments.cg,
 });
 addMonster({
@@ -2444,6 +2784,7 @@ addMonster({
 	cr: "2",
 	type: "Construct",
 	size: "Large",
+	environments: [ "planar" ],
 	alignment: alignments.ln,
 });
 addMonster({
@@ -2451,6 +2792,7 @@ addMonster({
 	cr: "2",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "mountain" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2459,12 +2801,14 @@ addMonster({
 	cr: "3",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "cave", "coast", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "planar" ],
 });
 addMonster({
 	name: "Piercer",
 	cr: "1/2",
 	type: "Monstrosity",
 	size: "Medium",
+	environments: [ "cave", "underground" ],
 });
 addMonster({
 	name: "Pit Fiend",
@@ -2473,6 +2817,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Devil" ],
 	size: "Large",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -2480,6 +2825,7 @@ addMonster({
 	cr: "1/4",
 	type: "Fey",
 	size: "Tiny",
+	environments: [ "coast", "forest", "grassland", "swamp" ],
 	alignment: alignments.ng,
 });
 addMonster({
@@ -2488,6 +2834,7 @@ addMonster({
 	cr: "16",
 	type: "Celestial",
 	size: "Large",
+	environments: [ "planar" ],
 	alignment: alignments.lg,
 });
 addMonster({
@@ -2496,6 +2843,7 @@ addMonster({
 	cr: "2",
 	type: "Beast",
 	size: "Large",
+	environments: [ "aquatic" ],
 });
 addMonster({
 	name: "Poisonous Snake",
@@ -2503,6 +2851,7 @@ addMonster({
 	cr: "1/8",
 	type: "Beast",
 	size: "Tiny",
+	environments: [ "desert", "forest", "grassland", "swamp" ],
 });
 addMonster({
 	name: "Polar Bear",
@@ -2510,6 +2859,7 @@ addMonster({
 	cr: "2",
 	type: "Beast",
 	size: "Large",
+	environments: [ "arctic", "cave" ],
 });
 addMonster({
 	name: "Poltergeist",
@@ -2517,6 +2867,7 @@ addMonster({
 	cr: "2",
 	type: "Undead",
 	size: "Medium",
+	environments: [ "dungeon", "ruins", "urban" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2525,6 +2876,7 @@ addMonster({
 	cr: "1/8",
 	type: "Beast",
 	size: "Medium",
+	environments: [ "grassland" ],
 });
 addMonster({
 	name: "Priest",
@@ -2533,6 +2885,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "urban" ],
 	alignment: alignments.any,
 });
 addMonster({
@@ -2540,6 +2893,7 @@ addMonster({
 	cr: "1/4",
 	type: "Dragon",
 	size: "Tiny",
+	environments: [ "urban" ],
 	alignment: alignments.ng,
 });
 addMonster({
@@ -2548,12 +2902,14 @@ addMonster({
 	cr: "1/4",
 	type: "Beast",
 	size: "Medium",
+	environments: [ "mountain" ],
 });
 addMonster({
 	name: "Purple Worm",
 	cr: "15",
 	type: "Monstrosity",
 	size: "Gargantuan",
+	environments: [ "underground" ],
 });
 addMonster({
 	name: "Quadrone",
@@ -2561,23 +2917,8 @@ addMonster({
 	cr: "1",
 	type: "Construct",
 	size: "Medium",
+	environments: [ "planar" ],
 	alignment: alignments.ln,
-});
-addMonster({
-	name: "Quaggoth Spore Servant",
-	section: "Myconids",
-	cr: "1",
-	type: "Plant",
-	size: "Medium",
-});
-addMonster({
-	name: "Quaggoth Thonot",
-	section: "Quaggoth",
-	cr: "3",
-	type: "Humanoid",
-	tags: [ "Quaggoth" ],
-	size: "Medium",
-	alignment: alignments.cn,
 });
 addMonster({
 	name: "Quaggoth",
@@ -2586,6 +2927,25 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Quaggoth" ],
 	size: "Medium",
+	environments: [ "dungeon", "urban" ],
+	alignment: alignments.cn,
+});
+addMonster({
+	name: "Quaggoth Spore Servant",
+	section: "Myconids",
+	cr: "1",
+	type: "Plant",
+	size: "Medium",
+	environments: [ "underground" ],
+});
+addMonster({
+	name: "Quaggoth Thonot",
+	section: "Quaggoth",
+	cr: "3",
+	type: "Humanoid",
+	tags: [ "Quaggoth" ],
+	size: "Medium",
+	environments: [ "dungeon", "urban" ],
 	alignment: alignments.cn,
 });
 addMonster({
@@ -2595,6 +2955,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Demon", "Shapechanger" ],
 	size: "Tiny",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2603,12 +2964,14 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Tiny",
+	environments: [ "aquatic" ],
 });
 addMonster({
 	name: "Rakshasa",
 	cr: "13",
 	type: "Fiend",
 	size: "Medium",
+	environments: [ "urban", "planar" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -2617,6 +2980,7 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Tiny",
+	environments: [ "arctic", "cave", "coast", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "urban" ],
 });
 addMonster({
 	name: "Raven",
@@ -2624,6 +2988,7 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Tiny",
+	environments: [ "forest", "grassland" ],
 });
 addMonster({
 	name: "Red Dragon Wyrmling",
@@ -2631,6 +2996,7 @@ addMonster({
 	cr: "4",
 	type: "Dragon",
 	size: "Medium",
+	environments: [ "mountain" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2639,6 +3005,7 @@ addMonster({
 	cr: "5",
 	type: "Aberration",
 	size: "Large",
+	environments: [ "planar" ],
 	alignment: alignments.cn,
 });
 addMonster({
@@ -2647,6 +3014,7 @@ addMonster({
 	cr: "1/2",
 	type: "Beast",
 	size: "Medium",
+	environments: [ "aquatic" ],
 });
 addMonster({
 	name: "Remorhaz",
@@ -2654,12 +3022,14 @@ addMonster({
 	cr: "11",
 	type: "Monstrosity",
 	size: "Huge",
+	environments: [ "arctic" ],
 });
 addMonster({
 	name: "Revenant",
 	cr: "5",
 	type: "Undead",
 	size: "Medium",
+	environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "urban" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -2668,6 +3038,7 @@ addMonster({
 	cr: "2",
 	type: "Beast",
 	size: "Large",
+	environments: [ "grassland" ],
 });
 addMonster({
 	name: "Riding Horse",
@@ -2675,18 +3046,21 @@ addMonster({
 	cr: "1/4",
 	type: "Beast",
 	size: "Large",
+	environments: [ "urban" ],
 });
 addMonster({
 	name: "Roc",
 	cr: "11",
 	type: "Monstrosity",
 	size: "Gargantuan",
+	environments: [ "coast", "desert", "mountain" ],
 });
 addMonster({
 	name: "Roper",
 	cr: "5",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "cave", "underground" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -2695,12 +3069,14 @@ addMonster({
 	cr: "2",
 	type: "Construct",
 	size: "Large",
+	environments: [ "dungeon", "ruins", "urban" ],
 });
 addMonster({
 	name: "Rust Monster",
 	cr: "1/2",
 	type: "Monstrosity",
 	size: "Medium",
+	environments: [ "dungeon", "underground" ],
 });
 addMonster({
 	name: "Saber-Toothed Tiger",
@@ -2708,6 +3084,17 @@ addMonster({
 	cr: "2",
 	type: "Beast",
 	size: "Large",
+	environments: [ "forest", "grassland" ],
+});
+addMonster({
+	name: "Sahuagin",
+	section: "Sahuagin",
+	cr: "1/2",
+	type: "Humanoid",
+	tags: [ "Sahuagin" ],
+	size: "Medium",
+	environments: [ "aquatic", "coast" ],
+	alignment: alignments.le,
 });
 addMonster({
 	name: "Sahuagin Baron",
@@ -2716,6 +3103,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Sahuagin" ],
 	size: "Large",
+	environments: [ "aquatic", "coast" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -2725,15 +3113,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Sahuagin" ],
 	size: "Medium",
-	alignment: alignments.le,
-});
-addMonster({
-	name: "Sahuagin",
-	section: "Sahuagin",
-	cr: "1/2",
-	type: "Humanoid",
-	tags: [ "Sahuagin" ],
-	size: "Medium",
+	environments: [ "aquatic", "coast" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -2742,6 +3122,7 @@ addMonster({
 	cr: "5",
 	type: "Elemental",
 	size: "Large",
+	environments: [ "forest", "planar" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -2749,6 +3130,7 @@ addMonster({
 	cr: "1/2",
 	type: "Fey",
 	size: "Medium",
+	environments: [ "forest", "grassland", "urban" ],
 	alignment: alignments.cn,
 });
 addMonster({
@@ -2756,6 +3138,7 @@ addMonster({
 	cr: "1",
 	type: "Construct",
 	size: "Medium",
+	environments: [ "grassland", "urban" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2764,6 +3147,7 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Tiny",
+	environments: [ "cave", "desert", "grassland", "mountain", "swamp" ],
 });
 addMonster({
 	name: "Scout",
@@ -2772,6 +3156,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "arctic", "coast", "desert", "forest", "grassland", "mountain", "swamp" ],
 	alignment: alignments.any,
 });
 addMonster({
@@ -2780,6 +3165,7 @@ addMonster({
 	cr: "2",
 	type: "Fey",
 	size: "Medium",
+	environments: [ "aquatic", "coast", "underground" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2788,6 +3174,15 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Tiny",
+	environments: [ "aquatic" ],
+});
+addMonster({
+	name: "Shadow",
+	cr: "1/2",
+	type: "Undead",
+	size: "Medium",
+	environments: [ "dungeon", "ruins", "swamp", "urban" ],
+	alignment: alignments.ce,
 });
 addMonster({
 	name: "Shadow Demon",
@@ -2796,13 +3191,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Demon" ],
 	size: "Medium",
-	alignment: alignments.ce,
-});
-addMonster({
-	name: "Shadow",
-	cr: "1/2",
-	type: "Undead",
-	size: "Medium",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2810,12 +3199,14 @@ addMonster({
 	cr: "5",
 	type: "Plant",
 	size: "Large",
+	environments: [ "forest", "swamp" ],
 });
 addMonster({
 	name: "Shield Guardian",
 	cr: "7",
 	type: "Construct",
 	size: "Large",
+	environments: [ "dungeon", "ruins", "urban" ],
 });
 addMonster({
 	name: "Shrieker",
@@ -2823,6 +3214,7 @@ addMonster({
 	cr: "0",
 	type: "Plant",
 	size: "Medium",
+	environments: [ "cave", "dungeon", "swamp" ],
 });
 addMonster({
 	name: "Silver Dragon Wyrmling",
@@ -2830,6 +3222,7 @@ addMonster({
 	cr: "2",
 	type: "Dragon",
 	size: "Medium",
+	environments: [ "arctic", "mountain" ],
 	alignment: alignments.lg,
 });
 addMonster({
@@ -2838,6 +3231,7 @@ addMonster({
 	cr: "1/4",
 	type: "Undead",
 	size: "Medium",
+	environments: [ "dungeon", "ruins", "urban" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -2846,6 +3240,7 @@ addMonster({
 	cr: "1/8",
 	type: "Aberration",
 	size: "Tiny",
+	environments: [ "planar" ],
 	alignment: alignments.cn,
 });
 addMonster({
@@ -2854,6 +3249,7 @@ addMonster({
 	cr: "1/4",
 	type: "Elemental",
 	size: "Small",
+	environments: [ "dungeon", "urban", "planar" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -2862,6 +3258,7 @@ addMonster({
 	cr: "21",
 	type: "Celestial",
 	size: "Large",
+	environments: [ "planar" ],
 	alignment: alignments.lg,
 	legendary: true,
 });
@@ -2871,6 +3268,7 @@ addMonster({
 	cr: "3",
 	type: "Aberration",
 	size: "Medium",
+	environments: [ "cave", "dungeon", "ruins", "underground", "urban" ],
 	alignment: alignments.ln,
 });
 addMonster({
@@ -2879,6 +3277,7 @@ addMonster({
 	cr: "1",
 	type: "Undead",
 	size: "Medium",
+	environments: [ "dungeon", "ruins", "urban" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2887,6 +3286,7 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Tiny",
+	environments: [ "cave", "coast", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "planar" ],
 });
 addMonster({
 	name: "Spined Devil",
@@ -2895,6 +3295,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Devil" ],
 	size: "Small",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -2903,6 +3304,7 @@ addMonster({
 	cr: "8",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "cave", "dungeon", "ruins", "underground" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -2910,6 +3312,7 @@ addMonster({
 	cr: "1/4",
 	type: "Fey",
 	size: "Tiny",
+	environments: [ "forest", "grassland", "swamp" ],
 	alignment: alignments.ng,
 });
 addMonster({
@@ -2919,6 +3322,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "arctic", "cave", "coast", "desert", "forest", "grassland", "mountain", "ruins", "swamp", "urban" ],
 	alignment: alignments.any,
 });
 addMonster({
@@ -2927,6 +3331,7 @@ addMonster({
 	cr: "1/4",
 	type: "Elemental",
 	size: "Small",
+	environments: [ "dungeon", "urban", "planar" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -2934,6 +3339,7 @@ addMonster({
 	cr: "1/8",
 	type: "Beast",
 	size: "Tiny",
+	environments: [ "forest", "swamp" ],
 });
 addMonster({
 	name: "Stone Giant",
@@ -2941,6 +3347,7 @@ addMonster({
 	cr: "7",
 	type: "Giant",
 	size: "Huge",
+	environments: [ "cave", "mountain", "underground" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -2949,6 +3356,7 @@ addMonster({
 	cr: "10",
 	type: "Construct",
 	size: "Large",
+	environments: [ "dungeon", "ruins", "urban" ],
 });
 addMonster({
 	name: "Storm Giant",
@@ -2956,6 +3364,7 @@ addMonster({
 	cr: "13",
 	type: "Giant",
 	size: "Huge",
+	environments: [ "arctic", "coast", "desert", "mountain", "planar" ],
 	alignment: alignments.cg,
 });
 addMonster({
@@ -2964,6 +3373,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Shapechanger" ],
 	size: "Medium",
+	environments: [ "dungeon", "urban", "planar" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -2973,6 +3383,7 @@ addMonster({
 	type: "Beast",
 	tags: [ "Swarm" ],
 	size: "Medium",
+	environments: [ "cave", "dungeon", "forest", "ruins", "swamp", "underground", "urban" ],
 });
 addMonster({
 	name: "Swarm of Insects",
@@ -2981,6 +3392,7 @@ addMonster({
 	type: "Beast",
 	tags: [ "Swarm" ],
 	size: "Medium",
+	environments: [ "cave", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "urban" ],
 });
 addMonster({
 	name: "Swarm of Poisonous Snakes",
@@ -2989,6 +3401,7 @@ addMonster({
 	type: "Beast",
 	tags: [ "Swarm" ],
 	size: "Medium",
+	environments: [ "desert", "dungeon", "forest", "grassland", "swamp" ],
 });
 addMonster({
 	name: "Swarm of Quippers",
@@ -2997,6 +3410,7 @@ addMonster({
 	type: "Beast",
 	tags: [ "Swarm" ],
 	size: "Medium",
+	environments: [ "aquatic" ],
 });
 addMonster({
 	name: "Swarm of Rats",
@@ -3005,6 +3419,7 @@ addMonster({
 	type: "Beast",
 	tags: [ "Swarm" ],
 	size: "Medium",
+	environments: [ "cave", "dungeon", "forest", "grassland", "ruins", "swamp", "urban" ],
 });
 addMonster({
 	name: "Swarm of Ravens",
@@ -3013,12 +3428,14 @@ addMonster({
 	type: "Beast",
 	tags: [ "Swarm" ],
 	size: "Medium",
+	environments: [ "forest", "grassland", "mountain", "ruins", "urban" ],
 });
 addMonster({
 	name: "Tarrasque",
 	cr: "30",
 	type: "Monstrosity",
 	size: "Gargantuan",
+	environments: [ "aquatic", "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "urban", "planar" ],
 	legendary: true,
 });
 addMonster({
@@ -3027,6 +3444,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Thri-kreen" ],
 	size: "Medium",
+	environments: [ "desert", "grassland" ],
 	alignment: alignments.cn,
 });
 addMonster({
@@ -3036,6 +3454,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "arctic", "cave", "coast", "forest", "grassland", "urban" ],
 	alignment: alignments.non_good,
 });
 addMonster({
@@ -3044,12 +3463,14 @@ addMonster({
 	cr: "1",
 	type: "Beast",
 	size: "Large",
+	environments: [ "forest", "grassland" ],
 });
 addMonster({
 	name: "Treant",
 	cr: "9",
 	type: "Plant",
 	size: "Huge",
+	environments: [ "forest", "swamp" ],
 	alignment: alignments.cg,
 });
 addMonster({
@@ -3059,6 +3480,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "arctic", "cave", "desert", "forest", "grassland", "mountain", "swamp" ],
 	alignment: alignments.any,
 });
 addMonster({
@@ -3067,6 +3489,7 @@ addMonster({
 	cr: "5",
 	type: "Beast",
 	size: "Huge",
+	environments: [ "grassland", "mountain" ],
 });
 addMonster({
 	name: "Tridrone",
@@ -3074,6 +3497,7 @@ addMonster({
 	cr: "1/2",
 	type: "Construct",
 	size: "Medium",
+	environments: [ "planar" ],
 	alignment: alignments.ln,
 });
 addMonster({
@@ -3082,6 +3506,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Troglodyte" ],
 	size: "Medium",
+	environments: [ "cave", "dungeon", "underground" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -3089,6 +3514,7 @@ addMonster({
 	cr: "5",
 	type: "Giant",
 	size: "Large",
+	environments: [ "cave", "dungeon", "forest", "mountain", "swamp" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -3097,6 +3523,7 @@ addMonster({
 	cr: "1/8",
 	type: "Plant",
 	size: "Small",
+	environments: [ "forest", "grassland", "swamp" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -3105,6 +3532,7 @@ addMonster({
 	cr: "8",
 	type: "Beast",
 	size: "Huge",
+	environments: [ "grassland" ],
 });
 addMonster({
 	name: "Ultraloth",
@@ -3113,6 +3541,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Yugoloth" ],
 	size: "Medium",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -3120,6 +3549,7 @@ addMonster({
 	cr: "5",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "cave", "underground" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -3127,7 +3557,20 @@ addMonster({
 	cr: "5",
 	type: "Celestial",
 	size: "Large",
+	environments: [ "forest", "ruins" ],
 	alignment: alignments.lg,
+	legendary: true,
+	lair: true,
+});
+addMonster({
+	name: "Vampire",
+	section: "Vampires",
+	cr: "13",
+	type: "Undead",
+	tags: [ "Shapechanger" ],
+	size: "Medium",
+	environments: [ "dungeon", "ruins", "urban" ],
+	alignment: alignments.le,
 	legendary: true,
 	lair: true,
 });
@@ -3137,6 +3580,7 @@ addMonster({
 	cr: "5",
 	type: "Undead",
 	size: "Medium",
+	environments: [ "dungeon", "ruins", "urban" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -3146,6 +3590,7 @@ addMonster({
 	type: "Undead",
 	tags: [ "Shapechanger" ],
 	size: "Medium",
+	environments: [ "dungeon", "ruins", "urban" ],
 	alignment: alignments.le,
 	legendary: true,
 	lair: true,
@@ -3157,17 +3602,7 @@ addMonster({
 	type: "Undead",
 	tags: [ "Shapechanger" ],
 	size: "Medium",
-	alignment: alignments.le,
-	legendary: true,
-	lair: true,
-});
-addMonster({
-	name: "Vampire",
-	section: "Vampires",
-	cr: "13",
-	type: "Undead",
-	tags: [ "Shapechanger" ],
-	size: "Medium",
+	environments: [ "dungeon", "ruins", "urban" ],
 	alignment: alignments.le,
 	legendary: true,
 	lair: true,
@@ -3179,6 +3614,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "any" ],
 	size: "Medium",
+	environments: [ "urban" ],
 	alignment: alignments.any,
 });
 addMonster({
@@ -3187,6 +3623,7 @@ addMonster({
 	cr: "1/2",
 	type: "Plant",
 	size: "Medium",
+	environments: [ "forest", "grassland", "swamp" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -3195,6 +3632,7 @@ addMonster({
 	cr: "1/4",
 	type: "Plant",
 	size: "Medium",
+	environments: [ "cave", "dungeon", "underground" ],
 });
 addMonster({
 	name: "Vrock",
@@ -3203,6 +3641,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Demon" ],
 	size: "Large",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -3211,14 +3650,7 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Medium",
-});
-addMonster({
-	name: "Warhorse Skeleton",
-	section: "Skeletons",
-	cr: "1/2",
-	type: "Undead",
-	size: "Large",
-	alignment: alignments.le,
+	environments: [ "desert", "grassland", "ruins" ],
 });
 addMonster({
 	name: "Warhorse",
@@ -3226,6 +3658,16 @@ addMonster({
 	cr: "1/2",
 	type: "Beast",
 	size: "Large",
+	environments: [ "grassland", "urban" ],
+});
+addMonster({
+	name: "Warhorse Skeleton",
+	section: "Skeletons",
+	cr: "1/2",
+	type: "Undead",
+	size: "Large",
+	environments: [ "grassland", "ruins" ],
+	alignment: alignments.le,
 });
 addMonster({
 	name: "Water Elemental",
@@ -3233,6 +3675,7 @@ addMonster({
 	cr: "5",
 	type: "Elemental",
 	size: "Large",
+	environments: [ "aquatic", "arctic", "cave", "coast", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "planar" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -3240,6 +3683,7 @@ addMonster({
 	cr: "3",
 	type: "Elemental",
 	size: "Large",
+	environments: [ "cave", "coast", "forest", "mountain", "swamp", "underground", "planar" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -3248,6 +3692,7 @@ addMonster({
 	cr: "0",
 	type: "Beast",
 	size: "Tiny",
+	environments: [ "grassland" ],
 });
 addMonster({
 	name: "Werebear",
@@ -3255,6 +3700,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Human", "Shapechanger" ],
 	size: "Medium",
+	environments: [ "cave", "forest", "mountain", "urban" ],
 	alignment: alignments.ng,
 });
 addMonster({
@@ -3263,6 +3709,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Human", "Shapechanger" ],
 	size: "Medium",
+	environments: [ "forest", "grassland", "swamp", "urban" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -3271,6 +3718,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Human", "Shapechanger" ],
 	size: "Medium",
+	environments: [ "cave", "dungeon", "ruins", "swamp", "underground", "urban" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -3279,6 +3727,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Human", "Shapechanger" ],
 	size: "Medium",
+	environments: [ "forest", "urban" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -3287,6 +3736,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Human", "Shapechanger" ],
 	size: "Medium",
+	environments: [ "dungeon", "forest", "grassland", "urban" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -3295,6 +3745,7 @@ addMonster({
 	cr: "2",
 	type: "Dragon",
 	size: "Medium",
+	environments: [ "arctic", "cave", "underground" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -3302,6 +3753,7 @@ addMonster({
 	cr: "3",
 	type: "Undead",
 	size: "Medium",
+	environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "urban" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -3309,6 +3761,7 @@ addMonster({
 	cr: "2",
 	type: "Undead",
 	size: "Tiny",
+	environments: [ "swamp" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -3318,6 +3771,7 @@ addMonster({
 	type: "Humanoid",
 	tags: [ "Kobold" ],
 	size: "Small",
+	environments: [ "mountain", "underground" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -3326,6 +3780,7 @@ addMonster({
 	cr: "3",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "arctic", "cave", "forest", "grassland" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -3334,6 +3789,7 @@ addMonster({
 	cr: "1/4",
 	type: "Beast",
 	size: "Medium",
+	environments: [ "arctic", "cave", "forest", "grassland" ],
 });
 addMonster({
 	name: "Worg",
@@ -3341,6 +3797,7 @@ addMonster({
 	cr: "1/2",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "arctic", "cave", "forest", "grassland" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -3348,6 +3805,7 @@ addMonster({
 	cr: "5",
 	type: "Undead",
 	size: "Medium",
+	environments: [ "dungeon", "ruins", "swamp", "urban" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -3355,12 +3813,14 @@ addMonster({
 	cr: "6",
 	type: "Dragon",
 	size: "Large",
+	environments: [ "arctic", "coast", "grassland" ],
 });
 addMonster({
 	name: "Xorn",
 	cr: "5",
 	type: "Elemental",
 	size: "Medium",
+	environments: [ "dungeon", "underground", "planar" ],
 	alignment: alignments.n,
 });
 addMonster({
@@ -3369,6 +3829,7 @@ addMonster({
 	cr: "3",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "arctic", "cave", "mountain" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -3378,6 +3839,7 @@ addMonster({
 	type: "Fiend",
 	tags: [ "Demon", "Shapechanger" ],
 	size: "Medium",
+	environments: [ "dungeon", "planar" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -3386,6 +3848,7 @@ addMonster({
 	cr: "7",
 	type: "Dragon",
 	size: "Large",
+	environments: [ "swamp" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -3394,6 +3857,7 @@ addMonster({
 	cr: "9",
 	type: "Dragon",
 	size: "Large",
+	environments: [ "desert" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -3402,6 +3866,7 @@ addMonster({
 	cr: "6",
 	type: "Dragon",
 	size: "Large",
+	environments: [ "cave", "underground" ],
 	alignment: alignments.cg,
 });
 addMonster({
@@ -3410,6 +3875,7 @@ addMonster({
 	cr: "8",
 	type: "Dragon",
 	size: "Large",
+	environments: [ "coast" ],
 	alignment: alignments.lg,
 });
 addMonster({
@@ -3418,6 +3884,7 @@ addMonster({
 	cr: "7",
 	type: "Dragon",
 	size: "Large",
+	environments: [ "cave", "desert", "grassland" ],
 	alignment: alignments.cg,
 });
 addMonster({
@@ -3426,6 +3893,7 @@ addMonster({
 	cr: "10",
 	type: "Dragon",
 	size: "Large",
+	environments: [ "mountain", "ruins" ],
 	alignment: alignments.lg,
 });
 addMonster({
@@ -3434,6 +3902,7 @@ addMonster({
 	cr: "8",
 	type: "Dragon",
 	size: "Large",
+	environments: [ "forest" ],
 	alignment: alignments.le,
 });
 addMonster({
@@ -3442,6 +3911,7 @@ addMonster({
 	cr: "10",
 	type: "Dragon",
 	size: "Large",
+	environments: [ "mountain" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -3450,6 +3920,7 @@ addMonster({
 	cr: "13",
 	type: "Dragon",
 	size: "Large",
+	environments: [ "planar" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -3458,6 +3929,7 @@ addMonster({
 	cr: "5",
 	type: "Monstrosity",
 	size: "Large",
+	environments: [ "arctic", "cave" ],
 });
 addMonster({
 	name: "Young Silver Dragon",
@@ -3465,6 +3937,7 @@ addMonster({
 	cr: "9",
 	type: "Dragon",
 	size: "Large",
+	environments: [ "arctic", "mountain" ],
 	alignment: alignments.lg,
 });
 addMonster({
@@ -3473,6 +3946,7 @@ addMonster({
 	cr: "6",
 	type: "Dragon",
 	size: "Large",
+	environments: [ "arctic", "cave", "underground" ],
 	alignment: alignments.ce,
 });
 addMonster({
@@ -3482,6 +3956,7 @@ addMonster({
 	type: "Monstrosity",
 	tags: [ "Shapechanger", "Yuan-ti" ],
 	size: "Large",
+	environments: [ "desert", "forest", "mountain", "ruins", "swamp" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -3491,6 +3966,7 @@ addMonster({
 	type: "Monstrosity",
 	tags: [ "Shapechanger", "Yuan-ti" ],
 	size: "Medium",
+	environments: [ "desert", "forest", "mountain", "ruins", "swamp" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -3500,6 +3976,7 @@ addMonster({
 	type: "Monstrosity",
 	tags: [ "Yuan-ti" ],
 	size: "Medium",
+	environments: [ "desert", "forest", "mountain", "ruins", "swamp" ],
 	alignment: alignments.ne,
 });
 addMonster({
@@ -3508,6 +3985,7 @@ addMonster({
 	cr: "1/4",
 	type: "Undead",
 	size: "Medium",
+	environments: [ "aquatic", "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "swamp", "underground", "urban" ],
 	alignment: alignments.ne,
 });
 
@@ -3518,6 +3996,7 @@ addMonster({
 	cr: "1/2",
 	type: "Dragon",
 	size: "Medium",
+	environments: [ "cave", "dungeon", "forest", "mountain", "ruins", "swamp", "urban" ],
 });
 addMonster({
 	name: "Dragonclaw",
@@ -3526,6 +4005,7 @@ addMonster({
 	tags: [ "Human" ],
 	size: "Medium",
 	alignment: alignments.ne,
+	environments: [ "dungeon", "urban" ],
 });
 addMonster({
 	name: "Dragonwing",
@@ -3534,10 +4014,12 @@ addMonster({
 	tags: [ "Human" ],
 	size: "Medium",
 	alignment: alignments.ne,
+	environments: [ "dungeon", "urban" ],
 });
 addMonster({
 	name: "Guard Drake",
 	cr: "2",
 	type: "Dragon",
 	size: "Medium",
+	environments: [ "dungeon", "urban" ],
 });

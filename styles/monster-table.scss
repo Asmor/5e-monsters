@@ -11,13 +11,14 @@
 	}
 
 	&--column {
-		&__button {		width: 25px; }
-		&__name {		width: auto; }
-		&__size {		width: 100px; }
-		&__type {		width: 100px; }
-		&__alignment {	width: 100px; }
-		&__cr {			width: 25px; }
-		&__source {		width: 160px; }
+		&__button {			width: 25px; }
+		&__name {			width: auto; }
+		&__size {			width: 100px; }
+		&__type {			width: 100px; }
+		&__alignment {		width: 100px; }
+		&__cr {				width: 25px; }
+		&__environment {	width: 100px; }
+		&__source {			width: 160px; }
 	}
 
 	&--table {

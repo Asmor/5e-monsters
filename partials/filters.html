@@ -61,6 +61,17 @@
 		</label>
 	</div>
 	<div class="filters--section">
+		<label>
+			Environment:
+			<select
+				ng-model="filters.environment"
+				ng-options="environment as environment for environment in environments"
+			>
+				<option value="">Any</option>
+			</select>
+		</label>
+	</div>
+	<div class="filters--section">
 		Sources:
 		<ul>
 			<li

@@ -1626,6 +1626,8 @@ ul {
     width: 100px; }
   .monster-table--column__cr {
     width: 25px; }
+  .monster-table--column__environment {
+    width: 100px; }
   .monster-table--column__source {
     width: 160px; }
   .monster-table--table > tbody > tr > td, .monster-table--table > thead > tr > td {

@@ -18,6 +18,7 @@ function Monster(args) {
 	monster.size = args.size;
 	monster.alignment = args.alignment;
 	monster.special = args.special;
+	monster.environments = (args.environments) ? args.environments.sort() : [];
 	monster.legendary = args.legendary;
 	monster.lair = args.lair;
 	monster.sources = [];
@@ -140,6 +141,10 @@ function checkMonster(monster, filters) {
 	}
 
 	if ( filters.maxCr && monster.cr.numeric > filters.maxCr ) {
+		return false;
+	}
+
+	if ( filters.environment && monster.environments.indexOf(filters.environment) === -1 ) {
 		return false;
 	}
 

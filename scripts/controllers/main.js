@@ -2,6 +2,7 @@
 /* global alignments */
 /* global checkMonster */
 /* global crList */
+/* global environments */
 /* global generateRandomEncounter */
 /* global getMultiplier */
 /* global levels */
@@ -33,6 +34,7 @@ Controllers.main = {
 		$scope.tags = Object.keys(tags).sort();
 		$scope.types = types;
 		$scope.levels = levels;
+		$scope.environments = environments;
 
 		$scope.checkMonster = checkMonster;
 

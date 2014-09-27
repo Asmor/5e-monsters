@@ -36,6 +36,9 @@
 				>
 					CR
 				</td>
+				<td class="monster-table--column__environment">
+					Environment
+				</td>
 				<td class="monster-table--column__source">
 					Source
 				</td>
@@ -72,6 +75,7 @@
 					{{ monster.alignment.text }}
 				</span></td>
 				<td> {{ monster.cr.string }} </td>
+				<td> {{ monster.environments.join(", ") }} </td>
 				<td>
 					<div
 						ng-repeat="source in monster.sources"
