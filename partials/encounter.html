@@ -9,13 +9,13 @@
 		{{ encounterDifficulty() }}
 	</div>
 	<div class="encounter-builder--body">
-		<table class="monster-table--table">
+		<table class="encounter-builder--table">
 			<tbody>
 				<tr
-					class="monster-table--row"
+					class="encounter-builder--row"
 					ng-repeat="(key, group) in encounter.groups"
 				>
-					<td>
+					<td class="encounter-builder--column__buttons">
 						<button ng-click="addMonster(group.monster)" class="encounter-button">
 							<i class="fa fa-plus"></i>
 						</button>
@@ -23,16 +23,16 @@
 							<i class="fa fa-minus"></i>
 						</button>
 					</td>
-					<td>
+					<td class="encounter-builder--column__name">
 						{{ group.qty }}x {{ group.monster.name }}
 					</td>
-					<td>
+					<td class="encounter-builder--column__cr">
 						CR: {{ group.monster.cr.string }}
 					</td>
-					<td>
+					<td class="encounter-builder--column__exp">
 						XP: {{ group.monster.cr.exp | number}}
 					</td>
-					<td>
+					<td class="encounter-builder--column__source">
 						<div
 							ng-repeat="source in group.monster.sources"
 							ng-show="filters.source[source.name]"

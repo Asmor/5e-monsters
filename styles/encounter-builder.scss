@@ -20,6 +20,14 @@
 		overflow: auto;
 	}
 
+	&--column {
+		&__buttons {	width: 60px; }
+		&__name {		width: auto; }
+		&__cr {			width: 60px; }
+		&__exp {		width: 100px; }
+		&__source {		width: 180px; }
+	}
+
 	&--header {
 		@include header;
 
@@ -27,5 +35,17 @@
 		top: 0;
 		left: 0;
 		right: 0;
+	}
+
+	&--row {
+		border-bottom: 1px solid black;
+	}
+
+	&--table {
+		width: 100%;
+
+		> tbody > tr > td {
+			padding: 5px;
+		}
 	}
 }

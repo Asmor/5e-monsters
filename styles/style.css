@@ -1629,7 +1629,7 @@ ul {
   .monster-table--column__environment {
     width: 100px; }
   .monster-table--column__source {
-    width: 160px; }
+    width: 180px; }
   .monster-table--table > tbody > tr > td, .monster-table--table > thead > tr > td {
     padding: 5px; }
   .monster-table--table > thead {
@@ -1681,6 +1681,16 @@ ul {
     left: 0;
     right: 0;
     overflow: auto; }
+  .encounter-builder--column__buttons {
+    width: 60px; }
+  .encounter-builder--column__name {
+    width: auto; }
+  .encounter-builder--column__cr {
+    width: 60px; }
+  .encounter-builder--column__exp {
+    width: 100px; }
+  .encounter-builder--column__source {
+    width: 180px; }
   .encounter-builder--header {
     padding: 5px;
     background-color: #000;
@@ -1690,6 +1700,12 @@ ul {
     top: 0;
     left: 0;
     right: 0; }
+  .encounter-builder--row {
+    border-bottom: 1px solid black; }
+  .encounter-builder--table {
+    width: 100%; }
+    .encounter-builder--table > tbody > tr > td {
+      padding: 5px; }
 
 .encounter-button {
   height: 25px;
