@@ -5,6 +5,7 @@
 /* global environments */
 /* global generateRandomEncounter */
 /* global getMultiplier */
+/* global getShuffledMonsterList */
 /* global levels */
 /* global monsters */
 /* global sourceFilters */
@@ -63,6 +64,17 @@ Controllers.main = {
 			$scope.encounter.exp += monster.cr.exp * qty;
 		};
 
+		$scope.deleteMonster = function (monster) {
+			if ( !$scope.encounter.groups[monster.name] ) { return; }
+
+			var qty = $scope.encounter.groups[monster.name].qty,
+				exp = monster.cr.exp * qty;
+
+			delete $scope.encounter.groups[monster.name];
+			$scope.encounter.qty -= qty;
+			$scope.encounter.exp -= exp;
+		};
+
 		$scope.removeMonster = function (monster) {
 			$scope.encounter.groups[monster.name].qty--;
 			$scope.encounter.qty--;
@@ -83,6 +95,28 @@ Controllers.main = {
 			for ( i = 0; i < monsters.length; i++ ) {
 				$scope.addMonster( monsters[i].monster, monsters[i].qty );
 			}
+		};
+
+		$scope.randomize = function (monster) {
+			var monsterList = getShuffledMonsterList(monster.cr.string),
+				qty = $scope.encounter.groups[monster.name].qty;
+
+			while ( monsterList.length ) {
+				// Make sure we don't roll a monster we already have
+				if ( $scope.encounter.groups[monsterList[0].name] ) {
+					monsterList.shift();
+					continue;
+				}
+
+				if ( checkMonster( monsterList[0], $scope.filters, { skipCrCheck: true } ) ) {
+					$scope.deleteMonster(monster);
+					$scope.addMonster( monsterList[0], qty );
+					return;					
+				} else {
+					monsterList.shift();
+				}
+			}
+
 		};
 
 		$scope.adjustedEncounterExp = function () {
