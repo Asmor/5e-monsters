@@ -1,9 +1,11 @@
+/* global checkMonster */
 /* global crList */
 /* global getMultiplier */
+/* global getShuffledMonsterList */
 /* exported generateRandomEncounter */
 "use strict";
 
-function generateRandomEncounter(playerCount, partyLevel) {
+function generateRandomEncounter(playerCount, partyLevel, filters) {
 	var fudgeFactor = 1.1, // The algorithm is conservative in spending exp, so this tries to get it closer to the actual medium value
 		baseExpBudget = playerCount * partyLevel.medium * fudgeFactor,
 		encounterTemplate = getEncounterTemplate(),
@@ -21,7 +23,7 @@ function generateRandomEncounter(playerCount, partyLevel) {
 		// We need to find a monster who, in the correct number, is close to the target exp
 		targetExp /= currentGroup;
 
-		monster = getBestMonster(targetExp);
+		monster = getBestMonster(targetExp, filters);
 
 		monsters.push({
 			monster: monster,
@@ -57,26 +59,54 @@ function getEncounterTemplate() {
 	};
 }
 
-function getBestMonster(targetExp) {
-	var bestBelow = crList[0],
+function getBestMonster(targetExp, filters) {
+	var bestBelow = 0,
 		bestAbove,
-		cr,
+		crIndex,
+		currentIndex,
+		step = -1,
+		monsterList,
 		i;
 
 	for ( i = 1; i < crList.length; i++ ) {
 		if ( crList[i].exp < targetExp ) {
-			bestBelow = crList[i];
+			bestBelow = i;
 		} else {
-			bestAbove = crList[i];
+			bestAbove = i;
 			break;
 		}
 	}
 
-	if ( (targetExp - bestBelow.exp) < (bestAbove.exp - targetExp) ) {
-		cr = bestBelow;
+	if ( (targetExp - crList[bestBelow].exp) < (crList[bestAbove].exp - targetExp) ) {
+		crIndex = bestBelow;
 	} else {
-		cr = bestAbove;
+		crIndex = bestAbove;
 	}
 
-	return cr.monsters[Math.floor(Math.random() * cr.monsters.length)];
+	currentIndex = crIndex;
+
+	monsterList = getShuffledMonsterList(crList[crIndex].string);
+
+	while ( true ) {
+		if ( checkMonster(monsterList[0], filters, { skipCrCheck: true }) ) {
+			return monsterList[0];
+		} else {
+			monsterList.shift();
+		}
+
+		// If we run through all the monsters from this level, check a different level
+		if ( monsterList.length === 0 ) {
+			// there were no monsters found lower than target exp, so we have to start checking higher
+			if ( currentIndex === 0 ) {
+				// Reset currentIndex
+				currentIndex = crIndex;
+				// Start looking up instead of down
+				step = 1;
+			}
+
+			currentIndex += step;
+			monsterList = getShuffledMonsterList(crList[currentIndex].string);
+		}
+	}
+
 }

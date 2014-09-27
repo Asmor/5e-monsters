@@ -4,6 +4,7 @@
 /* exported crList */
 /* exported environments */
 /* exported getMultiplier */
+/* exported getShuffledMonsterList */
 /* exported levels */
 /* exported monsters */
 /* exported monstersByName */
@@ -122,6 +123,10 @@ var monsters = [],
 			lg: false,	ng: true,	cg: true,
 			ln: false,	n: true,	cn: true,
 			le: false,	ne: true,	ce: true,
+		},
+		unaligned: {
+			text: "unaligned",
+			unaligned: true,
 		},
 		lg: { lg: true, text: "lawful good" },
 		ng: { ng: true, text: "neutral good" },
@@ -252,7 +257,28 @@ function getMultiplier(playerCount, monsterCount) {
 	return multipliers[multiplierCategory];
 }
 
+function getShuffledMonsterList(cr) {
+	var monsters = crInfo[cr].monsters.slice(0);
+
+	return shuffle(monsters);
+}
+
 function registerSource(name, initialState) {
 	sources.push(name);
 	sourceFilters[name] = initialState;
+}
+
+// via http://bost.ocks.org/mike/shuffle/
+function shuffle(array) {
+	var m = array.length, t, i;
+
+	while (m) {
+		i = Math.floor(Math.random() * m--);
+
+		t = array[m];
+		array[m] = array[i];
+		array[i] = t;
+	}
+
+	return array;
 }

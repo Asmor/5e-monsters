@@ -73,7 +73,7 @@ Controllers.main = {
 		};
 
 		$scope.getRandomEncounter = function () {
-			var monsters = generateRandomEncounter($scope.encounter.playerCount, $scope.encounter.partyLevel),
+			var monsters = generateRandomEncounter($scope.encounter.playerCount, $scope.encounter.partyLevel, $scope.filters),
 				i;
 
 			$scope.encounter.qty = 0;

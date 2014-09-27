@@ -2,6 +2,7 @@
 /* exported addMonster */
 /* exported monstersFilter */
 /* exported registerMonster */
+/* global alignments */
 /* global crInfo */
 /* global tags */
 /* global monsters */
@@ -16,7 +17,7 @@ function Monster(args) {
 	monster.type = args.type;
 	monster.tags = (args.tags) ? args.tags.sort() : undefined;
 	monster.size = args.size;
-	monster.alignment = args.alignment;
+	monster.alignment = args.alignment || alignments.unaligned;
 	monster.special = args.special;
 	monster.environments = (args.environments) ? args.environments.sort() : [];
 	monster.legendary = args.legendary;
@@ -107,7 +108,9 @@ function monstersFilter() {
 	};
 }
 
-function checkMonster(monster, filters) {
+function checkMonster(monster, filters, args) {
+	args = args || {};
+
 	if ( filters.type && monster.type !== filters.type ) {
 		return false;
 	}
@@ -130,18 +133,21 @@ function checkMonster(monster, filters) {
 			filters.alignment.ne && monster.alignment.ne ||
 			filters.alignment.cg && monster.alignment.cg ||
 			filters.alignment.cn && monster.alignment.cn ||
-			filters.alignment.ce && monster.alignment.ce
+			filters.alignment.ce && monster.alignment.ce ||
+			filters.alignment.unaligned && monster.alignment.unaligned
 		) ) {
 			return false;
 		}
 	}
 
-	if ( filters.minCr && monster.cr.numeric < filters.minCr ) {
-		return false;
-	}
+	if ( !args.skipCrCheck ) {
+		if ( filters.minCr && monster.cr.numeric < filters.minCr ) {
+			return false;
+		}
 
-	if ( filters.maxCr && monster.cr.numeric > filters.maxCr ) {
-		return false;
+		if ( filters.maxCr && monster.cr.numeric > filters.maxCr ) {
+			return false;
+		}
 	}
 
 	if ( filters.environment && monster.environments.indexOf(filters.environment) === -1 ) {
