@@ -2,7 +2,12 @@
 /* global monstersFilter */
 "use strict";
 
-var monsterListApp = angular.module("monsterListApp", ["ui.router", "ngTouch", "angularUtils.directives.dirPagination"]);
+var monsterListApp = angular.module("monsterListApp", [
+	"ui.router",
+	"ngTouch",
+	"angularUtils.directives.dirPagination",
+	"angular-storage",
+]);
 
 monsterListApp.config(function ($stateProvider, $urlRouterProvider) {
 	// Default
