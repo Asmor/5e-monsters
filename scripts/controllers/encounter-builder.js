@@ -17,9 +17,9 @@
 
 "use strict";
 
-Controllers.main = {
-	url: "/main",
-	templateUrl: "pages/main.html",
+Controllers.encounterBuilder = {
+	url: "/encounter-builder",
+	templateUrl: "pages/encounter-builder.html",
 	controller: function ($scope, store) {
 		window.scope = $scope;
 		$scope.alignments = alignments;

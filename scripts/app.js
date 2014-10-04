@@ -11,9 +11,9 @@ var monsterListApp = angular.module("monsterListApp", [
 
 monsterListApp.config(function ($stateProvider, $urlRouterProvider) {
 	// Default
-	$urlRouterProvider.otherwise("/main");
+	$urlRouterProvider.otherwise("/encounter-builder");
 
 	// Main menu page
-	$stateProvider.state("main", Controllers.main);
+	$stateProvider.state("encounter-builder", Controllers.encounterBuilder);
 });
 monsterListApp.filter("monstersFilter", monstersFilter);
