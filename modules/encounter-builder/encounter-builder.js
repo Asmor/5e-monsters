@@ -19,7 +19,7 @@
 
 Controllers.encounterBuilder = {
 	url: "/encounter-builder",
-	templateUrl: "pages/encounter-builder.html",
+	templateUrl: "modules/encounter-builder/encounter-builder.html",
 	controller: function ($scope, store) {
 		window.scope = $scope;
 		$scope.alignments = alignments;

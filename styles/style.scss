@@ -10,8 +10,8 @@ $encounter-builder-height: 250px;
 $encounter-builder-height-closed: 0;
 $pagination-height: 40px;
 
-@import 'filters';
-@import 'monster-table';
-@import 'encounter-builder';
+@import '../modules/encounter-builder/encounter-builder';
+@import '../modules/encounter-builder/partials/filters';
+@import '../modules/encounter-builder/partials/monster-table';
+@import '../modules/encounter-builder/partials/pagination';
 @import 'encounter-button';
-@import 'pagination';

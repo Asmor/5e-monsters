@@ -1565,6 +1565,49 @@ ul {
 .fa-bomb:before {
   content: "\f1e2"; }
 
+.encounter-builder {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 250px;
+  right: 0;
+  height: 250px;
+  box-sizing: border-box; }
+  .encounter-builder__shown {
+    display: block; }
+  .encounter-builder--body {
+    position: absolute;
+    top: 30px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto; }
+  .encounter-builder--column__buttons {
+    width: 85px; }
+  .encounter-builder--column__name {
+    width: auto; }
+  .encounter-builder--column__cr {
+    width: 60px; }
+  .encounter-builder--column__exp {
+    width: 100px; }
+  .encounter-builder--column__source {
+    width: 180px; }
+  .encounter-builder--header {
+    padding: 5px;
+    background-color: #000;
+    color: #ddd;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0; }
+  .encounter-builder--row {
+    border-bottom: 1px solid black; }
+  .encounter-builder--table {
+    width: 100%; }
+    .encounter-builder--table > tbody > tr > td {
+      padding: 5px; }
+
 .filters {
   position: fixed;
   top: 0;
@@ -1664,60 +1707,6 @@ ul {
   .monster-table--tags {
     font-style: italic; }
 
-.encounter-builder {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 250px;
-  right: 0;
-  height: 250px;
-  box-sizing: border-box; }
-  .encounter-builder__shown {
-    display: block; }
-  .encounter-builder--body {
-    position: absolute;
-    top: 30px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    overflow: auto; }
-  .encounter-builder--column__buttons {
-    width: 85px; }
-  .encounter-builder--column__name {
-    width: auto; }
-  .encounter-builder--column__cr {
-    width: 60px; }
-  .encounter-builder--column__exp {
-    width: 100px; }
-  .encounter-builder--column__source {
-    width: 180px; }
-  .encounter-builder--header {
-    padding: 5px;
-    background-color: #000;
-    color: #ddd;
-    font-weight: bold;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0; }
-  .encounter-builder--row {
-    border-bottom: 1px solid black; }
-  .encounter-builder--table {
-    width: 100%; }
-    .encounter-builder--table > tbody > tr > td {
-      padding: 5px; }
-
-.encounter-button {
-  height: 25px;
-  width: 25px;
-  text-align: center;
-  background-color: #ddd;
-  border: 1px solid #000;
-  border-radius: 2px;
-  cursor: pointer; }
-  .encounter-button:active {
-    background-color: #eee; }
-
 .pagination-container {
   position: fixed;
   top: 0;
@@ -1746,3 +1735,14 @@ ul {
     position: fixed;
     top: 10px;
     right: 10px; }
+
+.encounter-button {
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  background-color: #ddd;
+  border: 1px solid #000;
+  border-radius: 2px;
+  cursor: pointer; }
+  .encounter-button:active {
+    background-color: #eee; }
