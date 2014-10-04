@@ -1,0 +1,34 @@
+<div
+	class="combatant combatant__{{ combatant.type }}"
+	ng-class="{ 'combatant__active': combatant.active }"
+>
+	<span class="combatant--name">
+		{{ combatant.name }}
+	</span>
+	<span class="combatant--initiative-label">
+		Initiative:
+	</span>
+	<span class="combatant--initiative">
+		{{ combatant.initiative }}
+	</span>
+	<span class="combatant--hp-label">
+		<span ng-if="!combatant.noHp"> HP: </span>
+	</span>
+	<span class="combatant--hp">
+		<span ng-if="!combatant.noHp">
+			{{ combatant.hp - combatant.damage }} / {{ combatant.hp }}
+		</span>
+	</span>
+	<span class="combatant--apply">
+		<span ng-show="options.delta &amp;&amp; !combatant.noHp">
+			<button
+				class="combatant--apply-button"
+				ng-click="applyDelta(combatant)"
+			>Damage {{ options.delta }}</button>
+			<button
+				class="combatant--apply-button"
+				ng-click="applyDelta(combatant, -1)"
+			>Heal {{ options.delta }}</button>
+		</span>
+	</span>
+</div>

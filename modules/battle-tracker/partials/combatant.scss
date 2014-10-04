@@ -1,0 +1,37 @@
+.combatant {
+	border-bottom: 1px solid #000;
+	clear: left;
+	padding: 10px;
+	height: 27px;
+	line-height: 27px;
+
+	@include combatant-colors;
+
+	&__active {
+		.combatant--name {
+			font-weight: bold;
+		}
+	}
+
+	&--apply-button {
+		@extend .encounter-button;
+	}
+
+	&--name {
+		display: inline-block;
+		width: 250px;
+	}
+
+	&--initiative {
+		display: inline-block;
+		width: 30px;
+		text-align: right;
+		margin-right: 20px;
+	}
+
+	&--hp {
+		display: inline-block;
+		width: 70px;
+		text-align: right;
+	}
+}

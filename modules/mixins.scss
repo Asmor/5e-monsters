@@ -5,6 +5,18 @@
 	font-weight: bold;
 }
 
+@mixin combatant-colors {
+	&__player {
+		background-color: $combatant-player;
+	}
+	&__enemy {
+		background-color: $combatant-enemy;
+	}
+	&__lair {
+		background-color: $combatant-lair;
+	}
+}
+
 @mixin challenge-colors {
 	&__ludicrous {
 		background-color: #333;

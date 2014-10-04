@@ -8,7 +8,8 @@
 /* global getShuffledMonsterList */
 /* global levels */
 /* global monsters */
-/* global monstersByName */
+/* global monstersById */
+/* global partialFactory */
 /* global sourceFilters */
 /* global sources */
 /* global tags */
@@ -22,6 +23,9 @@ Controllers.encounterBuilder = {
 	templateUrl: "modules/encounter-builder/encounter-builder.html",
 	controller: function ($scope, store) {
 		window.scope = $scope;
+
+		$scope.partial = partialFactory("modules/encounter-builder/partials/");
+
 		$scope.alignments = alignments;
 		$scope.crList = crList;
 		$scope.filters = store.get("5em-filters") || {
@@ -55,12 +59,12 @@ Controllers.encounterBuilder = {
 				qty = 1;
 			}
 
-			$scope.encounter.groups[monster.name] = $scope.encounter.groups[monster.name] || {
+			$scope.encounter.groups[monster.id] = $scope.encounter.groups[monster.id] || {
 				qty: 0,
 				monster: monster,
 			};
 
-			$scope.encounter.groups[monster.name].qty += qty;
+			$scope.encounter.groups[monster.id].qty += qty;
 			$scope.encounter.qty += qty;
 			$scope.encounter.exp += monster.cr.exp * qty;
 
@@ -68,22 +72,22 @@ Controllers.encounterBuilder = {
 		};
 
 		$scope.deleteMonster = function (monster) {
-			if ( !$scope.encounter.groups[monster.name] ) { return; }
+			if ( !$scope.encounter.groups[monster.id] ) { return; }
 
-			var qty = $scope.encounter.groups[monster.name].qty,
+			var qty = $scope.encounter.groups[monster.id].qty,
 				exp = monster.cr.exp * qty;
 
-			delete $scope.encounter.groups[monster.name];
+			delete $scope.encounter.groups[monster.id];
 			$scope.encounter.qty -= qty;
 			$scope.encounter.exp -= exp;
 		};
 
 		$scope.removeMonster = function (monster) {
-			$scope.encounter.groups[monster.name].qty--;
+			$scope.encounter.groups[monster.id].qty--;
 			$scope.encounter.qty--;
 			$scope.encounter.exp -= monster.cr.exp;
-			if ( $scope.encounter.groups[monster.name].qty === 0 ) {
-				delete $scope.encounter.groups[monster.name];
+			if ( $scope.encounter.groups[monster.id].qty === 0 ) {
+				delete $scope.encounter.groups[monster.id];
 			}
 
 			store.set("5em-encounter", freezeEncounter($scope.encounter));
@@ -104,7 +108,7 @@ Controllers.encounterBuilder = {
 
 		$scope.randomize = function (monster) {
 			var monsterList = getShuffledMonsterList(monster.cr.string),
-				qty = $scope.encounter.groups[monster.name].qty;
+				qty = $scope.encounter.groups[monster.id].qty;
 
 			while ( monsterList.length ) {
 				// Make sure we don't roll a monster we already have
@@ -255,8 +259,8 @@ function freezeEncounter(encounter) {
 		qty: encounter.qty,
 	};
 
-	Object.keys(encounter.groups).forEach(function (monsterName) {
-		o.groups[monsterName] = encounter.groups[monsterName].qty;
+	Object.keys(encounter.groups).forEach(function (monsterId) {
+		o.groups[monsterId] = encounter.groups[monsterId].qty;
 	});
 
 	return o;
@@ -272,18 +276,17 @@ function thawEncounter(encounter) {
 		threat: {},
 	};
 
-	Object.keys(encounter.groups).forEach(function (monsterName) {
-		if ( !monstersByName[monsterName] ) {
-			console.log("Can't find", monsterName);
+	Object.keys(encounter.groups).forEach(function (monsterId) {
+		if ( !monstersById[monsterId] ) {
+			console.log("Can't find", monsterId);
 			return;
 		}
 
-		o.groups[monsterName] = {
-			qty: encounter.groups[monsterName],
-			monster: monstersByName[monsterName],
+		o.groups[monsterId] = {
+			qty: encounter.groups[monsterId],
+			monster: monstersById[monsterId],
 		};
 	});
 
 	return o;
 }
-

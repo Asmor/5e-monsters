@@ -1565,6 +1565,28 @@ ul {
 .fa-bomb:before {
   content: "\f1e2"; }
 
+.encounter-button, .number-input--button, .combatant-setup--button, .combat-controls--next-turn, .combatant--apply-button {
+  height: 25px;
+  min-width: 25px;
+  text-align: center;
+  background-color: #ddd;
+  border: 1px solid #000;
+  border-radius: 2px;
+  cursor: pointer; }
+  .encounter-button:active, .number-input--button:active, .combatant-setup--button:active, .combat-controls--next-turn:active, .combatant--apply-button:active {
+    background-color: #eee; }
+
+.number-input--button__positive:not(:first-child) {
+  margin-left: 3px; }
+.number-input--button__negative:not(:first-child) {
+  margin-left: 3px; }
+.number-input--button__hidden {
+  visibility: hidden; }
+.number-input--value {
+  display: inline-block;
+  width: 45px;
+  text-align: center; }
+
 .encounter-builder {
   display: none;
   position: fixed;
@@ -1736,13 +1758,62 @@ ul {
     top: 10px;
     right: 10px; }
 
-.encounter-button {
-  height: 25px;
-  width: 25px;
-  text-align: center;
-  background-color: #ddd;
-  border: 1px solid #000;
-  border-radius: 2px;
-  cursor: pointer; }
-  .encounter-button:active {
-    background-color: #eee; }
+.combatant-setup {
+  border-bottom: 1px solid #000;
+  clear: left;
+  padding: 10px; }
+  .combatant-setup__player {
+    background-color: #66c2a5; }
+  .combatant-setup__enemy {
+    background-color: #fc8d62; }
+  .combatant-setup__lair {
+    background-color: #e78ac3; }
+  .combatant-setup--input {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 0;
+    padding: 3px; }
+    .combatant-setup--input__name {
+      width: 220px; }
+  .combatant-setup--name {
+    display: inline-block;
+    width: 250px; }
+  .combatant-setup--initative-mod {
+    display: inline-block;
+    width: 150px; }
+  .combatant-setup--initative {
+    display: inline-block;
+    width: 220px; }
+  .combatant-setup--hp {
+    display: inline-block;
+    width: 220px; }
+
+.combat-controls {
+  border-bottom: 1px solid #000;
+  padding: 10px; }
+
+.combatant {
+  border-bottom: 1px solid #000;
+  clear: left;
+  padding: 10px;
+  height: 27px;
+  line-height: 27px; }
+  .combatant__player {
+    background-color: #66c2a5; }
+  .combatant__enemy {
+    background-color: #fc8d62; }
+  .combatant__lair {
+    background-color: #e78ac3; }
+  .combatant__active .combatant--name {
+    font-weight: bold; }
+  .combatant--name {
+    display: inline-block;
+    width: 250px; }
+  .combatant--initiative {
+    display: inline-block;
+    width: 30px;
+    text-align: right;
+    margin-right: 20px; }
+  .combatant--hp {
+    display: inline-block;
+    width: 70px;
+    text-align: right; }

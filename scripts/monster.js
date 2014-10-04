@@ -6,13 +6,17 @@
 /* global crInfo */
 /* global tags */
 /* global monsters */
-/* global monstersByName */
+/* global monstersById */
 "use strict";
 
 function Monster(args) {
 	var monster = this;
+	monster.id = args.id;
 	monster.name = args.name;
 	monster.section = args.section;
+	monster.ac = args.ac;
+	monster.hp = args.hp;
+	monster.init = args.init;
 	monster.cr = crInfo[args.cr];
 	monster.type = args.type;
 	monster.tags = (args.tags) ? args.tags.sort() : undefined;
@@ -42,7 +46,7 @@ function addMonster(args) {
 	var monster = new Monster(args);
 
 	monsters.push(monster);
-	monstersByName[monster.name] = monster;
+	monstersById[monster.id] = monster;
 
 	if ( !monster.special ) {
 		crInfo[monster.cr.string].monsters.push(monster);
@@ -179,11 +183,25 @@ function isInSource(monster, sources) {
 	return false;
 }
 
-function registerMonster(name, source, page) {
-	if ( ! monstersByName[name] ) {
-		console.warn("Unable to find", name, source);
+function registerMonster(id, source, page) {
+	// if ( !page ) return;
+	for ( var i = 0; i < monsters.length; i++ ) {
+		if (monsters[i].name === id) {
+			console.log([
+				"[ \"",
+				monsters[i].id,
+				"\", ",
+				page || 0,
+				" ], // ",
+				id
+			].join(""));
+		}
+	}
+
+	if ( ! monstersById[id] ) {
+		console.warn("Unable to find", id, source);
 		return;
 	}
 
-	monstersByName[name].sources.push({ name: source, page: page });
+	monstersById[id].sources.push({ name: source, page: page });
 }

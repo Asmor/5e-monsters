@@ -1,13 +1,16 @@
 /* exported Controllers */
+/* exported Directives */
 /* exported alignments */
 /* exported crInfo */
 /* exported crList */
+/* exported d */
 /* exported environments */
 /* exported getMultiplier */
 /* exported getShuffledMonsterList */
 /* exported levels */
 /* exported monsters */
-/* exported monstersByName */
+/* exported monstersById */
+/* exported partialFactory */
 /* exported registerSource */
 /* exported sizes */
 /* exported sourceFilters */
@@ -16,9 +19,10 @@
 /* exported types */
 "use strict";
 
-var Controllers = {};
+var Controllers = {},
+	Directives = {};
 var monsters = [],
-	monstersByName = {},
+	monstersById = {},
 	crs = [],
 	environments = [
 		"aquatic",
@@ -267,6 +271,16 @@ function getShuffledMonsterList(cr) {
 	return shuffle(monsters);
 }
 
+function partialFactory(moduleName) {
+	return function ( partialName, base ) {
+		return [
+			base || moduleName,
+			partialName,
+			".html",
+		].join("");
+	};
+}
+
 function registerSource(name, initialState) {
 	sources.push(name);
 	sourceFilters[name] = initialState;
@@ -285,4 +299,8 @@ function shuffle(array) {
 	}
 
 	return array;
+}
+
+function d(n) {
+	return Math.floor(Math.random() * n) + 1;
 }

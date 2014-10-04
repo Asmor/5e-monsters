@@ -1,0 +1,7 @@
+<button ui-sref="encounter-builder">Back to encounter builder</button>
+<button ng-click="startFight()">Fight!</button>
+
+<ng-include
+	ng-repeat="combatant in combatants"
+	src="partial('combatant-setup')"
+></ng-include>

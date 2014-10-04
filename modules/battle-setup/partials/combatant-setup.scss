@@ -1,0 +1,42 @@
+.combatant-setup {
+	border-bottom: 1px solid #000;
+	clear: left;
+	padding: 10px;
+
+	@include combatant-colors;
+
+	&--button {
+		@extend .encounter-button;
+	}
+
+	&--input {
+		background-color: rgba(255, 255, 255, 0.5);
+		border: 0;
+		padding: 3px;
+
+		&__name {
+			width: 220px;
+		}
+	}
+
+	&--name {
+		display: inline-block;
+		width: 250px;
+	}
+
+	&--initative-mod {
+		display: inline-block;
+		width: 150px;
+	}
+
+	&--initative {
+		display: inline-block;
+		width: 220px;
+	}
+
+	&--hp {
+		display: inline-block;
+		width: 220px;
+	}
+
+}
