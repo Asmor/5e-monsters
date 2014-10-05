@@ -25,6 +25,11 @@
 
 	&--section {
 		padding-bottom: 10px;
+
+		&:first-child {
+			@include avoid-menu;
+			box-sizing: border-box;
+		}
 	}
 
 	&--source {

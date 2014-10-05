@@ -1576,6 +1576,23 @@ ul {
   .encounter-button:active, .number-input--button:active, .combatant-setup--button:active, .combat-controls--next-turn:active, .combatant--apply-button:active {
     background-color: #eee; }
 
+.menu {
+  background-color: #333;
+  box-sizing: border-box;
+  color: #ddd;
+  height: 40px;
+  left: 0;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  width: 60px;
+  z-index: 100; }
+  .menu--hidden {
+    background-color: #333;
+    left: 0;
+    position: absolute;
+    top: 40px; }
+
 .number-input--button__positive:not(:first-child) {
   margin-left: 3px; }
 .number-input--button__negative:not(:first-child) {
@@ -1666,6 +1683,10 @@ ul {
     padding-right: 20px; }
   .filters--section {
     padding-bottom: 10px; }
+    .filters--section:first-child {
+      min-height: 40px;
+      padding-left: 70px;
+      box-sizing: border-box; }
   .filters--source__off {
     color: #ddd;
     text-decoration: line-through; }
@@ -1758,6 +1779,12 @@ ul {
     top: 10px;
     right: 10px; }
 
+.combat-setup-controls {
+  padding: 10px;
+  box-sizing: border-box;
+  min-height: 40px;
+  padding-left: 70px; }
+
 .combatant-setup {
   border-bottom: 1px solid #000;
   clear: left;
@@ -1788,8 +1815,11 @@ ul {
     width: 220px; }
 
 .combat-controls {
+  padding: 10px;
   border-bottom: 1px solid #000;
-  padding: 10px; }
+  min-height: 40px;
+  padding-left: 70px;
+  box-sizing: border-box; }
 
 .combatant {
   border-bottom: 1px solid #000;
