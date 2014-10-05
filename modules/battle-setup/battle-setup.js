@@ -1,23 +1,20 @@
 /* global Controllers */
-/* global d */
-/* global monstersById */
-/* global partialFactory */
 "use strict";
 
 Controllers.battleSetup = {
 	url: "/battle-setup",
 	templateUrl: "modules/battle-setup/battle-setup.html",
-	controller: function ($scope, $state, store) {
+	controller: function ($scope, $state, store, monsters, util) {
 		window.scope = $scope;
 
-		$scope.partial = partialFactory("modules/battle-setup/partials/");
+		$scope.partial = util.partialFactory("modules/battle-setup/partials/");
 
 		var encounter = store.get("5em-encounter"),
-			monsters = Object.keys(encounter.groups),
+			monsterIds = Object.keys(encounter.groups),
 			lair = false,
 			i, j, monster, name, qty;
 
-		if ( ! monsters.length ) {
+		if ( ! monsterIds.length ) {
 			// If there aren't any monsters, we can't run an encounter
 			$state.go("encounter-builder");
 			return;
@@ -35,9 +32,9 @@ Controllers.battleSetup = {
 			});
 		}
 
-		for ( i = 0; i < monsters.length; i++ ) {
-			monster = monstersById[monsters[i]];
-			qty = encounter.groups[monsters[i]];
+		for ( i = 0; i < monsterIds.length; i++ ) {
+			monster = monsters.byId[monsterIds[i]];
+			qty = encounter.groups[monsterIds[i]];
 			lair = lair || monster.lair;
 
 			for ( j = 0; j < qty; j++ ) {
@@ -71,7 +68,7 @@ Controllers.battleSetup = {
 		}
 
 		$scope.rollInitiative = function (combatant) {
-			combatant.initiative = d(20) + combatant.initiativeMod;
+			combatant.initiative = util.d(20) + combatant.initiativeMod;
 			combatant.initiativeRolled = true;
 		};
 

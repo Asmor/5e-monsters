@@ -2,6 +2,7 @@
 /* global alignments */
 /* global checkMonster */
 /* global crList */
+/* global d */
 /* global environments */
 /* global generateRandomEncounter */
 /* global getMultiplier */
@@ -95,6 +96,7 @@ var Services = {
 	},
 	util: function () {
 		return {
+			d: d,
 			getShuffledMonsterList: getShuffledMonsterList,
 			partialFactory: partialFactory,
 		};
