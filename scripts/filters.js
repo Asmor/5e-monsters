@@ -63,4 +63,21 @@ var Filters = {
 			return output;
 		};
 	},
+	sortEncounter: function () {
+		return function (items) {
+			var sorted = [];
+
+			Object.keys(items).forEach(function (key) {
+				sorted.push(items[key]);
+			});
+
+			sorted.sort(function (a, b) {
+				return (a.monster.name > b.monster.name) ? 1 : -1;
+			});
+
+			console.log(sorted);
+
+			return sorted;
+		};
+	},
 };

@@ -14,7 +14,7 @@
 			<tbody>
 				<tr
 					class="encounter-builder--row"
-					ng-repeat="(key, group) in encounter.groups"
+					ng-repeat="group in encounter.groups | sortEncounter"
 				>
 					<td class="encounter-builder--column__buttons">
 						<button ng-click="encounter.add(group.monster)" class="encounter-button">
