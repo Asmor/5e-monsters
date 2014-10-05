@@ -24,6 +24,7 @@ angular
 	.filter("monstersFilter", Filters.monster)
 	.filter("positive", Filters.positive)
 	.filter("negative", Filters.negative)
+	.factory("combat", Services.combat)
 	.factory("encounter", Services.encounter)
 	.factory("metaInfo", Services.metaInfo)
 	.factory("monsters", Services.monsters)

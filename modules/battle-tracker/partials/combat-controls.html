@@ -1,12 +1,12 @@
 <div class="combat-controls">
 	<number-input
-		model="options.delta"
+		model="combat.delta"
 		buttons="[-10, -5, -1, 1, 5, 10]"
 		non-negative="true"
 	></number-input>
 
 	<button
 		class="combat-controls--next-turn"
-		ng-click="nextTurn()"
+		ng-click="combat.nextTurn()"
 	>Next turn</button>
 </div>

@@ -20,15 +20,15 @@
 		</span>
 	</span>
 	<span class="combatant--apply">
-		<span ng-show="options.delta &amp;&amp; !combatant.noHp">
+		<span ng-show="combat.delta &amp;&amp; !combatant.noHp">
 			<button
 				class="combatant--apply-button"
-				ng-click="applyDelta(combatant)"
-			>Damage {{ options.delta }}</button>
+				ng-click="combat.applyDelta(combatant)"
+			>Damage {{ combat.delta }}</button>
 			<button
 				class="combatant--apply-button"
-				ng-click="applyDelta(combatant, -1)"
-			>Heal {{ options.delta }}</button>
+				ng-click="combat.applyDelta(combatant, -1)"
+			>Heal {{ combat.delta }}</button>
 		</span>
 	</span>
 </div>
