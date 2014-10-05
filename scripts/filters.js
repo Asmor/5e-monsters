@@ -75,8 +75,6 @@ var Filters = {
 				return (a.monster.name > b.monster.name) ? 1 : -1;
 			});
 
-			console.log(sorted);
-
 			return sorted;
 		};
 	},
