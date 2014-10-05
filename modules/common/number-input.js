@@ -13,7 +13,6 @@ Directives.numberInput = function () {
 		link: function (scope) {
 			scope.isNonNegative = function () {
 				if (scope.nonNegative && scope.value === 0) {
-					console.log("Hide!");
 					return "number-input--button__hidden";
 				}
 			};
