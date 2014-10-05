@@ -85,11 +85,6 @@ Controllers.encounterBuilder = {
 			}
 		};
 
-		$scope.recalculateThreatLevels = function () {
-			// TODO: Refactor out
-			encounter.recalculateThreatLevels();
-		};
-
 		$scope.$watch("filters", function () {
 			store.set("5em-filters", $scope.filters);
 		}, true);
