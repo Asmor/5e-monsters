@@ -5,8 +5,8 @@
 	<div class="encounter-builder--header">
 		Encounter
 		Total XP: {{ encounter.exp | number }}
-		Adjusted XP: {{ adjustedEncounterExp() | number }}
-		{{ encounterDifficulty() }}
+		Adjusted XP: {{ encounter.adjustedExp | number }}
+		{{ encounter.difficulty }}
 		<a ui-sref="battle-setup">Run encounter (experimental)</a>
 	</div>
 	<div class="encounter-builder--body">
@@ -17,13 +17,13 @@
 					ng-repeat="(key, group) in encounter.groups"
 				>
 					<td class="encounter-builder--column__buttons">
-						<button ng-click="addMonster(group.monster)" class="encounter-button">
+						<button ng-click="encounter.add(group.monster)" class="encounter-button">
 							<i class="fa fa-plus"></i>
 						</button>
-						<button ng-click="removeMonster(group.monster)" class="encounter-button">
+						<button ng-click="encounter.remove(group.monster)" class="encounter-button">
 							<i class="fa fa-minus"></i>
 						</button>
-						<button ng-click="randomize(group.monster)" class="encounter-button">
+						<button ng-click="encounter.randomize(group.monster, filters)" class="encounter-button">
 							<i class="fa fa-random"></i>
 						</button>
 					</td>

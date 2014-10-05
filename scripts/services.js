@@ -19,49 +19,190 @@
 "use strict";
 
 var Services = {
-	encounter: function () {
-		return {
-			generateRandom: generateRandomEncounter,
-			freeze: function (encounter) {
-				var o = {
-					exp: encounter.exp,
-					groups: {},
-					partyLevel: encounter.partyLevel.level,
-					playerCount: encounter.playerCount,
-					qty: encounter.qty,
+	encounter: function (store, metaInfo, monsters, party, util) {
+		var encounter = {
+			groups: {},
+			partyLevel: metaInfo.levels[0],
+			playerCount: 4,
+			add: function (monster, qty) {
+				if ( typeof qty === "undefined" ) {
+					qty = 1;
+				}
+
+				encounter.groups[monster.id] = encounter.groups[monster.id] || {
+					qty: 0,
+					monster: monster,
 				};
 
-				Object.keys(encounter.groups).forEach(function (monsterId) {
-					o.groups[monsterId] = encounter.groups[monsterId].qty;
-				});
+				encounter.groups[monster.id].qty += qty;
+				encounter.qty += qty;
+				encounter.exp += monster.cr.exp * qty;
 
-				return o;
+				// TODO: Temporarily disabling all places that save encounter
+				freeze();
 			},
-			thaw: function (encounter) {
-				var o = {
-					exp: encounter.exp,
-					groups: {},
-					partyLevel: levels[encounter.partyLevel - 1], // level 1 is index 0, etc
-					playerCount: encounter.playerCount,
-					qty: encounter.qty,
-					threat: {},
-				};
+			generateRandom: function (filters) {
+				var monsters = generateRandomEncounter(encounter.playerCount, encounter.partyLevel, filters),
+					i;
 
-				Object.keys(encounter.groups).forEach(function (monsterId) {
-					if ( !monstersById[monsterId] ) {
-						console.log("Can't find", monsterId);
-						return;
+				encounter.reset();
+
+				for ( i = 0; i < monsters.length; i++ ) {
+					encounter.add( monsters[i].monster, monsters[i].qty );
+				}
+			},
+			randomize: function (monster, filters) {
+				var monsterList = util.getShuffledMonsterList(monster.cr.string),
+					qty = encounter.groups[monster.id].qty;
+
+				while ( monsterList.length ) {
+					// Make sure we don't roll a monster we already have
+					if ( encounter.groups[monsterList[0].name] ) {
+						monsterList.shift();
+						continue;
 					}
 
-					o.groups[monsterId] = {
-						qty: encounter.groups[monsterId],
-						monster: monstersById[monsterId],
-					};
-				});
+					if ( monsters.check( monsterList[0], filters, { skipCrCheck: true } ) ) {
+						encounter.remove(monster, true);
+						encounter.add( monsterList[0], qty );
+						return;					
+					} else {
+						monsterList.shift();
+					}
+				}
+			},
+			recalculateThreatLevels: function () {
+				var count = encounter.playerCount,
+					level = encounter.partyLevel,
+					mediumExp = count * level.medium,
+					singleMultiplier  = 1,
+					pairMultiplier    = 1.5,
+					groupMultiplier   = 2,
+					trivialMultiplier = 2.5;
 
-				return o;
-			}
+				if ( count < 3 ) {
+					// For small groups, increase multiplier
+					singleMultiplier  = 1.5;
+					pairMultiplier    = 2;
+					groupMultiplier   = 2.5;
+					trivialMultiplier = 3;
+				} else if ( count > 5 ) {
+					// For large groups, reduce multiplier
+					singleMultiplier  = 0.5;
+					pairMultiplier    = 1;
+					groupMultiplier   = 1.5;
+					trivialMultiplier = 2;
+				}
+
+				encounter.threat.deadly  = count * level.deadly / singleMultiplier;
+				encounter.threat.hard    = count * level.hard / singleMultiplier;
+				encounter.threat.medium  = mediumExp / singleMultiplier;
+				encounter.threat.easy    = count * level.easy / singleMultiplier;
+				encounter.threat.pair    = mediumExp / ( 2 * pairMultiplier );
+				encounter.threat.group   = mediumExp / ( 4 * groupMultiplier );
+				encounter.threat.trivial = mediumExp / ( 8 * trivialMultiplier );
+
+				freeze();
+			},
+			remove: function (monster, removeAll) {
+				encounter.groups[monster.id].qty--;
+				encounter.qty--;
+				encounter.exp -= monster.cr.exp;
+				if ( encounter.groups[monster.id].qty === 0 ) {
+					delete encounter.groups[monster.id];
+				} else if ( removeAll ) {
+					encounter.remove(monster, true);
+				}
+
+				// TODO
+				freeze();
+			},
+			reset: function () {
+				encounter.qty = 0;
+				encounter.exp = 0;
+				encounter.groups = {};
+				encounter.threat = {};
+			},
+			threat: {},
 		};
+
+		Object.defineProperty(encounter, "adjustedExp", {
+			get: function () {
+				var qty = encounter.qty,
+					exp = encounter.exp,
+					multiplier = party.getMultiplier(encounter.playerCount, qty);
+
+				return Math.floor(exp * multiplier);
+			},
+		});
+
+		Object.defineProperty(encounter, "difficulty", {
+			get: function () {
+				var exp = encounter.adjustedExp,
+					count = encounter.playerCount,
+					level = encounter.partyLevel;
+
+				if ( exp === 0 ) {
+					return false;
+				}
+
+				if ( exp <= ( count * level.easy ) ) {
+					return "Easy";
+				} else if ( exp <= ( count * level.medium ) ) {
+					return "Medium";
+				} else if ( exp <= ( count * level.hard ) ) {
+					return "Hard";
+				} else if ( exp <= ( count * level.deadly ) ) {
+					return "Deadly";
+				} else {
+					return "Ludicrous";
+				}
+			},
+		});
+
+		thaw();
+		encounter.recalculateThreatLevels();
+
+		function freeze() {
+			var o = {
+				groups: {},
+				partyLevel: encounter.partyLevel.level,
+				playerCount: encounter.playerCount,
+			};
+
+			Object.keys(encounter.groups).forEach(function (monsterId) {
+				o.groups[monsterId] = encounter.groups[monsterId].qty;
+			});
+
+			store.set("5em-encounter", o);
+		}
+
+		function thaw() {
+			encounter.reset();
+
+			var frozen = store.get("5em-encounter");
+
+			if ( !frozen ) {
+				return;
+			}
+
+			// TODO: Need to move party-specific stuff to party service
+			encounter.partyLevel = levels[frozen.partyLevel - 1]; // level 1 is index 0, etc
+			encounter.playerCount = frozen.playerCount;
+
+			Object.keys(frozen.groups).forEach(function (monsterId) {
+				var monster = monsters.byId[monsterId];
+
+				if ( !monster ) {
+					console.warn("Can't find", monsterId);
+					return;
+				}
+
+				encounter.add(monster, frozen.groups[monsterId]);
+			});
+		}
+
+		return encounter;
 	},
 	metaInfo: function () {
 		return {

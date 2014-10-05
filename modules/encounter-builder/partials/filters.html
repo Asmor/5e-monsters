@@ -1,6 +1,6 @@
 <div class="filters">
 	<div class="filters--section">
-		<button ng-click="getRandomEncounter()">Random Encounter (experimental)</button>
+		<button ng-click="encounter.generateRandom(filters)">Random Encounter (experimental)</button>
 	</div>
 	<div class="filters--section">
 		<input ng-model="filters.search" placeholder="Search...">
@@ -106,19 +106,19 @@
 			></select>
 		</label>
 		<table class="filters--guidelines">
-			<tr ng-class="{'filters--guidelines-active': encounterDifficulty() === 'Easy'}">
+			<tr ng-class="{'filters--guidelines-active': encounter.difficulty === 'Easy'}">
 				<td>Easy:</td>
 				<td class="filters--guidelines-values">{{ encounter.partyLevel.easy * encounter.playerCount | number }} exp</td>
 			</tr>
-			<tr ng-class="{'filters--guidelines-active': encounterDifficulty() === 'Medium'}">
+			<tr ng-class="{'filters--guidelines-active': encounter.difficulty === 'Medium'}">
 				<td>Medium:</td>
 				<td class="filters--guidelines-values">{{ encounter.partyLevel.medium * encounter.playerCount | number }} exp</td>
 			</tr>
-			<tr ng-class="{'filters--guidelines-active': encounterDifficulty() === 'Hard'}">
+			<tr ng-class="{'filters--guidelines-active': encounter.difficulty === 'Hard'}">
 				<td>Hard:</td>
 				<td class="filters--guidelines-values">{{ encounter.partyLevel.hard * encounter.playerCount | number }} exp</td>
 			</tr>
-			<tr ng-class="{'filters--guidelines-active': encounterDifficulty() === 'Deadly'}">
+			<tr ng-class="{'filters--guidelines-active': encounter.difficulty === 'Deadly'}">
 				<td>Deadly:</td>
 				<td class="filters--guidelines-values">{{ encounter.partyLevel.deadly * encounter.playerCount | number }} exp</td>
 			</tr>

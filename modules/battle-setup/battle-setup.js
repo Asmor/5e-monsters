@@ -4,13 +4,12 @@
 Controllers.battleSetup = {
 	url: "/battle-setup",
 	templateUrl: "modules/battle-setup/battle-setup.html",
-	controller: function ($scope, $state, store, monsters, util) {
+	controller: function ($scope, $state, store, encounter, monsters, util) {
 		window.scope = $scope;
 
 		$scope.partial = util.partialFactory("modules/battle-setup/partials/");
 
-		var encounter = store.get("5em-encounter"),
-			monsterIds = Object.keys(encounter.groups),
+		var monsterIds = Object.keys(encounter.groups),
 			lair = false,
 			i, j, monster, name, qty;
 
@@ -34,7 +33,7 @@ Controllers.battleSetup = {
 
 		for ( i = 0; i < monsterIds.length; i++ ) {
 			monster = monsters.byId[monsterIds[i]];
-			qty = encounter.groups[monsterIds[i]];
+			qty = encounter.groups[monsterIds[i]].qty;
 			lair = lair || monster.lair;
 
 			for ( j = 0; j < qty; j++ ) {
