@@ -1,6 +1,6 @@
 /* global Controllers */
 /* global Directives */
-/* global monstersFilter */
+/* global Filters */
 "use strict";
 
 var monsterListApp = angular.module("monsterListApp", [
@@ -19,34 +19,8 @@ monsterListApp.config(function ($stateProvider, $urlRouterProvider) {
 	$stateProvider.state("battle-setup", Controllers.battleSetup);
 	$stateProvider.state("battle-tracker", Controllers.battleTracker);
 });
-monsterListApp.filter("monstersFilter", monstersFilter);
+monsterListApp.filter("monstersFilter", Filters.monster);
 monsterListApp.directive("numberInput", Directives.numberInput);
 
-monsterListApp.filter("positive", function () {
-	return function ( input ) {
-		var output = [],
-			i;
-
-		for ( i = 0; i < input.length; i++ ) {
-			if ( input[i] > 0 ) {
-				output.push(input[i]);
-			}
-		}
-
-		return output;
-	};
-});
-monsterListApp.filter("negative", function () {
-	return function ( input ) {
-		var output = [],
-			i;
-
-		for ( i = 0; i < input.length; i++ ) {
-			if ( input[i] < 0 ) {
-				output.push(input[i]);
-			}
-		}
-
-		return output;
-	};
-});
+monsterListApp.filter("positive", Filters.positive);
+monsterListApp.filter("negative", Filters.negative);
