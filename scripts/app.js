@@ -1,6 +1,7 @@
 /* global Controllers */
 /* global Directives */
 /* global Filters */
+/* global Services */
 "use strict";
 
 angular
@@ -23,4 +24,10 @@ angular
 	.filter("monstersFilter", Filters.monster)
 	.filter("positive", Filters.positive)
 	.filter("negative", Filters.negative)
+	.factory("encounter", Services.encounter)
+	.factory("metaInfo", Services.metaInfo)
+	.factory("monsters", Services.monsters)
+	.factory("party", Services.party)
+	.factory("sources", Services.sources)
+	.factory("util", Services.util)
 ;

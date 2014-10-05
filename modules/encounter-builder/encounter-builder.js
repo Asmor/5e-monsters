@@ -1,51 +1,41 @@
 /* global Controllers */
-/* global alignments */
-/* global checkMonster */
-/* global crList */
-/* global environments */
-/* global generateRandomEncounter */
-/* global getMultiplier */
-/* global getShuffledMonsterList */
-/* global levels */
-/* global monsters */
-/* global monstersById */
-/* global partialFactory */
-/* global sourceFilters */
-/* global sources */
-/* global tags */
-/* global sizes */
-/* global types */
-
 "use strict";
 
 Controllers.encounterBuilder = {
 	url: "/encounter-builder",
 	templateUrl: "modules/encounter-builder/encounter-builder.html",
-	controller: function ($scope, store) {
+	controller: function (
+		$scope,
+		store,
+		encounter,
+		metaInfo,
+		monsters,
+		party,
+		sources,
+		util
+	) {
 		window.scope = $scope;
 
-		$scope.partial = partialFactory("modules/encounter-builder/partials/");
+		$scope.partial = util.partialFactory("modules/encounter-builder/partials/");
 
-		$scope.alignments = alignments;
-		$scope.crList = crList;
+		$scope.alignments = metaInfo.alignments;
+		$scope.crList = metaInfo.crList;
 		$scope.filters = store.get("5em-filters") || {
-			source: sourceFilters,
+			source: sources.filters,
 			pageSize: 10,
 		};
-		$scope.monsters = monsters.sort(function (a, b) {
-			return (a.name > b.name) ? 1 : -1;
-		});
-		$scope.sizes = sizes;
-		$scope.sources = sources;
-		$scope.tags = Object.keys(tags).sort();
-		$scope.types = types;
-		$scope.levels = levels;
-		$scope.environments = environments;
+		$scope.monsters = monsters.all;
+		$scope.sizes = metaInfo.sizes;
+		$scope.sources = sources.all;
+		$scope.tags = Object.keys(metaInfo.tags).sort();
+		$scope.types = metaInfo.types;
+		$scope.levels = metaInfo.levels;
+		$scope.environments = metaInfo.environments;
 
-		$scope.checkMonster = checkMonster;
+		$scope.checkMonster = monsters.check;
 
 		var frozenEncounter = store.get("5em-encounter");
-		$scope.encounter = (frozenEncounter) ? thawEncounter(frozenEncounter) : {
+		$scope.encounter = (frozenEncounter) ? encounter.thaw(frozenEncounter) : {
 			qty: 0,
 			exp: 0,
 			groups: {},
@@ -68,7 +58,7 @@ Controllers.encounterBuilder = {
 			$scope.encounter.qty += qty;
 			$scope.encounter.exp += monster.cr.exp * qty;
 
-			store.set("5em-encounter", freezeEncounter($scope.encounter));
+			store.set("5em-encounter", encounter.freeze($scope.encounter));
 		};
 
 		$scope.deleteMonster = function (monster) {
@@ -90,11 +80,11 @@ Controllers.encounterBuilder = {
 				delete $scope.encounter.groups[monster.id];
 			}
 
-			store.set("5em-encounter", freezeEncounter($scope.encounter));
+			store.set("5em-encounter", encounter.freeze($scope.encounter));
 		};
 
 		$scope.getRandomEncounter = function () {
-			var monsters = generateRandomEncounter($scope.encounter.playerCount, $scope.encounter.partyLevel, $scope.filters),
+			var monsters = encounter.generateRandom($scope.encounter.playerCount, $scope.encounter.partyLevel, $scope.filters),
 				i;
 
 			$scope.encounter.qty = 0;
@@ -107,7 +97,7 @@ Controllers.encounterBuilder = {
 		};
 
 		$scope.randomize = function (monster) {
-			var monsterList = getShuffledMonsterList(monster.cr.string),
+			var monsterList = util.getShuffledMonsterList(monster.cr.string),
 				qty = $scope.encounter.groups[monster.id].qty;
 
 			while ( monsterList.length ) {
@@ -117,7 +107,7 @@ Controllers.encounterBuilder = {
 					continue;
 				}
 
-				if ( checkMonster( monsterList[0], $scope.filters, { skipCrCheck: true } ) ) {
+				if ( monster.check( monsterList[0], $scope.filters, { skipCrCheck: true } ) ) {
 					$scope.deleteMonster(monster);
 					$scope.addMonster( monsterList[0], qty );
 					return;					
@@ -131,7 +121,7 @@ Controllers.encounterBuilder = {
 		$scope.adjustedEncounterExp = function () {
 			var qty = $scope.encounter.qty,
 				exp = $scope.encounter.exp,
-				multiplier = getMultiplier($scope.encounter.playerCount, qty);
+				multiplier = party.getMultiplier($scope.encounter.playerCount, qty);
 
 			return Math.floor(exp * multiplier);
 		};
@@ -238,7 +228,7 @@ Controllers.encounterBuilder = {
 			$scope.encounter.threat.group	= mediumExp / ( 4 * groupMultiplier );
 			$scope.encounter.threat.trivial	= mediumExp / ( 8 * trivialMultiplier );
 
-			store.set("5em-encounter", freezeEncounter($scope.encounter));
+			store.set("5em-encounter", encounter.freeze($scope.encounter));
 		};
 
 		// Gotta get threat levels set up with initial values
@@ -249,44 +239,3 @@ Controllers.encounterBuilder = {
 		}, true);
 	},
 };
-
-function freezeEncounter(encounter) {
-	var o = {
-		exp: encounter.exp,
-		groups: {},
-		partyLevel: encounter.partyLevel.level,
-		playerCount: encounter.playerCount,
-		qty: encounter.qty,
-	};
-
-	Object.keys(encounter.groups).forEach(function (monsterId) {
-		o.groups[monsterId] = encounter.groups[monsterId].qty;
-	});
-
-	return o;
-}
-
-function thawEncounter(encounter) {
-	var o = {
-		exp: encounter.exp,
-		groups: {},
-		partyLevel: levels[encounter.partyLevel - 1], // level 1 is index 0, etc
-		playerCount: encounter.playerCount,
-		qty: encounter.qty,
-		threat: {},
-	};
-
-	Object.keys(encounter.groups).forEach(function (monsterId) {
-		if ( !monstersById[monsterId] ) {
-			console.log("Can't find", monsterId);
-			return;
-		}
-
-		o.groups[monsterId] = {
-			qty: encounter.groups[monsterId],
-			monster: monstersById[monsterId],
-		};
-	});
-
-	return o;
-}
