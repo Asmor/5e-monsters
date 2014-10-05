@@ -17,7 +17,6 @@ Directives.numberInput = function () {
 					return "number-input--button__hidden";
 				}
 			};
-			console.log();
 
 			scope.modify = function (amt) {
 				scope.value += amt;
