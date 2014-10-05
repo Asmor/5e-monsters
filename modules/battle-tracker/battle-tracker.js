@@ -1,14 +1,13 @@
 /* global Controllers */
-/* global partialFactory */
 "use strict";
 
 Controllers.battleTracker = {
 	url: "/fight",
 	templateUrl: "modules/battle-tracker/battle-tracker.html",
-	controller: function ($scope, $state, store) {
+	controller: function ($scope, $state, store, util) {
 		window.scope = $scope;
 
-		$scope.partial = partialFactory("modules/battle-tracker/partials/");
+		$scope.partial = util.partialFactory("modules/battle-tracker/partials/");
 
 		$scope.combatants = store.get("5em-combatants");
 		$scope.options = {
