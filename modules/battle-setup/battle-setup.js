@@ -1,4 +1,6 @@
 /* global Controllers */
+/* global NO_MONSTERS */
+/* global NO_PLAYERS */
 "use strict";
 
 Controllers.battleSetup = {
@@ -10,8 +12,13 @@ Controllers.battleSetup = {
 		$scope.partial = util.partialFactory("modules/battle-setup/partials/");
 		$scope.combat = combat;
 
-		if ( !combat.init() ) {
+		var combatState = combat.init();
+
+		if ( combatState === NO_MONSTERS ) {
 			$state.go("encounter-builder");
+			return;
+		} else if ( combatState === NO_PLAYERS ) {
+			$state.go("players.manage");
 			return;
 		}
 	},

@@ -31,10 +31,15 @@
 	</span>
 	<span class="combatant-setup--hp">
 		<span ng-if="!combatant.noHp">
-			HP: <number-input
+			HP:
+			<number-input
 				model="combatant.hp"
 				buttons="[-5, -1, 1, +5]"
+				ng-if="combatant.type != 'player'"
 			></number-input>
+			<span ng-if="combatant.type == 'player'">
+				{{ combatant.hp - combatant.damage }} / {{ combatant.hp }}
+			</span>
 		</span>
 	</span>
 </div>

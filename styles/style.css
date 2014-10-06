@@ -1565,7 +1565,7 @@ ul {
 .fa-bomb:before {
   content: "\f1e2"; }
 
-.encounter-button, .number-input--button, .combatant-setup--button, .combat-controls--next-turn, .combatant--apply-button {
+.encounter-button, .number-input--button, .combatant-setup--button, .combat-controls--next-turn, .combatant--apply-button, .manage-players--party-select-button {
   height: 25px;
   min-width: 25px;
   text-align: center;
@@ -1573,7 +1573,7 @@ ul {
   border: 1px solid #000;
   border-radius: 2px;
   cursor: pointer; }
-  .encounter-button:active, .number-input--button:active, .combatant-setup--button:active, .combat-controls--next-turn:active, .combatant--apply-button:active {
+  .encounter-button:active, .number-input--button:active, .combatant-setup--button:active, .combat-controls--next-turn:active, .combatant--apply-button:active, .manage-players--party-select-button:active {
     background-color: #eee; }
 
 .menu {
@@ -1847,3 +1847,49 @@ ul {
     display: inline-block;
     width: 70px;
     text-align: right; }
+
+.edit-players {
+  padding: 10px;
+  position: fixed;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0; }
+  .edit-players--text-input {
+    height: 100%;
+    width: 100%;
+    resize: none; }
+
+.manage-players--party {
+  padding-top: 10px; }
+.manage-players--party-select-button {
+  margin-left: 10px;
+  margin-bottom: 5px; }
+.manage-players--player {
+  padding: 10px;
+  border-top: 1px solid #000;
+  background-color: #66c2a5; }
+  .manage-players--player:last-child {
+    border-bottom: 1px solid #000; }
+  .manage-players--player--name {
+    display: inline-block;
+    width: 250px; }
+  .manage-players--player--init {
+    display: inline-block;
+    width: 150px; }
+  .manage-players--player--hp {
+    display: inline-block;
+    width: 80px; }
+.manage-players--selected-party {
+  display: inline-block;
+  font-weight: bold;
+  height: 25px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  vertical-align: middle; }
+
+.players-controls {
+  padding: 10px;
+  box-sizing: border-box;
+  min-height: 40px;
+  padding-left: 70px; }

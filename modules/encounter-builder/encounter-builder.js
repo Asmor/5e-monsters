@@ -10,7 +10,6 @@ Controllers.encounterBuilder = {
 		encounter,
 		metaInfo,
 		monsters,
-		party,
 		sources,
 		util
 	) {

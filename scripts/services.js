@@ -1,4 +1,7 @@
 /* exported Services */
+/* global NO_MONSTERS */
+/* global NO_PLAYERS */
+/* global READY */
 /* global alignments */
 /* global checkMonster */
 /* global crList */
@@ -19,7 +22,7 @@
 "use strict";
 
 var Services = {
-	combat: function (store, encounter, monsters, util) {
+	combat: function (store, encounter, players, monsters, util) {
 		var combat = {
 			active: 0,
 			combatants: [],
@@ -64,6 +67,7 @@ var Services = {
 					initiativeMod: player.initiativeMod,
 					initiative: player.initiative,
 					hp: player.hp,
+					damage: player.damage,
 				});
 			},
 			applyDelta: function (combatant, multiplier) {
@@ -83,6 +87,10 @@ var Services = {
 				if ( combatant.damage < 0 ) {
 					combatant.damage = 0;
 				}
+
+				if ( combatant.type === "player" ) {
+					players.setDamage(combatant.name, combatant.damage);
+				}
 			},
 			begin: function () {
 				combat.combatants.sort(function (a, b) {
@@ -98,19 +106,26 @@ var Services = {
 
 				var monsterIds = Object.keys(encounter.groups),
 					lair = false,
-					i, monster, qty;
+					i, monster, qty, player;
 
 				if ( ! monsterIds.length ) {
 					// If there aren't any monsters, we can't run an encounter
-					return false;
+					return NO_MONSTERS;
 				}
 
-				for ( i = 0; i < encounter.playerCount; i++ ) {
+				if ( ! players.selectedParty ) {
+					// If there aren't any players, we can't run the encounter either...
+					return NO_PLAYERS;
+				}
+
+				for ( i = 0; i < players.selectedParty.length; i++ ) {
+					player = players.selectedParty[i];
 					combat.addPlayer({
-						name: "Player " + (i + 1),
-						initiativeMod: 0,
-						initiative: 10,
-						hp: 10,
+						name: player.name,
+						initiativeMod: player.initiativeMod,
+						initiative: player.initiativeMod + 10,
+						hp: player.hp,
+						damage: player.damage,
 					});
 				}
 
@@ -126,7 +141,7 @@ var Services = {
 					combat.addLair();
 				}
 
-				return true;
+				return READY;
 			},
 			nextTurn: function () {
 				combat.combatants[combat.active].active = false;
@@ -143,8 +158,9 @@ var Services = {
 
 		return combat;
 	},
-	encounter: function (store, metaInfo, monsters, party, util) {
+	encounter: function (store, metaInfo, monsters, players, util) {
 		var encounter = {
+			getMultiplier: getMultiplier,
 			groups: {},
 			partyLevel: metaInfo.levels[0],
 			playerCount: 4,
@@ -254,7 +270,7 @@ var Services = {
 			get: function () {
 				var qty = encounter.qty,
 					exp = encounter.exp,
-					multiplier = party.getMultiplier(encounter.playerCount, qty);
+					multiplier = encounter.getMultiplier(encounter.playerCount, qty);
 
 				return Math.floor(exp * multiplier);
 			},
@@ -310,7 +326,7 @@ var Services = {
 				return;
 			}
 
-			// TODO: Need to move party-specific stuff to party service
+			// TODO: Need to move players-specific stuff to players service
 			encounter.partyLevel = levels[frozen.partyLevel - 1]; // level 1 is index 0, etc
 			encounter.playerCount = frozen.playerCount;
 
@@ -348,10 +364,130 @@ var Services = {
 			check: checkMonster,
 		};
 	},
-	party: function () {
-		return {
-			getMultiplier: getMultiplier,
-		};
+	players: function (store) {
+		var players = {
+				selectedParty: null,
+				selectParty: function (party) {
+					players.selectedParty = party;
+				},
+				setDamage: function (name, damage) {
+					for ( var i = 0; i < players.selectedParty.length; i++ ) {
+						if ( players.selectedParty[i].name === name ) {
+							players.selectedParty[i].damage = damage;
+							rawDirty = true;
+							freeze();
+							return;
+						}
+					}
+				},
+			},
+			rawDirty = true,
+			rawText = "",
+			partiesDirty,
+			parties = [];
+
+		window.players = players;
+
+		Object.defineProperty(players, "raw", {
+			get: function () {
+				if ( rawDirty ) {
+					compileRaw();
+				}
+
+				return rawText;
+			},
+			set: function (value) {
+				rawText = value;
+				partiesDirty = true;
+			},
+		});
+
+		Object.defineProperty(players, "parties", {
+			get: function () {
+
+				if ( partiesDirty ) {
+					compileParties();
+				}
+
+				return parties;
+			}
+		});
+
+		thaw();
+
+		function compileParties() {
+			var i, j, m;
+			partiesDirty = false;
+			parties = rawText.split(/\n\n+/);
+
+			for ( i = 0; i < parties.length; i++ ) {
+				parties[i] = parties[i].split("\n");
+				for ( j = 0; j < parties[i].length; j++ ) {
+					// 1: Name
+					// 2: Initiative mod
+					// 3: Remaining HP (optional)
+					// 4: Max HP
+					//                       1       2               3              4
+					m = parties[i][j].match(/(.*?)\s+([-+]?\d+)\s+(?:(\d+)\s*\/\s*)?(\d+)\s*$/);
+
+					if ( m ) {
+						parties[i][j] = {
+							name: m[1],
+							initiativeMod: parseInt(m[2]),
+							damage: (m[3]) ? m[4] - m[3] : 0,
+							hp: parseInt(m[4]),
+						};
+					} else {
+						console.warn("Can't match:", parties[i][j]);
+					}
+				}
+
+			}
+
+			rawDirty = true;
+			freeze();
+		}
+
+		function compileRaw() {
+			var i, j, newRaw = [], p;
+			rawDirty = false;
+			
+			for ( i = 0; i < players.parties.length; i++ ) {
+				newRaw[i] = [];
+
+				for ( j = 0; j < players.parties[i].length; j++ ) {
+					p = players.parties[i][j];
+					newRaw[i].push([
+						p.name,
+						(p.initiativeMod >= 0) ? "+" + p.initiativeMod : p.initiativeMod,
+						p.hp - p.damage,
+						"/",
+						p.hp,
+					].join(" "));
+				}
+
+				newRaw[i] = newRaw[i].join("\n");
+			}
+
+			rawText = newRaw.join("\n\n");
+		}
+
+		function freeze() {
+			store.set("5em-players", parties);
+			console.log("Freezing", players.selectedParty);
+		}
+
+		function thaw() {
+			var frozen = store.get("5em-players");
+
+			if (frozen) {
+				parties = frozen;
+				partiesDirty = false;
+				rawDirty = true;
+			}
+		}
+
+		return players;
 	},
 	sources: function () {
 		return {
