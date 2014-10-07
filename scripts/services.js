@@ -312,6 +312,8 @@ var Services = {
 
 						freeze();
 					}
+
+					encounter.recalculateThreatLevels();
 				},
 		};
 
