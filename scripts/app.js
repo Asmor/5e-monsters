@@ -17,6 +17,7 @@ angular
 
 		// Main menu page
 		$stateProvider.state("encounter-builder", Controllers.encounterBuilder);
+		$stateProvider.state("encounter-manager", Controllers.encounterManager);
 		$stateProvider.state("battle-setup", Controllers.battleSetup);
 		$stateProvider.state("battle-tracker", Controllers.battleTracker);
 		$stateProvider.state("players", Controllers.players.main);
@@ -30,6 +31,7 @@ angular
 	.filter("sortEncounter", Filters.sortEncounter)
 	.factory("combat", Services.combat)
 	.factory("encounter", Services.encounter)
+	.factory("library", Services.library)
 	.factory("metaInfo", Services.metaInfo)
 	.factory("monsters", Services.monsters)
 	.factory("players", Services.players)

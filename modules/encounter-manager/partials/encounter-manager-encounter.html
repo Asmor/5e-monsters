@@ -1,0 +1,27 @@
+<div class="encounter-manager-encounter">
+	<div class="encounter-manager-encounter--controls">
+		<div class="encounter-manager-encounter-name">
+			{{ storedEncounter.name }}
+		</div>
+		<button
+			class="encounter-manager-encounter--load-button"
+			ng-click="load(storedEncounter)"
+			ng-if="encounter.reference != storedEncounter"
+		>Choose</button>
+		<button
+			class="encounter-manager-encounter--remove-button"
+			ng-click="remove(storedEncounter)"
+		>Remove</button>
+		<span
+			class="encounter-manager-encounter--active"
+			ng-if="encounter.reference == storedEncounter"
+		>
+			Active
+		</span>
+	</div>
+
+	<ng-include
+		src="partial('encounter-manager-monster')"
+		ng-repeat="(id, qty) in storedEncounter.groups"
+	></ng-include>
+</div>

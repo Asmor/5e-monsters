@@ -37,6 +37,11 @@
 		right: 0;
 	}
 
+	&--new-button {
+		@extend .encounter-button;
+		margin: 5px;
+	}
+
 	&--row {
 		border-bottom: 1px solid black;
 	}

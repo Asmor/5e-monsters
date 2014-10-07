@@ -1565,7 +1565,7 @@ ul {
 .fa-bomb:before {
   content: "\f1e2"; }
 
-.encounter-button, .number-input--button, .combatant-setup--button, .combat-controls--next-turn, .combatant--apply-button, .manage-players--party-select-button {
+.encounter-button, .number-input--button, .encounter-builder--new-button, .encounter-manager-encounter--save-button, .encounter-manager-encounter--remove-button, .encounter-manager-encounter--load-button, .combatant-setup--button, .combat-controls--next-turn, .combatant--apply-button, .manage-players--party-select-button {
   height: 25px;
   min-width: 25px;
   text-align: center;
@@ -1573,7 +1573,7 @@ ul {
   border: 1px solid #000;
   border-radius: 2px;
   cursor: pointer; }
-  .encounter-button:active, .number-input--button:active, .combatant-setup--button:active, .combat-controls--next-turn:active, .combatant--apply-button:active, .manage-players--party-select-button:active {
+  .encounter-button:active, .number-input--button:active, .encounter-builder--new-button:active, .encounter-manager-encounter--save-button:active, .encounter-manager-encounter--remove-button:active, .encounter-manager-encounter--load-button:active, .combatant-setup--button:active, .combat-controls--next-turn:active, .combatant--apply-button:active, .manage-players--party-select-button:active {
     background-color: #eee; }
 
 .menu {
@@ -1640,6 +1640,8 @@ ul {
     top: 0;
     left: 0;
     right: 0; }
+  .encounter-builder--new-button {
+    margin: 5px; }
   .encounter-builder--row {
     border-bottom: 1px solid black; }
   .encounter-builder--table {
@@ -1778,6 +1780,24 @@ ul {
     position: fixed;
     top: 10px;
     right: 10px; }
+
+.encounter-manager {
+  padding-top: 40px; }
+
+.encounter-manager-encounter {
+  margin-top: 20px; }
+  .encounter-manager-encounter--active {
+    display: inline-block;
+    height: 25px;
+    font-weight: bold; }
+  .encounter-manager-encounter--controls {
+    padding: 10px;
+    border-bottom: 1px solid #000; }
+
+.encounter-manager-monster {
+  padding: 10px;
+  border-bottom: 1px solid #000;
+  background-color: #fc8d62; }
 
 .combat-setup-controls {
   padding: 10px;

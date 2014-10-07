@@ -1,0 +1,21 @@
+.encounter-manager-encounter {
+	margin-top:20px;
+
+	&--active {
+		display: inline-block;
+		height: 25px;
+		font-weight: bold;
+	}
+
+	&--controls {
+		padding: 10px;
+		border-bottom: 1px solid #000;
+	}
+
+	&--save-button,
+	&--remove-button,
+	&--load-button {
+		@extend .encounter-button;
+	}
+
+}
