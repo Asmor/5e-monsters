@@ -9,6 +9,12 @@ Controllers.encounterManager = {
 
 		$scope.partial = util.partialFactory("modules/encounter-manager/partials/");
 
+		if ( !encounter.qty && !library.encounters.length ) {
+			// Nothing to see here...
+			$state.go("encounter-builder");
+			return;
+		}
+
 		$scope.encounter = encounter;
 		$scope.library = library;
 		$scope.monsters = monsters;
