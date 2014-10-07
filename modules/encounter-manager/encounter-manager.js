@@ -4,13 +4,12 @@
 Controllers.encounterManager = {
 	url: "/encounter-manager",
 	templateUrl: "modules/encounter-manager/encounter-manager.html",
-	controller: function ($scope, $state, encounter, library, monsters, util) {
+	controller: function ($scope, $state, actionQueue, encounter, library, monsters, util) {
 		window.scope = $scope;
 
 		$scope.partial = util.partialFactory("modules/encounter-manager/partials/");
 
 		if ( !encounter.qty && !library.encounters.length ) {
-			// Nothing to see here...
 			$state.go("encounter-builder");
 			return;
 		}
@@ -36,7 +35,9 @@ Controllers.encounterManager = {
 		$scope.load = function (storedEncounter) {
 			encounter.reset(storedEncounter);
 
-			$state.go("encounter-builder");
+			if ( !actionQueue.next($state) ) {
+				$state.go("encounter-builder");
+			}
 		};
 
 		$scope.save = function () {

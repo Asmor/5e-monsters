@@ -7,6 +7,7 @@ Controllers.encounterBuilder = {
 	controller: function (
 		$scope,
 		store,
+		actionQueue,
 		encounter,
 		metaInfo,
 		monsters,
@@ -14,6 +15,9 @@ Controllers.encounterBuilder = {
 		util
 	) {
 		window.scope = $scope;
+
+		// There's no way to tell when they're done building an encounter, so clear the queue if they ever make it here.
+		actionQueue.clear();
 
 		$scope.partial = util.partialFactory("modules/encounter-builder/partials/");
 

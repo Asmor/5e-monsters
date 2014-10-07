@@ -22,6 +22,32 @@
 "use strict";
 
 var Services = {
+	actionQueue: function () {
+		var actionQueue = {
+				actions: [],
+				currentInstruction: "",
+				clear: function () {
+					actionQueue.actions.length = 0;
+					actionQueue.currentInstruction = "";
+				},
+				next: function ($state) {
+					if ( actionQueue.actions.length ) {
+						var current = actionQueue.actions.shift();
+						actionQueue.currentInstruction = current.message || "";
+
+						$state.go(current.state);
+						return true;
+					}
+
+					return false;
+				},
+				queue: function (nextState, message) {
+					actionQueue.actions.push({ state: nextState, message: message });
+				},
+		};
+
+		return actionQueue;
+	},
 	combat: function (store, encounter, players, monsters, util) {
 		var combat = {
 			active: 0,
@@ -106,16 +132,21 @@ var Services = {
 
 				var monsterIds = Object.keys(encounter.groups),
 					lair = false,
-					i, monster, qty, player;
+					i, monster, qty, player,
+					retValue = 0;
 
 				if ( ! monsterIds.length ) {
 					// If there aren't any monsters, we can't run an encounter
-					return NO_MONSTERS;
+					retValue |= NO_MONSTERS;
 				}
 
 				if ( ! players.selectedParty ) {
 					// If there aren't any players, we can't run the encounter either...
-					return NO_PLAYERS;
+					retValue |= NO_PLAYERS;
+				}
+
+				if ( retValue ) {
+					return retValue;
 				}
 
 				for ( i = 0; i < players.selectedParty.length; i++ ) {
@@ -547,7 +578,6 @@ var Services = {
 
 		function freeze() {
 			store.set("5em-players", parties);
-			console.log("Freezing", players.selectedParty);
 		}
 
 		function thaw() {

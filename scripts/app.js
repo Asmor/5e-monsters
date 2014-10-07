@@ -29,6 +29,7 @@ angular
 	.filter("negative", Filters.negative)
 	.filter("positive", Filters.positive)
 	.filter("sortEncounter", Filters.sortEncounter)
+	.factory("actionQueue", Services.actionQueue)
 	.factory("combat", Services.combat)
 	.factory("encounter", Services.encounter)
 	.factory("library", Services.library)

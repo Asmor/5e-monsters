@@ -26,7 +26,7 @@ Controllers.players.edit = {
 Controllers.players.manage = {
 	url: "/manage",
 	templateUrl: "modules/players/manage.html",
-	controller: function ($scope, $state, players, util) {
+	controller: function ($scope, $state, actionQueue, players, util) {
 		window.scope = $scope;
 
 		$scope.partial = util.partialFactory("modules/players/partials/");
@@ -38,5 +38,11 @@ Controllers.players.manage = {
 		}
 
 		$scope.players = players;
+
+		$scope.select = function (party) {
+			players.selectParty(party);
+
+			actionQueue.next($state);
+		};
 	},
 };
