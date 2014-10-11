@@ -26,26 +26,70 @@ var Services = {
 		var fb = new Firebase("https://resplendent-torch-9803.firebaseio.com"),
 			account = {
 				fb: fb,
-				login: function (user, password) {
-					if ( user.match(/^(github|google|twitter)$/) ) {
-						fb.authWithOAuthPopup(user, function (error, authData) {
+				login: function (args) {
+					if ( args.with && args.with.match(/^(github|google|twitter)$/) ) {
+						fb.authWithOAuthPopup(args.with, function (error, authData) {
 							$rootScope.$apply(function () {
-								console.log("Login via " + user + " complete. Error:", error, "Auth data: ", authData);
+								if ( typeof args.callback === "function" ) {
+									args.callback(error, authData);
+								}
+							});
+						});
+					} else if ( args.anonymous ) {
+						fb.authAnonymously(function (error, authData) {
+							$rootScope.$apply(function () {
+								if ( typeof args.callback === "function" ) {
+									args.callback(error, authData);
+								}
 							});
 						});
 					} else {
 						fb.authWithPassword({
-							email: user,
-							password: password,
+							// Not currently implemented in app
+							email: args.email,
+							password: args.password,
 						}, function (error) {
 							$rootScope.$apply(function () {
-								console.log("Email login complete. Error:", error);
+								if ( typeof args.callback === "function" ) {
+									args.callback(error);
+								}
 							});
 						});
 					}
 				},
 				logout: function () {
 					fb.unauth();
+				},
+				userScope: {
+					get: function (key, callback) {
+						if ( ! account.loginProvider ) {
+							// If they're not already logged in, log them in anonymously
+							account.login({
+								anonymous: true,
+								callback: function () {
+									getUserScopeValue(key, callback);
+								}
+							});
+						} else {
+							getUserScopeValue(key, callback);
+						}
+					},
+					set: function (key, data) {
+						var o = {};
+						o[key] = data;
+
+						if ( ! account.loginProvider ) {
+							// If they're not already logged in, log them in anonymously
+							account.login({
+								anonymous: true,
+								callback: function () {
+									setUserScopeValue(key, data);
+								}
+							});
+						}
+
+						setUserScopeValue(key, data);
+					},
 				},
 			};
 			
@@ -61,6 +105,31 @@ var Services = {
 				return authData.provider;
 			},
 		});
+
+		function getUserScopeValue(key, callback) {
+			var authData = fb.getAuth();
+
+			if ( !authData || !callback ) {
+				return;
+			}
+
+			fb.child([ "user", authData.uid, key ].join("/")).once('value', function (value) {
+				callback(value.val());
+			});
+		}
+
+		function setUserScopeValue(key, data) {
+			var authData = fb.getAuth(),
+				o = {};
+
+			if ( !authData ) {
+				return;
+			}
+
+			o[key] = data;
+
+			fb.child("user/" + authData.uid).update(o);
+		}
 
 		return account;
 	},
@@ -231,7 +300,7 @@ var Services = {
 
 		return combat;
 	},
-	encounter: function (store, library, metaInfo, monsters, players, util) {
+	encounter: function ($rootScope, store, library, metaInfo, monsters, players, util) {
 		var encounter = {
 				getMultiplier: getMultiplier,
 				groups: {},
@@ -413,25 +482,30 @@ var Services = {
 		function thaw() {
 			encounter.reset();
 
-			var frozen = store.get("5em-encounter");
-
-			if ( !frozen ) {
-				return;
-			}
-
-			// TODO: Need to move players-specific stuff to players service
-			encounter.partyLevel = levels[frozen.partyLevel - 1]; // level 1 is index 0, etc
-			encounter.playerCount = frozen.playerCount;
-
-			Object.keys(frozen.groups).forEach(function (monsterId) {
-				var monster = monsters.byId[monsterId];
-
-				if ( !monster ) {
-					console.warn("Can't find", monsterId);
+			store.get("5em-encounter", function (frozen) {
+				if ( !frozen ) {
 					return;
 				}
 
-				encounter.add(monster, frozen.groups[monsterId]);
+				encounter.partyLevel = levels[frozen.partyLevel - 1]; // level 1 is index 0, etc
+				encounter.playerCount = frozen.playerCount;
+
+				frozen.groups = frozen.groups || {};
+
+				Object.keys(frozen.groups).forEach(function (monsterId) {
+					var monster = monsters.byId[monsterId];
+
+					if ( !monster ) {
+						console.warn("Can't find", monsterId);
+						return;
+					}
+
+					encounter.add(monster, frozen.groups[monsterId]);
+				});
+
+				if (!$rootScope.$$phase) {
+					$rootScope.$apply();
+				}
 			});
 		}
 
@@ -451,7 +525,7 @@ var Services = {
 
 		return encounter;
 	},
-	library: function (store) {
+	library: function ($rootScope, store) {
 		var library = {
 				encounters: [],
 				remove: function (storedEncounter) {
@@ -483,13 +557,20 @@ var Services = {
 		}
 
 		function thaw() {
-			var frozen = store.get("5em-library");
+			store.get("5em-library", function (frozen) {
+				if (frozen) {
+					console.log(frozen);
 
-			if (frozen) {
-				library.encounters = frozen;
-			}
+					library.encounters = frozen;
+
+					if (!$rootScope.$$phase) {
+						$rootScope.$apply();
+					}
+				}
+			});
 		}
 
+		window.library = library;
 		return library;
 	},
 	metaInfo: function () {
@@ -512,7 +593,7 @@ var Services = {
 			check: checkMonster,
 		};
 	},
-	players: function (store) {
+	players: function ($rootScope, store) {
 		var players = {
 				selectedParty: null,
 				selectParty: function (party) {
@@ -625,16 +706,32 @@ var Services = {
 		}
 
 		function thaw() {
-			var frozen = store.get("5em-players");
+			store.get("5em-players", function (frozen) {
+				if (frozen) {
+					parties = frozen;
+					partiesDirty = false;
+					rawDirty = true;
 
-			if (frozen) {
-				parties = frozen;
-				partiesDirty = false;
-				rawDirty = true;
-			}
+					if (!$rootScope.$$phase) {
+						$rootScope.$apply();
+					}
+				}
+			});
 		}
 
 		return players;
+	},
+	store: function (account) {
+		var store = {
+			get: function (key, callback) {
+				account.userScope.get(key, callback);
+			},
+			set: function (key, data) {
+				account.userScope.set(key, data);
+			},
+		};
+
+		return store;
 	},
 	sources: function () {
 		return {

@@ -9,7 +9,6 @@ angular
 		"ui.router",
 		"ngTouch",
 		"angularUtils.directives.dirPagination",
-		"angular-storage",
 		"firebase",
 	])
 	.config(function ($stateProvider, $urlRouterProvider) {
@@ -40,5 +39,6 @@ angular
 	.factory("monsters", Services.monsters)
 	.factory("players", Services.players)
 	.factory("sources", Services.sources)
+	.factory("store", Services.store)
 	.factory("util", Services.util)
 ;

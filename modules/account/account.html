@@ -1,11 +1,11 @@
 <div class="account">
-	<div ng-if="!account.loginProvider">
-		<button ng-click="account.login('google')">Log in with Google</button>
-		<button ng-click="account.login('github')">Log in with Github</button>
-		<button ng-click="account.login('twitter')">Log in with Twitter</button>
+	<div ng-if="!account.loginProvider || acount.loginProvider == 'anonymous'">
+		<button ng-click="account.login({ with: 'google' })">Log in with Google</button>
+		<button ng-click="account.login({ with: 'github' })">Log in with Github</button>
+		<button ng-click="account.login({ with: 'twitter' })">Log in with Twitter</button>
 	</div>
 
-	<div ng-if="account.loginProvider">
+	<div ng-if="account.loginProvider &amp;&amp; acount.loginProvider != 'anonymous'">
 		Logged in with {{ account.loginProvider }}.
 		<button ng-click="account.logout()">Log out</button>
 	</div>
