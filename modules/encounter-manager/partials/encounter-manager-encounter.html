@@ -1,7 +1,10 @@
 <div class="encounter-manager-encounter">
 	<div class="encounter-manager-encounter--controls">
-		<div class="encounter-manager-encounter-name">
+		<div class="encounter-manager-encounter--name">
 			{{ storedEncounter.name }}
+		</div>
+		<div class="encounter-manager-encounter--exp">
+			Exp: {{ calculateExp(storedEncounter) }}
 		</div>
 		<button
 			class="encounter-manager-encounter--load-button"

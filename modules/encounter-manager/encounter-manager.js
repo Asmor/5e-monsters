@@ -32,6 +32,16 @@ Controllers.encounterManager = {
 			name: "",
 		};
 
+		$scope.calculateExp = function (storedEncounter) {
+			var exp = 0;
+
+			Object.keys( storedEncounter.groups ).forEach(function (id) {
+				exp += monsters.byId[id].cr.exp * storedEncounter.groups[id];
+			});
+
+			return exp;
+		};
+
 		$scope.load = function (storedEncounter) {
 			encounter.reset(storedEncounter);
 

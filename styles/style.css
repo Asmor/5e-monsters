@@ -1793,6 +1793,8 @@ ul {
   .encounter-manager-encounter--controls {
     padding: 10px;
     border-bottom: 1px solid #000; }
+  .encounter-manager-encounter--exp {
+    font-variant: small-caps; }
 
 .encounter-manager-monster {
   padding: 10px;
