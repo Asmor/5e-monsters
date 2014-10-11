@@ -9,7 +9,6 @@ Controllers.encounterBuilder = {
 		$firebase,
 		$firebaseSimpleLogin,
 		store,
-		account,
 		actionQueue,
 		encounter,
 		metaInfo,
@@ -22,16 +21,11 @@ Controllers.encounterBuilder = {
 		// There's no way to tell when they're done building an encounter, so clear the queue if they ever make it here.
 		actionQueue.clear();
 
-		// TODO: For debug only
-		$scope.fb = $firebase;
-		$scope.fbsl = $firebaseSimpleLogin;
-		$scope.account = account;
-
 		$scope.partial = util.partialFactory("modules/encounter-builder/partials/");
 
 		$scope.alignments = metaInfo.alignments;
 		$scope.crList = metaInfo.crList;
-		$scope.filters = store.get("5em-filters") || {
+		$scope.filters = {
 			source: sources.filters,
 			pageSize: 10,
 		};
@@ -46,6 +40,20 @@ Controllers.encounterBuilder = {
 		$scope.checkMonster = monsters.check;
 
 		$scope.encounter = encounter;
+
+		store.get("5em-filters", function (frozen) {
+			if (frozen) {
+				$scope.filters = frozen;
+			}
+
+			if (!$scope.$$phase) {
+				$scope.$apply();
+			}
+
+			$scope.$watch("filters", function () {
+				store.set("5em-filters", $scope.filters);
+			}, true);
+		});
 
 		$scope.monsterSort = function (monster) {
 			var sort = $scope.filters.sort;
@@ -95,9 +103,5 @@ Controllers.encounterBuilder = {
 				return "trivial";
 			}
 		};
-
-		$scope.$watch("filters", function () {
-			store.set("5em-filters", $scope.filters);
-		}, true);
 	},
 };

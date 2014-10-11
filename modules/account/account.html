@@ -6,7 +6,7 @@
 	</div>
 
 	<div ng-if="account.loginProvider &amp;&amp; acount.loginProvider != 'anonymous'">
-		Logged in with {{ account.loginProvider }}.
+		Logged in with {{ account.loginProvider }} as {{ account.userId }}
 		<button ng-click="account.logout()">Log out</button>
 	</div>
 </div>

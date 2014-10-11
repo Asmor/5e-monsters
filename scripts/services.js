@@ -106,6 +106,18 @@ var Services = {
 			},
 		});
 
+		Object.defineProperty(account, "userId", {
+			get: function () {
+				var authData = fb.getAuth();
+
+				if ( !authData ) {
+					return null;
+				}
+
+				return authData.uid;
+			},
+		});
+
 		function getUserScopeValue(key, callback) {
 			var authData = fb.getAuth();
 
@@ -128,7 +140,7 @@ var Services = {
 
 			o[key] = data;
 
-			fb.child("user/" + authData.uid).update(o);
+			fb.child([ "user", authData.uid, key ].join("/")).set(data);
 		}
 
 		return account;
@@ -559,8 +571,6 @@ var Services = {
 		function thaw() {
 			store.get("5em-library", function (frozen) {
 				if (frozen) {
-					console.log(frozen);
-
 					library.encounters = frozen;
 
 					if (!$rootScope.$$phase) {
