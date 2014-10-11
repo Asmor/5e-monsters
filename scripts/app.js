@@ -10,6 +10,7 @@ angular
 		"ngTouch",
 		"angularUtils.directives.dirPagination",
 		"angular-storage",
+		"firebase",
 	])
 	.config(function ($stateProvider, $urlRouterProvider) {
 		// Default

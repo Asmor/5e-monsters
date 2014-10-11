@@ -6,6 +6,8 @@ Controllers.encounterBuilder = {
 	templateUrl: "modules/encounter-builder/encounter-builder.html",
 	controller: function (
 		$scope,
+		$firebase,
+		$firebaseSimpleLogin,
 		store,
 		actionQueue,
 		encounter,
@@ -18,6 +20,10 @@ Controllers.encounterBuilder = {
 
 		// There's no way to tell when they're done building an encounter, so clear the queue if they ever make it here.
 		actionQueue.clear();
+
+		// TODO: For debug only
+		$scope.fb = $firebase;
+		$scope.fbsl = $firebaseSimpleLogin;
 
 		$scope.partial = util.partialFactory("modules/encounter-builder/partials/");
 
