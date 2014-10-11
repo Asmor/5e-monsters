@@ -22,6 +22,48 @@
 "use strict";
 
 var Services = {
+	account: function ($rootScope) {
+		var fb = new Firebase("https://resplendent-torch-9803.firebaseio.com"),
+			account = {
+				fb: fb,
+				login: function (user, password) {
+					if ( user.match(/^(github|google|twitter)$/) ) {
+						fb.authWithOAuthPopup(user, function (error, authData) {
+							$rootScope.$apply(function () {
+								console.log("Login via " + user + " complete. Error:", error, "Auth data: ", authData);
+							});
+						});
+					} else {
+						fb.authWithPassword({
+							email: user,
+							password: password,
+						}, function (error) {
+							$rootScope.$apply(function () {
+								console.log("Email login complete. Error:", error);
+							});
+						});
+					}
+				},
+				logout: function () {
+					fb.unauth();
+				},
+			};
+			
+
+		Object.defineProperty(account, "loginProvider", {
+			get: function () {
+				var authData = fb.getAuth();
+
+				if ( !authData ) {
+					return null;
+				}
+
+				return authData.provider;
+			},
+		});
+
+		return account;
+	},
 	actionQueue: function () {
 		var actionQueue = {
 				actions: [],

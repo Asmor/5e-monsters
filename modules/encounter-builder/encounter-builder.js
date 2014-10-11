@@ -9,6 +9,7 @@ Controllers.encounterBuilder = {
 		$firebase,
 		$firebaseSimpleLogin,
 		store,
+		account,
 		actionQueue,
 		encounter,
 		metaInfo,
@@ -24,6 +25,7 @@ Controllers.encounterBuilder = {
 		// TODO: For debug only
 		$scope.fb = $firebase;
 		$scope.fbsl = $firebaseSimpleLogin;
+		$scope.account = account;
 
 		$scope.partial = util.partialFactory("modules/encounter-builder/partials/");
 

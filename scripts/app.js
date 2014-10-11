@@ -24,12 +24,14 @@ angular
 		$stateProvider.state("players", Controllers.players.main);
 		$stateProvider.state("players.edit", Controllers.players.edit);
 		$stateProvider.state("players.manage", Controllers.players.manage);
+		$stateProvider.state("account", Controllers.account);
 	})
 	.directive("numberInput", Directives.numberInput)
 	.filter("monstersFilter", Filters.monster)
 	.filter("negative", Filters.negative)
 	.filter("positive", Filters.positive)
 	.filter("sortEncounter", Filters.sortEncounter)
+	.factory("account", Services.account)
 	.factory("actionQueue", Services.actionQueue)
 	.factory("combat", Services.combat)
 	.factory("encounter", Services.encounter)
