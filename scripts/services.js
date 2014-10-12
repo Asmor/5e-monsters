@@ -363,7 +363,8 @@ var Services = {
 				playerCount: 4,
 				reference: null,
 				threat: {},
-				add: function (monster, qty) {
+				add: function (monster, qty, args) {
+					args = args || {};
 					if ( typeof qty === "undefined" ) {
 						qty = 1;
 					}
@@ -379,7 +380,9 @@ var Services = {
 
 					updateLibrary();
 
-					freeze();
+					if ( !args.skipFreeze ) {
+						freeze();
+					}
 				},
 				generateRandom: function (filters) {
 					var monsters = generateRandomEncounter(encounter.playerCount, encounter.partyLevel, filters),
@@ -387,6 +390,7 @@ var Services = {
 
 					encounter.reset();
 
+					console.warn(monsters);
 					for ( i = 0; i < monsters.length; i++ ) {
 						encounter.add( monsters[i].monster, monsters[i].qty );
 					}
@@ -555,7 +559,7 @@ var Services = {
 						return;
 					}
 
-					encounter.add(monster, frozen.groups[monsterId]);
+					encounter.add(monster, frozen.groups[monsterId], { skipFreeze: true });
 				});
 
 				if (!$rootScope.$$phase) {
