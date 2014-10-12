@@ -76,7 +76,14 @@
 	</div>
 	<div class="filters--section">
 		Sources:
-		<ul>
+		<select ng-model="filters.sources" ng-change="updateSourceFilters()">
+			<option value="all" selected>Everything</option>
+			<option value="" selected>Core Books</option>
+			<option value="books">All Books</option>
+			<option value="basic">Basic</option>
+			<option value="custom">Custom</option>
+		</select>
+		<ul ng-if="filters.sources == 'custom'">
 			<li
 				class="filters--source"
 				ng-repeat="source in sources"
