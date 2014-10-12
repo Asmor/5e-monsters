@@ -97,8 +97,6 @@ var Services = {
 				},
 			},
 			watches = {},
-			watchedScopes = [],
-			watchCounts = [],
 			userScope;
 
 		Object.defineProperty(account, "loginProvider", {
@@ -127,13 +125,18 @@ var Services = {
 
 		updateUserScope();
 
-		function clearWatches() {
-			while (watchedScopes.length) {
-				watchedScopes.pop().off();
-			}
+		function fireAllWatches() {
+			Object.keys(watches).forEach(function (key) {
+				fireWatch(key, watches[key]);
+			});
+		}
 
-			console.log("After clear");
-			console.table(watchCounts);
+		function fireWatch(key, callback) {
+			if ( userScope ) {
+				userScope.child(key).once("value", function (value) {
+					callback(value.val());
+				});
+			}
 		}
 
 		function setUserScopeValue(key, data) {
@@ -147,45 +150,21 @@ var Services = {
 
 			userScope = null;
 
-			clearWatches();
-
 			if ( !authData ) {
 				return;
 			}
 
 			userScope = fb.child([ "user", authData.uid ].join("/"));
 
-			updateWatches();
-		}
-
-		function updateWatches() {
-			clearWatches()
-
-			if ( !userScope ) {
-				return;
-			}
-
-			Object.keys(watches).forEach(function (key) {
-				var scope = userScope.child(key);
-				scope.on("value", function (value) {
-					watches[key](value.val());
-				});
-
-				watchedScopes.push(scope);
-				watchCounts[key] = watchCounts[key] || 0;
-				watchCounts[key]++;
-			});
-
-			console.log("After update");
-			console.table(watchCounts);
+			fireAllWatches();
 		}
 
 		function watchUserScopeValue(key, callback) {
 			watches[key] = callback;
-			updateWatches();
+
+			fireWatch(key, callback);
 		}
 
-		window.watchCounts = watchCounts;
 		return account;
 	},
 	actionQueue: function () {
@@ -390,7 +369,6 @@ var Services = {
 
 					encounter.reset();
 
-					console.warn(monsters);
 					for ( i = 0; i < monsters.length; i++ ) {
 						encounter.add( monsters[i].monster, monsters[i].qty );
 					}
@@ -456,7 +434,7 @@ var Services = {
 						delete encounter.groups[monster.id];
 					} else if ( removeAll ) {
 						// Removing all is implemented by recurively calling this function until the qty is 0
-						encounter.remove(monster, true);
+						encounter.remove(monster, true, { skipFreeze: true });
 					}
 
 					updateLibrary();
@@ -474,7 +452,8 @@ var Services = {
 						Object.keys(storedEncounter.groups).forEach(function (id) {
 							encounter.add(
 								monsters.byId[id],
-								storedEncounter.groups[id]
+								storedEncounter.groups[id],
+								{ skipFreeze: true }
 							);
 						});
 
@@ -546,6 +525,8 @@ var Services = {
 					return;
 				}
 
+				encounter.reset();
+
 				encounter.partyLevel = levels[frozen.partyLevel - 1]; // level 1 is index 0, etc
 				encounter.playerCount = frozen.playerCount;
 
@@ -561,6 +542,8 @@ var Services = {
 
 					encounter.add(monster, frozen.groups[monsterId], { skipFreeze: true });
 				});
+
+				freeze();
 
 				if (!$rootScope.$$phase) {
 					$rootScope.$apply();
