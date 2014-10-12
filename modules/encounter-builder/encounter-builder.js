@@ -95,12 +95,12 @@ Controllers.encounterBuilder = {
 			$scope.filters.minCr = null;
 			$scope.filters.maxCr = null;
 			$scope.filters.environment = null;
-		}
+		};
 
 		$scope.updateSourceFilters = function () {
 			// The default is core, but for implementation reasons it's represented by the empty string
 			var sourceTypes = $scope.filters.sources || "core",
-				select = [ "Custom" ],
+				select = [ "Placeholders" ],
 				i;
 
 			if ( sourceTypes === "custom" ) {
@@ -128,7 +128,7 @@ Controllers.encounterBuilder = {
 			while (select.length) {
 				$scope.filters.source[select.pop()] = true;
 			}
-		}
+		};
 
 		$scope.$watch("filters", function () {
 			store.set("5em-filters", $scope.filters);

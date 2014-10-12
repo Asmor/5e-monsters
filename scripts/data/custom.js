@@ -3,13 +3,12 @@
 "use strict";
 
 (function () {
-	var sourceName = "Custom",
+	var sourceName = "Placeholders",
 		i, toAdd;
 
 	registerSource(sourceName, false);
 
 	toAdd = [
-		
 		[ "cf33021b-ebd7-4db3-884d-0b48e8211ac3", 0 ], // CR 0
 		[ "6107ed19-210b-47a4-a05d-3bf2489e6f4c", 0 ], // CR 1/8
 		[ "ac37c9c6-a51b-4b7d-9c53-01a59a46965c", 0 ], // CR 1/4
