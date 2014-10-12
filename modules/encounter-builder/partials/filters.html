@@ -7,7 +7,7 @@
 		<button ng-click="filters.search = null">Clear</button>
 	</div>
 	<div class="filters--section">
-		<label>
+		<label class="filters--option" ng-class="{ 'filters--option__active': filters.size }">
 			Size:
 			<select
 				ng-model="filters.size"
@@ -18,7 +18,7 @@
 		</label>
 	</div>
 	<div class="filters--section">
-		<label>
+		<label class="filters--option" ng-class="{ 'filters--option__active': filters.type }">
 			Type:
 			<select
 				ng-model="filters.type"
@@ -29,7 +29,7 @@
 		</label>
 	</div>
 	<div class="filters--section">
-		<label>
+		<label class="filters--option" ng-class="{ 'filters--option__active': filters.alignment }">
 			Alignment:
 			<select
 				ng-model="filters.alignment"
@@ -41,7 +41,7 @@
 	</div>
 	<div class="filters--section">
 		CR:
-		<label>
+		<label class="filters--option" ng-class="{ 'filters--option__active': filters.minCr }">
 			Min:
 			<select
 				ng-model="filters.minCr"
@@ -50,7 +50,7 @@
 				<option value=""></option>
 			</select>
 		</label>
-		<label>
+		<label class="filters--option" ng-class="{ 'filters--option__active': filters.maxCr }">
 			Max:
 			<select
 				ng-model="filters.maxCr"
@@ -61,7 +61,7 @@
 		</label>
 	</div>
 	<div class="filters--section">
-		<label>
+		<label class="filters--option" ng-class="{ 'filters--option__active': filters.environment }">
 			Environment:
 			<select
 				ng-model="filters.environment"
@@ -72,8 +72,18 @@
 		</label>
 	</div>
 	<div class="filters--section">
+		<button ng-click="resetFilters()">Reset Filters</button>
+	</div>
+	<div class="filters--section">
 		Sources:
-		<ul>
+		<select ng-model="filters.sources" ng-change="updateSourceFilters()">
+			<option value="all" selected>Everything</option>
+			<option value="" selected>Core Books</option>
+			<option value="books">All Books</option>
+			<option value="basic">Basic</option>
+			<option value="custom">Custom</option>
+		</select>
+		<ul ng-if="filters.sources == 'custom'">
 			<li
 				class="filters--source"
 				ng-repeat="source in sources"

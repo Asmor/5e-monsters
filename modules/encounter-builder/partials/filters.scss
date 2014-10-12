@@ -23,6 +23,14 @@
 		padding-right: 20px;
 	}
 
+	&--option {
+		&__active {
+			outline: 3px solid yellow;
+			background-color: yellow;
+			margin-right: 3px;
+		}
+	}
+
 	&--section {
 		padding-bottom: 10px;
 

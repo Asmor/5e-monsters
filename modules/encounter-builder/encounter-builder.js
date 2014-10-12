@@ -103,5 +103,51 @@ Controllers.encounterBuilder = {
 				return "trivial";
 			}
 		};
+
+		$scope.resetFilters = function () {
+			$scope.filters.size = null;
+			$scope.filters.type = null;
+			$scope.filters.alignment = null;
+			$scope.filters.minCr = null;
+			$scope.filters.maxCr = null;
+			$scope.filters.environment = null;
+		};
+
+		$scope.updateSourceFilters = function () {
+			// The default is core, but for implementation reasons it's represented by the empty string
+			var sourceTypes = $scope.filters.sources || "core",
+				select = [ "Placeholders" ],
+				i;
+
+			if ( sourceTypes === "custom" ) {
+				return;
+			}
+
+			if ( sourceTypes.match(/all|core|books/) ) {
+				select.push("Player's Handbook");
+				select.push("Monster Manual");
+			}
+
+			if ( sourceTypes.match(/all|books/) ) {
+				select.push("Hoard of the Dragon Queen");
+			}
+
+			if ( sourceTypes.match(/all|basic/) ) {
+				select.push("Basic Rules v1");
+				select.push("HotDQ supplement");
+			}
+
+			for ( i = 0; i < sources.all.length; i++ ) {
+				$scope.filters.source[sources.all[i]] = false;
+			}
+
+			while (select.length) {
+				$scope.filters.source[select.pop()] = true;
+			}
+		};
+
+		$scope.$watch("filters", function () {
+			store.set("5em-filters", $scope.filters);
+		}, true);
 	},
 };
