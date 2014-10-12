@@ -88,6 +88,15 @@ Controllers.encounterBuilder = {
 			}
 		};
 
+		$scope.resetFilters = function () {
+			$scope.filters.size = null;
+			$scope.filters.type = null;
+			$scope.filters.alignment = null;
+			$scope.filters.minCr = null;
+			$scope.filters.maxCr = null;
+			$scope.filters.environment = null;
+		}
+
 		$scope.$watch("filters", function () {
 			store.set("5em-filters", $scope.filters);
 		}, true);
