@@ -1683,6 +1683,10 @@ ul {
     text-align: right;
     padding-left: 5px;
     padding-right: 20px; }
+  .filters--option__active {
+    outline: 3px solid yellow;
+    background-color: yellow;
+    margin-right: 3px; }
   .filters--section {
     padding-bottom: 10px; }
     .filters--section:first-child {
