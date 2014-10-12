@@ -33,6 +33,7 @@ var Services = {
 								if ( typeof args.callback === "function" ) {
 									args.callback(error, authData);
 								}
+								updateUserScope();
 							});
 						});
 					} else if ( args.anonymous ) {
@@ -41,6 +42,7 @@ var Services = {
 								if ( typeof args.callback === "function" ) {
 									args.callback(error, authData);
 								}
+								updateUserScope();
 							});
 						});
 					} else {
@@ -53,27 +55,16 @@ var Services = {
 								if ( typeof args.callback === "function" ) {
 									args.callback(error);
 								}
+								updateUserScope();
 							});
 						});
 					}
 				},
 				logout: function () {
 					fb.unauth();
+					updateUserScope();
 				},
 				userScope: {
-					get: function (key, callback) {
-						if ( ! account.loginProvider ) {
-							// If they're not already logged in, log them in anonymously
-							account.login({
-								anonymous: true,
-								callback: function () {
-									getUserScopeValue(key, callback);
-								}
-							});
-						} else {
-							getUserScopeValue(key, callback);
-						}
-					},
 					set: function (key, data) {
 						var o = {};
 						o[key] = data;
@@ -86,13 +77,29 @@ var Services = {
 									setUserScopeValue(key, data);
 								}
 							});
+						} else {
+							setUserScopeValue(key, data);
 						}
-
-						setUserScopeValue(key, data);
+					},
+					watch: function (key, callback) {
+						if ( ! account.loginProvider ) {
+							// If they're not already logged in, log them in anonymously
+							account.login({
+								anonymous: true,
+								callback: function () {
+									watchUserScopeValue(key, callback);
+								}
+							});
+						} else {
+							watchUserScopeValue(key, callback);
+						}
 					},
 				},
-			};
-			
+			},
+			watches = {},
+			watchedScopes = [],
+			watchCounts = [],
+			userScope;
 
 		Object.defineProperty(account, "loginProvider", {
 			get: function () {
@@ -118,31 +125,67 @@ var Services = {
 			},
 		});
 
-		function getUserScopeValue(key, callback) {
-			var authData = fb.getAuth();
+		updateUserScope();
 
-			if ( !authData || !callback ) {
-				return;
+		function clearWatches() {
+			while (watchedScopes.length) {
+				watchedScopes.pop().off();
 			}
 
-			fb.child([ "user", authData.uid, key ].join("/")).once('value', function (value) {
-				callback(value.val());
-			});
+			console.log("After clear");
+			console.table(watchCounts);
 		}
 
 		function setUserScopeValue(key, data) {
-			var authData = fb.getAuth(),
-				o = {};
+			if ( userScope ) {
+				userScope.child(key).set(data);
+			}
+		}
+
+		function updateUserScope() {
+			var authData = fb.getAuth();
+
+			userScope = null;
+
+			clearWatches();
 
 			if ( !authData ) {
 				return;
 			}
 
-			o[key] = data;
+			userScope = fb.child([ "user", authData.uid ].join("/"));
 
-			fb.child([ "user", authData.uid, key ].join("/")).set(data);
+			updateWatches();
 		}
 
+		function updateWatches() {
+			clearWatches()
+
+			if ( !userScope ) {
+				return;
+			}
+
+			Object.keys(watches).forEach(function (key) {
+				var scope = userScope.child(key);
+				scope.on("value", function (value) {
+					watches[key](value.val());
+				});
+
+				watchedScopes.push(scope);
+				watchCounts[key] = watchCounts[key] || 0;
+				watchCounts[key]++;
+			});
+
+			console.log("After update");
+			console.table(watchCounts);
+		}
+
+		function watchUserScopeValue(key, callback) {
+			watches[key] = callback;
+			updateWatches();
+		}
+
+		window.watchCounts = watchCounts;
 		return account;
 	},
 	actionQueue: function () {
@@ -580,7 +623,6 @@ var Services = {
 			});
 		}
 
-		window.library = library;
 		return library;
 	},
 	metaInfo: function () {
@@ -734,7 +776,7 @@ var Services = {
 	store: function (account) {
 		var store = {
 			get: function (key, callback) {
-				account.userScope.get(key, callback);
+				account.userScope.watch(key, callback);
 			},
 			set: function (key, data) {
 				account.userScope.set(key, data);

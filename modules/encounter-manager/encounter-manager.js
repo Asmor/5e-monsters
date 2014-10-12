@@ -10,7 +10,6 @@ Controllers.encounterManager = {
 		$scope.partial = util.partialFactory("modules/encounter-manager/partials/");
 
 		if ( !encounter.qty && !library.encounters.length ) {
-			console.log("Aborting", encounter, library);
 			$state.go("encounter-builder");
 			return;
 		}
