@@ -1565,7 +1565,7 @@ ul {
 .fa-bomb:before {
   content: "\f1e2"; }
 
-.encounter-button, .number-input--button, .encounter-builder--new-button, .encounter-manager-encounter--save-button, .encounter-manager-encounter--remove-button, .encounter-manager-encounter--load-button, .combatant-setup--button, .combat-controls--next-turn, .combatant--apply-button, .manage-players--party-select-button {
+.encounter-button, .number-input--button, .encounter-builder--new-button, .encounter-builder--save-button, .encounter-manager-encounter--save-button, .encounter-manager-encounter--remove-button, .encounter-manager-encounter--load-button, .combatant-setup--button, .combat-controls--next-turn, .combatant--apply-button, .manage-players--party-select-button {
   height: 25px;
   min-width: 25px;
   text-align: center;
@@ -1573,7 +1573,7 @@ ul {
   border: 1px solid #000;
   border-radius: 2px;
   cursor: pointer; }
-  .encounter-button:active, .number-input--button:active, .encounter-builder--new-button:active, .encounter-manager-encounter--save-button:active, .encounter-manager-encounter--remove-button:active, .encounter-manager-encounter--load-button:active, .combatant-setup--button:active, .combat-controls--next-turn:active, .combatant--apply-button:active, .manage-players--party-select-button:active {
+  .encounter-button:active, .number-input--button:active, .encounter-builder--new-button:active, .encounter-builder--save-button:active, .encounter-manager-encounter--save-button:active, .encounter-manager-encounter--remove-button:active, .encounter-manager-encounter--load-button:active, .combatant-setup--button:active, .combat-controls--next-turn:active, .combatant--apply-button:active, .manage-players--party-select-button:active {
     background-color: #eee; }
 
 .menu {
@@ -1640,7 +1640,7 @@ ul {
     top: 0;
     left: 0;
     right: 0; }
-  .encounter-builder--new-button {
+  .encounter-builder--new-button, .encounter-builder--save-button {
     margin: 5px; }
   .encounter-builder--row {
     border-bottom: 1px solid black; }

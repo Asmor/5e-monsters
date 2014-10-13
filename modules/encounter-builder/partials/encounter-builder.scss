@@ -37,7 +37,8 @@
 		right: 0;
 	}
 
-	&--new-button {
+	&--new-button,
+	&--save-button {
 		@extend .encounter-button;
 		margin: 5px;
 	}

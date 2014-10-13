@@ -12,6 +12,13 @@
 		<button class="encounter-builder--new-button" ng-click="encounter.reset()">
 			New encounter
 		</button>
+		<button
+			class="encounter-builder--save-button"
+			ui-sref="encounter-manager"
+			ng-if="!encounter.reference"
+		>
+			Save encounter
+		</button>
 		<table class="encounter-builder--table">
 			<tbody>
 				<tr
