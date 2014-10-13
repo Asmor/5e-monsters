@@ -97,6 +97,7 @@ var Services = {
 				},
 			},
 			watches = {},
+			watchedScopes = [],
 			userScope;
 
 		Object.defineProperty(account, "loginProvider", {
@@ -125,17 +126,28 @@ var Services = {
 
 		updateUserScope();
 
-		function fireAllWatches() {
+		function clearAllWatches() {
+			while ( watchedScopes.length ) {
+				watchedScopes.pop().off();
+			}
+		}
+
+		function setupAllWatches() {
+			clearAllWatches();
+
 			Object.keys(watches).forEach(function (key) {
-				fireWatch(key, watches[key]);
+				setupWatch(key, watches[key]);
 			});
 		}
 
-		function fireWatch(key, callback) {
+		function setupWatch(key, callback) {
 			if ( userScope ) {
-				userScope.child(key).once("value", function (value) {
+				var watchScope = userScope.child(key);
+				watchScope.on("value", function (value) {
 					callback(value.val());
 				});
+
+				watchedScopes.push(watchScope);
 			}
 		}
 
@@ -148,7 +160,10 @@ var Services = {
 		function updateUserScope() {
 			var authData = fb.getAuth();
 
+			console.log("In updateUserScope", authData);
+
 			userScope = null;
+			clearAllWatches();
 
 			if ( !authData ) {
 				return;
@@ -156,13 +171,13 @@ var Services = {
 
 			userScope = fb.child([ "user", authData.uid ].join("/"));
 
-			fireAllWatches();
+			setupAllWatches();
 		}
 
 		function watchUserScopeValue(key, callback) {
 			watches[key] = callback;
 
-			fireWatch(key, callback);
+			setupWatch(key, callback);
 		}
 
 		return account;
@@ -740,14 +755,12 @@ var Services = {
 
 		return players;
 	},
-	store: function (account, $rootScope) {
+	store: function (account) {
 		var store = {
 			get: function (key, callback) {
-				console.log("Getting: ", key, $rootScope.$$phase);
 				account.userScope.watch(key, callback);
 			},
 			set: function (key, data) {
-				console.log("Setting: ", key, $rootScope.$$phase);
 				account.userScope.set(key, data);
 			},
 		};
