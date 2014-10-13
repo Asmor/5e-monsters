@@ -1,5 +1,12 @@
 <div class="encounter-manager">
 	<div
+		class="encounter-manager--no-encounters"
+		ng-if="!encounter.qty &amp;&amp; !library.encounters.length"
+	>
+		You don't have any encounters saved.
+		<button ui-sref="encounter-builder">Return to encounter builder</button>
+	</div>
+	<div
 		class="encounter-manager-encounter encounter-manager-encounter__unsaved"
 		ng-if="encounter.qty &amp;&amp; !encounter.reference"
 	>
