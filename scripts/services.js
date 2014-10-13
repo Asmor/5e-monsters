@@ -342,8 +342,7 @@ var Services = {
 				playerCount: 4,
 				reference: null,
 				threat: {},
-				add: function (monster, qty, args) {
-					args = args || {};
+				add: function (monster, qty) {
 					if ( typeof qty === "undefined" ) {
 						qty = 1;
 					}
@@ -358,10 +357,6 @@ var Services = {
 					encounter.exp += monster.cr.exp * qty;
 
 					updateLibrary();
-
-					if ( !args.skipFreeze ) {
-						freeze();
-					}
 				},
 				generateRandom: function (filters) {
 					var monsters = generateRandomEncounter(encounter.playerCount, encounter.partyLevel, filters),
@@ -424,7 +419,12 @@ var Services = {
 					encounter.threat.group   = mediumExp / ( 4 * groupMultiplier );
 					encounter.threat.trivial = mediumExp / ( 8 * trivialMultiplier );
 
-					freeze();
+					if ( $rootScope.$$phase !== "$digest" ) {
+						// This function gets called when encounter builder is being set up, before 
+						// the saved values from the cloud are returned. All other updates seem to
+						// happen during the $apply phase, so hopefully this should be safe...
+						freeze();
+					}
 				},
 				remove: function (monster, removeAll) {
 					encounter.groups[monster.id].qty--;
@@ -433,13 +433,12 @@ var Services = {
 					if ( encounter.groups[monster.id].qty === 0 ) {
 						delete encounter.groups[monster.id];
 					} else if ( removeAll ) {
-						// Removing all is implemented by recurively calling this function until the qty is 0
-						encounter.remove(monster, true, { skipFreeze: true });
+						// Removing all is implemented by recurively calling this function until the
+						// qty is 0
+						encounter.remove(monster, true);
 					}
 
 					updateLibrary();
-
-					freeze();
 				},
 				reset: function (storedEncounter) {
 					encounter.reference = null;
@@ -458,8 +457,6 @@ var Services = {
 						});
 
 						encounter.reference = storedEncounter;
-
-						freeze();
 					}
 
 					encounter.recalculateThreatLevels();
@@ -525,25 +522,8 @@ var Services = {
 					return;
 				}
 
-				encounter.reset();
-
 				encounter.partyLevel = levels[frozen.partyLevel - 1]; // level 1 is index 0, etc
 				encounter.playerCount = frozen.playerCount;
-
-				frozen.groups = frozen.groups || {};
-
-				Object.keys(frozen.groups).forEach(function (monsterId) {
-					var monster = monsters.byId[monsterId];
-
-					if ( !monster ) {
-						console.warn("Can't find", monsterId);
-						return;
-					}
-
-					encounter.add(monster, frozen.groups[monsterId], { skipFreeze: true });
-				});
-
-				freeze();
 
 				if (!$rootScope.$$phase) {
 					$rootScope.$apply();
@@ -760,12 +740,14 @@ var Services = {
 
 		return players;
 	},
-	store: function (account) {
+	store: function (account, $rootScope) {
 		var store = {
 			get: function (key, callback) {
+				console.log("Getting: ", key, $rootScope.$$phase);
 				account.userScope.watch(key, callback);
 			},
 			set: function (key, data) {
+				console.log("Setting: ", key, $rootScope.$$phase);
 				account.userScope.set(key, data);
 			},
 		};
