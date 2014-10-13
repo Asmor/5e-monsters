@@ -349,7 +349,7 @@ var Services = {
 
 		return combat;
 	},
-	encounter: function ($rootScope, store, library, metaInfo, monsters, players, util) {
+	encounter: function ($rootScope, store, metaInfo, monsters, players, util) {
 		var encounter = {
 				getMultiplier: getMultiplier,
 				groups: {},
@@ -371,7 +371,7 @@ var Services = {
 					encounter.qty += qty;
 					encounter.exp += monster.cr.exp * qty;
 
-					updateLibrary();
+					encounter.reference = null;
 				},
 				generateRandom: function (filters) {
 					var monsters = generateRandomEncounter(encounter.playerCount, encounter.partyLevel, filters),
@@ -453,7 +453,7 @@ var Services = {
 						encounter.remove(monster, true);
 					}
 
-					updateLibrary();
+					encounter.reference = null;
 				},
 				reset: function (storedEncounter) {
 					encounter.reference = null;
@@ -546,20 +546,6 @@ var Services = {
 			});
 		}
 
-		function updateLibrary() {
-			if ( !encounter.reference ) {
-				return;
-			}
-
-			encounter.reference.groups = {};
-
-			Object.keys(encounter.groups).forEach(function (id) {
-				encounter.reference.groups[id] = encounter.groups[id].qty;
-			});
-
-			library.update();
-		}
-
 		return encounter;
 	},
 	library: function ($rootScope, store) {
@@ -581,9 +567,6 @@ var Services = {
 					freeze();
 
 					return encounter;
-				},
-				update: function () {
-					freeze();
 				}
 		};
 

@@ -61,7 +61,7 @@ Controllers.encounterManager = {
 		$scope.remove = function ( storedEncounter ) {
 			library.remove(storedEncounter);
 
-			if ( encounter.reference === storedEncounter ) {
+			if ( angular.equals(encounter.reference, storedEncounter) ) {
 				encounter.reference = null;
 			}
 		};
