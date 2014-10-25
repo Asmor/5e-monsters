@@ -69,30 +69,10 @@ var Services = {
 						var o = {};
 						o[key] = data;
 
-						if ( ! account.loginProvider ) {
-							// If they're not already logged in, log them in anonymously
-							account.login({
-								anonymous: true,
-								callback: function () {
-									setUserScopeValue(key, data);
-								}
-							});
-						} else {
-							setUserScopeValue(key, data);
-						}
+						setUserScopeValue(key, data);
 					},
 					watch: function (key, callback) {
-						if ( ! account.loginProvider ) {
-							// If they're not already logged in, log them in anonymously
-							account.login({
-								anonymous: true,
-								callback: function () {
-									watchUserScopeValue(key, callback);
-								}
-							});
-						} else {
-							watchUserScopeValue(key, callback);
-						}
+						watchUserScopeValue(key, callback);
 					},
 				},
 			},
@@ -159,8 +139,6 @@ var Services = {
 
 		function updateUserScope() {
 			var authData = fb.getAuth();
-
-			console.log("In updateUserScope", authData);
 
 			userScope = null;
 			clearAllWatches();
