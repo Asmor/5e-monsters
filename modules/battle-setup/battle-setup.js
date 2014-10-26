@@ -15,13 +15,13 @@ Controllers.battleSetup = {
 		var combatState = combat.init(),
 			forward;
 
-		if ( combatState & NO_MONSTERS ) {
-			actionQueue.queue("encounter-manager", "You must select an encounter");
+		if ( combatState & NO_PLAYERS ) {
+			actionQueue.unshift("players.manage", "You must select a party");
 			forward = true;
 		}
 
-		if ( combatState & NO_PLAYERS ) {
-			actionQueue.queue("players.manage", "You must select a party");
+		if ( combatState & NO_MONSTERS ) {
+			actionQueue.unshift("encounter-manager", "You must select an encounter");
 			forward = true;
 		}
 

@@ -26,10 +26,17 @@ Controllers.players.edit = {
 Controllers.players.manage = {
 	url: "/manage",
 	templateUrl: "modules/players/manage.html",
-	controller: function ($scope, $state, actionQueue, players, util) {
+	controller: function ($scope, $state, account, actionQueue, players, util) {
 		window.scope = $scope;
 
 		$scope.partial = util.partialFactory("modules/players/partials/");
+
+		if ( !account.loginProvider ) {
+			actionQueue.unshift("players.manage");
+			actionQueue.unshift("account", "You must log in");
+			actionQueue.next($state);
+			return;
+		}
 
 		// If there aren't any parties, send them to edit
 		if ( !players.parties || !players.parties.length ) {

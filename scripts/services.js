@@ -182,6 +182,19 @@ var Services = {
 				queue: function (nextState, message) {
 					actionQueue.actions.push({ state: nextState, message: message });
 				},
+				unshift: function (nextState, message) {
+					// First check to make sure this state isn't already in the queue
+					var i = 0;
+					while ( i < actionQueue.actions.length ) {
+						if ( actionQueue.actions[i].state === nextState ) {
+							actionQueue.actions.splice(i, 1);
+						} else {
+							i++;
+						}
+					}
+
+					actionQueue.actions.unshift({ state: nextState, message: message });
+				}
 		};
 
 		return actionQueue;
