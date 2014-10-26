@@ -1,9 +1,5 @@
 .combatant {
-	border-bottom: 1px solid #000;
-	clear: left;
-	padding: 10px;
-	height: 27px;
-	line-height: 27px;
+	@extend %row;
 
 	@include combatant-colors;
 

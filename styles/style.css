@@ -1565,14 +1565,22 @@ ul {
 .fa-bomb:before {
   content: "\f1e2"; }
 
+.combatant-setup, .combatant {
+  min-height: 35px;
+  padding: 10px;
+  line-height: 34px;
+  clear: left;
+  border-bottom: 1px solid #000; }
+
 .encounter-button, .number-input--button, .encounter-builder--new-button, .encounter-builder--save-button, .encounter-manager-encounter--save-button, .encounter-manager-encounter--remove-button, .encounter-manager-encounter--load-button, .combatant-setup--button, .combat-controls--next-turn, .combatant--apply-button, .manage-players--party-select-button {
-  height: 25px;
-  min-width: 25px;
+  height: 35px;
+  min-width: 35px;
   text-align: center;
   background-color: #ddd;
   border: 1px solid #000;
   border-radius: 2px;
-  cursor: pointer; }
+  cursor: pointer;
+  padding: 5px; }
   .encounter-button:active, .number-input--button:active, .encounter-builder--new-button:active, .encounter-builder--save-button:active, .encounter-manager-encounter--save-button:active, .encounter-manager-encounter--remove-button:active, .encounter-manager-encounter--load-button:active, .combatant-setup--button:active, .combat-controls--next-turn:active, .combatant--apply-button:active, .manage-players--party-select-button:active {
     background-color: #eee; }
 
@@ -1622,15 +1630,16 @@ ul {
     right: 0;
     overflow: auto; }
   .encounter-builder--column__buttons {
-    width: 85px; }
-  .encounter-builder--column__name {
-    width: auto; }
+    width: 115px; }
   .encounter-builder--column__cr {
     width: 60px; }
   .encounter-builder--column__exp {
     width: 100px; }
   .encounter-builder--column__source {
     width: 180px; }
+  .encounter-builder--column__name {
+    line-height: 34px;
+    width: auto; }
   .encounter-builder--header {
     padding: 5px;
     background-color: #000;
@@ -1729,6 +1738,8 @@ ul {
     background-color: #000;
     color: #ddd;
     font-weight: bold; }
+  .monster-table--name {
+    line-height: 34px; }
   .monster-table--row {
     border-bottom: 1px solid black; }
     .monster-table--row__ludicrous {
@@ -1811,34 +1822,30 @@ ul {
   min-height: 40px;
   padding-left: 70px; }
 
-.combatant-setup {
-  border-bottom: 1px solid #000;
-  clear: left;
-  padding: 10px; }
-  .combatant-setup__player {
-    background-color: #66c2a5; }
-  .combatant-setup__enemy {
-    background-color: #fc8d62; }
-  .combatant-setup__lair {
-    background-color: #e78ac3; }
-  .combatant-setup--input {
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 0;
-    padding: 3px; }
-    .combatant-setup--input__name {
-      width: 220px; }
-  .combatant-setup--name {
-    display: inline-block;
-    width: 250px; }
-  .combatant-setup--initative-mod {
-    display: inline-block;
-    width: 150px; }
-  .combatant-setup--initative {
-    display: inline-block;
+.combatant-setup__player {
+  background-color: #66c2a5; }
+.combatant-setup__enemy {
+  background-color: #fc8d62; }
+.combatant-setup__lair {
+  background-color: #e78ac3; }
+.combatant-setup--input {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 0;
+  padding: 3px; }
+  .combatant-setup--input__name {
     width: 220px; }
-  .combatant-setup--hp {
-    display: inline-block;
-    width: 220px; }
+.combatant-setup--name {
+  display: inline-block;
+  width: 250px; }
+.combatant-setup--initative-mod {
+  display: inline-block;
+  width: 150px; }
+.combatant-setup--initative {
+  display: inline-block;
+  width: 250px; }
+.combatant-setup--hp {
+  display: inline-block;
+  width: 250px; }
 
 .combat-controls {
   padding: 10px;
@@ -1847,32 +1854,26 @@ ul {
   padding-left: 70px;
   box-sizing: border-box; }
 
-.combatant {
-  border-bottom: 1px solid #000;
-  clear: left;
-  padding: 10px;
-  height: 27px;
-  line-height: 27px; }
-  .combatant__player {
-    background-color: #66c2a5; }
-  .combatant__enemy {
-    background-color: #fc8d62; }
-  .combatant__lair {
-    background-color: #e78ac3; }
-  .combatant__active .combatant--name {
-    font-weight: bold; }
-  .combatant--name {
-    display: inline-block;
-    width: 250px; }
-  .combatant--initiative {
-    display: inline-block;
-    width: 30px;
-    text-align: right;
-    margin-right: 20px; }
-  .combatant--hp {
-    display: inline-block;
-    width: 70px;
-    text-align: right; }
+.combatant__player {
+  background-color: #66c2a5; }
+.combatant__enemy {
+  background-color: #fc8d62; }
+.combatant__lair {
+  background-color: #e78ac3; }
+.combatant__active .combatant--name {
+  font-weight: bold; }
+.combatant--name {
+  display: inline-block;
+  width: 250px; }
+.combatant--initiative {
+  display: inline-block;
+  width: 30px;
+  text-align: right;
+  margin-right: 20px; }
+.combatant--hp {
+  display: inline-block;
+  width: 70px;
+  text-align: right; }
 
 .edit-players {
   padding: 10px;

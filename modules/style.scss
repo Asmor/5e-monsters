@@ -23,6 +23,9 @@ $combatant-lair: #E78AC3; // Pink
 // #E5C494; // Brown
 // #B3B3B3; // Grey
 
+// Line height for things where text should line up with buttons
+$button-line-height: 34px;
+
 @import 'common/common';
 @import 'encounter-builder/encounter-builder';
 @import 'encounter-manager/encounter-manager';

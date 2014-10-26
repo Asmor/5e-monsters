@@ -1,11 +1,12 @@
 .encounter-button {
-	height: 25px;
-	min-width: 25px;
+	height: 35px;
+	min-width: 35px;
 	text-align: center;
 	background-color: #ddd;
 	border: 1px solid #000;
 	border-radius: 2px;
 	cursor: pointer;
+	padding: 5px;
 
 	&:active {
 		background-color: #eee;

@@ -21,11 +21,14 @@
 	}
 
 	&--column {
-		&__buttons {	width: 85px; }
-		&__name {		width: auto; }
+		&__buttons {	width: 115px; }
 		&__cr {			width: 60px; }
 		&__exp {		width: 100px; }
 		&__source {		width: 180px; }
+		&__name {
+			line-height: $button-line-height;
+			width: auto;
+		}
 	}
 
 	&--header {

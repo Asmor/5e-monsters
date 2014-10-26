@@ -25,7 +25,7 @@
 					class="encounter-builder--row"
 					ng-repeat="group in encounter.groups | sortEncounter"
 				>
-					<td class="encounter-builder--column__buttons">
+					<td class="encounter-builder--column encounter-builder--column__buttons">
 						<button ng-click="encounter.add(group.monster)" class="encounter-button">
 							<i class="fa fa-plus"></i>
 						</button>
@@ -36,16 +36,16 @@
 							<i class="fa fa-random"></i>
 						</button>
 					</td>
-					<td class="encounter-builder--column__name">
+					<td class="encounter-builder--column encounter-builder--column__name">
 						{{ group.qty }}x {{ group.monster.name }}
 					</td>
-					<td class="encounter-builder--column__cr">
+					<td class="encounter-builder--column encounter-builder--column__cr">
 						CR: {{ group.monster.cr.string }}
 					</td>
-					<td class="encounter-builder--column__exp">
+					<td class="encounter-builder--column encounter-builder--column__exp">
 						XP: {{ group.monster.cr.exp | number}}
 					</td>
-					<td class="encounter-builder--column__source">
+					<td class="encounter-builder--column encounter-builder--column__source">
 						<div
 							ng-repeat="source in group.monster.sources"
 							ng-show="filters.source[source.name]"
