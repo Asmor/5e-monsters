@@ -1528,6 +1528,14 @@ addMonster({
 	id: "9447b8b2-f96c-4607-b210-966d201d6da6",
 });
 addMonster({
+	section: "Hags", name: "Green Hag (coven)",
+	size: "Medium", type: "Fey",
+	ac: 17, hp: 82, init: 1, cr: "5",
+	alignment: alignments.ne,
+	environments: [ "forest", "swamp" ],
+	id: "af9dbb65-ebf7-468e-9746-131a66a9facb",
+});
+addMonster({
 	section: "Hags", name: "Night Hag",
 	size: "Medium", type: "Fiend",
 	ac: 17, hp: 112, init: 2, cr: "5",
@@ -1536,12 +1544,28 @@ addMonster({
 	id: "c419ea32-d524-462f-b65d-e88641fa177c",
 });
 addMonster({
+	section: "Hags", name: "Night Hag (coven)",
+	size: "Medium", type: "Fiend",
+	ac: 17, hp: 112, init: 2, cr: "7",
+	alignment: alignments.ne,
+	environments: [ "underground", "planar" ],
+	id: "ff6fee89-50c4-4bbb-a2b0-07646c55b4e2",
+});
+addMonster({
 	section: "Hags", name: "Sea Hag",
 	size: "Medium", type: "Fey",
 	ac: 14, hp: 52, init: 1, cr: "2",
 	alignment: alignments.ce,
 	environments: [ "aquatic", "coast", "underground" ],
 	id: "6e15161a-e1b2-4a0c-94b0-db75d2e6ccb3",
+});
+addMonster({
+	section: "Hags", name: "Sea Hag (coven)",
+	size: "Medium", type: "Fey",
+	ac: 14, hp: 52, init: 1, cr: "4",
+	alignment: alignments.ce,
+	environments: [ "aquatic", "coast", "underground" ],
+	id: "0f788005-3e4c-47b0-8ffe-8266c424d825",
 });
 addMonster({
 	section: "Half-Dragon", name: "Half-Red Dragon Veteran",

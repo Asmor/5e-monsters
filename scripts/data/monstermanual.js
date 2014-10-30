@@ -217,6 +217,7 @@
 		[ "7087acfe-930d-49b7-9fab-a0351650c7ce", 277 ], // Gray Slaad
 		[ "41eb895f-32b5-4389-8e99-145545851edc", 95 ], // Green Dragon Wyrmling
 		[ "9447b8b2-f96c-4607-b210-966d201d6da6", 177 ], // Green Hag
+		[ "af9dbb65-ebf7-468e-9746-131a66a9facb", 177 ], // Green Hag (coven)
 		[ "69a7ed5e-16a9-466d-90a9-867136fb9469", 277 ], // Green Slaad
 		[ "58efcfe3-54aa-4680-82c0-4ac9cf417bcd", 172 ], // Grell
 		[ "9ab9a61b-5298-44e9-8950-167e4a4e9c98", 173 ], // Grick
@@ -298,6 +299,7 @@
 		[ "fea2cf64-fbc7-45e9-b901-ede53d696bf3", 62 ], // Nalfeshnee
 		[ "87ae63b6-4be9-43d7-a096-5556018c5999", 32 ], // Needle Blight
 		[ "c419ea32-d524-462f-b65d-e88641fa177c", 178 ], // Night Hag
+		[ "ff6fee89-50c4-4bbb-a2b0-07646c55b4e2", 178 ], // Night Hag (coven)
 		[ "4ecef288-1f16-48b2-be23-f36b7fde5ced", 235 ], // Nightmare
 		[ "f9a076f4-da7e-457a-912e-9fe8d752ef3e", 348 ], // Noble
 		[ "ed0bb2d0-aef6-4a4b-a9cb-4a38045cc29c", 236 ], // Nothic
@@ -362,6 +364,7 @@
 		[ "d30a64ee-ac17-42e5-99ff-2186111615ad", 337 ], // Scorpion
 		[ "14f5f317-1640-4254-b8d7-4d2dadb97394", 349 ], // Scout
 		[ "6e15161a-e1b2-4a0c-94b0-db75d2e6ccb3", 179 ], // Sea Hag
+		[ "0f788005-3e4c-47b0-8ffe-8266c424d825", 179 ], // Sea Hag (coven)
 		[ "ec2f7099-286e-4384-990a-526cf70b1c55", 337 ], // Sea Horse
 		[ "d356934b-d78b-49bf-9ce0-b9fb9946eb64", 64 ], // Shadow Demon
 		[ "c4551c2c-c686-4105-83f6-87c873f8809f", 269 ], // Shadow
