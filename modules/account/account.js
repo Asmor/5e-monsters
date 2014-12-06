@@ -1,7 +1,6 @@
-/* global Controllers */
 "use strict";
 
-Controllers.account = {
+define({
 	url: "/account",
 	templateUrl: "modules/account/account.html",
 	controller: function ($scope, $state, account, actionQueue, util) {
@@ -22,4 +21,4 @@ Controllers.account = {
 			});
 		};
 	},
-};
+});

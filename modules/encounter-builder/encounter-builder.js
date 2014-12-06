@@ -1,7 +1,6 @@
-/* global Controllers */
 "use strict";
 
-Controllers.encounterBuilder = {
+define({
 	url: "/encounter-builder",
 	templateUrl: "modules/encounter-builder/encounter-builder.html",
 	controller: function (
@@ -148,4 +147,4 @@ Controllers.encounterBuilder = {
 			store.set("5em-filters", $scope.filters);
 		}, true);
 	},
-};
+});

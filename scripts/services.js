@@ -21,7 +21,7 @@
 /* global types */
 "use strict";
 
-var Services = {
+define({
 	account: function ($rootScope) {
 		var fb = new Firebase("https://resplendent-torch-9803.firebaseio.com"),
 			account = {
@@ -762,4 +762,4 @@ var Services = {
 			partialFactory: partialFactory,
 		};
 	},
-};
+});

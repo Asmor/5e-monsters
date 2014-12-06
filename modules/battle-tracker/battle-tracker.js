@@ -1,7 +1,6 @@
-/* global Controllers */
 "use strict";
 
-Controllers.battleTracker = {
+define({
 	url: "/fight",
 	templateUrl: "modules/battle-tracker/battle-tracker.html",
 	controller: function ($scope, $state, combat, util) {
@@ -16,4 +15,4 @@ Controllers.battleTracker = {
 		$scope.combat = combat;
 		combat.begin();
 	},
-};
+});

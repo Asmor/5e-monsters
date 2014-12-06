@@ -1,44 +1,64 @@
-/* global Controllers */
-/* global Directives */
-/* global Filters */
-/* global Services */
 "use strict";
 
-angular
-	.module("monsterListApp", [
-		"ui.router",
-		"ngTouch",
-		"angularUtils.directives.dirPagination",
-		"firebase",
-	])
-	.config(function ($stateProvider, $urlRouterProvider) {
-		// Default
-		$urlRouterProvider.otherwise("/encounter-builder");
+require([
+		"modules/encounter-builder/encounter-builder",
+		"modules/encounter-manager/encounter-manager",
+		"modules/battle-setup/battle-setup",
+		"modules/battle-tracker/battle-tracker",
+		"modules/players/players",
+		"modules/account/account",
+		"modules/common/common",
+		"scripts/filters",
+		"scripts/services",
+	], function (
+		encounterBuilder,
+		encounterManager,
+		battleSetup,
+		battleTracker,
+		players,
+		account,
+		common,
+		filters,
+		services
+	) {
+	angular
+		.module("monsterListApp", [
+			"ui.router",
+			"ngTouch",
+			"angularUtils.directives.dirPagination",
+			"firebase",
+		])
+		.config(function ($stateProvider, $urlRouterProvider) {
+			// Default
+			$urlRouterProvider.otherwise("/encounter-builder");
 
-		// Main menu page
-		$stateProvider.state("encounter-builder", Controllers.encounterBuilder);
-		$stateProvider.state("encounter-manager", Controllers.encounterManager);
-		$stateProvider.state("battle-setup", Controllers.battleSetup);
-		$stateProvider.state("battle-tracker", Controllers.battleTracker);
-		$stateProvider.state("players", Controllers.players.main);
-		$stateProvider.state("players.edit", Controllers.players.edit);
-		$stateProvider.state("players.manage", Controllers.players.manage);
-		$stateProvider.state("account", Controllers.account);
-	})
-	.directive("numberInput", Directives.numberInput)
-	.filter("monstersFilter", Filters.monster)
-	.filter("negative", Filters.negative)
-	.filter("positive", Filters.positive)
-	.filter("sortEncounter", Filters.sortEncounter)
-	.factory("account", Services.account)
-	.factory("actionQueue", Services.actionQueue)
-	.factory("combat", Services.combat)
-	.factory("encounter", Services.encounter)
-	.factory("library", Services.library)
-	.factory("metaInfo", Services.metaInfo)
-	.factory("monsters", Services.monsters)
-	.factory("players", Services.players)
-	.factory("sources", Services.sources)
-	.factory("store", Services.store)
-	.factory("util", Services.util)
-;
+			// Main menu page
+			$stateProvider.state("encounter-builder", encounterBuilder);
+			$stateProvider.state("encounter-manager", encounterManager);
+			$stateProvider.state("battle-setup", battleSetup);
+			$stateProvider.state("battle-tracker", battleTracker);
+			$stateProvider.state("players", players.main);
+			$stateProvider.state("players.edit", players.edit);
+			$stateProvider.state("players.manage", players.manage);
+			$stateProvider.state("account", account);
+		})
+		.directive("numberInput", common.numberInput)
+		.filter("monstersFilter", filters.monster)
+		.filter("negative", filters.negative)
+		.filter("positive", filters.positive)
+		.filter("sortEncounter", filters.sortEncounter)
+		.factory("account", services.account)
+		.factory("actionQueue", services.actionQueue)
+		.factory("combat", services.combat)
+		.factory("encounter", services.encounter)
+		.factory("library", services.library)
+		.factory("metaInfo", services.metaInfo)
+		.factory("monsters", services.monsters)
+		.factory("players", services.players)
+		.factory("sources", services.sources)
+		.factory("store", services.store)
+		.factory("util", services.util)
+	;
+
+	angular.bootstrap(document, ['monsterListApp']);
+});

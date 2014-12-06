@@ -1,9 +1,8 @@
-/* global Controllers */
 /* global NO_MONSTERS */
 /* global NO_PLAYERS */
 "use strict";
 
-Controllers.battleSetup = {
+define({
 	url: "/battle-setup",
 	templateUrl: "modules/battle-setup/battle-setup.html",
 	controller: function ($scope, $state, actionQueue, combat, util) {
@@ -33,4 +32,4 @@ Controllers.battleSetup = {
 			return;
 		}
 	},
-};
+});

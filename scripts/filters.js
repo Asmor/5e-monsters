@@ -2,7 +2,7 @@
 /* global checkMonster */
 "use strict";
 
-var Filters = {
+define({
 	monster: function () {
 		return function ( input, filters ) {
 			var output = [], i;
@@ -78,4 +78,4 @@ var Filters = {
 			return sorted;
 		};
 	},
-};
+});

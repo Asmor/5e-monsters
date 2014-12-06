@@ -1,7 +1,6 @@
-/* global Controllers */
 "use strict";
 
-Controllers.encounterManager = {
+define({
 	url: "/encounter-manager",
 	templateUrl: "modules/encounter-manager/encounter-manager.html",
 	controller: function ($scope, $state, account, actionQueue, encounter, library, monsters, util) {
@@ -73,4 +72,4 @@ Controllers.encounterManager = {
 			}
 		};
 	}
-};
+});
