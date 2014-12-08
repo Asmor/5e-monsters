@@ -1,12 +1,14 @@
-/* global registerMonster */
-/* global registerSource */
 "use strict";
 
-(function () {
+define([
+	"scripts/monster.js",
+	"scripts/misc.js",
+	"scripts/data/monsters",
+], function (monsterLib, miscLib) {
 	var sourceName = "Basic Rules v1",
 		i, toAdd;
 
-	registerSource(sourceName, false);
+	miscLib.registerSource(sourceName, false);
 
 	toAdd = [
 		[ "a27291de-91c5-4b8e-9ffe-5055e90cc6cd", 8 ], // Adult Red Dragon
@@ -181,6 +183,8 @@
 	];
 
 	for ( i = 0; i < toAdd.length; i++ ) {
-		registerMonster(toAdd[i][0], sourceName, toAdd[i][1]);
+		monsterLib.registerMonster(toAdd[i][0], sourceName, toAdd[i][1]);
 	}
-}());
+
+	console.log("Finished adding", sourceName, "Entries added:", toAdd.length, "Monster index size:", miscLib.monsters.length);
+});

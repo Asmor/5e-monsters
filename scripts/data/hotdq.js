@@ -1,12 +1,14 @@
-/* global registerMonster */
-/* global registerSource */
 "use strict";
 
-(function () {
+define([
+	"scripts/monster.js",
+	"scripts/misc.js",
+	"scripts/data/monsters",
+], function (monsterLib, miscLib) {
 	var sourceName = "Hoard of the Dragon Queen",
 		i, toAdd;
 
-	registerSource(sourceName, true);
+	miscLib.registerSource(sourceName, true);
 
 	toAdd = [
 		[ "f495d63f-f936-4985-a2d3-6a8ec2a20fb0", 88 ], // Ambush Drake
@@ -16,6 +18,6 @@
 	];
 
 	for ( i = 0; i < toAdd.length; i++ ) {
-		registerMonster(toAdd[i][0], sourceName, toAdd[i][1]);
+		monsterLib.registerMonster(toAdd[i][0], sourceName, toAdd[i][1]);
 	}
-}());
+});

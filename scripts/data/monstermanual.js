@@ -1,12 +1,14 @@
-/* global registerMonster */
-/* global registerSource */
 "use strict";
 
-(function () {
+define([
+	"scripts/monster.js",
+	"scripts/misc.js",
+	"scripts/data/monsters",
+], function (monsterLib, miscLib) {
 	var sourceName = "Monster Manual",
 		i, toAdd;
 
-	registerSource(sourceName, true);
+	miscLib.registerSource(sourceName, true);
 
 	toAdd = [
 		[ "0cd9a2e0-16bc-4c84-86c8-feb035c0b5d6", 12 ], // Aarakocra
@@ -460,6 +462,6 @@
 	];
 
 	for ( i = 0; i < toAdd.length; i++ ) {
-		registerMonster(toAdd[i][0], sourceName, toAdd[i][1]);
+		monsterLib.registerMonster(toAdd[i][0], sourceName, toAdd[i][1]);
 	}
-}());
+});

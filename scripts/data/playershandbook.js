@@ -1,12 +1,14 @@
-/* global registerMonster */
-/* global registerSource */
 "use strict";
 
-(function () {
+define([
+	"scripts/monster.js",
+	"scripts/misc.js",
+	"scripts/data/monsters",
+], function (monsterLib, miscLib) {
 	var sourceName = "Player's Handbook",
 		i, toAdd;
 
-	registerSource(sourceName, true);
+	miscLib.registerSource(sourceName, true);
 
 	toAdd = [
 		[ "afee8041-1219-4d31-931d-3c3a08b0b449", 304 ], // Bat
@@ -43,6 +45,6 @@
 	];
 
 	for ( i = 0; i < toAdd.length; i++ ) {
-		registerMonster(toAdd[i][0], sourceName, toAdd[i][1]);
+		monsterLib.registerMonster(toAdd[i][0], sourceName, toAdd[i][1]);
 	}
-}());
+});

@@ -1,12 +1,14 @@
-/* global registerMonster */
-/* global registerSource */
 "use strict";
 
-(function () {
+define([
+	"scripts/monster.js",
+	"scripts/misc.js",
+	"scripts/data/monsters",
+], function (monsterLib, miscLib) {
 	var sourceName = "Placeholders",
 		i, toAdd;
 
-	registerSource(sourceName, false);
+	miscLib.registerSource(sourceName, false);
 
 	toAdd = [
 		[ "cf33021b-ebd7-4db3-884d-0b48e8211ac3", 0 ], // CR 0
@@ -46,6 +48,6 @@
 	];
 
 	for ( i = 0; i < toAdd.length; i++ ) {
-		registerMonster(toAdd[i][0], sourceName, toAdd[i][1]);
+		monsterLib.registerMonster(toAdd[i][0], sourceName, toAdd[i][1]);
 	}
-}());
+});

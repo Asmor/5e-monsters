@@ -1,12 +1,14 @@
-/* global registerMonster */
-/* global registerSource */
 "use strict";
 
-(function () {
+define([
+	"scripts/monster.js",
+	"scripts/misc.js",
+	"scripts/data/monsters",
+], function (monsterLib, miscLib) {
 	var sourceName = "HotDQ supplement",
 		i, toAdd;
 
-	registerSource(sourceName, false);
+	miscLib.registerSource(sourceName, false);
 
 	toAdd = [
 		[ "f88906c2-146d-4abb-8537-8bf5e1d0ac97", 4 ], // Acolyte
@@ -70,6 +72,6 @@
 	];
 
 	for ( i = 0; i < toAdd.length; i++ ) {
-		registerMonster(toAdd[i][0], sourceName, toAdd[i][1]);
+		monsterLib.registerMonster(toAdd[i][0], sourceName, toAdd[i][1]);
 	}
-}());
+});
