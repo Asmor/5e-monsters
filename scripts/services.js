@@ -485,20 +485,16 @@ var Services = {
 					count = encounter.playerCount,
 					level = encounter.partyLevel;
 
-				if ( exp === 0 ) {
-					return false;
-				}
-
-				if ( exp <= ( count * level.easy ) ) {
+				if ( exp < ( count * level.easy ) ) {
+					return '';
+				} else if ( exp < ( count * level.medium ) ) {
 					return "Easy";
-				} else if ( exp <= ( count * level.medium ) ) {
+				} else if ( exp < ( count * level.hard ) ) {
 					return "Medium";
-				} else if ( exp <= ( count * level.hard ) ) {
+				} else if ( exp < ( count * level.deadly ) ) {
 					return "Hard";
-				} else if ( exp <= ( count * level.deadly ) ) {
-					return "Deadly";
 				} else {
-					return "Ludicrous";
+					return "Deadly";
 				}
 			},
 		});

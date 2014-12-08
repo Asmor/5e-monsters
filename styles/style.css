@@ -1669,9 +1669,6 @@ ul {
   box-sizing: border-box; }
   .filters--definition {
     padding: 5px; }
-    .filters--definition__ludicrous {
-      background-color: #333;
-      color: #ddd; }
     .filters--definition__deadly {
       background-color: #fbb; }
     .filters--definition__hard {
@@ -1742,9 +1739,6 @@ ul {
     line-height: 34px; }
   .monster-table--row {
     border-bottom: 1px solid black; }
-    .monster-table--row__ludicrous {
-      background-color: #333;
-      color: #ddd; }
     .monster-table--row__deadly {
       background-color: #fbb; }
     .monster-table--row__hard {

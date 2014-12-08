@@ -86,18 +86,16 @@ Controllers.encounterBuilder = {
 				monsterExp = monster.cr.exp;
 
 			if ( monsterExp > threat.deadly ) {
-				return "ludicrous";
-			} else if ( monsterExp > threat.hard ) {
 				return "deadly";
-			} else if ( monsterExp > threat.medium ) {
+			} else if ( monsterExp > threat.hard ) {
 				return "hard";
-			} else if ( monsterExp > threat.easy ) {
+			} else if ( monsterExp > threat.medium ) {
 				return "medium";
-			} else if ( monsterExp > threat.pair ) {
+			} else if ( monsterExp > threat.easy ) {
 				return "easy";
-			} else if ( monsterExp > threat.group ) {
+			} else if ( monsterExp > threat.pair ) {
 				return "pair";
-			} else if ( monsterExp > threat.trivial ) {
+			} else if ( monsterExp > threat.group ) {
 				return "group";
 			} else {
 				return "trivial";
