@@ -29,21 +29,29 @@ var Services = {
 				login: function (args) {
 					if ( args.with && args.with.match(/^(github|google|twitter)$/) ) {
 						fb.authWithOAuthPopup(args.with, function (error, authData) {
-							$rootScope.$apply(function () {
-								if ( typeof args.callback === "function" ) {
-									args.callback(error, authData);
-								}
-								updateUserScope();
-							});
+							if (error) {
+								console.warn("Failed to login", error);
+							} else {
+								$rootScope.$apply(function () {
+									if ( typeof args.callback === "function" ) {
+										args.callback(error, authData);
+									}
+									updateUserScope();
+								});
+							}
 						});
 					} else if ( args.anonymous ) {
 						fb.authAnonymously(function (error, authData) {
-							$rootScope.$apply(function () {
-								if ( typeof args.callback === "function" ) {
-									args.callback(error, authData);
-								}
-								updateUserScope();
-							});
+							if (error) {
+								console.warn("Failed to login", error);
+							} else {
+								$rootScope.$apply(function () {
+									if ( typeof args.callback === "function" ) {
+										args.callback(error, authData);
+									}
+									updateUserScope();
+								});
+							}
 						});
 					} else {
 						fb.authWithPassword({
@@ -51,12 +59,16 @@ var Services = {
 							email: args.email,
 							password: args.password,
 						}, function (error) {
-							$rootScope.$apply(function () {
-								if ( typeof args.callback === "function" ) {
-									args.callback(error);
-								}
-								updateUserScope();
-							});
+							if (error) {
+								console.warn("Failed to login", error);
+							} else {
+								$rootScope.$apply(function () {
+									if ( typeof args.callback === "function" ) {
+										args.callback(error);
+									}
+									updateUserScope();
+								});
+							}
 						});
 					}
 				},
