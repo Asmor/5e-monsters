@@ -1,16 +1,9 @@
 "use strict";
 
 define([
-	"scripts/monster.js",
-	"scripts/misc.js",
-	"scripts/data/monsters",
-], function (monsterLib, miscLib) {
-	var sourceName = "Placeholders",
-		i, toAdd;
-
-	miscLib.registerSource(sourceName, false);
-
-	toAdd = [
+], {
+	sourceName: "Placeholders",
+	contents: [
 		[ "cf33021b-ebd7-4db3-884d-0b48e8211ac3", 0 ], // CR 0
 		[ "6107ed19-210b-47a4-a05d-3bf2489e6f4c", 0 ], // CR 1/8
 		[ "ac37c9c6-a51b-4b7d-9c53-01a59a46965c", 0 ], // CR 1/4
@@ -45,9 +38,5 @@ define([
 		[ "6da69e50-4a20-4730-b84d-bdc5346a32df", 0 ], // CR 28
 		[ "e2589f3b-62dd-4c38-906b-6b262058188a", 0 ], // CR 29
 		[ "28e78bc1-ba2a-4e9d-8dc8-dfe6c7e4cbea", 0 ], // CR 30
-	];
-
-	for ( i = 0; i < toAdd.length; i++ ) {
-		monsterLib.registerMonster(toAdd[i][0], sourceName, toAdd[i][1]);
-	}
+	],
 });
