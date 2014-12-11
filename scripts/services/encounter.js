@@ -2,9 +2,8 @@
 
 define([
 	"scripts/misc",
-	"scripts/randomencounter",
-], function (miscLib, generateRandomEncounter) {
-	return ["$rootScope", "store", "metaInfo", "monsters", "players", "util", function ($rootScope, store, metaInfo, monsters, players, util) {
+], function (miscLib) {
+	return ["$rootScope", "randomEncounter", "store", "metaInfo", "monsters", "players", "util", function ($rootScope, randomEncounter, store, metaInfo, monsters, players, util) {
 		var encounter = {
 				getMultiplier: miscLib.getMultiplier,
 				groups: {},
@@ -29,7 +28,7 @@ define([
 					encounter.reference = null;
 				},
 				generateRandom: function (filters) {
-					var monsters = generateRandomEncounter(encounter.playerCount, encounter.partyLevel, filters),
+					var monsters = randomEncounter.getRandomEncounter(encounter.playerCount, encounter.partyLevel, filters),
 						i;
 
 					encounter.reset();

@@ -17,6 +17,7 @@ require([
 	"scripts/services/metaInfo",
 	"scripts/services/monsters",
 	"scripts/services/players",
+	"scripts/services/randomencounter",
 	"scripts/services/sources",
 	"scripts/services/store",
 	"scripts/services/util",
@@ -37,6 +38,7 @@ require([
 	metaInfoService,
 	monstersService,
 	playersService,
+	randomencounterService,
 	sourcesService,
 	storeService,
 	utilService
@@ -75,6 +77,7 @@ require([
 		.factory("metaInfo", metaInfoService)
 		.factory("monsters", monstersService)
 		.factory("players", playersService)
+		.factory("randomEncounter", randomencounterService)
 		.factory("sources", sourcesService)
 		.factory("store", storeService)
 		.factory("util", utilService)

@@ -54,9 +54,7 @@ define([
 
 		return {
 			all: all,
-			// all: miscLib.monsters.sort(function (a, b) {
-			// 	return (a.name > b.name) ? 1 : -1;
-			// }),
+			byCr: byCr,
 			byId: byId,
 			check: monsterLib.checkMonster,
 		};
