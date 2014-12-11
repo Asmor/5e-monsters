@@ -80,5 +80,5 @@ require([
 		.factory("util", utilService)
 	;
 
-angular.bootstrap(document, ['monsterListApp']);
+	angular.bootstrap(document, ['monsterListApp']);
 });
