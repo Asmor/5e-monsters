@@ -4,13 +4,8 @@ define([
 	"scripts/monster",
 	"scripts/misc",
 	"scripts/randomencounter",
-	// "scripts/data/basicrules",
-	"scripts/data/custom",
-	// "scripts/data/hotdq",
-	// "scripts/data/hotdqsup",
-	// "scripts/data/monstermanual",
-	// "scripts/data/playershandbook",
-], function (monsterLib, miscLib, generateRandomEncounter) {
+	"scripts/data",
+], function (monsterLib, miscLib, generateRandomEncounter, data) {
 	return {
 		account: function ($rootScope) {
 			var fb = new Firebase("https://resplendent-torch-9803.firebaseio.com"),
@@ -613,13 +608,47 @@ define([
 		},
 
 		monsters: function () {
-			console.log(miscLib, miscLib.monsters);
+			var i, j, m, source,
+				all = [],
+				byId = {};
+
+			for ( i = 0; i < data.monsters.length; i++ ) {
+				m = new monsterLib.Monster(data.monsters[i]);
+
+				all.push(m);
+				byId[m.id] = m;
+
+				if ( ! m.special ) {
+					miscLib.crInfo[m.cr.string].monsters.push(m);
+				}
+
+				// TODO: CP from addMonster. Is this actually used?
+				// if (args.tags) {
+				// 	register(miscLib.tags, args.tags);
+				// }
+			}
+
+			for ( i = 0; i < data.sources.length; i++ ) {
+				source = data.sources[i];
+
+				miscLib.sources.push(source.name);
+				miscLib.sourceFilters[source.name] = source.initialState;
+
+				for ( j = 0; j < source.contents.length; j++ ) {
+					m = source.contents[j];
+					byId[m[0]].sources.push({
+						name: source.name,
+						page: m[1]
+					});
+				}
+			}
+			
 			return {
-				all: miscLib.monsters,
+				all: all,
 				// all: miscLib.monsters.sort(function (a, b) {
 				// 	return (a.name > b.name) ? 1 : -1;
 				// }),
-				byId: miscLib.monstersById,
+				byId: byId,
 				check: monsterLib.checkMonster,
 			};
 		},

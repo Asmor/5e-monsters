@@ -1,8 +1,8 @@
 "use strict";
 
-define([
-], {
-	sourceName: "Placeholders",
+define({
+	name: "Placeholders",
+	initialState: false,
 	contents: [
 		[ "cf33021b-ebd7-4db3-884d-0b48e8211ac3", 0 ], // CR 0
 		[ "6107ed19-210b-47a4-a05d-3bf2489e6f4c", 0 ], // CR 1/8

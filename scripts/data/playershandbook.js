@@ -1,16 +1,9 @@
 "use strict";
 
-define([
-	"scripts/monster.js",
-	"scripts/misc.js",
-	"scripts/data/monsters",
-], function (monsterLib, miscLib) {
-	var sourceName = "Player's Handbook",
-		i, toAdd;
-
-	miscLib.registerSource(sourceName, true);
-
-	toAdd = [
+define({
+	name: "Player's Handbook",
+	initialState: true,
+	contents: [
 		[ "afee8041-1219-4d31-931d-3c3a08b0b449", 304 ], // Bat
 		[ "a233bc77-4107-456a-89d2-9d91b4ada1a2", 304 ], // Black Bear
 		[ "14ef11ed-2340-46de-a4eb-e9932f839f5d", 304 ], // Boar
@@ -42,9 +35,5 @@ define([
 		[ "8d0e875b-95f1-47a5-9d98-72ac4738c860", 311 ], // Warhorse
 		[ "9e4c024d-0b8b-40c7-9e4a-2b447450ab4e", 311 ], // Wolf
 		[ "ac42a801-316b-4f28-b552-592d7e751649", 311 ], // Zombie
-	];
-
-	for ( i = 0; i < toAdd.length; i++ ) {
-		monsterLib.registerMonster(toAdd[i][0], sourceName, toAdd[i][1]);
-	}
+	],
 });

@@ -1,16 +1,9 @@
 "use strict";
 
-define([
-	"scripts/monster.js",
-	"scripts/misc.js",
-	"scripts/data/monsters",
-], function (monsterLib, miscLib) {
-	var sourceName = "Monster Manual",
-		i, toAdd;
-
-	miscLib.registerSource(sourceName, true);
-
-	toAdd = [
+define({
+	name: "Monster Manual",
+	initialState: true,
+	contents: [
 		[ "0cd9a2e0-16bc-4c84-86c8-feb035c0b5d6", 12 ], // Aarakocra
 		[ "43385a8d-759b-4f44-a712-d46069b8dd88", 13 ], // Aboleth
 		[ "52386d70-24c8-461a-ba1f-4fbaccc6d446", 306 ], // Abominable Yeti
@@ -459,9 +452,5 @@ define([
 		[ "718cb508-899e-46cd-8c26-6271fe470d62", 309 ], // Yuan-ti Malison
 		[ "63edeedd-e398-4b1c-b4b8-557286512a8a", 310 ], // Yuan-ti Pureblood
 		[ "ac42a801-316b-4f28-b552-592d7e751649", 316 ], // Zombie
-	];
-
-	for ( i = 0; i < toAdd.length; i++ ) {
-		monsterLib.registerMonster(toAdd[i][0], sourceName, toAdd[i][1]);
-	}
+	],
 });

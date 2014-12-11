@@ -128,7 +128,7 @@ define(["scripts/misc"], function (miscLib) {
 	}
 
 	function isInSource(monster, sources) {
-		if ( !monster ) {
+		if ( !monster || !monster.sources) {
 			return false;
 		}
 
@@ -141,27 +141,6 @@ define(["scripts/misc"], function (miscLib) {
 		return false;
 	}
 
-	function registerMonster(id, source, page) {
-		// for ( var i = 0; i < miscLib.monsters.length; i++ ) {
-		// 	if (miscLib.monsters[i].name === id) {
-		// 		console.log([
-		// 			"[ \"",
-		// 			miscLib.monsters[i].id,
-		// 			"\", ",
-		// 			page || 0,
-		// 			" ], // ",
-		// 			id
-		// 		].join(""));
-		// 	}
-		// }
-
-		if ( ! miscLib.monstersById[id] ) {
-			console.warn("Unable to find", id, source);
-			return;
-		}
-
-		miscLib.monstersById[id].sources.push({ name: source, page: page });
-	}
 	return {
 		addMonster: addMonster,
 		checkMonster: checkMonster,
@@ -169,6 +148,5 @@ define(["scripts/misc"], function (miscLib) {
 		Monster: Monster,
 		parseSize: parseSize,
 		register: register,
-		registerMonster: registerMonster,
 	};
 });

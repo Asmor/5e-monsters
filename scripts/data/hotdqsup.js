@@ -1,16 +1,9 @@
 "use strict";
 
-define([
-	"scripts/monster.js",
-	"scripts/misc.js",
-	"scripts/data/monsters",
-], function (monsterLib, miscLib) {
-	var sourceName = "HotDQ supplement",
-		i, toAdd;
-
-	miscLib.registerSource(sourceName, false);
-
-	toAdd = [
+define({
+	name: "HotDQ supplement",
+	initialState: false,
+	contents: [
 		[ "f88906c2-146d-4abb-8537-8bf5e1d0ac97", 4 ], // Acolyte
 		[ "0a70230e-18d8-49e3-898a-49e740acb4a2", 4 ], // Adult Blue Dragon
 		[ "4218c74b-27c2-45be-abde-e23ad4223061", 5 ], // Adult White Dragon
@@ -69,9 +62,5 @@ define([
 		[ "9b9d4516-f2ae-449d-80ba-0ce4e85438cc", 23 ], // Wyvern
 		[ "718cb508-899e-46cd-8c26-6271fe470d62", 23 ], // Yuan-ti Malison
 		[ "63edeedd-e398-4b1c-b4b8-557286512a8a", 24 ], // Yuan-ti Pureblood
-	];
-
-	for ( i = 0; i < toAdd.length; i++ ) {
-		monsterLib.registerMonster(toAdd[i][0], sourceName, toAdd[i][1]);
-	}
+	],
 });

@@ -1,16 +1,9 @@
 "use strict";
 
-define([
-	"scripts/monster.js",
-	"scripts/misc.js",
-	"scripts/data/monsters",
-], function (monsterLib, miscLib) {
-	var sourceName = "Basic Rules v1",
-		i, toAdd;
-
-	miscLib.registerSource(sourceName, false);
-
-	toAdd = [
+define({
+	name: "Basic Rules v1",
+	initialState: false,
+	contents: [
 		[ "a27291de-91c5-4b8e-9ffe-5055e90cc6cd", 8 ], // Adult Red Dragon
 		[ "071f1203-f6e6-4fcf-928c-b9cdeb256b2b", 9 ], // Air Elemental
 		[ "4dfdcf3d-5bdc-4d4d-a55c-6a9149d97079", 9 ], // Allosaurus
@@ -180,11 +173,5 @@ define([
 		[ "dd58be51-e15c-4abb-8cf4-97263526d5d5", 55 ], // Mage
 		[ "cc9e3c32-1c13-40a5-9d06-0ded81c4e3cb", 55 ], // Priest
 		[ "9d458fc1-a489-49f8-9417-1c6c495d5e98", 55 ], // Thug
-	];
-
-	for ( i = 0; i < toAdd.length; i++ ) {
-		monsterLib.registerMonster(toAdd[i][0], sourceName, toAdd[i][1]);
-	}
-
-	console.log("Finished adding", sourceName, "Entries added:", toAdd.length, "Monster index size:", miscLib.monsters.length);
+	],
 });

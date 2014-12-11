@@ -261,11 +261,6 @@ define(["scripts/constants"], function (constants) {
 		};
 	}
 
-	function registerSource(name, initialState) {
-		sources.push(name);
-		sourceFilters[name] = initialState;
-	}
-
 	// via http://bost.ocks.org/mike/shuffle/
 	function shuffle(array) {
 		var m = array.length, t, i;
@@ -300,7 +295,6 @@ window.monstersById = monstersById;
 		monsters: monsters,
 		monstersById: monstersById,
 		partialFactory: partialFactory,
-		registerSource: registerSource,
 		sizes: sizes,
 		sourceFilters: sourceFilters,
 		sources: sources,
