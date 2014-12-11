@@ -38,7 +38,7 @@ define([
 					}
 				},
 				randomize: function (monster, filters) {
-					var monsterList = util.getShuffledMonsterList(monster.cr.string),
+					var monsterList = randomEncounter.getShuffledMonsterList(monster.cr.string),
 						qty = encounter.groups[monster.id].qty;
 
 					while ( monsterList.length ) {
