@@ -1,8 +1,8 @@
 "use strict";
 
 define([
-	"scripts/monster.js",
-	"scripts/misc.js",
+	"scripts/monster",
+	"scripts/misc",
 	"scripts/randomencounter",
 	// "scripts/data/basicrules",
 	"scripts/data/custom",
