@@ -143,4 +143,3 @@ define(["scripts/constants.js"], function (constants) {
 		return combat;
 	}];
 });
-
