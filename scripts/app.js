@@ -10,6 +10,7 @@ require([
 		"modules/common/common",
 		"scripts/filters",
 		"scripts/services",
+		"scripts/services/metaInfo",
 	], function (
 		encounterBuilder,
 		encounterManager,
@@ -19,7 +20,8 @@ require([
 		account,
 		common,
 		filters,
-		services
+		services,
+		metaInfoService
 	) {
 	angular
 		.module("monsterListApp", [
@@ -52,7 +54,7 @@ require([
 		.factory("combat", services.combat)
 		.factory("encounter", services.encounter)
 		.factory("library", services.library)
-		.factory("metaInfo", services.metaInfo)
+		.factory("metaInfo", metaInfoService)
 		.factory("monsters", services.monsters)
 		.factory("players", services.players)
 		.factory("sources", services.sources)

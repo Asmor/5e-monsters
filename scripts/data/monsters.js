@@ -1,10 +1,8 @@
 "use strict";
 
 define([
-	"scripts/misc",
-], function (miscLib) {
-	var alignments = miscLib.alignments;
-
+	"scripts/meta/alignments",
+], function (alignments) {
 	return [
 		// Custom
 		{ name: "CR 0",   cr: "0",   special: true, id: "cf33021b-ebd7-4db3-884d-0b48e8211ac3" },
@@ -3621,5 +3619,4 @@ define([
 			id: "8f11d800-1103-492b-ae24-320ef1013644",
 		},
 	];
-
 });

@@ -72,6 +72,7 @@ define([
 				}
 
 				currentIndex += step;
+				window.miscLib = miscLib;
 				monsterList = miscLib.getShuffledMonsterList(miscLib.crList[currentIndex].string);
 			}
 		}

@@ -595,22 +595,13 @@ define([
 			return library;
 		},
 
-		metaInfo: function () {
-			return {
-				alignments: miscLib.alignments,
-				crList: miscLib.crList,
-				environments: miscLib.environments,
-				levels: miscLib.levels,
-				tags: miscLib.tags,
-				sizes: miscLib.sizes,
-				types: miscLib.types,
-			};
-		},
-
-		monsters: function () {
+		monsters: function (metaInfo) {
 			var i, j, m, source,
 				all = [],
-				byId = {};
+				byId = {},
+				byCr = {};
+
+			window.metaInfo = metaInfo;
 
 			for ( i = 0; i < data.monsters.length; i++ ) {
 				m = new monsterLib.Monster(data.monsters[i]);
@@ -619,7 +610,11 @@ define([
 				byId[m.id] = m;
 
 				if ( ! m.special ) {
-					miscLib.crInfo[m.cr.string].monsters.push(m);
+					if ( ! byCr[m.cr.string] ) {
+						byCr[m.cr.string] = [];
+					}
+
+					byCr[m.cr.string].push(m);
 				}
 
 				// TODO: CP from addMonster. Is this actually used?
@@ -643,6 +638,10 @@ define([
 				}
 			}
 			
+			all.sort(function (a, b) {
+				return (a.name > b.name) ? 1 : -1;
+			});
+
 			return {
 				all: all,
 				// all: miscLib.monsters.sort(function (a, b) {

@@ -1,5 +1,8 @@
 "use strict";
-define(["scripts/misc"], function (miscLib) {
+define([
+	"scripts/meta/alignments",
+	"scripts/meta/crInfo",
+], function (alignments, crInfo) {
 	function Monster(args) {
 		var monster = this;
 		monster.id = args.id;
@@ -8,11 +11,11 @@ define(["scripts/misc"], function (miscLib) {
 		monster.ac = args.ac;
 		monster.hp = args.hp;
 		monster.init = args.init;
-		monster.cr = miscLib.crInfo[args.cr];
+		monster.cr = crInfo[args.cr];
 		monster.type = args.type;
 		monster.tags = (args.tags) ? args.tags.sort() : undefined;
 		monster.size = args.size;
-		monster.alignment = args.alignment || miscLib.alignments.unaligned;
+		monster.alignment = args.alignment || alignments.unaligned;
 		monster.special = args.special;
 		monster.environments = (args.environments) ? args.environments.sort() : [];
 		monster.legendary = args.legendary;
@@ -33,21 +36,6 @@ define(["scripts/misc"], function (miscLib) {
 		).join("|").toLowerCase();
 	}
 
-	function addMonster(args) {
-		var monster = new Monster(args);
-
-		miscLib.monsters.push(monster);
-		miscLib.monstersById[monster.id] = monster;
-
-		if ( !monster.special ) {
-			miscLib.crInfo[monster.cr.string].monsters.push(monster);
-		}
-
-		if (args.tags) {
-			register(miscLib.tags, args.tags);
-		}
-	}
-
 	function parseSize(size) {
 		switch ( size ) {
 			case "Tiny": return 1;
@@ -57,16 +45,6 @@ define(["scripts/misc"], function (miscLib) {
 			case "Huge": return 5;
 			case "Gargantuan": return 6;
 			default: return -1;
-		}
-	}
-
-	function register(target, entries, propName) {
-		for ( var i = 0; i < entries.length; i++ ) {
-			if ( propName ) {
-				target[entries[i][propName]] = true;
-			} else {
-				target[entries[i]] = true;
-			}
 		}
 	}
 
@@ -142,11 +120,7 @@ define(["scripts/misc"], function (miscLib) {
 	}
 
 	return {
-		addMonster: addMonster,
 		checkMonster: checkMonster,
-		isInSource: isInSource,
 		Monster: Monster,
-		parseSize: parseSize,
-		register: register,
 	};
 });

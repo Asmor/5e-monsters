@@ -1,0 +1,81 @@
+"use strict";
+
+define({
+	any: {
+		text: "any",
+		lg: true,	ng: true,	cg: true,
+		ln: true,	n:  true,	cn: true,
+		le: true,	ne: true,	ce: true,
+	},
+	any_chaotic: {
+		text: "any chaotic",
+		lg: false,	ng: false,	cg: true,
+		ln: false,	n:  false,	cn: true,
+		le: false,	ne: false,	ce: true,
+	},
+	any_evil: {
+		text: "any evil",
+		lg: false,	ng: false,	cg: false,
+		ln: false,	n:  false,	cn: false,
+		le: true,	ne: true,	ce: true,
+	},
+	any_good: {
+		text: "any good",
+		lg: true,	ng: true,	cg: true,
+		ln: false,	n:  false,	cn: false,
+		le: false,	ne: false,	ce: false,
+	},
+	any_lawful: {
+		text: "any lawful",
+		lg: true,	ng: false,	cg: false,
+		ln: true,	n:  false,	cn: false,
+		le: true,	ne: false,	ce: false,
+	},
+	any_neutral: {
+		text: "any neutral",
+		lg: false,	ng: true,	cg: false,
+		ln: true,	n:  true,	cn: true,
+		le: false,	ne: true,	ce: false,
+	},
+	non_chaotic: {
+		text: "non-chaotic",
+		lg: true,	ng: true,	cg: false,
+		ln: true,	n:  true,	cn: false,
+		le: true,	ne: true,	ce: false,
+		unaligned: true,
+	},
+	non_evil: {
+		text: "non-evil",
+		lg: true,	ng: true,	cg: true,
+		ln: true,	n:  true,	cn: true,
+		le: false,	ne: false,	ce: false,
+		unaligned: true,
+	},
+	non_good: {
+		text: "non-good",
+		lg: false,	ng: false,	cg: false,
+		ln: true,	n: true,	cn: true,
+		le: true,	ne: true,	ce: true,
+		unaligned: true,
+	},
+	non_lawful: {
+		text: "non-lawful",
+		lg: false,	ng: true,	cg: true,
+		ln: false,	n: true,	cn: true,
+		le: false,	ne: true,	ce: true,
+		unaligned: true,
+	},
+	unaligned: {
+		text: "unaligned",
+		unaligned: true,
+	},
+	lg: { lg: true, text: "lawful good" },
+	ng: { ng: true, text: "neutral good" },
+	cg: { cg: true, text: "chaotic good" },
+	ln: { ln: true, text: "lawful nuetral" },
+	n:  { n:  true, text: "neutral" },
+	cn: { cn: true, text: "chaotic nuetral" },
+	le: { le: true, text: "lawful evil" },
+	ne: { ne: true, text: "neutral evil" },
+	ce: { ce: true, text: "chaotic evil" },
+});
