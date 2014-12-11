@@ -5,7 +5,8 @@ define([
 	"scripts/misc",
 	"scripts/randomencounter",
 	"scripts/data",
-], function (monsterLib, miscLib, generateRandomEncounter, data) {
+	"scripts/constants",
+], function (monsterLib, miscLib, generateRandomEncounter, data, constants) {
 	return {
 		account: function ($rootScope) {
 			var fb = new Firebase("https://resplendent-torch-9803.firebaseio.com"),
@@ -299,12 +300,12 @@ define([
 
 					if ( ! monsterIds.length ) {
 						// If there aren't any monsters, we can't run an encounter
-						retValue |= miscLib.constants.NO_MONSTERS;
+						retValue |= constants.NO_MONSTERS;
 					}
 
 					if ( ! players.selectedParty ) {
 						// If there aren't any players, we can't run the encounter either...
-						retValue |= miscLib.constants.NO_PLAYERS;
+						retValue |= constants.NO_PLAYERS;
 					}
 
 					if ( retValue ) {
@@ -334,7 +335,7 @@ define([
 						combat.addLair();
 					}
 
-					return miscLib.constants.READY;
+					return constants.READY;
 				},
 				nextTurn: function () {
 					combat.combatants[combat.active].active = false;

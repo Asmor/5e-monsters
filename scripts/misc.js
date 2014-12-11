@@ -1,6 +1,6 @@
 "use strict";
 
-define(["scripts/constants"], function (constants) {
+define(function () {
 	var crs = [],
 		sourceFilters = {},
 		sources = [],
@@ -113,7 +113,6 @@ define(["scripts/constants"], function (constants) {
 	}
 
 	return {
-		constants: constants,
 		d: d,
 		getMultiplier: getMultiplier,
 		getShuffledMonsterList: getShuffledMonsterList,
