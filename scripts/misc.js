@@ -77,11 +77,11 @@ define(function () {
 		return multipliers[multiplierCategory];
 	}
 
-	function getShuffledMonsterList(cr) {
-		var monsters = crInfo[cr].monsters.slice(0);
+	// function getShuffledMonsterList(cr) {
+	// 	var monsters = crInfo[cr].monsters.slice(0);
 
-		return shuffle(monsters);
-	}
+	// 	return shuffle(monsters);
+	// }
 
 	function partialFactory(moduleName) {
 		return function ( partialName, base ) {
@@ -93,21 +93,6 @@ define(function () {
 		};
 	}
 
-	// via http://bost.ocks.org/mike/shuffle/
-	function shuffle(array) {
-		var m = array.length, t, i;
-
-		while (m) {
-			i = Math.floor(Math.random() * m--);
-
-			t = array[m];
-			array[m] = array[i];
-			array[i] = t;
-		}
-
-		return array;
-	}
-
 	function d(n) {
 		return Math.floor(Math.random() * n) + 1;
 	}
@@ -115,7 +100,6 @@ define(function () {
 	return {
 		d: d,
 		getMultiplier: getMultiplier,
-		getShuffledMonsterList: getShuffledMonsterList,
 		levels: levels,
 		partialFactory: partialFactory,
 		sourceFilters: sourceFilters,
