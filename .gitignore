@@ -2,3 +2,4 @@
 *.sublime-*
 local server.bat
 todo.txt
+build.js
