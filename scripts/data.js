@@ -13,9 +13,6 @@ define([
 ], function (monsters) {
 	return {
 		monsters: monsters,
-		sources: Array.slice(arguments, 1),
+		sources: Array.prototype.slice.call(arguments, 1),
 	};
 });
-
-/*
-*/

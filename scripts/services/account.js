@@ -66,16 +66,8 @@ define(function () {
 						fb.unauth();
 						updateUserScope();
 					},
-					userScope: {
-						set: function (key, data) {
-							var o = {};
-							o[key] = data;
-
-							setUserScopeValue(key, data);
-						},
-						watch: function (key, callback) {
-							watchUserScopeValue(key, callback);
-						},
+					watch: function (key, callback) {
+						watchUserScopeValue(key, callback);
 					},
 				},
 			},
