@@ -1,13 +1,25 @@
 "use strict";
 
 define(function () {
-	return ["account", function (account) {
+	return [function () {
 		var store = {
 			get: function (key, callback) {
-				account.userScope.watch(key, callback);
+				var data;
+				var raw = localStorage[key];
+
+				if (raw) {
+					try {
+						data = JSON.parse(localStorage[key]);
+					} catch (ex) {
+						console.warn("Unable to parse stored value for " + key);
+						data = undefined;
+					}
+				}
+
+				callback(data);
 			},
 			set: function (key, data) {
-				account.userScope.set(key, data);
+				localStorage[key] = JSON.stringify(data);
 			},
 		};
 

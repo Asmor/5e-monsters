@@ -3,17 +3,10 @@
 define({
 	url: "/encounter-manager",
 	templateUrl: "modules/encounter-manager/encounter-manager.html",
-	controller: function ($scope, $state, account, actionQueue, encounter, library, monsters, util) {
+	controller: function ($scope, $state, actionQueue, encounter, library, monsters, util) {
 		window.scope = $scope;
 
 		$scope.partial = util.partialFactory("modules/encounter-manager/partials/");
-
-		if ( !account.loginProvider ) {
-			actionQueue.queue("account", "You must log in");
-			actionQueue.queue("encounter-manager");
-			actionQueue.next($state);
-			return;
-		}
 
 		$scope.encounter = encounter;
 		$scope.library = library;

@@ -6,10 +6,9 @@ require([
 	"modules/battle-setup/battle-setup",
 	"modules/battle-tracker/battle-tracker",
 	"modules/players/players",
-	"modules/account/account",
+	// "modules/account/account",
 	"modules/common/common",
 	"scripts/filters",
-	"scripts/services/account",
 	"scripts/services/actionQueue",
 	"scripts/services/combat",
 	"scripts/services/encounter",
@@ -27,10 +26,9 @@ require([
 	battleSetup,
 	battleTracker,
 	players,
-	account,
+	// account,
 	common,
 	filters,
-	accountService,
 	actionQueueService,
 	combatService,
 	encounterService,
@@ -48,7 +46,6 @@ require([
 			"ui.router",
 			"ngTouch",
 			"angularUtils.directives.dirPagination",
-			"firebase",
 		])
 		.config(function ($stateProvider, $urlRouterProvider) {
 			// Default
@@ -62,14 +59,13 @@ require([
 			$stateProvider.state("players", players.main);
 			$stateProvider.state("players.edit", players.edit);
 			$stateProvider.state("players.manage", players.manage);
-			$stateProvider.state("account", account);
+			// $stateProvider.state("account", account);
 		})
 		.directive("numberInput", common.numberInput)
 		.filter("monstersFilter", filters.monster)
 		.filter("negative", filters.negative)
 		.filter("positive", filters.positive)
 		.filter("sortEncounter", filters.sortEncounter)
-		.factory("account", accountService)
 		.factory("actionQueue", actionQueueService)
 		.factory("combat", combatService)
 		.factory("encounter", encounterService)

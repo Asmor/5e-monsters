@@ -5,8 +5,6 @@ define({
 	templateUrl: "modules/encounter-builder/encounter-builder.html",
 	controller: function (
 		$scope,
-		$firebase,
-		$firebaseSimpleLogin,
 		store,
 		actionQueue,
 		encounter,
