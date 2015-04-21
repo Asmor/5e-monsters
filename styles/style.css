@@ -1721,7 +1721,7 @@ ul {
   .monster-table--column__type {
     width: 100px; }
   .monster-table--column__alignment {
-    width: 100px; }
+    width: auto; }
   .monster-table--column__cr {
     width: 25px; }
   .monster-table--column__environment {
