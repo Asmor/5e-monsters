@@ -9,12 +9,15 @@
 				<td
 					class="monster-table--column monster-table--column__sortable monster-table--column__name"
 					ng-click="filters.sort = 'name'"
-					colspan="4"
+					colspan="3"
 				>
 					Name
 				</td>
-				<td class="monster-table--column monster-table--column__environment" rowspan="2">
-					Environment
+				<td
+					class="monster-table--column monster-table--column__sortable monster-table--column__cr"
+					ng-click="filters.sort = 'cr'"
+				>
+					CR
 				</td>
 				<td class="monster-table--column monster-table--column__source" rowspan="2">
 					Source
@@ -36,14 +39,9 @@
 				<td
 					class="monster-table--column monster-table--column__sortable monster-table--column__alignment"
 					ng-click="filters.sort = 'alignment'"
+					colspan="2"
 				>
 					Alignment
-				</td>
-				<td
-					class="monster-table--column monster-table--column__sortable monster-table--column__cr"
-					ng-click="filters.sort = 'cr'"
-				>
-					CR
 				</td>
 			</tr>
 		</thead>
@@ -59,7 +57,7 @@
 						<i class="fa fa-plus"></i>
 					</button>
 				</td>
-				<td colspan="4">
+				<td colspan="3" class="monster-table--name-cell">
 					<div class="monster-table--name">
 						{{ monster.name }}
 					</div>
@@ -67,8 +65,8 @@
 						{{ monster.section }}
 					</div>
 				</td>
-				<td rowspan="2"> {{ monster.environments.join(", ") }} </td>
-				<td rowspan="2">
+				<td class="monster-table--cr-cell"> {{ monster.cr.string }} </td>
+				<td rowspan="2" class="monster-table--source-cell">
 					<div
 						ng-repeat="source in monster.sources"
 						ng-show="filters.source[source.name]"
@@ -81,17 +79,16 @@
 				class="monster-table--row"
 				ng-class="'monster-table--row__' + dangerZone(monster)"
 			>
-				<td> {{ monster.size }} </td>
-				<td>
+				<td class="monster-table--size-cell"> {{ monster.size }} </td>
+				<td class="monster-table--type-cell">
 					{{ monster.type }}
 					<span ng-if="monster.tags" class="monster-table--tags">
 						({{ monster.tags.join(", ") }})
 					</span>
 				</td>
-				<td><span ng-if="monster.alignment">
+				<td colspan="2" class="monster-table--alignment-cell"><span ng-if="monster.alignment">
 					{{ monster.alignment.text }}
 				</span></td>
-				<td> {{ monster.cr.string }} </td>
 			</tr>
 		</tbody>
 	</table>

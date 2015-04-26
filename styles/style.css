@@ -1712,54 +1712,63 @@ ul {
   overflow: auto; }
   .monster-table.monster-table__short {
     bottom: 250px; }
-  .monster-table--column__button {
+  .monster-table .monster-table--column.monster-table--column__button {
     width: 25px; }
-  .monster-table--column__name {
+  .monster-table .monster-table--column.monster-table--column__name {
     width: auto; }
-  .monster-table--column__size {
+  .monster-table .monster-table--column.monster-table--column__size {
     width: 100px; }
-  .monster-table--column__type {
+  .monster-table .monster-table--column.monster-table--column__type {
     width: 100px; }
-  .monster-table--column__alignment {
+  .monster-table .monster-table--column.monster-table--column__alignment {
     width: auto; }
-  .monster-table--column__cr {
+  .monster-table .monster-table--column.monster-table--column__cr {
     width: 25px; }
-  .monster-table--column__environment {
-    width: 100px; }
-  .monster-table--column__source {
+  .monster-table .monster-table--column.monster-table--column__source {
     width: 180px; }
-  .monster-table--table > tbody > tr > td, .monster-table--table > thead > tr > td {
-    padding: 5px; }
-  .monster-table--table > thead {
-    padding: 5px;
-    background-color: #000;
-    color: #ddd;
-    font-weight: bold; }
-  .monster-table--name {
+  .monster-table .monster-table--table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%; }
+    .monster-table .monster-table--table > tbody > tr > td, .monster-table .monster-table--table > thead > tr > td {
+      padding: 5px; }
+    .monster-table .monster-table--table > thead {
+      padding: 5px;
+      background-color: #000;
+      color: #ddd;
+      font-weight: bold; }
+  .monster-table .monster-table--name {
     line-height: 34px; }
-  .monster-table--row {
+  .monster-table .monster-table--row {
     border-bottom: 1px solid black; }
-    .monster-table--row__deadly {
+    .monster-table .monster-table--row__deadly {
       background-color: #fbb; }
-    .monster-table--row__hard {
+    .monster-table .monster-table--row__hard {
       background-color: #fa8; }
-    .monster-table--row__medium {
+    .monster-table .monster-table--row__medium {
       background-color: #ffb; }
-    .monster-table--row__easy {
+    .monster-table .monster-table--row__easy {
       background-color: #cfb; }
-    .monster-table--row__pair {
+    .monster-table .monster-table--row__pair {
       background-color: #bef; }
-    .monster-table--row__group {
+    .monster-table .monster-table--row__group {
       background-color: #ebf; }
-    .monster-table--row__trivial {
+    .monster-table .monster-table--row__trivial {
       background-color: #fff; }
-  .monster-table--section {
+  .monster-table .monster-table--section {
     font-size: 0.8rem;
     font-variant: small-caps; }
-  .monster-table--table {
-    width: 100%; }
-  .monster-table--tags {
+  .monster-table .monster-table--tags {
     font-style: italic; }
+  .monster-table .monster-table--name-cell,
+  .monster-table .monster-table--cr-cell {
+    border-bottom: 1px dashed #666; }
+  .monster-table .monster-table--button-cell,
+  .monster-table .monster-table--size-cell,
+  .monster-table .monster-table--type-cell,
+  .monster-table .monster-table--alignment-cell,
+  .monster-table .monster-table--source-cell {
+    border-bottom: 1px solid #000; }
 
 .pagination-container {
   position: fixed;
