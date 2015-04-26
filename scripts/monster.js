@@ -61,7 +61,6 @@ define([
 		}
 
 		if ( args.nonUnique && monster.unique ) {
-			console.log("Skipped unique", monster.name);
 			return false;
 		}
 
@@ -70,18 +69,7 @@ define([
 				return false;
 			}
 
-			if ( !(
-				filters.alignment.lg && monster.alignment.lg ||
-				filters.alignment.ln && monster.alignment.ln ||
-				filters.alignment.le && monster.alignment.le ||
-				filters.alignment.ng && monster.alignment.ng ||
-				filters.alignment.n  && monster.alignment.n  ||
-				filters.alignment.ne && monster.alignment.ne ||
-				filters.alignment.cg && monster.alignment.cg ||
-				filters.alignment.cn && monster.alignment.cn ||
-				filters.alignment.ce && monster.alignment.ce ||
-				filters.alignment.unaligned && monster.alignment.unaligned
-			) ) {
+			if ( ! (filters.alignment.flags & monster.alignment.flags) ) {
 				return false;
 			}
 		}
