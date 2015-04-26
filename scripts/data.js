@@ -10,6 +10,7 @@ define([
 	"scripts/data/hotdqsup",
 	"scripts/data/monstermanual",
 	"scripts/data/playershandbook",
+	"scripts/data/princes",
 	"scripts/data/princessupplement",
 ], function (monsters) {
 	return {
