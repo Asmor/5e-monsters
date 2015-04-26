@@ -98,10 +98,9 @@ define([
 			monsterList = randomEncounter.getShuffledMonsterList(metaInfo.crList[crIndex].string);
 
 			while ( true ) {
-				if ( monsterLib.checkMonster(monsterList[0], filters, { skipCrCheck: true }) ) {
+				if ( monsterLib.checkMonster(monsterList[0], filters, { skipCrCheck: true, nonUnique: true }) ) {
 					return monsterList[0];
 				} else {
-					console.log(monsterList);
 					monsterList.shift();
 				}
 

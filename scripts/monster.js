@@ -20,6 +20,7 @@ define([
 		monster.environments = (args.environments) ? args.environments.sort() : [];
 		monster.legendary = args.legendary;
 		monster.lair = args.lair;
+		monster.unique = args.unique;
 		monster.sources = [];
 
 		monster.sizeSort = parseSize(monster.size);
@@ -56,6 +57,11 @@ define([
 		}
 
 		if ( filters.size && monster.size !== filters.size ) {
+			return false;
+		}
+
+		if ( args.nonUnique && monster.unique ) {
+			console.log("Skipped unique", monster.name);
 			return false;
 		}
 
