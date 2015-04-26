@@ -1769,6 +1769,8 @@ ul {
   .monster-table .monster-table--alignment-cell,
   .monster-table .monster-table--source-cell {
     border-bottom: 1px solid #000; }
+  .monster-table .monster-table--button-cell {
+    border-left: 1px solid #000; }
 
 .pagination-container {
   position: fixed;
