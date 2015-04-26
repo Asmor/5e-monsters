@@ -111,7 +111,7 @@ define({
 		$scope.updateSourceFilters = function () {
 			// The default is core, but for implementation reasons it's represented by the empty string
 			var sourceTypes = $scope.filters.sources || "core",
-				select = [ "Placeholders" ],
+				select = [ ],
 				i;
 
 			if ( sourceTypes === "custom" ) {
@@ -125,11 +125,13 @@ define({
 
 			if ( sourceTypes.match(/all|books/) ) {
 				select.push("Hoard of the Dragon Queen");
+				select.push("Princes of the Apocalypse");
 			}
 
 			if ( sourceTypes.match(/all|basic/) ) {
 				select.push("Basic Rules v1");
 				select.push("HotDQ supplement");
+				select.push("Princes of the Apocalypse Online Supplement v1.0");
 			}
 
 			for ( i = 0; i < sources.all.length; i++ ) {
