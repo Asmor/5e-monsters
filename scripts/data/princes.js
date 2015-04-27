@@ -46,5 +46,9 @@ define({
 		[ "f8ae5941-9f22-4089-a9ea-43c0163771c1", 212], // Earth Elemental Myrmidon
 		[ "a52b610e-729b-42bd-b124-62835ed4932b", 213], // Fire Elemental Myrmidon
 		[ "c7d911b4-2ae2-4314-949e-df469804c176", 213], // Water Elemental Myrmidon
+		[ "83b24acd-ca3b-416c-b66e-aa750c33581f", 514], // Imix
+		[ "b7d4b220-33f9-4326-beaa-a0935acc4f64", 216], // Ogrémoch
+		[ "6cea5f48-7326-4c1e-bbeb-b117997c4d95", 218], // Olhydra
+		[ "1dd55750-d131-4b9b-998b-d1ce9833e82b", 221], // Yan-C-Bin
 	],
 });
