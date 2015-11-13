@@ -12,6 +12,7 @@ define([
 	"scripts/data/playershandbook",
 	"scripts/data/princes",
 	"scripts/data/princessupplement",
+	"scripts/data/monsteraday",
 ], function (monsters) {
 	return {
 		monsters: monsters,

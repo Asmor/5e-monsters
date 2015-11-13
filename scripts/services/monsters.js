@@ -43,7 +43,8 @@ define([
 				m = source.contents[j];
 				byId[m[0]].sources.push({
 					name: source.name,
-					page: m[1]
+					page: m[1],
+					url: m[2]
 				});
 			}
 		}
