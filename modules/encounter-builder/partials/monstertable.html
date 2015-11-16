@@ -71,7 +71,7 @@
 						ng-repeat="source in monster.sources"
 						ng-show="filters.source[source.name]"
 					>
-						{{ source.name }} <span ng-if="source.page">p.{{ source.page }}</span>
+						{{ source.name }} <span ng-if="source.page">p.{{ source.page }}</span> <span ng-if="source.url"><a target="_blank" href="{{ source.url }}">[Link]</a></span>
 					</div>
 				</td>
 			</tr>
