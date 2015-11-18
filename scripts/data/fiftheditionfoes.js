@@ -154,7 +154,8 @@ define({
 		[ "169a5633-9680-4bc0-b172-e2775a45c514", 139 ], // Hanged Man    			 
 		[ "964941f9-1859-467d-b12c-e1afdb967cd0", 140 ], // Hangman Tree  			 
 		[ "5c1cc602-9168-43d9-8c57-a41debe78732", 141 ], // Hawktoad    				 
-		[ "a2b10350-c778-42ee-90d9-06c8eabd79a2", 142 ], // Helix Moth   				 
+		[ "a2b10350-c778-42ee-90d9-06c8eabd79a2", 142 ], // Helix Moth   	
+		[ "e33c82a2-9f11-49d8-b283-1d1188659bda", 142 ], // Helix Moth Larva
 		[ "963a4b94-940f-4d43-9d63-c0720ebf41a6", 143 ], // Hieroglyphicroc    		 
 		[ "b0ed20be-5d74-4892-9e46-7503cc10263e", 144 ], // Hippocampus   			 
 		[ "cdda62de-1fc4-40af-87e0-b558b926ddac", 145 ], // Hoar Fox    				 
