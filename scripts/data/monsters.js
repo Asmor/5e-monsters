@@ -4069,7 +4069,7 @@ define([
 		},
 		{
 			name: "Rat Hermit",
-			size: "Medium", type: "Humanoid (Any Race)",
+			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
 			ac: "15", hp: "44", init: "3", cr: "3",
 			alignment: alignments.non_good,
 			environments: [],
@@ -4085,7 +4085,7 @@ define([
 		},
 		{
 			name: "Selachian",
-			size: "Large", type: "Humanoid (Selachian)",
+			size: "Large", type: "Humanoid", tags: [ "Selachian" ],
 			ac: "15", hp: "133", init: "0", cr: "8",
 			alignment: alignments.any_chaotic,
 			environments: [],
@@ -4093,7 +4093,7 @@ define([
 		},
 		{
 			name: "Kraken Hatchling",
-			size: "Huge", type: "Monstrosity (Titan)",
+			size: "Huge", type: "Monstrosity", tags: [ "Titan" ],
 			ac: "17", hp: "230", init: "0", cr: "12",
 			alignment: alignments.ce,
 			environments: [],
@@ -4102,7 +4102,7 @@ define([
 		},
 		{
 			name: "Pustuloid",
-			size: "Small", type: "Fiend (Demon)",
+			size: "Small", type: "Fiend", tags: [ "Demon" ],
 			ac: "12", hp: "27", init: "2", cr: "1",
 			alignment: alignments.ce,
 			environments: [],
@@ -4110,7 +4110,7 @@ define([
 		},
 		{
 			name: "Herald of Rot",
-			size: "Large", type: "Fiend (Demon)",
+			size: "Large", type: "Fiend", tags: [ "Demon" ],
 			ac: "15", hp: "104", init: "2", cr: "6",
 			alignment: alignments.ce,
 			environments: [],
@@ -4118,7 +4118,7 @@ define([
 		},
 		{
 			name: "Priest of Blight",
-			size: "Medium", type: "Humanoid (Any Race)",
+			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
 			ac: "14", hp: "84", init: "2", cr: "8",
 			alignment: alignments.ce,
 			environments: [],
@@ -4126,7 +4126,7 @@ define([
 		},
 		{
 			name: "Fire Spire Initiate",
-			size: "Medium", type: "Humanoid (Any Race)",
+			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
 			ac: "15", hp: "55", init: "3", cr: "3",
 			alignment: alignments.any_lawful,
 			environments: [],
@@ -4134,7 +4134,7 @@ define([
 		},
 		{
 			name: "Master of the Five Spires",
-			size: "Medium", type: "Humanoid (Any Race)",
+			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
 			ac: "17", hp: "91", init: "4", cr: "8",
 			alignment: alignments.any_lawful,
 			environments: [],
@@ -4142,7 +4142,7 @@ define([
 		},
 		{
 			name: "Myr",
-			size: "Small", type: "Construct (Myr)",
+			size: "Small", type: "Construct", tags: [ "Myr" ],
 			ac: "14", hp: "9", init: "2", cr: "1/4",
 			alignment: alignments.n,
 			environments: [],
@@ -4150,7 +4150,7 @@ define([
 		},
 		{
 			name: "Myr Battlesphere",
-			size: "Huge", type: "Construct (Myr)",
+			size: "Huge", type: "Construct", tags: [ "Myr" ],
 			ac: "18", hp: "105", init: "1", cr: "5",
 			alignment: alignments.n,
 			environments: [],
@@ -4183,7 +4183,7 @@ define([
 		},
 		{
 			name: "Sliver",
-			size: "Medium", type: "Monstrosity (Sliver)",
+			size: "Medium", type: "Monstrosity", tags: [ "Sliver" ],
 			ac: "12", hp: "22", init: "2", cr: "1/2",
 			alignment: alignments.ne,
 			environments: [],
@@ -4191,7 +4191,7 @@ define([
 		},
 		{
 			name: "Might Sliver",
-			size: "Large", type: "Monstrosity (Sliver)",
+			size: "Large", type: "Monstrosity", tags: [ "Sliver" ],
 			ac: "12", hp: "37", init: "2", cr: "2",
 			alignment: alignments.ne,
 			environments: [],
@@ -4199,7 +4199,7 @@ define([
 		},
 		{
 			name: "Armour Sliver",
-			size: "Large", type: "Monstrosity (Sliver)",
+			size: "Large", type: "Monstrosity", tags: [ "Sliver" ],
 			ac: "16", hp: "52", init: "2", cr: "3",
 			alignment: alignments.ne,
 			environments: [],
@@ -4207,7 +4207,7 @@ define([
 		},
 		{
 			name: "Winged Sliver",
-			size: "Large", type: "Monstrosity (Sliver)",
+			size: "Large", type: "Monstrosity", tags: [ "Sliver" ],
 			ac: "12", hp: "60", init: "2", cr: "3",
 			alignment: alignments.ne,
 			environments: [],
@@ -4215,7 +4215,7 @@ define([
 		},
 		{
 			name: "Virulent Sliver",
-			size: "Large", type: "Monstrosity (Sliver)",
+			size: "Large", type: "Monstrosity", tags: [ "Sliver" ],
 			ac: "12", hp: "52", init: "2", cr: "3",
 			alignment: alignments.ne,
 			environments: [],
@@ -4223,7 +4223,7 @@ define([
 		},
 		{
 			name: "Spitting Sliver",
-			size: "Large", type: "Monstrosity (Sliver)",
+			size: "Large", type: "Monstrosity", tags: [ "Sliver" ],
 			ac: "12", hp: "45", init: "2", cr: "2",
 			alignment: alignments.ne,
 			environments: [],
@@ -4231,7 +4231,7 @@ define([
 		},
 		{
 			name: "Crystalline Sliver",
-			size: "Large", type: "Monstrosity (Sliver)",
+			size: "Large", type: "Monstrosity", tags: [ "Sliver" ],
 			ac: "14", hp: "75", init: "2", cr: "4",
 			alignment: alignments.ne,
 			environments: [],
@@ -4239,7 +4239,7 @@ define([
 		},
 		{
 			name: "Sliver Queen",
-			size: "Huge", type: "Monstrosity (Sliver)",
+			size: "Huge", type: "Monstrosity", tags: [ "Sliver" ],
 			ac: "17", hp: "200", init: "2", cr: "13",
 			alignment: alignments.ne,
 			environments: [],
@@ -4264,7 +4264,7 @@ define([
 		},
 		{
 			name: "Gnoll Deathknight",
-			size: "Medium", type: "Humanoid (Gnoll)",
+			size: "Medium", type: "Humanoid", tags: [ "Gnoll" ],
 			ac: "17", hp: "120", init: "2", cr: "6",
 			alignment: alignments.ce,
 			environments: [],
@@ -4280,7 +4280,7 @@ define([
 		},
 		{
 			name: "Gnoll Deathmage",
-			size: "Medium", type: "Humanoid (Gnoll)",
+			size: "Medium", type: "Humanoid", tags: [ "Gnoll" ],
 			ac: "12", hp: "55", init: "2", cr: "7",
 			alignment: alignments.ce,
 			environments: [],
@@ -4288,7 +4288,7 @@ define([
 		},
 		{
 			name: "Kobold Bully",
-			size: "Small", type: "Humanoid (Kobold)",
+			size: "Small", type: "Humanoid", tags: [ "Kobold" ],
 			ac: "14", hp: "21", init: "2", cr: "1",
 			alignment: alignments.le,
 			environments: [],
@@ -4296,7 +4296,7 @@ define([
 		},
 		{
 			name: "Kobold Commander",
-			size: "Small", type: "Humanoid (Kobold)",
+			size: "Small", type: "Humanoid", tags: [ "Kobold" ],
 			ac: "18", hp: "11", init: "1", cr: "1/2",
 			alignment: alignments.le,
 			environments: [],
@@ -4304,7 +4304,7 @@ define([
 		},
 		{
 			name: "Kobold Shaman",
-			size: "Small", type: "Humanoid (Kobold)",
+			size: "Small", type: "Humanoid", tags: [ "Kobold" ],
 			ac: "13", hp: "27", init: "2", cr: "2",
 			alignment: alignments.le,
 			environments: [],
@@ -4312,7 +4312,7 @@ define([
 		},
 		{
 			name: "Kobold Soldier",
-			size: "Small", type: "Humanoid (Kobold)",
+			size: "Small", type: "Humanoid", tags: [ "Kobold" ],
 			ac: "15", hp: "7", init: "2", cr: "1/4",
 			alignment: alignments.le,
 			environments: [],
@@ -4320,7 +4320,7 @@ define([
 		},
 		{
 			name: "Kobold Hero",
-			size: "Small", type: "Humanoid (Kobold)",
+			size: "Small", type: "Humanoid", tags: [ "Kobold" ],
 			ac: "18", hp: "54", init: "2", cr: "4",
 			alignment: alignments.le,
 			environments: [],
@@ -4337,7 +4337,7 @@ define([
 		},
 		{
 			name: "Baneling",
-			size: "Small", type: "Fiend (Demon)",
+			size: "Small", type: "Fiend", tags: [ "Demon" ],
 			ac: "12", hp: "7", init: "2", cr: "1/2",
 			alignment: alignments.ce,
 			environments: [],
@@ -4345,7 +4345,7 @@ define([
 		},
 		{
 			name: "Pact Devil",
-			size: "Large", type: "Fiend (Devil)",
+			size: "Large", type: "Fiend", tags: [ "Devil" ],
 			ac: "17", hp: "142", init: "3", cr: "9",
 			alignment: alignments.le,
 			environments: [],
@@ -4353,7 +4353,7 @@ define([
 		},
 		{
 			name: "Truesong Dancer",
-			size: "Medium", type: "Humanoid (Any Race)",
+			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
 			ac: "14", hp: "44", init: "3", cr: "3",
 			alignment: alignments.cn,
 			environments: [],
@@ -4361,7 +4361,7 @@ define([
 		},
 		{
 			name: "Truesong Dirge",
-			size: "Medium", type: "Humanoid (Any Race)",
+			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
 			ac: "16", hp: "91", init: "1", cr: "5",
 			alignment: alignments.cn,
 			environments: [],
@@ -4369,7 +4369,7 @@ define([
 		},
 		{
 			name: "Leonin",
-			size: "Medium", type: "Humanoid (Leonin)",
+			size: "Medium", type: "Humanoid", tags: [ "Leonin" ],
 			ac: "14", hp: "11", init: "2", cr: "1/4",
 			alignment: alignments.any,
 			environments: [],
@@ -4402,7 +4402,7 @@ define([
 		},
 		{
 			name: "Gazellean",
-			size: "Medium", type: "Humanoid (Gazellean)",
+			size: "Medium", type: "Humanoid", tags: [ "Gazellean" ],
 			ac: "14", hp: "16", init: "3", cr: "1/2",
 			alignment: alignments.n,
 			environments: [],
@@ -4442,7 +4442,7 @@ define([
 		},
 		{
 			name: "Silverpaw Paladin",
-			size: "Small", type: "Humanoid (Halfling)",
+			size: "Small", type: "Humanoid", tags: [ "Halfling" ],
 			ac: "15", hp: "65", init: "3", cr: "4",
 			alignment: alignments.n,
 			environments: [],
@@ -4507,7 +4507,7 @@ define([
 		},
 		{
 			name: "Ulamog, the Ceaseless Hunger",
-			size: "Colossal", type: "Aberration (Titan)",
+			size: "Colossal", type: "Aberration", tags: [ "Titan" ],
 			ac: "25", hp: "717", init: "0", cr: "30",
 			alignment: alignments.ce,
 			environments: [],
@@ -4540,7 +4540,7 @@ define([
 		},
 		{
 			name: "Gladeborn Trapper",
-			size: "Medium", type: "Humanoid (Any Race)",
+			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
 			ac: "16", hp: "52", init: "3", cr: "3",
 			alignment: alignments.n,
 			environments: [],
@@ -4548,7 +4548,7 @@ define([
 		},
 		{
 			name: "Gladeborn Hunter",
-			size: "Medium", type: "Humanoid (Any Race)",
+			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
 			ac: "16", hp: "91", init: "4", cr: "5",
 			alignment: alignments.n,
 			environments: [],
@@ -4564,7 +4564,7 @@ define([
 		},
 		{
 			name: "Swarm of Squirrels",
-			size: "Medium (Tiny)", type: "Beast (Swarm)",
+			size: "Medium", type: "Beast", tags: [ "Swarm" ],
 			ac: "14", hp: "36", init: "4", cr: "2",
 			alignment: alignments.unaligned,
 			environments: [],
@@ -4638,7 +4638,7 @@ define([
 		},
 		{
 			name: "Rusalka",
-			size: "Medium", type: "Fey (Undead)",
+			size: "Medium", type: "Fey", tags: [ "Undead" ],
 			ac: "17", hp: "97", init: "4", cr: "4",
 			alignment: alignments.ne,
 			environments: [],
@@ -4662,7 +4662,7 @@ define([
 		},
 		{
 			name: "Azure Enchanter",
-			size: "Medium", type: "Humanoid (Any Race)",
+			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
 			ac: "12", hp: "49", init: "2", cr: "7",
 			alignment: alignments.any,
 			environments: [],
@@ -4670,7 +4670,7 @@ define([
 		},
 		{
 			name: "Azure Mind Scupltor",
-			size: "Medium", type: "Humanoid (Any Race)",
+			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
 			ac: "12", hp: "84", init: "2", cr: "10",
 			alignment: alignments.any,
 			environments: [],
@@ -4694,7 +4694,7 @@ define([
 		},
 		{
 			name: "War Titan",
-			size: "Huge", type: "Fiend (Titan)",
+			size: "Huge", type: "Fiend", tags: [ "Titan" ],
 			ac: "18", hp: "207", init: "0", cr: "16",
 			alignment: alignments.any_chaotic,
 			environments: [],
@@ -4719,7 +4719,7 @@ define([
 		},
 		{
 			name: "Evil Doll",
-			size: "Tiny", type: "Construct (Fiend)",
+			size: "Tiny", type: "Construct", tags: [ "Fiend" ],
 			ac: "14", hp: "21", init: "3", cr: "2",
 			alignment: alignments.le,
 			environments: [],
@@ -4735,7 +4735,7 @@ define([
 		},
 		{
 			name: "Masked Killer",
-			size: "Medium", type: "Humanoid (Any Race)",
+			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
 			ac: "15", hp: "97", init: "3", cr: "5",
 			alignment: alignments.ce,
 			environments: [],
@@ -4808,7 +4808,7 @@ define([
 		},
 		{
 			name: "Sylvan Stalker",
-			size: "Medium", type: "Humanoid (Plant)",
+			size: "Medium", type: "Humanoid", tags: [ "Plant" ],
 			ac: "15", hp: "78", init: "4", cr: "8",
 			alignment: alignments.n,
 			environments: [],
@@ -4825,7 +4825,7 @@ define([
 		},
 		{
 			name: "Technothug",
-			size: "Medium", type: "Humanoid (Any Race)",
+			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
 			ac: "16", hp: "19", init: "2", cr: "1/2",
 			alignment: alignments.cn,
 			environments: [],
@@ -4841,7 +4841,7 @@ define([
 		},
 		{
 			name: "Bullywug Shaman",
-			size: "Medium", type: "Humanoid (Bullywug)",
+			size: "Medium", type: "Humanoid", tags: [ "Bullywug" ],
 			ac: "14", hp: "27", init: "2", cr: "2",
 			alignment: alignments.ne,
 			environments: [],
@@ -4849,7 +4849,7 @@ define([
 		},
 		{
 			name: "Goblin Alchemist",
-			size: "Small", type: "Humanoid (Goblinoid)",
+			size: "Small", type: "Humanoid", tags: [ "Goblinoid" ],
 			ac: "14", hp: "10", init: "2", cr: "1/2",
 			alignment: alignments.ne,
 			environments: [],
@@ -4857,7 +4857,7 @@ define([
 		},
 		{
 			name: "Goblin Ritualist",
-			size: "Small", type: "Humanoid (Goblinoid)",
+			size: "Small", type: "Humanoid", tags: [ "Goblinoid" ],
 			ac: "14", hp: "10", init: "2", cr: "1/2",
 			alignment: alignments.ne,
 			environments: [],
@@ -4865,7 +4865,7 @@ define([
 		},
 		{
 			name: "Lizardfolk Monk",
-			size: "Medium", type: "Humanoid (Lizardfolk)",
+			size: "Medium", type: "Humanoid", tags: [ "Lizardfolk" ],
 			ac: "17", hp: "33", init: "3", cr: "2",
 			alignment: alignments.n,
 			environments: [],
@@ -4873,7 +4873,7 @@ define([
 		},
 		{
 			name: "Orc Berserker",
-			size: "Medium", type: "Humanoid (Orc)",
+			size: "Medium", type: "Humanoid", tags: [ "Orc" ],
 			ac: "14", hp: "30", init: "1", cr: "1",
 			alignment: alignments.ce,
 			environments: [],
@@ -4881,7 +4881,7 @@ define([
 		},
 		{
 			name: "Orc Hand of Gruumsh",
-			size: "Medium", type: "Humanoid (Orc)",
+			size: "Medium", type: "Humanoid", tags: [ "Orc" ],
 			ac: "16", hp: "60", init: "1", cr: "3",
 			alignment: alignments.ce,
 			environments: [],
