@@ -106,5 +106,17 @@ define({
 		[ "10f2d054-d274-526a-8097-9f3921abc1c2", 0, "https://www.reddit.com/r/monsteraday/comments/3sfio5/day_87_lizardfolk_monk/"], // Lizardfolk Monk
 		[ "f193a293-ade1-5b5f-98f4-b34980bd2cdc", 0, "https://www.reddit.com/r/monsteraday/comments/3sk53c/day_88_orc_berserker/"], // Orc Berserker
 		[ "81295b69-4438-5c59-9622-6a1f31ac8115", 0, "https://www.reddit.com/r/monsteraday/comments/3sonx0/day_89_orc_hand_of_gruumsh/"], // Orc Hand of Gruumsh
+		[ "4b78c693-794c-5e30-a23c-e33f8c65dc75", 0, "https://www.reddit.com/r/monsteraday/comments/3ssksc/day_90_crystal_elemental/"], // Crystal Elemental
+		[ "27d3cf23-0e72-5c9b-9a94-628c561529e4", 0, "https://www.reddit.com/r/monsteraday/comments/3swk7b/day_91_armed_skeleton/"], // Armed Skeleton
+		[ "197fcb81-d34e-55e5-abc5-9a1275cf017f", 0, "https://www.reddit.com/r/monsteraday/comments/3t1u2d/day_92_dire_anglerfish/"], // Dire Anglerfish
+		[ "1f81997d-fd0a-5ea9-b813-baab00fd9676", 0, "https://www.reddit.com/r/monsteraday/comments/3t6n4i/day_93_grim_sea_pirates/"], // Pirate Axe Thrower
+		[ "dc7cf588-46c1-56d4-97cb-7c86cd1055b9", 0, "https://www.reddit.com/r/monsteraday/comments/3t6n4i/day_93_grim_sea_pirates/"], // Pirate Chain Swinger
+		[ "f16c46ce-12e0-56e1-a295-85938fa93bc7", 0, "https://www.reddit.com/r/monsteraday/comments/3tbisl/day_94_crowlock/"], // Crowlock
+		[ "a3bfe860-8cc3-5ce3-8afe-986a55461553", 0, "https://www.reddit.com/r/monsteraday/comments/3tgj7n/day_95_vodyanoy/"], // Vodyanoy
+		[ "7f194628-94f6-579c-862b-ac98afc84cd2", 0, "https://www.reddit.com/r/monsteraday/comments/3tlb1z/day_96_crystalline_dragon/"], // Crystalline Dragon
+		[ "30890370-b47a-53c9-bf60-303294d9fc09", 0, "https://www.reddit.com/r/monsteraday/comments/3tplf0/day_97_beast_of_ill_omen/"], // Beast of Ill Omen
+		[ "f48a544b-f17d-5541-852d-afad6438e907", 0, "https://www.reddit.com/r/monsteraday/comments/3tubf2/day_98_chamaelean/"], // Chamaelean
+		[ "c7ee7278-4db9-5dcb-9259-bdaaf26e1b3d", 0, "https://www.reddit.com/r/monsteraday/comments/3tymld/day_99_phelddagrif/"], // Phelddagrif
+		[ "fb44e9eb-1edd-59f5-bbce-9ac84f631e71", 0, "https://www.reddit.com/r/monsteraday/comments/3u3mkx/day_100_stone_strix/"], // Stone Strix
 	],
 });
