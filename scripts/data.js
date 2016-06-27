@@ -12,6 +12,7 @@ define([
 	"scripts/data/playershandbook",
 	"scripts/data/princes",
 	"scripts/data/princessupplement",
+	"scripts/data/outoftheabyss",
 	"scripts/data/monsteraday",
 	"scripts/data/fiftheditionfoes",
 	"scripts/data/primevalthule",
