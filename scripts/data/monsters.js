@@ -7794,7 +7794,7 @@ define([
 			id: "d9af029b-c451-4d74-bbf8-8fb25fdd609b",
 		},
 		{
-			name: "Droki",
+			name: "Droki", unique: true,
 			size: "Small", type: "Humanoid", tags: [ "Derro" ], 
 			ac: "15", hp: "31", init: "3", cr: "2",
 			alignment: alignments.ce,
@@ -7803,7 +7803,7 @@ define([
 			id: "dadd100d-b2ae-4683-8010-0cab2bbc5377",
 		},
 		{
-			name: "Grisha",
+			name: "Grisha", unique: true,
 			size: "Medium", type: "Humanoid", tags: [ "Damaran Human" ], 
 			ac: "18", hp: "33", init: "1", cr: "2",
 			alignment: alignments.ce,
@@ -7812,7 +7812,7 @@ define([
 			id: "fbd25f01-f510-4790-b778-5e5313ad6a2b",
 		},
 		{
-			name: "Narrak",
+			name: "Narrak", unique: true,
 			size: "Small", type: "Humanoid", tags: [ "Derro" ], 
 			ac: "12", hp: "40", init: "2", cr: "2",
 			alignment: alignments.ce,
@@ -7821,7 +7821,7 @@ define([
 			id: "516ba46d-27c1-4f5b-afc3-a4b216c88d52",
 		},
 		{
-			name: "The Pudding King",
+			name: "The Pudding King", unique: true,
 			size: "Small", type: "Humanoid", tags: [ "Gnome", "Shapechanger" ], 
 			ac: "13", hp: "49", init: "4", cr: "4",
 			alignment: alignments.ce,
@@ -7830,7 +7830,7 @@ define([
 			id: "5772d898-4440-4583-b157-73714db987db",
 		},
 		{
-			name: "Yestabrod",
+			name: "Yestabrod", unique: true,
 			size: "Large", type: "Monstrosity", 
 			ac: "15", hp: "75", init: "0", cr: "4",
 			alignment: alignments.ce,
@@ -7839,7 +7839,7 @@ define([
 			id: "e49a7f28-3cf5-4778-b316-0b9fed11cca6",
 		},
 		{
-			name: "Baphomet",
+			section: "Demon Lords", name: "Baphomet", unique: true,
 			size: "Huge", type: "Fiend", tags: [ "Demon" ], 
 			ac: "22", hp: "333", init: "2", cr: "23",
 			alignment: alignments.ce,
@@ -7848,7 +7848,7 @@ define([
 			id: "d4ceb2aa-9505-443c-b76f-290f6a926df3",
 		},
 		{
-			name: "Demogorgon",
+			section: "Demon Lords", name: "Demogorgon", unique: true,
 			size: "Huge", type: "Fiend", tags: [ "Demon" ], 
 			ac: "22", hp: "496", init: "2", cr: "26",
 			alignment: alignments.ce,
@@ -7857,7 +7857,7 @@ define([
 			id: "7346e68c-5d9c-47d2-9e14-d6b6f809adba",
 		},
 		{
-			name: "Fraz-Urb'luu",
+			section: "Demon Lords", name: "Fraz-Urb'luu", unique: true,
 			size: "Large", type: "Fiend", tags: [ "Demon" ], 
 			ac: "18", hp: "350", init: "1", cr: "23",
 			alignment: alignments.ce,
@@ -7866,7 +7866,7 @@ define([
 			id: "deabbe0c-ec60-4eee-87ed-2e02a5961892",
 		},
 		{
-			name: "Graz'zt",
+			section: "Demon Lords", name: "Graz'zt", unique: true,
 			size: "Large", type: "Fiend", tags: [ "Demon", "Shapechanger" ], 
 			ac: "20", hp: "378", init: "2", cr: "24",
 			alignment: alignments.ce,
@@ -7875,7 +7875,7 @@ define([
 			id: "02e1b0f5-912e-447c-8118-4946a0c57ef4",
 		},
 		{
-			name: "Juiblex",
+			section: "Demon Lords", name: "Juiblex", unique: true,
 			size: "Huge", type: "Fiend", tags: [ "Demon" ], 
 			ac: "18", hp: "350", init: "0", cr: "23",
 			alignment: alignments.ce,
@@ -7884,7 +7884,7 @@ define([
 			id: "67fe91fb-6a04-41ba-9efe-7ebd5bec55b4",
 		},
 		{
-			name: "Orcus",
+			section: "Demon Lords", name: "Orcus", unique: true,
 			size: "Huge", type: "Fiend", tags: [ "Demon" ], 
 			ac: "17", hp: "405", init: "2", cr: "26",
 			alignment: alignments.ce,
@@ -7893,7 +7893,7 @@ define([
 			id: "d6b88949-50e7-4b5f-b15a-7541485cfa62",
 		},
 		{
-			name: "Yeenoghu",
+			section: "Demon Lords", name: "Yeenoghu", unique: true,
 			size: "Huge", type: "Fiend", tags: [ "Demon" ], 
 			ac: "22", hp: "348", init: "3", cr: "24",
 			alignment: alignments.ce,
@@ -7902,7 +7902,7 @@ define([
 			id: "d6d31cb2-1b0a-4953-8301-4c16cb51434e",
 		},
 		{
-			name: "Zuggtmoy",
+			section: "Demon Lords", name: "Zuggtmoy", unique: true,
 			size: "Large", type: "Fiend", tags: [ "Demon" ], 
 			ac: "18", hp: "304", init: "2", cr: "23",
 			alignment: alignments.ce,
