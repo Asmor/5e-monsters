@@ -7758,7 +7758,7 @@ define([
 		{
 			name: "Derro",
 			size: "Small", type: "Humanoid", tags: [ "Derro" ], 
-			ac: "13", hp: "13", init: "2", cr: "1/4",
+			ac: 13, hp: 13, init: 2, cr: "1/4",
 			alignment: alignments.ce,
 			environments: [ "underground" ],
 			legendary: false,
@@ -7767,7 +7767,7 @@ define([
 		{
 			name: "Ixitxachitl",
 			size: "Small", type: "Aberration", 
-			ac: "15", hp: "18", init: "3", cr: "1/4",
+			ac: 15, hp: 18, init: 3, cr: "1/4",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7776,7 +7776,7 @@ define([
 		{
 			name: "Vampiric Ixitxachitl",
 			size: "Medium", type: "Aberration", 
-			ac: "16", hp: "44", init: "4", cr: "2",
+			ac: 16, hp: 44, init: 4, cr: "2",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7785,7 +7785,7 @@ define([
 		{
 			name: "Duergar Soulblade",
 			size: "Medium", type: "Humanoid", tags: [ "Dwarf" ],
-			ac: "14", hp: "18", init: "3", cr: "1",
+			ac: 14, hp: 18, init: 3, cr: "1",
 			alignment: alignments.le,
 			environments: [],
 			legendary: false,
@@ -7794,7 +7794,7 @@ define([
 		{
 			name: "Duergar Stone Guard",
 			size: "Medium", type: "Humanoid", tags: [ "Dwarf" ],
-			ac: "18", hp: "39", init: "0", cr: "2",
+			ac: 18, hp: 39, init: 0, cr: "2",
 			alignment: alignments.le,
 			environments: [],
 			legendary: false,
@@ -7803,7 +7803,7 @@ define([
 		{
 			name: "Duergar Xarrorn",
 			size: "Medium", type: "Humanoid", tags: [ "Dwarf" ],
-			ac: "18", hp: "26", init: "0", cr: "2",
+			ac: 18, hp: 26, init: 0, cr: "2",
 			alignment: alignments.le,
 			environments: [],
 			legendary: false,
@@ -7812,7 +7812,7 @@ define([
 		{
 			name: "Chuul Spore Servant",
 			size: "Large", type: "Plant", 
-			ac: "16", hp: "93", init: "0", cr: "4",
+			ac: 16, hp: 93, init: 0, cr: "4",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -7821,7 +7821,7 @@ define([
 		{
 			name: "Drow Spore Servant",
 			size: "Medium", type: "Plant", 
-			ac: "15", hp: "13", init: "2", cr: "1/8",
+			ac: 15, hp: 13, init: 2, cr: "1/8",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -7830,7 +7830,7 @@ define([
 		{
 			name: "Duergar Spore Servant",
 			size: "Medium", type: "Plant", 
-			ac: "16", hp: "26", init: "0", cr: "1/2",
+			ac: 16, hp: 26, init: 0, cr: "1/2",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -7839,7 +7839,7 @@ define([
 		{
 			name: "Hook Horror Servant",
 			size: "Medium", type: "Plant", 
-			ac: "15", hp: "75", init: "0", cr: "3",
+			ac: 15, hp: 75, init: 0, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -7848,7 +7848,7 @@ define([
 		{
 			name: "Troglodyte Champion of Laogzed",
 			size: "Medium", type: "Humanoid", tags: [ "Troglodyte" ],
-			ac: "14", hp: "59", init: "1", cr: "3",
+			ac: 14, hp: 59, init: 1, cr: "3",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7857,7 +7857,7 @@ define([
 		{
 			name: "Bridesmaid of Zuggtmoy",
 			size: "Medium", type: "Plant", 
-			ac: "13", hp: "22", init: "0", cr: "1/8",
+			ac: 13, hp: 22, init: 0, cr: "1/8",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7866,7 +7866,7 @@ define([
 		{
 			name: "Chamberlain of Zuggtmoy",
 			size: "Large", type: "Plant", 
-			ac: "13", hp: "45", init: "-2", cr: "2",
+			ac: 13, hp: 45, init: -2, cr: "2",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7875,7 +7875,7 @@ define([
 		{
 			name: "Female Steeder",
 			size: "Large", type: "Beast", 
-			ac: "14", hp: "30", init: "3", cr: "1",
+			ac: 14, hp: 30, init: 3, cr: "1",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -7884,7 +7884,7 @@ define([
 		{
 			name: "Male Steeder",
 			size: "Medium", type: "Beast", 
-			ac: "12", hp: "13", init: "1", cr: "1/4",
+			ac: 12, hp: 13, init: 1, cr: "1/4",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -7893,7 +7893,7 @@ define([
 		{
 			name: "Droki", unique: true,
 			size: "Small", type: "Humanoid", tags: [ "Derro" ], 
-			ac: "15", hp: "31", init: "3", cr: "2",
+			ac: 15, hp: 31, init: 3, cr: "2",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7902,7 +7902,7 @@ define([
 		{
 			name: "Grisha", unique: true,
 			size: "Medium", type: "Humanoid", tags: [ "Damaran Human" ], 
-			ac: "18", hp: "33", init: "1", cr: "2",
+			ac: 18, hp: 33, init: 1, cr: "2",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7911,7 +7911,7 @@ define([
 		{
 			name: "Narrak", unique: true,
 			size: "Small", type: "Humanoid", tags: [ "Derro" ], 
-			ac: "12", hp: "40", init: "2", cr: "2",
+			ac: 12, hp: 40, init: 2, cr: "2",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7920,7 +7920,7 @@ define([
 		{
 			name: "The Pudding King", unique: true,
 			size: "Small", type: "Humanoid", tags: [ "Gnome", "Shapechanger" ], 
-			ac: "13", hp: "49", init: "4", cr: "4",
+			ac: 13, hp: 49, init: 4, cr: "4",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7929,7 +7929,7 @@ define([
 		{
 			name: "Yestabrod", unique: true,
 			size: "Large", type: "Monstrosity", 
-			ac: "15", hp: "75", init: "0", cr: "4",
+			ac: 15, hp: 75, init: 0, cr: "4",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: true,
@@ -7938,7 +7938,7 @@ define([
 		{
 			section: "Demon Lords", name: "Baphomet", unique: true,
 			size: "Huge", type: "Fiend", tags: [ "Demon" ], 
-			ac: "22", hp: "333", init: "2", cr: "23",
+			ac: 22, hp: 333, init: 2, cr: "23",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: true,
@@ -7947,7 +7947,7 @@ define([
 		{
 			section: "Demon Lords", name: "Demogorgon", unique: true,
 			size: "Huge", type: "Fiend", tags: [ "Demon" ], 
-			ac: "22", hp: "496", init: "2", cr: "26",
+			ac: 22, hp: 496, init: 2, cr: "26",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: true,
@@ -7956,7 +7956,7 @@ define([
 		{
 			section: "Demon Lords", name: "Fraz-Urb'luu", unique: true,
 			size: "Large", type: "Fiend", tags: [ "Demon" ], 
-			ac: "18", hp: "350", init: "1", cr: "23",
+			ac: 18, hp: 350, init: 1, cr: "23",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: true,
@@ -7965,7 +7965,7 @@ define([
 		{
 			section: "Demon Lords", name: "Graz'zt", unique: true,
 			size: "Large", type: "Fiend", tags: [ "Demon", "Shapechanger" ], 
-			ac: "20", hp: "378", init: "2", cr: "24",
+			ac: 20, hp: 378, init: 2, cr: "24",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: true,
@@ -7974,7 +7974,7 @@ define([
 		{
 			section: "Demon Lords", name: "Juiblex", unique: true,
 			size: "Huge", type: "Fiend", tags: [ "Demon" ], 
-			ac: "18", hp: "350", init: "0", cr: "23",
+			ac: 18, hp: 350, init: 0, cr: "23",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: true,
@@ -7983,7 +7983,7 @@ define([
 		{
 			section: "Demon Lords", name: "Orcus", unique: true,
 			size: "Huge", type: "Fiend", tags: [ "Demon" ], 
-			ac: "17", hp: "405", init: "2", cr: "26",
+			ac: "17 (20 with Wand of Orcus)", hp: 405, init: 2, cr: "26",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: true,
@@ -7992,7 +7992,7 @@ define([
 		{
 			section: "Demon Lords", name: "Yeenoghu", unique: true,
 			size: "Huge", type: "Fiend", tags: [ "Demon" ], 
-			ac: "22", hp: "348", init: "3", cr: "24",
+			ac: 22, hp: 348, init: 3, cr: "24",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: true,
@@ -8001,7 +8001,7 @@ define([
 		{
 			section: "Demon Lords", name: "Zuggtmoy", unique: true,
 			size: "Large", type: "Fiend", tags: [ "Demon" ], 
-			ac: "18", hp: "304", init: "2", cr: "23",
+			ac: 18, hp: 304, init: 2, cr: "23",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: true,
