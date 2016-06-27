@@ -3596,21 +3596,21 @@ define([
 		{
 			name: "Azbara Jos", tags: [ "Human" ], unique: true,
 			size: "Medium", type: "Humanoid",
-			ac: "13", hp: "39", init: "3", cr: "4",
+			ac: 13, hp: 39, init: 3, cr: "4",
 			alignment: alignments.le,
 			id: "9e85c13d-ef1d-4baf-a01e-d8f59d8936ef",
 		},
 		{
 			name: "Blagothkus", tags: [ "Cloud giant" ], unique: true,
 			size: "Huge", type: "Giant",
-			ac: "17", hp: "138", init: "1", cr: "9",
+			ac: 17, hp: 138, init: 1, cr: "9",
 			alignment: alignments.ne,
 			id: "cd3d6e12-28d4-4f1b-a0f2-97a932f932e3",
 		},
 		{
 			name: "Captain Othelstan", tags: [ "Human" ], unique: true,
 			size: "Medium", type: "Humanoid",
-			ac: "19", hp: "93", init: "0", cr: "5",
+			ac: 19, hp: 93, init: 0, cr: "5",
 			alignment: alignments.le,
 			id: "a3ac6397-dfed-4461-9f0b-d63a29ea429d",
 		},
@@ -3633,14 +3633,14 @@ define([
 		{
 			name: "Dralmorrer Borngray", tags: [ "High-elf" ], unique: true,
 			size: "Medium", type: "Humanoid",
-			ac: "16", hp: "52", init: "2", cr: "3",
+			ac: 16, hp: 52, init: 2, cr: "3",
 			alignment: alignments.ne,
 			id: "c48931c8-30ce-4dca-bd44-367e0dac5296",
 		},
 		{
 			name: "Frulam Mondath", tags: [ "Human" ], unique: true,
 			size: "Medium", type: "Humanoid",
-			ac: "16", hp: "44", init: "0", cr: "2",
+			ac: 16, hp: 44, init: 0, cr: "2",
 			alignment: alignments.le,
 			id: "70e1d732-ce01-4f48-b88b-1a45e1cd77df",
 		},
@@ -3654,42 +3654,42 @@ define([
 		{
 			name: "Jamna Gleamsilver", tags: [ "Gnome" ], unique: true,
 			size: "Small", type: "Humanoid",
-			ac: "15", hp: "22", init: "3", cr: "1",
+			ac: 15, hp: 22, init: 3, cr: "1",
 			alignment: alignments.n,
 			id: "a76fc0b1-2c1f-4847-aa54-fa889c212c3f",
 		},
 		{
 			name: "Langdedrosa Cynwrath", tags: [ "Half-Dragon" ], unique: true,
 			size: "Medium", type: "Humanoid",
-			ac: "17", hp: "57", init: "1", cr: "4",
+			ac: 17, hp: 57, init: 1, cr: "4",
 			alignment: alignments.le,
 			id: "708b2570-c88f-4e4f-a414-a98088faa52c",
 		},
 		{
 			name: "Pharblex Spattergoo", tags: [ "Bullywug" ], unique: true,
 			size: "Medium", type: "Humanoid",
-			ac: "15", hp: "59", init: "1", cr: "3",
+			ac: 15, hp: 59, init: 1, cr: "3",
 			alignment: alignments.ce,
 			id: "5210357f-f874-4807-bbf6-c203d6431ab4",
 		},
 		{
 			name: "Rath Modar", tags: [ "Human" ], unique: true,
 			size: "Medium", type: "Humanoid",
-			ac: "13", hp: "71", init: "3", cr: "6",
+			ac: 13, hp: 71, init: 3, cr: "6",
 			alignment: alignments.le,
 			id: "8db8b7f3-375c-4e14-abd5-f26e6622f330",
 		},
 		{
 			name: "Rezmir", tags: [ "Half-black dragon" ], unique: true,
 			size: "Medium", type: "Humanoid",
-			ac: "13", hp: "90", init: "3", cr: "7",
+			ac: 13, hp: 90, init: 3, cr: "7",
 			alignment: alignments.ne,
 			id: "84df86ca-cc90-4080-a65c-f99314bb351d",
 		},
 		{
 			name: "Talis the White", tags: [ "Half-elf" ], unique: true,
 			size: "Medium", type: "Humanoid",
-			ac: "18", hp: "58", init: "1", cr: "5",
+			ac: 18, hp: 58, init: 1, cr: "5",
 			alignment: alignments.le,
 			id: "bf42ec5e-94ff-4595-a36e-e7a5dba0d822",
 		},
@@ -3699,7 +3699,7 @@ define([
 		{
 			section: "Howling Hatred Cultists", name: "Feathergale knight",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "16", hp: "33", init: "2", cr: "1",
+			ac: 16, hp: 33, init: 2, cr: "1",
 			alignment: alignments.le,
 			environments: [ "arctic", "cave", "coast", "desert", "dungeon", "grassland", "mountain", "ruins" ],
 			id: "feadfec7-96a7-4ff2-8b22-6f6ab232d6d5",
@@ -3707,7 +3707,7 @@ define([
 		{
 			section: "Howling Hatred Cultists", name: "Howling Hatred Initiate",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "13", hp: "9", init: "2", cr: "1/8",
+			ac: 13, hp: 9, init: 2, cr: "1/8",
 			alignment: alignments.ne,
 			environments: [ "arctic", "cave", "coast", "desert", "dungeon", "grassland", "mountain", "ruins" ],
 			id: "0ba96911-ae8f-4a67-ab56-e206b404a16c",
@@ -3715,7 +3715,7 @@ define([
 		{
 			section: "Howling Hatred Cultists", name: "Howling Hatred Priest",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "15", hp: "45", init: "3", cr: "2",
+			ac: 15, hp: 45, init: 3, cr: "2",
 			alignment: alignments.ne,
 			environments: [ "arctic", "cave", "coast", "desert", "dungeon", "grassland", "mountain", "ruins" ],
 			id: "d54be24f-498d-41b6-9947-fe0d3eab8bda",
@@ -3723,7 +3723,7 @@ define([
 		{
 			section: "Howling Hatred Cultists", name: "Hurricane",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "14", hp: "33", init: "3", cr: "2",
+			ac: 14, hp: 33, init: 3, cr: "2",
 			alignment: alignments.le,
 			environments: [ "arctic", "cave", "coast", "desert", "dungeon", "grassland", "mountain", "ruins" ],
 			id: "64954fd2-b46e-4c35-95b4-4c6ff153fb41",
@@ -3731,7 +3731,7 @@ define([
 		{
 			section: "Howling Hatred Cultists", name: "Skyweaver",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "12", hp: "44", init: "2", cr: "3",
+			ac: 12, hp: 44, init: 2, cr: "3",
 			alignment: alignments.ce,
 			environments: [ "arctic", "cave", "coast", "desert", "dungeon", "grassland", "mountain", "ruins" ],
 			id: "a04fcf2a-bcce-4bce-b0d1-d8421034ef57",
@@ -3739,21 +3739,21 @@ define([
 		{
 			section: "Howling Hatred Cultists", name: "Thurl Merosska",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ], unique: true,
-			ac: "16", hp: "71", init: "2", cr: "3",
+			ac: 16, hp: 71, init: 2, cr: "3",
 			alignment: alignments.le,
 			id: "b556c163-d83e-480e-b43c-20719bc337aa",
 		},
 		{
 			section: "Howling Hatred Cultists", name: "Windharrow",
 			size: "Medium", type: "Humanoid", tags: [ "Half-elf" ], unique: true,
-			ac: "15", hp: "55", init: "3", cr: "3",
+			ac: 15, hp: 55, init: 3, cr: "3",
 			alignment: alignments.ne,
 			id: "58a87589-0a1c-4d4c-9874-e61d7bbff92b",
 		},
 		{
 			section: "Howling Hatred Cultists", name: "Aerisi Kalinoth",
 			size: "Medium", type: "Humanoid", tags: [ "Elf" ], unique: true,
-			ac: "13", hp: "66", init: "3", cr: "7",
+			ac: 13, hp: 66, init: 3, cr: "7",
 			alignment: alignments.ne,
 			lair: false,
 			id: "42e798b0-d4ce-48d8-9e2e-eb12b44ec2f9",
@@ -3761,7 +3761,7 @@ define([
 		{
 			section: "Howling Hatred Cultists", name: "Aerisi Kalinoth (in lair)",
 			size: "Medium", type: "Humanoid", tags: [ "Elf" ], unique: true,
-			ac: "13", hp: "66", init: "3", cr: "9",
+			ac: 13, hp: 66, init: 3, cr: "9",
 			alignment: alignments.ne,
 			lair: true,
 			id: "110da8de-4ec0-4b5e-b531-c8a34d355a4b",
@@ -3769,7 +3769,7 @@ define([
 		{
 			section: "Black Earth Cultists", name: "Black Earth Guard",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "18", hp: "39", init: "0", cr: "2",
+			ac: 18, hp: 39, init: 0, cr: "2",
 			alignment: alignments.ne,
 			environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "underground" ],
 			id: "e677e29f-eba3-44ae-ae6e-47c5141291e1",
@@ -3777,7 +3777,7 @@ define([
 		{
 			section: "Black Earth Cultists", name: "Black Earth Priest",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "17", hp: "45", init: "0", cr: "3",
+			ac: 17, hp: 45, init: 0, cr: "3",
 			alignment: alignments.ne,
 			environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "underground" ],
 			id: "3a6fb726-4468-49fe-b079-1ca3daf8794d",
@@ -3785,7 +3785,7 @@ define([
 		{
 			section: "Black Earth Cultists", name: "Burrow Shark",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "18", hp: "82", init: "1", cr: "4",
+			ac: 18, hp: 82, init: 1, cr: "4",
 			alignment: alignments.ne,
 			environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "underground" ],
 			id: "6511413e-afd9-425d-a2d8-13c245bfff9a",
@@ -3793,7 +3793,7 @@ define([
 		{
 			section: "Black Earth Cultists", name: "Sacred Stone Monk",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "14", hp: "22", init: "2", cr: "1/2",
+			ac: 14, hp: 22, init: 2, cr: "1/2",
 			alignment: alignments.le,
 			environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "underground" ],
 			id: "7bfeb1e6-6ad4-4e1d-9565-993782b70f68",
@@ -3801,7 +3801,7 @@ define([
 		{
 			section: "Black Earth Cultists", name: "Stonemelder",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "17", hp: "75", init: "0", cr: "4",
+			ac: 17, hp: 75, init: 0, cr: "4",
 			alignment: alignments.ne,
 			environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "underground" ],
 			id: "8468bebf-a893-41c9-9a52-63097a71535b",
@@ -3809,21 +3809,21 @@ define([
 		{
 			section: "Black Earth Cultists", name: "Hellenrae",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ], unique: true,
-			ac: "16", hp: "78", init: "4", cr: "5",
+			ac: 16, hp: 78, init: 4, cr: "5",
 			alignment: alignments.ne,
 			id: "808b9d5b-9de0-4692-88b3-c3c589cd04c2",
 		},
 		{
 			section: "Black Earth Cultists", name: "Miraj Vizann",
 			size: "Medium", type: "Humanoid", tags: [ "Earth genasi" ], unique: true,
-			ac: "10", hp: "82", init: "0", cr: "6",
+			ac: 10, hp: 82, init: 0, cr: "6",
 			alignment: alignments.ne,
 			id: "474f3c52-7a41-4ffa-a882-42fa94b83fda",
 		},
 		{
 			section: "Black Earth Cultists", name: "Marlos Urnrayle",
 			size: "Medium", type: "Monstrosity", unique: true,
-			ac: "15", hp: "136", init: "0", cr: "8",
+			ac: 15, hp: 136, init: 0, cr: "8",
 			alignment: alignments.ne,
 			lair: false,
 			id: "d4f4981c-f46b-4a18-a9c0-62bda3aee9b0",
@@ -3831,7 +3831,7 @@ define([
 		{
 			section: "Black Earth Cultists", name: "Marlos Urnrayle (in lair)",
 			size: "Medium", type: "Monstrosity", unique: true,
-			ac: "15", hp: "136", init: "0", cr: "12",
+			ac: 15, hp: 136, init: 0, cr: "12",
 			alignment: alignments.ne,
 			lair: false,
 			id: "21d312b3-de51-492a-966c-235c76960ff2",
@@ -3839,7 +3839,7 @@ define([
 		{
 			section: "Eternal Flame Cultists", name: "Eternal Flame Guardian",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "17", hp: "45", init: "1", cr: "2",
+			ac: 17, hp: 45, init: 1, cr: "2",
 			alignment: alignments.ce,
 			environments: [ "cave", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "underground" ],
 			id: "11506c53-58eb-4732-a877-570ed1fb4408",
@@ -3847,7 +3847,7 @@ define([
 		{
 			section: "Eternal Flame Cultists", name: "Eternal Flame Priest",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "12", hp: "52", init: "2", cr: "3",
+			ac: 12, hp: 52, init: 2, cr: "3",
 			alignment: alignments.ne,
 			environments: [ "cave", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "underground" ],
 			id: "81ff5c00-72f3-4225-96a4-0453a57aff9c",
@@ -3855,7 +3855,7 @@ define([
 		{
 			section: "Eternal Flame Cultists", name: "Flamewrath",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "12", hp: "105", init: "2", cr: "6",
+			ac: 12, hp: 105, init: 2, cr: "6",
 			alignment: alignments.ce,
 			environments: [ "cave", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "underground" ],
 			id: "530d4e60-7c5f-4d84-aff8-608a033ec85f",
@@ -3863,7 +3863,7 @@ define([
 		{
 			section: "Eternal Flame Cultists", name: "Razerblast",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "17", hp: "112", init: "0", cr: "5",
+			ac: 17, hp: 112, init: 0, cr: "5",
 			alignment: alignments.ce,
 			environments: [ "cave", "desert", "dungeon", "forest", "grassland", "mountain", "ruins", "underground" ],
 			id: "f71b3427-cb38-4e49-afab-1e23f67c64a2",
@@ -3871,21 +3871,21 @@ define([
 		{
 			section: "Eternal Flame Cultists", name: "Bastian Thermandar",
 			size: "Medium", type: "Humanoid", tags: [ "Fire genasi" ], unique: true,
-			ac: "12", hp: "78", init: "2", cr: "8",
+			ac: 12, hp: 78, init: 2, cr: "8",
 			alignment: alignments.ce,
 			id: "952018b8-9f08-4f18-827e-2dcd7e5e367a",
 		},
 		{
 			section: "Eternal Flame Cultists", name: "Elizar Dryflagon",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ], unique: true,
-			ac: "14", hp: "71", init: "2", cr: "5",
+			ac: 14, hp: 71, init: 2, cr: "5",
 			alignment: alignments.ce,
 			id: "19bb278f-988d-4c48-9fde-10e4ff357c19",
 		},
 		{
 			section: "Eternal Flame Cultists", name: "Vanifer",
 			size: "Medium", type: "Humanoid", tags: [ "Tiefling" ], unique: true,
-			ac: "15", hp: "112", init: "3", cr: "9",
+			ac: 15, hp: 112, init: 3, cr: "9",
 			alignment: alignments.ce,
 			lair: false,
 			id: "b2def732-06fb-483d-b0bd-41977e9726a4",
@@ -3893,7 +3893,7 @@ define([
 		{
 			section: "Eternal Flame Cultists", name: "Vanifer (in lair)",
 			size: "Medium", type: "Humanoid", tags: [ "Tiefling" ], unique: true,
-			ac: "15", hp: "112", init: "3", cr: "12",
+			ac: 15, hp: 112, init: 3, cr: "12",
 			alignment: alignments.ce,
 			lair: true,
 			id: "8e7bb425-8d3b-4051-8dc8-40fd31a79f12",
@@ -3901,7 +3901,7 @@ define([
 		{
 			section: "Crushing Wave Cultists", name: "Crushing Wave Priest",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "13", hp: "52", init: "0", cr: "2",
+			ac: 13, hp: 52, init: 0, cr: "2",
 			alignment: alignments.ne,
 			environments: [ "aquatic", "cave", "coast", "grassland", "swamp", "underground" ],
 			id: "10a656be-585c-4e2d-89fc-a44d742c0650",
@@ -3909,7 +3909,7 @@ define([
 		{
 			section: "Crushing Wave Cultists", name: "Crushing Wave Reaver",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "14", hp: "22", init: "2", cr: "1/2",
+			ac: 14, hp: 22, init: 2, cr: "1/2",
 			alignment: alignments.ne,
 			environments: [ "aquatic", "cave", "coast", "grassland", "swamp", "underground" ],
 			id: "0d17db23-30dd-4e07-9b8f-1ea31879a5f4",
@@ -3917,7 +3917,7 @@ define([
 		{
 			section: "Crushing Wave Cultists", name: "Dark Tide Knight",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "13", hp: "58", init: "3", cr: "3",
+			ac: 13, hp: 58, init: 3, cr: "3",
 			alignment: alignments.le,
 			environments: [ "aquatic", "cave", "coast", "grassland", "swamp", "underground" ],
 			id: "f276978d-37ac-4acd-9559-52d3281365c6",
@@ -3925,7 +3925,7 @@ define([
 		{
 			section: "Crushing Wave Cultists", name: "Fathomer",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "10", hp: "52", init: "0", cr: "2",
+			ac: 10, hp: 52, init: 0, cr: "2",
 			alignment: alignments.ne,
 			environments: [ "aquatic", "cave", "coast", "grassland", "swamp", "underground" ],
 			id: "151a7399-6612-4424-8a67-da8419f2af1d",
@@ -3933,7 +3933,7 @@ define([
 		{
 			section: "Crushing Wave Cultists", name: "One-Eyed Shiver",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "12", hp: "49", init: "2", cr: "3",
+			ac: 12, hp: 49, init: 2, cr: "3",
 			alignment: alignments.ce,
 			environments: [ "aquatic", "cave", "coast", "grassland", "swamp", "underground" ],
 			id: "eb3c332a-e5c8-4a50-a212-bc6041ceec4d",
@@ -3941,14 +3941,14 @@ define([
 		{
 			section: "Crushing Wave Cultists", name: "Shoalar Quanderil",
 			size: "Medium", type: "Humanoid", tags: [ "Water genasi" ], unique: true,
-			ac: "10", hp: "60", init: "1", cr: "4",
+			ac: 10, hp: 60, init: 1, cr: "4",
 			alignment: alignments.ce,
 			id: "9653c256-e429-491a-82a4-14a7d35ccc7d",
 		},
 		{
 			section: "Crushing Wave Cultists", name: "Gar Shatterkeel",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ], unique: true,
-			ac: "16", hp: "112", init: "2", cr: "9",
+			ac: 16, hp: 112, init: 2, cr: "9",
 			alignment: alignments.ce,
 			lair: false,
 			id: "77336909-5839-48c4-954d-3eaf416dc729",
@@ -3956,7 +3956,7 @@ define([
 		{
 			section: "Crushing Wave Cultists", name: "Gar Shatterkeel (in lair)",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ], unique: true,
-			ac: "16", hp: "112", init: "2", cr: "13",
+			ac: 16, hp: 112, init: 2, cr: "13",
 			alignment: alignments.ce,
 			lair: false,
 			id: "9b6c6412-5a3d-4ff1-8151-376eac201182",
@@ -3964,35 +3964,35 @@ define([
 		{
 			section: "Other Villains", name: "Drannin Splithelm", tags: [ "Shield dwarf" ], unique: true,
 			size: "Medium", type: "Elemental",
-			ac: "18", hp: "93", init: "0", cr: "7",
+			ac: 18, hp: 93, init: 0, cr: "7",
 			alignment: alignments.ne,
 			id: "c0ac9048-9d40-418a-b3b1-cdc58843e1cb",
 		},
 		{
 			section: "Other Villains", name: "Ghald", tags: [ "Sahuagin" ], unique: true,
 			size: "Medium", type: "Elemental",
-			ac: "15", hp: "102", init: "3", cr: "7",
+			ac: 15, hp: 102, init: 3, cr: "7",
 			alignment: alignments.le,
 			id: "788ad772-47f1-442f-a7f8-74988b191b11",
 		},
 		{
 			section: "Other Villains", name: "Oreioth", tags: [ "Human" ], unique: true,
 			size: "Medium", type: "Elemental",
-			ac: "11", hp: "39", init: "1", cr: "2",
+			ac: 11, hp: 39, init: 1, cr: "2",
 			alignment: alignments.ce,
 			id: "e1c70697-6681-42a7-9289-dcc8d441d422",
 		},
 		{
 			section: "Other Villains", name: "Wiggan Nettlebee", tags: [ "Halfling" ], unique: true,
 			size: "Medium", type: "Elemental",
-			ac: "11", hp: "36", init: "1", cr: "2",
+			ac: 11, hp: 36, init: 1, cr: "2",
 			alignment: alignments.ne,
 			id: "489ae12c-5439-4bc0-8f7c-ab354a7bf3f3",
 		},
 		{
 			section: "Elemental Myrmidons", name: "Air Elemental Myrmidon",
 			size: "Medium", type: "Elemental",
-			ac: "18", hp: "117", init: "2", cr: "7",
+			ac: 18, hp: 117, init: 2, cr: "7",
 			alignment: alignments.n,
 			environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "planar", "ruins", "swamp", "underground" ],
 			id: "e3d1956e-2243-4e4f-9794-ed71f0160122",
@@ -4000,7 +4000,7 @@ define([
 		{
 			section: "Elemental Myrmidons", name: "Earth Elemental Myrmidon",
 			size: "Medium", type: "Elemental",
-			ac: "18", hp: "127", init: "0", cr: "7",
+			ac: 18, hp: 127, init: 0, cr: "7",
 			alignment: alignments.n,
 			environments: [ "arctic", "cave", "coast", "desert", "dungeon", "forest", "grassland", "mountain", "planar", "ruins", "swamp", "underground" ],
 			id: "f8ae5941-9f22-4089-a9ea-43c0163771c1",
@@ -4008,7 +4008,7 @@ define([
 		{
 			section: "Elemental Myrmidons", name: "Fire Elemental Myrmidon",
 			size: "Medium", type: "Elemental",
-			ac: "18", hp: "117", init: "4", cr: "7",
+			ac: 18, hp: 117, init: 4, cr: "7",
 			alignment: alignments.n,
 			environments: [ "cave", "coast", "desert", "dungeon", "grassland", "mountain", "planar", "ruins", "swamp", "underground", "urban" ],
 			id: "a52b610e-729b-42bd-b124-62835ed4932b",
@@ -4016,7 +4016,7 @@ define([
 		{
 			section: "Elemental Myrmidons", name: "Water Elemental Myrmidon",
 			size: "Medium", type: "Elemental",
-			ac: "18", hp: "127", init: "2", cr: "7",
+			ac: 18, hp: 127, init: 2, cr: "7",
 			alignment: alignments.n,
 			environments: [ "aquatic", "arctic", "cave", "coast", "dungeon", "forest", "grassland", "mountain", "planar", "ruins", "swamp", "underground" ],
 			id: "c7d911b4-2ae2-4314-949e-df469804c176",
@@ -4024,7 +4024,7 @@ define([
 		{
 			section: "Princes of Elemental Evil", name: "Imix", unique: true,
 			size: "Huge", type: "Elemental",
-			ac: "17", hp: "325", init: "7", cr: "19",
+			ac: 17, hp: 325, init: 7, cr: "19",
 			alignment: alignments.ne,
 			lair: true,
 			legendary: true,
@@ -4033,7 +4033,7 @@ define([
 		{
 			section: "Princes of Elemental Evil", name: "Ogrémoch", unique: true,
 			size: "Huge", type: "Elemental",
-			ac: "20", hp: "526", init: "0", cr: "20",
+			ac: 20, hp: 526, init: 0, cr: "20",
 			alignment: alignments.ne,
 			lair: true,
 			legendary: true,
@@ -4042,7 +4042,7 @@ define([
 		{
 			section: "Princes of Elemental Evil", name: "Olhydra", unique: true,
 			size: "Huge", type: "Elemental",
-			ac: "18", hp: "324", init: "6", cr: "18",
+			ac: 18, hp: 324, init: 6, cr: "18",
 			alignment: alignments.ne,
 			lair: true,
 			legendary: true,
@@ -4051,7 +4051,7 @@ define([
 		{
 			section: "Princes of Elemental Evil", name: "Yan-C-Bin", unique: true,
 			size: "Huge", type: "Elemental",
-			ac: "22", hp: "283", init: "7", cr: "18",
+			ac: 22, hp: 283, init: 7, cr: "18",
 			alignment: alignments.ne,
 			lair: true,
 			legendary: true,
@@ -4062,7 +4062,7 @@ define([
 		{
 			name: "Grave Titan",
 			size: "Huge", type: "Undead",
-			ac: "14", hp: "200", init: "0", cr: "10",
+			ac: 14, hp: 200, init: 0, cr: "10",
 			alignment: alignments.ne,
 			environments: [],
 			id: "59dc127f-c93a-5f71-8b77-735936fb4ca0",
@@ -4070,7 +4070,7 @@ define([
 		{
 			name: "Rat Hermit",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
-			ac: "15", hp: "44", init: "3", cr: "3",
+			ac: 15, hp: 44, init: 3, cr: "3",
 			alignment: alignments.non_good,
 			environments: [],
 			id: "2e38eaec-d231-51d2-beb3-da82cb7a1d44",
@@ -4078,7 +4078,7 @@ define([
 		{
 			name: "Morphlit",
 			size: "Small", type: "Aberration",
-			ac: "14", hp: "18", init: "4", cr: "2",
+			ac: 14, hp: 18, init: 4, cr: "2",
 			alignment: alignments.ce,
 			environments: [],
 			id: "adbfd507-fff1-5649-9ee0-517bdeedad61",
@@ -4086,7 +4086,7 @@ define([
 		{
 			name: "Selachian",
 			size: "Large", type: "Humanoid", tags: [ "Selachian" ],
-			ac: "15", hp: "133", init: "0", cr: "8",
+			ac: 15, hp: 133, init: 0, cr: "8",
 			alignment: alignments.any_chaotic,
 			environments: [],
 			id: "e01aaafc-acdd-56a9-8fcf-f8baa248c75a",
@@ -4094,7 +4094,7 @@ define([
 		{
 			name: "Kraken Hatchling",
 			size: "Huge", type: "Monstrosity", tags: [ "Titan" ],
-			ac: "17", hp: "230", init: "0", cr: "12",
+			ac: 17, hp: 230, init: 0, cr: "12",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: true,
@@ -4103,7 +4103,7 @@ define([
 		{
 			name: "Pustuloid",
 			size: "Small", type: "Fiend", tags: [ "Demon" ],
-			ac: "12", hp: "27", init: "2", cr: "1",
+			ac: 12, hp: 27, init: 2, cr: "1",
 			alignment: alignments.ce,
 			environments: [],
 			id: "076fbeb4-e49f-5e35-9e99-78d229bf7ad2",
@@ -4111,7 +4111,7 @@ define([
 		{
 			name: "Herald of Rot",
 			size: "Large", type: "Fiend", tags: [ "Demon" ],
-			ac: "15", hp: "104", init: "2", cr: "6",
+			ac: 15, hp: 104, init: 2, cr: "6",
 			alignment: alignments.ce,
 			environments: [],
 			id: "f78ce030-6101-5b66-abbb-0a1bde8f7277",
@@ -4119,7 +4119,7 @@ define([
 		{
 			name: "Priest of Blight",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
-			ac: "14", hp: "84", init: "2", cr: "8",
+			ac: 14, hp: 84, init: 2, cr: "8",
 			alignment: alignments.ce,
 			environments: [],
 			id: "3fd4bc9b-3562-570b-a7ea-820fa582baad",
@@ -4127,7 +4127,7 @@ define([
 		{
 			name: "Fire Spire Initiate",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
-			ac: "15", hp: "55", init: "3", cr: "3",
+			ac: 15, hp: 55, init: 3, cr: "3",
 			alignment: alignments.any_lawful,
 			environments: [],
 			id: "bb017345-9b98-56c7-aed1-da6dd50c2d9a",
@@ -4135,7 +4135,7 @@ define([
 		{
 			name: "Master of the Five Spires",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
-			ac: "17", hp: "91", init: "4", cr: "8",
+			ac: 17, hp: 91, init: 4, cr: "8",
 			alignment: alignments.any_lawful,
 			environments: [],
 			id: "8c7a6f49-37be-5531-a58f-f3ec9da6fa17",
@@ -4143,7 +4143,7 @@ define([
 		{
 			name: "Myr",
 			size: "Small", type: "Construct", tags: [ "Myr" ],
-			ac: "14", hp: "9", init: "2", cr: "1/4",
+			ac: 14, hp: 9, init: 2, cr: "1/4",
 			alignment: alignments.n,
 			environments: [],
 			id: "29e80beb-2c3a-50b3-b679-20618b641f0e",
@@ -4151,7 +4151,7 @@ define([
 		{
 			name: "Myr Battlesphere",
 			size: "Huge", type: "Construct", tags: [ "Myr" ],
-			ac: "18", hp: "105", init: "1", cr: "5",
+			ac: 18, hp: 105, init: 1, cr: "5",
 			alignment: alignments.n,
 			environments: [],
 			id: "54c92db5-42cf-534a-8418-8d73b6f5c0ab",
@@ -4159,7 +4159,7 @@ define([
 		{
 			name: "Fusion Elemental",
 			size: "Huge", type: "Elemental",
-			ac: "17", hp: "250", init: "0", cr: "15",
+			ac: 17, hp: 250, init: 0, cr: "15",
 			alignment: alignments.n,
 			environments: [],
 			legendary: true,
@@ -4168,7 +4168,7 @@ define([
 		{
 			name: "Fallen Angel",
 			size: "Medium", type: "Celestial",
-			ac: "17", hp: "136", init: "4", cr: "10",
+			ac: 17, hp: 136, init: 4, cr: "10",
 			alignment: alignments.le,
 			environments: [],
 			id: "6aaea83f-cd45-5042-ac24-f586fcecdfad",
@@ -4176,7 +4176,7 @@ define([
 		{
 			name: "Bone Golem",
 			size: "Large", type: "Construct",
-			ac: "14", hp: "133", init: "-1", cr: "9",
+			ac: 14, hp: 133, init: -1, cr: "9",
 			alignment: alignments.unaligned,
 			environments: [],
 			id: "2f241d46-9f14-5991-a9a1-ce6fd8692c74",
@@ -4184,7 +4184,7 @@ define([
 		{
 			name: "Sliver",
 			size: "Medium", type: "Monstrosity", tags: [ "Sliver" ],
-			ac: "12", hp: "22", init: "2", cr: "1/2",
+			ac: 12, hp: 22, init: 2, cr: "1/2",
 			alignment: alignments.ne,
 			environments: [],
 			id: "d437a412-3128-54af-a952-addebebab87c",
@@ -4192,7 +4192,7 @@ define([
 		{
 			name: "Might Sliver",
 			size: "Large", type: "Monstrosity", tags: [ "Sliver" ],
-			ac: "12", hp: "37", init: "2", cr: "2",
+			ac: 12, hp: 37, init: 2, cr: "2",
 			alignment: alignments.ne,
 			environments: [],
 			id: "f8fef1f5-258b-588e-9557-ff8e5bff5a78",
@@ -4200,7 +4200,7 @@ define([
 		{
 			name: "Armour Sliver",
 			size: "Large", type: "Monstrosity", tags: [ "Sliver" ],
-			ac: "16", hp: "52", init: "2", cr: "3",
+			ac: 16, hp: 52, init: 2, cr: "3",
 			alignment: alignments.ne,
 			environments: [],
 			id: "f77c175f-506d-557c-aef5-2f170ab90f0d",
@@ -4208,7 +4208,7 @@ define([
 		{
 			name: "Winged Sliver",
 			size: "Large", type: "Monstrosity", tags: [ "Sliver" ],
-			ac: "12", hp: "60", init: "2", cr: "3",
+			ac: 12, hp: 60, init: 2, cr: "3",
 			alignment: alignments.ne,
 			environments: [],
 			id: "50576b80-6e26-5f03-bda5-a3dba5ca0700",
@@ -4216,7 +4216,7 @@ define([
 		{
 			name: "Virulent Sliver",
 			size: "Large", type: "Monstrosity", tags: [ "Sliver" ],
-			ac: "12", hp: "52", init: "2", cr: "3",
+			ac: 12, hp: 52, init: 2, cr: "3",
 			alignment: alignments.ne,
 			environments: [],
 			id: "2adf3d0a-8617-5b52-99ea-de9477a51309",
@@ -4224,7 +4224,7 @@ define([
 		{
 			name: "Spitting Sliver",
 			size: "Large", type: "Monstrosity", tags: [ "Sliver" ],
-			ac: "12", hp: "45", init: "2", cr: "2",
+			ac: 12, hp: 45, init: 2, cr: "2",
 			alignment: alignments.ne,
 			environments: [],
 			id: "a9792b74-860b-59ea-be7c-1cc44139b2ef",
@@ -4232,7 +4232,7 @@ define([
 		{
 			name: "Crystalline Sliver",
 			size: "Large", type: "Monstrosity", tags: [ "Sliver" ],
-			ac: "14", hp: "75", init: "2", cr: "4",
+			ac: 14, hp: 75, init: 2, cr: "4",
 			alignment: alignments.ne,
 			environments: [],
 			id: "51a0186f-dbcd-520d-8f01-382aa2d0621f",
@@ -4240,7 +4240,7 @@ define([
 		{
 			name: "Sliver Queen",
 			size: "Huge", type: "Monstrosity", tags: [ "Sliver" ],
-			ac: "17", hp: "200", init: "2", cr: "13",
+			ac: 17, hp: 200, init: 2, cr: "13",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: true,
@@ -4249,7 +4249,7 @@ define([
 		{
 			name: "Fern Lizard",
 			size: "Small", type: "Beast",
-			ac: "12", hp: "14", init: "2", cr: "1/2",
+			ac: 12, hp: 14, init: 2, cr: "1/2",
 			alignment: alignments.unaligned,
 			environments: [],
 			id: "6ba203b8-fcd8-531c-8132-63d661d3d6be",
@@ -4257,7 +4257,7 @@ define([
 		{
 			name: "Luck Dragon",
 			size: "Tiny", type: "Dragon",
-			ac: "12", hp: "7", init: "2", cr: "1/4",
+			ac: 12, hp: 7, init: 2, cr: "1/4",
 			alignment: alignments.unaligned,
 			environments: [],
 			id: "5e68c5f1-4be0-53a3-b437-50e7afc8913a",
@@ -4265,7 +4265,7 @@ define([
 		{
 			name: "Gnoll Deathknight",
 			size: "Medium", type: "Humanoid", tags: [ "Gnoll" ],
-			ac: "17", hp: "120", init: "2", cr: "6",
+			ac: 17, hp: 120, init: 2, cr: "6",
 			alignment: alignments.ce,
 			environments: [],
 			id: "db18b7ac-74da-56d2-94ac-576dd41bbe9c",
@@ -4273,7 +4273,7 @@ define([
 		{
 			name: "Fiendish Hyena",
 			size: "Large", type: "Fiend",
-			ac: "12", hp: "45", init: "1", cr: "2",
+			ac: 12, hp: 45, init: 1, cr: "2",
 			alignment: alignments.ce,
 			environments: [],
 			id: "9ab66078-0d51-5ad0-b367-7b11ec247696",
@@ -4281,7 +4281,7 @@ define([
 		{
 			name: "Gnoll Deathmage",
 			size: "Medium", type: "Humanoid", tags: [ "Gnoll" ],
-			ac: "12", hp: "55", init: "2", cr: "7",
+			ac: 12, hp: 55, init: 2, cr: "7",
 			alignment: alignments.ce,
 			environments: [],
 			id: "39d9c50f-5bc2-5de1-bea6-80e84dd86bd9",
@@ -4289,7 +4289,7 @@ define([
 		{
 			name: "Kobold Bully",
 			size: "Small", type: "Humanoid", tags: [ "Kobold" ],
-			ac: "14", hp: "21", init: "2", cr: "1",
+			ac: 14, hp: 21, init: 2, cr: "1",
 			alignment: alignments.le,
 			environments: [],
 			id: "5c7a660e-febe-5253-bdb3-00334c886ece",
@@ -4297,7 +4297,7 @@ define([
 		{
 			name: "Kobold Commander",
 			size: "Small", type: "Humanoid", tags: [ "Kobold" ],
-			ac: "18", hp: "11", init: "1", cr: "1/2",
+			ac: 18, hp: 11, init: 1, cr: "1/2",
 			alignment: alignments.le,
 			environments: [],
 			id: "8c408eef-4955-517b-a780-e604acee19b0",
@@ -4305,7 +4305,7 @@ define([
 		{
 			name: "Kobold Shaman",
 			size: "Small", type: "Humanoid", tags: [ "Kobold" ],
-			ac: "13", hp: "27", init: "2", cr: "2",
+			ac: 13, hp: 27, init: 2, cr: "2",
 			alignment: alignments.le,
 			environments: [],
 			id: "1bc1f162-c67a-5d1a-bfd5-cb8c27acae60",
@@ -4313,7 +4313,7 @@ define([
 		{
 			name: "Kobold Soldier",
 			size: "Small", type: "Humanoid", tags: [ "Kobold" ],
-			ac: "15", hp: "7", init: "2", cr: "1/4",
+			ac: 15, hp: 7, init: 2, cr: "1/4",
 			alignment: alignments.le,
 			environments: [],
 			id: "65866bec-846e-5717-89e7-1b593b41d78e",
@@ -4321,7 +4321,7 @@ define([
 		{
 			name: "Kobold Hero",
 			size: "Small", type: "Humanoid", tags: [ "Kobold" ],
-			ac: "18", hp: "54", init: "2", cr: "4",
+			ac: 18, hp: 54, init: 2, cr: "4",
 			alignment: alignments.le,
 			environments: [],
 			legendary: true,
@@ -4330,7 +4330,7 @@ define([
 		{
 			name: "Spirit",
 			size: "Medium", type: "Undead",
-			ac: "11", hp: "16", init: "1", cr: "1/2",
+			ac: 11, hp: 16, init: 1, cr: "1/2",
 			alignment: alignments.any,
 			environments: [],
 			id: "46c49f1e-ece4-5713-a7d9-ece62dd64d0e",
@@ -4338,7 +4338,7 @@ define([
 		{
 			name: "Baneling",
 			size: "Small", type: "Fiend", tags: [ "Demon" ],
-			ac: "12", hp: "7", init: "2", cr: "1/2",
+			ac: 12, hp: 7, init: 2, cr: "1/2",
 			alignment: alignments.ce,
 			environments: [],
 			id: "3bf8b6d5-48b9-5c67-abce-08864204d0bc",
@@ -4346,7 +4346,7 @@ define([
 		{
 			name: "Pact Devil",
 			size: "Large", type: "Fiend", tags: [ "Devil" ],
-			ac: "17", hp: "142", init: "3", cr: "9",
+			ac: 17, hp: 142, init: 3, cr: "9",
 			alignment: alignments.le,
 			environments: [],
 			id: "f14e1cac-3f0b-5312-8927-720f4130e960",
@@ -4354,7 +4354,7 @@ define([
 		{
 			name: "Truesong Dancer",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
-			ac: "14", hp: "44", init: "3", cr: "3",
+			ac: 14, hp: 44, init: 3, cr: "3",
 			alignment: alignments.cn,
 			environments: [],
 			id: "46f4e1d3-315b-5682-8c38-3445af06b159",
@@ -4362,7 +4362,7 @@ define([
 		{
 			name: "Truesong Dirge",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
-			ac: "16", hp: "91", init: "1", cr: "5",
+			ac: 16, hp: 91, init: 1, cr: "5",
 			alignment: alignments.cn,
 			environments: [],
 			id: "d6000051-ecfd-5bf6-a7b2-8377bbacf114",
@@ -4370,7 +4370,7 @@ define([
 		{
 			name: "Leonin",
 			size: "Medium", type: "Humanoid", tags: [ "Leonin" ],
-			ac: "14", hp: "11", init: "2", cr: "1/4",
+			ac: 14, hp: 11, init: 2, cr: "1/4",
 			alignment: alignments.any,
 			environments: [],
 			id: "4b87c32b-ed76-5713-b651-cdd186b4ee51",
@@ -4378,7 +4378,7 @@ define([
 		{
 			name: "Tuskaloth",
 			size: "Gargantuan", type: "Beast",
-			ac: "14", hp: "198", init: "-1", cr: "10",
+			ac: 14, hp: 198, init: -1, cr: "10",
 			alignment: alignments.unaligned,
 			environments: [],
 			id: "35022402-2e9b-5902-b195-31e3e3128775",
@@ -4386,7 +4386,7 @@ define([
 		{
 			name: "Clockwork Dragon",
 			size: "Huge", type: "Construct",
-			ac: "18", hp: "184", init: "0", cr: "14",
+			ac: 18, hp: 184, init: 0, cr: "14",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: true,
@@ -4395,7 +4395,7 @@ define([
 		{
 			name: "Arcanamite",
 			size: "Small", type: "Monstrosity",
-			ac: "15", hp: "27", init: "2", cr: "1",
+			ac: 15, hp: 27, init: 2, cr: "1",
 			alignment: alignments.unaligned,
 			environments: [],
 			id: "c6d2824b-0c27-508d-ad1c-c9c6e045a8e8",
@@ -4403,7 +4403,7 @@ define([
 		{
 			name: "Gazellean",
 			size: "Medium", type: "Humanoid", tags: [ "Gazellean" ],
-			ac: "14", hp: "16", init: "3", cr: "1/2",
+			ac: 14, hp: 16, init: 3, cr: "1/2",
 			alignment: alignments.n,
 			environments: [],
 			id: "86c8a930-7053-51af-9feb-a250233acf62",
@@ -4411,7 +4411,7 @@ define([
 		{
 			name: "Spellskite",
 			size: "Large", type: "Construct",
-			ac: "14", hp: "102", init: "2", cr: "5",
+			ac: 14, hp: 102, init: 2, cr: "5",
 			alignment: alignments.unaligned,
 			environments: [],
 			id: "98a0cb71-6791-541f-90d7-fc586010e839",
@@ -4419,7 +4419,7 @@ define([
 		{
 			name: "Troll Boar",
 			size: "Large", type: "Monstrosity",
-			ac: "13", hp: "57", init: "0", cr: "3",
+			ac: 13, hp: 57, init: 0, cr: "3",
 			alignment: alignments.ce,
 			environments: [],
 			id: "7f6ee622-ec69-52a8-a9de-62dd94df77ac",
@@ -4427,7 +4427,7 @@ define([
 		{
 			name: "Grove Guardian",
 			size: "Large", type: "Fey",
-			ac: "15", hp: "71", init: "3", cr: "5",
+			ac: 15, hp: 71, init: 3, cr: "5",
 			alignment: alignments.n,
 			environments: [],
 			id: "1d99298b-976a-53eb-9100-1bc9cd2d37e0",
@@ -4435,7 +4435,7 @@ define([
 		{
 			name: "Silverpaw Dog",
 			size: "Medium", type: "Fey",
-			ac: "14", hp: "32", init: "3", cr: "1",
+			ac: 14, hp: 32, init: 3, cr: "1",
 			alignment: alignments.n,
 			environments: [],
 			id: "212bc756-ae05-5452-b3b0-b7b3197b9384",
@@ -4443,7 +4443,7 @@ define([
 		{
 			name: "Silverpaw Paladin",
 			size: "Small", type: "Humanoid", tags: [ "Halfling" ],
-			ac: "15", hp: "65", init: "3", cr: "4",
+			ac: 15, hp: 65, init: 3, cr: "4",
 			alignment: alignments.n,
 			environments: [],
 			id: "1500c9b6-65c4-5cb6-965f-454b09d853b1",
@@ -4451,7 +4451,7 @@ define([
 		{
 			name: "Dream Eater",
 			size: "Large", type: "Aberration",
-			ac: "17", hp: "133", init: "5", cr: "10",
+			ac: 17, hp: 133, init: 5, cr: "10",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: true,
@@ -4460,7 +4460,7 @@ define([
 		{
 			name: "Coven Horror",
 			size: "Large", type: "Monstrosity",
-			ac: "15", hp: "123", init: "0", cr: "9",
+			ac: 15, hp: 123, init: 0, cr: "9",
 			alignment: alignments.ce,
 			environments: [],
 			id: "6fb8d0a0-aa8a-53c6-afef-133981179bd7",
@@ -4468,7 +4468,7 @@ define([
 		{
 			name: "Burning Skeleton",
 			size: "Medium", type: "Undead",
-			ac: "15", hp: "26", init: "2", cr: "1",
+			ac: 15, hp: 26, init: 2, cr: "1",
 			alignment: alignments.le,
 			environments: [],
 			id: "d983d439-66ba-512a-bb0f-4fbd5e512baf",
@@ -4476,7 +4476,7 @@ define([
 		{
 			name: "Eldrazi Scion",
 			size: "Large", type: "Aberration",
-			ac: "12", hp: "45", init: "2", cr: "1",
+			ac: 12, hp: 45, init: 2, cr: "1",
 			alignment: alignments.ce,
 			environments: [],
 			id: "393c286b-0c0e-581f-a2fb-3711d00382a6",
@@ -4484,7 +4484,7 @@ define([
 		{
 			name: "Brood Monitor",
 			size: "Huge", type: "Aberration",
-			ac: "12", hp: "126", init: "2", cr: "7",
+			ac: 12, hp: 126, init: 2, cr: "7",
 			alignment: alignments.ce,
 			environments: [],
 			id: "361e1f3d-3ca0-5c56-b651-e4fe1da80d29",
@@ -4492,7 +4492,7 @@ define([
 		{
 			name: "Brood Butcher",
 			size: "Huge", type: "Aberration",
-			ac: "14", hp: "184", init: "0", cr: "9",
+			ac: 14, hp: 184, init: 0, cr: "9",
 			alignment: alignments.ce,
 			environments: [],
 			id: "df831f20-8493-59ea-9708-cb21adbe068c",
@@ -4500,7 +4500,7 @@ define([
 		{
 			name: "Sire of Stagnation",
 			size: "Gargantuan", type: "Aberration",
-			ac: "18", hp: "310", init: "0", cr: "17",
+			ac: 18, hp: 310, init: 0, cr: "17",
 			alignment: alignments.ce,
 			environments: [],
 			id: "1e871052-ad86-5143-9643-1eb60e1a9c37",
@@ -4508,7 +4508,7 @@ define([
 		{
 			name: "Ulamog, the Ceaseless Hunger",
 			size: "Colossal", type: "Aberration", tags: [ "Titan" ],
-			ac: "25", hp: "717", init: "0", cr: "30",
+			ac: 25, hp: 717, init: 0, cr: "30",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: true,
@@ -4517,7 +4517,7 @@ define([
 		{
 			name: "Tentaghoul",
 			size: "Large", type: "Undead",
-			ac: "13", hp: "76", init: "-1", cr: "3",
+			ac: 13, hp: 76, init: -1, cr: "3",
 			alignment: alignments.ce,
 			environments: [],
 			id: "ea36ebf6-3fb3-5098-b38f-77e66298954d",
@@ -4525,7 +4525,7 @@ define([
 		{
 			name: "Death Widow",
 			size: "Large", type: "Monstrosity",
-			ac: "14", hp: "60", init: "3", cr: "3",
+			ac: 14, hp: 60, init: 3, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [],
 			id: "9490dc31-e70b-5585-a185-bb43445262b9",
@@ -4533,7 +4533,7 @@ define([
 		{
 			name: "Screecher",
 			size: "Large", type: "Monstrosity",
-			ac: "13", hp: "45", init: "2", cr: "2",
+			ac: 13, hp: 45, init: 2, cr: "2",
 			alignment: alignments.n,
 			environments: [],
 			id: "63473bc9-006e-52b2-8a8a-f69a2be556de",
@@ -4541,7 +4541,7 @@ define([
 		{
 			name: "Gladeborn Trapper",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
-			ac: "16", hp: "52", init: "3", cr: "3",
+			ac: 16, hp: 52, init: 3, cr: "3",
 			alignment: alignments.n,
 			environments: [],
 			id: "c1080389-7eb6-5f7c-a6d8-1db800992f82",
@@ -4549,7 +4549,7 @@ define([
 		{
 			name: "Gladeborn Hunter",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
-			ac: "16", hp: "91", init: "4", cr: "5",
+			ac: 16, hp: 91, init: 4, cr: "5",
 			alignment: alignments.n,
 			environments: [],
 			id: "b024b624-9bbe-5f0a-9b02-027fc42365ac",
@@ -4557,7 +4557,7 @@ define([
 		{
 			name: "Spider Skull",
 			size: "Tiny", type: "Undead",
-			ac: "13", hp: "13", init: "3", cr: "1/2",
+			ac: 13, hp: 13, init: 3, cr: "1/2",
 			alignment: alignments.ne,
 			environments: [],
 			id: "ae587e7a-dcd7-5c4b-b4d7-eeae5b167a8b",
@@ -4565,7 +4565,7 @@ define([
 		{
 			name: "Swarm of Squirrels",
 			size: "Medium", type: "Beast", tags: [ "Swarm" ],
-			ac: "14", hp: "36", init: "4", cr: "2",
+			ac: 14, hp: 36, init: 4, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [],
 			id: "385b9e74-056e-5f8f-af84-82a8a3f369c1",
@@ -4573,7 +4573,7 @@ define([
 		{
 			name: "Ginormous Squirrel",
 			size: "Gargantuan", type: "Beast",
-			ac: "20", hp: "248", init: "3", cr: "16",
+			ac: 20, hp: 248, init: 3, cr: "16",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: true,
@@ -4582,7 +4582,7 @@ define([
 		{
 			name: "Verdalin",
 			size: "Small", type: "Fey",
-			ac: "13", hp: "18", init: "3", cr: "1/2",
+			ac: 13, hp: 18, init: 3, cr: "1/2",
 			alignment: alignments.n,
 			environments: [],
 			id: "e1d6d3fc-8f5f-5aba-b531-471f5659051c",
@@ -4590,7 +4590,7 @@ define([
 		{
 			name: "Owlbear Matron",
 			size: "Large", type: "Monstrosity",
-			ac: "14", hp: "114", init: "2", cr: "5",
+			ac: 14, hp: 114, init: 2, cr: "5",
 			alignment: alignments.unaligned,
 			environments: [],
 			id: "837f7fa0-d9a6-5a3a-a99a-1df012f90a39",
@@ -4598,7 +4598,7 @@ define([
 		{
 			name: "Snow Spider",
 			size: "Large", type: "Beast",
-			ac: "13", hp: "65", init: "2", cr: "3",
+			ac: 13, hp: 65, init: 2, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [],
 			id: "a896ebd5-dbb4-5efa-a3ef-90de48d771e8",
@@ -4606,7 +4606,7 @@ define([
 		{
 			name: "Winter Sprite",
 			size: "Tiny", type: "Fey",
-			ac: "15", hp: "7", init: "5", cr: "1",
+			ac: 15, hp: 7, init: 5, cr: "1",
 			alignment: alignments.cn,
 			environments: [],
 			id: "85985297-b434-5c7a-9a03-39dca982c613",
@@ -4614,7 +4614,7 @@ define([
 		{
 			name: "Wight Walker",
 			size: "Medium", type: "Undead",
-			ac: "14", hp: "112", init: "2", cr: "6",
+			ac: 14, hp: 112, init: 2, cr: "6",
 			alignment: alignments.ne,
 			environments: [],
 			id: "6159d5f3-547e-5a37-9519-cf0d0237f350",
@@ -4622,7 +4622,7 @@ define([
 		{
 			name: "Ice Golem",
 			size: "Large", type: "Construct",
-			ac: "16", hp: "152", init: "0", cr: "8",
+			ac: 16, hp: 152, init: 0, cr: "8",
 			alignment: alignments.unaligned,
 			environments: [],
 			id: "abb92d58-da93-557d-a0fe-e9088b1a3f56",
@@ -4630,7 +4630,7 @@ define([
 		{
 			name: "Frost Giant Jarl",
 			size: "Huge", type: "Giant",
-			ac: "16", hp: "187", init: "0", cr: "11",
+			ac: 16, hp: 187, init: 0, cr: "11",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: true,
@@ -4639,7 +4639,7 @@ define([
 		{
 			name: "Rusalka",
 			size: "Medium", type: "Fey", tags: [ "Undead" ],
-			ac: "17", hp: "97", init: "4", cr: "4",
+			ac: 17, hp: 97, init: 4, cr: "4",
 			alignment: alignments.ne,
 			environments: [],
 			id: "44750eef-c3ac-51b1-b62f-5538630d38df",
@@ -4647,7 +4647,7 @@ define([
 		{
 			name: "Clockwork Pest",
 			size: "Tiny", type: "Construct",
-			ac: "14", hp: "7", init: "3", cr: "1/4",
+			ac: 14, hp: 7, init: 3, cr: "1/4",
 			alignment: alignments.unaligned,
 			environments: [],
 			id: "7f2bcc7b-9b97-5091-8309-77cac5232369",
@@ -4655,7 +4655,7 @@ define([
 		{
 			name: "Froghoul",
 			size: "Medium", type: "Undead",
-			ac: "14", hp: "27", init: "3", cr: "2",
+			ac: 14, hp: 27, init: 3, cr: "2",
 			alignment: alignments.ce,
 			environments: [],
 			id: "c378b19d-65dc-5c65-866e-485f893a69cd",
@@ -4663,7 +4663,7 @@ define([
 		{
 			name: "Azure Enchanter",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
-			ac: "12", hp: "49", init: "2", cr: "7",
+			ac: 12, hp: 49, init: 2, cr: "7",
 			alignment: alignments.any,
 			environments: [],
 			id: "3ebf14e5-778b-5dfc-a261-5ea9d291f6f9",
@@ -4671,7 +4671,7 @@ define([
 		{
 			name: "Azure Mind Scupltor",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
-			ac: "12", hp: "84", init: "2", cr: "10",
+			ac: 12, hp: 84, init: 2, cr: "10",
 			alignment: alignments.any,
 			environments: [],
 			id: "caa85158-2825-5bde-9efd-645058ba6816",
@@ -4679,7 +4679,7 @@ define([
 		{
 			name: "Infestation Swarm",
 			size: "Medium", type: "Swarm",
-			ac: "14", hp: "44", init: "4", cr: "4",
+			ac: 14, hp: 44, init: 4, cr: "4",
 			alignment: alignments.unaligned,
 			environments: [],
 			id: "f00c0b0d-3f6a-5072-afd4-53517987af03",
@@ -4687,7 +4687,7 @@ define([
 		{
 			name: "Living Spellbook",
 			size: "Large", type: "Construct",
-			ac: "14", hp: "90", init: "4", cr: "10",
+			ac: 14, hp: 90, init: 4, cr: "10",
 			alignment: alignments.unaligned,
 			environments: [],
 			id: "2effdaec-6978-55c6-a67d-a85a55f3983b",
@@ -4695,7 +4695,7 @@ define([
 		{
 			name: "War Titan",
 			size: "Huge", type: "Fiend", tags: [ "Titan" ],
-			ac: "18", hp: "207", init: "0", cr: "16",
+			ac: 18, hp: 207, init: 0, cr: "16",
 			alignment: alignments.any_chaotic,
 			environments: [],
 			legendary: true,
@@ -4704,7 +4704,7 @@ define([
 		{
 			name: "Magma Bear",
 			size: "Large", type: "Elemental",
-			ac: "13", hp: "75", init: "0", cr: "3",
+			ac: 13, hp: 75, init: 0, cr: "3",
 			alignment: alignments.n,
 			environments: [],
 			id: "a5182d00-2561-5858-9202-81b512fc19ee",
@@ -4712,7 +4712,7 @@ define([
 		{
 			name: "Caustic Crawler",
 			size: "Medium", type: "Monstrosity",
-			ac: "14", hp: "102", init: "1", cr: "4",
+			ac: 14, hp: 102, init: 1, cr: "4",
 			alignment: alignments.unaligned,
 			environments: [],
 			id: "c9e17c19-2e1c-52a7-af0b-a3e4e909a8be",
@@ -4720,7 +4720,7 @@ define([
 		{
 			name: "Evil Doll",
 			size: "Tiny", type: "Construct", tags: [ "Fiend" ],
-			ac: "14", hp: "21", init: "3", cr: "2",
+			ac: 14, hp: 21, init: 3, cr: "2",
 			alignment: alignments.le,
 			environments: [],
 			id: "737d6217-c3da-57e6-85c9-c7f1546a74ce",
@@ -4728,7 +4728,7 @@ define([
 		{
 			name: "Gill-man",
 			size: "Medium", type: "Monstrosity",
-			ac: "16", hp: "102", init: "3", cr: "6",
+			ac: 16, hp: 102, init: 3, cr: "6",
 			alignment: alignments.n,
 			environments: [],
 			id: "ee032904-c71c-553b-b3ac-f3b267dc6914",
@@ -4736,7 +4736,7 @@ define([
 		{
 			name: "Masked Killer",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
-			ac: "15", hp: "97", init: "3", cr: "5",
+			ac: 15, hp: 97, init: 3, cr: "5",
 			alignment: alignments.ce,
 			environments: [],
 			id: "ec9f15d5-6c20-5c82-964a-c75a3739098c",
@@ -4744,7 +4744,7 @@ define([
 		{
 			name: "Headless Horseman",
 			size: "Medium", type: "Fiend",
-			ac: "15", hp: "153", init: "3", cr: "8",
+			ac: 15, hp: 153, init: 3, cr: "8",
 			alignment: alignments.le,
 			environments: [],
 			id: "4fe1572b-5acb-55d9-9773-be0aa79d0c62",
@@ -4752,7 +4752,7 @@ define([
 		{
 			name: "Pumpkin King",
 			size: "Huge", type: "Plant",
-			ac: "17", hp: "225", init: "0", cr: "13",
+			ac: 17, hp: 225, init: 0, cr: "13",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: true,
@@ -4761,7 +4761,7 @@ define([
 		{
 			name: "Winged Ape",
 			size: "Medium", type: "Monstrosity",
-			ac: "13", hp: "39", init: "2", cr: "2",
+			ac: 13, hp: 39, init: 2, cr: "2",
 			alignment: alignments.n,
 			environments: [],
 			id: "ab1e249e-377f-53c8-b508-a0c78fe3b1bc",
@@ -4769,7 +4769,7 @@ define([
 		{
 			name: "Feyote",
 			size: "Medium", type: "Fey",
-			ac: "12", hp: "11", init: "2", cr: "1/4",
+			ac: 12, hp: 11, init: 2, cr: "1/4",
 			alignment: alignments.n,
 			environments: [],
 			id: "e514a47e-37bf-5f24-88c1-f27d22ce589b",
@@ -4777,7 +4777,7 @@ define([
 		{
 			name: "Scorpikis",
 			size: "Large", type: "Monstrosity",
-			ac: "17", hp: "123", init: "3", cr: "6",
+			ac: 17, hp: 123, init: 3, cr: "6",
 			alignment: alignments.ce,
 			environments: [],
 			id: "da89e087-058e-5d11-b7df-85a3cdd7a9a6",
@@ -4785,7 +4785,7 @@ define([
 		{
 			name: "Ancient Chronomancer",
 			size: "Medium", type: "Construct",
-			ac: "16", hp: "67", init: "2", cr: "7",
+			ac: 16, hp: 67, init: 2, cr: "7",
 			alignment: alignments.n,
 			environments: [],
 			id: "e2b67f99-65e9-584e-9189-6506c71971ba",
@@ -4793,7 +4793,7 @@ define([
 		{
 			name: "Timeless Chronomancer",
 			size: "Medium", type: "Construct",
-			ac: "18", hp: "150", init: "2", cr: "14",
+			ac: 18, hp: 150, init: 2, cr: "14",
 			alignment: alignments.n,
 			environments: [],
 			id: "52f02835-820d-5dc6-9c86-14b11dd11532",
@@ -4801,7 +4801,7 @@ define([
 		{
 			name: "Hawkfox",
 			size: "Medium", type: "Monstrosity",
-			ac: "13", hp: "38", init: "3", cr: "2",
+			ac: 13, hp: 38, init: 3, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [],
 			id: "0db8adb1-5dfb-517a-95bc-2bc16851c552",
@@ -4809,7 +4809,7 @@ define([
 		{
 			name: "Sylvan Stalker",
 			size: "Medium", type: "Humanoid", tags: [ "Plant" ],
-			ac: "15", hp: "78", init: "4", cr: "8",
+			ac: 15, hp: 78, init: 4, cr: "8",
 			alignment: alignments.n,
 			environments: [],
 			id: "b5ba63d2-4eb9-5328-98e9-3cd51ea24dc5",
@@ -4817,7 +4817,7 @@ define([
 		{
 			name: "Werewolf Alpha",
 			size: "Medium", type: "Humanoid",
-			ac: "16", hp: "119", init: "2", cr: "9",
+			ac: 16, hp: 119, init: 2, cr: "9",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: true,
@@ -4826,7 +4826,7 @@ define([
 		{
 			name: "Technothug",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
-			ac: "16", hp: "19", init: "2", cr: "1/2",
+			ac: 16, hp: 19, init: 2, cr: "1/2",
 			alignment: alignments.cn,
 			environments: [],
 			id: "cb35c29c-3459-5048-b75b-14e92d9b1bfc",
@@ -4834,7 +4834,7 @@ define([
 		{
 			name: "Chainer Geist",
 			size: "Medium", type: "Undead",
-			ac: "11", hp: "45", init: "4", cr: "4",
+			ac: 11, hp: 45, init: 4, cr: "4",
 			alignment: alignments.ce,
 			environments: [],
 			id: "78580f59-20b6-5dfa-b358-6423529dd856",
@@ -4842,7 +4842,7 @@ define([
 		{
 			name: "Bullywug Shaman",
 			size: "Medium", type: "Humanoid", tags: [ "Bullywug" ],
-			ac: "14", hp: "27", init: "2", cr: "2",
+			ac: 14, hp: 27, init: 2, cr: "2",
 			alignment: alignments.ne,
 			environments: [],
 			id: "b1f4e1b6-1da1-5da1-92f3-090bf8640d7c",
@@ -4850,7 +4850,7 @@ define([
 		{
 			name: "Goblin Alchemist",
 			size: "Small", type: "Humanoid", tags: [ "Goblinoid" ],
-			ac: "14", hp: "10", init: "2", cr: "1/2",
+			ac: 14, hp: 10, init: 2, cr: "1/2",
 			alignment: alignments.ne,
 			environments: [],
 			id: "7f1cd765-a57b-5a3b-8e43-662a54e14d6e",
@@ -4858,7 +4858,7 @@ define([
 		{
 			name: "Goblin Ritualist",
 			size: "Small", type: "Humanoid", tags: [ "Goblinoid" ],
-			ac: "14", hp: "10", init: "2", cr: "1/2",
+			ac: 14, hp: 10, init: 2, cr: "1/2",
 			alignment: alignments.ne,
 			environments: [],
 			id: "ee072afa-6337-557e-b9d0-d817210423dd",
@@ -4866,7 +4866,7 @@ define([
 		{
 			name: "Lizardfolk Monk",
 			size: "Medium", type: "Humanoid", tags: [ "Lizardfolk" ],
-			ac: "17", hp: "33", init: "3", cr: "2",
+			ac: 17, hp: 33, init: 3, cr: "2",
 			alignment: alignments.n,
 			environments: [],
 			id: "10f2d054-d274-526a-8097-9f3921abc1c2",
@@ -4874,7 +4874,7 @@ define([
 		{
 			name: "Orc Berserker",
 			size: "Medium", type: "Humanoid", tags: [ "Orc" ],
-			ac: "14", hp: "30", init: "1", cr: "1",
+			ac: 14, hp: 30, init: 1, cr: "1",
 			alignment: alignments.ce,
 			environments: [],
 			id: "f193a293-ade1-5b5f-98f4-b34980bd2cdc",
@@ -4882,16 +4882,113 @@ define([
 		{
 			name: "Orc Hand of Gruumsh",
 			size: "Medium", type: "Humanoid", tags: [ "Orc" ],
-			ac: "16", hp: "60", init: "1", cr: "3",
+			ac: 16, hp: 60, init: 1, cr: "3",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: true,
 			id: "81295b69-4438-5c59-9622-6a1f31ac8115",
 		},
 		{
+			name: "Crystal Elemental",
+			size: "Medium", type: "Elemental",
+			ac: 15, hp: 57, init: 1, cr: "3",
+			alignment: alignments.n,
+			environments: [],
+			id: "4b78c693-794c-5e30-a23c-e33f8c65dc75",
+		},
+		{
+			name: "Armed Skeleton",
+			size: "Medium", type: "Undead",
+			ac: 13, hp: 26, init: 2, cr: "1",
+			alignment: alignments.le,
+			environments: [],
+			id: "27d3cf23-0e72-5c9b-9a94-628c561529e4",
+		},
+		{
+			name: "Dire Anglerfish",
+			size: "Huge", type: "Beast",
+			ac: 13, hp: 105, init: 2, cr: "5",
+			alignment: alignments.unaligned,
+			environments: [],
+			id: "197fcb81-d34e-55e5-abc5-9a1275cf017f",
+		},
+		{
+			name: "Pirate Axe Thrower",
+			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
+			ac: 13, hp: 55, init: 2, cr: "2",
+			alignment: alignments.non_lawful,
+			environments: [],
+			id: "1f81997d-fd0a-5ea9-b813-baab00fd9676",
+		},
+		{
+			name: "Pirate Chain Swinger",
+			size: "Medium", type: "Humanoid", tags: [ "Any Race" ],
+			ac: 15, hp: 66, init: 3, cr: "3",
+			alignment: alignments.non_lawful,
+			environments: [],
+			id: "dc7cf588-46c1-56d4-97cb-7c86cd1055b9",
+		},
+		{
+			name: "Crowlock",
+			size: "Tiny", type: "Monstrosity",
+			ac: 13, hp: 10, init: 3, cr: "1/2",
+			alignment: alignments.cn,
+			environments: [],
+			id: "f16c46ce-12e0-56e1-a295-85938fa93bc7",
+		},
+		{
+			name: "Vodyanoy",
+			size: "Medium", type: "Monstrosity",
+			ac: 16, hp: 119, init: 3, cr: "5",
+			alignment: alignments.cn,
+			environments: [],
+			id: "a3bfe860-8cc3-5ce3-8afe-986a55461553",
+		},
+		{
+			name: "Crystalline Dragon",
+			size: "Huge", type: "Dragon",
+			ac: 20, hp: 270, init: 2, cr: "18",
+			alignment: alignments.any_chaotic,
+			environments: [],
+			legendary: true,
+			id: "7f194628-94f6-579c-862b-ac98afc84cd2",
+		},
+		{
+			name: "Beast of Ill Omen",
+			size: "Large", type: "Monstrosity",
+			ac: 14, hp: 45, init: 2, cr: "2",
+			alignment: alignments.ce,
+			environments: [],
+			id: "30890370-b47a-53c9-bf60-303294d9fc09",
+		},
+		{
+			name: "Chamaelean",
+			size: "Small", type: "Humanoid", tags: [ "Chamaelean" ],
+			ac: 14, hp: 10, init: 2, cr: "1/2",
+			alignment: alignments.n,
+			environments: [],
+			id: "f48a544b-f17d-5541-852d-afad6438e907",
+		},
+		{
+			name: "Phelddagrif",
+			size: "Huge", type: "Celestial",
+			ac: 14, hp: 105, init: -1, cr: "5",
+			alignment: alignments.ng,
+			environments: [],
+			id: "c7ee7278-4db9-5dcb-9259-bdaaf26e1b3d",
+		},
+		{
+			name: "Stone Strix",
+			size: "Huge", type: "Monstrosity",
+			ac: 16, hp: 147, init: 3, cr: "8",
+			alignment: alignments.unaligned,
+			environments: [],
+			id: "fb44e9eb-1edd-59f5-bbce-9ac84f631e71",
+		},
+		{
 			name: "Aaztar-Ghola",
 			size: "Medium", type: "Humanoid",
-			ac: "13", hp: "38", init: "0", cr: "4",
+			ac: 13, hp: 38, init: 0, cr: "4",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -4900,7 +4997,7 @@ define([
 		{
 			name: "Adherer",
 			size: "Medium", type: "Aberration",
-			ac: "13", hp: "45", init: "1", cr: "2",
+			ac: 13, hp: 45, init: 1, cr: "2",
 			alignment: alignments.le,
 			environments: [ "forest", "underground" ],
 			legendary: false,
@@ -4909,7 +5006,7 @@ define([
 		{
 			name: "Aerial Servant",
 			size: "Medium", type: "Fiend",
-			ac: "18", hp: "152", init: "4", cr: "9",
+			ac: 18, hp: 152, init: 4, cr: "9",
 			alignment: alignments.n,
 			environments: [],
 			legendary: false,
@@ -4918,7 +5015,7 @@ define([
 		{
 			name: "Algoid",
 			size: "Medium", type: "Plant",
-			ac: "14", hp: "52", init: "0", cr: "3",
+			ac: 14, hp: 52, init: 0, cr: "3",
 			alignment: alignments.n,
 			environments: [ "swamp" ],
 			legendary: false,
@@ -4927,7 +5024,7 @@ define([
 		{
 			section: "Amphorons of Yothri", name: "Worker",
 			size: "Small", type: "Construct",
-			ac: "17", hp: "13", init: "0", cr: "1/2",
+			ac: 17, hp: 13, init: 0, cr: "1/2",
 			alignment: alignments.n,
 			environments: [],
 			legendary: false,
@@ -4936,7 +5033,7 @@ define([
 		{
 			section: "Amphorons of Yothri", name: "Warrior",
 			size: "Medium", type: "Construct",
-			ac: "17", hp: "33", init: "0", cr: "2",
+			ac: 17, hp: 33, init: 0, cr: "2",
 			alignment: alignments.n,
 			environments: [],
 			legendary: false,
@@ -4945,7 +5042,7 @@ define([
 		{
 			section: "Amphorons of Yothri", name: "Juggernaut",
 			size: "Large", type: "Construct",
-			ac: "17", hp: "102", init: "0", cr: "6",
+			ac: 17, hp: 102, init: 0, cr: "6",
 			alignment: alignments.n,
 			environments: [],
 			legendary: false,
@@ -4954,7 +5051,7 @@ define([
 		{
 			name: "Ant Lion",
 			size: "Large", type: "Beast",
-			ac: "15", hp: "93", init: "0", cr: "4",
+			ac: 15, hp: 93, init: 0, cr: "4",
 			alignment: alignments.unaligned,
 			environments: [ "desert" ],
 			legendary: false,
@@ -4963,7 +5060,7 @@ define([
 		{
 			name: "Flying Ape",
 			size: "Large", type: "Monstrosity",
-			ac: "13", hp: "45", init: "2", cr: "2",
+			ac: 13, hp: 45, init: 2, cr: "2",
 			alignment: alignments.cn,
 			environments: [],
 			legendary: false,
@@ -4972,7 +5069,7 @@ define([
 		{
 			name: "Arenea",
 			size: "Large", type: "Monstrosity",
-			ac: "14", hp: "39", init: "3", cr: "3",
+			ac: 14, hp: 39, init: 3, cr: "3",
 			alignment: alignments.ce,
 			environments: [ "forest", "cave", "dungeon" ],
 			legendary: false,
@@ -4981,7 +5078,7 @@ define([
 		{
 			name: "Arcanoplasm",
 			size: "Large", type: "Monstrosity",
-			ac: "12", hp: "103", init: "-2", cr: "4",
+			ac: 12, hp: 103, init: -2, cr: "4",
 			alignment: alignments.n,
 			environments: [ "underground" ],
 			legendary: false,
@@ -4990,7 +5087,7 @@ define([
 		{
 			name: "Artificer of Yothri",
 			size: "Medium", type: "Aberration",
-			ac: "16", hp: "66", init: "2", cr: "5",
+			ac: 16, hp: 66, init: 2, cr: "5",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -4999,7 +5096,7 @@ define([
 		{
 			name: "Ascomoid",
 			size: "Large", type: "Plant", tags: [ "Fungoid" ], 
-			ac: "12", hp: "76", init: "1", cr: "3",
+			ac: 12, hp: 76, init: 1, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5008,7 +5105,7 @@ define([
 		{
 			name: "Assassin Bug",
 			size: "Medium", type: "Beast",
-			ac: "16", hp: "120", init: "3", cr: "5",
+			ac: 16, hp: 120, init: 3, cr: "5",
 			alignment: alignments.unaligned,
 			environments: [ "forest" ],
 			legendary: false,
@@ -5017,7 +5114,7 @@ define([
 		{
 			name: "Astral Moth",
 			size: "Large", type: "Monstrosity",
-			ac: "12", hp: "32", init: "2", cr: "1/8",
+			ac: 12, hp: 32, init: 2, cr: "1/8",
 			alignment: alignments.n,
 			environments: [ "forest" ],
 			legendary: false,
@@ -5026,7 +5123,7 @@ define([
 		{
 			name: "Astral Shark",
 			size: "Large", type: "Fiend",
-			ac: "14", hp: "102", init: "2", cr: "5",
+			ac: 14, hp: 102, init: 2, cr: "5",
 			alignment: alignments.n,
 			environments: [ "planar" ],
 			legendary: false,
@@ -5035,7 +5132,7 @@ define([
 		{
 			name: "Aurumvorax (Golden Gorger)",
 			size: "Small", type: "Monstrosity",
-			ac: "16", hp: "78", init: "5", cr: "5",
+			ac: 16, hp: 78, init: 5, cr: "5",
 			alignment: alignments.unaligned,
 			environments: [ "forest", "grassland" ],
 			legendary: false,
@@ -5044,7 +5141,7 @@ define([
 		{
 			section: "Basilisks", name: "Crimson Basilisk",
 			size: "Medium", type: "Monstrosity",
-			ac: "13", hp: "60", init: "0", cr: "3",
+			ac: 13, hp: 60, init: 0, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5053,7 +5150,7 @@ define([
 		{
 			section: "Basilisks", name: "Greater Basilisk",
 			size: "Large", type: "Monstrosity",
-			ac: "16", hp: "95", init: "-1", cr: "5",
+			ac: 16, hp: 95, init: -1, cr: "5",
 			alignment: alignments.ne,
 			environments: [ "desert" ],
 			legendary: false,
@@ -5062,7 +5159,7 @@ define([
 		{
 			name: "Doombat",
 			size: "Large", type: "Monstrosity",
-			ac: "15", hp: "59", init: "5", cr: "3",
+			ac: 15, hp: 59, init: 5, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5071,7 +5168,7 @@ define([
 		{
 			name: "Giant Rhinoceros Beetle",
 			size: "Large", type: "Beast",
-			ac: "18", hp: "95", init: "0", cr: "4",
+			ac: 18, hp: 95, init: 0, cr: "4",
 			alignment: alignments.unaligned,
 			environments: [ "forest" ],
 			legendary: false,
@@ -5080,7 +5177,7 @@ define([
 		{
 			name: "Giant Slicer Beetle",
 			size: "Large", type: "Beast",
-			ac: "15", hp: "59", init: "0", cr: "3",
+			ac: 15, hp: 59, init: 0, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [ "forest" ],
 			legendary: false,
@@ -5089,7 +5186,7 @@ define([
 		{
 			name: "Giant Water Beetle",
 			size: "Medium", type: "Beast", tags: [ "Aquatic" ], 
-			ac: "14", hp: "30", init: "1", cr: "1/2",
+			ac: 14, hp: 30, init: 1, cr: "1/2",
 			alignment: alignments.unaligned,
 			environments: [ "aquatic" ],
 			legendary: false,
@@ -5098,7 +5195,7 @@ define([
 		{
 			name: "Biclops",
 			size: "Huge", type: "Giant",
-			ac: "13", hp: "115", init: "1", cr: "6",
+			ac: 13, hp: 115, init: 1, cr: "6",
 			alignment: alignments.n,
 			environments: [ "mountain" ],
 			legendary: false,
@@ -5107,7 +5204,7 @@ define([
 		{
 			name: "Blood Hawk",
 			size: "Small", type: "Monstrosity",
-			ac: "13", hp: "5", init: "3", cr: "1/4",
+			ac: 13, hp: 5, init: 3, cr: "1/4",
 			alignment: alignments.unaligned,
 			environments: [ "forest", "grassland", "mountain" ],
 			legendary: false,
@@ -5116,7 +5213,7 @@ define([
 		{
 			section: "Blood Orchid", name: "Blood Orchid",
 			size: "Large", type: "Aberration",
-			ac: "14", hp: "85", init: "1", cr: "5",
+			ac: 14, hp: 85, init: 1, cr: "5",
 			alignment: alignments.ce,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5125,7 +5222,7 @@ define([
 		{
 			section: "Blood Orchid", name: "Blood Orchid Savant",
 			size: "Large", type: "Aberration",
-			ac: "15", hp: "82", init: "2", cr: "7",
+			ac: 15, hp: 82, init: 2, cr: "7",
 			alignment: alignments.le,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5134,7 +5231,7 @@ define([
 		{
 			section: "Blood Orchid", name: "Blood Orchid Grand Savant",
 			size: "Huge", type: "Aberration",
-			ac: "16", hp: "136", init: "1", cr: "9",
+			ac: 16, hp: 136, init: 1, cr: "9",
 			alignment: alignments.le,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5143,7 +5240,7 @@ define([
 		{
 			name: "Bloodsuckle",
 			size: "Large", type: "Plant",
-			ac: "13", hp: "57", init: "0", cr: "3",
+			ac: 13, hp: 57, init: 0, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [ "grassland", "forest" ],
 			legendary: false,
@@ -5152,7 +5249,7 @@ define([
 		{
 			name: "Bloody Bones",
 			size: "Medium", type: "Undead",
-			ac: "13", hp: "27", init: "1", cr: "2",
+			ac: 13, hp: 27, init: 1, cr: "2",
 			alignment: alignments.ce,
 			environments: [ "cave", "ruins" ],
 			legendary: false,
@@ -5161,7 +5258,7 @@ define([
 		{
 			name: "Boalisk",
 			size: "Large", type: "Monstrosity",
-			ac: "12", hp: "39", init: "2", cr: "1",
+			ac: 12, hp: 39, init: 2, cr: "1",
 			alignment: alignments.unaligned,
 			environments: [ "forest", "aquatic" ],
 			legendary: false,
@@ -5170,7 +5267,7 @@ define([
 		{
 			name: "Bone Cobbler",
 			size: "Medium", type: "Aberration",
-			ac: "13", hp: "22", init: "2", cr: "2",
+			ac: 13, hp: 22, init: 2, cr: "2",
 			alignment: alignments.ce,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5179,7 +5276,7 @@ define([
 		{
 			section: "Boneneedle", name: "Greater Boneneedle",
 			size: "Medium", type: "Beast",
-			ac: "13", hp: "31", init: "3", cr: "1",
+			ac: 13, hp: 31, init: 3, cr: "1",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5188,7 +5285,7 @@ define([
 		{
 			section: "Boneneedle", name: "Lesser Boneneedle",
 			size: "Small", type: "Beast",
-			ac: "12", hp: "13", init: "2", cr: "1/4",
+			ac: 12, hp: 13, init: 2, cr: "1/4",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5197,7 +5294,7 @@ define([
 		{
 			name: "Bonesucker",
 			size: "Large", type: "Aberration",
-			ac: "15", hp: "68", init: "1", cr: "4",
+			ac: 15, hp: 68, init: 1, cr: "4",
 			alignment: alignments.ne,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5206,7 +5303,7 @@ define([
 		{
 			name: "Borsin (Ape Centaur)",
 			size: "Large", type: "Monstrosity",
-			ac: "12", hp: "60", init: "2", cr: "3",
+			ac: 12, hp: 60, init: 2, cr: "3",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -5215,7 +5312,7 @@ define([
 		{
 			name: "Brass Man",
 			size: "Large", type: "Construct",
-			ac: "18", hp: "95", init: "0", cr: "6",
+			ac: 18, hp: 95, init: 0, cr: "6",
 			alignment: alignments.unaligned,
 			environments: [ "planar" ],
 			legendary: false,
@@ -5224,7 +5321,7 @@ define([
 		{
 			name: "Brume",
 			size: "Large", type: "Aberration",
-			ac: "16", hp: "90", init: "3", cr: "6",
+			ac: 16, hp: 90, init: 3, cr: "6",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -5233,7 +5330,7 @@ define([
 		{
 			name: "Burning Dervish",
 			size: "Medium", type: "Fiend",
-			ac: "16", hp: "65", init: "3", cr: "3",
+			ac: 16, hp: 65, init: 3, cr: "3",
 			alignment: alignments.le,
 			environments: [ "planar" ],
 			legendary: false,
@@ -5242,7 +5339,7 @@ define([
 		{
 			name: "Cadaver",
 			size: "Medium", type: "Undead",
-			ac: "11", hp: "15", init: "1", cr: "1/2",
+			ac: 11, hp: 15, init: 1, cr: "1/2",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -5251,7 +5348,7 @@ define([
 		{
 			name: "Cadaver Lord",
 			size: "Medium", type: "Undead",
-			ac: "15", hp: "45", init: "2", cr: "3",
+			ac: 15, hp: 45, init: 2, cr: "3",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -5260,7 +5357,7 @@ define([
 		{
 			name: "Carbuncle",
 			size: "Small", type: "Aberration",
-			ac: "11", hp: "4", init: "0", cr: "1/8",
+			ac: 11, hp: 4, init: 0, cr: "1/8",
 			alignment: alignments.unaligned,
 			environments: [ "forest" ],
 			legendary: false,
@@ -5269,7 +5366,7 @@ define([
 		{
 			name: "Caryatid Column",
 			size: "Medium", type: "Construct",
-			ac: "14", hp: "30", init: "-1", cr: "1",
+			ac: 14, hp: 30, init: -1, cr: "1",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -5278,7 +5375,7 @@ define([
 		{
 			name: "Feral Undead Cat",
 			size: "Small", type: "Undead",
-			ac: "12", hp: "3", init: "2", cr: "1/8",
+			ac: 12, hp: 3, init: 2, cr: "1/8",
 			alignment: alignments.ce,
 			environments: [ "ruins" ],
 			legendary: false,
@@ -5287,7 +5384,7 @@ define([
 		{
 			name: "Caterprism",
 			size: "Large", type: "Monstrosity",
-			ac: "14", hp: "87", init: "1", cr: "4",
+			ac: 14, hp: 87, init: 1, cr: "4",
 			alignment: alignments.unaligned,
 			environments: [ "planar" ],
 			legendary: false,
@@ -5296,7 +5393,7 @@ define([
 		{
 			name: "Giant Electric Catfish",
 			size: "Large", type: "Beast", tags: [ "Aquatic" ], 
-			ac: "12", hp: "68", init: "2", cr: "3",
+			ac: 12, hp: 68, init: 2, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [ "aquatic" ],
 			legendary: false,
@@ -5305,7 +5402,7 @@ define([
 		{
 			name: "Catoblepas",
 			size: "Large", type: "Monstrosity",
-			ac: "13", hp: "76", init: "0", cr: "5",
+			ac: 13, hp: 76, init: 0, cr: "5",
 			alignment: alignments.unaligned,
 			environments: [ "swamp" ],
 			legendary: false,
@@ -5314,7 +5411,7 @@ define([
 		{
 			name: "Cave Cricket",
 			size: "Small", type: "Beast",
-			ac: "13", hp: "5", init: "2", cr: "1/4",
+			ac: 13, hp: 5, init: 2, cr: "1/4",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5323,7 +5420,7 @@ define([
 		{
 			name: "Cave Eel",
 			size: "Medium", type: "Beast",
-			ac: "12", hp: "9", init: "2", cr: "1/4",
+			ac: 12, hp: 9, init: 2, cr: "1/4",
 			alignment: alignments.unaligned,
 			environments: [ "cave", "dungeon" ],
 			legendary: false,
@@ -5332,7 +5429,7 @@ define([
 		{
 			name: "Cave Fisher",
 			size: "Large", type: "Monstrosity",
-			ac: "12", hp: "51", init: "2", cr: "2",
+			ac: 12, hp: 51, init: 2, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5341,7 +5438,7 @@ define([
 		{
 			name: "Cave Leech",
 			size: "Large", type: "Beast",
-			ac: "10", hp: "102", init: "2", cr: "6",
+			ac: 10, hp: 102, init: 2, cr: "6",
 			alignment: alignments.ce,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5350,7 +5447,7 @@ define([
 		{
 			name: "Centipede Nest",
 			size: "Medium", type: "Swarm", tags: [ "of Tiny Beasts" ], 
-			ac: "11", hp: "22", init: "2", cr: "1/2",
+			ac: 11, hp: 22, init: 2, cr: "1/2",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -5359,7 +5456,7 @@ define([
 		{
 			name: "Cerebral Stalker",
 			size: "Medium", type: "Aberration",
-			ac: "16", hp: "85", init: "2", cr: "5",
+			ac: 16, hp: 85, init: 2, cr: "5",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -5368,7 +5465,7 @@ define([
 		{
 			name: "Chain Worm",
 			size: "Large", type: "Beast",
-			ac: "21", hp: "161", init: "3", cr: "12",
+			ac: 21, hp: 161, init: 3, cr: "12",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5377,7 +5474,7 @@ define([
 		{
 			name: "Chaos Knight",
 			size: "Medium", type: "Fiend",
-			ac: "16", hp: "78", init: "2", cr: "3",
+			ac: 16, hp: 78, init: 2, cr: "3",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -5386,7 +5483,7 @@ define([
 		{
 			name: "Chupacabra",
 			size: "Small", type: "Humanoid",
-			ac: "12", hp: "27", init: "2", cr: "1",
+			ac: 12, hp: 27, init: 2, cr: "1",
 			alignment: alignments.cn,
 			environments: [ "forest", "urban" ],
 			legendary: false,
@@ -5395,7 +5492,7 @@ define([
 		{
 			name: "Church Grim",
 			size: "Medium", type: "Monstrosity", tags: [ "Incorporeal" ], 
-			ac: "12", hp: "32", init: "2", cr: "1",
+			ac: 12, hp: 32, init: 2, cr: "1",
 			alignment: alignments.lg,
 			environments: [],
 			legendary: false,
@@ -5404,7 +5501,7 @@ define([
 		{
 			name: "Churr",
 			size: "Large", type: "Monstrosity",
-			ac: "14", hp: "57", init: "2", cr: "4",
+			ac: 14, hp: 57, init: 2, cr: "4",
 			alignment: alignments.ne,
 			environments: [ "forest" ],
 			legendary: false,
@@ -5413,7 +5510,7 @@ define([
 		{
 			section: "Cimota", name: "Cimota",
 			size: "Medium", type: "Undead",
-			ac: "15", hp: "44", init: "3", cr: "2",
+			ac: 15, hp: 44, init: 3, cr: "2",
 			alignment: alignments.le,
 			environments: [],
 			legendary: false,
@@ -5422,7 +5519,7 @@ define([
 		{
 			section: "Cimota", name: "Cimota Guardian",
 			size: "Medium", type: "Undead",
-			ac: "16", hp: "71", init: "3", cr: "4",
+			ac: 16, hp: 71, init: 3, cr: "4",
 			alignment: alignments.le,
 			environments: [],
 			legendary: false,
@@ -5431,7 +5528,7 @@ define([
 		{
 			section: "Cimota", name: "High Cimota",
 			size: "Medium", type: "Undead",
-			ac: "17", hp: "99", init: "4", cr: "6",
+			ac: 17, hp: 99, init: 4, cr: "6",
 			alignment: alignments.le,
 			environments: [],
 			legendary: false,
@@ -5440,7 +5537,7 @@ define([
 		{
 			name: "Giant Clam",
 			size: "Large", type: "Beast",
-			ac: "14", hp: "22", init: "0", cr: "1/4",
+			ac: 14, hp: 22, init: 0, cr: "1/4",
 			alignment: alignments.unaligned,
 			environments: [ "aquatic" ],
 			legendary: false,
@@ -5449,7 +5546,7 @@ define([
 		{
 			name: "Clamor",
 			size: "Medium", type: "Aberration", tags: [ "Incorporeal", "Extraplanar" ], 
-			ac: "17", hp: "45", init: "7", cr: "2",
+			ac: 17, hp: 45, init: 7, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -5458,7 +5555,7 @@ define([
 		{
 			name: "Cobra Flower",
 			size: "Large", type: "Plant",
-			ac: "11", hp: "51", init: "1", cr: "2",
+			ac: 11, hp: 51, init: 1, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [ "forest" ],
 			legendary: false,
@@ -5467,7 +5564,7 @@ define([
 		{
 			name: "Coffer Corpse",
 			size: "Medium", type: "Undead",
-			ac: "12", hp: "45", init: "1", cr: "2",
+			ac: 12, hp: 45, init: 1, cr: "2",
 			alignment: alignments.ce,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5476,7 +5573,7 @@ define([
 		{
 			name: "Cooshee",
 			size: "Medium", type: "Monstrosity",
-			ac: "13", hp: "13", init: "3", cr: "1",
+			ac: 13, hp: 13, init: 3, cr: "1",
 			alignment: alignments.ng,
 			environments: [ "forest" ],
 			legendary: false,
@@ -5485,7 +5582,7 @@ define([
 		{
 			name: "Corpse Rook",
 			size: "Large", type: "Monstrosity",
-			ac: "14", hp: "45", init: "2", cr: "4",
+			ac: 14, hp: 45, init: 2, cr: "4",
 			alignment: alignments.ne,
 			environments: [ "grassland" ],
 			legendary: false,
@@ -5494,7 +5591,7 @@ define([
 		{
 			name: "Corpsespinner",
 			size: "Huge", type: "Monstrosity", tags: [ "Extraplanar" ], 
-			ac: "17", hp: "114", init: "3", cr: "5",
+			ac: 17, hp: 114, init: 3, cr: "5",
 			alignment: alignments.unaligned,
 			environments: [ "planar" ],
 			legendary: false,
@@ -5503,7 +5600,7 @@ define([
 		{
 			name: "Corpsespun",
 			size: "Medium", type: "Undead",
-			ac: "11", hp: "44", init: "1", cr: "1",
+			ac: 11, hp: 44, init: 1, cr: "1",
 			alignment: alignments.n,
 			environments: [ "planar" ],
 			legendary: false,
@@ -5512,7 +5609,7 @@ define([
 		{
 			name: "Crabman",
 			size: "Large", type: "Monstrosity",
-			ac: "14", hp: "22", init: "0", cr: "1",
+			ac: 14, hp: 22, init: 0, cr: "1",
 			alignment: alignments.n,
 			environments: [ "aquatic" ],
 			legendary: false,
@@ -5521,7 +5618,7 @@ define([
 		{
 			name: "Monstrous Crayfish",
 			size: "Large", type: "Beast", tags: [ "Aquatic" ], 
-			ac: "14", hp: "45", init: "0", cr: "2",
+			ac: 14, hp: 45, init: 0, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [ "aquatic" ],
 			legendary: false,
@@ -5530,7 +5627,7 @@ define([
 		{
 			name: "Crimson Mist",
 			size: "Medium", type: "Aberration",
-			ac: "17", hp: "127", init: "4", cr: "7",
+			ac: 17, hp: 127, init: 4, cr: "7",
 			alignment: alignments.ne,
 			environments: [ "swamp", "underground" ],
 			legendary: false,
@@ -5539,7 +5636,7 @@ define([
 		{
 			name: "Crypt Thing",
 			size: "Medium", type: "Undead",
-			ac: "15", hp: "52", init: "2", cr: "3",
+			ac: 15, hp: 52, init: 2, cr: "3",
 			alignment: alignments.n,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5548,7 +5645,7 @@ define([
 		{
 			name: "Dagon",
 			size: "Large", type: "Fiend", tags: [ "Aquatic" ], 
-			ac: "19", hp: "287", init: "4", cr: "20",
+			ac: 19, hp: 287, init: 4, cr: "20",
 			alignment: alignments.ce,
 			environments: [ "aquatic", "planar" ],
 			legendary: true,
@@ -5557,7 +5654,7 @@ define([
 		{
 			section: "Dark Folk", name: "Dark Creeper",
 			size: "Small", type: "Humanoid",
-			ac: "15", hp: "16", init: "3", cr: "1/4",
+			ac: 15, hp: 16, init: 3, cr: "1/4",
 			alignment: alignments.cn,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5566,7 +5663,7 @@ define([
 		{
 			section: "Dark Folk", name: "Dark Stalker",
 			size: "Medium", type: "Humanoid",
-			ac: "15", hp: "48", init: "4", cr: "2",
+			ac: 15, hp: 48, init: 4, cr: "2",
 			alignment: alignments.cn,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5575,7 +5672,7 @@ define([
 		{
 			name: "Darno",
 			size: "Medium", type: "Undead",
-			ac: "12", hp: "52", init: "2", cr: "2",
+			ac: 12, hp: 52, init: 2, cr: "2",
 			alignment: alignments.le,
 			environments: [],
 			legendary: false,
@@ -5584,7 +5681,7 @@ define([
 		{
 			name: "Death Dog",
 			size: "Medium", type: "Monstrosity",
-			ac: "13", hp: "26", init: "2", cr: "1/2",
+			ac: 13, hp: 26, init: 2, cr: "1/2",
 			alignment: alignments.ne,
 			environments: [ "desert" ],
 			legendary: false,
@@ -5593,7 +5690,7 @@ define([
 		{
 			name: "Death Worm",
 			size: "Large", type: "Monstrosity",
-			ac: "15", hp: "59", init: "1", cr: "3",
+			ac: 15, hp: 59, init: 1, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -5602,7 +5699,7 @@ define([
 		{
 			name: "Decapus",
 			size: "Medium", type: "Aberration",
-			ac: "12", hp: "44", init: "1", cr: "2",
+			ac: 12, hp: 44, init: 1, cr: "2",
 			alignment: alignments.ce,
 			environments: [ "ruins", "underground", "forest" ],
 			legendary: false,
@@ -5611,7 +5708,7 @@ define([
 		{
 			section: "Demons", name: "Teratashia",
 			size: "Large", type: "Fiend",
-			ac: "18", hp: "161", init: "4", cr: "15",
+			ac: 18, hp: 161, init: 4, cr: "15",
 			alignment: alignments.ce,
 			environments: [ "planar" ],
 			legendary: false,
@@ -5620,7 +5717,7 @@ define([
 		{
 			section: "Demons", name: "Thalasskoptis",
 			size: "Large", type: "Fiend", tags: [ "Aquatic", "Demon Prince" ], 
-			ac: "18", hp: "168", init: "4", cr: "10",
+			ac: 18, hp: 168, init: 4, cr: "10",
 			alignment: alignments.ce,
 			environments: [ "aquatic" ],
 			legendary: true,
@@ -5629,7 +5726,7 @@ define([
 		{
 			name: "Demonic Knight",
 			size: "Medium", type: "Fiend",
-			ac: "17", hp: "81", init: "1", cr: "5",
+			ac: 17, hp: 81, init: 1, cr: "5",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -5638,7 +5735,7 @@ define([
 		{
 			name: "Denizen of Leng",
 			size: "Medium", type: "Aberration",
-			ac: "16", hp: "85", init: "4", cr: "5",
+			ac: 16, hp: 85, init: 4, cr: "5",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -5647,7 +5744,7 @@ define([
 		{
 			name: "Dire Corby",
 			size: "Medium", type: "Monstrosity",
-			ac: "11", hp: "11", init: "1", cr: "1/2",
+			ac: 11, hp: 11, init: 1, cr: "1/2",
 			alignment: alignments.ne,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5656,7 +5753,7 @@ define([
 		{
 			name: "Dracolisk",
 			size: "Large", type: "Dragon",
-			ac: "17", hp: "114", init: "1", cr: "7",
+			ac: 17, hp: 114, init: 1, cr: "7",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -5665,7 +5762,7 @@ define([
 		{
 			name: "Fire Drake",
 			size: "Small", type: "Dragon",
-			ac: "13", hp: "27", init: "1", cr: "1",
+			ac: 13, hp: 27, init: 1, cr: "1",
 			alignment: alignments.ce,
 			environments: [ "mountain" ],
 			legendary: false,
@@ -5674,7 +5771,7 @@ define([
 		{
 			name: "Ice Drake",
 			size: "Small", type: "Dragon",
-			ac: "14", hp: "22", init: "1", cr: "1",
+			ac: 14, hp: 22, init: 1, cr: "1",
 			alignment: alignments.ce,
 			environments: [ "arctic" ],
 			legendary: false,
@@ -5683,7 +5780,7 @@ define([
 		{
 			name: "Dust Digger",
 			size: "Large", type: "Aberration",
-			ac: "13", hp: "38", init: "0", cr: "3",
+			ac: 13, hp: 38, init: 0, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [ "desert" ],
 			legendary: false,
@@ -5692,7 +5789,7 @@ define([
 		{
 			name: "Eblis",
 			size: "Medium", type: "Monstrosity",
-			ac: "12", hp: "22", init: "2", cr: "1/2",
+			ac: 12, hp: 22, init: 2, cr: "1/2",
 			alignment: alignments.ne,
 			environments: [ "swamp" ],
 			legendary: false,
@@ -5701,7 +5798,7 @@ define([
 		{
 			name: "Ectoplasm",
 			size: "Large", type: "Ooze", tags: [ "Incorporeal" ], 
-			ac: "12", hp: "39", init: "1", cr: "2",
+			ac: 12, hp: 39, init: 1, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -5710,7 +5807,7 @@ define([
 		{
 			name: "Giant Moray Eel",
 			size: "Medium", type: "Beast", tags: [ "Aquatic" ], 
-			ac: "12", hp: "52", init: "2", cr: "2",
+			ac: 12, hp: 52, init: 2, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [ "aquatic" ],
 			legendary: false,
@@ -5719,7 +5816,7 @@ define([
 		{
 			name: "Gulper Eel",
 			size: "Large", type: "Beast", tags: [ "Aquatic" ], 
-			ac: "14", hp: "60", init: "2", cr: "3",
+			ac: 14, hp: 60, init: 2, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [ "aquatic" ],
 			legendary: false,
@@ -5728,7 +5825,7 @@ define([
 		{
 			name: "Elusa Hound",
 			size: "Medium", type: "Monstrosity",
-			ac: "14", hp: "26", init: "2", cr: "1",
+			ac: 14, hp: 26, init: 2, cr: "1",
 			alignment: alignments.unaligned,
 			environments: [ "forest", "grassland" ],
 			legendary: false,
@@ -5737,7 +5834,7 @@ define([
 		{
 			name: "Encephalon Gorger (Psilian)",
 			size: "Medium", type: "Aberration",
-			ac: "13", hp: "65", init: "3", cr: "4",
+			ac: 13, hp: 65, init: 3, cr: "4",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -5746,7 +5843,7 @@ define([
 		{
 			name: "Giant Ant Exoskeleton",
 			size: "Large", type: "Construct",
-			ac: "16", hp: "15", init: "1", cr: "1/2",
+			ac: 16, hp: 15, init: 1, cr: "1/2",
 			alignment: alignments.le,
 			environments: [ "desert", "grassland" ],
 			legendary: false,
@@ -5755,7 +5852,7 @@ define([
 		{
 			name: "Giant Beetle Exoskeleton",
 			size: "Large", type: "Construct",
-			ac: "17", hp: "42", init: "1", cr: "2",
+			ac: 17, hp: 42, init: 1, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -5764,7 +5861,7 @@ define([
 		{
 			name: "Giant Crab Exoskeleton",
 			size: "Large", type: "Construct",
-			ac: "18", hp: "57", init: "0", cr: "3",
+			ac: 18, hp: 57, init: 0, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -5773,7 +5870,7 @@ define([
 		{
 			name: "Fear Guard",
 			size: "Medium", type: "Undead",
-			ac: "17", hp: "51", init: "2", cr: "3",
+			ac: 17, hp: 51, init: 2, cr: "3",
 			alignment: alignments.ce,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5782,7 +5879,7 @@ define([
 		{
 			name: "Fen Witch",
 			size: "Medium", type: "Monstrosity",
-			ac: "12", hp: "33", init: "1", cr: "2",
+			ac: 12, hp: 33, init: 1, cr: "2",
 			alignment: alignments.ce,
 			environments: [ "swamp" ],
 			legendary: false,
@@ -5791,7 +5888,7 @@ define([
 		{
 			name: "Fetch",
 			size: "Medium", type: "Undead",
-			ac: "13", hp: "16", init: "2", cr: "1",
+			ac: 13, hp: 16, init: 2, cr: "1",
 			alignment: alignments.le,
 			environments: [ "grassland", "mountain" ],
 			legendary: false,
@@ -5800,7 +5897,7 @@ define([
 		{
 			name: "Greater Fire Crab",
 			size: "Large", type: "Monstrosity",
-			ac: "14", hp: "34", init: "0", cr: "2",
+			ac: 14, hp: 34, init: 0, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [ "planar" ],
 			legendary: false,
@@ -5809,7 +5906,7 @@ define([
 		{
 			name: "Lesser Fire Crab",
 			size: "Small", type: "Monstrosity",
-			ac: "12", hp: "4", init: "2", cr: "1/8",
+			ac: 12, hp: 4, init: 2, cr: "1/8",
 			alignment: alignments.unaligned,
 			environments: [ "planar" ],
 			legendary: false,
@@ -5818,7 +5915,7 @@ define([
 		{
 			name: "Poisonous Fire Snake",
 			size: "Small", type: "Fiend",
-			ac: "13", hp: "13", init: "3", cr: "1/2",
+			ac: 13, hp: 13, init: 3, cr: "1/2",
 			alignment: alignments.unaligned,
 			environments: [ "planar" ],
 			legendary: false,
@@ -5827,7 +5924,7 @@ define([
 		{
 			name: "Flail Snail",
 			size: "Large", type: "Monstrosity",
-			ac: "16", hp: "38", init: "-1", cr: "3",
+			ac: 16, hp: 38, init: -1, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [ "underground", "ruins" ],
 			legendary: false,
@@ -5836,7 +5933,7 @@ define([
 		{
 			name: "Flowershroud",
 			size: "Large", type: "Plant",
-			ac: "11", hp: "19", init: "1", cr: "1",
+			ac: 11, hp: 19, init: 1, cr: "1",
 			alignment: alignments.unaligned,
 			environments: [ "forest", "grassland" ],
 			legendary: false,
@@ -5845,7 +5942,7 @@ define([
 		{
 			name: "Foo Dog",
 			size: "Medium", type: "Monstrosity",
-			ac: "13", hp: "52", init: "2", cr: "3",
+			ac: 13, hp: 52, init: 2, cr: "3",
 			alignment: alignments.cg,
 			environments: [ "planar" ],
 			legendary: false,
@@ -5854,7 +5951,7 @@ define([
 		{
 			name: "Forester's Bane",
 			size: "Large", type: "Plant",
-			ac: "10", hp: "103", init: "0", cr: "5",
+			ac: 10, hp: 103, init: 0, cr: "5",
 			alignment: alignments.unaligned,
 			environments: [ "grassland" ],
 			legendary: false,
@@ -5863,7 +5960,7 @@ define([
 		{
 			name: "Froghemoth",
 			size: "Huge", type: "Aberration",
-			ac: "15", hp: "200", init: "0", cr: "11",
+			ac: 15, hp: 200, init: 0, cr: "11",
 			alignment: alignments.unaligned,
 			environments: [ "swamp" ],
 			legendary: false,
@@ -5872,7 +5969,7 @@ define([
 		{
 			name: "Fungoid",
 			size: "Medium", type: "Plant", tags: [ "Fungoid" ], 
-			ac: "15", hp: "45", init: "1", cr: "2",
+			ac: 15, hp: 45, init: 1, cr: "2",
 			alignment: alignments.ne,
 			environments: [ "swamp" ],
 			legendary: false,
@@ -5881,7 +5978,7 @@ define([
 		{
 			name: "Fungus Bat",
 			size: "Medium", type: "Plant", tags: [ "Fungoid" ], 
-			ac: "11", hp: "16", init: "1", cr: "1/4",
+			ac: 11, hp: 16, init: 1, cr: "1/4",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -5890,7 +5987,7 @@ define([
 		{
 			name: "Fyr",
 			size: "Small", type: "Fey",
-			ac: "11", hp: "9", init: "1", cr: "1/4",
+			ac: 11, hp: 9, init: 1, cr: "1/4",
 			alignment: alignments.n,
 			environments: [ "forest", "mountain" ],
 			legendary: false,
@@ -5899,7 +5996,7 @@ define([
 		{
 			name: "Gallows Tree",
 			size: "Huge", type: "Plant",
-			ac: "15", hp: "225", init: "0", cr: "13",
+			ac: 15, hp: 225, init: 0, cr: "13",
 			alignment: alignments.unaligned,
 			environments: [ "forest", "swamp", "grassland" ],
 			legendary: false,
@@ -5908,7 +6005,7 @@ define([
 		{
 			name: "Gallows Tree Zombie",
 			size: "Medium", type: "Plant",
-			ac: "11", hp: "33", init: "1", cr: "2",
+			ac: 11, hp: 33, init: 1, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [ "forest", "grassland", "swamp" ],
 			legendary: false,
@@ -5917,7 +6014,7 @@ define([
 		{
 			section: "Gargoyles", name: "Four-Armed Gargoyle",
 			size: "Medium", type: "Monstrosity",
-			ac: "15", hp: "55", init: "2", cr: "4",
+			ac: 15, hp: 55, init: 2, cr: "4",
 			alignment: alignments.ce,
 			environments: [ "aquatic", "underground" ],
 			legendary: false,
@@ -5926,7 +6023,7 @@ define([
 		{
 			section: "Gargoyles, Fungi", name: "Fungus Gargoyle",
 			size: "Medium", type: "Plant",
-			ac: "14", hp: "52", init: "2", cr: "1",
+			ac: 14, hp: 52, init: 2, cr: "1",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -5935,7 +6032,7 @@ define([
 		{
 			section: "Gargoyles", name: "Green Guardian Gargoyle",
 			size: "Medium", type: "Monstrosity",
-			ac: "13", hp: "34", init: "2", cr: "1",
+			ac: 13, hp: 34, init: 2, cr: "1",
 			alignment: alignments.ce,
 			environments: [ "aquatic", "underground" ],
 			legendary: false,
@@ -5944,7 +6041,7 @@ define([
 		{
 			section: "Gargoyles", name: "Margoyle",
 			size: "Medium", type: "Monstrosity",
-			ac: "16", hp: "114", init: "2", cr: "5",
+			ac: 16, hp: 114, init: 2, cr: "5",
 			alignment: alignments.ce,
 			environments: [ "aquatic", "underground" ],
 			legendary: false,
@@ -5953,7 +6050,7 @@ define([
 		{
 			section: "Genies", name: "Hawanar",
 			size: "Large", type: "Fiend",
-			ac: "17", hp: "97", init: "2", cr: "7",
+			ac: 17, hp: 97, init: 2, cr: "7",
 			alignment: alignments.ln,
 			environments: [ "planar" ],
 			legendary: false,
@@ -5962,7 +6059,7 @@ define([
 		{
 			name: "Ghost-Ammonite",
 			size: "Medium", type: "Undead",
-			ac: "10", hp: "33", init: "2", cr: "2",
+			ac: 10, hp: 33, init: 2, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -5971,7 +6068,7 @@ define([
 		{
 			name: "Giant Slug of P'nakh",
 			size: "Large", type: "Fiend",
-			ac: "11", hp: "76", init: "-1", cr: "4",
+			ac: 11, hp: 76, init: -1, cr: "4",
 			alignment: alignments.ce,
 			environments: [ "ruins", "underground" ],
 			legendary: false,
@@ -5980,7 +6077,7 @@ define([
 		{
 			section: "Giants", name: "Jack-in-Irons",
 			size: "Huge", type: "Giant",
-			ac: "14", hp: "126", init: "1", cr: "7",
+			ac: 14, hp: 126, init: 1, cr: "7",
 			alignment: alignments.ce,
 			environments: [ "grassland", "forest" ],
 			legendary: false,
@@ -5989,7 +6086,7 @@ define([
 		{
 			name: "Gillmonkey",
 			size: "Small", type: "Beast", tags: [ "Aquatic" ], 
-			ac: "12", hp: "7", init: "2", cr: "1/4",
+			ac: 12, hp: 7, init: 2, cr: "1/4",
 			alignment: alignments.ce,
 			environments: [ "aquatic" ],
 			legendary: false,
@@ -5998,7 +6095,7 @@ define([
 		{
 			name: "Gloom Crawler",
 			size: "Huge", type: "Monstrosity",
-			ac: "12", hp: "159", init: "2", cr: "10",
+			ac: 12, hp: 159, init: 2, cr: "10",
 			alignment: alignments.n,
 			environments: [],
 			legendary: false,
@@ -6007,7 +6104,7 @@ define([
 		{
 			name: "Gnarlwood",
 			size: "Huge", type: "Plant",
-			ac: "16", hp: "132", init: "-1", cr: "8",
+			ac: 16, hp: 132, init: -1, cr: "8",
 			alignment: alignments.ne,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6016,7 +6113,7 @@ define([
 		{
 			name: "Gohl",
 			size: "Large", type: "Aberration",
-			ac: "13", hp: "85", init: "3", cr: "8",
+			ac: 13, hp: 85, init: 3, cr: "8",
 			alignment: alignments.ce,
 			environments: [ "underground", "ruins" ],
 			legendary: false,
@@ -6025,7 +6122,7 @@ define([
 		{
 			name: "Golden Cat",
 			size: "Tiny", type: "Beast",
-			ac: "12", hp: "3", init: "2", cr: "0",
+			ac: 12, hp: 3, init: 2, cr: "0",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -6034,7 +6131,7 @@ define([
 		{
 			section: "Golems", name: "Flagstone Golem",
 			size: "Large", type: "Construct",
-			ac: "15", hp: "114", init: "-1", cr: "7",
+			ac: 15, hp: 114, init: -1, cr: "7",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -6043,7 +6140,7 @@ define([
 		{
 			section: "Golems", name: "Furnace Golem",
 			size: "Large", type: "Construct",
-			ac: "16", hp: "152", init: "-1", cr: "9",
+			ac: 16, hp: 152, init: -1, cr: "9",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -6052,7 +6149,7 @@ define([
 		{
 			section: "Golems", name: "Stone Guardian Golem",
 			size: "Medium", type: "Construct",
-			ac: "14", hp: "42", init: "-1", cr: "2",
+			ac: 14, hp: 42, init: -1, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -6061,7 +6158,7 @@ define([
 		{
 			section: "Golems", name: "Wooden Golem",
 			size: "Medium", type: "Construct",
-			ac: "14", hp: "60", init: "-1", cr: "3",
+			ac: 14, hp: 60, init: -1, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -6070,7 +6167,7 @@ define([
 		{
 			name: "Gorbel",
 			size: "Small", type: "Aberration",
-			ac: "12", hp: "11", init: "2", cr: "1/4",
+			ac: 12, hp: 11, init: 2, cr: "1/4",
 			alignment: alignments.n,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6079,7 +6176,7 @@ define([
 		{
 			name: "Gorgimera",
 			size: "Large", type: "Monstrosity",
-			ac: "17", hp: "95", init: "1", cr: "7",
+			ac: 17, hp: 95, init: 1, cr: "7",
 			alignment: alignments.unaligned,
 			environments: [ "mountain" ],
 			legendary: false,
@@ -6088,7 +6185,7 @@ define([
 		{
 			name: "Gorilla Bear",
 			size: "Medium", type: "Monstrosity",
-			ac: "13", hp: "26", init: "2", cr: "1",
+			ac: 13, hp: 26, init: 2, cr: "1",
 			alignment: alignments.unaligned,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6097,7 +6194,7 @@ define([
 		{
 			name: "Gray Nisp",
 			size: "Large", type: "Fey",
-			ac: "15", hp: "95", init: "3", cr: "6",
+			ac: 15, hp: 95, init: 3, cr: "6",
 			alignment: alignments.cn,
 			environments: [ "aquatic" ],
 			legendary: false,
@@ -6106,7 +6203,7 @@ define([
 		{
 			name: "Green Brain",
 			size: "Small", type: "Plant",
-			ac: "12", hp: "17", init: "2", cr: "1",
+			ac: 12, hp: 17, init: 2, cr: "1",
 			alignment: alignments.le,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6115,7 +6212,7 @@ define([
 		{
 			name: "Grimm",
 			size: "Large", type: "Fey",
-			ac: "14", hp: "104", init: "2", cr: "7",
+			ac: 14, hp: 104, init: 2, cr: "7",
 			alignment: alignments.ne,
 			environments: [ "mountain" ],
 			legendary: false,
@@ -6124,7 +6221,7 @@ define([
 		{
 			name: "Grippli",
 			size: "Small", type: "Humanoid",
-			ac: "13", hp: "9", init: "3", cr: "1/4",
+			ac: 13, hp: 9, init: 3, cr: "1/4",
 			alignment: alignments.n,
 			environments: [ "forest", "swamp" ],
 			legendary: false,
@@ -6133,7 +6230,7 @@ define([
 		{
 			name: "Grue (Type 1)",
 			size: "Large", type: "Ooze",
-			ac: "15", hp: "75", init: "0", cr: "4",
+			ac: 15, hp: 75, init: 0, cr: "4",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6142,7 +6239,7 @@ define([
 		{
 			name: "Grue (Type 2)",
 			size: "Medium", type: "Aberration",
-			ac: "13", hp: "36", init: "3", cr: "2",
+			ac: 13, hp: 36, init: 3, cr: "2",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -6151,7 +6248,7 @@ define([
 		{
 			name: "Hanged Man",
 			size: "Medium", type: "Undead",
-			ac: "11", hp: "22", init: "1", cr: "1/2",
+			ac: 11, hp: 22, init: 1, cr: "1/2",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -6160,7 +6257,7 @@ define([
 		{
 			name: "Hangman Tree",
 			size: "Huge", type: "Plant",
-			ac: "17", hp: "92", init: "-2", cr: "7",
+			ac: 17, hp: 92, init: -2, cr: "7",
 			alignment: alignments.ne,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6169,7 +6266,7 @@ define([
 		{
 			name: "Hawktoad",
 			size: "Small", type: "Monstrosity",
-			ac: "12", hp: "5", init: "2", cr: "1/4",
+			ac: 12, hp: 5, init: 2, cr: "1/4",
 			alignment: alignments.unaligned,
 			environments: [ "forest", "swamp" ],
 			legendary: false,
@@ -6178,7 +6275,7 @@ define([
 		{
 			name: "Helix Moth Adult",
 			size: "Huge", type: "Beast",
-			ac: "14", hp: "114", init: "2", cr: "6",
+			ac: 14, hp: 114, init: 2, cr: "6",
 			alignment: alignments.unaligned,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6187,7 +6284,7 @@ define([
 		{
 			name: "Helix Moth Larva",
 			size: "Large", type: "Beast",
-			ac: "14", hp: "65", init: "2", cr: "2",
+			ac: 14, hp: 65, init: 2, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6196,7 +6293,7 @@ define([
 		{
 			name: "Hieroglyphicroc",
 			size: "Large", type: "Undead",
-			ac: "13", hp: "52", init: "0", cr: "3",
+			ac: 13, hp: 52, init: 0, cr: "3",
 			alignment: alignments.le,
 			environments: [ "ruins" ],
 			legendary: false,
@@ -6205,7 +6302,7 @@ define([
 		{
 			name: "Hippocampus",
 			size: "Large", type: "Monstrosity",
-			ac: "12", hp: "34", init: "2", cr: "1",
+			ac: 12, hp: 34, init: 2, cr: "1",
 			alignment: alignments.cg,
 			environments: [ "aquatic" ],
 			legendary: false,
@@ -6214,7 +6311,7 @@ define([
 		{
 			name: "Hoar Fox",
 			size: "Small", type: "Monstrosity",
-			ac: "14", hp: "26", init: "3", cr: "1",
+			ac: 14, hp: 26, init: 3, cr: "1",
 			alignment: alignments.unaligned,
 			environments: [ "arctic", "forest" ],
 			legendary: false,
@@ -6223,7 +6320,7 @@ define([
 		{
 			name: "Giant Horsefly",
 			size: "Large", type: "Beast",
-			ac: "12", hp: "30", init: "2", cr: "1/2",
+			ac: 12, hp: 30, init: 2, cr: "1/2",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -6232,7 +6329,7 @@ define([
 		{
 			name: "Huggermugger",
 			size: "Small", type: "Humanoid",
-			ac: "13", hp: "7", init: "3", cr: "1/4",
+			ac: 13, hp: 7, init: 3, cr: "1/4",
 			alignment: alignments.ce,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6241,7 +6338,7 @@ define([
 		{
 			name: "Igniguana",
 			size: "Medium", type: "Elemental",
-			ac: "12", hp: "26", init: "0", cr: "1",
+			ac: 12, hp: 26, init: 0, cr: "1",
 			alignment: alignments.unaligned,
 			environments: [ "underground", "planar" ],
 			legendary: false,
@@ -6250,7 +6347,7 @@ define([
 		{
 			name: "Jackal of Darkness",
 			size: "Small", type: "Undead",
-			ac: "13", hp: "21", init: "2", cr: "1",
+			ac: 13, hp: 21, init: 2, cr: "1",
 			alignment: alignments.ne,
 			environments: [ "ruins" ],
 			legendary: false,
@@ -6259,7 +6356,7 @@ define([
 		{
 			name: "Jaculi",
 			size: "Medium", type: "Monstrosity",
-			ac: "14", hp: "4", init: "3", cr: "1/8",
+			ac: 14, hp: 4, init: 3, cr: "1/8",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -6268,7 +6365,7 @@ define([
 		{
 			name: "Mustard Jelly",
 			size: "Large", type: "Ooze",
-			ac: "14", hp: "85", init: "0", cr: "5",
+			ac: 14, hp: 85, init: 0, cr: "5",
 			alignment: alignments.unaligned,
 			environments: [ "swamp" ],
 			legendary: false,
@@ -6277,7 +6374,7 @@ define([
 		{
 			name: "Jupiter Bloodsucker",
 			size: "Medium", type: "Plant",
-			ac: "8", hp: "26", init: "-3", cr: "1",
+			ac: 8, hp: 26, init: -3, cr: "1",
 			alignment: alignments.unaligned,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6286,7 +6383,7 @@ define([
 		{
 			name: "Kamadan",
 			size: "Large", type: "Monstrosity",
-			ac: "14", hp: "30", init: "2", cr: "3",
+			ac: 14, hp: 30, init: 2, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -6295,7 +6392,7 @@ define([
 		{
 			name: "Kampfult",
 			size: "Medium", type: "Plant",
-			ac: "15", hp: "32", init: "1", cr: "2",
+			ac: 15, hp: 32, init: 1, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6304,7 +6401,7 @@ define([
 		{
 			name: "Kech",
 			size: "Medium", type: "Monstrosity",
-			ac: "13", hp: "27", init: "2", cr: "1/2",
+			ac: 13, hp: 27, init: 2, cr: "1/2",
 			alignment: alignments.ne,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6313,7 +6410,7 @@ define([
 		{
 			name: "Kelpie",
 			size: "Medium", type: "Plant",
-			ac: "12", hp: "27", init: "2", cr: "1",
+			ac: 12, hp: 27, init: 2, cr: "1",
 			alignment: alignments.ne,
 			environments: [ "aquatic" ],
 			legendary: false,
@@ -6322,7 +6419,7 @@ define([
 		{
 			name: "Khargra",
 			size: "Small", type: "Fiend",
-			ac: "16", hp: "33", init: "2", cr: "2",
+			ac: 16, hp: 33, init: 2, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [ "planar" ],
 			legendary: false,
@@ -6331,7 +6428,7 @@ define([
 		{
 			name: "Korred",
 			size: "Small", type: "Fey",
-			ac: "13", hp: "27", init: "2", cr: "1",
+			ac: 13, hp: 27, init: 2, cr: "1",
 			alignment: alignments.cn,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6340,7 +6437,7 @@ define([
 		{
 			name: "Kurok-spirit",
 			size: "Large", type: "Fiend",
-			ac: "13", hp: "19", init: "3", cr: "1",
+			ac: 13, hp: 19, init: 3, cr: "1",
 			alignment: alignments.cn,
 			environments: [],
 			legendary: false,
@@ -6349,7 +6446,7 @@ define([
 		{
 			name: "Land Lamprey",
 			size: "Small", type: "Beast",
-			ac: "12", hp: "2", init: "2", cr: "1/4",
+			ac: 12, hp: 2, init: 2, cr: "1/4",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6358,7 +6455,7 @@ define([
 		{
 			name: "Lava Child",
 			size: "Medium", type: "Elemental",
-			ac: "11", hp: "22", init: "0", cr: "1",
+			ac: 11, hp: 22, init: 0, cr: "1",
 			alignment: alignments.n,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6367,7 +6464,7 @@ define([
 		{
 			name: "Leng Spider",
 			size: "Huge", type: "Aberration",
-			ac: "15", hp: "97", init: "3", cr: "6",
+			ac: 15, hp: 97, init: 3, cr: "6",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -6376,7 +6473,7 @@ define([
 		{
 			name: "Snow Leopard",
 			size: "Medium", type: "Beast",
-			ac: "12", hp: "16", init: "2", cr: "1/4",
+			ac: 12, hp: 16, init: 2, cr: "1/4",
 			alignment: alignments.unaligned,
 			environments: [ "forest", "mountain", "arctic" ],
 			legendary: false,
@@ -6385,7 +6482,7 @@ define([
 		{
 			name: "Adult Leucrotta",
 			size: "Large", type: "Monstrosity",
-			ac: "14", hp: "39", init: "2", cr: "2",
+			ac: 14, hp: 39, init: 2, cr: "2",
 			alignment: alignments.ce,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6394,7 +6491,7 @@ define([
 		{
 			name: "Young Leucrotta",
 			size: "Medium", type: "Monstrosity",
-			ac: "13", hp: "10", init: "2", cr: "1/4",
+			ac: 13, hp: 10, init: 2, cr: "1/4",
 			alignment: alignments.ce,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6403,7 +6500,7 @@ define([
 		{
 			name: "Lithonnite",
 			size: "Large", type: "Monstrosity",
-			ac: "18", hp: "68", init: "1", cr: "4",
+			ac: 18, hp: 68, init: 1, cr: "4",
 			alignment: alignments.unaligned,
 			environments: [ "aquatic", "underground" ],
 			legendary: false,
@@ -6412,7 +6509,7 @@ define([
 		{
 			name: "Magmoid",
 			size: "Large", type: "Elemental",
-			ac: "16", hp: "75", init: "2", cr: "4",
+			ac: 16, hp: 75, init: 2, cr: "4",
 			alignment: alignments.unaligned,
 			environments: [ "planar" ],
 			legendary: false,
@@ -6421,7 +6518,7 @@ define([
 		{
 			name: "Mandragora",
 			size: "Small", type: "Plant", tags: [ "Fungoid" ], 
-			ac: "11", hp: "4", init: "1", cr: "1/8",
+			ac: 11, hp: 4, init: 1, cr: "1/8",
 			alignment: alignments.ne,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6430,7 +6527,7 @@ define([
 		{
 			name: "Mandrill",
 			size: "Small", type: "Beast",
-			ac: "12", hp: "9", init: "2", cr: "1/8",
+			ac: 12, hp: 9, init: 2, cr: "1/8",
 			alignment: alignments.unaligned,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6439,7 +6536,7 @@ define([
 		{
 			name: "Mantari",
 			size: "Medium", type: "Monstrosity",
-			ac: "12", hp: "4", init: "2", cr: "1/8",
+			ac: 12, hp: 4, init: 2, cr: "1/8",
 			alignment: alignments.ne,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6448,7 +6545,7 @@ define([
 		{
 			name: "Midnight Peddler",
 			size: "Medium", type: "Fey",
-			ac: "11", hp: "45", init: "1", cr: "1/2",
+			ac: 11, hp: 45, init: 1, cr: "1/2",
 			alignment: alignments.n,
 			environments: [],
 			legendary: false,
@@ -6457,7 +6554,7 @@ define([
 		{
 			section: "Mites", name: "Mite",
 			size: "Small", type: "Fey",
-			ac: "11", hp: "3", init: "1", cr: "1/8",
+			ac: 11, hp: 3, init: 1, cr: "1/8",
 			alignment: alignments.le,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6466,7 +6563,7 @@ define([
 		{
 			section: "Mites", name: "Pestie",
 			size: "Small", type: "Fey",
-			ac: "12", hp: "7", init: "2", cr: "1/4",
+			ac: 12, hp: 7, init: 2, cr: "1/4",
 			alignment: alignments.le,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6475,7 +6572,7 @@ define([
 		{
 			name: "Mummy of the Deep",
 			size: "Medium", type: "Undead", tags: [ "Aquatic" ], 
-			ac: "11", hp: "33", init: "0", cr: "2",
+			ac: 11, hp: 33, init: 0, cr: "2",
 			alignment: alignments.ne,
 			environments: [ "aquatic" ],
 			legendary: false,
@@ -6484,7 +6581,7 @@ define([
 		{
 			name: "Murder Crow",
 			size: "Medium", type: "Undead",
-			ac: "15", hp: "52", init: "3", cr: "3",
+			ac: 15, hp: 52, init: 3, cr: "3",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -6493,7 +6590,7 @@ define([
 		{
 			section: "Nagas", name: "Hanu-naga",
 			size: "Large", type: "Monstrosity",
-			ac: "14", hp: "39", init: "2", cr: "2",
+			ac: 14, hp: 39, init: 2, cr: "2",
 			alignment: alignments.ce,
 			environments: [ "forest", "mountain" ],
 			legendary: false,
@@ -6502,7 +6599,7 @@ define([
 		{
 			name: "Olive Slime",
 			size: "Large", type: "Plant", tags: [ "Fungoid" ], 
-			ac: "11", hp: "14", init: "1", cr: "0",
+			ac: 11, hp: 14, init: 1, cr: "0",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6511,7 +6608,7 @@ define([
 		{
 			name: "Olive Slime Zombie",
 			size: "Medium", type: "Plant",
-			ac: "9", hp: "26", init: "-1", cr: "1/2",
+			ac: 9, hp: 26, init: -1, cr: "1/2",
 			alignment: alignments.ne,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6520,7 +6617,7 @@ define([
 		{
 			name: "Glacial Ooze",
 			size: "Large", type: "Ooze",
-			ac: "5", hp: "57", init: "-5", cr: "1",
+			ac: 5, hp: 57, init: -5, cr: "1",
 			alignment: alignments.unaligned,
 			environments: [ "arctic" ],
 			legendary: false,
@@ -6529,7 +6626,7 @@ define([
 		{
 			name: "Magma Ooze",
 			size: "Large", type: "Ooze",
-			ac: "14", hp: "115", init: "-5", cr: "5",
+			ac: 14, hp: 115, init: -5, cr: "5",
 			alignment: alignments.unaligned,
 			environments: [ "mountain", "underground" ],
 			legendary: false,
@@ -6538,7 +6635,7 @@ define([
 		{
 			name: "Origami Warrior",
 			size: "Medium", type: "Construct",
-			ac: "15", hp: "9", init: "3", cr: "1/8",
+			ac: 15, hp: 9, init: 3, cr: "1/8",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -6547,7 +6644,7 @@ define([
 		{
 			name: "Pech",
 			size: "Small", type: "Fey",
-			ac: "11", hp: "18", init: "1", cr: "1/4",
+			ac: 11, hp: 18, init: 1, cr: "1/4",
 			alignment: alignments.ng,
 			environments: [ "underground", "planar" ],
 			legendary: false,
@@ -6556,7 +6653,7 @@ define([
 		{
 			name: "Phycomid",
 			size: "Small", type: "Plant", tags: [ "Fungoid" ], 
-			ac: "10", hp: "22", init: "0", cr: "1/2",
+			ac: 10, hp: 22, init: 0, cr: "1/2",
 			alignment: alignments.ne,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6565,7 +6662,7 @@ define([
 		{
 			section: "Pleistocene Animal", name: "Brontotherium",
 			size: "Huge", type: "Beast",
-			ac: "13", hp: "128", init: "0", cr: "6",
+			ac: 13, hp: 128, init: 0, cr: "6",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -6574,7 +6671,7 @@ define([
 		{
 			section: "Pleistocene Animal", name: "Hyaenodon",
 			size: "Large", type: "Beast",
-			ac: "13", hp: "44", init: "2", cr: "1",
+			ac: 13, hp: 44, init: 2, cr: "1",
 			alignment: alignments.unaligned,
 			environments: [ "grassland" ],
 			legendary: false,
@@ -6583,7 +6680,7 @@ define([
 		{
 			section: "Pleistocene Animal", name: "Mastodon",
 			size: "Huge", type: "Beast",
-			ac: "13", hp: "105", init: "-1", cr: "4",
+			ac: 13, hp: 105, init: -1, cr: "4",
 			alignment: alignments.unaligned,
 			environments: [ "forest", "grassland" ],
 			legendary: false,
@@ -6592,7 +6689,7 @@ define([
 		{
 			section: "Pleistocene Animal", name: "Woolly Rhinoceros",
 			size: "Large", type: "Beast",
-			ac: "14", hp: "136", init: "-1", cr: "6",
+			ac: 14, hp: 136, init: -1, cr: "6",
 			alignment: alignments.unaligned,
 			environments: [ "forest", "swamp", "grassland" ],
 			legendary: false,
@@ -6601,7 +6698,7 @@ define([
 		{
 			name: "Blood Pudding",
 			size: "Medium", type: "Ooze",
-			ac: "10", hp: "42", init: "0", cr: "2",
+			ac: 10, hp: 42, init: 0, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [ "swamp", "underground" ],
 			legendary: false,
@@ -6610,7 +6707,7 @@ define([
 		{
 			name: "Pyrolisk",
 			size: "Small", type: "Monstrosity",
-			ac: "12", hp: "21", init: "2", cr: "1/2",
+			ac: 12, hp: 21, init: 2, cr: "1/2",
 			alignment: alignments.ne,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6619,7 +6716,7 @@ define([
 		{
 			name: "Quadricorn",
 			size: "Large", type: "Monstrosity",
-			ac: "12", hp: "59", init: "1", cr: "4",
+			ac: 12, hp: 59, init: 1, cr: "4",
 			alignment: alignments.ne,
 			environments: [ "grassland" ],
 			legendary: false,
@@ -6628,7 +6725,7 @@ define([
 		{
 			name: "Quickwood",
 			size: "Huge", type: "Plant",
-			ac: "14", hp: "149", init: "2", cr: "8",
+			ac: 14, hp: 149, init: 2, cr: "8",
 			alignment: alignments.n,
 			environments: [ "forest", "mountain" ],
 			legendary: false,
@@ -6637,7 +6734,7 @@ define([
 		{
 			name: "Shadow Rat",
 			size: "Tiny", type: "Undead",
-			ac: "12", hp: "1", init: "2", cr: "0",
+			ac: 12, hp: 1, init: 2, cr: "0",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -6646,7 +6743,7 @@ define([
 		{
 			name: "Red Jester",
 			size: "Medium", type: "Undead",
-			ac: "14", hp: "67", init: "3", cr: "5",
+			ac: 14, hp: 67, init: 3, cr: "5",
 			alignment: alignments.cn,
 			environments: [],
 			legendary: false,
@@ -6655,7 +6752,7 @@ define([
 		{
 			name: "Ronus",
 			size: "Medium", type: "Monstrosity",
-			ac: "14", hp: "16", init: "3", cr: "1/4",
+			ac: 14, hp: 16, init: 3, cr: "1/4",
 			alignment: alignments.unaligned,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6664,7 +6761,7 @@ define([
 		{
 			name: "Russet Mold",
 			size: "Medium", type: "Plant", tags: [ "Fungoid" ], 
-			ac: "8", hp: "9", init: "2", cr: "1/2",
+			ac: 8, hp: 9, init: 2, cr: "1/2",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6673,7 +6770,7 @@ define([
 		{
 			name: "Ryven",
 			size: "Medium", type: "Humanoid",
-			ac: "13", hp: "19", init: "2", cr: "1",
+			ac: 13, hp: 19, init: 2, cr: "1",
 			alignment: alignments.n,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6682,7 +6779,7 @@ define([
 		{
 			name: "Sandling",
 			size: "Large", type: "Elemental",
-			ac: "15", hp: "26", init: "1", cr: "1",
+			ac: 15, hp: 26, init: 1, cr: "1",
 			alignment: alignments.unaligned,
 			environments: [ "planar" ],
 			legendary: false,
@@ -6691,7 +6788,7 @@ define([
 		{
 			name: "Screaming Devilkin",
 			size: "Small", type: "Fiend",
-			ac: "12", hp: "13", init: "2", cr: "1/4",
+			ac: 12, hp: 13, init: 2, cr: "1/4",
 			alignment: alignments.le,
 			environments: [],
 			legendary: false,
@@ -6700,7 +6797,7 @@ define([
 		{
 			name: "Scythe Tree",
 			size: "Huge", type: "Plant",
-			ac: "14", hp: "76", init: "-1", cr: "5",
+			ac: 14, hp: 76, init: -1, cr: "5",
 			alignment: alignments.ce,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6709,7 +6806,7 @@ define([
 		{
 			name: "Brine Sea Serpent",
 			size: "Huge", type: "Dragon", tags: [ "Aquatic" ],
-			ac: "17", hp: "168", init: "2", cr: "10",
+			ac: 17, hp: 168, init: 2, cr: "10",
 			alignment: alignments.ce,
 			environments: [ "aquatic" ],
 			legendary: true,
@@ -6719,7 +6816,7 @@ define([
 		{
 			name: "Deep Hunter Sea Serpent",
 			size: "Gargantuan", type: "Dragon", tags: [ "Aquatic" ],
-			ac: "18", hp: "232", init: "2", cr: "14",
+			ac: 18, hp: 232, init: 2, cr: "14",
 			alignment: alignments.ln,
 			environments: [ "aquatic" ],
 			legendary: true,
@@ -6728,7 +6825,7 @@ define([
 		{
 			name: "Fanged Sea Serpent",
 			size: "Large", type: "Dragon", tags: [ "Aquatic" ],
-			ac: "18", hp: "85", init: "1", cr: "5",
+			ac: 18, hp: 85, init: 1, cr: "5",
 			alignment: alignments.ne,
 			environments: [ "aquatic" ],
 			legendary: false,
@@ -6737,7 +6834,7 @@ define([
 		{
 			name: "Shipbreaker Sea Serpent",
 			size: "Gargantuan", type: "Dragon", tags: [ "Aquatic" ],
-			ac: "19", hp: "310", init: "1", cr: "20",
+			ac: 19, hp: 310, init: 1, cr: "20",
 			alignment: alignments.cn,
 			environments: [ "aquatic" ],
 			legendary: true,
@@ -6746,7 +6843,7 @@ define([
 		{
 			name: "Spitting Sea Serpent",
 			size: "Large", type: "Dragon", tags: [ "Aquatic" ],
-			ac: "14", hp: "97", init: "4", cr: "5",
+			ac: 14, hp: 97, init: 4, cr: "5",
 			alignment: alignments.ce,
 			environments: [ "aquatic" ],
 			legendary: false,
@@ -6755,7 +6852,7 @@ define([
 		{
 			name: "Giant Seahorse",
 			size: "Large", type: "Beast",
-			ac: "12", hp: "26", init: "2", cr: "1/2",
+			ac: 12, hp: 26, init: 2, cr: "1/2",
 			alignment: alignments.unaligned,
 			environments: [ "aquatic" ],
 			legendary: false,
@@ -6764,7 +6861,7 @@ define([
 		{
 			name: "Sepulchral Guardian",
 			size: "Medium", type: "Construct",
-			ac: "14", hp: "65", init: "0", cr: "3",
+			ac: 14, hp: 65, init: 0, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -6773,7 +6870,7 @@ define([
 		{
 			name: "Shadow Mastiff",
 			size: "Medium", type: "Fiend",
-			ac: "12", hp: "22", init: "2", cr: "1/2",
+			ac: 12, hp: 22, init: 2, cr: "1/2",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -6782,7 +6879,7 @@ define([
 		{
 			name: "Lesser Shadow",
 			size: "Medium", type: "Undead",
-			ac: "12", hp: "7", init: "2", cr: "1/8",
+			ac: 12, hp: 7, init: 2, cr: "1/8",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -6791,7 +6888,7 @@ define([
 		{
 			name: "Shroom",
 			size: "Small", type: "Plant", tags: [ "Fungoid" ], 
-			ac: "12", hp: "49", init: "0", cr: "4",
+			ac: 12, hp: 49, init: 0, cr: "4",
 			alignment: alignments.ce,
 			environments: [ "underground", "forest" ],
 			legendary: false,
@@ -6801,7 +6898,7 @@ define([
 		{
 			name: "Skeleton Warrior",
 			size: "Medium", type: "Undead",
-			ac: "19", hp: "150", init: "1", cr: "14",
+			ac: 19, hp: 150, init: 1, cr: "14",
 			alignment: alignments.ne,
 			environments: [ "underground" ],
 			legendary: true,
@@ -6810,7 +6907,7 @@ define([
 		{
 			name: "Stygian Skeleton",
 			size: "Medium", type: "Undead",
-			ac: "16", hp: "97", init: "3", cr: "7",
+			ac: 16, hp: 97, init: 3, cr: "7",
 			alignment: alignments.ce,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6819,7 +6916,7 @@ define([
 		{
 			name: "Skelzi",
 			size: "Medium", type: "Humanoid",
-			ac: "14", hp: "44", init: "2", cr: "1",
+			ac: 14, hp: 44, init: 2, cr: "1",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -6828,7 +6925,7 @@ define([
 		{
 			name: "Skulk",
 			size: "Medium", type: "Humanoid",
-			ac: "13", hp: "18", init: "3", cr: "1/2",
+			ac: 13, hp: 18, init: 3, cr: "1/2",
 			alignment: alignments.cn,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6837,7 +6934,7 @@ define([
 		{
 			name: "Slithering Tracker",
 			size: "Small", type: "Ooze",
-			ac: "14", hp: "32", init: "4", cr: "1",
+			ac: 14, hp: 32, init: 4, cr: "1",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -6846,7 +6943,7 @@ define([
 		{
 			name: "Soul Reaper",
 			size: "Large", type: "Undead",
-			ac: "19", hp: "152", init: "3", cr: "16",
+			ac: 19, hp: 152, init: 3, cr: "16",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -6855,7 +6952,7 @@ define([
 		{
 			name: "Stegocentipede",
 			size: "Huge", type: "Beast",
-			ac: "14", hp: "76", init: "2", cr: "4",
+			ac: 14, hp: 76, init: 2, cr: "4",
 			alignment: alignments.unaligned,
 			environments: [ "forest", "underground" ],
 			legendary: false,
@@ -6864,7 +6961,7 @@ define([
 		{
 			name: "Strangle Weed",
 			size: "Large", type: "Plant", tags: [ "Aquatic" ],
-			ac: "10", hp: "34", init: "0", cr: "2",
+			ac: 10, hp: 34, init: 0, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [ "aquatic" ],
 			legendary: false,
@@ -6873,7 +6970,7 @@ define([
 		{
 			name: "Tabaxi",
 			size: "Medium", type: "Humanoid",
-			ac: "12", hp: "11", init: "2", cr: "1/2",
+			ac: 12, hp: 11, init: 2, cr: "1/2",
 			alignment: alignments.cn,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6882,7 +6979,7 @@ define([
 		{
 			name: "Taer",
 			size: "Medium", type: "Humanoid",
-			ac: "14", hp: "26", init: "2", cr: "1",
+			ac: 14, hp: 26, init: 2, cr: "1",
 			alignment: alignments.n,
 			environments: [ "mountain" ],
 			legendary: false,
@@ -6891,7 +6988,7 @@ define([
 		{
 			name: "Tangtal",
 			size: "Medium", type: "Monstrosity",
-			ac: "13", hp: "19", init: "3", cr: "1",
+			ac: 13, hp: 19, init: 3, cr: "1",
 			alignment: alignments.ne,
 			environments: [ "forest", "grassland" ],
 			legendary: false,
@@ -6900,7 +6997,7 @@ define([
 		{
 			name: "Tazelwurm / Tatzelwurm",
 			size: "Large", type: "Monstrosity",
-			ac: "12", hp: "45", init: "2", cr: "2",
+			ac: 12, hp: 45, init: 2, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [ "mountain" ],
 			legendary: false,
@@ -6909,7 +7006,7 @@ define([
 		{
 			name: "Temporal Crawler",
 			size: "Medium", type: "Aberration",
-			ac: "14", hp: "45", init: "3", cr: "2",
+			ac: 14, hp: 45, init: 3, cr: "2",
 			alignment: alignments.ne,
 			environments: [ "planar" ],
 			legendary: false,
@@ -6918,7 +7015,7 @@ define([
 		{
 			name: "Tendriculos",
 			size: "Large", type: "Plant",
-			ac: "8", hp: "93", init: "-2", cr: "4",
+			ac: 8, hp: 93, init: -2, cr: "4",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -6927,7 +7024,7 @@ define([
 		{
 			name: "Tentacled Horror",
 			size: "Huge", type: "Aberration",
-			ac: "17", hp: "171", init: "-1", cr: "11",
+			ac: 17, hp: 171, init: -1, cr: "11",
 			alignment: alignments.ce,
 			environments: [ "underground" ],
 			legendary: true,
@@ -6936,7 +7033,7 @@ define([
 		{
 			section: "Therianthrope", name: "Foxwere",
 			size: "Small", type: "Monstrosity", tags: [ "Shapechanger" ],
-			ac: "12", hp: "13", init: "2", cr: "1/2",
+			ac: 12, hp: 13, init: 2, cr: "1/2",
 			alignment: alignments.le,
 			environments: [ "forest", "underground" ],
 			legendary: false,
@@ -6945,7 +7042,7 @@ define([
 		{
 			section: "Therianthrope", name: "Lionwere",
 			size: "Large", type: "Monstrosity", tags: [ "Shapechanger" ],
-			ac: "13", hp: "30", init: "3", cr: "2",
+			ac: 13, hp: 30, init: 3, cr: "2",
 			alignment: alignments.ce,
 			environments: [ "grassland", "underground" ],
 			legendary: false,
@@ -6954,7 +7051,7 @@ define([
 		{
 			section: "Therianthrope", name: "Owlwere",
 			size: "Small", type: "Monstrosity", tags: [ "Shapechanger" ],
-			ac: "13", hp: "13", init: "3", cr: "1/2",
+			ac: 13, hp: 13, init: 3, cr: "1/2",
 			alignment: alignments.ce,
 			environments: [ "grassland", "underground" ],
 			legendary: false,
@@ -6963,7 +7060,7 @@ define([
 		{
 			section: "Therianthrope", name: "Wolfwere",
 			size: "Medium", type: "Monstrosity", tags: [ "Shapechanger" ], 
-			ac: "14", hp: "19", init: "3", cr: "1",
+			ac: 14, hp: 19, init: 3, cr: "1",
 			alignment: alignments.ce,
 			environments: [ "grassland", "underground" ],
 			legendary: false,
@@ -6972,7 +7069,7 @@ define([
 		{
 			name: "Lightning Treant",
 			size: "Huge", type: "Plant",
-			ac: "15", hp: "105", init: "-2", cr: "6",
+			ac: 15, hp: 105, init: -2, cr: "6",
 			alignment: alignments.ne,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6981,7 +7078,7 @@ define([
 		{
 			name: "Tri-flower Frond",
 			size: "Medium", type: "Plant",
-			ac: "12", hp: "19", init: "0", cr: "1/2",
+			ac: 12, hp: 19, init: 0, cr: "1/2",
 			alignment: alignments.unaligned,
 			environments: [ "forest" ],
 			legendary: false,
@@ -6990,7 +7087,7 @@ define([
 		{
 			name: "Dark Triton",
 			size: "Large", type: "Monstrosity", tags: [ "Aquatic" ], 
-			ac: "12", hp: "30", init: "0", cr: "1",
+			ac: 12, hp: 30, init: 0, cr: "1",
 			alignment: alignments.ce,
 			environments: [ "aquatic" ],
 			legendary: false,
@@ -6999,7 +7096,7 @@ define([
 		{
 			section: "Trolls", name: "Spectral Troll",
 			size: "Large", type: "Undead",
-			ac: "15", hp: "52", init: "1", cr: "4",
+			ac: 15, hp: 52, init: 1, cr: "4",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7008,7 +7105,7 @@ define([
 		{
 			section: "Trolls", name: "Two-headed Troll",
 			size: "Large", type: "Giant",
-			ac: "15", hp: "105", init: "1", cr: "6",
+			ac: 15, hp: 105, init: 1, cr: "6",
 			alignment: alignments.ce,
 			environments: [ "mountain", "underground" ],
 			legendary: false,
@@ -7017,7 +7114,7 @@ define([
 		{
 			name: "Tunnel Prawn",
 			size: "Small", type: "Beast",
-			ac: "14", hp: "7", init: "2", cr: "1/8",
+			ac: 14, hp: 7, init: 2, cr: "1/8",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -7026,7 +7123,7 @@ define([
 		{
 			name: "Tunnel Worm",
 			size: "Huge", type: "Monstrosity",
-			ac: "16", hp: "115", init: "1", cr: "8",
+			ac: 16, hp: 115, init: 1, cr: "8",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -7035,7 +7132,7 @@ define([
 		{
 			name: "Vampire Rose",
 			size: "Small", type: "Plant",
-			ac: "9", hp: "27", init: "-1", cr: "1/4",
+			ac: 9, hp: 27, init: -1, cr: "1/4",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -7044,7 +7141,7 @@ define([
 		{
 			name: "Vegepygmy Commoner and Worker",
 			size: "Small", type: "Plant", tags: [ "Fungoid" ], 
-			ac: "12", hp: "10", init: "2", cr: "1/8",
+			ac: 12, hp: 10, init: 2, cr: "1/8",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -7053,7 +7150,7 @@ define([
 		{
 			name: "Vegepygmy Guard",
 			size: "Small", type: "Plant", tags: [ "Fungoid" ], 
-			ac: "13", hp: "28", init: "2", cr: "1/2",
+			ac: 13, hp: 28, init: 2, cr: "1/2",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -7062,7 +7159,7 @@ define([
 		{
 			name: "Vegepygmy Chief",
 			size: "Medium", type: "Plant", tags: [ "Fungoid" ], 
-			ac: "14", hp: "60", init: "2", cr: "3",
+			ac: 14, hp: 60, init: 2, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -7071,7 +7168,7 @@ define([
 		{
 			name: "Volt (Bolt Wurm)",
 			size: "Small", type: "Aberration",
-			ac: "13", hp: "13", init: "3", cr: "1/4",
+			ac: 13, hp: 13, init: 3, cr: "1/4",
 			alignment: alignments.unaligned,
 			environments: [ "underground" ],
 			legendary: false,
@@ -7080,7 +7177,7 @@ define([
 		{
 			name: "Vorin",
 			size: "Huge", type: "Monstrosity", tags: [ "Aquatic" ], 
-			ac: "14", hp: "149", init: "4", cr: "9",
+			ac: 14, hp: 149, init: 4, cr: "9",
 			alignment: alignments.ce,
 			environments: [ "swamp" ],
 			legendary: false,
@@ -7089,7 +7186,7 @@ define([
 		{
 			name: "Vulchling",
 			size: "Medium", type: "Monstrosity",
-			ac: "12", hp: "9", init: "2", cr: "1/8",
+			ac: 12, hp: 9, init: 2, cr: "1/8",
 			alignment: alignments.ce,
 			environments: [ "underground" ],
 			legendary: false,
@@ -7098,7 +7195,7 @@ define([
 		{
 			name: "Lava Weird",
 			size: "Large", type: "Elemental",
-			ac: "16", hp: "76", init: "2", cr: "4",
+			ac: 16, hp: 76, init: 2, cr: "4",
 			alignment: alignments.ce,
 			environments: [ "planar" ],
 			legendary: false,
@@ -7107,7 +7204,7 @@ define([
 		{
 			name: "Were-mist",
 			size: "Large", type: "Aberration",
-			ac: "7", hp: "16", init: "2", cr: "2",
+			ac: 7, hp: 16, init: 2, cr: "2",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7116,7 +7213,7 @@ define([
 		{
 			name: "Weredactyl",
 			size: "Medium", type: "Humanoid", tags: [ "Shapechanger" ], 
-			ac: "12", hp: "44", init: "2", cr: "2",
+			ac: 12, hp: 44, init: 2, cr: "2",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7125,7 +7222,7 @@ define([
 		{
 			name: "Widow Creeper",
 			size: "Large", type: "Plant",
-			ac: "13", hp: "133", init: "1", cr: "10",
+			ac: 13, hp: 133, init: 1, cr: "10",
 			alignment: alignments.unaligned,
 			environments: [ "forest" ],
 			legendary: false,
@@ -7134,7 +7231,7 @@ define([
 		{
 			name: "Witch Grass",
 			size: "Small", type: "Plant",
-			ac: "5", hp: "3", init: "0", cr: "0",
+			ac: 5, hp: 3, init: 0, cr: "0",
 			alignment: alignments.unaligned,
 			environments: [ "forest", "grassland" ],
 			legendary: false,
@@ -7143,7 +7240,7 @@ define([
 		{
 			name: "Witherstench",
 			size: "Small", type: "Monstrosity",
-			ac: "12", hp: "1", init: "2", cr: "0",
+			ac: 12, hp: 1, init: 2, cr: "0",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -7152,7 +7249,7 @@ define([
 		{
 			name: "Yellow Musk Creeper",
 			size: "Large", type: "Plant",
-			ac: "12", hp: "25", init: "2", cr: "1",
+			ac: 12, hp: 25, init: 2, cr: "1",
 			alignment: alignments.unaligned,
 			environments: [ "forest", "underground" ],
 			legendary: false,
@@ -7161,7 +7258,7 @@ define([
 		{
 			name: "Yellow Musk Zombie",
 			size: "Medium", type: "Plant",
-			ac: "9", hp: "19", init: "-1", cr: "1/4",
+			ac: 9, hp: 19, init: -1, cr: "1/4",
 			alignment: alignments.ne,
 			environments: [ "forest", "underground" ],
 			legendary: false,
@@ -7170,7 +7267,7 @@ define([
 		{
 			name: "Zombie Raven",
 			size: "Tiny", type: "Undead",
-			ac: "11", hp: "3", init: "1", cr: "0",
+			ac: 11, hp: 3, init: 1, cr: "0",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7181,7 +7278,7 @@ define([
 		{
 			name: "Abominable Sloth",
 			size: "Huge", type: "Beast",
-			ac: "11", hp: "126", init: "-1", cr: "6",
+			ac: 11, hp: 126, init: -1, cr: "6",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -7190,7 +7287,7 @@ define([
 		{
 			name: "Crested Eagle",
 			size: "Medium", type: "Beast",
-			ac: "12", hp: "18", init: "2", cr: "1",
+			ac: 12, hp: 18, init: 2, cr: "1",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -7199,7 +7296,7 @@ define([
 		{
 			name: "Giant Viper",
 			size: "Huge", type: "Beast",
-			ac: "13", hp: "115", init: "2", cr: "6",
+			ac: 13, hp: 115, init: 2, cr: "6",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -7208,7 +7305,7 @@ define([
 		{
 			name: "Mosasaur",
 			size: "Huge", type: "Beast",
-			ac: "13", hp: "145", init: "0", cr: "7",
+			ac: 13, hp: 145, init: 0, cr: "7",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -7217,7 +7314,7 @@ define([
 		{
 			name: "Saber-Tooth Cat",
 			size: "Large", type: "Beast",
-			ac: "12", hp: "76", init: "2", cr: "4",
+			ac: 12, hp: 76, init: 2, cr: "4",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -7226,7 +7323,7 @@ define([
 		{
 			name: "Short-Faced Bear",
 			size: "Large", type: "Beast",
-			ac: "12", hp: "95", init: "1", cr: "5",
+			ac: 12, hp: 95, init: 1, cr: "5",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -7235,7 +7332,7 @@ define([
 		{
 			name: "Thulean Elk",
 			size: "Large", type: "Beast",
-			ac: "12", hp: "51", init: "2", cr: "3",
+			ac: 12, hp: 51, init: 2, cr: "3",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -7244,7 +7341,7 @@ define([
 		{
 			name: "Thulean Musk Ox",
 			size: "Large", type: "Beast",
-			ac: "11", hp: "42", init: "-1", cr: "2",
+			ac: 11, hp: 42, init: -1, cr: "2",
 			alignment: alignments.unaligned,
 			environments: [],
 			legendary: false,
@@ -7253,7 +7350,7 @@ define([
 		{
 			name: "Beastman Warrior",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "12", hp: "6", init: "0", cr: "1/4",
+			ac: 12, hp: 6, init: 0, cr: "1/4",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7262,7 +7359,7 @@ define([
 		{
 			name: "Beastman Hunter",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "13", hp: "13", init: "1", cr: "1/2",
+			ac: 13, hp: 13, init: 1, cr: "1/2",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7271,7 +7368,7 @@ define([
 		{
 			name: "Beastman Cursemaker",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "12", hp: "39", init: "2", cr: "2",
+			ac: 12, hp: 39, init: 2, cr: "2",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7280,7 +7377,7 @@ define([
 		{
 			name: "Beastman Warchief",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "13", hp: "75", init: "1", cr: "3",
+			ac: 13, hp: 75, init: 1, cr: "3",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7289,7 +7386,7 @@ define([
 		{
 			name: "Black Circle Agent",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "15", hp: "58", init: "4", cr: "8",
+			ac: 15, hp: 58, init: 4, cr: "8",
 			alignment: alignments.cn,
 			environments: [],
 			legendary: false,
@@ -7298,7 +7395,7 @@ define([
 		{
 			name: "Black Circle Wizard",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "15", hp: "84", init: "2", cr: "12",
+			ac: 15, hp: 84, init: 2, cr: "12",
 			alignment: alignments.cn,
 			environments: [],
 			legendary: false,
@@ -7307,7 +7404,7 @@ define([
 		{
 			name: "Thulean Cyclops",
 			size: "Large", type: "Giant",
-			ac: "15", hp: "142", init: "1", cr: "10",
+			ac: 15, hp: 142, init: 1, cr: "10",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7317,7 +7414,7 @@ define([
 		{
 			name: "Thulean Dragon",
 			size: "Huge", type: "Dragon",
-			ac: "17", hp: "195", init: "0", cr: "13",
+			ac: 17, hp: 195, init: 0, cr: "13",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7326,7 +7423,7 @@ define([
 		{
 			name: "Frost Corpse",
 			size: "Medium", type: "Undead",
-			ac: "17", hp: "76", init: "2", cr: "8",
+			ac: 17, hp: 76, init: 2, cr: "8",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7335,7 +7432,7 @@ define([
 		{
 			name: "Polar Eidolon",
 			size: "Huge", type: "Elemental",
-			ac: "20", hp: "250", init: "4", cr: "14",
+			ac: 20, hp: 250, init: 4, cr: "14",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7344,7 +7441,7 @@ define([
 		{
 			name: "Phoori Beastmaster",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "14", hp: "52", init: "3", cr: "3",
+			ac: 14, hp: 52, init: 3, cr: "3",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7353,7 +7450,7 @@ define([
 		{
 			name: "Phoori Death Adder",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "14", hp: "58", init: "3", cr: "4",
+			ac: 14, hp: 58, init: 3, cr: "4",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7362,7 +7459,7 @@ define([
 		{
 			name: "Phoori Dark Shaman",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "16", hp: "65", init: "1", cr: "6",
+			ac: 16, hp: 65, init: 1, cr: "6",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7371,7 +7468,7 @@ define([
 		{
 			name: "Rakshasa Honor Guard",
 			size: "Medium", type: "Fiend", 
-			ac: "18", hp: "76", init: "2", cr: "8",
+			ac: 18, hp: 76, init: 2, cr: "8",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7380,7 +7477,7 @@ define([
 		{
 			name: "Rakshasa Infiltrator",
 			size: "Medium", type: "Fiend", 
-			ac: "19", hp: "93", init: "5", cr: "10",
+			ac: 19, hp: 93, init: 5, cr: "10",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7389,7 +7486,7 @@ define([
 		{
 			name: "Rakshasa Raja",
 			size: "Medium", type: "Fiend", 
-			ac: "19", hp: "102", init: "4", cr: "12",
+			ac: 19, hp: 102, init: 4, cr: "12",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7398,7 +7495,7 @@ define([
 		{
 			name: "Rakshasa Swordspirit",
 			size: "Medium", type: "Fiend", 
-			ac: "13", hp: "27", init: "4", cr: "2",
+			ac: 13, hp: 27, init: 4, cr: "2",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7407,7 +7504,7 @@ define([
 		{
 			name: "Fang Guard",
 			size: "Medium", type: "Monstrosity", tags: [ "Serpentman" ], 
-			ac: "15", hp: "91", init: "4", cr: "5",
+			ac: 15, hp: 91, init: 4, cr: "5",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7416,7 +7513,7 @@ define([
 		{
 			name: "Nessk Champion",
 			size: "Large", type: "Monstrosity", tags: [ "Serpentman" ], 
-			ac: "17", hp: "126", init: "2", cr: "7",
+			ac: 17, hp: 126, init: 2, cr: "7",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7425,7 +7522,7 @@ define([
 		{
 			name: "Nessk Charmer",
 			size: "Medium", type: "Monstrosity", tags: [ "Serpentman" ], 
-			ac: "19", hp: "102", init: "3", cr: "9",
+			ac: 19, hp: 102, init: 3, cr: "9",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7434,7 +7531,7 @@ define([
 		{
 			name: "Chosen Cultist",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ], 
-			ac: "12", hp: "39", init: "1", cr: "3",
+			ac: 12, hp: 39, init: 1, cr: "3",
 			alignment: alignments.cn,
 			environments: [],
 			legendary: false,
@@ -7443,7 +7540,7 @@ define([
 		{
 			name: "Cult Priest",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ], 
-			ac: "17", hp: "76", init: "2", cr: "7",
+			ac: 17, hp: 76, init: 2, cr: "7",
 			alignment: alignments.cn,
 			environments: [],
 			legendary: false,
@@ -7452,7 +7549,7 @@ define([
 		{
 			name: "Deep One Halfbreed",
 			size: "Medium", type: "Aberration", 
-			ac: "16", hp: "60", init: "1", cr: "3",
+			ac: 16, hp: 60, init: 1, cr: "3",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7461,7 +7558,7 @@ define([
 		{
 			name: "Seven Knives Thug",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "13", hp: "16", init: "2", cr: "1/4",
+			ac: 13, hp: 16, init: 2, cr: "1/4",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7470,7 +7567,7 @@ define([
 		{
 			name: "Seven Knives Enforcer",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "15", hp: "27", init: "3", cr: "1",
+			ac: 15, hp: 27, init: 3, cr: "1",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7479,7 +7576,7 @@ define([
 		{
 			name: "Seven Knives Darkblade",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "16", hp: "66", init: "4", cr: "3",
+			ac: 16, hp: 66, init: 4, cr: "3",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7488,7 +7585,7 @@ define([
 		{
 			name: "The Fourth Knife",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ],
-			ac: "17", hp: "78", init: "4", cr: "5",
+			ac: 17, hp: 78, init: 4, cr: "5",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7497,7 +7594,7 @@ define([
 		{
 			name: "Winged Ape",
 			size: "Large", type: "Monstrosity",
-			ac: "14", hp: "95", init: "2", cr: "5",
+			ac: 14, hp: 95, init: 2, cr: "5",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7506,7 +7603,7 @@ define([
 		{
 			name: "Dark Servant of Carcosa",
 			size: "Huge", type: "Aberration", tags: [ "Extraterrene" ], 
-			ac: "11", hp: "189", init: "1", cr: "11",
+			ac: 11, hp: 189, init: 1, cr: "11",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7515,7 +7612,7 @@ define([
 		{
 			name: "Gnoph-Keh of Serex",
 			size: "Large", type: "Monstrosity", tags: [ "Extraterrene" ], 
-			ac: "13", hp: "133", init: "1", cr: "10",
+			ac: 13, hp: 133, init: 1, cr: "10",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7524,7 +7621,7 @@ define([
 		{
 			name: "Mi-Go, Starcrown",
 			size: "Medium", type: "Plant", tags: [ "Extraterrene" ], 
-			ac: "17", hp: "85", init: "4", cr: "6",
+			ac: 17, hp: 85, init: 4, cr: "6",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7533,7 +7630,7 @@ define([
 		{
 			name: "Moon-Beast",
 			size: "Large", type: "Aberration", tags: [ "Extraterrene" ], 
-			ac: "16", hp: "126", init: "0", cr: "8",
+			ac: 16, hp: 126, init: 0, cr: "8",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7542,7 +7639,7 @@ define([
 		{
 			name: "Nightgaunt, Khoori",
 			size: "Medium", type: "Monstrosity", tags: [ "Extraterrene" ], 
-			ac: "16", hp: "60", init: "3", cr: "4",
+			ac: 16, hp: 60, init: 3, cr: "4",
 			alignment: alignments.cn,
 			environments: [],
 			legendary: false,
@@ -7551,7 +7648,7 @@ define([
 		{
 			name: "Shoggoth",
 			size: "Gargantuan", type: "Ooze", tags: [ "Extraterrene" ], 
-			ac: "8", hp: "280", init: "-2", cr: "17",
+			ac: 8, hp: 280, init: -2, cr: "17",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7560,7 +7657,7 @@ define([
 		{
 			name: "Star-Thing of Nheb",
 			size: "Large", type: "Aberration", tags: [ "Extraterrene" ], 
-			ac: "17", hp: "133", init: "0", cr: "9",
+			ac: 17, hp: 133, init: 0, cr: "9",
 			alignment: alignments.ne,
 			environments: [],
 			legendary: false,
@@ -7569,7 +7666,7 @@ define([
 		{
 			name: "Dhuoth, Giver of Eyes",
 			size: "Gargantuan", type: "Plant", tags: [ "Extraterrene" ], 
-			ac: "20", hp: "390", init: "0", cr: "24",
+			ac: 20, hp: 390, init: 0, cr: "24",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: true,
@@ -7578,7 +7675,7 @@ define([
 		{
 			name: "Plague Nomad",
 			size: "Medium", type: "Humanoid", tags: [ "Extraterrene" ], 
-			ac: "11", hp: "75", init: "1", cr: "4",
+			ac: 11, hp: 75, init: 1, cr: "4",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7587,7 +7684,7 @@ define([
 		{
 			name: "Lorthnu'un of the Golden Chalice",
 			size: "Huge", type: "Aberration", tags: [ "Extraterrene" ], 
-			ac: "18", hp: "348", init: "1", cr: "22",
+			ac: 18, hp: 348, init: 1, cr: "22",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: true,
@@ -7596,7 +7693,7 @@ define([
 		{
 			name: "Slave of the Chalice",
 			size: "Medium", type: "Humanoid", tags: [ "Troglodyte" ], 
-			ac: "14", hp: "90", init: "0", cr: "6",
+			ac: 14, hp: 90, init: 0, cr: "6",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7605,7 +7702,7 @@ define([
 		{
 			name: "Kelauklyth",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ], 
-			ac: "12", hp: "22", init: "2", cr: "1",
+			ac: 12, hp: 22, init: 2, cr: "1",
 			alignment: alignments.ce,
 			environments: [],
 			legendary: false,
@@ -7614,7 +7711,7 @@ define([
 		{
 			name: "The Kelauble",
 			size: "Small", type: "Aberration",
-			ac: "17", hp: "22", init: "3", cr: "1",
+			ac: 17, hp: 22, init: 3, cr: "1",
 			alignment: alignments.cn,
 			environments: [],
 			legendary: false,
@@ -7623,7 +7720,7 @@ define([
 		{
 			name: "Mador Kheb, Priest of Set",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ], 
-			ac: "14", hp: "32", init: "0", cr: "2",
+			ac: 14, hp: 32, init: 0, cr: "2",
 			alignment: alignments.le,
 			environments: [],
 			legendary: false,
@@ -7632,7 +7729,7 @@ define([
 		{
 			name: "Temple Guard of Set",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ], 
-			ac: "13", hp: "16", init: "1", cr: "1/4",
+			ac: 13, hp: 16, init: 1, cr: "1/4",
 			alignment: alignments.le,
 			environments: [],
 			legendary: false,
@@ -7641,7 +7738,7 @@ define([
 		{
 			name: "Nephys",
 			size: "Medium", type: "Humanoid", tags: [ "Half-elf" ], 
-			ac: "17", hp: "76", init: "2", cr: "8",
+			ac: 17, hp: 76, init: 2, cr: "8",
 			alignment: alignments.le,
 			environments: [],
 			legendary: false,
@@ -7650,7 +7747,7 @@ define([
 		{
 			name: "Ruuk Nath",
 			size: "Medium", type: "Humanoid", tags: [ "Human" ], 
-			ac: "15", hp: "157", init: "3", cr: "7",
+			ac: 15, hp: 157, init: 3, cr: "7",
 			alignment: alignments.cn,
 			environments: [],
 			legendary: false,
