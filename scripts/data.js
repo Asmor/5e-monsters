@@ -8,6 +8,7 @@ define([
 	"scripts/data/custom",
 	"scripts/data/hotdq",
 	"scripts/data/hotdqsup",
+	"scripts/data/rot", 
 	"scripts/data/monstermanual",
 	"scripts/data/playershandbook",
 	"scripts/data/princes",
