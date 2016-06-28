@@ -125,7 +125,10 @@ define({
 
 			if ( sourceTypes.match(/all|books/) ) {
 				select.push("Hoard of the Dragon Queen");
+				select.push("Rise of Tiamat");
 				select.push("Princes of the Apocalypse");
+				select.push("Out of the Abyss");
+				select.push("Curse of Strahd");
 			}
 
 			if ( sourceTypes.match(/all|basic/) ) {
