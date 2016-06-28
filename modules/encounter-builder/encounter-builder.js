@@ -136,6 +136,12 @@ define({
 				select.push("HotDQ supplement");
 				select.push("Princes of the Apocalypse Online Supplement v1.0");
 			}
+			
+			if ( sourceTypes.match(/all|thirdparty/) ) {
+				select.push("Monster-A-Day");
+				select.push("Fifth Edition Foes");
+				select.push("Primeval Thule Campaign Setting");
+			}
 
 			for ( i = 0; i < sources.all.length; i++ ) {
 				$scope.filters.source[sources.all[i]] = false;
