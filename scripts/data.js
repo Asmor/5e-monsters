@@ -18,6 +18,7 @@ define([
 	"scripts/data/monsteraday",
 	"scripts/data/fiftheditionfoes",
 	"scripts/data/primevalthule",
+	"scripts/data/primevalthulegmc",
 ], function (monsters) {
 	return {
 		monsters: monsters,

@@ -141,6 +141,7 @@ define({
 				select.push("Monster-A-Day");
 				select.push("Fifth Edition Foes");
 				select.push("Primeval Thule Campaign Setting");
+				select.push("Primeval Thule Gamemaster's Companion");
 			}
 
 			for ( i = 0; i < sources.all.length; i++ ) {
