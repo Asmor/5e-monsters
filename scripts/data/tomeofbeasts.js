@@ -117,6 +117,42 @@ define({
 		[ "40aded6f-4cd4-4a24-969e-7d68648e9ac2", 125 ], // Adult Cave Dragon
 		[ "c7d443c2-ed3c-4015-9e9e-7b11e15e0e9d", 127 ], // Young Cave Dragon
 		[ "307aaf51-a949-4afd-909d-d6c31680802b", 127 ], // Cave Dragon Wyrmling
+		[ "9bf4904d-c617-4523-9628-464d8c5179d1", 128 ], // Ancient Flame Dragon
+		[ "8e7c88ec-81bf-4a79-be26-7012eb81390a", 129 ], // Adult Flame Dragon
+		[ "12314cf6-d600-4846-b720-6b9c8c0c7126", 130 ], // Young Flame Dragon
+		[ "47d3a59e-3344-4904-a708-b16f19ef4ff1", 131 ], // Flame Dragon Wyrmling
+		[ "b661391a-b533-48f0-9147-bf0c9f648244", 132 ], // Ancient Mithral Dragon
+		[ "77fb4076-f427-492c-8d0a-526481be91f2", 133 ], // Adult Mithral Dragon
+		[ "1b0d62f6-3c35-47e2-9390-32cd6319a146", 134 ], // Young Mithral Dragon
+		[ "baa33773-4a28-4fb3-b676-28e91ff82180", 135 ], // Ancient Sea Dragon
+		[ "44f93eee-8261-4407-b407-0abd856def1c", 135 ], // Adult Sea Dragon
+		[ "fa12b6ea-08af-4c29-a08f-d1cf4645eecc", 136 ], // Young Sea Dragon 
+		[ "7c077d65-f465-4c33-8ce3-f0a864822a8f", 136 ], // Sea Dragon Wyrmling
+		[ "1d027163-d5ff-41a6-be7c-c1459ceb1832", 138 ], // Ancient Void Dragon
+		[ "6b0abf48-3dc7-4b64-8639-40e43d15fb88", 139 ], // Adult Void Dragon
+		[ "b474ce40-7d47-468c-b901-9107d20bb9ac", 140 ], // Young Void Dragon
+		[ "bdf8d1f6-bb8f-4015-a671-e4e013d79fe8", 140 ], // Void Dragon Wyrmling
+		[ "4fe57631-65e5-4584-b195-534c717098f8", 142 ], // Ancient Wind Dragon
+		[ "654e6a8e-ffdf-4f4c-9eaa-5ced89556dc3", 143 ], // Adult Wind Dragon
+		[ "d70e8de5-8d09-4a58-a3b6-b41f64cddb5b", 144 ], // Young Wind Dragon
+		[ "3810e7f1-c595-4e0b-910e-4bc644a42c47", 145 ], // Wind Dragon Wyrmling
+		[ "75ef5141-52cd-4613-a607-8a9959900940", 146 ], // Dragon Eel
+		[ "1c6b62a3-1101-4dd6-999b-3343d54f264f", 147 ], // Dragonleaf Tree
+		[ "9dcf1a47-aeca-4fa1-b998-ef708761952d", 148 ], // Alehouse Drake
+		[ "cc506bd5-3b36-49d7-8b21-37d663cfad08", 149 ], // Ash Drake
+		[ "401ae8c3-edcb-4906-a9df-acbc204106fa", 150 ], // Coral Drake
+		[ "2a77207b-389f-4b54-a22d-821e367a25c7", 151 ], // Crimson Drake
+		[ "9594c378-0403-4772-9b5b-f3d070bc7640", 152 ], // Deep Drake
+		[ "19ffeed1-fdb3-4f41-921a-b5210336fc13", 153 ], // Elder Shadow Drake
+		[ "d4869e67-414e-48ac-af84-e0749fbc0620", 154 ], // Paper Drake
+		[ "8b7fad59-5da7-48bc-b59e-488ac96ad53e", 155 ], // Rust Drake
+		[ "b79c129f-19b4-48f4-ac7c-9fa2419244f9", 156 ], // Star Drake
+		[ "b8a31b8a-d11d-4e27-a34d-b576b27f640c", 157 ], // Drakon
+		[ "c23f0728-6994-4cc7-971e-4b5602a486c1", 158 ], // Dream Eater
+		[ "ed9f2396-2262-41ef-ae8c-3345b2cc33ee", 159 ], // Drowned Maiden
+		[ "066cca78-8b42-4915-8a64-b7e267038291", 160 ], // Duskthorn Dryad
+		[ "9ef3a0d8-e22b-4762-b00c-e9ebe0058d65", 161 ], // Dullahan
+		[ "55e6009c-cff8-4d2c-8501-d7cd3baf3134", 162 ], // Dune Mimic
 		
 	],
 });
