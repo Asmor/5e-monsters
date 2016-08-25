@@ -244,5 +244,50 @@ define({
 		
 		[ "fc0960cb-0825-45b6-9d50-7a4b848166db", 258 ], // Jaculus 
 
+		[ "830b7368-6df3-440c-a012-658e652f3c5d", 259 ], // Kalke
+		[ "ab55775c-a713-44b4-a339-1862db2399f7", 260 ], // Kikimora
+		[ "f954aa0d-b8a1-4df4-966e-07708d9c62bb", 261 ], // Kobold Alchemist
+		[ "221ee346-3107-4c96-a805-6fb37afcf7c2", 263 ], // Kobold Chieftain
+		[ "9bcf7aaa-46b2-4c38-b8fe-6b5a6fd1be5d", 264 ], // Kobold Trapsmith
+		[ "ead59ca0-f8a4-48b5-9c05-f5f2d0bbbf72", 265 ], // Kongamato
+		[ "68df8dde-ed1e-4eb5-8342-85581b863860", 266 ], // Koschei
+		[ "70464573-6341-466e-a1a2-0d1e16ee3cac", 268 ], // Kot Bayun
+		[ "1137b654-dc13-41b4-a965-0c84d47e2129", 269 ], // Krake Spawn
+
+		[ "864c7316-05b4-47c8-bbd6-2fdf7a73f7ba", 270 ], // Lantern Dragonette
+		[ "ce982410-eda8-4b2a-a592-9d5258ed84b6", 271 ], // Lemurfolk
+		[ "c71df1a8-4823-4c63-84cf-c003519c22b5", 271 ], // Lemurfolk Greyfur
+		[ "dccfe297-282f-400d-94b3-2e2cd3d30ea1", 272 ], // Leshy
+		[ "4db5e660-2911-4985-9b82-4110b28fcd3e", 273 ], // Library Automaton
+		[ "07a48219-8dfe-46f0-8e1f-38bcdee8d8e2", 274 ], // Lich Hound
+		[ "ec12f4b4-f1c8-4f2c-ba67-fcea3f854fab", 275 ], // Likho
+		[ "082e911f-3b02-4d58-bd46-9edbc57ac6f1", 276 ], // Lindwurm
+		[ "4611c643-2e59-47aa-95fc-bbbea10e9857", 277 ], // Liosalfar
+		[ "e5c0ec0a-dda9-4bb4-a610-f3f042101520", 278 ], // Living Wick
+		[ "4e9797ff-3f6f-44fa-b457-62bca4e86793", 279 ], // Lorelei
+		[ "8af19666-35bd-453c-8eb3-adc8c9d79cd4", 280 ], // Loxoda
+
+		[ "188416a0-926d-4431-bae2-cd910ca69f8a", 281 ], // Mahoru
+		[ "14c1e073-609c-49a6-8e83-2a699a28a1cf", 282 ], // Mallqui
+		[ "761f8822-cac0-4cbf-b2e5-9c17e94bfed2", 283 ], // Malphas
+		[ "225e09ef-58e7-4dc8-a970-6a392f015332", 284 ], // Mamura
+		[ "d8d600f1-018c-47cc-b892-f3bbf1c59f0c", 285 ], // Mask Wight
+		[ "31defc11-6717-4609-89aa-1ff48e31aa07", 286 ], // Mavka
+		[ "894f78a1-c43d-44ac-9720-a2fc661d170e", 287 ], // Mi-Go
+		[ "f74a8a6c-71c0-42b3-9595-432e9e437d1a", 288 ], // Millitaur
+		[ "e07a7d74-0cf0-4daa-827b-5c9b93d7982e", 289 ], // Map Mimic
+		[ "2a615acd-cae3-4c10-9cfc-e1b4fc20b872", 290 ], // Mindrot Thrall
+		[ "747b7cd2-7b7b-4151-8c7c-f99bf2ffbce7", 291 ], // Mirager
+		[ "414e421e-9e97-45cd-a4f2-4b758194a89e", 292 ], // Miremal
+		[ "e047b224-e15c-49d3-960c-d17cac10d792", 293 ], // Mngwa
+		[ "90f94b43-4214-4cb2-973a-eef90bd08efa", 294 ], // Monolith Champion
+		[ "251dc434-0130-4739-8f3c-d70a286cf60e", 295 ], // Monolith Footman
+		[ "2170e25b-bdd5-4455-9c0a-29754201f6ff", 296 ], // Mordant Snare
+		[ "14e6a85f-252c-463b-9dff-64f2f3af56e8", 297 ], // Morphoi
+		[ "47b9ae76-4f66-4eb2-8e3d-3e28706e3edb", 298 ], // Moss Lurker
+		[ "e1118b50-8ff5-4fdf-9750-ce728151b720", 299 ], // Venomous Mummy
+		[ "59ebdf97-4b28-478d-a8ee-fd1de8082513", 300 ], // Deathcap Myconid
+		[ "b12d57c5-35b0-44f4-9ba1-03dd8c18ece1", 301 ], // Myling
+		
 	],
 });
