@@ -193,5 +193,56 @@ define({
 		[ "b79ee777-7b7f-4cf1-9d03-a495ebcaf8d5", 206 ], // Fraughashar
 		[ "5148765a-00fd-4c12-8b54-2223384dda5e", 207 ], // Frostveil
 
+		[ "7690e783-f332-4322-95fd-11883a6a5c9e", 208 ], // Garroter Crab
+		[ "1386b5e8-2319-425a-b56e-5f06708d56a2", 209 ], // Gbahali
+		[ "21d6deb9-1187-4314-a6b0-bd44431b3571", 210 ], // Gearforged Templar
+		[ "435835c6-f0b4-4d77-a235-c14f51f5b34b", 211 ], // Al-Aeshma
+		[ "9cb17598-90df-4509-adbf-850d667d8a20", 212 ], // Gerridae
+		[ "64722438-83d8-4323-ab65-a72eb2c28b8f", 213 ], // Beggar Ghoul
+		[ "996fbcb6-dabd-4971-a5f9-6486169578a8", 214 ], // Bonepowder Ghoul
+		[ "df165796-ec47-44f5-82ef-f7826ea7558f", 216 ], // Darakhul
+		[ "51d1bec6-f450-47ac-b272-490908ac946c", 218 ], // Emperor of the Ghouls
+		[ "98e4f5bf-1ce6-4ef1-ae2f-5453ec4d226e", 220 ], // Imperial Ghoul
+		[ "754c4f9f-0e40-44b1-a224-2c139eb4c87b", 221 ], // Iron Ghoul
+		[ "619e4252-154d-4145-9114-1bb6bec06cb1", 222 ], // Desert Giant
+		[ "749c0d19-9a3d-4630-abfb-67b38ebdeb95", 223 ], // Flab Giant
+		[ "fd1aeb7c-b900-4902-9877-eab76d043ad1", 224 ], // Hraesvelgr the Corpse Swallower
+		[ "3f00395a-2553-4637-9173-2f0f88328dc7", 226 ], // Jotun Giant
+		[ "3fd0b2fa-1278-4a49-a747-42070b79f484", 227 ], // Thursir Giant
+		[ "6a8a0e0e-b21d-41fe-b22b-21c3d684e54c", 228 ], // Glass Gator
+		[ "95b73cb9-41af-4f89-adac-e439519edf95", 229 ], // Gnarljak
+		[ "298c17d7-4cbb-44ce-a568-7baffd4c4fd9", 230 ], // Gnoll Havoc Runner
+		[ "4b33b198-5433-4bbe-98bf-0dafd08849e9", 231 ], // Goat-Man
+		[ "b1f85c31-e2a1-4f3e-bb85-3aab8d35c838", 232 ], // Dust Goblin
+		[ "fa41ee99-97f3-4a5c-b7d0-1344c1a239db", 233 ], // Eye Golem
+		[ "813f82e7-2f01-499b-83a1-f1a3b098c111", 234 ], // Hoard Golem
+		[ "d2472029-19f6-41cb-9c64-fd390e502113", 235 ], // Salt Golem
+		[ "a49d09bc-994b-4dac-b74b-7af6d15d1474", 236 ], // Smaragdine Golem
+		[ "0a801471-c25f-475e-859c-88469cb65c7d", 237 ], // Steam Golem
+		[ "0f8f4f7b-163b-41cd-84c4-de8795eecda1", 238 ], // Gray Thirster
+		[ "be0ec63c-9581-4b68-9fa1-be740b08f25c", 239 ], // Rum Gremlin
+		[ "300e4c5c-cb8a-421e-9a10-08fa915a91c9", 240 ], // Grim Jester
+		[ "d41959b5-0ffa-4f62-a5f3-6b79771b7c83", 241 ], // Gug
+
+		[ "4e484541-a397-48ef-a75d-42b63cdebf39", 242 ], // Blood Hag
+		[ "3e3e00ea-f3df-4983-85e6-6bc98f9e7718", 243 ], // Mirror Hag
+		[ "e9a2b266-b2ef-44a4-b743-30d9a590738d", 244 ], // Red Hag
+		[ "e39d2eb8-0484-4ca5-8edd-9567d74ecdf2", 245 ], // Sand Hag
+		[ "a59e74b9-67f1-4253-baee-dce393e1ad08", 246 ], // Owl Harpy
+		[ "6d0f8e4d-41a7-42c4-87b8-d04c6f7c0f07", 247 ], // Haugbui
+		[ "f0f0f99f-1932-46fc-8f27-21b27c89ba8c", 248 ], // Herald of Blood
+		[ "c12988ad-2cfa-4ba8-bc89-04601b2c697c", 249 ], // Herald of Darkness
+		[ "24b25746-878f-460c-b818-75dc293e3014", 250 ], // Horakh
+		[ "e1114e9f-be10-4e5b-9532-592b0fe06912", 251 ], // Hound of the Night
+		[ "b6bfda21-3254-4c0d-95f9-0ada9553914b", 252 ], // Hulking Whelp
+		[ "1e62b94c-bbf7-4c76-bc01-c251728e90dc", 253 ], // Hundun
+		
+		[ "0318f819-bc9e-446e-9832-23f1af88a506", 254 ], // Ice Maiden
+		[ "0005d604-f4c1-4818-8baf-0d773669da9d", 255 ], // Idolic Deity
+		[ "e5539c30-b567-4a2a-81b6-6b732c5950b0", 256 ], // Imy-ut Ushabti
+		[ "db9b059c-c217-4db2-9d79-727e22521346", 257 ], // Isonade
+		
+		[ "fc0960cb-0825-45b6-9d50-7a4b848166db", 258 ], // Jaculus 
+
 	],
 });
