@@ -154,5 +154,44 @@ define({
 		[ "9ef3a0d8-e22b-4762-b00c-e9ebe0058d65", 161 ], // Dullahan
 		[ "55e6009c-cff8-4d2c-8501-d7cd3baf3134", 162 ], // Dune Mimic
 		
+		[ "7ab3b1d5-191a-4ace-8260-1a9f21d09731", 163 ], // Eala
+		[ "f10694f0-7524-4c57-8c58-460311054173", 164 ], // Eater of Dust (Yakat-Shi)
+		[ "92fac7ff-874d-44fb-88d8-40fc9da7aeaa", 165 ], // Edimmu
+		[ "803be8be-eeba-4268-b744-3241121b18bf", 166 ], // Eel Hound
+		[ "0dc2c9fd-f27f-498d-8a62-170affe57912", 167 ], // Einherjar
+		[ "b1da3df9-d072-4065-9b72-7618b1fdd63e", 168 ], // Eleinomae
+		[ "fa9f893b-ee78-4c5c-86f6-b81b8b6da480", 169 ], // Elemental Locus
+		[ "92373a97-adcc-4f8b-bf0a-85a27b579622", 171 ], // Shadow Fey
+		[ "63c3f89d-8e30-4fc2-8379-3710aa667ef2", 171 ], // Duelist
+		[ "09284d2c-0858-4068-9c14-8f0dbf1b9e64", 172 ], // Enchantress
+		[ "a306eb36-72ce-42c8-9fcf-37e08f7c5449", 173 ], // Forest Hunter
+		[ "c8e4e372-cc37-4f27-a022-4bec53e42f86", 174 ], // Guardian
+		[ "14030ab3-bd1e-4c69-8818-5364f467512b", 175 ], // Emerald Eye
+		[ "38b543df-57e6-4ace-b87a-3ec5e7c91c5f", 176 ], // Empty Cloak
+		[ "416dfb18-57cd-4ac0-b998-d41e07fb8be5", 177 ], // Eonic Drifter
+		[ "e339ccf0-fe7e-4d51-b475-887daee0cfc2", 178 ], // Erina Scrounger
+		[ "633a9e5a-2793-466f-88dd-db7cc8d6ef8e", 178 ], // Erina Defender
+		
+		[ "6a4bee2e-adab-4628-891c-31bc997057e8", 179 ], // Far Darrig
+		[ "25dd1d23-f7bb-429d-af3a-7b495cf629b6", 180 ], // Fate Eater
+		[ "dc2b965d-9806-4d19-8d6c-7f93e97d52f7", 181 ], // Fear Smith (Fiarsídhe)
+		[ "f85b099e-aa81-4c1d-a348-fadb42c0cf1f", 182 ], // Fellforged
+		[ "48d45583-8e9f-44cd-9111-d42d8ba9db77", 183 ], // Fext
+		[ "f5c3f40a-d646-4ea4-b3f0-b0e7330ac189", 186 ], // Bear King
+		[ "003f9549-a03a-4a79-9c1c-67ff59f3a10d", 188 ], // Lord of the Hunt
+		[ "225d53b7-e40b-4342-9b71-912181571ad3", 190 ], // Moonlit King
+		[ "d21f72c3-71d4-4837-98d7-8318c1c19d39", 192 ], // Queen of Night and Magic
+		[ "a79f7bc9-1738-41d7-8ef6-445fe0d611b1", 194 ], // Nicnevin, Queen of Witches
+		[ "a7844f48-dad1-4b9e-9b32-3fb71531b4a0", 196 ], // River King
+		[ "cf64275d-3f5c-4645-a30e-46b6084bc2f9", 198 ], // Snow Queen
+		[ "ca404e71-3c35-4ab8-b178-1caaede06b96", 200 ], // Feyward Tree
+		[ "efbc9c05-e8ec-4bee-8ead-84b9e733ac7e", 201 ], // Firebird
+		[ "e2de0148-1043-4af9-91dc-856deed95fb3", 202 ], // Firegeist
+		[ "d856a88f-7b06-4ff0-b825-b130c108052e", 203 ], // Flutterflesh
+		[ "88408152-a902-4d52-bfc0-14c28ffdb451", 204 ], // Folk of Leng
+		[ "9135b2db-4372-41c2-9048-d6052aae9967", 205 ], // Forest Marauder
+		[ "b79ee777-7b7f-4cf1-9d03-a495ebcaf8d5", 206 ], // Fraughashar
+		[ "5148765a-00fd-4c12-8b54-2223384dda5e", 207 ], // Frostveil
+
 	],
 });
