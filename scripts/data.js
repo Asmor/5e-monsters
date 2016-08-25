@@ -19,6 +19,7 @@ define([
 	"scripts/data/fiftheditionfoes",
 	"scripts/data/primevalthule",
 	"scripts/data/primevalthulegmc",
+	"scripts/data/tomeofbeasts", 
 ], function (monsters) {
 	return {
 		monsters: monsters,

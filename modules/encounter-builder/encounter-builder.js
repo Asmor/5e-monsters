@@ -142,6 +142,7 @@ define({
 				select.push("Fifth Edition Foes");
 				select.push("Primeval Thule Campaign Setting");
 				select.push("Primeval Thule Gamemaster's Companion");
+				select.push("Tome of Beasts");
 			}
 
 			for ( i = 0; i < sources.all.length; i++ ) {
