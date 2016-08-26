@@ -288,6 +288,157 @@ define({
 		[ "e1118b50-8ff5-4fdf-9750-ce728151b720", 299 ], // Venomous Mummy
 		[ "59ebdf97-4b28-478d-a8ee-fd1de8082513", 300 ], // Deathcap Myconid
 		[ "b12d57c5-35b0-44f4-9ba1-03dd8c18ece1", 301 ], // Myling
+
+		[ "cf644cb4-c7fc-4bf4-8c89-524af9964b74", 302 ], // Naina
+		[ "b634ea34-d8e8-458b-af10-11054b1d45ee", 303 ], // Nichny
+		[ "026f2ffe-e132-4d84-944b-5b49d0258e6b", 305 ], // Nightgarm
+		[ "051d50a2-3f42-45fa-863a-2bfbccf4830d", 306 ], // Nkosi
+		[ "9e26d2c0-9c1d-40ea-abc8-15d02f82ef23", 306 ], // Nkosi Pridelord
+		[ "c18ba461-0980-4422-8489-7f924139c02a", 307 ], // War Ostrich
+		[ "280c4a39-f265-4b0d-8ac6-7d73087e439b", 308 ], // Noctiny
+
+		[ "e4d7c536-3bce-4eff-9e73-b6d31ad1bdc3", 309 ], // Oculo Swarm
+		[ "4b5f959b-f915-4f00-87c0-9dc9e0976189", 310 ], // Oozasis
+		[ "a08589b8-7cdf-4c7b-9a9f-148ddad36d2e", 311 ], // Corrupting Ooze
+		[ "71569d53-5bd5-40b1-8d69-37d03260d9a5", 312 ], // Ostinato
+		
+		[ "c9d1e16f-ce68-4df5-bc34-603a33ba81e9", 313 ], // Pombero
+		[ "2edb499b-9aae-465e-b3f0-4ccba8b54938", 314 ], // Possessed Pillar
+		[ "8396d314-bd83-497d-a40e-b527dc3b3ff1", 315 ], // Putrid Haunt
+		
+		[ "16a43ae9-70b9-40ba-80e4-6da11826a160", 316 ], // Qwyllion
+
+		[ "33ab8a95-5381-49f4-973a-06540ab80d46", 317 ], // Ramag
+		[ "ae6afb0a-4199-4e0f-b46b-951951538b93", 318 ], // Rat King
+		[ "6de079e0-aaa8-4940-9aa0-8f8c5d1e0e78", 319 ], // Ratatosk
+		[ "2f6a702c-9382-4daa-88ed-014031c5d36e", 320 ], // Ratfolk
+		[ "49a610c1-f691-4b3b-b0aa-7d90beaa2d72", 320 ], // Ratfolk Rogue
+		[ "c8a9fb9f-eb7f-4d88-8fe8-c23fac4986d1", 321 ], // Ravenala
+		[ "83861d96-1f9e-49b1-a00d-831d8a8141fa", 322 ], // Ravenfolk Scout
+		[ "9ca540ef-6313-463f-98c7-e10ffae59b8a", 323 ], // Ravenfolk Warrior
+		[ "df853025-e1c2-4517-8ed6-efe3b8c84aa5", 324 ], // Ravenfolk Doom Croaker
+		[ "0f23b109-7b2d-4843-8582-168af4412cf6", 325 ], // Redcap
+		[ "3fffc7c5-f846-44e6-8eb2-04d1214a6fff", 326 ], // Rift Swine
+		[ "3d8c76b6-2199-48bf-a552-e9121ba55236", 327 ], // Adult Rime Worm
+		[ "fbd34b80-5496-4c69-93bb-e9535a60670d", 327 ], // Rime Worm Grub
+		[ "4e8047ac-0e28-41ef-af5b-c2869de687c1", 328 ], // Risen Reaver
+		[ "b1c650f2-1346-4ffe-b438-9dabc29a639e", 329 ], // Roachling Skirmisher
+		[ "6ee01ecc-1f6e-40ee-88f3-ce71bc9f1aae", 329 ], // Roachling Lord
+		[ "a2d1a971-e66d-4568-96b6-a58c4626ebfc", 330 ], // Rotting Wind
+		[ "f053e7fc-ff6b-4813-9c31-4dcd682ea8c8", 331 ], // Rusalka
+
+		[ "0cb7aad6-0f83-4250-b1fe-e64d39004c30", 332 ], // Sand Silhouette
+		[ "71ecaa9d-ed41-4063-b69b-2adefcbd5694", 333 ], // Sandman
+		[ "27285f11-2529-4510-a4fc-5915d73616a1", 334 ], // Sandwyrm
+		[ "e854f6f7-6719-4a4c-a49a-eebd3653511c", 335 ], // Sap Demon
+		[ "e0d4a038-cc22-4961-8d37-15bb39a3c5d2", 336 ], // Sarcophagus Slime
+		[ "535b734d-4e1c-49c8-98f3-4ed0f0e4a11b", 337 ], // Sathaq Worm
+		[ "1d585aff-d195-4c06-ac1f-f7e42ce096dc", 338 ], // Savager
+		[ "fe9e68cb-f4dd-4d11-ac79-fa7ff0f887eb", 339 ], // Scheznyki
+		[ "4061b92c-4ad3-4023-8d6c-3a188a68ff34", 340 ], // Night Scorpion
+		[ "84193f38-0655-412c-9b48-bcb74fc7d8d6", 340 ], // Stygian Fat-Tailed Scorpion
+		[ "f1435d44-d07e-4954-b83c-c381cc81dc43", 341 ], // Selang
+		[ "0efddf33-ea91-4c78-927a-6a2aa34767b8", 342 ], // Serpopard
+		[ "6e76cd35-77e6-4b90-ad60-9abdc094f3c4", 343 ], // Shabti
+		[ "a8489757-ccc5-45f3-b071-ab94cdb12e6c", 344 ], // Shadhavar
+		[ "96e404b7-55b2-4e69-91af-2ae68b0dad9a", 345 ], // Shadow Beast
+		[ "384b03a0-a3c5-4395-97ac-a5cdc24625cd", 346 ], // Shellycoat
+		[ "a5627f16-e828-4ce0-84a7-d7cd1ee1e4c3", 347 ], // Shoggoth
+		[ "2e9eb1bc-0a71-4a79-b9e3-15f9f4353a5c", 348 ], // Shroud
+		[ "60c2b3df-254d-49e8-9a73-46c99b66ca3c", 349 ], // Skein Witch
+		[ "cf786939-8f97-46ec-9f39-2a483c29142b", 350 ], // Sharkjaw Skeleton
+		[ "ebacd4fd-f8e1-45d3-9cff-2b7e473319af", 351 ], // Vine Troll Skeleton
+		[ "65c27747-9dfc-479a-9099-7b70aee390ba", 352 ], // Skitterhaunt
+		[ "1868ed95-6478-45ef-bae1-864cfb206897", 353 ], // Slow Storm
+		[ "fcb77a91-5b06-405f-b52a-6eaa291627ed", 354 ], // Swamp Adder
+		[ "7a979569-87ea-46d9-8475-eba92c1e5f04", 354 ], // Zanskaran Viper
+		[ "1b5e77f5-5250-44ed-8051-e29559d816d4", 355 ], // Son of Fenris
+		[ "7937ed71-f2ae-42db-b026-e0123aed20a3", 356 ], // Soul Eater
+		[ "56459c20-2355-4f52-a2ef-ecd1e8fdc579", 357 ], // Spark
+		[ "37ff88b3-06cb-4025-a18d-ff6fb4f40a35", 358 ], // Spectral Guardian
+		[ "bf8bbb5c-8f14-465c-86c5-db96d697f4c2", 358 ], // Arcane Guardian
+		[ "a46c9a0b-a683-4f25-ae80-b47b20b38132", 359 ], // Gypsosphinx
+		[ "98d1b693-9485-4ed1-9301-d67542840e5b", 361 ], // Ghostwalk Spider
+		[ "030c90be-49b5-42ca-83f0-031d68a37d75", 362 ], // J'ba Fofi Spider
+		[ "1cf96cca-4c00-4549-bbe5-8ecd7b92a665", 363 ], // Red-Banded Line Spider
+		[ "8bbc042e-4f22-4355-ad02-c23e5bc7dcb7", 364 ], // Sand Spider
+		[ "2b9b2996-df38-4842-bf5f-db1720553b23", 365 ], // Spider of Leng
+		[ "e2a8431a-d9bb-446b-be45-fd1c0ba04b52", 366 ], // Spider Thief
+		[ "46006136-d533-4fa0-989d-1f62623c2874", 367 ], // Spire Walker
+		[ "aba1983a-a5c7-4f9e-9807-0271a80b7b58", 368 ], // Star-Spawn of Cthulhu
+		[ "96c64c49-b1ae-4fd5-b17a-ec2c8cedb8eb", 369 ], // Stryx
+		[ "c9384d24-8aed-41b8-bb0e-b3316d25a092", 370 ], // Stuhac
+		[ "b1a671e2-210a-401f-b798-2f83847f4b6c", 371 ], // Subek
+		[ "79d3a364-83bc-41be-9f6e-eea838b7ed65", 372 ], // Suturefly
+		[ "52464dd2-1828-480e-b03c-a07a5dc04900", 373 ], // Fire Dancer Swarm
+		[ "70898ccc-879f-4459-aa1e-b106f1044bbe", 374 ], // Manabane Scarab Swarm
+		[ "1a985064-6798-42c4-bc92-d70b4d4549cd", 375 ], // Prismatic Beetle Swarm
+		[ "bd438b5e-6bc2-465c-a9e3-15008b4662bb", 376 ], // Sluagh Swarm
+		[ "3dfa2f4f-d22b-4458-8bb0-e98b51103740", 376 ], // Sluagh
+		[ "44fc2e30-8c14-485e-8dcd-7f049b463e60", 377 ], // Wolf Spirit Swarm
+		
+		[ "6ee1e568-4b2b-43db-ab59-48c4585b684b", 378 ], // Temple Dog
+		[ "2cd2dde4-6c0d-49f4-9309-5130f103365c", 379 ], // Theullai
+		[ "3bc2512e-6c39-4888-9d23-c70434622b9c", 380 ], // Ancient Titan
+		[ "57a6a940-349f-4c1e-85af-cc68858a0a76", 381 ], // Degenerate Titan
+		[ "63cd3b02-a21f-4a2c-a143-8d30c60b4083", 382 ], // Titanoboa
+		[ "c22e8a67-e2bc-40af-9114-181d0601189b", 383 ], // Tophet
+		[ "95f8e9f0-7930-4af8-8f7e-d6f2a77b80a2", 385 ], // Tosculi Hive-Queen
+		[ "fbb949d8-aa67-47c8-a04d-da746daa833d", 386 ], // Tosculi Warrior
+		[ "19c35b26-1b1a-44f7-a99f-c0019275996e", 386 ], // Tosculi Drone
+		[ "ecb2456c-ae2d-4ebc-8353-9a75dc5ea814", 386 ], // Tosculi Elite Bow Raider
+		[ "be860119-6f8e-4295-bc6b-059f93adfea6", 387 ], // Treacle
+		[ "4e909dfa-279e-4414-a203-8a304dc419e9", 388 ], // Weeping Treant
+		[ "36343cd1-aabe-4a13-90de-5314d54672d9", 389 ], // Lake Troll
+		[ "09c79891-9f2b-4acf-a301-78fdbcd76533", 390 ], // Trollkin Reaver
+		[ "d8d002e8-0a7f-4010-90e7-8b8ffbbbfc1e", 391 ], // Tusked Skyfish
+
+		[ "d93665ff-d379-45f9-a004-17abeb21a80d", 392 ], // Uraeus
+		[ "08958c03-f398-47e7-a399-83d49c881edf", 393 ], // Urochar (Strangling Watcher)
+		[ "543176d3-515d-41b0-b5c0-aa4c4eb46f93", 394 ], // Ushabti
+
+		[ "29a0483a-fc63-4337-89c7-7df8b106287b", 395 ], // Vættir
+		[ "ee56ae45-caa2-47ee-be88-ef8ed21870b4", 396 ], // Valkyrie
+		[ "417edc33-5ce9-4a26-8731-e5ea3ab8ec96", 397 ], // Umbral Vampire
+		[ "a4ab2454-1855-4109-a28a-4454fd5a624e", 398 ], // Vapor Lynx
+		[ "23968e0d-e500-4f46-99e3-397633cd6486", 399 ], // Vesiculosa
+		[ "11135d19-ccc5-499e-9a2c-b70c8534e4da", 400 ], // Vila
+		[ "d5aaefda-4a21-4d41-80bb-904452dd9420", 401 ], // Vile Barber (Siabhra)
+		[ "18cfcab3-b5f2-48c3-8515-5971d45a3972", 402 ], // Vine Lord
+		[ "d129cbf3-a157-494d-87c6-e4d7f99d65f0", 403 ], // Tendril Puppet
+		[ "dba4d591-0200-4ae7-9f45-e77876a16a7e", 404 ], // Voidling
+
+		[ "88bda2f0-9e1a-4de6-acb5-5f78e5cbd720", 405 ], // Wampus Cat
+		[ "535c9c11-ac93-4d42-b69b-5ad053561caf", 406 ], // Water Leaper
+		[ "3434dd3f-36ef-481c-9e32-6b5b765fecec", 407 ], // Wharfling
+		[ "c3f73d39-ded6-456e-bc1e-52b94b901786", 407 ], // Wharfling Swarm
+		[ "bc9e0ff1-bedd-4b03-ae4b-c8aa3ea0697e", 408 ], // White Ape
+		[ "e13c41c6-6464-4202-a4e1-2880d9a3f267", 409 ], // Witchlight
+		[ "27368d86-58a5-43c7-a1d3-595f19116db2", 410 ], // Wormhearted Suffragan
+		
+		[ "558dab89-5002-40c0-9235-4d74ed9ce9b3", 411 ], // Xanka
+		[ "76571f12-5e97-4402-b554-21af217c505a", 412 ], // Xhkarsh
+		
+		[ "19d46a6d-faba-43d1-8231-fbd73251fb90", 413 ], // Ychen Bannog
+		
+		[ "148558cc-fa9e-493d-b089-19c56e1d2b0b", 414 ], // Zaratan
+		[ "48f0ec18-5e92-4881-932e-7744de2032bb", 415 ], // Zimwi
+		[ "5ece18ae-3cfb-404b-b318-e9ee3a2155de", 416 ], // Zmey
+		[ "61e83cd8-4d2d-45a4-a9ac-3e01b1975139", 417 ], // Zmey Headling
+		
+		[ "38f5ce44-3fb7-4a8d-9901-1f95cdb4fbde", 418 ], // Bandit Lord
+		[ "1c0e1fa1-2fa8-4885-a976-b46ad9bbb130", 418 ], // Black Knight Commander
+		[ "9a2cd6b4-c9e9-45d8-9ace-7e6106ec823a", 419 ], // City Watch Captain
+		[ "7ebfa146-afba-48bb-8e52-a8f00c4c3d52", 420 ], // Devilbound Gnomish Prince
+		[ "40f414ff-2834-4522-8ea2-a28512b13404", 420 ], // Dwarven Ringmage
+		[ "8ecfa397-b6b0-45f6-aeb1-5ece4b72a554", 421 ], // Emerald Order Cult Leader
+		[ "8dd4f4f3-1bb4-4fe4-bafa-4396f022ba69", 422 ], // Elvish Veteran Archer
+		[ "8f117d37-d40f-493f-8f48-343014cac3a1", 423 ], // Ghost Knight
+		[ "a2055eff-9709-4d7f-a85d-5f209651d06e", 423 ], // Corrupted Ogre Chieftain
+		[ "27f5e286-1a17-46e3-bea4-5453c9724b76", 424 ], // Ratfolk Rogue
+		[ "60c990fb-4ea3-464f-9f17-1c2e74a4e813", 425 ], // Scropion Cultist
+		[ "07575c79-9ccc-46a4-ab57-d96b9048fd84", 425 ], // Vampire Warlock
+		[ "61945580-5ceb-45a5-9764-7e3f7ae06237", 426 ], // Wolf Reaver Dwarf
 		
 	],
 });
