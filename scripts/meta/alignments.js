@@ -57,6 +57,18 @@ define([], function () {
 			text: "unaligned",
 			flags: unaligned 
 		},
+		ln_le: {
+			text: "lawful neutral or lawful evil",
+			flags: ln | le
+		}, 
+		ne_le: {
+			text: "neutral evil or lawful evil",
+			flags: ne | le
+		}, 
+		cg_cn: {
+			text: "chaotic good or chaotic neutral",
+			flags: cg | cn
+		}, 
 		lg: { flags: lg, text: "lawful good" },
 		ng: { flags: ng, text: "neutral good" },
 		cg: { flags: cg, text: "chaotic good" },
