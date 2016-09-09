@@ -129,6 +129,7 @@ define({
 				select.push("Princes of the Apocalypse");
 				select.push("Out of the Abyss");
 				select.push("Curse of Strahd");
+				select.push("Storm King's Thunder"); 
 			}
 
 			if ( sourceTypes.match(/all|basic/) ) {
