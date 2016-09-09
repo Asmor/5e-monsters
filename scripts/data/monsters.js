@@ -11245,6 +11245,74 @@ define([
 			alignment: alignments.any_chaotic,
 			id: "61945580-5ceb-45a5-9764-7e3f7ae06237",
 		},
+
+		// Storm King's Thunder
+		{
+			name: "Crag Cat",
+			size: "Large", type: "Beast",
+			ac: 13, hp: 34, int: 3, cr: 1,
+			alignment: alignments.unaligned,
+			id: "28c8c457-5a31-4c0d-9ffe-e42c8bb47d8b",
+		},
+		{
+			name: "Hulking Crab",
+			size: "Huge", type: "Beast",
+			ac: 17, hp: 76, int: -1, cr: 5,
+			alignment: alignments.unaligned,
+			id: "0a8b2f8f-16f5-4d79-8c56-fb28fdcb7b71",
+		},
+		{
+			name: "Iymrith the Dragon",
+			size: "Gargantuan", type: "Dragon", unique: true,
+			ac: 22, hp: 481, init: 0, cr: "23",
+			alignment: alignments.le,
+			legendary: true,
+			lair: true,
+			id: "c5aab99f-f1f2-45d0-872b-645a9d5d41d6",
+		},
+		{
+			name: "Maegera the Dawn Titan",
+			size: "Gargantuan", type: "Elemental", unique: true, 
+			ac: 16, hp: 341, int: 6, cr: 23,
+			alignment: alignments.cn,
+			legendary: true, 
+			id: "7815b4c9-71e0-49a9-be1b-cb8caf448695",
+		},
+		{
+			name: "Purple Wormling",
+			size: "Large", type: "Monstrosity",
+			ac: 12, hp: 42, int: -2, cr: 2,
+			alignment: alignments.unaligned,
+			id: "10580eaf-7424-46d8-a827-fb681e914fcb",
+		},
+		{
+			name: "Tressym",
+			size: "Tiny", type: "Beast",
+			ac: 12, hp: 5, int: 2, cr: 0,
+			alignment: alignments.cn,
+			id: "71b533e5-d65f-4fc9-b447-98aef9833200",
+		},
+		{
+			name: "Uthgardt Shaman",
+			size: "Medium", type: "Humanoid", tags: [ "Human" ], 
+			ac: 13, hp: 38, int: 1, cr: 2,
+			alignment: alignments.ne,
+			id: "3e739adc-919f-4908-976d-292e6a77c39e",
+		},
+		{
+			name: "Yakfolk Warrior",
+			size: "Large", type: "Monstrosity",
+			ac: 11, hp: 60, int: 0, cr: 3,
+			alignment: alignments.ne,
+			id: "8c4a7dd1-3e38-4ef5-ad17-d9d81590e202",
+		},
+		{
+			name: "Yakfolk Priest",
+			size: "Large", type: "Monstrosity",
+			ac: 12, hp: 52, int: 0, cr: 4,
+			alignment: alignments.ne,
+			id: "0ac2d7e7-8936-4e86-8d41-5fb7b9fa82be",
+		},
 		
 	];
 });
