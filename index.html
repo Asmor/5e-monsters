@@ -3,15 +3,20 @@
 <head>
 	<title>Kobold Fight Club: The first rule of KFC is 'Yip yip!'</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<script src="thirdparty/angular/angular.js"></script>
-	<script src="thirdparty/angular/angular-ui-router.js"></script>
-	<script src="thirdparty/angular/angular-touch.js"></script>
-	<script src="thirdparty/angular/dirPagination/dirPagination.js"></script>
-	<link rel="stylesheet" type="text/css" href="styles/style.css">
+		<link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 <body>
 	<ng-include src="'modules/common/menu.html'"></ng-include>
 	<div ui-view></div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="thirdparty/bootstrap-sass-3.3.7/assets/javascripts/bootstrap.min.js"></script>
+	<script src="thirdparty/angular/angular.js"></script>
+	<script src="thirdparty/angular/angular-ui-router.js"></script>
+	<script src="thirdparty/angular/angular-touch.js"></script>
+	<script src="thirdparty/angular/dirPagination/dirPagination.js"></script>
 	<script src="thirdparty/requirejs/require.js"></script>
 	<script src="scripts/app.js"></script>
 </body>

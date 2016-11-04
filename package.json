@@ -18,7 +18,7 @@
     "prestart": "npm install",
     "start": "http-server . -a localhost -p 8080 -c-1",
 
-    "build-css": "node-sass --include-path modules modules/style.scss styles/style2.css",
+    "build-css": "node-sass --include-path modules modules/style.scss styles/style.css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\""
   },
   "repository": {
