@@ -1,0 +1,34 @@
+{
+  "name": "5e-monsters",
+  "version": "1.0.0",
+  "description": "Kobold Fight Club =================",
+  "main": "index.html",
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "jquery": "^3.1.1"
+  },
+  "devDependencies": {
+    "http-server": "^0.9.0",
+    "node-sass": "^3.11.1",
+    "nodemon": "^1.11.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    
+    "prestart": "npm install",
+    "start": "http-server . -a localhost -p 8080 -c-1",
+
+    "build-css": "node-sass --include-path modules modules/style.scss styles/style2.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbarzilai/5e-monsters.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jbarzilai/5e-monsters/issues"
+  },
+  "homepage": "https://github.com/jbarzilai/5e-monsters#readme"
+}
