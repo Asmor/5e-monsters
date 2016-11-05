@@ -7,69 +7,51 @@
 		<button ng-click="filters.search = null">Clear</button>
 	</div>
 	<div class="filters--section">
-		<label class="filters--option" ng-class="{ 'filters--option__active': filters.size }">
-			Size:
-			<select
+		<label class="filters--option" ng-class="{ 'filters--option__active': filters.size }">Size:</label>
+		<select
 				ng-model="filters.size"
-				ng-options="size for size in sizes"
-			>
-				<option value="">Any</option>
-			</select>
-		</label>
+				ng-options="size for size in sizes">
+			<option value="">Any</option>
+		</select>
 	</div>
 	<div class="filters--section">
-		<label class="filters--option" ng-class="{ 'filters--option__active': filters.type }">
-			Type:
-			<select
+		<label class="filters--option" ng-class="{ 'filters--option__active': filters.type }">Type:</label>
+		<select
 				ng-model="filters.type"
-				ng-options="type for type in types"
-			>
-				<option value="">All</option>
-			</select>
-		</label>
+				ng-options="type for type in types">
+			<option value="">All</option>
+		</select>
 	</div>
 	<div class="filters--section">
-		<label class="filters--option" ng-class="{ 'filters--option__active': filters.alignment }">
-			Alignment:
-			<select
-				ng-model="filters.alignment"
-				ng-options="alignment as alignment.text for (key, alignment) in alignments"
-			>
-				<option value="">All</option>
-			</select>
-		</label>
+		<label class="filters--option" ng-class="{ 'filters--option__active': filters.alignment }">Alignment:</label>
+		<select
+			ng-model="filters.alignment"
+			ng-options="alignment as alignment.text for (key, alignment) in alignments">
+			<option value="">All</option>
+		</select>
 	</div>
 	<div class="filters--section">
 		CR:
-		<label class="filters--option" ng-class="{ 'filters--option__active': filters.minCr }">
-			Min:
-			<select
+		<label class="filters--option" ng-class="{ 'filters--option__active': filters.minCr }">Min:</label>
+		<select
 				ng-model="filters.minCr"
-				ng-options="cr.numeric as cr.string for cr in crList"
-			>
+				ng-options="cr.numeric as cr.string for cr in crList">
 				<option value=""></option>
 			</select>
-		</label>
-		<label class="filters--option" ng-class="{ 'filters--option__active': filters.maxCr }">
-			Max:
-			<select
+		<label class="filters--option" ng-class="{ 'filters--option__active': filters.maxCr }">Max:</label>
+		<select
 				ng-model="filters.maxCr"
-				ng-options="cr.numeric as cr.string for cr in crList"
-			>
-				<option value=""></option>
-			</select>
-		</label>
+				ng-options="cr.numeric as cr.string for cr in crList">
+			<option value=""></option>
+		</select>
 	</div>
 	<div class="filters--section">
-		<label class="filters--option" ng-class="{ 'filters--option__active': filters.environment }">
-			Environment:
-			<select
+		<label class="filters--option" ng-class="{ 'filters--option__active': filters.environment }">Environment:</label>
+		<select
 				ng-model="filters.environment"
-				ng-options="environment as environment for environment in environments"
-			>
-				<option value="">Any</option>
-			</select>
-		</label>
+				ng-options="environment as environment for environment in environments">
+			<option value="">Any</option>
+		</select>
 	</div>
 	<div class="filters--section">
 		<button ng-click="resetFilters()">Reset Filters</button>
@@ -88,8 +70,7 @@
 			<li
 				class="filters--source"
 				ng-repeat="source in sources"
-				ng-class="{ 'filters--source__off': !filters.source[source] }"
-			>
+				ng-class="{ 'filters--source__off': !filters.source[source] }">
 				<label>
 					<input type="checkbox" ng-model="filters.source[source]">
 					{{ source }}
@@ -100,22 +81,18 @@
 	<div class="filters--section">
 		Group Info
 		<br>
-		<label>
-			Players:
-			<select
+		<label>Players:</label>
+		<select
 				ng-model="encounter.playerCount"
 				ng-options="count for count in [1,2,3,4,5,6,7,8,9,10,11,12]"
 				ng-change="encounter.recalculateThreatLevels()"
 			></select>
-		</label>
-		<label>
-			Level:
-			<select
-				ng-model="encounter.partyLevel"
-				ng-options="level as level.level for level in levels"
-				ng-change="encounter.recalculateThreatLevels()"
-			></select>
-		</label>
+		<label>Level:</label>
+		<select
+			ng-model="encounter.partyLevel"
+			ng-options="level as level.level for level in levels"
+			ng-change="encounter.recalculateThreatLevels()"
+		></select>
 		<table class="filters--guidelines">
 			<tr ng-class="{'filters--guidelines-active': encounter.difficulty === 'Easy'}">
 				<td>Easy:</td>

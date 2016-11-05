@@ -7,27 +7,8 @@
 	text-align: center;
 	background-color: #000;
 
-	// Third-party class names ahoy!
-	.pagination {
-		display: inline-block;
-		> li {
-			display: inline-block;
-			font-weight: bold;
-			font-size: 1.5rem;
-			padding: 5px;
-			min-width: 30px;
-			text-align: center;
-
-			> a {
-				color: #ddd;
-				text-decoration: none;
-			}
-
-			&.active > a {
-				color: #d55;
-				text-decoration: underline;
-			}
-		}
+	select,option {
+		color: black;
 	}
 
 	.pagination-container--size-controls {
