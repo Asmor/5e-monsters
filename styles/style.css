@@ -7402,23 +7402,6 @@ button.close {
   .encounter-button:active, .number-input--button:active, .encounter-builder--new-button:active, .encounter-builder--save-button:active, .encounter-manager-encounter--save-button:active, .encounter-manager-encounter--remove-button:active, .encounter-manager-encounter--load-button:active, .combatant-setup--button:active, .combat-controls--next-turn:active, .combatant--apply-button:active, .manage-players--party-select-button:active {
     background-color: #eee; }
 
-.menu {
-  background-color: #333;
-  box-sizing: border-box;
-  color: #ddd;
-  height: 40px;
-  left: 0;
-  padding: 10px;
-  position: fixed;
-  top: 0;
-  width: 60px;
-  z-index: 100; }
-  .menu--hidden {
-    background-color: #333;
-    left: 0;
-    position: absolute;
-    top: 40px; }
-
 .number-input--button__positive:not(:first-child) {
   margin-left: 3px; }
 
@@ -7435,7 +7418,6 @@ button.close {
 
 .encounter-builder {
   display: none;
-  position: fixed;
   bottom: 0;
   left: 250px;
   right: 0;
@@ -7444,7 +7426,6 @@ button.close {
   .encounter-builder__shown {
     display: block; }
   .encounter-builder--body {
-    position: absolute;
     top: 30px;
     bottom: 0;
     left: 0;
@@ -7466,7 +7447,6 @@ button.close {
     background-color: #000;
     color: #ddd;
     font-weight: bold;
-    position: absolute;
     top: 0;
     left: 0;
     right: 0; }
@@ -7480,11 +7460,6 @@ button.close {
       padding: 5px; }
 
 .filters {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 250px;
   padding: 5px;
   overflow: auto;
   box-sizing: border-box; }
@@ -7525,11 +7500,6 @@ button.close {
     text-decoration: line-through; }
 
 .monster-table {
-  position: fixed;
-  top: 70px;
-  bottom: 0;
-  left: 250px;
-  right: 0;
   overflow: auto; }
   .monster-table.monster-table__short {
     bottom: 250px; }
@@ -7594,23 +7564,12 @@ button.close {
     border-left: 1px solid #000; }
 
 .pagination-container {
-  position: fixed;
-  top: 0;
-  left: 250px;
-  right: 0;
-  height: 70px;
   text-align: center;
   background-color: #000; }
   .pagination-container select, .pagination-container option {
     color: black; }
   .pagination-container .pagination-container--size-controls {
-    color: #ddd;
-    position: fixed;
-    top: 10px;
-    right: 10px; }
-
-.encounter-manager {
-  padding-top: 40px; }
+    color: #ddd; }
 
 .encounter-manager-encounter {
   margin-top: 20px; }

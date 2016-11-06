@@ -1,6 +1,6 @@
 .encounter-builder {
 	display: none;
-	position: fixed;
+	
 	bottom: 0;
 	left: $sidebar-width;
 	right: 0;
@@ -12,7 +12,6 @@
 	}
 
 	&--body {
-		position: absolute;
 		top: 30px;
 		bottom: 0;
 		left: 0;
@@ -34,7 +33,6 @@
 	&--header {
 		@include header;
 
-		position: absolute;
 		top: 0;
 		left: 0;
 		right: 0;

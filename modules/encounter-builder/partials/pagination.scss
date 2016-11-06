@@ -1,9 +1,4 @@
 .pagination-container {
-	position: fixed;
-	top: 0;
-	left: $sidebar-width;
-	right: 0;
-	height: $pagination-height;
 	text-align: center;
 	background-color: #000;
 
@@ -13,8 +8,5 @@
 
 	.pagination-container--size-controls {
 		color: #ddd;
-		position: fixed;
-		top: 10px;
-		right: 10px;
 	}
 }

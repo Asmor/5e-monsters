@@ -1,8 +1,14 @@
-<ng-include src="partial('filters')">
-</ng-include>
-<ng-include src="partial('pagination')">
-</ng-include>
-<ng-include src="partial('monstertable')">
-</ng-include>
-<ng-include src="partial('encounter-builder')">
-</ng-include>
+<div class="container-fluid" role="main">
+	<div class="row">
+		<div class="col-md-4">
+			<ng-include src="partial('filters')"></ng-include>
+			<div>
+				<ng-include src="partial('encounter-builder')"></ng-include>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<ng-include src="partial('pagination')"></ng-include>
+			<ng-include src="partial('monstertable')"></ng-include>
+		</div>
+	</div>
+</div>

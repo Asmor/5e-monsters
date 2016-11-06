@@ -1,9 +1,4 @@
 .monster-table {
-	position: fixed;
-	top: $pagination-height;
-	bottom: 0;
-	left: $sidebar-width;
-	right: 0;
 	overflow: auto;
 
 	&.monster-table__short {
