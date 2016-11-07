@@ -7491,10 +7491,6 @@ button.close {
     margin-right: 3px; }
   .filters--section {
     padding-bottom: 10px; }
-    .filters--section:first-child {
-      min-height: 40px;
-      padding-left: 70px;
-      box-sizing: border-box; }
   .filters--source__off {
     color: #ddd;
     text-decoration: line-through; }
