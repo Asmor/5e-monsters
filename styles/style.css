@@ -7568,8 +7568,14 @@ button.close {
   background-color: #000; }
   .pagination-container select, .pagination-container option {
     color: black; }
+  .pagination-container dir-pagination-controls {
+    display: inline-block;
+    vertical-align: middle; }
   .pagination-container .pagination-container--size-controls {
-    color: #ddd; }
+    color: #ddd;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle; }
 
 .encounter-manager-encounter {
   margin-top: 20px; }

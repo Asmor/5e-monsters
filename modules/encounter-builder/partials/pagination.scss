@@ -6,7 +6,15 @@
 		color: black;
 	}
 
+	dir-pagination-controls {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
 	.pagination-container--size-controls {
 		color: #ddd;
+		display: inline-block;
+		margin-left: 10px;
+		vertical-align: middle;
 	}
 }
