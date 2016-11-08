@@ -3,10 +3,9 @@
 	ng-class="{ 'encounter-builder__shown': encounter.qty }"
 >
 	<div class="encounter-builder--header">
-		Encounter
-		Total XP: {{ encounter.exp | number }}
-		Adjusted XP: {{ encounter.adjustedExp | number }}
-		{{ encounter.difficulty }}
+		<div>Encounter: {{ encounter.difficulty }}</div>
+		<div>Total XP: {{ encounter.exp | number }}
+		Adjusted XP: {{ encounter.adjustedExp | number }}</div>
 	</div>
 	<div class="encounter-builder--body">
 		<button class="encounter-builder--new-button" ng-click="encounter.reset()">
@@ -19,7 +18,7 @@
 		>
 			Save encounter
 		</button>
-		<table class="encounter-builder--table">
+		<table class="encounter-builder--table table table-condensed">
 			<tbody>
 				<tr
 					class="encounter-builder--row"

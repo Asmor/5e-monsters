@@ -1,6 +1,5 @@
 .pagination-container {
 	text-align: center;
-	background-color: #000;
 
 	select,option {
 		color: black;
@@ -11,8 +10,7 @@
 		vertical-align: middle;
 	}
 
-	.pagination-container--size-controls {
-		color: #ddd;
+	.pagination-container--size-controls {	
 		display: inline-block;
 		margin-left: 10px;
 		vertical-align: middle;

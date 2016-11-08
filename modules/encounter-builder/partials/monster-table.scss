@@ -1,70 +1,15 @@
 .monster-table {
-	overflow: auto;
-
-	&.monster-table__short {
-		bottom: $encounter-builder-height;
-	}
-
-	.monster-table--column {
-		&.monster-table--column__button {    width: 25px; }
-		&.monster-table--column__name {      width: auto; }
-		&.monster-table--column__size {      width: 100px; }
-		&.monster-table--column__type {      width: 100px; }
-		&.monster-table--column__alignment { width: auto; }
-		&.monster-table--column__cr {        width: 25px; }
-		&.monster-table--column__source {    width: 180px; }
-	}
-
-	.monster-table--table {
-		border-collapse: separate;
-		border-spacing: 0;
-		width: 100%;
-
-		> tbody, > thead {
-			> tr > td {
-				padding: 5px;
-			}
-		}
-
-		> thead {
-			@include header;
-		}
-
-	}
-
-	.monster-table--name {
-		line-height: 34px;
-	}
-
+	
 	.monster-table--row {
-		border-bottom: 1px solid black;
-
 		@include challenge-colors;
 	}
 
 	.monster-table--section {
-		font-size: 0.8rem;
+		font-size: 0.9rem;
 		font-variant: small-caps;
 	}
 
 	.monster-table--tags {
 		font-style: italic;
-	}
-
-	.monster-table--name-cell,
-	.monster-table--cr-cell {
-		border-bottom: 1px dashed #666;
-	}
-
-	.monster-table--button-cell,
-	.monster-table--size-cell,
-	.monster-table--type-cell,
-	.monster-table--alignment-cell,
-	.monster-table--source-cell {
-		border-bottom: 1px solid #000;
-	}
-
-	.monster-table--button-cell {
-		border-left: 1px solid #000;
 	}
 }

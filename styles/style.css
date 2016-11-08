@@ -7417,47 +7417,18 @@ button.close {
   text-align: center; }
 
 .encounter-builder {
-  display: none;
-  bottom: 0;
-  left: 250px;
-  right: 0;
-  height: 250px;
-  box-sizing: border-box; }
+  display: none; }
   .encounter-builder__shown {
     display: block; }
-  .encounter-builder--body {
-    top: 30px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    overflow: auto; }
-  .encounter-builder--column__buttons {
-    width: 125px; }
-  .encounter-builder--column__cr {
-    width: 60px; }
-  .encounter-builder--column__exp {
-    width: 100px; }
   .encounter-builder--column__source {
-    width: 180px; }
-  .encounter-builder--column__name {
-    line-height: 34px;
-    width: auto; }
+    max-width: 15rem; }
   .encounter-builder--header {
     padding: 5px;
     background-color: #000;
     color: #ddd;
-    font-weight: bold;
-    top: 0;
-    left: 0;
-    right: 0; }
+    font-weight: bold; }
   .encounter-builder--new-button, .encounter-builder--save-button {
     margin: 5px; }
-  .encounter-builder--row {
-    border-bottom: 1px solid black; }
-  .encounter-builder--table {
-    width: 100%; }
-    .encounter-builder--table > tbody > tr > td {
-      padding: 5px; }
 
 .filters {
   padding: 5px;
@@ -7495,80 +7466,42 @@ button.close {
     color: #ddd;
     text-decoration: line-through; }
 
-.monster-table {
-  overflow: auto; }
-  .monster-table.monster-table__short {
-    bottom: 250px; }
-  .monster-table .monster-table--column.monster-table--column__button {
-    width: 25px; }
-  .monster-table .monster-table--column.monster-table--column__name {
-    width: auto; }
-  .monster-table .monster-table--column.monster-table--column__size {
-    width: 100px; }
-  .monster-table .monster-table--column.monster-table--column__type {
-    width: 100px; }
-  .monster-table .monster-table--column.monster-table--column__alignment {
-    width: auto; }
-  .monster-table .monster-table--column.monster-table--column__cr {
-    width: 25px; }
-  .monster-table .monster-table--column.monster-table--column__source {
-    width: 180px; }
-  .monster-table .monster-table--table {
-    border-collapse: separate;
-    border-spacing: 0;
-    width: 100%; }
-    .monster-table .monster-table--table > tbody > tr > td, .monster-table .monster-table--table > thead > tr > td {
-      padding: 5px; }
-    .monster-table .monster-table--table > thead {
-      padding: 5px;
-      background-color: #000;
-      color: #ddd;
-      font-weight: bold; }
-  .monster-table .monster-table--name {
-    line-height: 34px; }
-  .monster-table .monster-table--row {
-    border-bottom: 1px solid black; }
-    .monster-table .monster-table--row__deadly {
-      background-color: #fbb; }
-    .monster-table .monster-table--row__hard {
-      background-color: #fa8; }
-    .monster-table .monster-table--row__medium {
-      background-color: #ffb; }
-    .monster-table .monster-table--row__easy {
-      background-color: #cfb; }
-    .monster-table .monster-table--row__pair {
-      background-color: #bef; }
-    .monster-table .monster-table--row__group {
-      background-color: #ebf; }
-    .monster-table .monster-table--row__trivial {
-      background-color: #fff; }
-  .monster-table .monster-table--section {
-    font-size: 0.8rem;
-    font-variant: small-caps; }
-  .monster-table .monster-table--tags {
-    font-style: italic; }
-  .monster-table .monster-table--name-cell,
-  .monster-table .monster-table--cr-cell {
-    border-bottom: 1px dashed #666; }
-  .monster-table .monster-table--button-cell,
-  .monster-table .monster-table--size-cell,
-  .monster-table .monster-table--type-cell,
-  .monster-table .monster-table--alignment-cell,
-  .monster-table .monster-table--source-cell {
-    border-bottom: 1px solid #000; }
-  .monster-table .monster-table--button-cell {
-    border-left: 1px solid #000; }
+.monster-table .monster-table--row__deadly {
+  background-color: #fbb; }
+
+.monster-table .monster-table--row__hard {
+  background-color: #fa8; }
+
+.monster-table .monster-table--row__medium {
+  background-color: #ffb; }
+
+.monster-table .monster-table--row__easy {
+  background-color: #cfb; }
+
+.monster-table .monster-table--row__pair {
+  background-color: #bef; }
+
+.monster-table .monster-table--row__group {
+  background-color: #ebf; }
+
+.monster-table .monster-table--row__trivial {
+  background-color: #fff; }
+
+.monster-table .monster-table--section {
+  font-size: 0.9rem;
+  font-variant: small-caps; }
+
+.monster-table .monster-table--tags {
+  font-style: italic; }
 
 .pagination-container {
-  text-align: center;
-  background-color: #000; }
+  text-align: center; }
   .pagination-container select, .pagination-container option {
     color: black; }
   .pagination-container dir-pagination-controls {
     display: inline-block;
     vertical-align: middle; }
   .pagination-container .pagination-container--size-controls {
-    color: #ddd;
     display: inline-block;
     margin-left: 10px;
     vertical-align: middle; }
