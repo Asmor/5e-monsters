@@ -7506,6 +7506,16 @@ button.close {
     margin-left: 10px;
     vertical-align: middle; }
 
+.search--line-one {
+  margin-bottom: 1rem; }
+
+.search .search-input {
+  margin-right: 1rem;
+  width: 45rem; }
+
+.search--sources-button {
+  display: inline-block; }
+
 .encounter-manager-encounter {
   margin-top: 20px; }
   .encounter-manager-encounter--active {

@@ -1,0 +1,70 @@
+<div class="search">
+	<div class="form-inline search--line-one">
+		<label class="sr-only">Search</label>
+		<input class="form-control search-input" type="text" ng-model="filters.search" placeholder="Search...">
+		
+		<select class="form-control"
+				ng-model="filters.size"
+				ng-options="size for size in sizes">
+			<option value="">Any Size</option>
+		</select>
+
+		<select class="form-control"
+				ng-model="filters.type"
+				ng-options="type for type in types">
+			<option value="">Any Type</option>
+		</select>
+
+		<select class="form-control"
+				ng-model="filters.minCr"
+				ng-options="cr.numeric as cr.string for cr in crList">
+				<option value="">Min CR</option>
+			</select>
+		
+		<select class="form-control"
+				ng-model="filters.maxCr"
+				ng-options="cr.numeric as cr.string for cr in crList">
+			<option value="">Max CR</option>
+		</select>
+
+		<button class="btn btn-primary" ng-click="resetFilters()">Reset Filters</button>
+	</div>
+
+	<div class="form-inline">
+		<select class="form-control"
+			ng-model="filters.alignment"
+			ng-options="alignment as alignment.text for (key, alignment) in alignments">
+			<option value="">Any Alignment</option>
+		</select>
+
+		<select class="form-control"
+				ng-model="filters.environment"
+				ng-options="environment as environment for environment in environments">
+			<option value="">Any Environment</option>
+		</select>
+
+		<select class="form-control" 
+				ng-model="filters.sources" 
+				ng-change="updateSourceFilters()">
+			<option value="all" selected>Everything</option>
+			<option value="" selected>Core Books</option>
+			<option value="books">All Books</option>
+			<option value="basic">Basic</option>
+			<option value="thirdparty">Third Party</option>
+			<option value="custom">Custom</option>
+		</select>
+
+	<div class="search--section">
+		<ul ng-if="filters.sources == 'custom'">
+			<li
+				class="search--source"
+				ng-repeat="source in sources"
+				ng-class="{ 'search--source__off': !filters.source[source] }">
+				<label>
+					<input type="checkbox" ng-model="filters.source[source]">
+					{{ source }}
+				</label>
+			</li>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,15 @@
+.search {
+
+	&--line-one {
+		margin-bottom: 1rem;
+	}
+
+	& .search-input {
+		margin-right: 1rem;
+		width: 45rem;
+	}
+
+	&--sources-button {
+		display: inline-block;
+	}
+}
