@@ -3,3 +3,20 @@
 @import 'partials/monster-table';
 @import 'partials/pagination';
 @import 'partials/search';
+
+.sidebar {
+	&--legend-button {
+		// margin-bottom: 1rem;
+	}
+
+	&--legend {
+		bottom: 0;
+		position: fixed;
+
+		@include challenge-colors;
+
+		li {
+			padding: 5px;
+		}
+	}
+}

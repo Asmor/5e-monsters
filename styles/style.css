@@ -7465,6 +7465,8 @@ button.close {
   .filters--source__off {
     color: #ddd;
     text-decoration: line-through; }
+  .filters--legend {
+    bottom: 0; }
 
 .monster-table {
   margin-top: 2rem; }
@@ -7507,6 +7509,26 @@ button.close {
 
 .search .search--size-controls {
   margin-top: 0.5rem; }
+
+.sidebar--legend {
+  bottom: 0;
+  position: fixed; }
+  .sidebar--legend__deadly {
+    background-color: #fbb; }
+  .sidebar--legend__hard {
+    background-color: #fa8; }
+  .sidebar--legend__medium {
+    background-color: #ffb; }
+  .sidebar--legend__easy {
+    background-color: #cfb; }
+  .sidebar--legend__pair {
+    background-color: #bef; }
+  .sidebar--legend__group {
+    background-color: #ebf; }
+  .sidebar--legend__trivial {
+    background-color: #fff; }
+  .sidebar--legend li {
+    padding: 5px; }
 
 .encounter-manager-encounter {
   margin-top: 20px; }

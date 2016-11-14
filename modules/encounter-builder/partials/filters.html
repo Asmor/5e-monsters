@@ -1,11 +1,10 @@
 <div class="filters">
 	<div class="filters--section">
-		<button ng-click="encounter.generateRandom(filters)">Random Encounter</button>
+		<button class="btn btn-primary" ng-click="encounter.generateRandom(filters)">Random Encounter</button>
 	</div>
 	
 	<div class="filters--section">
-		Group Info
-		<br>
+		<h3>Group Info</h3>
 		<label>Players:</label>
 		<select
 				ng-model="encounter.playerCount"
@@ -36,29 +35,5 @@
 				<td class="filters--guidelines-values">{{ encounter.partyLevel.deadly * encounter.playerCount | number }} exp</td>
 			</tr>
 		</table>
-		<ul>
-			<li class="filters--definition filters--definition__deadly">
-				Deadly: One of these is a deadly challenge
-			</li>
-			<li class="filters--definition filters--definition__hard">
-				Hard: One of these is a hard challenge
-			</li>
-			<li class="filters--definition filters--definition__medium">
-				Medium: One of these is a medium challenge
-			</li>
-			<li class="filters--definition filters--definition__easy">
-				Easy: One of these is an easy challenge
-			</li>
-			<li class="filters--definition filters--definition__pair">
-				Pair: Two of these is a medium challenge
-			</li>
-			<li class="filters--definition filters--definition__group">
-				Group: Four of these is a medium challenge
-			</li>
-			<li class="filters--definition filters--definition__trivial">
-				Trivial: Eight or more of these is a medium challenge
-			</li>
-		</ul>
 	</div>
-
 </div>
