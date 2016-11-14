@@ -7466,33 +7466,27 @@ button.close {
     color: #ddd;
     text-decoration: line-through; }
 
-.monster-table .monster-table--row__deadly {
-  background-color: #fbb; }
-
-.monster-table .monster-table--row__hard {
-  background-color: #fa8; }
-
-.monster-table .monster-table--row__medium {
-  background-color: #ffb; }
-
-.monster-table .monster-table--row__easy {
-  background-color: #cfb; }
-
-.monster-table .monster-table--row__pair {
-  background-color: #bef; }
-
-.monster-table .monster-table--row__group {
-  background-color: #ebf; }
-
-.monster-table .monster-table--row__trivial {
-  background-color: #fff; }
-
-.monster-table .monster-table--section {
-  font-size: 0.95rem;
-  font-variant: small-caps; }
-
-.monster-table .monster-table--tags {
-  font-style: italic; }
+.monster-table {
+  margin-top: 2rem; }
+  .monster-table .monster-table--row__deadly {
+    background-color: #fbb; }
+  .monster-table .monster-table--row__hard {
+    background-color: #fa8; }
+  .monster-table .monster-table--row__medium {
+    background-color: #ffb; }
+  .monster-table .monster-table--row__easy {
+    background-color: #cfb; }
+  .monster-table .monster-table--row__pair {
+    background-color: #bef; }
+  .monster-table .monster-table--row__group {
+    background-color: #ebf; }
+  .monster-table .monster-table--row__trivial {
+    background-color: #fff; }
+  .monster-table .monster-table--section {
+    font-size: 0.95rem;
+    font-variant: small-caps; }
+  .monster-table .monster-table--tags {
+    font-style: italic; }
 
 .pagination-container {
   text-align: center; }
@@ -7501,20 +7495,18 @@ button.close {
   .pagination-container dir-pagination-controls {
     display: inline-block;
     vertical-align: middle; }
-  .pagination-container .pagination-container--size-controls {
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: middle; }
 
-.search--line-one {
+.search--search-form * {
   margin-bottom: 1rem; }
 
 .search .search-input {
-  margin-right: 1rem;
-  width: 45rem; }
+  min-width: 45rem; }
 
 .search--sources-button {
   display: inline-block; }
+
+.search .search--size-controls {
+  margin-top: 0.5rem; }
 
 .encounter-manager-encounter {
   margin-top: 20px; }

@@ -1,15 +1,17 @@
 .search {
-
-	&--line-one {
+	&--search-form * {
 		margin-bottom: 1rem;
 	}
 
 	& .search-input {
-		margin-right: 1rem;
-		width: 45rem;
+		min-width: 45rem;
 	}
 
 	&--sources-button {
 		display: inline-block;
+	}
+
+	.search--size-controls {
+		margin-top: 0.5rem;
 	}
 }

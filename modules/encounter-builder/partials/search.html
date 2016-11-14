@@ -1,5 +1,5 @@
-<div class="search">
-	<div class="form-inline search--line-one">
+<div class="search row">
+	<div class="search--search-form form-inline col-md-10">
 		<label class="sr-only">Search</label>
 		<input class="form-control search-input" type="text" ng-model="filters.search" placeholder="Search...">
 		
@@ -27,10 +27,6 @@
 			<option value="">Max CR</option>
 		</select>
 
-		<button class="btn btn-primary" ng-click="resetFilters()">Reset Filters</button>
-	</div>
-
-	<div class="form-inline">
 		<select class="form-control"
 			ng-model="filters.alignment"
 			ng-options="alignment as alignment.text for (key, alignment) in alignments">
@@ -53,18 +49,29 @@
 			<option value="thirdparty">Third Party</option>
 			<option value="custom">Custom</option>
 		</select>
+</div>
+<div class="col-md-2">
+	<button class="btn btn-primary" ng-click="resetFilters()">Reset Filters</button>
 
-	<div class="search--section">
-		<ul ng-if="filters.sources == 'custom'">
-			<li
-				class="search--source"
-				ng-repeat="source in sources"
-				ng-class="{ 'search--source__off': !filters.source[source] }">
-				<label>
-					<input type="checkbox" ng-model="filters.source[source]">
-					{{ source }}
-				</label>
-			</li>
-		</ul>
+	<div class="search--size-controls">
+		<label>Page size:</label>
+		<select class="form-control"
+			ng-model="filters.pageSize"
+			ng-options="page for page in [10, 25, 50, 100, 250, 500, 1000]"
+		></select>
 	</div>
+</div>
+<div class="search--section">
+	<ul ng-if="filters.sources == 'custom'">
+		<li
+			class="search--source"
+			ng-repeat="source in sources"
+			ng-class="{ 'search--source__off': !filters.source[source] }">
+			<label>
+				<input type="checkbox" ng-model="filters.source[source]">
+				{{ source }}
+			</label>
+		</li>
+	</ul>
+</div>
 </div>
