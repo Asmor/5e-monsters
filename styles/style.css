@@ -7450,6 +7450,8 @@ button.close {
       background-color: #ebf; }
     .filters--definition__trivial {
       background-color: #fff; }
+  .filters--guidelines {
+    margin-top: 1rem; }
   .filters--guidelines-active {
     font-weight: bold; }
   .filters--guidelines-values {
@@ -7465,24 +7467,22 @@ button.close {
   .filters--source__off {
     color: #ddd;
     text-decoration: line-through; }
-  .filters--legend {
-    bottom: 0; }
 
 .monster-table {
   margin-top: 2rem; }
-  .monster-table .monster-table--row__deadly {
+  .monster-table--cr-cell__deadly {
     background-color: #fbb; }
-  .monster-table .monster-table--row__hard {
+  .monster-table--cr-cell__hard {
     background-color: #fa8; }
-  .monster-table .monster-table--row__medium {
+  .monster-table--cr-cell__medium {
     background-color: #ffb; }
-  .monster-table .monster-table--row__easy {
+  .monster-table--cr-cell__easy {
     background-color: #cfb; }
-  .monster-table .monster-table--row__pair {
+  .monster-table--cr-cell__pair {
     background-color: #bef; }
-  .monster-table .monster-table--row__group {
+  .monster-table--cr-cell__group {
     background-color: #ebf; }
-  .monster-table .monster-table--row__trivial {
+  .monster-table--cr-cell__trivial {
     background-color: #fff; }
   .monster-table .monster-table--section {
     font-size: 0.95rem;
@@ -7529,6 +7529,30 @@ button.close {
     background-color: #fff; }
   .sidebar--legend li {
     padding: 5px; }
+
+.sidebar--legend-xs__deadly {
+  background-color: #fbb; }
+
+.sidebar--legend-xs__hard {
+  background-color: #fa8; }
+
+.sidebar--legend-xs__medium {
+  background-color: #ffb; }
+
+.sidebar--legend-xs__easy {
+  background-color: #cfb; }
+
+.sidebar--legend-xs__pair {
+  background-color: #bef; }
+
+.sidebar--legend-xs__group {
+  background-color: #ebf; }
+
+.sidebar--legend-xs__trivial {
+  background-color: #fff; }
+
+.sidebar--legend-xs li {
+  padding: 5px; }
 
 .encounter-manager-encounter {
   margin-top: 20px; }

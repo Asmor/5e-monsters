@@ -8,6 +8,10 @@
 		@include challenge-colors;
 	}
 
+	&--guidelines {
+		margin-top: 1rem;
+	}
+
 	&--guidelines-active {
 		font-weight: bold;
 	}
@@ -35,9 +39,5 @@
 			color: #ddd;
 			text-decoration: line-through;
 		}
-	}
-
-	&--legend {
-		bottom:0;
 	}
 }
