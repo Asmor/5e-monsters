@@ -1,5 +1,5 @@
 <div class="monster-table table-responsive">
-	<table class="monster-table--table table table-bordered">
+	<table class="monster-table--table table table-bordered table-striped">
 		<thead>
 			<tr>
 				<th class="monster-table--column monster-table--column__button"></th> 
@@ -36,8 +36,7 @@
 		<tbody>
 			<tr
 				dir-paginate="monster in monsters | monstersFilter:filters | itemsPerPage: filters.pageSize"
-				class="monster-table--row"
-				ng-class="'monster-table--row__' + dangerZone(monster)">
+				class="monster-table--row">
 
 				<td class="monster-table--button-cell">
 					<button ng-click="encounter.add(monster)" class="encounter-button">
@@ -52,7 +51,9 @@
 						{{ monster.section }}
 					</div>
 				</td>
-				<td class="monster-table--cr-cell"> {{ monster.cr.string }} </td>
+				<td class="monster-table--cr-cell"
+					ng-class="'monster-table--cr-cell__' + dangerZone(monster)"
+				> {{ monster.cr.string }} </td>
 				<td class="monster-table--size-cell"> {{ monster.size }} </td>
 				<td class="monster-table--type-cell">
 					{{ monster.type }}

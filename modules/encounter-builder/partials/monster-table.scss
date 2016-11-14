@@ -1,7 +1,7 @@
 .monster-table {
 	margin-top: 2rem;
 
-	.monster-table--row {
+	&--cr-cell {
 		@include challenge-colors;
 	}
 
