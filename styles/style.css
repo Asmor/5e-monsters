@@ -7512,7 +7512,10 @@ button.close {
 
 .sidebar--legend {
   bottom: 0;
-  position: fixed; }
+  right: 1rem;
+  position: fixed;
+  text-align: right;
+  z-index: 2; }
   .sidebar--legend__deadly {
     background-color: #fbb; }
   .sidebar--legend__hard {
@@ -7529,29 +7532,31 @@ button.close {
     background-color: #fff; }
   .sidebar--legend li {
     padding: 5px; }
+  .sidebar--legend-popout {
+    text-align: left; }
 
-.sidebar--legend-xs__deadly {
+.legend-sm__deadly {
   background-color: #fbb; }
 
-.sidebar--legend-xs__hard {
+.legend-sm__hard {
   background-color: #fa8; }
 
-.sidebar--legend-xs__medium {
+.legend-sm__medium {
   background-color: #ffb; }
 
-.sidebar--legend-xs__easy {
+.legend-sm__easy {
   background-color: #cfb; }
 
-.sidebar--legend-xs__pair {
+.legend-sm__pair {
   background-color: #bef; }
 
-.sidebar--legend-xs__group {
+.legend-sm__group {
   background-color: #ebf; }
 
-.sidebar--legend-xs__trivial {
+.legend-sm__trivial {
   background-color: #fff; }
 
-.sidebar--legend-xs li {
+.legend-sm li {
   padding: 5px; }
 
 .encounter-manager-encounter {

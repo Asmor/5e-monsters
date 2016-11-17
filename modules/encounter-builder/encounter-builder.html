@@ -5,36 +5,11 @@
 			<div>
 				<ng-include src="partial('encounter-builder')"></ng-include>
 			</div>
-			<div class="sidebar--legend-xs visible-xs">
-				<ul>
-					<li class="sidebar--legend__deadly">
-						Deadly: One of these is a deadly challenge
-					</li>
-					<li class="sidebar--legend__hard">
-						Hard: One of these is a hard challenge
-					</li>
-					<li class="sidebar--legend__medium">
-						Medium: One of these is a medium challenge
-					</li>
-					<li class="sidebar--legend__easy">
-						Easy: One of these is an easy challenge
-					</li>
-					<li class="sidebar--legend__pair">
-						Pair: Two of these is a medium challenge
-					</li>
-					<li class="sidebar--legend__group">
-						Group: Four of these is a medium challenge
-					</li>
-					<li class="sidebar--legend__trivial">
-						Trivial: Eight or more of these is a medium challenge
-					</li>
-				</ul>
-			</div>
-			<div id="legend" class="sidebar--legend hidden-xs">
-				<button class="btn btn-warning sidebar--legend-button" type="button" data-toggle="collapse" data-target="#legend-collapse">Expand Legend
+			<div class="sidebar--legend hidden-xs hidden-sm">
+				<button class="btn btn-warning sidebar--legend-button" type="button" data-toggle="collapse" data-target="#legend-collapse">Legend
 					<i class="fa fa-angle-double-up" aria-hidden="true"></i>
 				</button>
-				<div class="sidebar--legend-popout collapse" id="legend-collapse" aria-expanded="false" aria-controls="legend-collapse">
+				<div id="legend-collapse" class="sidebar--legend-popout collapse" aria-expanded="false" aria-controls="legend-collapse">
 					<ul>
 						<li class="sidebar--legend__deadly">
 							Deadly: One of these is a deadly challenge
@@ -65,6 +40,32 @@
 			<ng-include src="partial('search')"></ng-include>
 			<ng-include src="partial('monstertable')"></ng-include>
 			<ng-include src="partial('pagination')"></ng-include>
+			<div class="legend-sm visible-xs visible-sm">
+				<h3>Legend</h3>
+				<ul>
+					<li class="sidebar--legend__deadly">
+						Deadly: One of these is a deadly challenge
+					</li>
+					<li class="sidebar--legend__hard">
+						Hard: One of these is a hard challenge
+					</li>
+					<li class="sidebar--legend__medium">
+						Medium: One of these is a medium challenge
+					</li>
+					<li class="sidebar--legend__easy">
+						Easy: One of these is an easy challenge
+					</li>
+					<li class="sidebar--legend__pair">
+						Pair: Two of these is a medium challenge
+					</li>
+					<li class="sidebar--legend__group">
+						Group: Four of these is a medium challenge
+					</li>
+					<li class="sidebar--legend__trivial">
+						Trivial: Eight or more of these is a medium challenge
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>
