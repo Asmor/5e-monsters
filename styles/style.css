@@ -7431,25 +7431,22 @@ button.close {
     margin: 5px; }
 
 .filters {
-  padding: 5px;
-  overflow: auto;
-  box-sizing: border-box; }
-  .filters--definition {
-    padding: 5px; }
-    .filters--definition__deadly {
-      background-color: #fbb; }
-    .filters--definition__hard {
-      background-color: #fa8; }
-    .filters--definition__medium {
-      background-color: #ffb; }
-    .filters--definition__easy {
-      background-color: #cfb; }
-    .filters--definition__pair {
-      background-color: #bef; }
-    .filters--definition__group {
-      background-color: #ebf; }
-    .filters--definition__trivial {
-      background-color: #fff; }
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd; }
+  .filters--header {
+    margin-top: 0; }
+  .filters--group-info label {
+    display: block; }
+  .filters--group-info-section {
+    position: relative;
+    float: left;
+    width: 16.66667%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 9rem; }
+  .filters--group-info-section:last-child {
+    padding-left: 0; }
   .filters--guidelines {
     margin-top: 1rem; }
   .filters--guidelines-active {
@@ -7458,15 +7455,6 @@ button.close {
     text-align: right;
     padding-left: 5px;
     padding-right: 20px; }
-  .filters--option__active {
-    outline: 3px solid yellow;
-    background-color: yellow;
-    margin-right: 3px; }
-  .filters--section {
-    padding-bottom: 10px; }
-  .filters--source__off {
-    color: #ddd;
-    text-decoration: line-through; }
 
 .monster-table {
   margin-top: 2rem; }

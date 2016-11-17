@@ -1,11 +1,24 @@
 .filters {
-	padding: 5px;
-	overflow: auto;
-	box-sizing: border-box;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid #ddd;
 
-	&--definition {
-		padding: 5px;
-		@include challenge-colors;
+	&--header {
+		margin-top: 0;
+	}
+
+	&--group-info {
+		label {
+			display: block;
+		}
+
+		&-section {
+			@include make-xs-column(2);
+			width: 9rem;
+		}
+
+		&-section:last-child {
+			padding-left: 0;
+		}
 	}
 
 	&--guidelines {
@@ -20,24 +33,5 @@
 		text-align: right;
 		padding-left: 5px;
 		padding-right: 20px;
-	}
-
-	&--option {
-		&__active {
-			outline: 3px solid yellow;
-			background-color: yellow;
-			margin-right: 3px;
-		}
-	}
-
-	&--section {
-		padding-bottom: 10px;
-	}
-
-	&--source {
-		&__off {
-			color: #ddd;
-			text-decoration: line-through;
-		}
 	}
 }
