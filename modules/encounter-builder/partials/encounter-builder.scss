@@ -1,4 +1,11 @@
 .current-encounter {
+	display: none;
+	margin-top: 2rem;
+
+	&__shown {
+		display: block;
+	}
+
 	&--empty {
 		border-radius: 0.5rem;
 		margin-top: 2rem;
@@ -25,19 +32,6 @@
 		overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-	}
-}
-
-.encounter-builder {
-	display: none;
-	margin-top: 2rem;
-
-	&__shown {
-		display: block;
-	}
-
-	&--column {
-		&__source {	max-width: 15rem; }
 	}
 
 	&--header {

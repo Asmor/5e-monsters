@@ -5,11 +5,11 @@
 <p class="current-encounter--empty bg-info text-muted" ng-if="encounter.qty == 0">
 	Create an encounter by clicking the Random Encounter button or by adding monsters from the monsters table.
 </p>
-<div class="encounter-builder" ng-class="{ 'encounter-builder__shown': encounter.qty }">
-	<div class="encounter-builder--body">
-		<div class="encounter-builder--table">
+<div class="current-encounter" ng-class="{ 'current-encounter__shown': encounter.qty }">
+	<div class="current-encounter--body">
+		<div class="current-encounter--table">
 			<div class="current-encounter--row row" ng-repeat="group in encounter.groups | sortEncounter">
-				<div class="encounter-builder--column encounter-builder--column__buttons col-xs-3">
+				<div class="current-encounter--column current-encounter--column__buttons col-xs-3">
 					<button ng-click="encounter.add(group.monster)" class="encounter-button">
 						<i class="fa fa-plus"></i>
 					</button>
@@ -20,7 +20,7 @@
 						<i class="fa fa-random"></i>
 					</button>
 				</div>
-				<div class="encounter-builder--column encounter-builder--column__name col-xs-9">
+				<div class="current-encounter--column current-encounter--column__name col-xs-9">
 					<div class="row">
 						<div class="current-encounter--monster-info col-xs-9">
 							<span class="current-encounter--monster-name text-capitalized">{{ group.monster.name }}</span>
@@ -42,15 +42,15 @@
 				</div>
 			</div>
 		</div>
-		<div class="encounter-builder--header">
+		<div class="current-encounter--header">
 			<div>Encounter: {{ encounter.difficulty }}</div>
 			<div>Total XP: {{ encounter.exp | number }}
 			Adjusted XP: {{ encounter.adjustedExp | number }}</div>
 		</div>
-		<button class="encounter-builder--new-button" ng-click="encounter.reset()">
+		<button class="current-encounter--new-button" ng-click="encounter.reset()">
 			New encounter
 		</button>
-		<button class="encounter-builder--save-button" ui-sref="encounter-manager" ng-if="!encounter.reference">
+		<button class="current-encounter--save-button" ui-sref="encounter-manager" ng-if="!encounter.reference">
 			Save encounter
 		</button>
 	</div>

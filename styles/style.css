@@ -7399,7 +7399,7 @@ button.close {
   clear: left;
   border-bottom: 1px solid #000; }
 
-.encounter-button, .number-input--button, .encounter-builder--new-button, .encounter-builder--save-button, .encounter-manager-encounter--save-button, .encounter-manager-encounter--remove-button, .encounter-manager-encounter--load-button, .combatant-setup--button, .combat-controls--next-turn, .combatant--apply-button, .manage-players--party-select-button {
+.encounter-button, .number-input--button, .current-encounter--new-button, .current-encounter--save-button, .encounter-manager-encounter--save-button, .encounter-manager-encounter--remove-button, .encounter-manager-encounter--load-button, .combatant-setup--button, .combat-controls--next-turn, .combatant--apply-button, .manage-players--party-select-button {
   height: 35px;
   min-width: 35px;
   text-align: center;
@@ -7408,7 +7408,7 @@ button.close {
   border-radius: 2px;
   cursor: pointer;
   padding: 5px; }
-  .encounter-button:active, .number-input--button:active, .encounter-builder--new-button:active, .encounter-builder--save-button:active, .encounter-manager-encounter--save-button:active, .encounter-manager-encounter--remove-button:active, .encounter-manager-encounter--load-button:active, .combatant-setup--button:active, .combat-controls--next-turn:active, .combatant--apply-button:active, .manage-players--party-select-button:active {
+  .encounter-button:active, .number-input--button:active, .current-encounter--new-button:active, .current-encounter--save-button:active, .encounter-manager-encounter--save-button:active, .encounter-manager-encounter--remove-button:active, .encounter-manager-encounter--load-button:active, .combatant-setup--button:active, .combat-controls--next-turn:active, .combatant--apply-button:active, .manage-players--party-select-button:active {
     background-color: #eee; }
 
 .number-input--button__positive:not(:first-child) {
@@ -7425,41 +7425,33 @@ button.close {
   width: 45px;
   text-align: center; }
 
-.current-encounter--empty {
-  border-radius: 0.5rem;
-  margin-top: 2rem;
-  padding: 1rem; }
-
-.current-encounter--row {
-  margin-bottom: 2rem; }
-
-.current-encounter--monster-info {
-  padding-bottom: 0.5rem; }
-
-.current-encounter--monster-name {
-  font-size: 2rem; }
-
-.current-encounter--monster-qty {
-  min-width: 3rem; }
-
-.current-encounter--monster-source {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis; }
-
-.encounter-builder {
+.current-encounter {
   display: none;
   margin-top: 2rem; }
-  .encounter-builder__shown {
+  .current-encounter__shown {
     display: block; }
-  .encounter-builder--column__source {
-    max-width: 15rem; }
-  .encounter-builder--header {
+  .current-encounter--empty {
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+    padding: 1rem; }
+  .current-encounter--row {
+    margin-bottom: 2rem; }
+  .current-encounter--monster-info {
+    padding-bottom: 0.5rem; }
+  .current-encounter--monster-name {
+    font-size: 2rem; }
+  .current-encounter--monster-qty {
+    min-width: 3rem; }
+  .current-encounter--monster-source {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
+  .current-encounter--header {
     padding: 5px;
     background-color: #000;
     color: #ddd;
     font-weight: bold; }
-  .encounter-builder--new-button, .encounter-builder--save-button {
+  .current-encounter--new-button, .current-encounter--save-button {
     margin: 5px; }
 
 .filters {
