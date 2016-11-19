@@ -11314,5 +11314,158 @@ define([
 			id: "0ac2d7e7-8936-4e86-8d41-5fb7b9fa82be",
 		},
 		
+		// Volo's Guide to Monsters: Bestiary
+		{
+			name: "Banderhobb",
+			size: "Large", type: "Monstrosity", 
+			ac: 15, hp: 84, int: 1, cr: 5,
+			alignment: alignments.ne,
+			id: "",
+		},
+		{
+			name: "Barghest",
+			size: "Large", type: "Fiend", tags: [ "Shapechanger" ], 
+			ac: 17, hp: 90, int: 2, cr: 4,
+			alignment: alignments.ne,
+			id: "",
+		},
+		{
+			section: "Beholders", name: "Death Kiss",
+			size: "Large", type: "Aberration", 
+			ac: 16, hp: 161, int: 2, cr: 10,
+			alignment: alignments.ne,
+			id: "",
+		},
+		{
+			section: "Beholders", name: "Gauth",
+			size: "Medium", type: "Aberration", 
+			ac: 15, hp: 67, int: 2, cr: 6,
+			alignment: alignments.le,
+			id: "",
+		},
+		{
+			section: "Beholders", name: "Gazer",
+			size: "Tiny", type: "Aberration", 
+			ac: 13, hp: 13, int: 3, cr: "1/2",
+			alignment: alignments.ne,
+			id: "",
+		},
+		{
+			name: "Bodak",
+			size: "Medium", type: "Undead", 
+			ac: 15, hp: 58, int: 3, cr: 6,
+			alignment: alignments.ce,
+			id: "",
+		},
+		{
+			name: "Boggle",
+			size: "Small", type: "Fey",
+			ac: 14, hp: 18, int: 4, cr: "1/8",
+			alignment: alignments.cn,
+			id: "",
+		},
+		{
+			name: "Catoblepas",
+			size: "Large", type: "Monstrosity", 
+			ac: 14, hp: 84, int: 1, cr: 5,
+			alignment: alignments.unaligned,
+			id: "",
+		},
+		{
+			name: "Cave Fisher",
+			size: "Medium", type: "Monstrosity", 
+			ac: 16, hp: 58, int: 1, cr: 3,
+			alignment: alignments.unaligned,
+			id: "",
+		},
+		{
+			section: "Chitines", name: "Chitine",
+			size: "Small", type: "Monstrosity",
+			ac: 14, hp: 18, int: 2, cr: "1/2",
+			alignment: alignments.ce,
+			id: "",
+		},
+		{
+			section: "Chitines", name: "Choldrith",
+			size: "Medium", type: "Monstrosity",
+			ac: 15, hp: 66, int: 3, cr: 3,
+			alignment: alignments.ce,
+			id: "",
+		},
+		{
+			section: "Cranium Rats", name: "Cranium Rat",
+			size: "Tiny", type: "Beast",
+			ac: 12, hp: 2, int: 2, cr: 0,
+			alignment: alignments.le,
+			id: "",
+		},
+		{
+			section: "Cranium Rats", name: "Swarm of Cranium Rats",
+			size: "Medium", type: "Beast", tags: [ "Swarm" ],
+			ac: 12, hp: 36, int: 2, cr: 5,
+			alignment: alignments.le,
+			id: "",
+		},
+		{
+			section: "Darklings", name: "Darkling",
+			size: "Small", type: "Fey",
+			ac: 14, hp: 13, int: 3, cr: "1/2",
+			alignment: alignments.cn,
+			id: "",
+		},
+		{
+			section: "Darklings", name: "Darkling Elder",
+			size: "Medium", type: "Fey", 
+			ac: 15, hp: 27, int: 3, cr: 2,
+			alignment: alignments.cn,
+			id: "",
+		},
+		{
+			name: "Deep Scion",
+			size: "Medium", type: "Humanoid", tags: [ "Shapechanger" ], 
+			ac: 11, hp: 67, int: 1, cr: 3,
+			alignment: alignments.ne,
+			id: "",
+		},
+		{
+			section: "Demons", name: "Babau",
+			size: "Medium", type: "Fiend", tags: [ "Demon" ], 
+			ac: 16, hp: 82, int: 3, cr: 4,
+			alignment: alignments.ce,
+			id: "",
+		},
+		// {
+		// 	section: "Ravenfolk", name: "Croaker",
+		// 	size: "Large", type: "Monstrosity", tags: [ "Kenku" ], 
+		// 	ac: 14, hp: 88, int: 2, cr: 5,
+		// 	alignment: alignments.n,
+		// 	id: "",
+		// },
+		// {
+		// 	section: "Ravenfolk", name: "Croaker",
+		// 	size: "Large", type: "Monstrosity", tags: [ "Kenku" ], 
+		// 	ac: 14, hp: 88, int: 2, cr: 5,
+		// 	alignment: alignments.n,
+		// 	id: "",
+		// },
+		// {
+		// 	section: "Ravenfolk", name: "Croaker",
+		// 	size: "Large", type: "Monstrosity", tags: [ "Kenku" ], 
+		// 	ac: 14, hp: 88, int: 2, cr: 5,
+		// 	alignment: alignments.n,
+		// 	id: "",
+		// },
+		// {
+		// 	section: "Ravenfolk", name: "Croaker",
+		// 	size: "Large", type: "Monstrosity", tags: [ "Kenku" ], 
+		// 	ac: 14, hp: 88, int: 2, cr: 5,
+		// 	alignment: alignments.n,
+		// 	id: "",
+		// },
+		
+		// Volo's Guide to Monsters: Assorted Beasts
+		
+		// Volo's Guide to Monsters: Nonplayer Characters
+
 	];
 });
