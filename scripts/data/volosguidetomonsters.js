@@ -1,7 +1,7 @@
 "use strict";
 
 define({
-	name: "Tome of Beasts",
+	name: "Volo's Guide to Monsters",
 	initialState: true,
 	contents: [ //TODO: Add environments?
 		[ "", 122 ], // Banderhobb
