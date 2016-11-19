@@ -38,6 +38,19 @@ define({
 
 		$scope.encounter = encounter;
 
+		$scope.$watch(function (scope) { return $scope.encounter.groups; }, function (newValue, oldValue) {
+			var subtotal = 0;
+
+			_.forEach(newValue, function(item, idx) {
+				var groupQty = item.qty;
+				var groupMonster = monsters.byId[idx];
+
+				subtotal += groupMonster.cr.exp * groupQty;
+			});
+
+			encounter.exp = subtotal;
+		}, true);
+
 		store.get("5em-filters", function (frozen) {
 			if (frozen) {
 				$scope.filters = frozen;

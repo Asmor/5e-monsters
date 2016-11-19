@@ -1,5 +1,36 @@
+.current-encounter {
+	&--empty {
+		border-radius: 0.5rem;
+		margin-top: 2rem;
+		padding: 1rem;
+	}
+
+	&--row {
+		margin-bottom: 2rem;
+	}
+
+	&--monster-info {
+		padding-bottom: 0.5rem;
+	}
+
+	&--monster-name {
+		font-size: 2rem;
+	}
+
+	&--monster-qty {
+		min-width: 3rem;
+	}
+
+	&--monster-source {
+		overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+	}
+}
+
 .encounter-builder {
 	display: none;
+	margin-top: 2rem;
 
 	&__shown {
 		display: block;

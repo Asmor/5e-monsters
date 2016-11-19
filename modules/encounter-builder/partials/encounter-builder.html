@@ -1,59 +1,57 @@
-<div
-	class="encounter-builder"
-	ng-class="{ 'encounter-builder__shown': encounter.qty }"
->
-	<div class="encounter-builder--header">
-		<div>Encounter: {{ encounter.difficulty }}</div>
-		<div>Total XP: {{ encounter.exp | number }}
-		Adjusted XP: {{ encounter.adjustedExp | number }}</div>
-	</div>
+<h2>
+	Encounter Info 
+	<button class="btn btn-info pull-right" ng-click="encounter.generateRandom(filters)">Random Encounter</button>
+</h2>
+<p class="current-encounter--empty bg-info text-muted" ng-if="encounter.qty == 0">
+	Create an encounter by clicking the Random Encounter button or by adding monsters from the monsters table.
+</p>
+<div class="encounter-builder" ng-class="{ 'encounter-builder__shown': encounter.qty }">
 	<div class="encounter-builder--body">
+		<div class="encounter-builder--table">
+			<div class="current-encounter--row row" ng-repeat="group in encounter.groups | sortEncounter">
+				<div class="encounter-builder--column encounter-builder--column__buttons col-xs-3">
+					<button ng-click="encounter.add(group.monster)" class="encounter-button">
+						<i class="fa fa-plus"></i>
+					</button>
+					<button ng-click="encounter.remove(group.monster)" class="encounter-button">
+						<i class="fa fa-minus"></i>
+					</button>
+					<button ng-click="encounter.randomize(group.monster, filters)" class="encounter-button">
+						<i class="fa fa-random"></i>
+					</button>
+				</div>
+				<div class="encounter-builder--column encounter-builder--column__name col-xs-9">
+					<div class="row">
+						<div class="current-encounter--monster-info col-xs-9">
+							<span class="current-encounter--monster-name text-capitalized">{{ group.monster.name }}</span>
+							<div>
+								<span>CR: {{ group.monster.cr.string }}</span>
+								<span>XP: {{ group.monster.cr.exp | number}}</span>
+									<div class="current-encounter--monster-source" ng-repeat="source in group.monster.sources" ng-show="filters.source[source.name]" title="{{source.name}} p.{{source.page}}">
+										{{ source.name }} 
+										<span ng-if="source.page">p.{{ source.page }}</span> 
+										<span ng-if="source.url"><a target="_blank" href="{{ source.url }}">[Link]</a></span>
+									</div>
+							</div>
+						</div>
+						<div class="col-xs-3">
+							<input class="current-encounter--monster-qty form-control input-lg" type="number" ng-model="group.qty">
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="encounter-builder--header">
+			<div>Encounter: {{ encounter.difficulty }}</div>
+			<div>Total XP: {{ encounter.exp | number }}
+			Adjusted XP: {{ encounter.adjustedExp | number }}</div>
+		</div>
 		<button class="encounter-builder--new-button" ng-click="encounter.reset()">
 			New encounter
 		</button>
-		<button
-			class="encounter-builder--save-button"
-			ui-sref="encounter-manager"
-			ng-if="!encounter.reference"
-		>
+		<button class="encounter-builder--save-button" ui-sref="encounter-manager" ng-if="!encounter.reference">
 			Save encounter
 		</button>
-		<table class="encounter-builder--table table table-condensed">
-			<tbody>
-				<tr
-					class="encounter-builder--row"
-					ng-repeat="group in encounter.groups | sortEncounter"
-				>
-					<td class="encounter-builder--column encounter-builder--column__buttons">
-						<button ng-click="encounter.add(group.monster)" class="encounter-button">
-							<i class="fa fa-plus"></i>
-						</button>
-						<button ng-click="encounter.remove(group.monster)" class="encounter-button">
-							<i class="fa fa-minus"></i>
-						</button>
-						<button ng-click="encounter.randomize(group.monster, filters)" class="encounter-button">
-							<i class="fa fa-random"></i>
-						</button>
-					</td>
-					<td class="encounter-builder--column encounter-builder--column__name">
-						{{ group.qty }}x {{ group.monster.name }}
-					</td>
-					<td class="encounter-builder--column encounter-builder--column__cr">
-						CR: {{ group.monster.cr.string }}
-					</td>
-					<td class="encounter-builder--column encounter-builder--column__exp">
-						XP: {{ group.monster.cr.exp | number}}
-					</td>
-					<td class="encounter-builder--column encounter-builder--column__source">
-						<div
-							ng-repeat="source in group.monster.sources"
-							ng-show="filters.source[source.name]"
-						>
-							{{ source.name }} <span ng-if="source.page">p.{{ source.page }}</span> <span ng-if="source.url"><a target="_blank" href="{{ source.url }}">[Link]</a></span>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
 	</div>
 </div>

@@ -4,8 +4,6 @@
   "description": "Kobold Fight Club =================",
   "main": "index.html",
   "dependencies": {
-    "bootstrap-sass": "^3.3.7",
-    "jquery": "^3.1.1"
   },
   "devDependencies": {
     "http-server": "^0.9.0",

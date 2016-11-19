@@ -2,7 +2,7 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: sans-serif; }
+  font-family: 'Open Sans', sans-serif; }
 
 table {
   border-collapse: collapse; }
@@ -12,6 +12,15 @@ td {
 
 ul {
   list-style-type: none; }
+
+input[type=number] {
+  /* Remove controls from Firefox */
+  -moz-appearance: textfield;
+  /* Remove controls from Safari and Chrome */ }
+  input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    /* Removes leftover margin */ }
 
 /*!
  *  Font Awesome 4.1.0 by @davegandy - http://fontawesome.io - @fontawesome
@@ -7416,8 +7425,31 @@ button.close {
   width: 45px;
   text-align: center; }
 
+.current-encounter--empty {
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+  padding: 1rem; }
+
+.current-encounter--row {
+  margin-bottom: 2rem; }
+
+.current-encounter--monster-info {
+  padding-bottom: 0.5rem; }
+
+.current-encounter--monster-name {
+  font-size: 2rem; }
+
+.current-encounter--monster-qty {
+  min-width: 3rem; }
+
+.current-encounter--monster-source {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+
 .encounter-builder {
-  display: none; }
+  display: none;
+  margin-top: 2rem; }
   .encounter-builder__shown {
     display: block; }
   .encounter-builder--column__source {
