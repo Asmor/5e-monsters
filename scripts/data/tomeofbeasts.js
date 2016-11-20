@@ -2,6 +2,7 @@
 
 define({
 	name: "Tome of Beasts",
+	shortName: "ToB",
 	initialState: true,
 	contents: [
 		[ "fcd7e583-025c-412e-a35f-7ba1c5843206", 8 ], // Aboleth, Nihileth

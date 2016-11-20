@@ -2,6 +2,7 @@
 
 define({
 	name: "Placeholders",
+	shortName: "PlcHld",
 	initialState: false,
 	contents: [
 		[ "cf33021b-ebd7-4db3-884d-0b48e8211ac3", 0 ], // CR 0

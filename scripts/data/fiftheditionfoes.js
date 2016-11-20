@@ -2,6 +2,7 @@
 
 define({
 	name: "Fifth Edition Foes",
+	shortName: "5eF",
 	initialState: true,
 	contents: [
 		[ "8858bfe7-3e4f-4614-9f37-4411493b22cf", 5 ], // Aaztar-Ghola

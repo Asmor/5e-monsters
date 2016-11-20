@@ -2,6 +2,7 @@
 
 define({
 	name: "Basic Rules v1",
+	shortName: "Basic",
 	initialState: false,
 	contents: [
 		[ "a27291de-91c5-4b8e-9ffe-5055e90cc6cd", 8 ], // Adult Red Dragon

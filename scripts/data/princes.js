@@ -2,6 +2,7 @@
 
 define({
 	name: "Princes of the Apocalypse",
+	shortName: "Apoc",
 	initialState: true,
 	contents: [
 		[ "feadfec7-96a7-4ff2-8b22-6f6ab232d6d5", 189], // Feathergale knight

@@ -2,6 +2,7 @@
 
 define({
 	name: "Storm King's Thunder",
+	shortName: "StrmKing",
 	initialState: true,
 	contents: [
 		[ "28c8c457-5a31-4c0d-9ffe-e42c8bb47d8b", 240 ], // Crag Cat 

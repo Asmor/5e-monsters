@@ -4,6 +4,7 @@ define(["scripts/constants"], function (constants) {
 	var crs = [],
 		sourceFilters = {},
 		sources = [],
+		shortNames = {},
 		tags = {},
 		levels = [
 			{ level: 1,		easy: 25,	medium: 50,		hard: 75,	deadly: 100 },
@@ -104,6 +105,7 @@ define(["scripts/constants"], function (constants) {
 		partialFactory: partialFactory,
 		sourceFilters: sourceFilters,
 		sources: sources,
+		shortNames: shortNames,
 		tags: tags,
 	};
 });

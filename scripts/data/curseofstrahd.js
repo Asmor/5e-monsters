@@ -2,6 +2,7 @@
 
 define({
 	name: "Curse of Strahd",
+	shortName: "Strahd",
 	initialState: true,
 	contents: [
 		[ "f0502677-b3bc-45b5-9d2a-7372fddc1e34", 226 ], // Baba Lysaga's Creeping Hut

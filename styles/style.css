@@ -7536,6 +7536,15 @@ button.close {
     font-variant: small-caps; }
   .monster-table--tags {
     font-style: italic; }
+  .monster-table--source-name__short {
+    display: inline; }
+  .monster-table--source-name__long {
+    display: none; }
+  @media (min-width: 768px) {
+    .monster-table--source-name__short {
+      display: none; }
+    .monster-table--source-name__long {
+      display: inline; } }
 
 .pagination-container {
   text-align: center; }

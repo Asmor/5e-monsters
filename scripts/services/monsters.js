@@ -38,6 +38,7 @@ define([
 
 			miscLib.sources.push(source.name);
 			miscLib.sourceFilters[source.name] = source.initialState;
+			miscLib.shortNames[source.name] = source.shortName;
 
 			for ( j = 0; j < source.contents.length; j++ ) {
 				m = source.contents[j];

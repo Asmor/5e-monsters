@@ -2,6 +2,7 @@
 
 define({
 	name: "Monster-A-Day",
+	shortName: "MAD",
 	initialState: false,
 	contents: [
 		[ "59dc127f-c93a-5f71-8b77-735936fb4ca0", 0, "https://www.reddit.com/r/monsteraday/comments/3hhz6e/day_1_grave_titan/"], // Grave Titan

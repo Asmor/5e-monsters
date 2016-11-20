@@ -2,6 +2,7 @@
 
 define({
 	name: "Princes of the Apocalypse Online Supplement v1.0",
+	shortName: "ApocSup",
 	initialState: false,
 	contents: [
 		[ "0cd9a2e0-16bc-4c84-86c8-feb035c0b5d6", 6 ], // arakocra

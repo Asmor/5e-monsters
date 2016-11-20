@@ -2,6 +2,7 @@
 
 define({
 	name: "Primeval Thule Gamemaster's Companion",
+	shortName: "ThuleGM",
 	initialState: true,
 	contents: [
 		[ "3aa474b6-f6b6-429f-bc2a-76fbfa3d76bd", 14 ], // Thulean Chimera

@@ -2,6 +2,7 @@
 
 define({
 	name: "HotDQ supplement",
+	shortName: "HoardSup",
 	initialState: false,
 	contents: [
 		[ "f88906c2-146d-4abb-8537-8bf5e1d0ac97", 4 ], // Acolyte

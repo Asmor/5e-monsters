@@ -2,6 +2,7 @@
 
 define({
 	name: "Out of the Abyss",
+	shortName: "Abyss",
 	initialState: true,
 	contents: [
 		[ "dd01bced-063c-41cb-ba10-1c933b9d9d88", 224], // Derro

@@ -29,7 +29,8 @@ define(["scripts/constants"], function (constants) {
 			};
 			$scope.monsters = monsters.all;
 			$scope.sizes = metaInfo.sizes;
-			$scope.sources = sources.all;
+			$scope.sourceNames = sources.all;
+			$scope.sources = sources;
 			$scope.tags = Object.keys(metaInfo.tags).sort();
 			$scope.types = metaInfo.types;
 			$scope.levels = metaInfo.levels;

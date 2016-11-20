@@ -2,6 +2,7 @@
 
 define({
 	name: "Monster Manual",
+	shortName: "MM",
 	initialState: true,
 	contents: [
 		[ "0cd9a2e0-16bc-4c84-86c8-feb035c0b5d6", 12 ], // Aarakocra

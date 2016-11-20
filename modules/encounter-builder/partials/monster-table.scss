@@ -17,4 +17,25 @@
 	&--tags {
 		font-style: italic;
 	}
+
+	&--source-name {
+		&__short {
+			display: inline;
+		}
+
+		&__long {
+			display: none;
+		}
+
+		@media (min-width: 768px) {
+			&__short {
+				display: none;
+			}
+
+			&__long {
+				display: inline;
+			}
+		}
+	}
+
 }

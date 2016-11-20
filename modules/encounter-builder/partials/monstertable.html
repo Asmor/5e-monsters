@@ -67,8 +67,16 @@
 				<td class="monster-table--source-cell">
 					<div
 						ng-repeat="source in monster.sources"
-						ng-show="filters.source[source.name]">
-						{{ source.name }} <span ng-if="source.page">p.{{ source.page }}</span> <span ng-if="source.url"><a target="_blank" href="{{ source.url }}">[Link]</a></span>
+						ng-show="filters.source[source.name]"
+					>
+							<span class="monster-table--source-name monster-table--source-name__short" title="{{ source.name }}">
+								{{ sources.shortNames[source.name] }}
+							</span>
+							<span class="monster-table--source-name monster-table--source-name__long">
+								{{ source.name }}
+							</span>
+							<span ng-if="source.page">p.{{ source.page }}</span>
+							<span ng-if="source.url"><a target="_blank" href="{{ source.url }}">[Link]</a></span>
 					</div>
 				</td>
 			</tr>

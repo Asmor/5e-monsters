@@ -2,6 +2,7 @@
 
 define({
 	name: "Primeval Thule Campaign Setting",
+	shortName: "ThuleCS",
 	initialState: true,
 	contents: [
 		[ "2f347c0d-1e2a-40a7-8c1d-9f6d69c67341", 220 ], // Abominable Sloth

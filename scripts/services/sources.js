@@ -5,6 +5,7 @@ define(["scripts/misc"], function (miscLib) {
 		return {
 			all: miscLib.sources,
 			filters: miscLib.sourceFilters,
+			shortNames: miscLib.shortNames,
 		};
 	};
 });

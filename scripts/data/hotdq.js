@@ -2,6 +2,7 @@
 
 define({
 	name: "Hoard of the Dragon Queen",
+	shortName: "Hoard",
 	initialState: true,
 	contents: [
 		[ "f495d63f-f936-4985-a2d3-6a8ec2a20fb0", 88 ], // Ambush Drake

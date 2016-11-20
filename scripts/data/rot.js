@@ -2,6 +2,7 @@
 
 define({
 	name: "Rise of Tiamat",
+	shortName: "Tiamat",
 	initialState: true,
 	contents: [
 		[ "14062b7c-449d-4dd8-b936-e6c3054bc4dd", 89 ], // Dragonfang

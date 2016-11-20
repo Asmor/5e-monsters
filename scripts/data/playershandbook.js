@@ -2,6 +2,7 @@
 
 define({
 	name: "Player's Handbook",
+	shortName: "PHB",
 	initialState: true,
 	contents: [
 		[ "afee8041-1219-4d31-931d-3c3a08b0b449", 304 ], // Bat
