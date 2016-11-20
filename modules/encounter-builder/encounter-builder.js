@@ -139,6 +139,7 @@ define(["scripts/constants"], function (constants) {
 				if ( sourceTypes.match(/all|core|books/) ) {
 					select.push("Player's Handbook");
 					select.push("Monster Manual");
+					select.push("Volo's Guide to Monsters");
 				}
 
 				if ( sourceTypes.match(/all|books/) ) {
