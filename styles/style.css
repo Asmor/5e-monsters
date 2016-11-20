@@ -7573,6 +7573,9 @@ button.close {
   .search--section {
     margin-left: 1rem; }
 
+.sources-modal--buttons {
+  margin-bottom: 2rem; }
+
 .sidebar--legend {
   bottom: 0;
   right: 1rem;

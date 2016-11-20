@@ -121,7 +121,10 @@ define({
 			$scope.filters.environment = null;
 		};
 
-		$scope.updateSourceFilters = function () {
+		$scope.updateSourceFilters = function (newValue) {
+			if (newValue) {
+				$scope.filters.sources = newValue;
+			}
 			// The default is core, but for implementation reasons it's represented by the empty string
 			var sourceTypes = $scope.filters.sources || "core",
 				select = [ ],
