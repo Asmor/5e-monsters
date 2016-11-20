@@ -1,16 +1,20 @@
 .monster-table {
 	margin-top: 2rem;
 
+	&--button-cell {
+		text-align: center;
+	}
+
 	&--cr-cell {
 		@include challenge-colors;
 	}
 
-	.monster-table--section {
+	&--section {
 		font-size: 0.95rem;
 		font-variant: small-caps;
 	}
 
-	.monster-table--tags {
+	&--tags {
 		font-style: italic;
 	}
 }

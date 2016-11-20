@@ -1,9 +1,9 @@
 <h2>
 	Encounter Info 
-	<button class="btn btn-info pull-right" ng-click="encounter.generateRandom(filters)">Random Encounter</button>
+	<button class="btn btn-info pull-right" ng-click="encounter.generateRandom(filters)">Random</button>
 </h2>
 <p class="current-encounter--empty bg-info text-muted" ng-if="encounter.qty == 0">
-	Create an encounter by clicking the Random Encounter button or by adding monsters from the monsters table.
+	Create an encounter by clicking the Random encounter button or by adding monsters from the monsters table.
 </p>
 <div class="current-encounter" ng-class="{ 'current-encounter__shown': encounter.qty }">
 	<div class="current-encounter--body">
@@ -12,8 +12,8 @@
 						<div class="current-encounter--monster-info">
 							<span class="current-encounter--monster-name text-capitalized">{{ group.monster.name }}</span>
 							<div>
-								<span>CR: {{ group.monster.cr.string }}</span>
-								<span>XP: {{ group.monster.cr.exp | number}}</span>
+								<span class="current-encounter--monster-cr">CR: {{ group.monster.cr.string }}</span>
+								<span class="current-encounter--monster-xp">XP: {{ group.monster.cr.exp | number}}</span>
 									<div class="current-encounter--monster-source" ng-repeat="source in group.monster.sources" ng-show="filters.source[source.name]" title="{{source.name}} p.{{source.page}}">
 										{{ source.name }} 
 										<span ng-if="source.page">p.{{ source.page }}</span> 

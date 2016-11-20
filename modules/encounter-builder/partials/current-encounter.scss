@@ -29,6 +29,19 @@
 		font-weight: 300;
 	}
 
+	&--monster-cr {
+		font-size: 1.1em;
+	}
+
+	&--monster-xp {
+		font-size: 1.1em;
+		margin-left: 1rem;
+	}
+
+	&--monster-qty-col {
+		min-width: 130px;
+	}
+
 	&--monster-qty {
 		display: inline;
 		vertical-align: middle;

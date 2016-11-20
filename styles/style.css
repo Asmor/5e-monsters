@@ -7445,6 +7445,13 @@ button.close {
   .current-encounter--monster-name {
     font-size: 2.25em;
     font-weight: 300; }
+  .current-encounter--monster-cr {
+    font-size: 1.1em; }
+  .current-encounter--monster-xp {
+    font-size: 1.1em;
+    margin-left: 1rem; }
+  .current-encounter--monster-qty-col {
+    min-width: 130px; }
   .current-encounter--monster-qty {
     display: inline;
     vertical-align: middle;
@@ -7504,29 +7511,30 @@ button.close {
     font-weight: bold; }
   .group-info--guidelines-values {
     text-align: right;
-    padding-left: 5px;
-    padding-right: 20px; }
+    padding-left: 5px; }
 
 .monster-table {
   margin-top: 2rem; }
+  .monster-table--button-cell {
+    text-align: center; }
   .monster-table--cr-cell__deadly {
-    background-color: #fbb; }
+    background-color: #eba5a3; }
   .monster-table--cr-cell__hard {
-    background-color: #fa8; }
+    background-color: #f6ce95; }
   .monster-table--cr-cell__medium {
-    background-color: #ffb; }
+    background-color: #faf2cc; }
   .monster-table--cr-cell__easy {
-    background-color: #cfb; }
+    background-color: #dff0d8; }
   .monster-table--cr-cell__pair {
-    background-color: #bef; }
+    background-color: #d9edf7; }
   .monster-table--cr-cell__group {
-    background-color: #ebf; }
+    background-color: #f7dfff; }
   .monster-table--cr-cell__trivial {
     background-color: #fff; }
-  .monster-table .monster-table--section {
+  .monster-table--section {
     font-size: 0.95rem;
     font-variant: small-caps; }
-  .monster-table .monster-table--tags {
+  .monster-table--tags {
     font-style: italic; }
 
 .pagination-container {
@@ -7572,17 +7580,17 @@ button.close {
   text-align: right;
   z-index: 2; }
   .sidebar--legend__deadly {
-    background-color: #fbb; }
+    background-color: #eba5a3; }
   .sidebar--legend__hard {
-    background-color: #fa8; }
+    background-color: #f6ce95; }
   .sidebar--legend__medium {
-    background-color: #ffb; }
+    background-color: #faf2cc; }
   .sidebar--legend__easy {
-    background-color: #cfb; }
+    background-color: #dff0d8; }
   .sidebar--legend__pair {
-    background-color: #bef; }
+    background-color: #d9edf7; }
   .sidebar--legend__group {
-    background-color: #ebf; }
+    background-color: #f7dfff; }
   .sidebar--legend__trivial {
     background-color: #fff; }
   .sidebar--legend li {
@@ -7591,22 +7599,22 @@ button.close {
     text-align: left; }
 
 .legend-sm__deadly {
-  background-color: #fbb; }
+  background-color: #eba5a3; }
 
 .legend-sm__hard {
-  background-color: #fa8; }
+  background-color: #f6ce95; }
 
 .legend-sm__medium {
-  background-color: #ffb; }
+  background-color: #faf2cc; }
 
 .legend-sm__easy {
-  background-color: #cfb; }
+  background-color: #dff0d8; }
 
 .legend-sm__pair {
-  background-color: #bef; }
+  background-color: #d9edf7; }
 
 .legend-sm__group {
-  background-color: #ebf; }
+  background-color: #f7dfff; }
 
 .legend-sm__trivial {
   background-color: #fff; }

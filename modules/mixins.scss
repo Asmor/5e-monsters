@@ -24,27 +24,27 @@
 
 @mixin challenge-colors {
 	&__deadly {
-		background-color: #fbb;
+		background-color: lighten($brand-danger, 20%);
 	}
 
 	&__hard {
-		background-color: #fa8;
+		background-color: lighten($brand-warning, 15%);
 	}
 
 	&__medium {
-		background-color: #ffb;
+		background-color: darken($state-warning-bg, 5%);
 	}
 
 	&__easy {
-		background-color: #cfb;
+		background-color: $state-success-bg;
 	}
 
 	&__pair {
-		background-color: #bef;
+		background-color: $state-info-bg;
 	}
 
 	&__group {
-		background-color: #ebf;
+		background-color: lighten(#ebf, 7%);
 	}
 
 	&__trivial {
