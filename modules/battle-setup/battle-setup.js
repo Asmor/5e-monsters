@@ -3,7 +3,7 @@
 define(["scripts/constants"], function (constants) {
 	return {
 		url: "/battle-setup",
-		templateUrl: "modules/battle-setup/battle-setup.html",
+		templateUrl: "modules/battle-setup/battle-setup.html?" + constants.VERSION,
 		controller: function ($scope, $state, actionQueue, combat, util) {
 			window.scope = $scope;
 

@@ -5,4 +5,7 @@ define({
 	READY       : 1,
 	NO_MONSTERS : 2,
 	NO_PLAYERS  : 4,
+
+	// Used for cache-busting
+	VERSION: 1,
 });

@@ -1,6 +1,6 @@
 "use strict";
 
-define(function () {
+define(["scripts/constants"], function (constants) {
 	var crs = [],
 		sourceFilters = {},
 		sources = [],
@@ -88,7 +88,7 @@ define(function () {
 			return [
 				base || moduleName,
 				partialName,
-				".html",
+				".html?" + constants.VERSION,
 			].join("");
 		};
 	}
