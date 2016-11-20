@@ -87,7 +87,7 @@ define({
 		[ "21fd5290-e0e5-4ca7-85e6-729b083335ef", 170 ], // Meenlock
 		// Mind Flayers
 		[ "2453a9e3-8aaa-4863-a50a-e2f0f2b91544", 172 ], // Alhoon
-		// [ "41c4c37c-2cc1-4bd9-8332-2494f89d37fc", 172 ], // Mind Flayer Lich (Illithilich)
+		[ "41c4c37c-2cc1-4bd9-8332-2494f89d37fc", 172 ], // Mind Flayer Lich (Illithilich)
 		[ "c4a5e124-2aa6-40a5-800c-43148b0fbc99", 173 ], // Elder Brain
 		[ "839c78e4-80b5-4bb8-8520-a34dbe2bf267", 175 ], // Ulitharid
 		[ "156b6bb2-0a7f-4cc6-b2bd-f5b169334c9e", 176 ], // Mindwitness
@@ -114,6 +114,7 @@ define({
 
 		[ "c133c8f1-0c56-4559-9d65-e5670f03ee51", 189 ], // Sea Spawn
 		[ "24d66847-cd56-4edf-a8c9-2973df80b051", 190 ], // Shadow Mastiff
+		[ "3538794e-d8ff-426f-9019-04bbcd08397b", 190 ], // Shadow Mastiff Alpha
 		[ "3020ee17-2fc0-473d-a8e3-f730c05bc935", 191 ], // Slithering Tracker
 		[ "4d268c1d-293b-4351-b849-6fbb79aeae8a", 192 ], // Spawn of Kyuss
 
@@ -130,6 +131,7 @@ define({
 
 		// Xvarts
 		[ "c6323018-2f32-49bd-8b94-2889024f4dbc", 200 ], // Xvart
+		[ "6746c13c-6bb1-4e96-8dd1-b0027e8683c8", 200 ], // Xvart Speaker
 		[ "9af47702-ffc4-4555-a977-7d1339b59933", 200 ], // Xvart Warlock of Raxivort
 
 		[ "65451d58-1f95-4b9b-9fd0-d6c5205edf42", 201 ], // Yeth Hound
@@ -143,7 +145,9 @@ define({
 		// Appendix A: Assorted Beasts
 		[ "fadbf43c-75c4-49e1-95f7-99675ee7f93c", 207 ], // Aurochs
 		[ "f7def5c8-1b2c-4a36-8bb6-c87c74053dbd", 207 ], // Cow
-		// [ "",  ], // Other Cow types
+		[ "8c8e238a-0c86-43d0-aa45-7860b9da17aa", 208 ], // Cow (Ox)
+		[ "e8defb89-88b4-49e7-b636-6aa98ce0974a", 208 ], // Rothe
+		[ "9140ec74-c6cb-453d-b9fa-624a177aa84a", 208 ], // Stench Cow
 		[ "6797c463-8d3a-4bda-8073-db40a364a058", 208 ], // Dolphin
 		[ "073f64fe-97e3-4d24-b203-fa511db582cc", 208 ], // Swarm of Rot Grubs
 
