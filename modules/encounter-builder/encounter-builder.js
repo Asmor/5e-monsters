@@ -130,6 +130,7 @@ define({
 				select.push("Out of the Abyss");
 				select.push("Curse of Strahd");
 				select.push("Storm King's Thunder"); 
+				select.push("Volo's Guide to Monsters"); 
 			}
 
 			if ( sourceTypes.match(/all|basic/) ) {
