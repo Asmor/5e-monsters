@@ -1,0 +1,93 @@
+.current-encounter {
+	display: none;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+
+	&__shown {
+		display: block;
+	}
+
+	&--empty {
+		border-radius: 0.5rem;
+		margin-top: 2rem;
+		padding: 1rem;
+	}
+
+	&--row {
+		margin-bottom: 2rem;
+		display: flex;
+		flex-direction: row;
+	}
+
+	&--monster-info {
+		flex-grow: 1;
+		padding-bottom: 0.5rem;
+	}
+
+	&--monster-name {
+		font-size: 2.25em;
+		font-weight: 300;
+	}
+
+	&--monster-cr {
+		font-size: 1.1em;
+	}
+
+	&--monster-xp {
+		font-size: 1.1em;
+		margin-left: 1rem;
+	}
+
+	&--monster-qty-col {
+		min-width: 130px;
+	}
+
+	&--monster-qty {
+		display: inline;
+		vertical-align: middle;
+		width: 6rem;
+	}
+
+	&--monster-qty-btns {
+		display: inline-block;
+		vertical-align: middle;
+
+		button {
+			display: block;
+		}
+	}
+
+	&--monster-source {
+		overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+	}
+
+	&--btns {
+		margin-top: 1rem;
+		text-align: right;
+
+		.btn-new {
+			margin-right: 1rem;
+		}
+	}
+
+	&--totals {
+		border-top: 1px solid #ddd;
+		display: flex;
+		font-size: 1.5em;
+		padding-top: 1rem;
+
+		&-difficulty {
+			flex-grow: 1;
+		}
+
+		&-xp {
+			text-align: right;
+
+			span {
+				display: block;
+			}
+		}
+	}
+}

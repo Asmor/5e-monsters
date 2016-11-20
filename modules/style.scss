@@ -5,13 +5,16 @@
 $fa-font-path: "../thirdparty/font-awesome-4.1.0/fonts";
 @import "../thirdparty/font-awesome-4.1.0/scss/font-awesome";
 
+// Bootstrap
+@import "../thirdparty/bootstrap-sass-3.3.7/assets/stylesheets/bootstrap";
+
 $menu-button-height: 40px;
 $menu-button-width: 60px;
 
 $sidebar-width: 250px;
 $encounter-builder-height: 250px;
 $encounter-builder-height-closed: 0;
-$pagination-height: 40px;
+$pagination-height: 70px;
 
 // Color-blind friendly palette via http://blog.mollietaylor.com/2012/10/color-blindness-and-palette-choice.html							
 $combatant-player: #66C2A5; // Aqua

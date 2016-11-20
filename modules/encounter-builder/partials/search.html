@@ -1,0 +1,89 @@
+<div class="search">
+	<div class="search--search-form form-inline">
+		<label class="sr-only">Search</label>
+		<input class="form-control search-input" type="text" ng-model="filters.search" placeholder="Search...">
+		
+		<select class="form-control"
+				ng-model="filters.size"
+				ng-options="size for size in sizes">
+			<option value="">Any Size</option>
+		</select>
+
+		<select class="form-control"
+				ng-model="filters.type"
+				ng-options="type for type in types">
+			<option value="">Any Type</option>
+		</select>
+
+		<select class="form-control"
+				ng-model="filters.minCr"
+				ng-options="cr.numeric as cr.string for cr in crList">
+				<option value="">Min CR</option>
+			</select>
+		
+		<select class="form-control"
+				ng-model="filters.maxCr"
+				ng-options="cr.numeric as cr.string for cr in crList">
+			<option value="">Max CR</option>
+		</select>
+
+		<select class="form-control"
+			ng-model="filters.alignment"
+			ng-options="alignment as alignment.text for (key, alignment) in alignments">
+			<option value="">Any Alignment</option>
+		</select>
+
+		<select class="form-control"
+				ng-model="filters.environment"
+				ng-options="environment as environment for environment in environments">
+			<option value="">Any Environment</option>
+		</select>
+		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#sourcesModal">
+		  Set Sources
+		</button>
+	</div>
+	<div class="search--reset">
+		<button class="btn btn-danger" ng-click="resetFilters()">Reset Filters</button>
+
+		<div class="search--size-controls">
+			<label>Page size:</label>
+			<select class="form-control search--page-size"
+				ng-model="filters.pageSize"
+				ng-options="page for page in [10, 25, 50, 100, 250, 500, 1000]"
+			></select>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal" id="sourcesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Set Source Material</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="sources-modal--buttons">
+	      		<button class="btn btn-primary" ng-click="updateSourceFilters('all')">Everything</button>
+	      		<button class="btn btn-primary" ng-click="updateSourceFilters('core')">Core Books</button>
+	      		<button class="btn btn-primary" ng-click="updateSourceFilters('books')">All Books</button>
+	      		<button class="btn btn-primary" ng-click="updateSourceFilters('basic')">Basic</button>
+	      		<button class="btn btn-primary" ng-click="updateSourceFilters('thirdparty')">Third Party</button>
+	      	</div>
+	        <ul>
+						<li class="search--source"
+							ng-repeat="source in sources"
+							ng-class="{ 'search--source__off': !filters.source[source] }">
+							<label>
+								<input type="checkbox" ng-model="filters.source[source]">
+								{{ source }}
+							</label>
+						</li>
+					</ul>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>

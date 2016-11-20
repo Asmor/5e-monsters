@@ -1,4 +1,33 @@
-@import 'partials/encounter-builder';
-@import 'partials/filters';
+@import 'partials/current-encounter';
+@import 'partials/group-info';
 @import 'partials/monster-table';
 @import 'partials/pagination';
+@import 'partials/search';
+
+.sidebar {
+	&--legend {
+		bottom: 0;
+		right: 1rem;
+		position: fixed;
+		text-align: right;
+		z-index: 2;
+
+		@include challenge-colors;
+
+		li {
+			padding: 5px;
+		}
+
+		&-popout {
+			text-align: left;
+		}
+	}
+}
+
+.legend-sm {
+		@include challenge-colors;
+		
+		li {
+			padding: 5px;
+		}
+	}

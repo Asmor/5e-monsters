@@ -1,0 +1,42 @@
+.group-info {
+	display: flex;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid #ddd;
+
+	&--header {
+		display: inline-block;
+		margin-top: 0;
+		width: 20rem;
+	}
+
+	&--input {
+		flex-grow: 1;
+
+		label {
+			display: block;
+		}
+
+		&-section {
+			@include make-xs-column(2);
+			width: 9rem;
+		}
+
+		&-section:last-child {
+			padding-left: 0;
+		}
+	}
+
+	&--guidelines {
+		margin-top: 1rem;
+		text-align: right;
+	}
+
+	&--guidelines-active {
+		font-weight: bold;
+	}
+
+	&--guidelines-values {
+		text-align: right;
+		padding-left: 5px;
+	}
+}
