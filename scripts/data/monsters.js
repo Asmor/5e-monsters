@@ -12142,7 +12142,7 @@ define([
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 10, hp: 9, int: 0, cr: "1/4",
 			alignment: alignments.any,
-			environments: [ "urban" ]
+			environments: [ "urban" ],
 			id: "b2e98789-523a-44fb-83c1-0e73e53c4c82",
 		},
 		{
