@@ -7427,7 +7427,8 @@ button.close {
 
 .current-encounter {
   display: none;
-  margin-top: 2rem; }
+  margin-top: 2rem;
+  margin-bottom: 2rem; }
   .current-encounter__shown {
     display: block; }
   .current-encounter--empty {
@@ -7541,9 +7542,18 @@ button.close {
   .search--search-form {
     flex-grow: 1; }
   .search--search-form * {
-    margin-bottom: 1rem; }
+    margin-bottom: 1rem;
+    margin-right: 0.5rem; }
   .search .search-input {
-    min-width: 45rem; }
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: 1rem; }
+    @media (min-width: 992px) {
+      .search .search-input {
+        float: left;
+        width: 50%; } }
   .search--sources-button {
     display: inline-block; }
   .search--size-controls {

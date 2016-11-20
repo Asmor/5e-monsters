@@ -7,10 +7,12 @@
 
 	&--search-form * {
 		margin-bottom: 1rem;
+		margin-right: 0.5rem;
 	}
 
 	& .search-input {
-		min-width: 45rem;
+		@include make-md-column(6);
+		margin-right: 1rem;
 	}
 
 	&--sources-button {
