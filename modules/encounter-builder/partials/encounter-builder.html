@@ -8,21 +8,8 @@
 <div class="current-encounter" ng-class="{ 'current-encounter__shown': encounter.qty }">
 	<div class="current-encounter--body">
 		<div class="current-encounter--table">
-			<div class="current-encounter--row row" ng-repeat="group in encounter.groups | sortEncounter">
-				<div class="current-encounter--column current-encounter--column__buttons col-xs-3">
-					<button ng-click="encounter.add(group.monster)" class="encounter-button">
-						<i class="fa fa-plus"></i>
-					</button>
-					<button ng-click="encounter.remove(group.monster)" class="encounter-button">
-						<i class="fa fa-minus"></i>
-					</button>
-					<button ng-click="encounter.randomize(group.monster, filters)" class="encounter-button">
-						<i class="fa fa-random"></i>
-					</button>
-				</div>
-				<div class="current-encounter--column current-encounter--column__name col-xs-9">
-					<div class="row">
-						<div class="current-encounter--monster-info col-xs-9">
+			<div class="current-encounter--row" ng-repeat="group in encounter.groups | sortEncounter">
+						<div class="current-encounter--monster-info">
 							<span class="current-encounter--monster-name text-capitalized">{{ group.monster.name }}</span>
 							<div>
 								<span>CR: {{ group.monster.cr.string }}</span>
@@ -34,12 +21,20 @@
 									</div>
 							</div>
 						</div>
-						<div class="col-xs-3">
+						<div class="current-encounter--monster-qty-col">
+							<button ng-click="encounter.randomize(group.monster, filters)" class="btn btn-default" title="Shuffle Monster">
+								<i class="fa fa-random"></i>
+							</button>
 							<input class="current-encounter--monster-qty form-control input-lg" type="number" ng-model="group.qty">
+							<div class="current-encounter--monster-qty-btns">
+								<button ng-click="encounter.add(group.monster)" class="btn btn-xs btn-success">
+									<i class="fa fa-plus"></i>
+								</button>
+								<button ng-click="encounter.remove(group.monster)" class="btn btn-xs btn-danger">
+									<i class="fa fa-minus"></i>
+								</button>
+							</div>
 						</div>
-					</div>
-					
-				</div>
 			</div>
 		</div>
 		<div class="current-encounter--header">

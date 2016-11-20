@@ -14,18 +14,37 @@
 
 	&--row {
 		margin-bottom: 2rem;
+		display: flex;
+		flex-direction: row;
 	}
 
 	&--monster-info {
+		flex-grow: 1;
 		padding-bottom: 0.5rem;
 	}
+
+	&--monster-qty-col {
+
+	}
+
 
 	&--monster-name {
 		font-size: 2rem;
 	}
 
 	&--monster-qty {
-		min-width: 3rem;
+		display: inline;
+		vertical-align: middle;
+		width: 6rem;
+	}
+
+	&--monster-qty-btns {
+		display: inline-block;
+		vertical-align: middle;
+
+		button {
+			display: block;
+		}
 	}
 
 	&--monster-source {

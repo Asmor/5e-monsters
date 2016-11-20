@@ -7435,13 +7435,23 @@ button.close {
     margin-top: 2rem;
     padding: 1rem; }
   .current-encounter--row {
-    margin-bottom: 2rem; }
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row; }
   .current-encounter--monster-info {
+    flex-grow: 1;
     padding-bottom: 0.5rem; }
   .current-encounter--monster-name {
     font-size: 2rem; }
   .current-encounter--monster-qty {
-    min-width: 3rem; }
+    display: inline;
+    vertical-align: middle;
+    width: 6rem; }
+  .current-encounter--monster-qty-btns {
+    display: inline-block;
+    vertical-align: middle; }
+    .current-encounter--monster-qty-btns button {
+      display: block; }
   .current-encounter--monster-source {
     overflow: hidden;
     white-space: nowrap;
