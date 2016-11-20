@@ -1,10 +1,6 @@
 .edit-players {
 	padding: 10px;
-	position: fixed;
-	top: $menu-button-height;
-	left: 0;
-	right: 0;
-	bottom: 0;
+	min-height: 500px;
 
 	&--text-input {
 		height: 100%;

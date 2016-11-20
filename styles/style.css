@@ -7716,11 +7716,7 @@ button.close {
 
 .edit-players {
   padding: 10px;
-  position: fixed;
-  top: 40px;
-  left: 0;
-  right: 0;
-  bottom: 0; }
+  min-height: 500px; }
   .edit-players--text-input {
     height: 100%;
     width: 100%;
@@ -7758,10 +7754,7 @@ button.close {
   vertical-align: middle; }
 
 .players-controls {
-  padding: 10px;
-  box-sizing: border-box;
-  min-height: 40px;
-  padding-left: 70px; }
+  padding: 10px; }
 
 .account {
   min-height: 40px;
