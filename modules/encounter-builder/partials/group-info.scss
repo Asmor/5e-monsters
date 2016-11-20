@@ -1,12 +1,17 @@
-.filters {
+.group-info {
+	display: flex;
 	padding-bottom: 1rem;
 	border-bottom: 1px solid #ddd;
 
 	&--header {
+		display: inline-block;
 		margin-top: 0;
+		width: 20rem;
 	}
 
-	&--group-info {
+	&--input {
+		flex-grow: 1;
+
 		label {
 			display: block;
 		}
@@ -23,6 +28,7 @@
 
 	&--guidelines {
 		margin-top: 1rem;
+		text-align: right;
 	}
 
 	&--guidelines-active {

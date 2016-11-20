@@ -23,11 +23,6 @@
 		padding-bottom: 0.5rem;
 	}
 
-	&--monster-qty-col {
-
-	}
-
-
 	&--monster-name {
 		font-size: 2.25em;
 		font-weight: 300;
@@ -54,13 +49,31 @@
     text-overflow: ellipsis;
 	}
 
-	&--header {
-		@include header;
+	&--btns {
+		margin-top: 1rem;
+		text-align: right;
+
+		.btn-new {
+			margin-right: 1rem;
+		}
 	}
 
-	&--new-button,
-	&--save-button {
-		@extend .encounter-button;
-		margin: 5px;
+	&--totals {
+		border-top: 1px solid #ddd;
+		display: flex;
+		font-size: 1.5em;
+		padding-top: 1rem;
+
+		&-difficulty {
+			flex-grow: 1;
+		}
+
+		&-xp {
+			text-align: right;
+
+			span {
+				display: block;
+			}
+		}
 	}
 }

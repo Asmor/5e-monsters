@@ -37,16 +37,16 @@
 						</div>
 			</div>
 		</div>
-		<div class="current-encounter--header">
-			<div>Encounter: {{ encounter.difficulty }}</div>
-			<div>Total XP: {{ encounter.exp | number }}
-			Adjusted XP: {{ encounter.adjustedExp | number }}</div>
+		<div class="current-encounter--totals">
+			<div class="current-encounter--totals-difficulty">Difficulty: {{ encounter.difficulty }}</div>
+			<div class="current-encounter--totals-xp">
+				<span>Total XP: {{ encounter.exp | number }}</span>
+				<span>Adjusted XP: {{ encounter.adjustedExp | number }}</span>
+			</div>
 		</div>
-		<button class="current-encounter--new-button" ng-click="encounter.reset()">
-			New encounter
-		</button>
-		<button class="current-encounter--save-button" ui-sref="encounter-manager" ng-if="!encounter.reference">
-			Save encounter
-		</button>
+		<div class="current-encounter--btns">
+			<button class="btn btn-danger btn-new" ng-click="encounter.reset()">New</button>
+			<button class="btn btn-success" ui-sref="encounter-manager" ng-if="!encounter.reference">Save</button>
+		</div>
 	</div>
 </div>

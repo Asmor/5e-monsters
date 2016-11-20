@@ -7399,7 +7399,7 @@ button.close {
   clear: left;
   border-bottom: 1px solid #000; }
 
-.encounter-button, .number-input--button, .current-encounter--new-button, .current-encounter--save-button, .encounter-manager-encounter--save-button, .encounter-manager-encounter--remove-button, .encounter-manager-encounter--load-button, .combatant-setup--button, .combat-controls--next-turn, .combatant--apply-button, .manage-players--party-select-button {
+.encounter-button, .number-input--button, .encounter-manager-encounter--save-button, .encounter-manager-encounter--remove-button, .encounter-manager-encounter--load-button, .combatant-setup--button, .combat-controls--next-turn, .combatant--apply-button, .manage-players--party-select-button {
   height: 35px;
   min-width: 35px;
   text-align: center;
@@ -7408,7 +7408,7 @@ button.close {
   border-radius: 2px;
   cursor: pointer;
   padding: 5px; }
-  .encounter-button:active, .number-input--button:active, .current-encounter--new-button:active, .current-encounter--save-button:active, .encounter-manager-encounter--save-button:active, .encounter-manager-encounter--remove-button:active, .encounter-manager-encounter--load-button:active, .combatant-setup--button:active, .combat-controls--next-turn:active, .combatant--apply-button:active, .manage-players--party-select-button:active {
+  .encounter-button:active, .number-input--button:active, .encounter-manager-encounter--save-button:active, .encounter-manager-encounter--remove-button:active, .encounter-manager-encounter--load-button:active, .combatant-setup--button:active, .combat-controls--next-turn:active, .combatant--apply-button:active, .manage-players--party-select-button:active {
     background-color: #eee; }
 
 .number-input--button__positive:not(:first-child) {
@@ -7457,36 +7457,51 @@ button.close {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis; }
-  .current-encounter--header {
-    padding: 5px;
-    background-color: #000;
-    color: #ddd;
-    font-weight: bold; }
-  .current-encounter--new-button, .current-encounter--save-button {
-    margin: 5px; }
+  .current-encounter--btns {
+    margin-top: 1rem;
+    text-align: right; }
+    .current-encounter--btns .btn-new {
+      margin-right: 1rem; }
+  .current-encounter--totals {
+    border-top: 1px solid #ddd;
+    display: flex;
+    font-size: 1.5em;
+    padding-top: 1rem; }
+    .current-encounter--totals-difficulty {
+      flex-grow: 1; }
+    .current-encounter--totals-xp {
+      text-align: right; }
+      .current-encounter--totals-xp span {
+        display: block; }
 
-.filters {
+.group-info {
+  display: flex;
   padding-bottom: 1rem;
   border-bottom: 1px solid #ddd; }
-  .filters--header {
-    margin-top: 0; }
-  .filters--group-info label {
-    display: block; }
-  .filters--group-info-section {
-    position: relative;
-    float: left;
-    width: 16.66667%;
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
-    width: 9rem; }
-  .filters--group-info-section:last-child {
-    padding-left: 0; }
-  .filters--guidelines {
-    margin-top: 1rem; }
-  .filters--guidelines-active {
+  .group-info--header {
+    display: inline-block;
+    margin-top: 0;
+    width: 20rem; }
+  .group-info--input {
+    flex-grow: 1; }
+    .group-info--input label {
+      display: block; }
+    .group-info--input-section {
+      position: relative;
+      float: left;
+      width: 16.66667%;
+      min-height: 1px;
+      padding-left: 15px;
+      padding-right: 15px;
+      width: 9rem; }
+    .group-info--input-section:last-child {
+      padding-left: 0; }
+  .group-info--guidelines {
+    margin-top: 1rem;
+    text-align: right; }
+  .group-info--guidelines-active {
     font-weight: bold; }
-  .filters--guidelines-values {
+  .group-info--guidelines-values {
     text-align: right;
     padding-left: 5px;
     padding-right: 20px; }
