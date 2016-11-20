@@ -2,6 +2,7 @@
 
 define({
 	name: "Volo's Guide to Monsters",
+	shortName: "Volo",
 	initialState: true,
 	contents: [ 
 		// Bestiary
