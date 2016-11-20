@@ -3,7 +3,7 @@
 define({
 	name: "Volo's Guide to Monsters",
 	initialState: true,
-	contents: [ //TODO: Add environments, p222
+	contents: [ 
 		// Bestiary
 		[ "c80a939f-3eb8-411d-b706-fd854706ce1b", 122 ], // Banderhobb
 		[ "efca8fda-9530-4c93-980b-7f3373403b94", 123 ], // Barghest 
@@ -126,7 +126,7 @@ define({
 		[ "483f3c15-a707-4ef1-8e37-6d1168d7b404", 197 ], // Vegepygmy Chief
 		[ "a8c83916-acbc-4a73-9c9b-cf75d187611a", 197 ], // Thorny
 
-		[ "7d758025-5f81-4ac7-a59e-6fca8774d61d",  ], // Wood Woad
+		[ "7d758025-5f81-4ac7-a59e-6fca8774d61d", 198 ], // Wood Woad
 
 		// Xvarts
 		[ "c6323018-2f32-49bd-8b94-2889024f4dbc", 200 ], // Xvart
