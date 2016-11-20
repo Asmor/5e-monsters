@@ -1,4 +1,10 @@
 .search {
+	display: flex;
+
+	&--search-form {
+		flex-grow: 1;
+	}
+
 	&--search-form * {
 		margin-bottom: 1rem;
 	}
@@ -11,7 +17,19 @@
 		display: inline-block;
 	}
 
-	.search--size-controls {
+	&--size-controls {
 		margin-top: 0.5rem;
+	}
+
+	&--reset {
+		margin-left: 1rem;
+	}
+
+	&--page-size {
+		width: 10rem;
+	}
+
+	&--section {
+		margin-left: 1rem;
 	}
 }

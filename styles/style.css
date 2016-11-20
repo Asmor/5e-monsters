@@ -7520,17 +7520,24 @@ button.close {
     display: inline-block;
     vertical-align: middle; }
 
-.search--search-form * {
-  margin-bottom: 1rem; }
-
-.search .search-input {
-  min-width: 45rem; }
-
-.search--sources-button {
-  display: inline-block; }
-
-.search .search--size-controls {
-  margin-top: 0.5rem; }
+.search {
+  display: flex; }
+  .search--search-form {
+    flex-grow: 1; }
+  .search--search-form * {
+    margin-bottom: 1rem; }
+  .search .search-input {
+    min-width: 45rem; }
+  .search--sources-button {
+    display: inline-block; }
+  .search--size-controls {
+    margin-top: 0.5rem; }
+  .search--reset {
+    margin-left: 1rem; }
+  .search--page-size {
+    width: 10rem; }
+  .search--section {
+    margin-left: 1rem; }
 
 .sidebar--legend {
   bottom: 0;
