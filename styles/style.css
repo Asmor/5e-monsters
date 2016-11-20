@@ -7442,7 +7442,8 @@ button.close {
     flex-grow: 1;
     padding-bottom: 0.5rem; }
   .current-encounter--monster-name {
-    font-size: 2rem; }
+    font-size: 2.25em;
+    font-weight: 300; }
   .current-encounter--monster-qty {
     display: inline;
     vertical-align: middle;
