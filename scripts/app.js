@@ -1,4 +1,11 @@
+/* global requirejs */
 "use strict";
+
+requirejs.config({
+	// For cache-busting. Should be kept in sync with value in constants.js
+	urlArgs: "version=1",
+});
+
 
 require([
 	"modules/encounter-builder/encounter-builder",
