@@ -13,7 +13,6 @@ require([
 	"app/battle-setup/battle-setup",
 	"app/battle-tracker/battle-tracker",
 	"app/players/players",
-	// "app/account/account",
 	"app/common/common",
 	"app/filters",
 	"app/services/actionQueue",
@@ -33,7 +32,6 @@ require([
 	battleSetup,
 	battleTracker,
 	players,
-	// account,
 	common,
 	filters,
 	actionQueueService,
@@ -66,7 +64,6 @@ require([
 			$stateProvider.state("players", players.main);
 			$stateProvider.state("players.edit", players.edit);
 			$stateProvider.state("players.manage", players.manage);
-			// $stateProvider.state("account", account);
 		})
 		.directive("numberInput", common.numberInput)
 		.filter("monstersFilter", filters.monster)
