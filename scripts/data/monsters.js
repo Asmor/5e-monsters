@@ -1,7 +1,7 @@
 "use strict";
 
 define([
-	"scripts/meta/alignments",
+	"app/meta/alignments",
 ], function (alignments) {
 	return [
 		// Custom

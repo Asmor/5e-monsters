@@ -1,7 +1,7 @@
 "use strict";
 
 define([
-	"scripts/misc",
+	"app/misc",
 ], function (miscLib) {
 	return ["$rootScope", "randomEncounter", "store", "metaInfo", "monsters", "players", "util", function ($rootScope, randomEncounter, store, metaInfo, monsters, players, util) {
 		var encounter = {

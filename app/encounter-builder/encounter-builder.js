@@ -1,9 +1,9 @@
 "use strict";
 
-define(["scripts/constants"], function (constants) {
+define(["app/constants"], function (constants) {
 	return {
 		url: "/encounter-builder",
-		templateUrl: "modules/encounter-builder/encounter-builder.html?" + constants.VERSION,
+		templateUrl: "app/encounter-builder/encounter-builder.html?" + constants.VERSION,
 		controller: function (
 			$scope,
 			store,
@@ -19,7 +19,7 @@ define(["scripts/constants"], function (constants) {
 			// There's no way to tell when they're done building an encounter, so clear the queue if they ever make it here.
 			actionQueue.clear();
 
-			$scope.partial = util.partialFactory("modules/encounter-builder/partials/");
+			$scope.partial = util.partialFactory("app/encounter-builder/partials/");
 
 			$scope.alignments = metaInfo.alignments;
 			$scope.crList = metaInfo.crList;

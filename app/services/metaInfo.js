@@ -1,9 +1,9 @@
 "use strict";
 
 define([
-	"scripts/misc",
-	"scripts/meta/alignments",
-	"scripts/meta/crInfo",
+	"app/misc",
+	"app/meta/alignments",
+	"app/meta/crInfo",
 ], function (miscLib, alignments, crInfo) {
 	return function () {
 		var metaInfo = {

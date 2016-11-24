@@ -1,13 +1,13 @@
 "use strict";
 
-define(["scripts/constants"], function (constants) {
+define(["app/constants"], function (constants) {
 	return {
 		url: "/encounter-manager",
-		templateUrl: "modules/encounter-manager/encounter-manager.html?" + constants.VERSION,
+		templateUrl: "app/encounter-manager/encounter-manager.html?" + constants.VERSION,
 		controller: function ($scope, $state, actionQueue, encounter, library, monsters, util) {
 			window.scope = $scope;
 
-			$scope.partial = util.partialFactory("modules/encounter-manager/partials/");
+			$scope.partial = util.partialFactory("app/encounter-manager/partials/");
 
 			$scope.encounter = encounter;
 			$scope.library = library;

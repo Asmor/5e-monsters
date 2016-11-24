@@ -1,7 +1,7 @@
 "use strict";
 define([
-	"scripts/meta/alignments",
-	"scripts/meta/crInfo",
+	"app/meta/alignments",
+	"app/meta/crInfo",
 ], function (alignments, crInfo) {
 	function Monster(args) {
 		var monster = this;

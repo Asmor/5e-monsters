@@ -1,6 +1,6 @@
 "use strict";
 
-define(["scripts/constants"], function (constants) {
+define(["app/constants"], function (constants) {
 	return function () {
 		return {
 			restrict: "E",
@@ -9,7 +9,7 @@ define(["scripts/constants"], function (constants) {
 				mods: '=buttons',
 				nonNegative: '=nonNegative'
 			},
-			templateUrl: "modules/common/number-input.html?" + constants.VERSION,
+			templateUrl: "app/common/number-input.html?" + constants.VERSION,
 			link: function (scope) {
 				scope.isNonNegative = function () {
 					if (scope.nonNegative && scope.value === 0) {

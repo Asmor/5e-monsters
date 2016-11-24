@@ -1,13 +1,13 @@
 "use strict";
 
-define(["scripts/constants"], function (constants) {
+define(["app/constants"], function (constants) {
 	return {
 		url: "/account",
-		templateUrl: "modules/account/account.html?" + constants.VERSION,
+		templateUrl: "app/account/account.html?" + constants.VERSION,
 		controller: function ($scope, $state, account, actionQueue, util) {
 			window.scope = $scope;
 
-			$scope.partial = util.partialFactory("modules/account/partials/");
+			$scope.partial = util.partialFactory("app/account/partials/");
 
 			$scope.account = account;
 

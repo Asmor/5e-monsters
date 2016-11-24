@@ -1,9 +1,9 @@
 "use strict";
 
-define(["scripts/constants"], function (constants) {
+define(["app/constants"], function (constants) {
 	return {
 		url: "/fight",
-		templateUrl: "modules/battle-tracker/battle-tracker.html?" + constants.VERSION,
+		templateUrl: "app/battle-tracker/battle-tracker.html?" + constants.VERSION,
 		controller: function ($scope, $state, combat, util) {
 			window.scope = $scope;
 
@@ -11,7 +11,7 @@ define(["scripts/constants"], function (constants) {
 				$state.go("encounter-builder");
 			}
 
-			$scope.partial = util.partialFactory("modules/battle-tracker/partials/");
+			$scope.partial = util.partialFactory("app/battle-tracker/partials/");
 
 			$scope.combat = combat;
 			combat.begin();

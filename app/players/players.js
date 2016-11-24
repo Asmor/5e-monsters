@@ -1,22 +1,22 @@
 "use strict";
 
-define(["scripts/constants"], function (constants) {
+define(["app/constants"], function (constants) {
 	return {
 		main: {
 			url: "/players",
-			templateUrl: "modules/players/players.html?" + constants.VERSION,
+			templateUrl: "app/players/players.html?" + constants.VERSION,
 			controller: function ($scope, util) {
-				$scope.partial = util.partialFactory("modules/players/partials/");
+				$scope.partial = util.partialFactory("app/players/partials/");
 			}
 		},
 
 		edit: {
 			url: "/edit",
-			templateUrl: "modules/players/edit.html?" + constants.VERSION,
+			templateUrl: "app/players/edit.html?" + constants.VERSION,
 			controller: function ($scope, players, util) {
 				window.scope = $scope;
 
-				$scope.partial = util.partialFactory("modules/players/partials/");
+				$scope.partial = util.partialFactory("app/players/partials/");
 
 				$scope.players = players;
 			},
@@ -24,11 +24,11 @@ define(["scripts/constants"], function (constants) {
 
 		manage: {
 			url: "/manage",
-			templateUrl: "modules/players/manage.html?" + constants.VERSION,
+			templateUrl: "app/players/manage.html?" + constants.VERSION,
 			controller: function ($scope, $state, actionQueue, players, util) {
 				window.scope = $scope;
 
-				$scope.partial = util.partialFactory("modules/players/partials/");
+				$scope.partial = util.partialFactory("app/players/partials/");
 
 				// If there aren't any parties, send them to edit
 				if ( !players.parties || !players.parties.length ) {

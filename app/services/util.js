@@ -1,6 +1,6 @@
 "use strict";
 
-define(["scripts/misc"], function (miscLib) {
+define(["app/misc"], function (miscLib) {
 	return function () {
 		return {
 			d: miscLib.d,

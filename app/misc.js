@@ -1,6 +1,6 @@
 "use strict";
 
-define(["scripts/constants"], function (constants) {
+define(["app/constants"], function (constants) {
 	var crs = [],
 		sourceFilters = {},
 		sources = [],

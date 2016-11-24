@@ -1,6 +1,6 @@
 "use strict";
 
-define(["scripts/constants.js"], function (constants) {
+define(["app/constants.js"], function (constants) {
 	return ["store", "encounter", "players", "monsters", "util", function (store, encounter, players, monsters, util) {
 		var combat = {
 			active: 0,

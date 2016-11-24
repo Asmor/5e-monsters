@@ -2,8 +2,8 @@
 
 define([
 	"scripts/monster",
-	"scripts/misc",
-	"scripts/util/shuffle",
+	"app/misc",
+	"app/util/shuffle",
 ], function (monsterLib, miscLib, shuffle) {
 	return ["metaInfo", "monsters", function (metaInfo, monsters) {
 		var randomEncounter = {

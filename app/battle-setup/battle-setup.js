@@ -1,13 +1,13 @@
 "use strict";
 
-define(["scripts/constants"], function (constants) {
+define(["app/constants"], function (constants) {
 	return {
 		url: "/battle-setup",
-		templateUrl: "modules/battle-setup/battle-setup.html?" + constants.VERSION,
+		templateUrl: "app/battle-setup/battle-setup.html?" + constants.VERSION,
 		controller: function ($scope, $state, actionQueue, combat, util) {
 			window.scope = $scope;
 
-			$scope.partial = util.partialFactory("modules/battle-setup/partials/");
+			$scope.partial = util.partialFactory("app/battle-setup/partials/");
 			$scope.combat = combat;
 
 			var combatState = combat.init(),
