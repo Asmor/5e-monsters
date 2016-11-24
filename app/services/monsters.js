@@ -3,7 +3,7 @@
 define([
 	"scripts/data",
 	"app/misc",
-	"scripts/monster",
+	"scripts/monsterfactory",
 ], function (data, miscLib, monsterLib) {
 	return ["metaInfo", function (metaInfo) {
 		var i, j, m, source,

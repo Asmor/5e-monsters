@@ -1,7 +1,7 @@
 "use strict";
 
 define([
-	"scripts/monster",
+	"scripts/monsterfactory",
 	"app/misc",
 	"app/util/shuffle",
 ], function (monsterLib, miscLib, shuffle) {
