@@ -45,7 +45,8 @@ gulp.task('template-cache', ['clean-code'], function () {
         .pipe(gulp.dest(config.temp));
 });
 
-gulp.task('inject', ['compile-sass', 'template-cache'], function () {
+//, 'template-cache'
+gulp.task('inject', ['compile-sass'], function () {
     log('Wire up css and js into the html, after files are ready');
 
     var templateCache = config.temp + config.templateCache.file;

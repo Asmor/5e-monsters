@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
 	<title>Kobold Fight Club: The first rule of KFC is 'Yip yip!'</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -45,9 +45,39 @@
 	<script src="thirdparty/angular-touch/angular-touch.js"></script>
 	<script src="thirdparty/dirPagination/dirPagination.js"></script>
 	<script src="thirdparty/requirejs/require.js"></script>
+
+	<!-- <script src="app/app.module.js"></script>
+	<script src="app/app.routes.js"></script>
+	<script src="app/util/logger.js"></script>
+	<script src="app/util/router-helper.provider.js"></script>
+	<script src="app/test.controller.js"></script>
+	<script src="app/misc.js"></script> -->
+
 	<!-- build:js js/app.js-->
 	<!-- inject:js -->
 	<script src="app/app.module.js"></script>
+	<script src="app/app.routes.js"></script>
+	<script src="app/constants.js"></script>
+	<script src="app/filters.js"></script>
+	<script src="app/meta/alignments.js"></script>
+	<script src="app/meta/crInfo.js"></script>
+	<script src="app/misc.js"></script>
+	<script src="app/players/players.js"></script>
+	<script src="app/services/actionQueue.js"></script>
+	<script src="app/services/combat.js"></script>
+	<script src="app/services/encounter.js"></script>
+	<script src="app/services/library.js"></script>
+	<script src="app/services/metaInfo.js"></script>
+	<script src="app/services/monsters.js"></script>
+	<script src="app/services/players.js"></script>
+	<script src="app/services/randomencounter.js"></script>
+	<script src="app/services/sources.js"></script>
+	<script src="app/services/store.js"></script>
+	<script src="app/services/util.js"></script>
+	<script src="app/test.controller.js"></script>
+	<script src="app/util/logger.js"></script>
+	<script src="app/util/router-helper.provider.js"></script>
+	<script src="app/util/shuffle.js"></script>
 	<!-- endinject -->
 	<!-- inject:templates:js -->
 	<!-- endinject -->

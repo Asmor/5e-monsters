@@ -13,15 +13,15 @@ module.exports = function() {
 		templateCache: {
       file: 'templates.js',
       options: {
-          module: 'monsterListApp',
+          module: 'app',
           root: 'app',
           standAlone: false
       }
     },
     js: [
-        // 'scripts/**/*.js',
+        //'scripts/**/*.js',
         'app/**/*.module.js',
-        // 'app/**/*.js'
+        'app/**/*.js'
     ],
     jsOrder: [
         '**/app.module.js',
