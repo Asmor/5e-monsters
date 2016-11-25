@@ -1,11 +1,21 @@
-"use strict";
+(function() {
+	"use strict";
 
-define([
-	"scripts/data",
-	"app/misc",
-	"scripts/monsterfactory",
-], function (data, miscLib, monsterLib) {
-	return ["metaInfo", function (metaInfo) {
+	angular.module("app")
+		.factory("monsters", Monsters);
+
+	Monsters.$inject = ['monsterData', 'misc', 'monsterFactory', 'metaInfo'];
+
+	function Monsters(data, miscLib, monsterLib, metaInfo) {
+		var service = {
+				all: all,
+				byCr: byCr,
+				byId: byId,
+				check: monsterLib.checkMonster,
+			};
+
+		return service;
+
 		var i, j, m, source,
 			all = [],
 			byId = {},
@@ -53,13 +63,5 @@ define([
 		all.sort(function (a, b) {
 			return (a.name > b.name) ? 1 : -1;
 		});
-
-		return {
-			all: all,
-			byCr: byCr,
-			byId: byId,
-			check: monsterLib.checkMonster,
-		};
-	}];
-
-});
+	};
+})();

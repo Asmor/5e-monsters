@@ -1,11 +1,12 @@
-"use strict";
+(function() {
+	"use strict";
 
-define([
-	"scripts/monsterfactory",
-	"app/misc",
-	"app/util/shuffle",
-], function (monsterLib, miscLib, shuffle) {
-	return ["metaInfo", "monsters", function (metaInfo, monsters) {
+	angular.module("app")
+		.factory("randomEncounter", RandomEncounterService);
+
+	RandomEncounterService.$inject = ["monsterFactory", "misc", "shuffle", "metaInfo", "monsters"];
+
+	function RandomEncounterService(monsterLib, miscLib, shuffle, metaInfo, monsters) {
 		var randomEncounter = {
 			getRandomEncounter: function (playerCount, partyLevel, filters) {
 				var fudgeFactor = 1.1, // The algorithm is conservative in spending exp, so this tries to get it closer to the actual medium value
@@ -119,5 +120,5 @@ define([
 				}
 			}
 		}
-	}];
-});
+	}
+})();

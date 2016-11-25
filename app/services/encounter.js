@@ -1,9 +1,12 @@
-"use strict";
+(function () {
+	"use strict";
 
-define([
-	"app/misc",
-], function (miscLib) {
-	return ["$rootScope", "randomEncounter", "store", "metaInfo", "monsters", "players", "util", function ($rootScope, randomEncounter, store, metaInfo, monsters, players, util) {
+	angular.module("app")
+		.factory("encounter", EncounterService);
+
+	EncounterService.$inject = ['$rootScope', 'randomEncounter', 'store', 'metaInfo', 'monsters', 'players', 'util', 'misc'];
+
+	function EncounterService($rootScope, randomEncounter, store, metaInfo, monsters, players, util, miscLib) {
 		var encounter = {
 				getMultiplier: miscLib.getMultiplier,
 				groups: {},
@@ -132,6 +135,8 @@ define([
 				},
 		};
 
+		return encounter;
+
 		Object.defineProperty(encounter, "adjustedExp", {
 			get: function () {
 				var qty = encounter.qty,
@@ -199,7 +204,5 @@ define([
 				}
 			});
 		}
-
-		return encounter;
-	}];
-});
+	}
+})();

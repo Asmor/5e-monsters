@@ -1,7 +1,11 @@
-"use strict";
+(function() {
+	"use strict";
 
-define(function () {
-	return function () {
+	angular.module("app")
+		.factory("actionQueue", ActionQueueService);
+
+
+	function ActionQueueService() {
 		var actionQueue = {
 				actions: [],
 				currentInstruction: "",
@@ -39,5 +43,5 @@ define(function () {
 		};
 
 		return actionQueue;
-	};
-});
+	}
+})();

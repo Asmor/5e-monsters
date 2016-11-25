@@ -1,11 +1,12 @@
-"use strict";
+(function() {
+	"use strict";
 
-define([
-	"app/misc",
-	"app/meta/alignments",
-	"app/meta/crInfo",
-], function (miscLib, alignments, crInfo) {
-	return function () {
+	angular.module("app")
+		.factory("metaInfo", MetaInfoService);
+
+	MetaInfoService.$inject = ['misc', 'alignments', 'crInfo'];
+	
+	function MetaInfoService(miscLib, alignments, crInfo) {
 		var metaInfo = {
 			alignments: alignments,
 			crInfo: crInfo,
@@ -65,5 +66,5 @@ define([
 		};
 
 		return metaInfo;
-	};
-});
+	}
+})();

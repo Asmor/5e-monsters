@@ -5,20 +5,6 @@
 		.factory('misc', MiscService);
 
 	function MiscService() {
-		var service = {
-			d: d,
-			getMultiplier: getMultiplier,
-			levels: levels,
-			partialFactory: partialFactory,
-			sourceFilters: sourceFilters,
-			sources: sources,
-			shortNames: shortNames,
-			tags: tags,
-		};
-
-		return service;
-
-		//////
 
 		var crs = [],
 			sourceFilters = {},
@@ -56,6 +42,21 @@
 		for ( i = 1; i < 25; i++ ) {
 			crs.push({ text: i.toString(), value: i });
 		}
+
+		var service = {
+			d: d,
+			getMultiplier: getMultiplier,
+			levels: levels,
+			partialFactory: partialFactory,
+			sourceFilters: sourceFilters,
+			sources: sources,
+			shortNames: shortNames,
+			tags: tags,
+		};
+
+		return service;
+
+		//////
 
 		function getMultiplier(playerCount, monsterCount) {
 			var multiplierCategory,

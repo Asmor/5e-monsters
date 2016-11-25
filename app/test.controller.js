@@ -10,7 +10,15 @@
 		'store',
 		'shuffle',
 		'players',
-		'library'
+		'library',
+		'actionQueue',
+		'crInfo',
+		'alignments',
+		'monsterFactory',
+		'metaInfo',
+		'monsterData',
+		'randomEncounter',
+		'encounter'
 	];
 
 	function TestController(miscLib, appVersion) {

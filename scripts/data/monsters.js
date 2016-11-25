@@ -1,8 +1,8 @@
 "use strict";
 
-define([
-	"app/meta/alignments",
-], function (alignments) {
+MonstersList.$inject = ["alignments"];
+
+function MonstersList(alignments) {
 	return [
 		// Custom
 		{ name: "CR 0",   cr: "0",   special: true, id: "cf33021b-ebd7-4db3-884d-0b48e8211ac3" },
@@ -12355,4 +12355,4 @@ define([
 		},
 
 	];
-});
+};
