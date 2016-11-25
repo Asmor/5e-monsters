@@ -4,7 +4,11 @@
 	<title>Kobold Fight Club: The first rule of KFC is 'Yip yip!'</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="styles/style.css">
+	<!-- build:css styles/styles.css -->
+	<!-- inject:css-->
+  <link rel="stylesheet" href="styles/style.css">
+  <!-- endinject-->
+  <!-- endbuild -->
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-static-top">
@@ -41,6 +45,12 @@
 	<script src="thirdparty/angular/angular-touch.js"></script>
 	<script src="thirdparty/angular/dirPagination/dirPagination.js"></script>
 	<script src="thirdparty/requirejs/require.js"></script>
+	<!-- build:js js/app.js-->
+	<!-- inject:js -->
 	<script src="app/app.module.js"></script>
+	<!-- endinject -->
+	<!-- inject:templates:js -->
+	<!-- endinject -->
+	<!--endbuild-->
 </body>
 </html>

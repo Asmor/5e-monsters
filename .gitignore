@@ -6,3 +6,5 @@ build.js
 
 node_modules
 npm-debug.log*
+temp
+build
