@@ -1,11 +1,18 @@
-"use strict";
+(function() {
+	"use strict";
 
-define(["app/misc"], function (miscLib) {
-	return function () {
-		return {
+	angular.module('app')
+		.factory('util', UtilService);
+
+	UtilService.$inject = ["misc"];
+
+	function UtilService(miscLib) {
+		var service = {
 			d: miscLib.d,
 			getShuffledMonsterList: miscLib.getShuffledMonsterList,
 			partialFactory: miscLib.partialFactory,
 		};
+		
+		return service;
 	};
-});
+})();
