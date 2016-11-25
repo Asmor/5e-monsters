@@ -1,7 +1,10 @@
-"use strict";
+(function() {
+	"use strict";
 
-define(function () {
-	return [function () {
+	angular.module("app")
+		.factory("store", StoreService);
+
+	function StoreService() {
 		var store = {
 			get: function (key, callback) {
 				var data;
@@ -24,5 +27,5 @@ define(function () {
 		};
 
 		return store;
-	}];
-});
+	};
+})();

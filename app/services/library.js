@@ -1,7 +1,12 @@
-"use strict";
+(function() {
+	"use strict";
 
-define(function () {
-	return ["$rootScope", "store", function ($rootScope, store) {
+	angular.module("app")
+		.factory("library", LibraryService);
+
+	LibraryService.$inject = ["$rootScope", "store"];
+
+	function LibraryService($rootScope, store) {
 		var library = {
 				encounters: [],
 				remove: function (storedEncounter) {
@@ -42,5 +47,5 @@ define(function () {
 		}
 
 		return library;
-	}];
-});
+	}
+})();

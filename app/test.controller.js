@@ -6,7 +6,11 @@
 
 	TestController.$inject = ['misc', 'AppVersion', 'CombatReady', 'CombatNoMonsters', 'CombatNoPlayers',
 		'util',
-		'sources'
+		'sources',
+		'store',
+		'shuffle',
+		'players',
+		'library'
 	];
 
 	function TestController(miscLib, appVersion) {

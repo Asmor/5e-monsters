@@ -1,19 +1,24 @@
-"use strict";
+(function () {
+	"use strict";
 
-// via http://bost.ocks.org/mike/shuffle/
+	angular.module("app")
+		.factory('shuffle', Shuffle);
 
-define(function () {
-	return function (array) {
-		var m = array.length, t, i;
+	// via http://bost.ocks.org/mike/shuffle/
 
-		while (m) {
-			i = Math.floor(Math.random() * m--);
+	function Shuffle() {
+		return function (array) {
+			var m = array.length, t, i;
 
-			t = array[m];
-			array[m] = array[i];
-			array[i] = t;
-		}
+			while (m) {
+				i = Math.floor(Math.random() * m--);
 
-		return array;
-	};
-});
+				t = array[m];
+				array[m] = array[i];
+				array[i] = t;
+			}
+
+			return array;
+		};
+	}
+})();

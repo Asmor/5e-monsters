@@ -1,7 +1,12 @@
-"use strict";
+(function () {
+	"use strict";
 
-define(function () {
-	return ["$rootScope", "store", function ($rootScope, store) {
+	angular.module("app")
+		.factory("players", PlayersService);
+
+	PlayersService.$inject = ["$rootScope", "store"];
+
+	function PlayersService($rootScope, store) {
 		var players = {
 				selectedParty: null,
 				selectParty: function (party) {
@@ -128,5 +133,5 @@ define(function () {
 		}
 
 		return players;
-	}];
-});
+	}
+})();
