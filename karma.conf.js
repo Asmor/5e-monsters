@@ -10,12 +10,12 @@ module.exports = function(config) {
       '../thirdparty/angular-mocks/angular-mocks.js',
       '../thirdparty/angular-touch/angular-touch.js',
       '../thirdparty/dirPagination/dirPagination.js',
-      '../thirdparty/requirejs/require.js',
+      '../thirdparty/lodash.core.js',
       '*.js',
       'meta/**/*.js',
       'services/**/*.js',
       'util/**/*.js',
-      '../scripts/*.js'
+      '../scripts/**/*.js'
     ],
 
     autoWatch: true,
@@ -28,6 +28,10 @@ module.exports = function(config) {
       'karma-chrome-launcher',
       'karma-firefox-launcher',
       'karma-jasmine'
-    ]
+    ],
+
+    client: {
+      captureConsole: true
+    }
   });
 };

@@ -7,15 +7,6 @@
 	Monsters.$inject = ['monsterData', 'misc', 'monsterFactory', 'metaInfo'];
 
 	function Monsters(data, miscLib, monsterLib, metaInfo) {
-		var service = {
-				all: all,
-				byCr: byCr,
-				byId: byId,
-				check: monsterLib.checkMonster,
-			};
-
-		return service;
-
 		var i, j, m, source,
 			all = [],
 			byId = {},
@@ -63,5 +54,14 @@
 		all.sort(function (a, b) {
 			return (a.name > b.name) ? 1 : -1;
 		});
+
+		var service = {
+			all: all,
+			byCr: byCr,
+			byId: byId,
+			check: monsterLib.checkMonster,
+		};
+
+		return service;
 	};
 })();
