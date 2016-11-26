@@ -1,10 +1,12 @@
-"use strict";
+(function () {
+	"use strict";
 
-define(["app/constants"], function (constants) {
-	return {
-		url: "/encounter-builder",
-		templateUrl: "app/encounter-builder/encounter-builder.html?" + constants.VERSION,
-		controller: function (
+	angular.module("app")
+		.controller("EncounterBuilderController", EncounterBuilderController);
+
+	EncounterBuilderController.$inject = ['$scope', 'store', 'actionQueue', 'encounter', 'metaInfo', 'monsters', 'sources', 'util'];
+
+	function EncounterBuilderController(
 			$scope,
 			store,
 			actionQueue,
@@ -14,33 +16,33 @@ define(["app/constants"], function (constants) {
 			sources,
 			util
 		) {
-			window.scope = $scope;
+			var vm = this;
 
 			// There's no way to tell when they're done building an encounter, so clear the queue if they ever make it here.
 			actionQueue.clear();
 
-			$scope.partial = util.partialFactory("app/encounter-builder/partials/");
+			vm.partial = util.partialFactory("app/encounter-builder/partials/");
 
-			$scope.alignments = metaInfo.alignments;
-			$scope.crList = metaInfo.crList;
-			$scope.filters = {
+			vm.alignments = metaInfo.alignments;
+			vm.crList = metaInfo.crList;
+			vm.filters = {
 				source: sources.filters,
 				pageSize: 10,
 			};
-			$scope.monsters = monsters.all;
-			$scope.sizes = metaInfo.sizes;
-			$scope.sourceNames = sources.all;
-			$scope.sources = sources;
-			$scope.tags = Object.keys(metaInfo.tags).sort();
-			$scope.types = metaInfo.types;
-			$scope.levels = metaInfo.levels;
-			$scope.environments = metaInfo.environments;
+			vm.monsters = monsters.all;
+			vm.sizes = metaInfo.sizes;
+			vm.sourceNames = sources.all;
+			vm.sources = sources;
+			vm.tags = Object.keys(metaInfo.tags).sort();
+			vm.types = metaInfo.types;
+			vm.levels = metaInfo.levels;
+			vm.environments = metaInfo.environments;
 
-			$scope.checkMonster = monsters.check;
+			vm.checkMonster = monsters.check;
 
-			$scope.encounter = encounter;
+			vm.encounter = encounter;
 
-			$scope.$watch(function (scope) { return $scope.encounter.groups; }, function (newValue, oldValue) {
+			$scope.$watch(function (scope) { return vm.encounter.groups; }, function (newValue, oldValue) {
 				var subtotal = 0;
 
 				_.forEach(newValue, function(item, idx) {
@@ -55,7 +57,7 @@ define(["app/constants"], function (constants) {
 
 			store.get("5em-filters", function (frozen) {
 				if (frozen) {
-					$scope.filters = frozen;
+					vm.filters = frozen;
 				}
 
 				if (!$scope.$$phase) {
@@ -63,12 +65,12 @@ define(["app/constants"], function (constants) {
 				}
 
 				$scope.$watch("filters", function () {
-					store.set("5em-filters", $scope.filters);
+					store.set("5em-filters", vm.filters);
 				}, true);
 			});
 
-			$scope.monsterSort = function (monster) {
-				var sort = $scope.filters.sort;
+			vm.monsterSort = function (monster) {
+				var sort = vm.filters.sort;
 
 				if ( sort === "size" ) {
 					return monster.sizeSort;
@@ -89,12 +91,12 @@ define(["app/constants"], function (constants) {
 				return monster.name;
 			};
 
-			$scope.dangerZone = function (monster) {
+			vm.dangerZone = function (monster) {
 				if ( !monster ) {
 					return null;
 				}
 
-				var threat = $scope.encounter.threat,
+				var threat = vm.encounter.threat,
 					monsterExp = monster.cr.exp;
 
 				if ( monsterExp > threat.deadly ) {
@@ -114,21 +116,21 @@ define(["app/constants"], function (constants) {
 				}
 			};
 
-			$scope.resetFilters = function () {
-				$scope.filters.size = null;
-				$scope.filters.type = null;
-				$scope.filters.alignment = null;
-				$scope.filters.minCr = null;
-				$scope.filters.maxCr = null;
-				$scope.filters.environment = null;
+			vm.resetFilters = function () {
+				vm.filters.size = null;
+				vm.filters.type = null;
+				vm.filters.alignment = null;
+				vm.filters.minCr = null;
+				vm.filters.maxCr = null;
+				vm.filters.environment = null;
 			};
 
-			$scope.updateSourceFilters = function (newValue) {
+			vm.updateSourceFilters = function (newValue) {
 				if (newValue) {
-					$scope.filters.sources = newValue;
+					vm.filters.sources = newValue;
 				}
 				// The default is core, but for implementation reasons it's represented by the empty string
-				var sourceTypes = $scope.filters.sources || "core",
+				var sourceTypes = vm.filters.sources || "core",
 					select = [ ],
 					i;
 
@@ -166,17 +168,16 @@ define(["app/constants"], function (constants) {
 				}
 
 				for ( i = 0; i < sources.all.length; i++ ) {
-					$scope.filters.source[sources.all[i]] = false;
+					vm.filters.source[sources.all[i]] = false;
 				}
 
 				while (select.length) {
-					$scope.filters.source[select.pop()] = true;
+					vm.filters.source[select.pop()] = true;
 				}
 			};
 
 			$scope.$watch("filters", function () {
-				store.set("5em-filters", $scope.filters);
+				store.set("5em-filters", vm.filters);
 			}, true);
-		},
-	};
-});
+		}
+})();

@@ -109,7 +109,7 @@
 				return [
 					base || moduleName,
 					partialName,
-					".html?" + constants.VERSION,
+					".html",
 				].join("");
 			};
 		}

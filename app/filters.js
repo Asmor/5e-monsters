@@ -2,14 +2,9 @@
 	"use strict";
 
 	angular.module("app")
-		.factory("filters", FilterService);
-
-	FilterService.$inject = ['monsterFactory'];
-
-	function FilterService(monsterLib) {
-		return {
-			monster: function () {
+		.filter("monstersFilter", ["monsterFactory", function (monsterLib) {
 				return function ( input, filters ) {
+					if (!input) return [];
 					var output = [], i;
 
 					for ( i = 0; i < input.length; i++ ) {
@@ -39,7 +34,16 @@
 
 					return output;
 				};
-			},
+			}])
+		.filter("positive", FilterService.positive)
+		.filter("negative", FilterService.negative)
+		.filter("sortEncounter", FilterService.sortEncounter);
+
+	FilterService.$inject = ['monsterFactory'];
+
+	function FilterService(monsterLib) {
+		return {
+			// monster: ,
 			negative: function () {
 				return function ( input ) {
 					var output = [],

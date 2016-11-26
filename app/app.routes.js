@@ -18,10 +18,17 @@
 				state: "encounter-builder",
 				config: {
 					url: "/encounter-builder",
+					templateUrl: "app/encounter-builder/encounter-builder.html",
+					controller: 'EncounterBuilderController',
+					controllerAs: "vm"
+				}
+			},
+			{
+				state: "test",
+				config: {
+					url: "/test",
 					templateUrl: "app/test.html",
 					controller: 'TestController',
-					// templateUrl: "app/encounter-builder/encounter-builder.html",
-					// controller: 'EncounterBuilderController',
 					controllerAs: "vm"
 				}
 			}

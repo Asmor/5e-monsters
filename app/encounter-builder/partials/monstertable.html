@@ -5,27 +5,27 @@
 				<th class="monster-table--column monster-table--column__button"></th> 
 				<th
 					class="monster-table--column monster-table--column__sortable monster-table--column__name"
-					ng-click="filters.sort = 'name'">
+					ng-click="vm.filters.sort = 'name'">
 					Name
 				</th>
 				<th
 					class="monster-table--column monster-table--column__sortable monster-table--column__cr"
-					ng-click="filters.sort = 'cr'">
+					ng-click="vm.filters.sort = 'cr'">
 					CR
 				</th>
 				<th
 					class="monster-table--column monster-table--column__sortable monster-table--column__size"
-					ng-click="filters.sort = 'size'">
+					ng-click="vm.filters.sort = 'size'">
 					Size
 				</th>
 				<th
 					class="monster-table--column monster-table--column__sortable monster-table--column__type"
-					ng-click="filters.sort = 'type'">
+					ng-click="vm.filters.sort = 'type'">
 					Type
 				</th>
 				<th
 					class="monster-table--column monster-table--column__sortable monster-table--column__alignment"
-					ng-click="filters.sort = 'alignment'">
+					ng-click="vm.filters.sort = 'alignment'">
 					Alignment
 				</th>
 				<th class="monster-table--column monster-table--column__source">
@@ -35,24 +35,25 @@
 		</thead>
 		<tbody>
 			<tr
-				dir-paginate="monster in monsters | monstersFilter:filters | itemsPerPage: filters.pageSize"
+				dir-paginate="monster in vm.monsters | monstersFilter:vm.filters | itemsPerPage: vm.filters.pageSize"
 				class="monster-table--row">
 
 				<td class="monster-table--button-cell">
-					<button ng-click="encounter.add(monster)" class="btn btn-sm btn-success">
+					<button ng-click="vm.encounter.add(vm.monster)" class="btn btn-sm btn-success">
 						<i class="fa fa-plus"></i>
 					</button>
 				</td>
+				<!-- 
 				<td class="monster-table--name-cell">
 					<div class="monster-table--name">
 						{{ monster.name }}
 					</div>
-					<div ng-if="monster.section" class="monster-table--section">
+					<div ng-if="vm.monster.section" class="monster-table--section">
 						{{ monster.section }}
 					</div>
 				</td>
 				<td class="monster-table--cr-cell"
-					ng-class="'monster-table--cr-cell__' + dangerZone(monster)"
+					ng-class="'monster-table--cr-cell__' + vm.dangerZone(monster)"
 				> {{ monster.cr.string }} </td>
 				<td class="monster-table--size-cell"> {{ monster.size }} </td>
 				<td class="monster-table--type-cell">
@@ -61,13 +62,13 @@
 						({{ monster.tags.join(", ") }})
 					</span>
 				</td>
-				<td class="monster-table--alignment-cell"><span ng-if="monster.alignment">
+				<td class="monster-table--alignment-cell"><span ng-if="vm.monster.alignment">
 					{{ monster.alignment.text }}
 				</span></td>
 				<td class="monster-table--source-cell">
 					<div
-						ng-repeat="source in monster.sources"
-						ng-show="filters.source[source.name]"
+						ng-repeat="source in vm.monster.sources"
+						ng-show="vm.filters.source[source.name]"
 					>
 							<span class="monster-table--source-name monster-table--source-name__short" title="{{ source.name }}">
 								{{ sources.shortNames[source.name] }}
@@ -78,7 +79,7 @@
 							<span ng-if="source.page">p.{{ source.page }}</span>
 							<span ng-if="source.url"><a target="_blank" href="{{ source.url }}">[Link]</a></span>
 					</div>
-				</td>
+				</td> -->
 			</tr>
 		</tbody>
 	</table>

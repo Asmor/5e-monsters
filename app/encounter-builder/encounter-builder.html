@@ -1,9 +1,9 @@
 <div class="sidebar container-fluid" role="main">
 	<div class="row">
 		<div class="col-md-4">
-			<ng-include src="partial('group-info')"></ng-include>
+			<ng-include src="vm.partial('group-info')"></ng-include>
 			<div>
-				<ng-include src="partial('current-encounter')"></ng-include>
+				<!-- <ng-include src="vm.partial('current-encounter')"></ng-include> -->
 			</div>
 			<div class="sidebar--legend hidden-xs hidden-sm">
 				<button class="btn btn-warning sidebar--legend-button" type="button" data-toggle="collapse" data-target="#legend-collapse">Legend
@@ -37,9 +37,9 @@
 			</div>
 		</div>
 		<div class="col-md-8">
-			<ng-include src="partial('search')"></ng-include>
-			<ng-include src="partial('monstertable')"></ng-include>
-			<ng-include src="partial('pagination')"></ng-include>
+			<!-- <ng-include src="vm.partial('search')"></ng-include> -->
+			<ng-include src="vm.partial('monstertable')"></ng-include>
+			<ng-include src="vm.partial('pagination')"></ng-include>
 			<div class="legend-sm visible-xs visible-sm">
 				<h3>Legend</h3>
 				<ul>
