@@ -6,10 +6,10 @@ module.exports = function(config) {
 
     files: [
       '../thirdparty/angular/angular.js',
-      '../thirdparty/angular/angular-ui-router.js',
-      '../thirdparty/angular/angular-mocks.js',
-      '../thirdparty/angular/angular-touch.js',
-      '../thirdparty/angular/dirPagination/dirPagination.js',
+      '../thirdparty/angular-ui-router/release/angular-ui-router.js',
+      '../thirdparty/angular-mocks/angular-mocks.js',
+      '../thirdparty/angular-touch/angular-touch.js',
+      '../thirdparty/dirPagination/dirPagination.js',
       '../thirdparty/requirejs/require.js',
       '*.js',
       'meta/**/*.js',
