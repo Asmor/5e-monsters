@@ -33,6 +33,8 @@
 			data.monsters = monsters;
 			data.sources = Array.prototype.slice.call(arguments, 1);
 		});
+
+		return data;
 	}
 })();
 
