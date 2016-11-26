@@ -4,7 +4,7 @@
 	angular.module("app")
 		.controller('TestController', TestController);
 
-	TestController.$inject = ['misc', 'AppVersion', 'CombatReady', 'CombatNoMonsters', 'CombatNoPlayers',
+	TestController.$inject = ['misc', 'AppVersion', 'combatConstants',
 		'util',
 		'sources',
 		'store',
@@ -18,7 +18,8 @@
 		'metaInfo',
 		'monsterData',
 		'randomEncounter',
-		'encounter'
+		'encounter',
+		'filters'
 	];
 
 	function TestController(miscLib, appVersion) {

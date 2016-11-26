@@ -1,7 +1,12 @@
-"use strict";
+(function() {
+	"use strict";
 
-define(["app/constants.js"], function (constants) {
-	return ["store", "encounter", "players", "monsters", "util", function (store, encounter, players, monsters, util) {
+	angular.module("app")
+		.factory("combat", CombatService);
+
+	CombatService.$inject = ['store', 'encounter', 'players', 'monsters', 'util'];
+
+	function CombatService(store, encounter, players, monsters, util) {
 		var combat = {
 			active: 0,
 			combatants: [],
@@ -141,5 +146,5 @@ define(["app/constants.js"], function (constants) {
 		combat.init();
 
 		return combat;
-	}];
-});
+	}
+})();

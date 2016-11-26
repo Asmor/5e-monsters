@@ -1,85 +1,88 @@
-"use strict";
+(function() {
+	"use strict";
 
-define([
-	"scripts/monsterfactory"
-], function (
-	monsterLib
-) {
-	return {
-		monster: function () {
-			return function ( input, filters ) {
-				var output = [], i;
+	angular.module("app")
+		.factory("filters", FilterService);
 
-				for ( i = 0; i < input.length; i++ ) {
-					if ( monsterLib.checkMonster(input[i], filters) ) {
-						output.push(input[i]);
+	FilterService.$inject = ['monsterFactory'];
+
+	function FilterService(monsterLib) {
+		return {
+			monster: function () {
+				return function ( input, filters ) {
+					var output = [], i;
+
+					for ( i = 0; i < input.length; i++ ) {
+						if ( monsterLib.checkMonster(input[i], filters) ) {
+							output.push(input[i]);
+						}
 					}
-				}
 
-				// Monsters are already sorted by name
-				if ( filters.sort === "size" ) {
-					output.sort(function (a, b) {
-						return a.sizeSort - b.sizeSort;
-					});
-				} else if ( filters.sort === "type" ) {
-					output.sort(function (a, b) {
-						return (a.type > b.type) ? 1 : -1;
-					});
-				} else if ( filters.sort === "alignment" ) {
-					output.sort(function (a, b) {
-						return ((a.alignment||{text:"zzzzzzz"}).text > (b.alignment||{text:"zzzzzzz"}).text) ? 1 : -1;
-					});
-				} else if ( filters.sort === "cr" ) {
-					output.sort(function (a, b) {
-						return a.cr.numeric - b.cr.numeric;
-					});
-				}
-
-				return output;
-			};
-		},
-		negative: function () {
-			return function ( input ) {
-				var output = [],
-					i;
-
-				for ( i = 0; i < input.length; i++ ) {
-					if ( input[i] < 0 ) {
-						output.push(input[i]);
+					// Monsters are already sorted by name
+					if ( filters.sort === "size" ) {
+						output.sort(function (a, b) {
+							return a.sizeSort - b.sizeSort;
+						});
+					} else if ( filters.sort === "type" ) {
+						output.sort(function (a, b) {
+							return (a.type > b.type) ? 1 : -1;
+						});
+					} else if ( filters.sort === "alignment" ) {
+						output.sort(function (a, b) {
+							return ((a.alignment||{text:"zzzzzzz"}).text > (b.alignment||{text:"zzzzzzz"}).text) ? 1 : -1;
+						});
+					} else if ( filters.sort === "cr" ) {
+						output.sort(function (a, b) {
+							return a.cr.numeric - b.cr.numeric;
+						});
 					}
-				}
 
-				return output;
-			};
-		},
-		positive: function () {
-			return function ( input ) {
-				var output = [],
-					i;
+					return output;
+				};
+			},
+			negative: function () {
+				return function ( input ) {
+					var output = [],
+						i;
 
-				for ( i = 0; i < input.length; i++ ) {
-					if ( input[i] > 0 ) {
-						output.push(input[i]);
+					for ( i = 0; i < input.length; i++ ) {
+						if ( input[i] < 0 ) {
+							output.push(input[i]);
+						}
 					}
-				}
 
-				return output;
-			};
-		},
-		sortEncounter: function () {
-			return function (items) {
-				var sorted = [];
+					return output;
+				};
+			},
+			positive: function () {
+				return function ( input ) {
+					var output = [],
+						i;
 
-				Object.keys(items).forEach(function (key) {
-					sorted.push(items[key]);
-				});
+					for ( i = 0; i < input.length; i++ ) {
+						if ( input[i] > 0 ) {
+							output.push(input[i]);
+						}
+					}
 
-				sorted.sort(function (a, b) {
-					return (a.monster.name > b.monster.name) ? 1 : -1;
-				});
+					return output;
+				};
+			},
+			sortEncounter: function () {
+				return function (items) {
+					var sorted = [];
 
-				return sorted;
-			};
-		},
-	};
-});
+					Object.keys(items).forEach(function (key) {
+						sorted.push(items[key]);
+					});
+
+					sorted.sort(function (a, b) {
+						return (a.monster.name > b.monster.name) ? 1 : -1;
+					});
+
+					return sorted;
+				};
+			}
+		}
+	}
+})();
