@@ -2,7 +2,10 @@
 	"use strict";
 
 	angular.module("app")
-		.factory('basicrules', {
+		.factory('basicrulesSource', BasicRulesSource);
+
+	function BasicRulesSource() {
+		return {
 			name: "Basic Rules v1",
 			shortName: "Basic",
 			initialState: false,
@@ -177,5 +180,6 @@
 				[ "cc9e3c32-1c13-40a5-9d06-0ded81c4e3cb", 55 ], // Priest
 				[ "9d458fc1-a489-49f8-9417-1c6c495d5e98", 55 ], // Thug
 			]
-		})
+		};
+	}
 })();

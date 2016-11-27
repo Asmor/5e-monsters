@@ -5,28 +5,29 @@
 		.factory("monsterData", MonsterData);
 
 	MonsterData.$inject = [
-		"monsterStats"
-		// "basicRules"
-		// "custom",
-		// "hotdq",
-		// "hotdqsup",
-		// "rot", 
-		// "curseofstrahd",
-		// "stormkingsthunder",  
-		// "monstermanual",
-		// "playershandbook",
-		// "princes",
-		// "princessupplement",
-		// "outoftheabyss",
-		// "monsteraday",
-		// "fiftheditionfoes",
-		// "primevalthule",
-		// "primevalthulegmc",
-		// "tomeofbeasts", 
-		// "volosguidetomonsters"
+		"monsterStats",
+		"basicrulesSource",
+		"placeholderSource",
+		"hotdqSource",
+		"hotdqsupSource",
+		"rotSource", 
+		"curseofstrahdSource",
+		"stormkingsthunderSource",  
+		"monstermanualSource",
+		"playershandbookSource",
+		"princesSource",
+		"princessupplementSource",
+		"outoftheabyssSource",
+		"monsteradaySource",
+		"fiftheditionfoesSource",
+		"primevalthuleSource",
+		"primevalthulegmcSource",
+		"tomeofbeastsSource", 
+		"volosguidetomonstersSource"
 	];
 
 	function MonsterData(monsters) {
+		console.log(arguments.length);
 		var data = {
 			monsters: monsters,
 			sources: Array.prototype.slice.call(arguments, 1)
