@@ -135,8 +135,6 @@
 				},
 		};
 
-		return encounter;
-
 		Object.defineProperty(encounter, "adjustedExp", {
 			get: function () {
 				var qty = encounter.qty,
@@ -204,5 +202,7 @@
 				}
 			});
 		}
+
+		return encounter;
 	}
 })();

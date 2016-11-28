@@ -1,52 +1,53 @@
 <h2>
 	Encounter Info 
-	<button class="btn btn-info pull-right" ng-click="encounter.generateRandom(filters)">Random</button>
+	<button class="btn btn-info pull-right" ng-click="vm.encounter.generateRandom(vm.filters)">Random</button>
 </h2>
-<p class="current-encounter--empty bg-info text-muted" ng-if="encounter.qty == 0">
+ <p class="current-encounter--empty bg-info text-muted" ng-if="vm.encounter.qty == 0">
 	Create an encounter by clicking the Random encounter button or by adding monsters from the monsters table.
 </p>
-<div class="current-encounter" ng-class="{ 'current-encounter__shown': encounter.qty }">
+<div class="current-encounter" ng-class="{ 'current-encounter__shown': vm.encounter.qty }">
 	<div class="current-encounter--body">
 		<div class="current-encounter--table">
-			<div class="current-encounter--row" ng-repeat="group in encounter.groups | sortEncounter">
-						<div class="current-encounter--monster-info">
-							<span class="current-encounter--monster-name text-capitalized">{{ group.monster.name }}</span>
-							<div>
-								<span class="current-encounter--monster-cr">CR: {{ group.monster.cr.string }}</span>
-								<span class="current-encounter--monster-xp">XP: {{ group.monster.cr.exp | number}}</span>
-									<div class="current-encounter--monster-source" ng-repeat="source in group.monster.sources" ng-show="filters.source[source.name]" title="{{source.name}} p.{{source.page}}">
-										{{ source.name }} 
-										<span ng-if="source.page">p.{{ source.page }}</span> 
-										<span ng-if="source.url"><a target="_blank" href="{{ source.url }}">[Link]</a></span>
-									</div>
-							</div>
+			<div class="current-encounter--row" ng-repeat="group in vm.encounter.groups | sortEncounter">
+					<div class="current-encounter--monster-info">
+						<span class="current-encounter--monster-name text-capitalized">{{ group.monster.name }}</span>
+						<div>
+							<span class="current-encounter--monster-cr">CR: {{ group.monster.cr.string }}</span>
+							<span class="current-encounter--monster-xp">XP: {{ group.monster.cr.exp | number}}</span>
+								<div class="current-encounter--monster-source" ng-repeat="source in vm.group.monster.sources" ng-show="filters.source[source.name]" title="{{source.name}} p.{{source.page}}">
+									{{ source.name }} 
+									<span ng-if="source.page">p.{{ source.page }}</span> 
+									<span ng-if="source.url"><a target="_blank" href="{{ source.url }}">[Link]</a></span>
+								</div>
 						</div>
-						<div class="current-encounter--monster-qty-col">
-							<button ng-click="encounter.randomize(group.monster, filters)" class="btn btn-default" title="Randomize Monster">
-								<i class="fa fa-random"></i>
+					</div>
+					<div class="current-encounter--monster-qty-col">
+						<button ng-click="vm.encounter.randomize(group.monster, vm.filters)" class="btn btn-default" title="Randomize Monster">
+							<i class="fa fa-random"></i>
+						</button>
+						<input class="current-encounter--monster-qty form-control input-lg" type="number" ng-model="group.qty">
+						<div class="current-encounter--monster-qty-btns">
+							<button ng-click="vm.encounter.add(group.monster)" class="btn btn-xs btn-success">
+								<i class="fa fa-plus"></i>
 							</button>
-							<input class="current-encounter--monster-qty form-control input-lg" type="number" ng-model="group.qty">
-							<div class="current-encounter--monster-qty-btns">
-								<button ng-click="encounter.add(group.monster)" class="btn btn-xs btn-success">
-									<i class="fa fa-plus"></i>
-								</button>
-								<button ng-click="encounter.remove(group.monster)" class="btn btn-xs btn-danger">
-									<i class="fa fa-minus"></i>
-								</button>
-							</div>
+							<button ng-click="vm.encounter.remove(group.monster)" class="btn btn-xs btn-danger">
+								<i class="fa fa-minus"></i>
+							</button>
 						</div>
+					</div>
 			</div>
 		</div>
 		<div class="current-encounter--totals">
-			<div class="current-encounter--totals-difficulty">Difficulty: {{ encounter.difficulty }}</div>
+			<div class="current-encounter--totals-difficulty">Difficulty: {{ vm.encounter.difficulty }}</div>
 			<div class="current-encounter--totals-xp">
-				<span>Total XP: {{ encounter.exp | number }}</span>
-				<span>Adjusted XP: {{ encounter.adjustedExp | number }}</span>
+				<span>Total XP: {{ vm.encounter.exp | number }}</span>
+				<span>Adjusted XP: {{ vm.encounter.adjustedExp | number }}</span>
 			</div>
 		</div>
 		<div class="current-encounter--btns">
-			<button class="btn btn-danger btn-new" ng-click="encounter.reset()">New</button>
-			<button class="btn btn-primary" ui-sref="encounter-manager" ng-if="!encounter.reference">Save</button>
+			<button class="btn btn-danger btn-new" ng-click="vm.encounter.reset()">New</button>
+			<button class="btn btn-primary" ui-sref="encounter-manager" ng-if="!vm.encounter.reference">Save</button>
 		</div>
 	</div>
 </div>
+ 

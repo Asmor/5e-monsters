@@ -52,7 +52,7 @@
 					subtotal += groupMonster.cr.exp * groupQty;
 				});
 
-				encounter.exp = subtotal;
+				vm.encounter.exp = subtotal;
 			}, true);
 
 			store.get("5em-filters", function (frozen) {
