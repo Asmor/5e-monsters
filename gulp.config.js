@@ -19,9 +19,11 @@ module.exports = function() {
       }
     },
     js: [
-        //'scripts/**/*.js',
+        'scripts/**/*.js',
         'app/**/*.module.js',
-        'app/**/*.js'
+        'app/**/*.js',
+        '!app/**/*.tests.js',
+        '!scripts/**/*.tests.js'
     ],
     jsOrder: [
         '**/app.module.js',

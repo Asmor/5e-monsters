@@ -27,7 +27,6 @@
 	];
 
 	function MonsterData(monsters) {
-		console.log(arguments.length);
 		var data = {
 			monsters: monsters,
 			sources: Array.prototype.slice.call(arguments, 1)
