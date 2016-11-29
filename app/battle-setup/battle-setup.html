@@ -1,6 +1,8 @@
-<ng-include src="partial('combat-setup-controls')"></ng-include>
+<div class="combat-setup-controls">
+	<button class="btn btn-danger btn-lg" ui-sref="battle-tracker">Fight!</button>
+</div>
 
 <ng-include
-	ng-repeat="combatant in combat.combatants"
-	src="partial('combatant-setup')"
+	ng-repeat="combatant in vm.combat.combatants"
+	src="vm.partial('combatant-setup')"
 ></ng-include>

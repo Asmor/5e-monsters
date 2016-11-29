@@ -4,9 +4,9 @@
 	angular.module("app")
 		.factory("combat", CombatService);
 
-	CombatService.$inject = ['store', 'encounter', 'players', 'monsters', 'util'];
+	CombatService.$inject = ['store', 'encounter', 'players', 'monsters', 'util', 'combatConstants'];
 
-	function CombatService(store, encounter, players, monsters, util) {
+	function CombatService(store, encounter, players, monsters, util, constants) {
 		var combat = {
 			active: 0,
 			combatants: [],

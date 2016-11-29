@@ -1,15 +1,23 @@
-"use strict";
+(function() {
+	'use strict';
 
-define(["app/constants"], function (constants) {
-	return {
-		url: "/battle-setup",
-		templateUrl: "app/battle-setup/battle-setup.html?" + constants.VERSION,
-		controller: function ($scope, $state, actionQueue, combat, util) {
-			window.scope = $scope;
+	angular
+		.module('app')
+		.controller('BattleSetupController', BattleSetupController);
 
-			$scope.partial = util.partialFactory("app/battle-setup/partials/");
-			$scope.combat = combat;
+	BattleSetupController.$inject = ['$state', 'actionQueue', 'combat', 'util', 'combatConstants'];
 
+	function BattleSetupController($state, actionQueue, combat, util, constants) {
+		var vm = this;
+		
+		vm.partial = util.partialFactory("app/battle-setup/partials/");
+		vm.combat = combat;
+
+		activate();
+
+		////////////////
+
+		function activate() {
 			var combatState = combat.init(),
 				forward;
 
@@ -28,8 +36,7 @@ define(["app/constants"], function (constants) {
 				actionQueue.queue("battle-setup");
 
 				actionQueue.next($state);
-				return;
 			}
-		},
-	};
-});
+		}
+	}
+})();

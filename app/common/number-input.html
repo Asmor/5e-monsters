@@ -1,19 +1,19 @@
 <span class="number-input">
 	<button
 		class="number-input--button number-input--button__negative"
-		ng-class="isNonNegative()"
-		ng-repeat="mod in mods | negative"
-		ng-click="modify(mod)"
+		ng-class="{'number-input--button__hidden' : vm.hideNegative()}"
+		ng-repeat="mod in vm.mods | negative"
+		ng-click="vm.modify(mod)"
 	>
 		{{ mod }}
 	</button>
 	<span class="number-input--value">
-		{{ value }}
+		{{ vm.value }}
 	</span>
 	<button
 		class="number-input--button number-input--button__positive"
-		ng-repeat="mod in mods | positive"
-		ng-click="modify(mod)"
+		ng-repeat="mod in vm.mods | positive"
+		ng-click="vm.modify(mod)"
 	>
 		+{{ mod }}
 	</button>

@@ -1,20 +1,27 @@
-"use strict";
+(function() {
+'use strict';
 
-define(["app/constants"], function (constants) {
-	return {
-		url: "/fight",
-		templateUrl: "app/battle-tracker/battle-tracker.html?" + constants.VERSION,
-		controller: function ($scope, $state, combat, util) {
-			window.scope = $scope;
+	angular
+		.module('app')
+		.controller('BattleTrackerController', BattleTrackerController);
 
+	BattleTrackerController.$inject = ['$state', 'combat', 'util'];
+
+	function BattleTrackerController($state, combat, util) {
+		var vm = this;
+		vm.partial = util.partialFactory("app/battle-tracker/partials/");
+		vm.combat = combat;
+
+		activate();
+
+		////////////////
+
+		function activate() { 
 			if ( !combat.combatants || !combat.combatants.length ) {
 				$state.go("encounter-builder");
 			}
-
-			$scope.partial = util.partialFactory("app/battle-tracker/partials/");
-
-			$scope.combat = combat;
+			
 			combat.begin();
-		},
-	};
-});
+		}
+	}
+})();

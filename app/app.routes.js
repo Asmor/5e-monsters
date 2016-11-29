@@ -15,6 +15,24 @@
 	function getStates() {
 		return [
 			{
+				state: "battle-setup",
+				config: {
+					url: "/battle-setup",
+					templateUrl: "app/battle-setup/battle-setup.html",
+					controller: 'BattleSetupController',
+					controllerAs: "vm"
+				}
+			},
+			{
+				state: "battle-tracker",
+				config: {
+					url: "/fight",
+					templateUrl: "app/battle-tracker/battle-tracker.html",
+					controller: 'BattleTrackerController',
+					controllerAs: "vm"
+				}
+			},
+			{
 				state: "encounter-builder",
 				config: {
 					url: "/encounter-builder",

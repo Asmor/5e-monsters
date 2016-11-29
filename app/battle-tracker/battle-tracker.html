@@ -1,6 +1,17 @@
-<ng-include src="partial('combat-controls')"></ng-include>
+<div class="combat-controls">
+	<number-input
+		model="vm.combat.delta"
+		buttons="[-10, -5, -1, 1, 5, 10]"
+		non-negative="true"
+	></number-input>
+
+	<button
+		class="combat-controls--next-turn"
+		ng-click="vm.combat.nextTurn()"
+	>Next turn</button>
+</div>
 
 <ng-include
-	ng-repeat="combatant in combat.combatants"
-	src="partial('combatant')"
+	ng-repeat="combatant in vm.combat.combatants"
+	src="vm.partial('combatant')"
 ></ng-include>

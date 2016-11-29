@@ -1,30 +1,21 @@
-"use strict";
+(function() {
+	"use strict";
 
-define(["app/constants"], function (constants) {
-	return function () {
+	angular.module('app')
+		.directive('numberInput', NumberInput);
+
+	function NumberInput() {
 		return {
 			restrict: "E",
-			scope: {
+			scope: {},
+			bindToController: {
 				value: '=model',
 				mods: '=buttons',
 				nonNegative: '=nonNegative'
 			},
-			templateUrl: "app/common/number-input.html?" + constants.VERSION,
-			link: function (scope) {
-				scope.isNonNegative = function () {
-					if (scope.nonNegative && scope.value === 0) {
-						return "number-input--button__hidden";
-					}
-				};
-
-				scope.modify = function (amt) {
-					scope.value += amt;
-
-					if ( scope.nonNegative && scope.value < 0 ) {
-						scope.value = 0;
-					}
-				};
-			},
+			templateUrl: "app/common/number-input.html",
+			controller: 'NumberInputController',
+			controllerAs: 'vm'
 		};
-	};
-});
+	}
+})();
