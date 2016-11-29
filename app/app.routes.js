@@ -33,6 +33,33 @@
 				}
 			},
 			{
+				state: "players",
+				config: {
+					url: "/players",
+					templateUrl: "app/players/players.html",
+					controller: 'PlayersController',
+					controllerAs: "vm"
+				}
+			},
+			{
+				state: "players.manage",
+				config: {
+					url: "/manage",
+					templateUrl: "app/players/manage.html",
+					controller: 'ManagePlayersController',
+					controllerAs: "vm"
+				}
+			},
+						{
+				state: "players.edit",
+				config: {
+					url: "/edit",
+					templateUrl: "app/players/edit.html",
+					controller: 'EditPlayersController',
+					controllerAs: "vm"
+				}
+			},
+			{
 				state: "test",
 				config: {
 					url: "/test",

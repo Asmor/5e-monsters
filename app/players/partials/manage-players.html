@@ -1,13 +1,13 @@
 <div class="manage-players">
-	<div class="manage-players--party" ng-repeat="party in players.parties">
+	<div class="manage-players--party" ng-repeat="party in vm.players.parties">
 		<button
 			class="manage-players--party-select-button"
-			ng-if="players.selectedParty != party"
+			ng-if="vm.players.selectedParty != party"
 			ng-click="select(party)"
 		>Select this party</button>
 		<span
 			class="manage-players--selected-party"
-			ng-if="players.selectedParty == party"
+			ng-if="vm.players.selectedParty == party"
 		>Selected</span>
 		<div class="manage-players--player" ng-repeat="player in party">
 			<span class="manage-players--player--name">
