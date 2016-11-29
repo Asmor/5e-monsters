@@ -5,7 +5,7 @@ var $ = require('gulp-load-plugins')({ lazy: true });
 var fs = require('fs');
 
 gulp.task('help', $.taskListing);
-gulp.task('default', ['help']);
+gulp.task('default', ['inject']);
 
 gulp.task('clean-styles', function (done) {
     clean(config.cssFile, done);

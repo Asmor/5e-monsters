@@ -2,8 +2,9 @@
 	"use strict";
 
 	angular.module("app")
-		.filter("positive", [function PositiveFilter() {
+		.filter("positive", function PositiveFilter() {
 				return function ( input ) {
+					input = input || '';
 					var output = [],
 						i;
 
@@ -15,9 +16,10 @@
 
 					return output;
 				};
-			}])
-		.filter("negative", [function NegativeFilter() {
+			})
+		.filter("negative", function NegativeFilter() {
 				return function ( input ) {
+					input = input || '';
 					var output = [],
 						i;
 
@@ -29,5 +31,5 @@
 
 					return output;
 				};
-			}]);
+			});
 })();
