@@ -4,27 +4,27 @@
 			{{ storedEncounter.name }}
 		</div>
 		<div class="encounter-manager-encounter--exp">
-			Exp: {{ calculateExp(storedEncounter) }}
+			Exp: {{ vm.calculateExp(storedEncounter) }}
 		</div>
 		<button
 			class="encounter-manager-encounter--load-button"
-			ng-click="load(storedEncounter)"
-			ng-if="encounter.reference != storedEncounter"
+			ng-click="vm.load(storedEncounter)"
+			ng-if="vm.encounter.reference != storedEncounter"
 		>Choose</button>
 		<button
 			class="encounter-manager-encounter--remove-button"
-			ng-click="remove(storedEncounter)"
+			ng-click="vm.remove(storedEncounter)"
 		>Remove</button>
 		<span
 			class="encounter-manager-encounter--active"
-			ng-if="encounter.reference == storedEncounter"
+			ng-if="vm.encounter.reference == storedEncounter"
 		>
 			Active
 		</span>
 	</div>
 
-	<ng-include
-		src="partial('encounter-manager-monster')"
-		ng-repeat="(id, qty) in storedEncounter.groups"
-	></ng-include>
+	<div class="encounter-manager-monster" ng-repeat="(id, qty) in storedEncounter.groups">
+		<span ng-if="qty > 1">{{ qty }}x</span>
+		{{ vm.monsters.byId[id].name }}
+	</div>
 </div>

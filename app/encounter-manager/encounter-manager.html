@@ -1,30 +1,28 @@
 <div class="encounter-manager">
 	<div
 		class="encounter-manager--no-encounters"
-		ng-if="!encounter.qty &amp;&amp; !library.encounters.length"
+		ng-if="!vm.encounter.qty && !vm.library.encounters.length"
 	>
 		You don't have any encounters saved.
 		<button ui-sref="encounter-builder">Return to encounter builder</button>
 	</div>
-	<div
-		class="encounter-manager-encounter encounter-manager-encounter__unsaved"
-		ng-if="encounter.qty &amp;&amp; !encounter.reference"
-	>
+	<div class="encounter-manager-encounter encounter-manager-encounter__unsaved"
+		ng-if="vm.encounter.qty && !vm.encounter.reference">
 		<div class="encounter-manager-encounter--controls">
 			<input
 				class="encounter-manager-encounter--name-input"
-				placeholder="{{ newEncounter.placeholder }}"
-				ng-model="newEncounter.name"
+				placeholder="{{ vm.newEncounter.placeholder }}"
+				ng-model="vm.newEncounter.name"
 			>
 			<button
 				class="encounter-manager-encounter--save-button"
-				ng-click="save()"
+				ng-click="vm.save()"
 			>Save current encounter</button>
 		</div>
 
 		<div
 			class="encounter-manager-monster"
-			ng-repeat="(id, group) in encounter.groups"
+			ng-repeat="(id, group) in vm.encounter.groups"
 		>
 			<span ng-if="group.qty > 1">{{ group.qty }}x</span>
 			{{ group.monster.name }}
@@ -32,7 +30,7 @@
 	</div>
 
 	<ng-include
-		src="partial('encounter-manager-encounter')"
-		ng-repeat="storedEncounter in library.encounters track by $index"
+		src="vm.partial('encounter-manager-encounter')"
+		ng-repeat="storedEncounter in vm.library.encounters track by $index"
 	></ng-include>
 </div>

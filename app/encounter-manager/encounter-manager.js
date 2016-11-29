@@ -1,70 +1,72 @@
-"use strict";
+(function() {
+	'use strict';
 
-define(["app/constants"], function (constants) {
-	return {
-		url: "/encounter-manager",
-		templateUrl: "app/encounter-manager/encounter-manager.html?" + constants.VERSION,
-		controller: function ($scope, $state, actionQueue, encounter, library, monsters, util) {
-			window.scope = $scope;
+	angular
+		.module('app')
+		.controller('EncounterManagerController', EncounterManagerController);
 
-			$scope.partial = util.partialFactory("app/encounter-manager/partials/");
+	EncounterManagerController.$inject = ['$scope', '$state', 'actionQueue', 'encounter', 'library', 'monsters', 'util'];
 
-			$scope.encounter = encounter;
-			$scope.library = library;
-			$scope.monsters = monsters;
+	function EncounterManagerController($scope, $state, actionQueue, encounter, library, monsters, util) {
+		var vm = this;
 
-			var placeholder = [];
+		vm.partial = util.partialFactory("app/encounter-manager/partials/");
 
-			Object.keys(encounter.groups).forEach(function (id) {
-				placeholder.push([
-					(encounter.groups[id].qty > 1) ? encounter.groups[id].qty + "x" : "",
-					encounter.groups[id].monster.name,
-				].join(" "));
+		vm.encounter = encounter;
+		vm.library = library;
+		vm.monsters = monsters;
+
+		var placeholder = [];
+
+		Object.keys(encounter.groups).forEach(function (id) {
+			placeholder.push([
+				(encounter.groups[id].qty > 1) ? encounter.groups[id].qty + "x" : "",
+				encounter.groups[id].monster.name,
+			].join(" "));
+		});
+
+		vm.newEncounter = {
+			placeholder: placeholder.join(", "),
+			name: "",
+		};
+
+		vm.calculateExp = function (storedEncounter) {
+			var exp = 0;
+
+			Object.keys( storedEncounter.groups ).forEach(function (id) {
+				exp += monsters.byId[id].cr.exp * storedEncounter.groups[id];
 			});
 
-			$scope.newEncounter = {
-				placeholder: placeholder.join(", "),
-				name: "",
+			return exp;
+		};
+
+		vm.load = function (storedEncounter) {
+			encounter.reset(storedEncounter);
+
+			if ( !actionQueue.next($state) ) {
+				$state.go("encounter-builder");
+			}
+		};
+
+		vm.save = function () {
+			var newLibraryEntry = {
+					name: vm.newEncounter.name || vm.newEncounter.placeholder,
+					groups: {},
 			};
 
-			$scope.calculateExp = function (storedEncounter) {
-				var exp = 0;
+			Object.keys(encounter.groups).forEach(function (id) {
+				newLibraryEntry.groups[id] = encounter.groups[id].qty;
+			});
+			
+			encounter.reference = library.store(newLibraryEntry);
+		};
 
-				Object.keys( storedEncounter.groups ).forEach(function (id) {
-					exp += monsters.byId[id].cr.exp * storedEncounter.groups[id];
-				});
+		vm.remove = function ( storedEncounter ) {
+			library.remove(storedEncounter);
 
-				return exp;
-			};
-
-			$scope.load = function (storedEncounter) {
-				encounter.reset(storedEncounter);
-
-				if ( !actionQueue.next($state) ) {
-					$state.go("encounter-builder");
-				}
-			};
-
-			$scope.save = function () {
-				var newLibraryEntry = {
-						name: $scope.newEncounter.name || $scope.newEncounter.placeholder,
-						groups: {},
-				};
-
-				Object.keys(encounter.groups).forEach(function (id) {
-					newLibraryEntry.groups[id] = encounter.groups[id].qty;
-				});
-				
-				encounter.reference = library.store(newLibraryEntry);
-			};
-
-			$scope.remove = function ( storedEncounter ) {
-				library.remove(storedEncounter);
-
-				if ( angular.equals(encounter.reference, storedEncounter) ) {
-					encounter.reference = null;
-				}
-			};
-		}
-	};
-});
+			if ( angular.equals(encounter.reference, storedEncounter) ) {
+				encounter.reference = null;
+			}
+		};
+	}
+})();

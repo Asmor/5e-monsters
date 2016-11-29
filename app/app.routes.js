@@ -24,6 +24,15 @@
 				}
 			},
 			{
+				state: "encounter-manager",
+				config: {
+					url: "/encounter-manager",
+					templateUrl: "app/encounter-manager/encounter-manager.html",
+					controller: 'EncounterManagerController',
+					controllerAs: "vm"
+				}
+			},
+			{
 				state: "test",
 				config: {
 					url: "/test",
