@@ -15,7 +15,9 @@
 		<div class="col-md-8">
 			<ng-include src="vm.partial('search')"></ng-include>
 			<ng-include src="vm.partial('monstertable')"></ng-include>
-			<ng-include src="vm.partial('pagination')"></ng-include>
+			<div class="pagination-container">
+				<dir-pagination-controls></dir-pagination-controls>
+			</div>
 			<div class="legend-sm visible-xs visible-sm">
 				<difficulty-legend show-header='true'></difficulty-legend>
 			</div>
