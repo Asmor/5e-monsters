@@ -3,10 +3,10 @@
 
     angular
         .module('app')
-        .directive('currentEncounter', CurrentEncounter);
+        .directive('searchControls', SearchControls);
 
-    CurrentEncounter.$inject = [];
-    function CurrentEncounter() {
+    SearchControls.$inject = [];
+    function SearchControls() {
         // Usage:
         //
         // Creates:
@@ -15,11 +15,11 @@
             bindToController: {
                 'filters': '='
             },
-            controller: 'CurrentEncounterController',
+            controller: 'SearchController',
             controllerAs: 'vm',
             link: link,
             restrict: 'E',
-            templateUrl: 'app/encounter-builder/current-encounter.html',
+            templateUrl: 'app/encounter-builder/search.html',
             scope: {
             }
         };

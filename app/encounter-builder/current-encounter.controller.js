@@ -5,8 +5,8 @@
         .module('app')
         .controller('CurrentEncounterController', CurrentEncounterController);
 
-    CurrentEncounterController.$inject = ['encounter', 'sources'];
-    function CurrentEncounterController(encounter, sources) {
+    CurrentEncounterController.$inject = ['encounter'];
+    function CurrentEncounterController(encounter) {
         var vm = this;
         
         vm.encounter = encounter;
@@ -16,10 +16,6 @@
         ////////////////
 
         function activate() { 
-            vm.filters = {
-                source: sources.filters,
-                pageSize: 10,
-            };
         }
     }
 })();

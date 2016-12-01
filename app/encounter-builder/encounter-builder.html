@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-md-4">
 			<group-info></group-info>
-			<current-encounter></current-encounter>
+			<current-encounter filters='vm.filters'></current-encounter>
 			<div class="sidebar--legend hidden-xs hidden-sm">
 				<button class="btn btn-warning sidebar--legend-button" type="button" data-toggle="collapse" data-target="#legend-collapse">Legend
 					<i class="fa fa-angle-double-up" aria-hidden="true"></i>
@@ -13,11 +13,9 @@
 			</div>
 		</div>
 		<div class="col-md-8">
-			<ng-include src="vm.partial('search')"></ng-include>
+			<!--<ng-include src="vm.partial('search')"></ng-include>-->
+			<search-controls filters='vm.filters'></search-controls>
 			<ng-include src="vm.partial('monstertable')"></ng-include>
-			<div class="pagination-container">
-				<dir-pagination-controls></dir-pagination-controls>
-			</div>
 			<div class="legend-sm visible-xs visible-sm">
 				<difficulty-legend show-header='true'></difficulty-legend>
 			</div>
