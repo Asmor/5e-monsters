@@ -13,9 +13,8 @@
 			</div>
 		</div>
 		<div class="col-md-8">
-			<!--<ng-include src="vm.partial('search')"></ng-include>-->
 			<search-controls filters='vm.filters'></search-controls>
-			<ng-include src="vm.partial('monstertable')"></ng-include>
+			<monster-table filters='vm.filters'></monster-table>
 			<div class="legend-sm visible-xs visible-sm">
 				<difficulty-legend show-header='true'></difficulty-legend>
 			</div>

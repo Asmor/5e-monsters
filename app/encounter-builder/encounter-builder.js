@@ -64,7 +64,7 @@
 					$scope.$apply();
 				}
 
-				$scope.$watch("filters", function () {
+				$scope.$watch("vm.filters", function () {
 					store.set("5em-filters", vm.filters);
 				}, true);
 			});
