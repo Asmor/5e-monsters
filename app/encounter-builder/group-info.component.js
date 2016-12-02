@@ -1,9 +1,13 @@
 (function() {
-'use strict';
+    'use strict';
 
     angular
         .module('app')
-        .controller('GroupInfoController', GroupInfoController);
+        .component('groupInfo', {
+            controller: GroupInfoController,
+            controllerAs: 'vm',
+            templateUrl: 'app/encounter-builder/group-info.html'
+        });
 
     GroupInfoController.$inject = ['encounter', 'metaInfo'];
 

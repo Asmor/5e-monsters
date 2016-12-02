@@ -3,7 +3,14 @@
 
     angular
         .module('app')
-        .controller('SearchController', SearchController);
+        .component('searchControls', {
+            templateUrl: 'app/encounter-builder/search.html',
+            controller: SearchController,
+            controllerAs: 'vm',
+            bindings: {
+                filters: '<'
+            },
+        });
 
     SearchController.$inject = ['$scope', 'sources', 'metaInfo', 'store'];
     function SearchController($scope, sources, metaInfo, store) {
