@@ -197,9 +197,10 @@
 				encounter.partyLevel = miscLib.levels[frozen.partyLevel - 1]; // level 1 is index 0, etc
 				encounter.playerCount = frozen.playerCount;
 
-				if (!$rootScope.$$phase) {
-					$rootScope.$apply();
-				}
+				// TODO Reevaulate all freeze and thaw methods
+				// if (!$rootScope.$$phase) {
+				// 	$rootScope.$apply();
+				// }
 			});
 		}
 
