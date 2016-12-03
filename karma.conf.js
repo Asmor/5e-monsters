@@ -12,9 +12,7 @@ module.exports = function(config) {
       '../thirdparty/dirPagination/dirPagination.js',
       '../thirdparty/lodash.core.js',
       '*.js',
-      'meta/**/*.js',
-      'services/**/*.js',
-      'util/**/*.js',
+      '**/*.js',
       '../scripts/**/*.js'
     ],
 

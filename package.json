@@ -44,7 +44,6 @@
     "start": "http-server . -a localhost -p 8080 -c-1",
     "build-css": "node-sass --include-path app/sass app/sass/style.scss styles/style.css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
-    "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run"
   },
