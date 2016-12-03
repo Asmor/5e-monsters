@@ -7585,53 +7585,53 @@ button.close {
 .sources-modal--buttons {
   margin-bottom: 2rem; }
 
-.sidebar--legend {
+.difficulty-legend {
   bottom: 0;
   right: 1rem;
   position: fixed;
   text-align: right;
   z-index: 2; }
-  .sidebar--legend__deadly {
+  .difficulty-legend__deadly {
     background-color: #eba5a3; }
-  .sidebar--legend__hard {
+  .difficulty-legend__hard {
     background-color: #f6ce95; }
-  .sidebar--legend__medium {
+  .difficulty-legend__medium {
     background-color: #faf2cc; }
-  .sidebar--legend__easy {
+  .difficulty-legend__easy {
     background-color: #dff0d8; }
-  .sidebar--legend__pair {
+  .difficulty-legend__pair {
     background-color: #d9edf7; }
-  .sidebar--legend__group {
+  .difficulty-legend__group {
     background-color: #f7dfff; }
-  .sidebar--legend__trivial {
+  .difficulty-legend__trivial {
     background-color: #fff; }
-  .sidebar--legend li {
+  .difficulty-legend li {
     padding: 5px; }
-  .sidebar--legend-popout {
+  .difficulty-legend-popout {
     text-align: left; }
 
-.legend-sm__deadly {
+.difficulty-legend-sm__deadly {
   background-color: #eba5a3; }
 
-.legend-sm__hard {
+.difficulty-legend-sm__hard {
   background-color: #f6ce95; }
 
-.legend-sm__medium {
+.difficulty-legend-sm__medium {
   background-color: #faf2cc; }
 
-.legend-sm__easy {
+.difficulty-legend-sm__easy {
   background-color: #dff0d8; }
 
-.legend-sm__pair {
+.difficulty-legend-sm__pair {
   background-color: #d9edf7; }
 
-.legend-sm__group {
+.difficulty-legend-sm__group {
   background-color: #f7dfff; }
 
-.legend-sm__trivial {
+.difficulty-legend-sm__trivial {
   background-color: #fff; }
 
-.legend-sm li {
+.difficulty-legend-sm li {
   padding: 5px; }
 
 .encounter-manager-encounter {

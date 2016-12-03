@@ -4,30 +4,28 @@
 @import 'pagination';
 @import 'search';
 
-.sidebar {
-	&--legend {
-		bottom: 0;
-		right: 1rem;
-		position: fixed;
-		text-align: right;
-		z-index: 2;
+.difficulty-legend {
+	bottom: 0;
+	right: 1rem;
+	position: fixed;
+	text-align: right;
+	z-index: 2;
 
-		@include challenge-colors;
+	@include challenge-colors;
 
-		li {
-			padding: 5px;
-		}
+	li {
+		padding: 5px;
+	}
 
-		&-popout {
-			text-align: left;
-		}
+	&-popout {
+		text-align: left;
 	}
 }
 
-.legend-sm {
-		@include challenge-colors;
-		
-		li {
-			padding: 5px;
-		}
+.difficulty-legend-sm {
+	@include challenge-colors;
+	
+	li {
+		padding: 5px;
 	}
+}
