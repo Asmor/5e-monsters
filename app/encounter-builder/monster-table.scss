@@ -37,5 +37,17 @@
 			}
 		}
 	}
+}
 
+.pagination-container {
+	text-align: center;
+
+	select,option {
+		color: black;
+	}
+
+	dir-pagination-controls {
+		display: inline-block;
+		vertical-align: middle;
+	}
 }

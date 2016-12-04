@@ -7399,7 +7399,7 @@ button.close {
   clear: left;
   border-bottom: 1px solid #000; }
 
-.encounter-button, .number-input--button, .encounter-manager-encounter--save-button, .encounter-manager-encounter--remove-button, .encounter-manager-encounter--load-button, .combatant-setup--button, .combat-controls--next-turn, .combatant--apply-button, .manage-players--party-select-button {
+.encounter-button, .number-input--button, .encounter-manager-row--save-button, .encounter-manager-row--remove-button, .encounter-manager-row--load-button, .combatant-setup--button, .combatant--apply-button, .combat-controls--next-turn, .manage-players--party-select-button {
   height: 35px;
   min-width: 35px;
   text-align: center;
@@ -7408,7 +7408,7 @@ button.close {
   border-radius: 2px;
   cursor: pointer;
   padding: 5px; }
-  .encounter-button:active, .number-input--button:active, .encounter-manager-encounter--save-button:active, .encounter-manager-encounter--remove-button:active, .encounter-manager-encounter--load-button:active, .combatant-setup--button:active, .combat-controls--next-turn:active, .combatant--apply-button:active, .manage-players--party-select-button:active {
+  .encounter-button:active, .number-input--button:active, .encounter-manager-row--save-button:active, .encounter-manager-row--remove-button:active, .encounter-manager-row--load-button:active, .combatant-setup--button:active, .combatant--apply-button:active, .combat-controls--next-turn:active, .manage-players--party-select-button:active {
     background-color: #eee; }
 
 .number-input--button__positive:not(:first-child) {
@@ -7634,16 +7634,16 @@ button.close {
 .difficulty-legend-sm li {
   padding: 5px; }
 
-.encounter-manager-encounter {
+.encounter-manager-row {
   margin-top: 20px; }
-  .encounter-manager-encounter--active {
+  .encounter-manager-row--active {
     display: inline-block;
     height: 25px;
     font-weight: bold; }
-  .encounter-manager-encounter--controls {
+  .encounter-manager-row--controls {
     padding: 10px;
     border-bottom: 1px solid #000; }
-  .encounter-manager-encounter--exp {
+  .encounter-manager-row--exp {
     font-variant: small-caps; }
 
 .encounter-manager-monster {
@@ -7686,10 +7686,6 @@ button.close {
 .combat-setup-controls {
   padding: 10px; }
 
-.combat-controls {
-  padding: 10px;
-  border-bottom: 1px solid #000; }
-
 .combatant__player {
   background-color: #66C2A5; }
 
@@ -7716,6 +7712,10 @@ button.close {
   display: inline-block;
   width: 70px;
   text-align: right; }
+
+.combat-controls {
+  padding: 10px;
+  border-bottom: 1px solid #000; }
 
 .edit-players {
   padding: 10px;

@@ -1,22 +1,22 @@
-<div class="encounter-manager-encounter">
-	<div class="encounter-manager-encounter--controls">
-		<div class="encounter-manager-encounter--name">
+<div class="encounter-manager-row">
+	<div class="encounter-manager-row--controls">
+		<div class="encounter-manager-row--name">
 			{{ $ctrl.storedEncounter.name }}
 		</div>
-		<div class="encounter-manager-encounter--exp">
+		<div class="encounter-manager-row--exp">
 			Exp: {{ $ctrl.calculateExp($ctrl.storedEncounter) }}
 		</div>
 		<button
-			class="encounter-manager-encounter--load-button"
+			class="encounter-manager-row--load-button"
 			ng-click="$ctrl.load($ctrl.storedEncounter)"
 			ng-if="$ctrl.encounter.reference != $ctrl.storedEncounter"
 		>Choose</button>
 		<button
-			class="encounter-manager-encounter--remove-button"
+			class="encounter-manager-row--remove-button"
 			ng-click="$ctrl.remove($ctrl.storedEncounter)"
 		>Remove</button>
 		<span
-			class="encounter-manager-encounter--active"
+			class="encounter-manager-row--active"
 			ng-if="$ctrl.encounter.reference == $ctrl.storedEncounter"
 		>
 			Active
