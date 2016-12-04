@@ -11796,7 +11796,7 @@ define([
 			id: "2453a9e3-8aaa-4863-a50a-e2f0f2b91544",
 		},
 		{
-			section: "Mind Flayers", name: "Mind Flayer Litch (Illithilich)",
+			section: "Mind Flayers", name: "Mind Flayer Lich (Illithilich)",
 			size: "Medium", type: "Undead", 
 			ac: 17, hp: 135, int: 3, cr: 22,
 			alignment: alignments.any_evil,
