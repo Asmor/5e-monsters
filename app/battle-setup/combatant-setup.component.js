@@ -5,7 +5,7 @@
         .module('app')
         .component('combatantSetup', {
             templateUrl: 'app/battle-setup/combatant-setup.html',
-            controller: angular.noop,
+            controller: 'combatantSetupController',
             controllerAs: "$vm",
             bindings: {
                 combatant: '<'
