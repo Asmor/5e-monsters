@@ -5,9 +5,9 @@
 		.module('app')
 		.controller('PlayersController', PlayersController);
 
-	PlayersController.$inject = ['util'];
+	PlayersController.$inject = [];
 	
-	function PlayersController(util) {
+	function PlayersController() {
 		var vm = this;
 
 		activate();

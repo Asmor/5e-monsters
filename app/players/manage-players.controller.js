@@ -5,9 +5,9 @@
         .module('app')
         .controller('ManagePlayersController', ManagePlayersController);
 
-    ManagePlayersController.$inject = ['$state', 'actionQueue', 'players', 'util'];
+    ManagePlayersController.$inject = ['$state', 'actionQueue', 'players'];
 
-    function ManagePlayersController($state, actionQueue, players, util) {
+    function ManagePlayersController($state, actionQueue, players) {
         var vm = this;
 
         vm.players = players;

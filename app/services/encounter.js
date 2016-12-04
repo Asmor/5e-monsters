@@ -4,9 +4,9 @@
 	angular.module("app")
 		.factory("encounter", EncounterService);
 
-	EncounterService.$inject = ['$rootScope', 'randomEncounter', 'store', 'metaInfo', 'monsters', 'players', 'util', 'misc'];
+	EncounterService.$inject = ['$rootScope', 'randomEncounter', 'store', 'metaInfo', 'monsters', 'players', 'misc'];
 
-	function EncounterService($rootScope, randomEncounter, store, metaInfo, monsters, players, util, miscLib) {
+	function EncounterService($rootScope, randomEncounter, store, metaInfo, monsters, players, miscLib) {
 		var encounter = {
 				getMultiplier: miscLib.getMultiplier,
 				groups: {},

@@ -5,7 +5,6 @@
 		.controller('TestController', TestController);
 
 	TestController.$inject = ['misc', 'AppVersion', 'combatConstants',
-		'util',
 		'sources',
 		'store',
 		'shuffle',

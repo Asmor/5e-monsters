@@ -4,9 +4,9 @@
 	angular.module("app")
 		.factory("combat", CombatService);
 
-	CombatService.$inject = ['store', 'encounter', 'players', 'monsters', 'util', 'combatConstants'];
+	CombatService.$inject = ['store', 'encounter', 'players', 'monsters', 'misc', 'combatConstants'];
 
-	function CombatService(store, encounter, players, monsters, util, constants) {
+	function CombatService(store, encounter, players, monsters, miscLib, constants) {
 		var combat = {
 			active: 0,
 			combatants: [],
@@ -138,7 +138,7 @@
 				combat.combatants[combat.active].active = true;
 			},
 			rollInitiative: function (combatant) {
-				combatant.initiative = util.d(20) + combatant.initiativeMod;
+				combatant.initiative = miscLib.d(20) + combatant.initiativeMod;
 				combatant.initiativeRolled = true;
 			},
 		};

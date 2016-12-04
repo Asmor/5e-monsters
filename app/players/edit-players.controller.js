@@ -5,9 +5,9 @@
         .module('app')
         .controller('EditPlayersController', EditPlayersController);
 
-    EditPlayersController.$inject = ['players', 'util'];
+    EditPlayersController.$inject = ['players'];
 
-    function EditPlayersController(players, util) {
+    function EditPlayersController(players) {
         var vm = this;
         vm.players = players;
 
