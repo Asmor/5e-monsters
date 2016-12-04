@@ -11,7 +11,7 @@
 	>Next turn</button>
 </div>
 
-<ng-include
+<combatant
 	ng-repeat="combatant in vm.combat.combatants"
-	src="vm.partial('combatant')"
-></ng-include>
+	combatant='combatant'
+></combatant>
