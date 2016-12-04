@@ -14,7 +14,7 @@
 						<div>
 							<span class="current-encounter--monster-cr">CR: {{ group.monster.cr.string }}</span>
 							<span class="current-encounter--monster-xp">XP: {{ group.monster.cr.exp | number}}</span>
-								<div class="current-encounter--monster-source" ng-repeat="source in vm.group.monster.sources" ng-show="filters.source[source.name]" title="{{source.name}} p.{{source.page}}">
+								<div class="current-encounter--monster-source" ng-repeat="source in group.monster.sources" ng-show="vm.filters.source[source.name]" title="{{source.name}} p.{{source.page}}">
 									{{ source.name }} 
 									<span ng-if="source.page">p.{{ source.page }}</span> 
 									<span ng-if="source.url"><a target="_blank" href="{{ source.url }}">[Link]</a></span>
