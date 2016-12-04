@@ -5,12 +5,10 @@
 		.module('app')
 		.controller('EncounterManagerController', EncounterManagerController);
 
-	EncounterManagerController.$inject = ['$scope', '$state', 'actionQueue', 'encounter', 'library', 'monsters', 'util'];
+	EncounterManagerController.$inject = ['$scope', '$state', 'actionQueue', 'encounter', 'library', 'monsters'];
 
-	function EncounterManagerController($scope, $state, actionQueue, encounter, library, monsters, util) {
+	function EncounterManagerController($scope, $state, actionQueue, encounter, library, monsters) {
 		var vm = this;
-
-		vm.partial = util.partialFactory("app/encounter-manager/partials/");
 
 		vm.encounter = encounter;
 		vm.library = library;

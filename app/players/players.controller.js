@@ -9,7 +9,6 @@
 	
 	function PlayersController(util) {
 		var vm = this;
-		vm.partial = util.partialFactory("app/players/partials/");
 
 		activate();
 

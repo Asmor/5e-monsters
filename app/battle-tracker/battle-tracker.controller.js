@@ -5,11 +5,10 @@
 		.module('app')
 		.controller('BattleTrackerController', BattleTrackerController);
 
-	BattleTrackerController.$inject = ['$state', 'combat', 'util'];
+	BattleTrackerController.$inject = ['$state', 'combat'];
 
-	function BattleTrackerController($state, combat, util) {
+	function BattleTrackerController($state, combat) {
 		var vm = this;
-		vm.partial = util.partialFactory("app/battle-tracker/partials/");
 		vm.combat = combat;
 
 		activate();

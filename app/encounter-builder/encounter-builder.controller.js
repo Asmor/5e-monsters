@@ -4,7 +4,7 @@
 	angular.module("app")
 		.controller("EncounterBuilderController", EncounterBuilderController);
 
-	EncounterBuilderController.$inject = ['$scope', 'store', 'actionQueue', 'encounter', 'metaInfo', 'monsters', 'sources', 'util'];
+	EncounterBuilderController.$inject = ['$scope', 'store', 'actionQueue', 'encounter', 'metaInfo', 'monsters', 'sources'];
 
 	function EncounterBuilderController(
 			$scope,
@@ -13,15 +13,12 @@
 			encounter,
 			metaInfo,
 			monsters,
-			sources,
-			util
+			sources
 		) {
 			var vm = this;
 
 			// There's no way to tell when they're done building an encounter, so clear the queue if they ever make it here.
 			actionQueue.clear();
-
-			vm.partial = util.partialFactory("app/encounter-builder/partials/");
 
 			vm.alignments = metaInfo.alignments;
 			vm.crList = metaInfo.crList;

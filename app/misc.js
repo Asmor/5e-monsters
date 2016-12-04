@@ -47,7 +47,6 @@
 			d: d,
 			getMultiplier: getMultiplier,
 			levels: levels,
-			partialFactory: partialFactory,
 			sourceFilters: sourceFilters,
 			sources: sources,
 			shortNames: shortNames,
@@ -96,22 +95,6 @@
 			}
 
 			return multipliers[multiplierCategory];
-		}
-
-		// function getShuffledMonsterList(cr) {
-		// 	var monsters = crInfo[cr].monsters.slice(0);
-
-		// 	return shuffle(monsters);
-		// }
-
-		function partialFactory(moduleName) {
-			return function ( partialName, base ) {
-				return [
-					base || moduleName,
-					partialName,
-					".html",
-				].join("");
-			};
 		}
 
 		function d(n) {

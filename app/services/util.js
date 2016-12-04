@@ -8,9 +8,7 @@
 
 	function UtilService(miscLib) {
 		var service = {
-			d: miscLib.d,
-			getShuffledMonsterList: miscLib.getShuffledMonsterList,
-			partialFactory: miscLib.partialFactory,
+			d: miscLib.d
 		};
 		
 		return service;

@@ -5,12 +5,11 @@
 		.module('app')
 		.controller('BattleSetupController', BattleSetupController);
 
-	BattleSetupController.$inject = ['$state', 'actionQueue', 'combat', 'util', 'combatConstants'];
+	BattleSetupController.$inject = ['$state', 'actionQueue', 'combat', 'combatConstants'];
 
-	function BattleSetupController($state, actionQueue, combat, util, constants) {
+	function BattleSetupController($state, actionQueue, combat, constants) {
 		var vm = this;
 		
-		vm.partial = util.partialFactory("app/battle-setup/partials/");
 		vm.combat = combat;
 
 		activate();
