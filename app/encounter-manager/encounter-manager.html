@@ -29,8 +29,7 @@
 		</div>
 	</div>
 
-	<ng-include
-		src="vm.partial('encounter-manager-encounter')"
-		ng-repeat="storedEncounter in vm.library.encounters track by $index"
-	></ng-include>
+	<div ng-repeat="storedEncounter in vm.library.encounters track by $index">
+		<manager-row stored-encounter='storedEncounter'></manager-row>
+	</div>
 </div>
