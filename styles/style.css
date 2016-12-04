@@ -7651,9 +7651,6 @@ button.close {
   border-bottom: 1px solid #000;
   background-color: #FC8D62; }
 
-.combat-setup-controls {
-  padding: 10px; }
-
 .combatant-setup__player {
   background-color: #66C2A5; }
 
@@ -7685,6 +7682,9 @@ button.close {
 .combatant-setup--hp {
   display: inline-block;
   width: 250px; }
+
+.combat-setup-controls {
+  padding: 10px; }
 
 .combat-controls {
   padding: 10px;
