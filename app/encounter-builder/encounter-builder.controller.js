@@ -83,9 +83,5 @@
 
 				return monster.name;
 			};
-
-			$scope.$watch("filters", function () {
-				store.set("5em-filters", vm.filters);
-			}, true);
 		}
 })();

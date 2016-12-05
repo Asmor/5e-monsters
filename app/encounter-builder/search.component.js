@@ -31,9 +31,9 @@
         ////////////////
 
         function activate() { 
-            $scope.$watch("vm.filters", function () {
-				store.set("5em-filters", vm.filters);
-			}, true);
+            // $scope.$watch("vm.filters", function () {
+			// 	store.set("5em-filters", vm.filters);
+			// }, true);
         }
 
         function resetFilters() {

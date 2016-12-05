@@ -23,7 +23,6 @@
 				});
 			},
 			set: function (key, data) {
-				$log.debug("Setting store value for: " + key);
 				localStorageService.set(key, data);
 			},
 		};
