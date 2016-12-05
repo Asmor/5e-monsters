@@ -189,7 +189,7 @@
 		function thaw() {
 			encounter.reset();
 
-			store.get("5em-encounter", function (frozen) {
+			store.get("5em-encounter").then(function (frozen) {
 				if ( !frozen ) {
 					return;
 				}

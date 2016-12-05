@@ -35,13 +35,9 @@
 		}
 
 		function thaw() {
-			store.get("5em-library", function (frozen) {
+			store.get("5em-library").then(function (frozen) {
 				if (frozen) {
 					library.encounters = frozen;
-
-					if (!$rootScope.$$phase) {
-						$rootScope.$apply();
-					}
 				}
 			});
 		}

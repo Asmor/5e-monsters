@@ -52,13 +52,9 @@
 				vm.encounter.exp = subtotal;
 			}, true);
 
-			store.get("5em-filters", function (frozen) {
+			store.get("5em-filters").then(function (frozen) {
 				if (frozen) {
 					vm.filters = frozen;
-				}
-
-				if (!$scope.$$phase) {
-					$scope.$apply();
 				}
 
 				$scope.$watch("vm.filters", function () {
