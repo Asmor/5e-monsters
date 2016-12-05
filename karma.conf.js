@@ -11,6 +11,7 @@ module.exports = function(config) {
       '../thirdparty/angular-touch/angular-touch.js',
       '../thirdparty/dirPagination/dirPagination.js',
       '../thirdparty/lodash.core.js',
+      '../thirdparty/angular-local-storage/angular-local-storage.js',
       '*.js',
       '**/*.js',
       '../scripts/**/*.js'

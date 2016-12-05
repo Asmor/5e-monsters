@@ -7,6 +7,7 @@
 			"ui.router",
 			"ngTouch",
 			"angularUtils.directives.dirPagination",
+			"LocalStorageModule"
 		]);
 
 	// requirejs.config({
