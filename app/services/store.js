@@ -4,25 +4,27 @@
 	angular.module("app")
 		.factory("store", StoreService);
 
-	function StoreService() {
+	StoreService.$inject = ['$q', '$log', 'localStorageService'];
+
+	function StoreService($q, $log, localStorageService) {
 		var store = {
-			get: function (key, callback) {
-				var data;
-				var raw = localStorage[key];
+			get: function (key) {
+				return $q(function(resolve, reject) {
+					var data;
 
-				if (raw) {
 					try {
-						data = JSON.parse(localStorage[key]);
+						data = localStorageService.get(key);
+						resolve(data);
 					} catch (ex) {
-						console.warn("Unable to parse stored value for " + key);
+						$log.warn("Unable to parse stored value for " + key);
 						data = undefined;
+						reject("Unable to parse stored value for " + key);
 					}
-				}
-
-				callback(data);
+				});
 			},
 			set: function (key, data) {
-				localStorage[key] = JSON.stringify(data);
+				$log.debug("Setting store value for: " + key);
+				localStorageService.set(key, data);
 			},
 		};
 
