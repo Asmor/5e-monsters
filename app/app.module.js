@@ -2,12 +2,18 @@
 	/* global requirejs */
 	"use strict";
 
-	angular
+	var myapp = angular
 		.module("app", [
 			"ui.router",
 			"ngTouch",
 			"angularUtils.directives.dirPagination",
+			"LocalStorageModule"
 		]);
+
+	myapp.config(function(localStorageServiceProvider) {
+		localStorageServiceProvider
+    		.setPrefix('');
+	})
 
 	// requirejs.config({
 	// 	// For cache-busting. Should be kept in sync with value in constants.js

@@ -119,15 +119,11 @@
 		}
 
 		function thaw() {
-			store.get("5em-players", function (frozen) {
+			store.get("5em-players").then(function (frozen) {
 				if (frozen) {
 					parties = frozen;
 					partiesDirty = false;
 					rawDirty = true;
-
-					if (!$rootScope.$$phase) {
-						$rootScope.$apply();
-					}
 				}
 			});
 		}
