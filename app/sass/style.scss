@@ -2,7 +2,8 @@
 @import 'mixins';
 
 // Font Awesome
-$fa-font-path: "../../thirdparty/font-awesome-4.1.0/fonts";
+// IMPORTANT: Font path is relative to the compiled CSS file, not this sass file!
+$fa-font-path: "../thirdparty/font-awesome-4.1.0/fonts";
 @import "../../thirdparty/font-awesome-4.1.0/scss/font-awesome";
 
 // Bootstrap
