@@ -1,0 +1,17 @@
+<div class="combat-controls">
+	<number-input
+		model="vm.combat.delta"
+		buttons="[-10, -5, -1, 1, 5, 10]"
+		non-negative="true"
+	></number-input>
+
+	<button
+		class="combat-controls--next-turn"
+		ng-click="vm.combat.nextTurn()"
+	>Next turn</button>
+</div>
+
+<combatant
+	ng-repeat="combatant in vm.combat.combatants"
+	combatant='combatant'
+></combatant>

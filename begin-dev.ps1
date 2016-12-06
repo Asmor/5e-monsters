@@ -1,2 +1,3 @@
 start-process npm 'run start'
-start-process npm 'run watch-css'
+start-process gulp 'sass-watcher'
+start-process npm test

@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
 	<title>Kobold Fight Club: The first rule of KFC is 'Yip yip!'</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="styles/style.css">
+	<!-- build:css styles/styles.css -->
+	<!-- inject:css-->
+  <link rel="stylesheet" href="styles/style.css">
+  <!-- endinject-->
+  <!-- endbuild -->
 </head>
 <body>
-	<!-- <ng-include src="'modules/common/menu.html'"></ng-include> -->
 	<nav class="navbar navbar-inverse navbar-static-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -38,10 +41,79 @@
 	<script src="thirdparty/bootstrap-sass-3.3.7/assets/javascripts/bootstrap.min.js"></script>
 	<script src="thirdparty/lodash.core.js"></script>
 	<script src="thirdparty/angular/angular.js"></script>
-	<script src="thirdparty/angular/angular-ui-router.js"></script>
-	<script src="thirdparty/angular/angular-touch.js"></script>
-	<script src="thirdparty/angular/dirPagination/dirPagination.js"></script>
-	<script src="thirdparty/requirejs/require.js"></script>
-	<script src="scripts/app.js"></script>
+	<script src="thirdparty/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="thirdparty/angular-touch/angular-touch.js"></script>
+	<script src="thirdparty/dirPagination/dirPagination.js"></script>
+
+	<!-- build:js js/app.js-->
+	<!-- inject:js -->
+	<script src="app/app.module.js"></script>
+	<script src="app/app.routes.js"></script>
+	<script src="app/battle-setup/battle-setup.controller.js"></script>
+	<script src="app/battle-setup/combatant-setup.component.js"></script>
+	<script src="app/battle-setup/combatant-setup.controller.js"></script>
+	<script src="app/battle-tracker/battle-tracker.controller.js"></script>
+	<script src="app/battle-tracker/combatant.component.js"></script>
+	<script src="app/common/difficulty-legend.component.js"></script>
+	<script src="app/common/number-input.controller.js"></script>
+	<script src="app/common/number-input.js"></script>
+	<script src="app/constants.js"></script>
+	<script src="scripts/data.js"></script>
+	<script src="scripts/data/basicrules.js"></script>
+	<script src="scripts/data/curseofstrahd.js"></script>
+	<script src="scripts/data/custom.js"></script>
+	<script src="scripts/data/fiftheditionfoes.js"></script>
+	<script src="scripts/data/hotdq.js"></script>
+	<script src="scripts/data/hotdqsup.js"></script>
+	<script src="scripts/data/monsteraday.js"></script>
+	<script src="scripts/data/monstermanual.js"></script>
+	<script src="scripts/data/monsters.js"></script>
+	<script src="scripts/data/outoftheabyss.js"></script>
+	<script src="scripts/data/playershandbook.js"></script>
+	<script src="scripts/data/primevalthule.js"></script>
+	<script src="scripts/data/primevalthulegmc.js"></script>
+	<script src="scripts/data/princes.js"></script>
+	<script src="scripts/data/princessupplement.js"></script>
+	<script src="scripts/data/rot.js"></script>
+	<script src="scripts/data/stormkingsthunder.js"></script>
+	<script src="scripts/data/tomeofbeasts.js"></script>
+	<script src="scripts/data/volosguidetomonsters.js"></script>
+	<script src="app/encounter-builder/current-encounter.component.js"></script>
+	<script src="app/encounter-builder/encounter-builder.controller.js"></script>
+	<script src="app/encounter-builder/group-info.component.js"></script>
+	<script src="app/encounter-builder/monster-table.component.js"></script>
+	<script src="app/encounter-builder/monster-table.controller.js"></script>
+	<script src="app/encounter-builder/search.component.js"></script>
+	<script src="app/encounter-manager/encounter-manager.controller.js"></script>
+	<script src="app/encounter-manager/manager-row.component.js"></script>
+	<script src="app/encounter-manager/manager-row.controller.js"></script>
+	<script src="app/filters/filter-and-sort-monsters.filter.js"></script>
+	<script src="app/filters/positive-and-negative-numbers.filter.js"></script>
+	<script src="app/filters/sort-encounter.filter.js"></script>
+	<script src="app/meta/alignments.js"></script>
+	<script src="app/meta/crInfo.js"></script>
+	<script src="app/misc.js"></script>
+	<script src="scripts/monsterfactory.js"></script>
+	<script src="app/players/edit-players.controller.js"></script>
+	<script src="app/players/manage-players.controller.js"></script>
+	<script src="app/players/players.controller.js"></script>
+	<script src="app/services/actionQueue.js"></script>
+	<script src="app/services/combat.js"></script>
+	<script src="app/services/encounter.js"></script>
+	<script src="app/services/library.js"></script>
+	<script src="app/services/metaInfo.js"></script>
+	<script src="app/services/monsters.js"></script>
+	<script src="app/services/players.js"></script>
+	<script src="app/services/randomencounter.js"></script>
+	<script src="app/services/sources.js"></script>
+	<script src="app/services/store.js"></script>
+	<script src="app/test.controller.js"></script>
+	<script src="app/util/logger.js"></script>
+	<script src="app/util/router-helper.provider.js"></script>
+	<script src="app/util/shuffle.js"></script>
+	<!-- endinject -->
+	<!-- inject:templates:js -->
+	<!-- endinject -->
+	<!--endbuild-->
 </body>
 </html>

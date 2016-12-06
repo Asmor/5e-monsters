@@ -1,0 +1,23 @@
+<div class="container-fluid" role="main">
+	<div class="row">
+		<div class="col-md-4">
+			<group-info></group-info>
+			<current-encounter filters='vm.filters'></current-encounter>
+			<div class="difficulty-legend hidden-xs hidden-sm">
+				<button class="btn btn-warning difficulty-legend-button" type="button" data-toggle="collapse" data-target="#legend-collapse">Legend
+					<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+				</button>
+				<div id="legend-collapse" class="difficulty-legend-popout collapse" aria-expanded="false" aria-controls="legend-collapse">
+					<difficulty-legend></difficulty-legend>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<search-controls filters='vm.filters'></search-controls>
+			<monster-table filters='vm.filters'></monster-table>
+			<div class="difficulty-legend-sm visible-xs visible-sm">
+				<difficulty-legend show-header='true'></difficulty-legend>
+			</div>
+		</div>
+	</div>
+</div>

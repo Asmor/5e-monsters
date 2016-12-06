@@ -1,0 +1,30 @@
+<div class="encounter-manager-row">
+	<div class="encounter-manager-row--controls">
+		<div class="encounter-manager-row--name">
+			{{ $ctrl.storedEncounter.name }}
+		</div>
+		<div class="encounter-manager-row--exp">
+			Exp: {{ $ctrl.calculateExp($ctrl.storedEncounter) }}
+		</div>
+		<button
+			class="encounter-manager-row--load-button"
+			ng-click="$ctrl.load($ctrl.storedEncounter)"
+			ng-if="$ctrl.encounter.reference != $ctrl.storedEncounter"
+		>Choose</button>
+		<button
+			class="encounter-manager-row--remove-button"
+			ng-click="$ctrl.remove($ctrl.storedEncounter)"
+		>Remove</button>
+		<span
+			class="encounter-manager-row--active"
+			ng-if="$ctrl.encounter.reference == $ctrl.storedEncounter"
+		>
+			Active
+		</span>
+	</div>
+
+	<div class="encounter-manager-monster" ng-repeat="(id, qty) in $ctrl.storedEncounter.groups">
+		<span ng-if="qty > 1">{{ qty }}x</span>
+		{{ $ctrl.monsters.byId[id].name }}
+	</div>
+</div>

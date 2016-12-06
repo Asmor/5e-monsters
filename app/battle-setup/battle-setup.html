@@ -1,0 +1,8 @@
+<div class="combat-setup-controls">
+	<button class="btn btn-danger btn-lg" ui-sref="battle-tracker">Fight!</button>
+</div>
+
+<combatant-setup
+	ng-repeat="combatant in vm.combat.combatants"
+	combatant="combatant"
+></combatant-setup>

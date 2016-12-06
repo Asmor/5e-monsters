@@ -1,0 +1,41 @@
+<div class="group-info">
+	<div class="group-info--input">
+		<h2 class="group-info--header">Group Info</h2>
+		<div>
+			<div class="group-info--input-section">
+				<label>Players:</label>
+				<select
+						ng-model="vm.encounter.playerCount"
+						ng-options="count for count in [1,2,3,4,5,6,7,8,9,10,11,12]"
+						ng-change="vm.encounter.recalculateThreatLevels()"
+					></select>
+			</div>
+			<div class="group-info--input-section">
+				<label>Level:</label>
+				<select
+					ng-model="vm.encounter.partyLevel"
+					ng-options="level as level.level for level in vm.levels"
+					ng-change="vm.encounter.recalculateThreatLevels()"
+				></select>
+			</div>
+		</div>
+	</div>
+	<ul class="group-info--guidelines list-unstyled">
+		<li ng-class="{'group-info--guidelines-active': vm.encounter.difficulty === 'Easy'}">
+			<span>Easy:</span>
+			<span class="group-info--guidelines-values">{{ vm.encounter.partyLevel.easy * vm.encounter.playerCount | number }} exp</span>
+		</li>
+		<li ng-class="{'group-info--guidelines-active': vm.encounter.difficulty === 'Medium'}">
+			<span>Medium:</span>
+			<span class="group-info--guidelines-values">{{ vm.encounter.partyLevel.medium * vm.encounter.playerCount | number }} exp</span>
+		</li>
+		<li ng-class="{'group-info--guidelines-active': vm.encounter.difficulty === 'Hard'}">
+			<span>Hard:</span>
+			<span class="group-info--guidelines-values">{{ vm.encounter.partyLevel.hard * vm.encounter.playerCount | number }} exp</span>
+		</li>
+		<li ng-class="{'group-info--guidelines-active': vm.encounter.difficulty === 'Deadly'}">
+			<span>Deadly:</span>
+			<span class="group-info--guidelines-values">{{ vm.encounter.partyLevel.deadly * vm.encounter.playerCount | number }} exp</span>
+		</li>
+	</ul>
+</div>

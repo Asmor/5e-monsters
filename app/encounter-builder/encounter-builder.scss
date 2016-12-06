@@ -1,0 +1,30 @@
+@import 'current-encounter';
+@import 'group-info';
+@import 'monster-table';
+@import 'search';
+
+.difficulty-legend {
+	bottom: 0;
+	right: 1rem;
+	position: fixed;
+	text-align: right;
+	z-index: 2;
+
+	@include challenge-colors;
+
+	li {
+		padding: 5px;
+	}
+
+	&-popout {
+		text-align: left;
+	}
+}
+
+.difficulty-legend-sm {
+	@include challenge-colors;
+	
+	li {
+		padding: 5px;
+	}
+}

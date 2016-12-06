@@ -1,0 +1,53 @@
+.monster-table {
+	margin-top: 2rem;
+
+	&--button-cell {
+		text-align: center;
+	}
+
+	&--cr-cell {
+		@include challenge-colors;
+	}
+
+	&--section {
+		font-size: 0.95rem;
+		font-variant: small-caps;
+	}
+
+	&--tags {
+		font-style: italic;
+	}
+
+	&--source-name {
+		&__short {
+			display: inline;
+		}
+
+		&__long {
+			display: none;
+		}
+
+		@media (min-width: 768px) {
+			&__short {
+				display: none;
+			}
+
+			&__long {
+				display: inline;
+			}
+		}
+	}
+}
+
+.pagination-container {
+	text-align: center;
+
+	select,option {
+		color: black;
+	}
+
+	dir-pagination-controls {
+		display: inline-block;
+		vertical-align: middle;
+	}
+}

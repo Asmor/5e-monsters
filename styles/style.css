@@ -30,8 +30,8 @@ input[type=number] {
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url("../thirdparty/font-awesome-4.1.0/fonts/fontawesome-webfont.eot?v=4.1.0");
-  src: url("../thirdparty/font-awesome-4.1.0/fonts/fontawesome-webfont.eot?#iefix&v=4.1.0") format("embedded-opentype"), url("../thirdparty/font-awesome-4.1.0/fonts/fontawesome-webfont.woff?v=4.1.0") format("woff"), url("../thirdparty/font-awesome-4.1.0/fonts/fontawesome-webfont.ttf?v=4.1.0") format("truetype"), url("../thirdparty/font-awesome-4.1.0/fonts/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular") format("svg");
+  src: url("../../thirdparty/font-awesome-4.1.0/fonts/fontawesome-webfont.eot?v=4.1.0");
+  src: url("../../thirdparty/font-awesome-4.1.0/fonts/fontawesome-webfont.eot?#iefix&v=4.1.0") format("embedded-opentype"), url("../../thirdparty/font-awesome-4.1.0/fonts/fontawesome-webfont.woff?v=4.1.0") format("woff"), url("../../thirdparty/font-awesome-4.1.0/fonts/fontawesome-webfont.ttf?v=4.1.0") format("truetype"), url("../../thirdparty/font-awesome-4.1.0/fonts/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -7399,7 +7399,7 @@ button.close {
   clear: left;
   border-bottom: 1px solid #000; }
 
-.encounter-button, .number-input--button, .encounter-manager-encounter--save-button, .encounter-manager-encounter--remove-button, .encounter-manager-encounter--load-button, .combatant-setup--button, .combat-controls--next-turn, .combatant--apply-button, .manage-players--party-select-button {
+.encounter-button, .number-input--button, .encounter-manager-row--save-button, .encounter-manager-row--remove-button, .encounter-manager-row--load-button, .combatant-setup--button, .combatant--apply-button, .combat-controls--next-turn, .manage-players--party-select-button {
   height: 35px;
   min-width: 35px;
   text-align: center;
@@ -7408,7 +7408,7 @@ button.close {
   border-radius: 2px;
   cursor: pointer;
   padding: 5px; }
-  .encounter-button:active, .number-input--button:active, .encounter-manager-encounter--save-button:active, .encounter-manager-encounter--remove-button:active, .encounter-manager-encounter--load-button:active, .combatant-setup--button:active, .combat-controls--next-turn:active, .combatant--apply-button:active, .manage-players--party-select-button:active {
+  .encounter-button:active, .number-input--button:active, .encounter-manager-row--save-button:active, .encounter-manager-row--remove-button:active, .encounter-manager-row--load-button:active, .combatant-setup--button:active, .combatant--apply-button:active, .combat-controls--next-turn:active, .manage-players--party-select-button:active {
     background-color: #eee; }
 
 .number-input--button__positive:not(:first-child) {
@@ -7585,74 +7585,71 @@ button.close {
 .sources-modal--buttons {
   margin-bottom: 2rem; }
 
-.sidebar--legend {
+.difficulty-legend {
   bottom: 0;
   right: 1rem;
   position: fixed;
   text-align: right;
   z-index: 2; }
-  .sidebar--legend__deadly {
+  .difficulty-legend__deadly {
     background-color: #eba5a3; }
-  .sidebar--legend__hard {
+  .difficulty-legend__hard {
     background-color: #f6ce95; }
-  .sidebar--legend__medium {
+  .difficulty-legend__medium {
     background-color: #faf2cc; }
-  .sidebar--legend__easy {
+  .difficulty-legend__easy {
     background-color: #dff0d8; }
-  .sidebar--legend__pair {
+  .difficulty-legend__pair {
     background-color: #d9edf7; }
-  .sidebar--legend__group {
+  .difficulty-legend__group {
     background-color: #f7dfff; }
-  .sidebar--legend__trivial {
+  .difficulty-legend__trivial {
     background-color: #fff; }
-  .sidebar--legend li {
+  .difficulty-legend li {
     padding: 5px; }
-  .sidebar--legend-popout {
+  .difficulty-legend-popout {
     text-align: left; }
 
-.legend-sm__deadly {
+.difficulty-legend-sm__deadly {
   background-color: #eba5a3; }
 
-.legend-sm__hard {
+.difficulty-legend-sm__hard {
   background-color: #f6ce95; }
 
-.legend-sm__medium {
+.difficulty-legend-sm__medium {
   background-color: #faf2cc; }
 
-.legend-sm__easy {
+.difficulty-legend-sm__easy {
   background-color: #dff0d8; }
 
-.legend-sm__pair {
+.difficulty-legend-sm__pair {
   background-color: #d9edf7; }
 
-.legend-sm__group {
+.difficulty-legend-sm__group {
   background-color: #f7dfff; }
 
-.legend-sm__trivial {
+.difficulty-legend-sm__trivial {
   background-color: #fff; }
 
-.legend-sm li {
+.difficulty-legend-sm li {
   padding: 5px; }
 
-.encounter-manager-encounter {
+.encounter-manager-row {
   margin-top: 20px; }
-  .encounter-manager-encounter--active {
+  .encounter-manager-row--active {
     display: inline-block;
     height: 25px;
     font-weight: bold; }
-  .encounter-manager-encounter--controls {
+  .encounter-manager-row--controls {
     padding: 10px;
     border-bottom: 1px solid #000; }
-  .encounter-manager-encounter--exp {
+  .encounter-manager-row--exp {
     font-variant: small-caps; }
 
 .encounter-manager-monster {
   padding: 10px;
   border-bottom: 1px solid #000;
   background-color: #FC8D62; }
-
-.combat-setup-controls {
-  padding: 10px; }
 
 .combatant-setup__player {
   background-color: #66C2A5; }
@@ -7686,9 +7683,8 @@ button.close {
   display: inline-block;
   width: 250px; }
 
-.combat-controls {
-  padding: 10px;
-  border-bottom: 1px solid #000; }
+.combat-setup-controls {
+  padding: 10px; }
 
 .combatant__player {
   background-color: #66C2A5; }
@@ -7716,6 +7712,10 @@ button.close {
   display: inline-block;
   width: 70px;
   text-align: right; }
+
+.combat-controls {
+  padding: 10px;
+  border-bottom: 1px solid #000; }
 
 .edit-players {
   padding: 10px;
@@ -7758,7 +7758,3 @@ button.close {
 
 .players-controls {
   padding: 10px; }
-
-.account {
-  min-height: 40px;
-  padding-left: 70px; }
