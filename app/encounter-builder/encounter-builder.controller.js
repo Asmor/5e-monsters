@@ -56,7 +56,8 @@
 				if (frozen) {
 					vm.filters = frozen;
 				}
-
+			})
+			.finally(function() {
 				$scope.$watch("vm.filters", function () {
 					store.set("5em-filters", vm.filters);
 				}, true);
