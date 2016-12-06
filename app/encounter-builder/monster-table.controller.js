@@ -6,17 +6,17 @@
     
     MonsterTableController.$inject = ['encounter', 'monsters'];
     function MonsterTableController(encounter, monsters) {
-        var $ctrl = this;
+        var vm = this;
         
-        $ctrl.encounter = encounter;
-        $ctrl.monsters = monsters.all;
-        $ctrl.dangerZone = dangerZone;
+        vm.encounter = encounter;
+        vm.monsters = monsters.all;
+        vm.dangerZone = dangerZone;
 
         ////////////////
 
-        $ctrl.$onInit = function() { };
-        $ctrl.$onChanges = function(changesObj) { };
-        $ctrl.$onDestory = function() { };
+        vm.$onInit = function() { };
+        vm.$onChanges = function(changesObj) { };
+        vm.$onDestory = function() { };
 
         function dangerZone(monster) {
             if ( !monster ) {

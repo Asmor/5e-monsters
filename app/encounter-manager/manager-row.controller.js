@@ -7,13 +7,13 @@
 
     ManagerRowController.$inject = ['$state', 'encounter', 'monsters', 'actionQueue', 'library'];
     function ManagerRowController($state, encounter, monsters, actionQueue, library) {
-        var $ctrl = this;
+        var vm = this;
 
-        $ctrl.calculateExp = calculateExp;
-        $ctrl.load = load;
-        $ctrl.remove = remove;
-        $ctrl.encounter = encounter;
-        $ctrl.monsters = monsters;
+        vm.calculateExp = calculateExp;
+        vm.load = load;
+        vm.remove = remove;
+        vm.encounter = encounter;
+        vm.monsters = monsters;
 
         activate();
 
