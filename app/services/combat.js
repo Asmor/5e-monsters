@@ -81,7 +81,9 @@
 					return b.initiative - a.initiative;
 				});
 
-				combat.combatants[combat.active].active = true;
+				if (combat.combatants.length > 0) {			
+					combat.combatants[combat.active].active = true;
+				}
 			},
 			init: function () {
 				combat.combatants.length = 0;

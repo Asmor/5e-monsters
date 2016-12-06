@@ -1,33 +1,33 @@
 <div
-	class="combatant combatant__{{ $vm.combatant.type }}"
-	ng-class="{ 'combatant__active': $vm.combatant.active }"
+	class="combatant combatant__{{ vm.combatant.type }}"
+	ng-class="{ 'combatant__active': vm.combatant.active }"
 >
 	<span class="combatant--name">
-		{{ $vm.combatant.name }}
+		{{ vm.combatant.name }}
 	</span>
 	<span class="combatant--initiative-label">
 		Initiative:
 	</span>
 	<span class="combatant--initiative">
-		{{ $vm.combatant.initiative }}
+		{{ vm.combatant.initiative }}
 	</span>
 	<span class="combatant--hp-label">
-		<span ng-if="!$vm.combatant.noHp"> HP: </span>
+		<span ng-if="!vm.combatant.noHp"> HP: </span>
 	</span>
 	<span class="combatant--hp">
-		<span ng-if="!$vm.combatant.noHp">
-			{{ $vm.combatant.hp - $vm.combatant.damage }} / {{ $vm.combatant.hp }}
+		<span ng-if="!vm.combatant.noHp">
+			{{ vm.combatant.hp - vm.combatant.damage }} / {{ vm.combatant.hp }}
 		</span>
 	</span>
 	<span class="combatant--apply">
-		<span ng-show="combat.delta && !$vm.combatant.noHp">
+		<span ng-show="vm.combat.delta && !vm.combatant.noHp">
 			<button
 				class="combatant--apply-button"
-				ng-click="vm.combat.applyDelta($vm.combatant)"
+				ng-click="vm.combat.applyDelta(vm.combatant)"
 			>Damage {{ vm.combat.delta }}</button>
 			<button
 				class="combatant--apply-button"
-				ng-click="vm.combat.applyDelta($vm.combatant, -1)"
+				ng-click="vm.combat.applyDelta(vm.combatant, -1)"
 			>Heal {{ vm.combat.delta }}</button>
 		</span>
 	</span>
