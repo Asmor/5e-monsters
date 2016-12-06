@@ -45,8 +45,7 @@ gulp.task('template-cache', ['clean-code'], function () {
         .pipe(gulp.dest(config.temp));
 });
 
-//, 'template-cache'
-gulp.task('inject', ['compile-sass'], function () {
+gulp.task('inject', ['compile-sass', 'template-cache'], function () {
     log('Wire up css and js into the html, after files are ready');
 
     var templateCache = config.temp + config.templateCache.file;
@@ -55,7 +54,7 @@ gulp.task('inject', ['compile-sass'], function () {
         .src(config.index)
         .pipe(inject(config.cssFile))
         .pipe(inject(config.js, '', config.jsOrder))
-        // .pipe(inject(templateCache, 'templates'))
+        .pipe(inject(templateCache, 'templates'))
         .pipe(gulp.dest(config.root));
 });
 
