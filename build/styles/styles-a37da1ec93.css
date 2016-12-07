@@ -4,6 +4,9 @@
   margin: 0;
   font-family: 'Open Sans', sans-serif; }
 
+body {
+  padding-top: 70px; }
+
 table {
   border-collapse: collapse; }
 
@@ -7701,7 +7704,7 @@ button.close {
   padding: 5px; }
 
 .encounter-manager-row {
-  margin-top: 20px; }
+  margin-bottom: 1rem; }
   .encounter-manager-row--active {
     display: inline-block;
     height: 25px;

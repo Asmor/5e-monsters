@@ -6,7 +6,7 @@
         .component('combatantSetup', {
             templateUrl: 'app/battle-setup/combatant-setup.html',
             controller: 'combatantSetupController',
-            controllerAs: "$vm",
+            controllerAs: "vm",
             bindings: {
                 combatant: '<'
             },

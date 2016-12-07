@@ -5,6 +5,7 @@
   "main": "index.html",
   "dependencies": {
     "angular": "^1.5.9",
+    "angular-local-storage": "^0.5.0",
     "angular-touch": "^1.5.9",
     "angular-ui-router": "^0.3.2"
   },
@@ -45,12 +46,13 @@
     "prestart": "npm install",
     "start": "http-server . -a localhost -p 8080 -c-1",
     "gulp": "gulp",
+    "start-built": "http-server build -a localhost -p 8081 -c-1",
     "gulp-dev": "gulp --dev",
-    "build": "npm run build-css && gulp optimize",
-    "build-css": "node-sass --include-path app/sass app/sass/style.scss styles/style.css",
-    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+    "build": "gulp optimize",
+    "watch-css": "gulp sass-watcher",
     "test": "karma start karma.conf.js",
-    "test-single-run": "karma start karma.conf.js --single-run"
+    "test-single-run": "karma start karma.conf.js --single-run",
+    "watch-html": "nodemon -e html -x \"gulp template-cache\""
   },
   "repository": {
     "type": "git",

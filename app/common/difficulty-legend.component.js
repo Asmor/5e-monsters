@@ -7,6 +7,7 @@
             bindings: {
                 showHeader: '<'
             },
+            controllerAs: 'vm',
             templateUrl: 'app/common/difficulty-legend.html'
         });
 })();

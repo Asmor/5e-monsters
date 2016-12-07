@@ -189,18 +189,13 @@
 		function thaw() {
 			encounter.reset();
 
-			store.get("5em-encounter", function (frozen) {
+			store.get("5em-encounter").then(function (frozen) {
 				if ( !frozen ) {
 					return;
 				}
 
 				encounter.partyLevel = miscLib.levels[frozen.partyLevel - 1]; // level 1 is index 0, etc
 				encounter.playerCount = frozen.playerCount;
-
-				// TODO Reevaulate all freeze and thaw methods
-				// if (!$rootScope.$$phase) {
-				// 	$rootScope.$apply();
-				// }
 			});
 		}
 

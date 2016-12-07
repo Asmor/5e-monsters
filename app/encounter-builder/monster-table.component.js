@@ -11,6 +11,7 @@
         .component('monsterTable', {
             templateUrl: 'app/encounter-builder/monster-table.html',
             controller: 'monsterTableController',
+            controllerAs: 'vm',
             bindings: {
                 filters: '<'
             },

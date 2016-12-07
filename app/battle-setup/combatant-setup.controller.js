@@ -3,12 +3,12 @@
 
     angular
         .module('app')
-        .controller('combatantSetupController', combatantSetupController);
+        .controller('combatantSetupController', CombatantSetupController);
 
-    combatantSetupController.$inject = ['combat'];
-    function combatantSetupController(combat) {
-        var $vm = this;
-        $vm.combat = combat;
+    CombatantSetupController.$inject = ['combat'];
+    function CombatantSetupController(combat) {
+        var vm = this;
+        vm.combat = combat;
 
         activate();
 
