@@ -7,6 +7,7 @@
 
 	&--cr-cell {
 		@include challenge-colors;
+		text-align: center;
 	}
 
 	&--section {
@@ -18,7 +19,8 @@
 		font-style: italic;
 	}
 
-	&--label {
+	&--label,
+	&--cr-label {
 		display: none;
 	}
 
@@ -58,15 +60,22 @@
 	}
 
 	$button-width: 30px;
+	$button-height: 32px;
 	$side-margin: 5px;
 	$vertical-margin: 10px;
 	$spacing: 3px;
+	// The CR shading is going to be the real left margin, then want extra padding between it and the text content
+	$left-margin: $button-width + 3 * $side-margin;
+	$cr-width: $left-margin - $side-margin;
 
 	.monster-table--row {
-		$left-margin: $button-width + 2 * $side-margin;
 		display: block;
 		padding: $vertical-margin $side-margin $vertical-margin $left-margin;
 		position: relative;
+		min-height: 100px;
+		&:not(:last-child) {
+			border-bottom: 1px solid #ddd;
+		}
 	}
 
 	// Cells; double-classed to override precedence of libraries so borders are actually removed.
@@ -83,20 +92,34 @@
 		margin: 0 $spacing;
 	}
 
+	.monster-table--name-cell.monster-table--name-cell {
+		display: block;
+		font-size: 1.25em;
+	}
+
 	.monster-table--button-cell {
 		position: absolute;
 		top: $vertical-margin;
 		left: $side-margin;
+		z-index: 1;
 	}
 
 	// Have to double to override the precedence we just set above
 	.monster-table--cr-cell.monster-table--cr-cell {
 		padding: 0 $spacing;
+		position: absolute;
+		padding-left: $side-margin;
+		padding-right: $side-margin;
+		width: $cr-width;
+		padding-top: $vertical-margin + $button-height + $side-margin;
+		height: 100%;
+		top: 0;
+		left: 0;
+		text-align: center;
 	}
 
 	// Other block-level elements that need to be made inline
 	.monster-table--name,
-	.monster-table--section,
 	.monster-table--label,
 	.monster-table--sources {
 		display: inline;
@@ -104,13 +127,23 @@
 	}
 
 	.monster-table--section {
+		display: none;
+	}
+
+	.monster-table--section {
 		font-size: inherit;
 		font-variant: normal;
 	}
 
-	.monster-table--label {
+	.monster-table--label,
+	.monster-table--cr-label {
 		display: inline;
 		font-weight: bold;
+	}
+
+	.monster-table--cr-label {
+		display: block;
+		margin: auto;
 	}
 }
 
