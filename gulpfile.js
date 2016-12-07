@@ -1,8 +1,14 @@
+"use strict";
+
 var config = require('./gulp.config')();
 var del = require('del');
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')({ lazy: true });
-var fs = require('fs');
+var argv = require('yargs').argv;
+var replace = require('gulp-replace');
+// var fs = require('fs');
+
+var dev = argv.dev;
 
 gulp.task('help', $.taskListing);
 gulp.task('default', ['inject']);
@@ -45,19 +51,43 @@ gulp.task('template-cache', ['clean-code'], function () {
         .pipe(gulp.dest(config.temp));
 });
 
-gulp.task('inject', ['compile-sass', 'template-cache'], function () {
-    log('Wire up css and js into the html, after files are ready');
+gulp.task('remove-template', function () {
+    log('Removing template');
 
-    var templateCache = config.temp + config.templateCache.file;
-
-    return gulp
-        .src(config.index)
-        .pipe(inject(config.cssFile))
-        .pipe(inject(config.js, '', config.jsOrder))
-        .pipe(inject(templateCache, 'templates'))
+    return gulp.src(config.index)
+        .pipe(replace(
+            /(<!-- inject:templates:js -->)(?:[\S\s]*?)(<!-- endinject -->)/gmi,
+            '$1\r\n\t$2'
+        ))
         .pipe(gulp.dest(config.root));
 });
 
+// If we're in dev mode, the template.js file will be removed from index.html
+var injectDependencies = ['compile-sass'];
+if ( dev ) {
+    injectDependencies.push('remove-template');
+} else {
+    injectDependencies.push('template-cache');
+}
+
+gulp.task('inject', injectDependencies, function () {
+    log('Wire up css and js into the html, after files are ready');
+
+    var result =  gulp
+        .src(config.index)
+        .pipe(inject(config.cssFile))
+        .pipe(inject(config.js, '', config.jsOrder));
+
+    // Only put in the template cache if we're not in dev mode
+    if ( !dev ) {
+        var templateCache = config.temp + config.templateCache.file;
+        result = result.pipe(inject(templateCache, 'templates'));
+    }
+
+    result = result.pipe(gulp.dest(config.root));
+
+    return result;
+});
 
 gulp.task('optimize', ['inject'], function () {
     var cssFilter = $.filter('./styles/*.css', {restore: true});
@@ -67,14 +97,14 @@ gulp.task('optimize', ['inject'], function () {
         .src(config.index)
         .pipe($.useref())
         .pipe(cssFilter)
-        .pipe($.csso())
-        .pipe(cssFilter.restore)
+            .pipe($.csso())
+            .pipe(cssFilter.restore)
         .pipe(jsAppFilter)
-        .pipe($.uglify())
-        .pipe(jsAppFilter.restore)
+            .pipe($.uglify())
+            .pipe(jsAppFilter.restore)
         .pipe(indexHtmlFilter)
-        .pipe($.rev())
-        .pipe(indexHtmlFilter.restore)
+            .pipe($.rev())
+            .pipe(indexHtmlFilter.restore)
         .pipe($.revReplace())
         .pipe(gulp.dest(config.build));
 });

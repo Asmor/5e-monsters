@@ -14,6 +14,7 @@
     "gulp-angular-templatecache": "^2.0.0",
     "gulp-csso": "^2.0.0",
     "gulp-filter": "^4.0.0",
+    "gulp-html-replace": "^1.6.2",
     "gulp-if": "^2.0.2",
     "gulp-inject": "^4.1.0",
     "gulp-load-plugins": "^1.4.0",
@@ -37,12 +38,15 @@
     "karma-jasmine": "^1.0.2",
     "node-sass": "^3.11.1",
     "nodemon": "^1.11.0",
-    "wiredep": "^4.0.0"
+    "wiredep": "^4.0.0",
+    "yargs": "^6.5.0"
   },
   "scripts": {
     "prestart": "npm install",
     "start": "http-server . -a localhost -p 8080 -c-1",
     "gulp": "gulp",
+    "gulp-dev": "gulp --dev",
+    "build": "npm run build-css && gulp optimize",
     "build-css": "node-sass --include-path app/sass app/sass/style.scss styles/style.css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "test": "karma start karma.conf.js",
