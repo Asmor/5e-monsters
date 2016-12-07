@@ -69,7 +69,7 @@
 						ng-repeat="source in monster.sources"
 						ng-show="$ctrl.filters.source[source.name]">
 							<span class="monster-table--source-name monster-table--source-name__short" title="{{ source.name }}">
-								{{ sources.shortNames[source.name] }}
+								{{ $ctrl.sources.shortNames[source.name] }}
 							</span>
 							<span class="monster-table--source-name monster-table--source-name__long">
 								{{ source.name }}

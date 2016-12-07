@@ -4,11 +4,12 @@
     angular.module('app')
         .controller('monsterTableController', MonsterTableController);
     
-    MonsterTableController.$inject = ['encounter', 'monsters'];
-    function MonsterTableController(encounter, monsters) {
+    MonsterTableController.$inject = ['encounter', 'monsters', 'sources'];
+    function MonsterTableController(encounter, monsters, sources) {
         var $ctrl = this;
         
         $ctrl.encounter = encounter;
+        $ctrl.sources = sources;
         $ctrl.monsters = monsters.all;
         $ctrl.dangerZone = dangerZone;
 
