@@ -1,11 +1,6 @@
 (function() {
 'use strict';
 
-    // Usage:
-    // 
-    // Creates:
-    // 
-
     angular
         .module('app')
         .component('combatant', {
