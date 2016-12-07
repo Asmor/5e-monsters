@@ -89,7 +89,11 @@ gulp.task('inject', injectDependencies, function () {
     return result;
 });
 
-gulp.task('optimize', ['inject'], function () {
+gulp.task('clean-build', function(done) {
+    clean(config.buildFiles, done);
+});
+
+gulp.task('optimize', ['inject', 'clean-build'], function () {
     var cssFilter = $.filter('./styles/*.css', {restore: true});
     var jsAppFilter = $.filter('**/' + config.optimized.app, {restore: true});
     var indexHtmlFilter = $.filter(['**/*', '!**/index.html'], { restore: true });
