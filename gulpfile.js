@@ -94,8 +94,9 @@ gulp.task('clean-build', function(done) {
 });
 
 gulp.task('optimize', ['inject', 'clean-build'], function () {
+    // TODO: JS filter temporarily disabled until the dependency injection issue is resolved
     var cssFilter = $.filter('./styles/*.css', {restore: true});
-    var jsAppFilter = $.filter('**/' + config.optimized.app, {restore: true});
+    // var jsAppFilter = $.filter('**/' + config.optimized.app, {restore: true});
     var indexHtmlFilter = $.filter(['**/*', '!**/index.html'], { restore: true });
     return gulp
         .src(config.index)
@@ -103,9 +104,9 @@ gulp.task('optimize', ['inject', 'clean-build'], function () {
         .pipe(cssFilter)
             .pipe($.csso())
             .pipe(cssFilter.restore)
-        .pipe(jsAppFilter)
-            .pipe($.uglify())
-            .pipe(jsAppFilter.restore)
+        // .pipe(jsAppFilter)
+        //     .pipe($.uglify())
+        //     .pipe(jsAppFilter.restore)
         .pipe(indexHtmlFilter)
             .pipe($.rev())
             .pipe(indexHtmlFilter.restore)
