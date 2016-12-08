@@ -6,9 +6,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500" rel="stylesheet">
 	<!-- build:css styles/styles.css -->
 	<!-- inject:css-->
-  <link rel="stylesheet" href="styles/style.css">
-  <!-- endinject-->
-  <!-- endbuild -->
+	<link rel="stylesheet" href="styles/style.css">
+	<!-- endinject-->
+	<!-- endbuild -->
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -20,14 +20,14 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Kobold Encounter Builder</a>
+				<encounter-info></encounter-info>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li ui-sref-active='active'><a ui-sref="encounter-builder">Home</a></li>
-					<li ui-sref-active='active'><a ui-sref="encounter-manager">Manage Encounters</a></li>
-					<li ui-sref-active='active'><a ui-sref="players.manage">Manage Players</a></li>
-					<li ui-sref-active='active'><a ui-sref="battle-setup">Run Encounters</a></li>
+					<li ui-sref-active='active' data-toggle="collapse" data-target="#navbar"><a ui-sref="encounter-builder">Home</a></li>
+					<li ui-sref-active='active' data-toggle="collapse" data-target="#navbar"><a ui-sref="encounter-manager">Manage Encounters</a></li>
+					<li ui-sref-active='active' data-toggle="collapse" data-target="#navbar"><a ui-sref="players.manage">Manage Players</a></li>
+					<li ui-sref-active='active' data-toggle="collapse" data-target="#navbar"><a ui-sref="battle-setup">Run Encounters</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -82,6 +82,8 @@
 	<script src="app/encounter-builder/current-encounter.component.js"></script>
 	<script src="app/encounter-builder/current-encounter.controller.js"></script>
 	<script src="app/encounter-builder/encounter-builder.controller.js"></script>
+	<script src="app/encounter-builder/encounter-info.component.js"></script>
+	<script src="app/encounter-builder/encounter-info.controller.js"></script>
 	<script src="app/encounter-builder/group-info.component.js"></script>
 	<script src="app/encounter-builder/monster-table.component.js"></script>
 	<script src="app/encounter-builder/monster-table.controller.js"></script>

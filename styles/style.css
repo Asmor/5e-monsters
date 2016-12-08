@@ -7485,6 +7485,16 @@ button.close {
       .current-encounter--totals-xp span {
         display: block; }
 
+.encounter-info .encounter-info--info {
+  display: none;
+  color: #ffffff;
+  height: 50px;
+  line-height: 50px;
+  margin-left: 10px; }
+  @media (max-width: 768px) {
+    .encounter-info .encounter-info--info {
+      display: block; } }
+
 .group-info {
   display: flex;
   padding-bottom: 1rem;
