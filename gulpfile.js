@@ -34,7 +34,7 @@ gulp.task('compile-sass', ['clean-styles'], function () {
 });
 
 gulp.task('sass-watcher', function () {
-    gulp.watch(config.sassDir, ['compile-sass']);
+    gulp.watch(config.sassWatchFiles, ['compile-sass']);
 });
 
 gulp.task('template-cache', ['clean-code'], function () {

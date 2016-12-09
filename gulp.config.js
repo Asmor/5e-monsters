@@ -5,6 +5,7 @@ module.exports = function() {
 
 	var config = {
 		sassDir: ['app/sass/**/*.scss'],
+        sassWatchFiles: ['app/**/*.scss'],
 		cssDir: 'styles',
 		cssFile: 'styles/style.css',
 		htmltemplates: 'app/**/*.html',
