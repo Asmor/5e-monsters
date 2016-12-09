@@ -30,8 +30,10 @@
 
 					encounter.reference = null;
 				},
-				generateRandom: function (filters) {
-					var monsters = randomEncounter.getRandomEncounter(encounter.playerCount, encounter.partyLevel, filters),
+				generateRandom: function (filters, targetDifficulty) {
+					targetDifficulty = targetDifficulty || 'medium';
+					var targetExp = encounter.partyLevel[targetDifficulty];
+					var monsters = randomEncounter.getRandomEncounter(encounter.playerCount, targetExp, filters),
 						i;
 
 					encounter.reset();

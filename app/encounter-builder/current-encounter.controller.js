@@ -10,12 +10,45 @@
         var vm = this;
         
         vm.encounter = encounter;
+        vm.generateAnother = generateAnother;
+        vm.generateRandomEasy = generateRandomEasy;
+        vm.generateRandomMedium = generateRandomMedium;
+        vm.generateRandomHard = generateRandomHard;
+        vm.generateRandomDeadly = generateRandomDeadly;
+        vm.randomButtonText = randomButtonText;
 
-        activate();
+        var lastDifficulty = "medium";
 
-        ////////////////
+        function generateAnother() {
+            encounter.generateRandom(vm.filters, lastDifficulty);
+        }
 
-        function activate() { 
+        function generateRandomEasy() {
+            var diff = "easy";
+            encounter.generateRandom(vm.filters, diff);
+            lastDifficulty = diff;
+        }
+
+        function generateRandomMedium() {
+            var diff = "medium";
+            encounter.generateRandom(vm.filters, diff);
+            lastDifficulty = diff;
+        }
+
+        function generateRandomHard() {
+            var diff = "hard";
+            encounter.generateRandom(vm.filters, diff);
+            lastDifficulty = diff;
+        }
+
+        function generateRandomDeadly() {
+            var diff = "deadly";
+            encounter.generateRandom(vm.filters, diff);
+            lastDifficulty = diff;
+        }
+
+        function randomButtonText() {
+            return "Random " + _.capitalize(lastDifficulty);
         }
     }
 })();
