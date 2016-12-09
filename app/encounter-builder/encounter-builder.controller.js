@@ -18,6 +18,18 @@
 		};
 		vm.encounter = encounter;
 
+		vm.getMonsterQtyString = function () {
+			var qty = Object.keys(vm.encounter.groups).reduce(function (sum, key) {
+				return sum + vm.encounter.groups[key].qty;
+			}, 0);
+
+			if ( qty === 1 ) {
+				return "1 enemy";
+			}
+
+			return qty + " enemies";
+		};
+
 		$scope.$watch(function (scope) { return vm.encounter.groups; }, function (newValue, oldValue) {
 			var subtotal = 0;
 

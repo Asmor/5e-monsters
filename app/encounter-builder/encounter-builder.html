@@ -1,8 +1,37 @@
-<div class="container-fluid" role="main">
+<div class="encounter-builder container-fluid" role="main">
 	<div class="row">
 		<div class="col-md-4">
 			<group-info></group-info>
-			<current-encounter filters='vm.filters'></current-encounter>
+			<div class="encounter-builder--current-encounter-container">
+				<div
+					class="encounter-builder--current-encounter-slider"
+					ng-class="{'encounter-builder--current-encounter-slider__shown': encounterShown }"
+				>
+					<div
+						class="encounter-builder--encounter-info-bar"
+						ng-click="encounterShown = !encounterShown"
+					>
+						<i
+							class="fa encounter-builder--toggle-arrow"
+							ng-class="{
+								'fa-toggle-up': !encounterShown,
+								'fa-toggle-down': encounterShown
+							}"
+							aria-hidden="true"
+						></i>
+						<span ng-if="vm.encounter.exp">
+							{{ vm.getMonsterQtyString() }}, {{ vm.encounter.exp }} exp ({{ vm.encounter.difficulty }})
+						</span>
+						<span ng-if="!vm.encounter.exp">
+							Click here to manage encounter
+						</span>
+					</div>
+
+					<div class="encounter-builder--current-encounter">
+						<current-encounter filters='vm.filters'></current-encounter>
+					</div>
+				</div>
+			</div>
 			<div class="difficulty-legend hidden-xs hidden-sm">
 				<button class="btn btn-warning difficulty-legend-button" type="button" data-toggle="collapse" data-target="#legend-collapse">Legend
 					<i class="fa fa-angle-double-up" aria-hidden="true"></i>

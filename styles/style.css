@@ -7664,6 +7664,58 @@ button.close {
 .sources-modal--buttons {
   margin-bottom: 2rem; }
 
+.encounter-builder .encounter-builder--encounter-info-bar {
+  display: none; }
+
+@media (max-width: 768px) {
+  .encounter-builder .encounter-builder--encounter-info-bar {
+    display: block;
+    height: 50px; }
+  .encounter-builder .encounter-builder--current-encounter-container {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    pointer-events: none; }
+  .encounter-builder .encounter-builder--current-encounter-slider {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100%;
+    pointer-events: auto;
+    top: calc(100% - 50px);
+    transition: top 0.5s; }
+    .encounter-builder .encounter-builder--current-encounter-slider.encounter-builder--current-encounter-slider.encounter-builder--current-encounter-slider__shown {
+      top: 0; }
+  .encounter-builder .encounter-builder--toggle-arrow {
+    font-size: 150%;
+    display: inline-block;
+    margin-right: 10px; }
+  .encounter-builder .encounter-builder--encounter-info-bar {
+    background-color: #ccc;
+    height: 50px;
+    line-height: 48px;
+    border-width: 1px 0 1px;
+    border-style: solid;
+    border-top-color: #ddd;
+    border-bottom-color: #bbb;
+    padding: 5px; }
+  .encounter-builder .encounter-builder--current-encounter {
+    background-color: white;
+    overflow: auto;
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 5px; } }
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 50px; } }
+
 .difficulty-legend {
   bottom: 0;
   right: 1rem;
