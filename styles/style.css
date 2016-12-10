@@ -7485,16 +7485,6 @@ button.close {
       .current-encounter--totals-xp span {
         display: block; }
 
-.encounter-info .encounter-info--info {
-  display: none;
-  color: #ffffff;
-  height: 50px;
-  line-height: 50px;
-  margin-left: 10px; }
-  @media (max-width: 768px) {
-    .encounter-info .encounter-info--info {
-      display: block; } }
-
 .group-info {
   display: flex;
   padding-bottom: 1rem;
@@ -7663,6 +7653,68 @@ button.close {
 
 .sources-modal--buttons {
   margin-bottom: 2rem; }
+
+.encounter-builder .encounter-builder--encounter-info-bar {
+  display: none; }
+
+@media (max-width: 768px) {
+  .encounter-builder .encounter-builder--encounter-info-bar {
+    display: block;
+    height: 70px; }
+  .encounter-builder .encounter-builder--current-encounter-container {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    pointer-events: none; }
+  .encounter-builder .encounter-builder--current-encounter-slider {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100%;
+    pointer-events: auto;
+    top: calc(100% - 70px);
+    transition: top 0.5s; }
+    .encounter-builder .encounter-builder--current-encounter-slider.encounter-builder--current-encounter-slider.encounter-builder--current-encounter-slider__shown {
+      top: 0; }
+  .encounter-builder .encounter-builder--toggle-arrow {
+    font-size: 1.5em;
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%); }
+  .encounter-builder .encounter-builder--encounter-info-bar {
+    background-color: #eee;
+    height: 70px;
+    border-width: 1px 0 1px;
+    border-style: solid;
+    border-top-color: #000;
+    border-bottom-color: #000;
+    padding: 5px;
+    position: relative;
+    cursor: pointer; }
+  .encounter-builder .encounter-builder--encounter-info-text {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em; }
+  .encounter-builder .encounter-builder--current-encounter {
+    background-color: white;
+    overflow: auto;
+    position: absolute;
+    top: 70px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 5px; } }
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 70px; } }
 
 .difficulty-legend {
   bottom: 0;
