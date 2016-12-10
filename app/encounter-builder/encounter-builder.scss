@@ -45,21 +45,33 @@ $encounter-builder-info-bar-height: 50px;
 		}
 
 		.encounter-builder--toggle-arrow {
-			font-size: 150%;
+			font-size: 1.5em;
 			display: inline-block;
-			margin-right: 10px;
+			position: absolute;
+			right: 15px;
+			top: 50%;
+			transform: translateY(-50%);
 		}
 
 		.encounter-builder--encounter-info-bar {
 			$border-width: 1px;
-			background-color: #ccc;
+			background-color: #eee;
 			height: $encounter-builder-info-bar-height;
-			line-height: $encounter-builder-info-bar-height - 2px;
 			border-width: 1px 0 1px;
 			border-style: solid;
-			border-top-color: #ddd;
-			border-bottom-color: #bbb;
+			border-top-color: #000;
+			border-bottom-color: #000;
 			padding: 5px;
+			position: relative;
+			cursor: pointer;
+		}
+
+		.encounter-builder--encounter-info-text {
+			position: absolute;
+			left: 15px;
+			top: 50%;
+			transform: translateY(-50%);
+			font-size: 1.2em;
 		}
 
 		.encounter-builder--current-encounter {

@@ -7690,18 +7690,28 @@ button.close {
     .encounter-builder .encounter-builder--current-encounter-slider.encounter-builder--current-encounter-slider.encounter-builder--current-encounter-slider__shown {
       top: 0; }
   .encounter-builder .encounter-builder--toggle-arrow {
-    font-size: 150%;
+    font-size: 1.5em;
     display: inline-block;
-    margin-right: 10px; }
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%); }
   .encounter-builder .encounter-builder--encounter-info-bar {
-    background-color: #ccc;
+    background-color: #eee;
     height: 50px;
-    line-height: 48px;
     border-width: 1px 0 1px;
     border-style: solid;
-    border-top-color: #ddd;
-    border-bottom-color: #bbb;
-    padding: 5px; }
+    border-top-color: #000;
+    border-bottom-color: #000;
+    padding: 5px;
+    position: relative;
+    cursor: pointer; }
+  .encounter-builder .encounter-builder--encounter-info-text {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em; }
   .encounter-builder .encounter-builder--current-encounter {
     background-color: white;
     overflow: auto;

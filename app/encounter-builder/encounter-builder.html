@@ -19,12 +19,15 @@
 							}"
 							aria-hidden="true"
 						></i>
-						<span ng-if="vm.encounter.exp">
-							{{ vm.getMonsterQtyString() }}, {{ vm.encounter.exp }} exp ({{ vm.encounter.difficulty }})
-						</span>
-						<span ng-if="!vm.encounter.exp">
-							Click here to manage encounter
-						</span>
+						<div class="encounter-builder--encounter-info-text">
+							<span ng-if="vm.encounter.exp">
+								{{ vm.getMonsterQtyString() }}, {{ vm.encounter.exp }} exp ({{ vm.encounter.difficulty }})
+							</span>
+							<span ng-if="!vm.encounter.exp">
+								<span ng-if="encounterShown">Browse monsters</span>
+								<span ng-if="!encounterShown">Manage encounter</span>
+							</span>
+						</div>
 					</div>
 
 					<div class="encounter-builder--current-encounter">
