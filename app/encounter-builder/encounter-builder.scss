@@ -1,10 +1,9 @@
 @import 'current-encounter';
-@import 'encounter-info';
 @import 'group-info';
 @import 'monster-table';
 @import 'search';
 
-$encounter-builder-info-bar-height: 50px;
+$encounter-builder-info-bar-height: 70px;
 .encounter-builder {
 	.encounter-builder--encounter-info-bar {
 		display: none;
