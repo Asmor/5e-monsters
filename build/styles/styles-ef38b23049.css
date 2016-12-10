@@ -7485,16 +7485,6 @@ button.close {
       .current-encounter--totals-xp span {
         display: block; }
 
-.encounter-info .encounter-info--info {
-  display: none;
-  color: #ffffff;
-  height: 50px;
-  line-height: 50px;
-  margin-left: 10px; }
-  @media (max-width: 768px) {
-    .encounter-info .encounter-info--info {
-      display: block; } }
-
 .group-info {
   display: flex;
   padding-bottom: 1rem;
@@ -7670,7 +7660,7 @@ button.close {
 @media (max-width: 768px) {
   .encounter-builder .encounter-builder--encounter-info-bar {
     display: block;
-    height: 50px; }
+    height: 70px; }
   .encounter-builder .encounter-builder--current-encounter-container {
     position: fixed;
     top: 50px;
@@ -7685,7 +7675,7 @@ button.close {
     right: 0;
     height: 100%;
     pointer-events: auto;
-    top: calc(100% - 50px);
+    top: calc(100% - 70px);
     transition: top 0.5s; }
     .encounter-builder .encounter-builder--current-encounter-slider.encounter-builder--current-encounter-slider.encounter-builder--current-encounter-slider__shown {
       top: 0; }
@@ -7698,7 +7688,7 @@ button.close {
     transform: translateY(-50%); }
   .encounter-builder .encounter-builder--encounter-info-bar {
     background-color: #eee;
-    height: 50px;
+    height: 70px;
     border-width: 1px 0 1px;
     border-style: solid;
     border-top-color: #000;
@@ -7716,7 +7706,7 @@ button.close {
     background-color: white;
     overflow: auto;
     position: absolute;
-    top: 50px;
+    top: 70px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -7724,7 +7714,7 @@ button.close {
 
 @media (max-width: 768px) {
   body {
-    padding-bottom: 50px; } }
+    padding-bottom: 70px; } }
 
 .difficulty-legend {
   bottom: 0;
