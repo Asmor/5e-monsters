@@ -7,6 +7,7 @@ module.exports = function() {
 		sassDir: ['app/sass/**/*.scss'],
 		cssDir: 'styles',
 		cssFile: 'styles/style.css',
+        webAppManifest: 'manifest.json',
 		htmltemplates: 'app/**/*.html',
 		index: root + 'index.html',
 		root: root,
