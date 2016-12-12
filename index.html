@@ -15,27 +15,7 @@
 	<!-- endbuild -->
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand"href="#">Kobold Fight Club</a>
-			</div>
-			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li ui-sref-active='active' data-toggle="collapse" data-target="#navbar"><a ui-sref="encounter-builder">Home</a></li>
-					<li ui-sref-active='active' data-toggle="collapse" data-target="#navbar"><a ui-sref="encounter-manager">Manage Encounters</a></li>
-					<li ui-sref-active='active' data-toggle="collapse" data-target="#navbar"><a ui-sref="players.manage">Manage Players</a></li>
-					<li ui-sref-active='active' data-toggle="collapse" data-target="#navbar"><a ui-sref="battle-setup">Run Encounters</a></li>
-				</ul>
-			</div><!--/.nav-collapse -->
-		</div>
-	</nav>
+	<navbar></navbar>
 	
 	<div ui-view></div>
 
@@ -101,6 +81,7 @@
 	<script src="app/meta/crInfo.js"></script>
 	<script src="app/misc.js"></script>
 	<script src="scripts/monsterfactory.js"></script>
+	<script src="app/navbar/navbar.component.js"></script>
 	<script src="app/players/edit-players.controller.js"></script>
 	<script src="app/players/manage-players.controller.js"></script>
 	<script src="app/players/players.controller.js"></script>

@@ -78,6 +78,15 @@
 				}
 			},
 			{
+				state: "about",
+				config: {
+					url: "/about",
+					templateUrl: "app/about/about.html",
+					controller: angular.noop,
+					controllerAs: "vm"
+				}
+			},
+			{
 				state: "test",
 				config: {
 					url: "/test",
