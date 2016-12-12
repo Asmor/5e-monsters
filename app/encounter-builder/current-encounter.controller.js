@@ -18,33 +18,11 @@
         vm.randomButtonText = randomButtonText;
 
         var lastDifficulty = "medium";
-
-        function generateAnother() {
-            encounter.generateRandom(vm.filters, lastDifficulty);
-        }
-
-        function generateRandomEasy() {
-            var diff = "easy";
-            encounter.generateRandom(vm.filters, diff);
-            lastDifficulty = diff;
-        }
-
-        function generateRandomMedium() {
-            var diff = "medium";
-            encounter.generateRandom(vm.filters, diff);
-            lastDifficulty = diff;
-        }
-
-        function generateRandomHard() {
-            var diff = "hard";
-            encounter.generateRandom(vm.filters, diff);
-            lastDifficulty = diff;
-        }
-
-        function generateRandomDeadly() {
-            var diff = "deadly";
-            encounter.generateRandom(vm.filters, diff);
-            lastDifficulty = diff;
+        
+        function generateRandom(difficulty) {
+            difficulty = difficulty || lastDifficulty;
+            encounter.generateRandom(vm.filters, difficulty);
+            lastDifficulty = difficulty;
         }
 
         function randomButtonText() {
