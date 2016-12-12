@@ -10,12 +10,19 @@
         var vm = this;
         
         vm.encounter = encounter;
+        vm.generateRandom = generateRandom;
+        vm.randomButtonText = randomButtonText;
 
-        activate();
+        var lastDifficulty = "medium";
+        
+        function generateRandom(difficulty) {
+            difficulty = difficulty || lastDifficulty;
+            encounter.generateRandom(vm.filters, difficulty);
+            lastDifficulty = difficulty;
+        }
 
-        ////////////////
-
-        function activate() { 
+        function randomButtonText() {
+            return "Random " + _.capitalize(lastDifficulty);
         }
     }
 })();

@@ -1,6 +1,18 @@
 <h2>
-	Encounter Info 
-	<button class="btn btn-info pull-right" ng-click="vm.encounter.generateRandom(vm.filters)">Random</button>
+	Encounter Info
+	<div class="btn-group pull-right"> 
+		<button class="btn btn-info" ng-click="vm.generateRandom()">{{vm.randomButtonText()}}</button>
+		<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<span class="caret"></span>
+			<span class="sr-only">Toggle Dropdown</span>
+		</button>
+		<ul class="dropdown-menu">
+			<li><a href="#" ng-click="vm.generateRandom('easy')">Random Easy</a></li>
+			<li><a href="#" ng-click="vm.generateRandom('medium')">Random Medium</a></li>
+			<li><a href="#" ng-click="vm.generateRandom('hard')">Random Hard</a></li>
+			<li><a href="#" ng-click="vm.generateRandom('deadly')">Random Deadly</a></li>
+		</ul>
+	</div>
 </h2>
  <p class="current-encounter--empty bg-info text-muted" ng-if="vm.encounter.qty == 0">
 	Create an encounter by clicking the Random encounter button or by adding monsters from the monsters table.
