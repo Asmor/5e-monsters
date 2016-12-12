@@ -10,11 +10,7 @@
         var vm = this;
         
         vm.encounter = encounter;
-        vm.generateAnother = generateAnother;
-        vm.generateRandomEasy = generateRandomEasy;
-        vm.generateRandomMedium = generateRandomMedium;
-        vm.generateRandomHard = generateRandomHard;
-        vm.generateRandomDeadly = generateRandomDeadly;
+        vm.generateRandom = generateRandom;
         vm.randomButtonText = randomButtonText;
 
         var lastDifficulty = "medium";
