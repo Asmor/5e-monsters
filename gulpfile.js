@@ -93,12 +93,7 @@ gulp.task('clean-build', function(done) {
     clean(config.buildFiles, done);
 });
 
-gulp.task('copy-manifest', function () {
-    return gulp.src(config.webAppManifest)
-        .pipe(gulp.dest(config.build));
-});
-
-gulp.task('optimize', ['inject', 'clean-build', 'copy-manifest'], function () {
+gulp.task('optimize', ['inject', 'clean-build'], function () {
     // TODO: JS filter temporarily disabled until the dependency injection issue is resolved
     var cssFilter = $.filter('./styles/*.css', {restore: true});
     // var jsAppFilter = $.filter('**/' + config.optimized.app, {restore: true});

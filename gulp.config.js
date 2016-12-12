@@ -8,7 +8,6 @@ module.exports = function() {
         sassWatchFiles: ['app/**/*.scss'],
 		cssDir: 'styles',
 		cssFile: 'styles/style.css',
-        webAppManifest: 'manifest.json',
 		htmltemplates: 'app/**/*.html',
 		index: root + 'index.html',
 		root: root,
