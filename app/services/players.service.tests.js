@@ -4,7 +4,9 @@ describe('Players service tests', function() {
     var mockStore = {
         get: function() {}
     };
-    beforeEach(module('app', function($provide) {
+    beforeEach(module('app'));
+
+    beforeEach(module(function($provide) {
         $provide.value('store', mockStore);
     }));
 

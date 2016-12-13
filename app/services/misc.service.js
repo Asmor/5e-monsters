@@ -43,8 +43,7 @@
 			crs.push({ text: i.toString(), value: i });
 		}
 
-		var service = {
-			d: d,
+		var service = {		
 			getMultiplier: getMultiplier,
 			levels: levels,
 			sourceFilters: sourceFilters,
@@ -95,10 +94,6 @@
 			}
 
 			return multipliers[multiplierCategory];
-		}
-
-		function d(n) {
-			return Math.floor(Math.random() * n) + 1;
 		}
 	}
 })();
