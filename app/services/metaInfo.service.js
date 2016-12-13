@@ -37,7 +37,6 @@
 				"underground",
 				"urban",
 			],
-			levels: miscLib.levels,
 			tags: miscLib.tags,
 			sizes: [
 				"Tiny",

@@ -245,6 +245,17 @@
         function activate() { }
     }
 })();
+(function () {
+	"use strict";
+
+	angular.module("app")
+		.constant("combatConstants", {
+			READY       : 1,
+			NO_MONSTERS : 2,
+			NO_PLAYERS  : 4
+		})
+		.constant("AppVersion", 1);
+})();
 (function() {
     'use strict';
 
@@ -313,17 +324,6 @@
 	}
 })();
 
-(function () {
-	"use strict";
-
-	angular.module("app")
-		.constant("combatConstants", {
-			READY       : 1,
-			NO_MONSTERS : 2,
-			NO_PLAYERS  : 4
-		})
-		.constant("AppVersion", 1);
-})();
 (function() { 
 	"use strict";
 
@@ -15172,25 +15172,31 @@
     angular
         .module('app')
         .component('groupInfo', {
-            controller: GroupInfoController,
+            controller: 'GroupInfoController',
             controllerAs: 'vm',
             templateUrl: 'app/encounter-builder/group-info.html'
         });
+})();
+(function() {
+'use strict';
 
-    GroupInfoController.$inject = ['encounter', 'metaInfo'];
+  angular
+    .module('app')
+    .controller('GroupInfoController', GroupInfoController);
 
-    function GroupInfoController(encounter, metaInfo) {
-        var vm = this;
-        
-        vm.encounter = encounter;
-        vm.levels = metaInfo.levels;
+  GroupInfoController.$inject = ['encounter', 'playerLevelExperience'];
+  function GroupInfoController(encounter, playerLevels) {
+    var vm = this;
 
-        activate();
+    vm.encounter = encounter;
+    vm.levels = playerLevels;
 
-        ////////////////
+    activate();
 
-        function activate() { }
-    }
+    ////////////////
+
+    function activate() { }
+  }
 })();
 (function() {
 'use strict';
@@ -15745,110 +15751,33 @@
 })();
 
 (function() {
-	"use strict";
+'use strict';
 
-	angular.module("app")
-		.factory('misc', MiscService);
-
-	function MiscService() {
-
-		var crs = [],
-			sourceFilters = {},
-			sources = [],
-			shortNames = {},
-			tags = {},
-			levels = [
-				{ level: 1,		easy: 25,	medium: 50,		hard: 75,	deadly: 100 },
-				{ level: 2,		easy: 50,	medium: 100,	hard: 150,	deadly: 200 },
-				{ level: 3,		easy: 75,	medium: 150,	hard: 225,	deadly: 400 },
-				{ level: 4,		easy: 125,	medium: 250,	hard: 375,	deadly: 500 },
-				{ level: 5,		easy: 250,	medium: 500,	hard: 750,	deadly: 1100 },
-				{ level: 6,		easy: 300,	medium: 600,	hard: 900,	deadly: 1400 },
-				{ level: 7,		easy: 350,	medium: 750,	hard: 1100,	deadly: 1700 },
-				{ level: 8,		easy: 450,	medium: 900,	hard: 1400,	deadly: 2100 },
-				{ level: 9,		easy: 550,	medium: 1100,	hard: 1600,	deadly: 2400 },
-				{ level: 10,	easy: 600,	medium: 1200,	hard: 1900,	deadly: 2800 },
-				{ level: 11,	easy: 800,	medium: 1600,	hard: 2400,	deadly: 3600 },
-				{ level: 12,	easy: 1000,	medium: 2000,	hard: 3000,	deadly: 4500 },
-				{ level: 13,	easy: 1100,	medium: 2200,	hard: 3400,	deadly: 5100 },
-				{ level: 14,	easy: 1250,	medium: 2500,	hard: 3800,	deadly: 5700 },
-				{ level: 15,	easy: 1400,	medium: 2800,	hard: 4300,	deadly: 6400 },
-				{ level: 16,	easy: 1600,	medium: 3200,	hard: 4800,	deadly: 7200 },
-				{ level: 17,	easy: 2000,	medium: 3900,	hard: 5900,	deadly: 8800 },
-				{ level: 18,	easy: 2100,	medium: 4200,	hard: 6300,	deadly: 9500 },
-				{ level: 19,	easy: 2400,	medium: 4900,	hard: 7300,	deadly: 10900 },
-				{ level: 20,	easy: 2800,	medium: 5700,	hard: 8500,	deadly: 12700 },
-			],
-			i;
-
-		crs.push({ text: "0", value: 0 });
-		crs.push({ text: "1/8", value: 0.125 });
-		crs.push({ text: "1/4", value: 0.25 });
-		crs.push({ text: "1/2", value: 0.5 });
-		for ( i = 1; i < 25; i++ ) {
-			crs.push({ text: i.toString(), value: i });
-		}
-
-		var service = {
-			d: d,
-			getMultiplier: getMultiplier,
-			levels: levels,
-			sourceFilters: sourceFilters,
-			sources: sources,
-			shortNames: shortNames,
-			tags: tags,
-		};
-
-		return service;
-
-		//////
-
-		function getMultiplier(playerCount, monsterCount) {
-			var multiplierCategory,
-				multipliers = [
-					0.5,
-					1,
-					1.5,
-					2,
-					2.5,
-					3,
-					4,
-					5,
-				];
-
-			if ( monsterCount === 0 ) {
-				return 0;
-			} else if ( monsterCount === 1 ) {
-				multiplierCategory = 1;
-			} else if ( monsterCount === 2 ) {
-				multiplierCategory = 2;
-			} else if ( monsterCount < 7 ) {
-				multiplierCategory = 3;
-			} else if ( monsterCount < 11 ) {
-				multiplierCategory = 4;
-			} else if ( monsterCount < 15 ) {
-				multiplierCategory = 5;
-			} else {
-				multiplierCategory = 6;
-			}
-
-			if ( playerCount < 3 ) {
-				// Increase multiplier for parties of one and two
-				multiplierCategory++;
-			} else if ( playerCount > 5 ) {
-				// Decrease multiplier for parties of six through eight
-				multiplierCategory--;
-			}
-
-			return multipliers[multiplierCategory];
-		}
-
-		function d(n) {
-			return Math.floor(Math.random() * n) + 1;
-		}
-	}
+  angular
+    .module('app')
+    .value('playerLevelExperience', {
+      1: { level: 1,		easy: 25,	medium: 50,		hard: 75,	deadly: 100 },
+      2: { level: 2,		easy: 50,	medium: 100,	hard: 150,	deadly: 200 },
+      3: { level: 3,		easy: 75,	medium: 150,	hard: 225,	deadly: 400 },
+      4: { level: 4,		easy: 125,	medium: 250,	hard: 375,	deadly: 500 },
+      5: { level: 5,		easy: 250,	medium: 500,	hard: 750,	deadly: 1100 },
+      6: { level: 6,		easy: 300,	medium: 600,	hard: 900,	deadly: 1400 },
+      7: { level: 7,		easy: 350,	medium: 750,	hard: 1100,	deadly: 1700 },
+      8: { level: 8,		easy: 450,	medium: 900,	hard: 1400,	deadly: 2100 },
+      9: { level: 9,		easy: 550,	medium: 1100,	hard: 1600,	deadly: 2400 },
+      10: { level: 10,	easy: 600,	medium: 1200,	hard: 1900,	deadly: 2800 },
+      11: { level: 11,	easy: 800,	medium: 1600,	hard: 2400,	deadly: 3600 },
+      12: { level: 12,	easy: 1000,	medium: 2000,	hard: 3000,	deadly: 4500 },
+      13: { level: 13,	easy: 1100,	medium: 2200,	hard: 3400,	deadly: 5100 },
+      14: { level: 14,	easy: 1250,	medium: 2500,	hard: 3800,	deadly: 5700 },
+      15: { level: 15,	easy: 1400,	medium: 2800,	hard: 4300,	deadly: 6400 },
+      16: { level: 16,	easy: 1600,	medium: 3200,	hard: 4800,	deadly: 7200 },
+      17: { level: 17,	easy: 2000,	medium: 3900,	hard: 5900,	deadly: 8800 },
+      18: { level: 18,	easy: 2100,	medium: 4200,	hard: 6300,	deadly: 9500 },
+      19: { level: 19,	easy: 2400,	medium: 4900,	hard: 7300,	deadly: 10900 },
+      20: { level: 20,	easy: 2800,	medium: 5700,	hard: 8500,	deadly: 12700 }
+    });
 })();
-
 (function() {
 	"use strict";
 
@@ -16125,9 +16054,9 @@
 	angular.module("app")
 		.factory("combat", CombatService);
 
-	CombatService.$inject = ['store', 'encounter', 'players', 'monsters', 'misc', 'combatConstants'];
+	CombatService.$inject = ['store', 'encounter', 'players', 'monsters', 'combatConstants'];
 
-	function CombatService(store, encounter, players, monsters, miscLib, constants) {
+	function CombatService(store, encounter, players, monsters, constants) {
 		var combat = {
 			active: 0,
 			combatants: [],
@@ -16261,7 +16190,8 @@
 				combat.combatants[combat.active].active = true;
 			},
 			rollInitiative: function (combatant) {
-				combatant.initiative = miscLib.d(20) + combatant.initiativeMod;
+				var initRoll = _.random(20) + 1;
+				combatant.initiative = initRoll + combatant.initiativeMod;
 				combatant.initiativeRolled = true;
 			},
 		};
@@ -16278,13 +16208,12 @@
 	angular.module("app")
 		.factory("encounter", EncounterService);
 
-	EncounterService.$inject = ['$rootScope', 'randomEncounter', 'store', 'metaInfo', 'monsters', 'players', 'misc'];
+	EncounterService.$inject = ['$rootScope', 'randomEncounter', 'store', 'monsters', 'players', 'misc', 'playerLevelExperience'];
 
-	function EncounterService($rootScope, randomEncounter, store, metaInfo, monsters, players, miscLib) {
+	function EncounterService($rootScope, randomEncounter, store, monsters, players, miscLib, playerLevels) {
 		var encounter = {
-				getMultiplier: miscLib.getMultiplier,
 				groups: {},
-				partyLevel: metaInfo.levels[0],
+				partyLevel: playerLevels[1],
 				playerCount: 4,
 				reference: null,
 				threat: {},
@@ -16409,41 +16338,37 @@
 
 					encounter.recalculateThreatLevels();
 				},
-		};
 
-		Object.defineProperty(encounter, "adjustedExp", {
-			get: function () {
-				var qty = encounter.qty,
+				get adjustedExp() {
+					var qty = encounter.qty,
 					exp = encounter.exp,
-					multiplier = encounter.getMultiplier(encounter.playerCount, qty);
+					multiplier = miscLib.getMultiplier(encounter.playerCount, qty);
 
-				return Math.floor(exp * multiplier);
-			},
-		});
+					return Math.floor(exp * multiplier);
+				},
 
-		Object.defineProperty(encounter, "difficulty", {
-			get: function () {
-				var exp = encounter.adjustedExp,
-					count = encounter.playerCount,
-					level = encounter.partyLevel;
+				get difficulty() {
+					var exp = encounter.adjustedExp,
+						count = encounter.playerCount,
+						level = encounter.partyLevel;
 
-				if ( exp === 0 ) {
-					return false;
+					if ( exp === 0 ) {
+						return false;
+					}
+
+					if ( exp < ( count * level.easy ) ) {
+						return '';
+					} else if ( exp < ( count * level.medium ) ) {
+						return "Easy";
+					} else if ( exp < ( count * level.hard ) ) {
+						return "Medium";
+					} else if ( exp < ( count * level.deadly ) ) {
+						return "Hard";
+					} else {
+						return "Deadly";
+					}
 				}
-
-				if ( exp < ( count * level.easy ) ) {
-					return '';
-				} else if ( exp < ( count * level.medium ) ) {
-					return "Easy";
-				} else if ( exp < ( count * level.hard ) ) {
-					return "Medium";
-				} else if ( exp < ( count * level.deadly ) ) {
-					return "Hard";
-				} else {
-					return "Deadly";
-				}
-			},
-		});
+		};
 
 		thaw();
 		encounter.recalculateThreatLevels();
@@ -16470,7 +16395,7 @@
 					return;
 				}
 
-				encounter.partyLevel = miscLib.levels[frozen.partyLevel - 1]; // level 1 is index 0, etc
+				encounter.partyLevel = playerLevels[frozen.partyLevel];
 				encounter.playerCount = frozen.playerCount;
 			});
 		}
@@ -16565,7 +16490,6 @@
 				"underground",
 				"urban",
 			],
-			levels: miscLib.levels,
 			tags: miscLib.tags,
 			sizes: [
 				"Tiny",
@@ -16596,6 +16520,83 @@
 		return metaInfo;
 	}
 })();
+(function() {
+	"use strict";
+
+	angular.module("app")
+		.factory('misc', MiscService);
+
+	function MiscService() {
+
+		var crs = [],
+			sourceFilters = {},
+			sources = [],
+			shortNames = {},
+			tags = {},
+			i;
+
+		crs.push({ text: "0", value: 0 });
+		crs.push({ text: "1/8", value: 0.125 });
+		crs.push({ text: "1/4", value: 0.25 });
+		crs.push({ text: "1/2", value: 0.5 });
+		for ( i = 1; i < 25; i++ ) {
+			crs.push({ text: i.toString(), value: i });
+		}
+
+		var service = {		
+			getMultiplier: getMultiplier,
+			sourceFilters: sourceFilters,
+			sources: sources,
+			shortNames: shortNames,
+			tags: tags,
+		};
+
+		return service;
+
+		//////
+
+		function getMultiplier(playerCount, monsterCount) {
+			var multiplierCategory,
+				multipliers = [
+					0.5,
+					1,
+					1.5,
+					2,
+					2.5,
+					3,
+					4,
+					5,
+				];
+
+			if ( monsterCount === 0 ) {
+				return 0;
+			} else if ( monsterCount === 1 ) {
+				multiplierCategory = 1;
+			} else if ( monsterCount === 2 ) {
+				multiplierCategory = 2;
+			} else if ( monsterCount < 7 ) {
+				multiplierCategory = 3;
+			} else if ( monsterCount < 11 ) {
+				multiplierCategory = 4;
+			} else if ( monsterCount < 15 ) {
+				multiplierCategory = 5;
+			} else {
+				multiplierCategory = 6;
+			}
+
+			if ( playerCount < 3 ) {
+				// Increase multiplier for parties of one and two
+				multiplierCategory++;
+			} else if ( playerCount > 5 ) {
+				// Decrease multiplier for parties of six through eight
+				multiplierCategory--;
+			}
+
+			return multipliers[multiplierCategory];
+		}
+	}
+})();
+
 (function() {
 	"use strict";
 

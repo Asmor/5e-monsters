@@ -4,12 +4,12 @@
 	angular.module("app")
 		.factory("encounter", EncounterService);
 
-	EncounterService.$inject = ['$rootScope', 'randomEncounter', 'store', 'metaInfo', 'monsters', 'players', 'misc'];
+	EncounterService.$inject = ['$rootScope', 'randomEncounter', 'store', 'monsters', 'players', 'misc', 'playerLevelExperience'];
 
-	function EncounterService($rootScope, randomEncounter, store, metaInfo, monsters, players, miscLib) {
+	function EncounterService($rootScope, randomEncounter, store, monsters, players, miscLib, playerLevels) {
 		var encounter = {
 				groups: {},
-				partyLevel: metaInfo.levels[0],
+				partyLevel: playerLevels[1],
 				playerCount: 4,
 				reference: null,
 				threat: {},
@@ -191,7 +191,7 @@
 					return;
 				}
 
-				encounter.partyLevel = miscLib.levels[frozen.partyLevel - 1]; // level 1 is index 0, etc
+				encounter.partyLevel = playerLevels[frozen.partyLevel];
 				encounter.playerCount = frozen.playerCount;
 			});
 		}
