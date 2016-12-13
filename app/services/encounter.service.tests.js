@@ -38,7 +38,7 @@ describe('Encounter Service', function() {
     });
     
     [
-      {exp: 100, result: ""}, 
+      {exp: 100, result: ""},
       {exp: 200, result: "Easy"},
       {exp: 300, result: "Medium"},
       {exp: 400, result: "Hard"},
@@ -53,6 +53,5 @@ describe('Encounter Service', function() {
       });
     });
   });
-    
 });
   

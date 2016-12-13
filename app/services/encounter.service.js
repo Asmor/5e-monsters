@@ -8,7 +8,6 @@
 
 	function EncounterService($rootScope, randomEncounter, store, metaInfo, monsters, players, miscLib) {
 		var encounter = {
-				getMultiplier: miscLib.getMultiplier,
 				groups: {},
 				partyLevel: metaInfo.levels[0],
 				playerCount: 4,
@@ -139,7 +138,7 @@
 				get adjustedExp() {
 					var qty = encounter.qty,
 					exp = encounter.exp,
-					multiplier = encounter.getMultiplier(encounter.playerCount, qty);
+					multiplier = miscLib.getMultiplier(encounter.playerCount, qty);
 
 					return Math.floor(exp * multiplier);
 				},
