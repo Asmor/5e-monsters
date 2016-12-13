@@ -135,41 +135,37 @@
 
 					encounter.recalculateThreatLevels();
 				},
-		};
 
-		Object.defineProperty(encounter, "adjustedExp", {
-			get: function () {
-				var qty = encounter.qty,
+				get adjustedExp() {
+					var qty = encounter.qty,
 					exp = encounter.exp,
 					multiplier = encounter.getMultiplier(encounter.playerCount, qty);
 
-				return Math.floor(exp * multiplier);
-			},
-		});
+					return Math.floor(exp * multiplier);
+				},
 
-		Object.defineProperty(encounter, "difficulty", {
-			get: function () {
-				var exp = encounter.adjustedExp,
-					count = encounter.playerCount,
-					level = encounter.partyLevel;
+				get difficulty() {
+					var exp = encounter.adjustedExp,
+						count = encounter.playerCount,
+						level = encounter.partyLevel;
 
-				if ( exp === 0 ) {
-					return false;
+					if ( exp === 0 ) {
+						return false;
+					}
+
+					if ( exp < ( count * level.easy ) ) {
+						return '';
+					} else if ( exp < ( count * level.medium ) ) {
+						return "Easy";
+					} else if ( exp < ( count * level.hard ) ) {
+						return "Medium";
+					} else if ( exp < ( count * level.deadly ) ) {
+						return "Hard";
+					} else {
+						return "Deadly";
+					}
 				}
-
-				if ( exp < ( count * level.easy ) ) {
-					return '';
-				} else if ( exp < ( count * level.medium ) ) {
-					return "Easy";
-				} else if ( exp < ( count * level.hard ) ) {
-					return "Medium";
-				} else if ( exp < ( count * level.deadly ) ) {
-					return "Hard";
-				} else {
-					return "Deadly";
-				}
-			},
-		});
+		};
 
 		thaw();
 		encounter.recalculateThreatLevels();
