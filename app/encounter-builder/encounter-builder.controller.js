@@ -4,9 +4,9 @@
 	angular.module("app")
 		.controller("EncounterBuilderController", EncounterBuilderController);
 
-	EncounterBuilderController.$inject = ['$scope', 'store', 'actionQueue', 'encounter', 'monsters', 'sources'];
+	EncounterBuilderController.$inject = ['$scope', '$log', 'store', 'actionQueue', 'encounter', 'monsters', 'sources'];
 
-	function EncounterBuilderController($scope, store, actionQueue, encounter, monsters, sources) {
+	function EncounterBuilderController($scope, $log, store, actionQueue, encounter, monsters, sources) {
 		var vm = this;
 
 		// There's no way to tell when they're done building an encounter, so clear the queue if they ever make it here.
@@ -43,6 +43,7 @@
 			vm.encounter.exp = subtotal;
 		}, true);
 
+		$log.log('Thaw filters');
 		store.get("5em-filters").then(function (frozen) {
 			if (frozen) {
 				vm.filters = frozen;
@@ -50,6 +51,7 @@
 		})
 		.finally(function() {
 			$scope.$watch("vm.filters", function () {
+				$log.log('Freeze filters');
 				store.set("5em-filters", vm.filters);
 			}, true);
 		});

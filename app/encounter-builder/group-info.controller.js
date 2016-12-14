@@ -11,11 +11,17 @@
 
     vm.encounter = encounter;
     vm.levels = playerLevels;
-
+    vm.updateAndSave = updateAndSave;
+    
     activate();
 
     ////////////////
 
     function activate() { }
+
+    function updateAndSave() {      
+      encounter.recalculateThreatLevels();
+      encounter.freeze();
+    }
   }
 })();

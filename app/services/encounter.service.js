@@ -4,9 +4,9 @@
 	angular.module("app")
 		.factory("encounter", EncounterService);
 
-	EncounterService.$inject = ['$rootScope', 'randomEncounter', 'store', 'monsters', 'players', 'misc', 'playerLevelExperience'];
+	EncounterService.$inject = ['$rootScope', '$log', 'randomEncounter', 'store', 'monsters', 'players', 'misc', 'playerLevelExperience'];
 
-	function EncounterService($rootScope, randomEncounter, store, monsters, players, miscLib, playerLevels) {
+	function EncounterService($rootScope, $log, randomEncounter, store, monsters, players, miscLib, playerLevels) {
 		var encounter = {
 				groups: {},
 				partyLevel: playerLevels[1],
@@ -91,13 +91,6 @@
 					encounter.threat.pair    = mediumExp / ( 2 * pairMultiplier );
 					encounter.threat.group   = mediumExp / ( 4 * groupMultiplier );
 					encounter.threat.trivial = mediumExp / ( 8 * trivialMultiplier );
-
-					if ( $rootScope.$$phase !== "$digest" ) {
-						// This function gets called when encounter builder is being set up, before 
-						// the saved values from the cloud are returned. All other updates seem to
-						// happen during the $apply phase, so hopefully this should be safe...
-						freeze();
-					}
 				},
 				remove: function (monster, removeAll) {
 					encounter.groups[monster.id].qty--;
@@ -163,18 +156,27 @@
 					} else {
 						return "Deadly";
 					}
-				}
+				},
+
+				initialize: function() {
+					thaw();
+					encounter.recalculateThreatLevels();
+				},
+
+				thaw: thaw,
+				freeze: freeze
 		};
 
-		thaw();
-		encounter.recalculateThreatLevels();
-
+		return encounter;
+		
 		function freeze() {
 			var o = {
 				groups: {},
 				partyLevel: encounter.partyLevel.level,
 				playerCount: encounter.playerCount,
 			};
+
+			$log.log("Freezing party info", o);
 
 			Object.keys(encounter.groups).forEach(function (monsterId) {
 				o.groups[monsterId] = encounter.groups[monsterId].qty;
@@ -184,6 +186,7 @@
 		}
 
 		function thaw() {
+			$log.log('Thawing party info');
 			encounter.reset();
 
 			store.get("5em-encounter").then(function (frozen) {
@@ -191,11 +194,10 @@
 					return;
 				}
 
+				$log.log('Load party level (' + frozen.partyLevel + ') and player count (' + frozen.playerCount + ') from the store');
 				encounter.partyLevel = playerLevels[frozen.partyLevel];
 				encounter.playerCount = frozen.playerCount;
 			});
 		}
-
-		return encounter;
 	}
 })();
