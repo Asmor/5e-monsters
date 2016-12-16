@@ -9,7 +9,7 @@ describe('Group Info Controller', function() {
       1: {},
       2: {}
     };
-    ctrl = $controller('GroupInfoController', {encounter: _encounter_, playerLevelExperience: playerLevels});
+    ctrl = $controller('GroupInfoController', {encounter: _encounter_, playerLevels: playerLevels});
   }));
   
   describe('inialization', function() {

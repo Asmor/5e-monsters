@@ -22,6 +22,7 @@
 						}
 					}
 				},
+				initialize: initialize
 			},
 			rawDirty = true,
 			rawText = "",
@@ -55,7 +56,7 @@
 			}
 		});
 
-		thaw();
+		initialize();
 
 		function compileParties() {
 			var i, j, m;
@@ -112,6 +113,10 @@
 			}
 
 			rawText = newRaw.join("\n\n");
+		}
+
+		function initialize() {
+			thaw();
 		}
 
 		function freeze() {

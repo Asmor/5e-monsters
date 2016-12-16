@@ -3,7 +3,7 @@
 
   angular
     .module('app')
-    .value('playerLevelExperience', {
+    .value('playerLevels', {
       1: { level: 1,		easy: 25,	medium: 50,		hard: 75,	deadly: 100 },
       2: { level: 2,		easy: 50,	medium: 100,	hard: 150,	deadly: 200 },
       3: { level: 3,		easy: 75,	medium: 150,	hard: 225,	deadly: 400 },

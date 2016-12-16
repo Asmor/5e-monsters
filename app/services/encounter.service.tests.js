@@ -1,13 +1,42 @@
 
 describe('Encounter Service', function() {
-  beforeEach(module("app"));
+  beforeEach(function() {
+    bard.appModule('app');
+    bard.inject(this, '$rootScope', 'encounter', 'store', '$q', 'playerLevels');
 
-  var encounter;
+    store.get = sinon.stub();
+  });
   
-  beforeEach(inject(function(_encounter_) {
-    encounter = _encounter_;
-  }));
-    
+  describe('initialize', function() {
+    it('should call store', function() {
+      store.get.withArgs("5em-encounter").returns($q.when({}));
+      encounter.initialize();
+      expect(store.get).toHaveBeenCalledWith('5em-encounter');
+    });
+
+    it('should load info from store', function() {
+      var level = {
+          level: 4,
+          easy: 1,
+          medium: 2,
+          hard: 3,
+          deadly: 4
+        };
+      playerLevels[4] = level;
+      var groupInfo = {
+        partyLevel: 4,
+        playerCount: 6
+      };
+      store.get.withArgs("5em-encounter").returns($q.when(groupInfo));
+      encounter.initialize();
+      $rootScope.$apply();
+      expect(encounter.partyLevel).toBe(level);
+      expect(encounter.partyLevel.level).toEqual(4);
+      expect(encounter.playerCount).toEqual(6);
+      expect(encounter.threat.easy).toEqual(12);
+    });
+  });
+
   describe('adjustedExp', function() {
     
     it('should exist', function() {

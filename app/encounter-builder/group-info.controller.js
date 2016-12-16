@@ -5,7 +5,7 @@
     .module('app')
     .controller('GroupInfoController', GroupInfoController);
 
-  GroupInfoController.$inject = ['encounter', 'playerLevelExperience'];
+  GroupInfoController.$inject = ['encounter', 'playerLevels'];
   function GroupInfoController(encounter, playerLevels) {
     var vm = this;
 

@@ -4,7 +4,7 @@
 	angular.module("app")
 		.factory("encounter", EncounterService);
 
-	EncounterService.$inject = ['$rootScope', '$log', 'randomEncounter', 'store', 'monsters', 'players', 'misc', 'playerLevelExperience'];
+	EncounterService.$inject = ['$rootScope', '$log', 'randomEncounter', 'store', 'monsters', 'players', 'misc', 'playerLevels'];
 
 	function EncounterService($rootScope, $log, randomEncounter, store, monsters, players, miscLib, playerLevels) {
 		var encounter = {
@@ -69,7 +69,7 @@
 						pairMultiplier    = 1.5,
 						groupMultiplier   = 2,
 						trivialMultiplier = 2.5;
-
+					
 					if ( count < 3 ) {
 						// For small groups, increase multiplier
 						singleMultiplier  = 1.5;
@@ -158,17 +158,19 @@
 					}
 				},
 
-				initialize: function() {
-					thaw();
-					encounter.recalculateThreatLevels();
-				},
-
+				initialize: initialize,
 				thaw: thaw,
 				freeze: freeze
 		};
 
 		return encounter;
 		
+		function initialize() {
+			thaw().then(function () {
+				encounter.recalculateThreatLevels();
+			});
+		}
+
 		function freeze() {
 			var o = {
 				groups: {},
@@ -189,7 +191,7 @@
 			$log.log('Thawing party info');
 			encounter.reset();
 
-			store.get("5em-encounter").then(function (frozen) {
+			return store.get("5em-encounter").then(function (frozen) {
 				if ( !frozen ) {
 					return;
 				}

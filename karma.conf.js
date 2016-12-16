@@ -12,6 +12,7 @@ module.exports = function(config) {
       '../thirdparty/dirPagination/dirPagination.js',
       '../thirdparty/lodash.js',
       '../thirdparty/angular-local-storage/angular-local-storage.js',
+      '../node_modules/bardjs/dist/bard.js',
       '*.js',
       '**/*.js',
       '../scripts/**/*.js'
@@ -19,14 +20,16 @@ module.exports = function(config) {
 
     autoWatch: true,
 
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'sinon', 'jasmine-sinon'],
 
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
     plugins: [
+      'karma-phantomjs-launcher',
       'karma-chrome-launcher',
-      'karma-firefox-launcher',
-      'karma-jasmine'
+      'karma-jasmine',
+      'karma-sinon',
+      'karma-jasmine-sinon'
     ],
 
     client: {
