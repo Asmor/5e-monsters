@@ -44,7 +44,7 @@
   },
   "scripts": {
     "prestart": "npm install",
-    "start": "http-server . -a localhost -p 8080 -c-1",
+    "start": "http-server . -a localhost -p 8888 -c-1",
     "gulp": "gulp",
     "start-built": "http-server build -a localhost -p 8081 -c-1",
     "gulp-dev": "gulp --dev",
