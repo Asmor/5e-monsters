@@ -9,13 +9,14 @@ describe('Players service tests', function() {
         store.get = sinon.stub().returns($q.when([]));
     });
 
-    describe('thaw tests', function() {
+    describe('initialize', function() {
         it('calls store and gets data', function() {
-            store.get.withArgs('5em-players').returns($q.when([ { id: 1 } ]));
+            var testPlayers = [ { id: 1 } ];
+            store.get.withArgs('5em-players').returns($q.when(testPlayers));
             players.initialize();
             sinon.assert.calledWith(store.get, '5em-players');
             $rootScope.$apply();
-            expect(players.parties).toEqual([ { id: 1 } ]);
+            expect(players.parties).toEqual(testPlayers);
         });
     });  
 });

@@ -17,10 +17,11 @@
 
 	myApp.run(serviceInitialization);
 
-	serviceInitialization.$inject = ['$log', 'encounter'];
+	serviceInitialization.$inject = ['$log', 'encounter', 'players'];
 
-	function serviceInitialization($log, encounter) {
+	function serviceInitialization($log, encounter, players) {
 		$log.log("Service initialization on app run");
 		encounter.initialize();
+		players.initialize();
 	}
 })();

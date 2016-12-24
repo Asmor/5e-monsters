@@ -56,8 +56,6 @@
 			}
 		});
 
-		initialize();
-
 		function compileParties() {
 			var i, j, m;
 			partiesDirty = false;
