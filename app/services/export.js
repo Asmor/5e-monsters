@@ -86,18 +86,14 @@
 			var qty = monsterGroup.qty;
 			var fid = generateFid(monster);
 
-			var instanceName, i;
+			var i;
 			for ( i = 1; i <= qty; i++ ) {
-				instanceName = [monster.name];
-				if ( qty > 1 ) {
-					instanceName.push("#" + i);
-				}
 
 				combatants.push({
-					Name: instanceName.join(" "),
+					Name: monster.name,
 					HP: { Value: monster.hp },
 					InitiativeModifier: monster.init,
-					AC: monster.ac,
+					AC: { Value: monster.ac },
 					Player: "npc",
 					Id: fid,
 				});
