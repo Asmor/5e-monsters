@@ -4,13 +4,12 @@
 	angular.module("app")
 		.factory("encounter", EncounterService);
 
-	EncounterService.$inject = ['$rootScope', 'randomEncounter', 'store', 'metaInfo', 'monsters', 'players', 'misc'];
+	EncounterService.$inject = ['$rootScope', '$log', 'randomEncounter', 'store', 'monsters', 'players', 'misc', 'playerLevels'];
 
-	function EncounterService($rootScope, randomEncounter, store, metaInfo, monsters, players, miscLib) {
+	function EncounterService($rootScope, $log, randomEncounter, store, monsters, players, miscLib, playerLevels) {
 		var encounter = {
-				getMultiplier: miscLib.getMultiplier,
 				groups: {},
-				partyLevel: metaInfo.levels[0],
+				partyLevel: playerLevels[1],
 				playerCount: 4,
 				reference: null,
 				threat: {},
@@ -70,7 +69,7 @@
 						pairMultiplier    = 1.5,
 						groupMultiplier   = 2,
 						trivialMultiplier = 2.5;
-
+					
 					if ( count < 3 ) {
 						// For small groups, increase multiplier
 						singleMultiplier  = 1.5;
@@ -92,13 +91,6 @@
 					encounter.threat.pair    = mediumExp / ( 2 * pairMultiplier );
 					encounter.threat.group   = mediumExp / ( 4 * groupMultiplier );
 					encounter.threat.trivial = mediumExp / ( 8 * trivialMultiplier );
-
-					if ( $rootScope.$$phase !== "$digest" ) {
-						// This function gets called when encounter builder is being set up, before 
-						// the saved values from the cloud are returned. All other updates seem to
-						// happen during the $apply phase, so hopefully this should be safe...
-						freeze();
-					}
 				},
 				remove: function (monster, removeAll) {
 					encounter.groups[monster.id].qty--;
@@ -135,44 +127,49 @@
 
 					encounter.recalculateThreatLevels();
 				},
+
+				get adjustedExp() {
+					var qty = encounter.qty,
+					exp = encounter.exp,
+					multiplier = miscLib.getMultiplier(encounter.playerCount, qty);
+
+					return Math.floor(exp * multiplier);
+				},
+
+				get difficulty() {
+					var exp = encounter.adjustedExp,
+						count = encounter.playerCount,
+						level = encounter.partyLevel;
+
+					if ( exp === 0 ) {
+						return false;
+					}
+
+					if ( exp < ( count * level.easy ) ) {
+						return '';
+					} else if ( exp < ( count * level.medium ) ) {
+						return "Easy";
+					} else if ( exp < ( count * level.hard ) ) {
+						return "Medium";
+					} else if ( exp < ( count * level.deadly ) ) {
+						return "Hard";
+					} else {
+						return "Deadly";
+					}
+				},
+
+				initialize: initialize,
+				thaw: thaw,
+				freeze: freeze
 		};
 
-		Object.defineProperty(encounter, "adjustedExp", {
-			get: function () {
-				var qty = encounter.qty,
-					exp = encounter.exp,
-					multiplier = encounter.getMultiplier(encounter.playerCount, qty);
-
-				return Math.floor(exp * multiplier);
-			},
-		});
-
-		Object.defineProperty(encounter, "difficulty", {
-			get: function () {
-				var exp = encounter.adjustedExp,
-					count = encounter.playerCount,
-					level = encounter.partyLevel;
-
-				if ( exp === 0 ) {
-					return false;
-				}
-
-				if ( exp < ( count * level.easy ) ) {
-					return '';
-				} else if ( exp < ( count * level.medium ) ) {
-					return "Easy";
-				} else if ( exp < ( count * level.hard ) ) {
-					return "Medium";
-				} else if ( exp < ( count * level.deadly ) ) {
-					return "Hard";
-				} else {
-					return "Deadly";
-				}
-			},
-		});
-
-		thaw();
-		encounter.recalculateThreatLevels();
+		return encounter;
+		
+		function initialize() {
+			thaw().then(function () {
+				encounter.recalculateThreatLevels();
+			});
+		}
 
 		function freeze() {
 			var o = {
@@ -180,6 +177,8 @@
 				partyLevel: encounter.partyLevel.level,
 				playerCount: encounter.playerCount,
 			};
+
+			$log.log("Freezing party info", o);
 
 			Object.keys(encounter.groups).forEach(function (monsterId) {
 				o.groups[monsterId] = encounter.groups[monsterId].qty;
@@ -189,18 +188,18 @@
 		}
 
 		function thaw() {
+			$log.log('Thawing party info');
 			encounter.reset();
 
-			store.get("5em-encounter").then(function (frozen) {
+			return store.get("5em-encounter").then(function (frozen) {
 				if ( !frozen ) {
 					return;
 				}
 
-				encounter.partyLevel = miscLib.levels[frozen.partyLevel - 1]; // level 1 is index 0, etc
+				$log.log('Load party level (' + frozen.partyLevel + ') and player count (' + frozen.playerCount + ') from the store');
+				encounter.partyLevel = playerLevels[frozen.partyLevel];
 				encounter.playerCount = frozen.playerCount;
 			});
 		}
-
-		return encounter;
 	}
 })();

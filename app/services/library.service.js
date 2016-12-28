@@ -4,9 +4,9 @@
 	angular.module("app")
 		.factory("library", LibraryService);
 
-	LibraryService.$inject = ["$rootScope", "store"];
+	LibraryService.$inject = ["$rootScope", "$log", "store"];
 
-	function LibraryService($rootScope, store) {
+	function LibraryService($rootScope, $log, store) {
 		var library = {
 				encounters: [],
 				remove: function (storedEncounter) {
@@ -31,10 +31,12 @@
 		thaw();
 
 		function freeze() {
+			$log.log('Freeze library');
 			store.set("5em-library", library.encounters);
 		}
 
 		function thaw() {
+			$log.log('Thaw library');
 			store.get("5em-library").then(function (frozen) {
 				if (frozen) {
 					library.encounters = frozen;
