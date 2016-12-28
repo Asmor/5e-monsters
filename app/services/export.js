@@ -6,7 +6,7 @@
 
 
 	// var payload = [{ "Name": "Nemo", "HP": { "Value": 10 } }, { "Name": "Fat Goblin", "HP": { "Value": 20 }, "Id": "mm.goblin"}, { "Id": "mm.goblin"}];
-	var target = "http://localhost/launchencounter/";
+	var target = "http://improved-initiative-dev.azurewebsites.net/launchencounter/";
 	var sourcePrefixes = [
 		// Core books
 		{ name: "Monster Manual", prefix: "mm" },

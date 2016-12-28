@@ -125,12 +125,14 @@
 		.module('app')
 		.controller('BattleSetupController', BattleSetupController);
 
-	BattleSetupController.$inject = ['$state', 'actionQueue', 'combat', 'combatConstants'];
+	BattleSetupController.$inject = ['$state', 'actionQueue', 'combat', 'combatConstants', 'integration'];
 
-	function BattleSetupController($state, actionQueue, combat, constants) {
+	function BattleSetupController($state, actionQueue, combat, combatConstants, integration) {
 		var vm = this;
 		
 		vm.combat = combat;
+
+		vm.launchImpInit = integration.launchImpInit;
 
 		activate();
 
@@ -140,12 +142,12 @@
 			var combatState = combat.init(),
 				forward;
 
-			if ( combatState & constants.NO_PLAYERS ) {
+			if ( combatState & combatConstants.NO_PLAYERS ) {
 				actionQueue.unshift("players.manage", "You must select a party");
 				forward = true;
 			}
 
-			if ( combatState & constants.NO_MONSTERS ) {
+			if ( combatState & combatConstants.NO_MONSTERS ) {
 				actionQueue.unshift("encounter-manager", "You must select an encounter");
 				forward = true;
 			}
@@ -16125,9 +16127,9 @@
 	angular.module("app")
 		.factory("combat", CombatService);
 
-	CombatService.$inject = ['store', 'encounter', 'players', 'monsters', 'misc', 'combatConstants'];
+	CombatService.$inject = ['store', 'encounter', 'integration', 'players', 'monsters', 'misc', 'combatConstants'];
 
-	function CombatService(store, encounter, players, monsters, miscLib, constants) {
+	function CombatService(store, encounter, integration, players, monsters, miscLib, constants) {
 		var combat = {
 			active: 0,
 			combatants: [],
@@ -16478,6 +16480,142 @@
 		return encounter;
 	}
 })();
+(function() {
+	"use strict";
+
+	angular.module("app")
+		.factory("integration", ExportService);
+
+
+	// var payload = [{ "Name": "Nemo", "HP": { "Value": 10 } }, { "Name": "Fat Goblin", "HP": { "Value": 20 }, "Id": "mm.goblin"}, { "Id": "mm.goblin"}];
+	var target = "http://improved-initiative-dev.azurewebsites.net/launchencounter/";
+	var sourcePrefixes = [
+		// Core books
+		{ name: "Monster Manual", prefix: "mm" },
+		{ name: "Volo's Guide to Monsters", prefix: "volo" },
+
+		// Official adventures
+		{ name: "Curse of Strahd", prefix: "strahd" },
+		{ name: "Hoard of the Dragon Queen", prefix: "hoard" },
+		{ name: "Out of the Abyss", prefix: "abyss" },
+		{ name: "Princes of the Apocalypse", prefix: "apoc" },
+		{ name: "Rise of Tiamat", prefix: "tiamat" },
+		{ name: "Storm King's Thunder", prefix: "sking" },
+
+		// Third-party
+		{ name: "Fifth Edition Foes", prefix: "5ef" },
+		{ name: "Monster-A-Day", prefix: "mad" },
+		{ name: "Primeval Thule Campaign Setting", prefix: "thule-cs" },
+		{ name: "Primeval Thule Gamemaster's Companion", prefix: "thule-gm" },
+		{ name: "Tome of Beasts", prefix: "tob" },
+	];
+
+	ExportService.$inject = ["$document", "encounter", "players"];
+	function ExportService($document, encounter, players) {
+		function launchImpInit() {
+			var payload = generatePayload({
+				monsters: encounter.groups,
+				players: players.selectedParty,
+			});
+
+			console.log(payload);
+
+			openWindow({
+				document: $document,
+				target: target,
+				data: { Combatants: payload },
+			});
+		}
+
+		window.encounter = encounter;
+		window.players = players;
+
+		return {
+			launchImpInit: launchImpInit,
+		};
+	}
+
+	function generateFid(monster) {
+		// Sources in order of precedence
+		var prefix = "unknown";
+		sourcePrefixes.some(function (definition) {
+			var monsterInSource = monster.sources.some(function (monsterSource) {
+				return (monsterSource.name == definition.name);
+			});
+
+			if ( monsterInSource ) {
+				prefix = definition.prefix;
+			}
+
+			return monsterInSource;
+		});
+
+		var scrubbedName = monster.name
+			.toLowerCase()
+			.replace(/ /g, "-")
+			.replace(/--+/g, "-")
+			.replace(/[^-a-z0-9]/g, "");
+
+		return [prefix, scrubbedName].join(".");
+	}
+
+	function generatePayload(args) {
+		var combatants = [];
+
+		Object.keys(args.monsters).forEach(function (guid) {
+			var monsterGroup = args.monsters[guid];
+			var monster = monsterGroup.monster;
+			var qty = monsterGroup.qty;
+			var fid = generateFid(monster);
+
+			var i;
+			for ( i = 1; i <= qty; i++ ) {
+
+				combatants.push({
+					Name: monster.name,
+					HP: { Value: monster.hp },
+					InitiativeModifier: monster.init,
+					AC: { Value: monster.ac },
+					Player: "npc",
+					Id: fid,
+				});
+			}
+		});
+
+		args.players.forEach(function (player) {
+			combatants.push({
+				Name: player.name,
+				InitiativeModifier: player.initiativeMod,
+				HP: { Value: player.hp },
+				Player: "player",
+			});
+		});
+
+		return combatants;
+	}
+
+	function openWindow(args) {
+		var form = document.createElement("form");
+		form.style.display = "none";
+		form.setAttribute("method", "POST");
+		// form.setAttribute("target", "self");
+		form.setAttribute("action", args.target);
+
+		Object.keys(args.data).forEach(function (key) {
+			var textarea = document.createElement("input");
+			textarea.setAttribute("type", "hidden");
+			textarea.setAttribute("name", key);
+			textarea.setAttribute("value", JSON.stringify(args.data[key]));
+
+			form.appendChild(textarea);
+		});
+
+		args.document[0].body.appendChild(form);
+		form.submit();
+		form.parentNode.removeChild(form);
+	}
+})();
+
 (function() {
 	"use strict";
 
@@ -17115,7 +17253,7 @@
 
 angular.module('app').run(['$templateCache', function($templateCache) {$templateCache.put('app/test.html','<div class=container-fluid role=main>This is version {{vm.appVersion}}</div>');
 $templateCache.put('app/about/about.html','<div class=container><div class="about--logo pull-right"><img src=images/logo.png class=img-responsive alt=Logo></div><h2>Contact us if you have questions or issues</h2><h3>Register Bugs, Issues, and Feature Reqeusts on our Idea Informer</h3><a href="http://kobold.idea.informer.com/" target=_blank>Kobold Fight Club Feedback</a><h3>Via Reddit</h3><a href=http://www.reddit.com/r/asmor target=_blank>Asmor\'s Official Subreddit</a><h3>Contact the Owners Directly</h3><dl class=dl-horizontal><dt>Site Owner:</dt><dd>Ian Toltz</dd><dd><a href=mailto:itoltz@gmail.com>itoltz@gmail.com</a><dd><a href=http://reddit.com/u/Asmor target=_blank>/u/Asmor</a></dd></dd></dl><dl class=dl-horizontal><dt>Site Contributor:</dt><dd>Joe Barzilai</dd><dd><a href=mailto:jabber3+kobold@gmail.com>jabber3@gmail.com</a><dd><a href=http://reddit.com/u/jabber3 target=_blank>/u/jabber3</a></dd></dd></dl><h3>Want to Contribute?</h3><p>Join us on the <a href=https://github.com/Asmor/5e-monsters>Kobold Github</a></p><p class="about--disclaimer lead">Kobold Fight Club is not associated with Wizards of the Coast.</p></div>');
-$templateCache.put('app/battle-setup/battle-setup.html','<div class=combat-setup-controls><button class="btn btn-danger btn-lg" ui-sref=battle-tracker>Fight!</button></div><combatant-setup ng-repeat="combatant in vm.combat.combatants" combatant=combatant></combatant-setup>');
+$templateCache.put('app/battle-setup/battle-setup.html','<div class=combat-setup-controls><button class="btn btn-danger btn-lg" ui-sref=battle-tracker>Fight!</button> <button ng-click=vm.launchImpInit()>Launch Improved Initiative</button></div><combatant-setup ng-repeat="combatant in vm.combat.combatants" combatant=combatant></combatant-setup>');
 $templateCache.put('app/battle-setup/combatant-setup.html','<div class=combatant-setup ng-class="\'combatant-setup__\' + vm.combatant.type"><span class=combatant-setup--name><input class="combatant-setup--input combatant-setup--input__name" ng-model=vm.combatant.name></span> <span class=combatant-setup--initative-mod><span ng-if=!vm.combatant.fixedInitiative>Initiative Mod: <span ng-if="vm.combatant.initiativeMod >= 0">+</span>{{ vm.combatant.initiativeMod }}</span></span> <span class=combatant-setup--initative>Initiative: <span ng-if=!vm.combatant.fixedInitiative><number-input model=vm.combatant.initiative buttons="[-1, 1]"></number-input><button class="combatant-setup--button combatant-setup--button__roll" ng-click=vm.combat.rollInitiative(vm.combatant) ng-if=!vm.combatant.initiativeRolled>Roll</button></span> <span ng-if=vm.combatant.fixedInitiative>{{ vm.combatant.initiative }}</span></span> <span class=combatant-setup--hp><span ng-if=!vm.combatant.noHp>HP:<number-input model=vm.combatant.hp buttons="[-5, -1, 1, +5]" ng-if="vm.combatant.type != \'player\'"></number-input><span ng-if="vm.combatant.type == \'player\'">{{ vm.combatant.hp - vm.combatant.damage }} / {{ vm.combatant.hp }}</span></span></span></div>');
 $templateCache.put('app/battle-tracker/battle-tracker.html','<div class=combat-controls><number-input model=vm.combat.delta buttons="[-10, -5, -1, 1, 5, 10]" non-negative=true></number-input><button class=combat-controls--next-turn ng-click=vm.combat.nextTurn()>Next turn</button></div><combatant ng-repeat="combatant in vm.combat.combatants" combatant=combatant></combatant>');
 $templateCache.put('app/battle-tracker/combatant.html','<div class="combatant combatant__{{ vm.combatant.type }}" ng-class="{ \'combatant__active\': vm.combatant.active }"><span class=combatant--name>{{ vm.combatant.name }}</span> <span class=combatant--initiative-label>Initiative:</span> <span class=combatant--initiative>{{ vm.combatant.initiative }}</span> <span class=combatant--hp-label><span ng-if=!vm.combatant.noHp>HP:</span></span> <span class=combatant--hp><span ng-if=!vm.combatant.noHp>{{ vm.combatant.hp - vm.combatant.damage }} / {{ vm.combatant.hp }}</span></span> <span class=combatant--apply><span ng-show="vm.combat.delta && !vm.combatant.noHp"><button class=combatant--apply-button ng-click=vm.combat.applyDelta(vm.combatant)>Damage {{ vm.combat.delta }}</button> <button class=combatant--apply-button ng-click="vm.combat.applyDelta(vm.combatant, -1)">Heal {{ vm.combat.delta }}</button></span></span></div>');
