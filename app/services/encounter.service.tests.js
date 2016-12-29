@@ -2,9 +2,10 @@
 describe('Encounter Service', function() {
   beforeEach(function() {
     bard.appModule('app');
-    bard.inject(this, '$rootScope', 'encounter', 'store', '$q', 'playerLevels');
+    bard.inject(this, '$rootScope', 'encounter', 'store', '$q', 'playerLevels', 'randomEncounter');
 
     store.get = sinon.stub();
+    randomEncounter.getRandomEncounter = sinon.stub();
   });
   
   describe('initialize', function() {
@@ -82,5 +83,122 @@ describe('Encounter Service', function() {
       });
     });
   });
+
+  describe('generateRandom', function() {
+    it('should add random monsters to encounter', function() {
+      var targetDifficulty = 'easy',
+        targetExp = 400,
+        filters = {};
+      
+      encounter.playerCount = 4;
+      encounter.partyLevel = {
+        "easy": targetExp
+      };
+      
+      var monsterA = { 
+        id: "golem",
+        cr: {
+          exp: 100
+        }
+      },
+      monsterB = {
+        id: "goblin",
+        cr: {
+          exp: 50
+        }
+      }
+      var monsters = [
+        { monster: monsterA, qty: 1 },
+        { monster: monsterB, qty: 2}
+      ];
+      randomEncounter.getRandomEncounter.withArgs(encounter.playerCount, targetExp, filters).returns(monsters);
+
+      encounter.generateRandom(filters, targetDifficulty);
+
+      expect(randomEncounter.getRandomEncounter).toHaveBeenCalled();
+      var expectedGroups = {
+        "golem": {
+          qty: 1,
+          monster: monsterA
+        },
+        "goblin": {
+          qty: 2,
+          monster: monsterB
+        }
+      };
+      expect(encounter.groups).toEqual(expectedGroups);
+      expect(encounter.qty).toEqual(3);
+      expect(encounter.exp).toEqual(200);
+    });
+
+    it('should default to medium difficulty', function() {
+       var targetExp = 400,
+        filters = {};
+      
+      encounter.playerCount = 4;
+      encounter.partyLevel = {
+        "medium": targetExp
+      };
+      
+      randomEncounter.getRandomEncounter.withArgs(encounter.playerCount, targetExp, filters).returns([]);
+
+      encounter.generateRandom(filters);
+
+      expect(randomEncounter.getRandomEncounter).toHaveBeenCalledWith(encounter.playerCount, targetExp, filters);
+    });
+  });
+
+  describe('add', function() {
+    beforeEach(function() {
+      encounter.reset();
+    });
+
+    it('should default qty to 1 if none provided ', function() {
+      var monster = {
+        id: "ELEMENTAL",
+        cr: {
+          exp: 500
+        }
+      };
+
+      encounter.add(monster);
+
+      var expectedGroups = {
+        "ELEMENTAL": {
+          qty: 1,
+          monster: monster
+        }
+      };
+
+      expect(encounter.groups).toEqual(expectedGroups);
+      expect(encounter.qty).toEqual(1);
+      expect(encounter.exp).toEqual(500);
+      expect(encounter.reference).toBeNull();
+    });
+
+    it('should add monster to groups and update all cumulative properties', function() {
+      var monster = {
+        id: "ELEMENTAL",
+        cr: {
+          exp: 500
+        }
+      };
+
+      encounter.add(monster, 2);
+
+      var expectedGroups = {
+        "ELEMENTAL": {
+          qty: 2,
+          monster: monster
+        }
+      };
+
+      expect(encounter.groups).toEqual(expectedGroups);
+      expect(encounter.qty).toEqual(2);
+      expect(encounter.exp).toEqual(1000);
+      expect(encounter.reference).toBeNull();
+    });
+  });
+    
 });
   
