@@ -49,16 +49,6 @@
 			encounter.reference = library.store(newLibraryEntry);
 		}
 
-		vm.calculateExp = function (storedEncounter) {
-			var exp = 0;
-
-			Object.keys( storedEncounter.groups ).forEach(function (id) {
-				exp += monsters.byId[id].cr.exp * storedEncounter.groups[id];
-			});
-
-			return exp;
-		};
-
 		vm.load = function (storedEncounter) {
 			encounter.reset(storedEncounter);
 
