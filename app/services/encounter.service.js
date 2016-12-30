@@ -58,7 +58,7 @@
 					}
 				},
 
-				get testqty() {
+				get qty() {
 					var qty = 0;
 
 					_.forEach(encounter.groups, function(group) {
@@ -100,7 +100,6 @@
 			};
 
 			encounter.groups[monster.id].qty += qty;
-			encounter.qty += qty;
 
 			encounter.reference = null;
 		}
@@ -173,7 +172,6 @@
 
 		function remove(monster, removeAll) {
 			encounter.groups[monster.id].qty--;
-			encounter.qty--;
 
 			if ( encounter.groups[monster.id].qty === 0 ) {
 				delete encounter.groups[monster.id];
@@ -188,7 +186,6 @@
 
 		function reset(storedEncounter) {
 			encounter.reference = null;
-			encounter.qty = 0;
 			encounter.groups = {};
 			encounter.threat = {};
 
