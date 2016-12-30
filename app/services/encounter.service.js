@@ -12,14 +12,12 @@
 				partyLevel: playerLevels[1],
 				playerCount: 4,
 				reference: null,
-				threat: {},
 
 				// Methods
 				add: add,
 				generateRandom: generateRandom,
 				initialize: initialize,
 				randomize: randomize,
-				recalculateThreatLevels: recalculateThreatLevels,
 				remove: remove,
 				reset: reset,
 				thaw: thaw,
@@ -58,16 +56,6 @@
 					}
 				},
 
-				get qty() {
-					var qty = 0;
-
-					_.forEach(encounter.groups, function(group) {
-						qty += group.qty;
-					});
-
-					return qty;
-				},
-
 				get exp() {
 					if (_.isEmpty(encounter.groups)) return undefined;
 
@@ -78,15 +66,57 @@
 					});
 
 					return exp;
+				},
+
+				get qty() {
+					var qty = 0;
+
+					_.forEach(encounter.groups, function(group) {
+						qty += group.qty;
+					});
+
+					return qty;
+				},
+
+				get threat() {
+					var count = encounter.playerCount,
+						level = encounter.partyLevel,
+						mediumExp = count * level.medium,
+						singleMultiplier  = 1,
+						pairMultiplier    = 1.5,
+						groupMultiplier   = 2,
+						trivialMultiplier = 2.5;
+					
+					if ( count < 3 ) {
+						// For small groups, increase multiplier
+						singleMultiplier  = 1.5;
+						pairMultiplier    = 2;
+						groupMultiplier   = 2.5;
+						trivialMultiplier = 3;
+					} else if ( count > 5 ) {
+						// For large groups, reduce multiplier
+						singleMultiplier  = 0.5;
+						pairMultiplier    = 1;
+						groupMultiplier   = 1.5;
+						trivialMultiplier = 2;
+					}
+
+					return {
+						deadly : count * level.deadly / singleMultiplier,
+						hard   : count * level.hard / singleMultiplier,
+						medium : mediumExp / singleMultiplier,
+						easy   : count * level.easy / singleMultiplier,
+						pair   : mediumExp / ( 2 * pairMultiplier ),
+						group  : mediumExp / ( 4 * groupMultiplier ),
+						trivial: mediumExp / ( 8 * trivialMultiplier ),
+					};
 				}
 		};
 
 		return encounter;
 		
 		function initialize() {
-			thaw().then(function () {
-				encounter.recalculateThreatLevels();
-			});
+			thaw();
 		}
 
 		function add(monster, qty) {
@@ -138,38 +168,6 @@
 			}
 		}
 
-		function recalculateThreatLevels() {
-			var count = encounter.playerCount,
-				level = encounter.partyLevel,
-				mediumExp = count * level.medium,
-				singleMultiplier  = 1,
-				pairMultiplier    = 1.5,
-				groupMultiplier   = 2,
-				trivialMultiplier = 2.5;
-			
-			if ( count < 3 ) {
-				// For small groups, increase multiplier
-				singleMultiplier  = 1.5;
-				pairMultiplier    = 2;
-				groupMultiplier   = 2.5;
-				trivialMultiplier = 3;
-			} else if ( count > 5 ) {
-				// For large groups, reduce multiplier
-				singleMultiplier  = 0.5;
-				pairMultiplier    = 1;
-				groupMultiplier   = 1.5;
-				trivialMultiplier = 2;
-			}
-
-			encounter.threat.deadly  = count * level.deadly / singleMultiplier;
-			encounter.threat.hard    = count * level.hard / singleMultiplier;
-			encounter.threat.medium  = mediumExp / singleMultiplier;
-			encounter.threat.easy    = count * level.easy / singleMultiplier;
-			encounter.threat.pair    = mediumExp / ( 2 * pairMultiplier );
-			encounter.threat.group   = mediumExp / ( 4 * groupMultiplier );
-			encounter.threat.trivial = mediumExp / ( 8 * trivialMultiplier );
-		}
-
 		function remove(monster, removeAll) {
 			encounter.groups[monster.id].qty--;
 
@@ -187,7 +185,6 @@
 		function reset(storedEncounter) {
 			encounter.reference = null;
 			encounter.groups = {};
-			encounter.threat = {};
 
 			if (storedEncounter) {
 				Object.keys(storedEncounter.groups).forEach(function (id) {
@@ -200,8 +197,6 @@
 
 				encounter.reference = storedEncounter;
 			}
-
-			encounter.recalculateThreatLevels();
 		}
 
 		function freeze() {

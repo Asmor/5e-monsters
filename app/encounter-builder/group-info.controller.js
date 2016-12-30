@@ -19,8 +19,7 @@
 
     function activate() { }
 
-    function updateAndSave() {      
-      encounter.recalculateThreatLevels();
+    function updateAndSave() {
       encounter.freeze();
     }
   }

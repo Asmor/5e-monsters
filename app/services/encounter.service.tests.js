@@ -287,5 +287,60 @@ describe('Encounter Service', function() {
       expect(encounter.exp).toEqual(250);
     });
   });
+
+  describe('threat', function() {
+    it('should be correct when party size is normal', function() {
+      encounter.playerCount = 4;
+      encounter.partyLevel = {
+        'easy': 100,
+        'medium': 200,
+        'hard': 300,
+        'deadly': 400
+      };
+
+      expect(encounter.threat.deadly).toEqual(1600);
+      expect(encounter.threat.hard).toEqual(1200);
+      expect(encounter.threat.medium).toEqual(800);
+      expect(encounter.threat.easy).toEqual(400);
+      expect(encounter.threat.pair).toEqual(800 / 3);
+      expect(encounter.threat.group).toEqual(800 / 8);
+      expect(encounter.threat.trivial).toEqual(800 / 20);
+    });
+
+    it('should be correct when party size is small', function() {
+      encounter.playerCount = 2;
+      encounter.partyLevel = {
+        'easy': 100,
+        'medium': 200,
+        'hard': 300,
+        'deadly': 400
+      };
+
+      expect(encounter.threat.deadly).toEqual(800 / 1.5);
+      expect(encounter.threat.hard).toEqual(600 / 1.5);
+      expect(encounter.threat.medium).toEqual(400 / 1.5);
+      expect(encounter.threat.easy).toEqual(200 / 1.5);
+      expect(encounter.threat.pair).toEqual(400 / 4);
+      expect(encounter.threat.group).toEqual(400 / 10);
+      expect(encounter.threat.trivial).toEqual(400 / 24);
+    });
+
+    it('should be correct when party size is large', function() {
+      encounter.playerCount = 6;
+      encounter.partyLevel = {
+        'easy': 100,
+        'medium': 200,
+        'hard': 300,
+        'deadly': 400
+      };
+
+      expect(encounter.threat.deadly).toEqual(2400 / 0.5);
+      expect(encounter.threat.hard).toEqual(1800 / 0.5);
+      expect(encounter.threat.medium).toEqual(1200 / 0.5);
+      expect(encounter.threat.easy).toEqual(600 / 0.5);
+      expect(encounter.threat.pair).toEqual(1200 / 2);
+      expect(encounter.threat.group).toEqual(1200 / 6);
+      expect(encounter.threat.trivial).toEqual(1200 / 16);
+    });
+  });
 });
-  
