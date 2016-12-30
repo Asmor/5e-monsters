@@ -31,6 +31,8 @@
 					exp = encounter.exp,
 					multiplier = miscLib.getMultiplier(encounter.playerCount, qty);
 
+					if (!_.isNumber(exp)) return 0;
+
 					return Math.floor(exp * multiplier);
 				},
 
@@ -54,6 +56,28 @@
 					} else {
 						return "Deadly";
 					}
+				},
+
+				get testqty() {
+					var qty = 0;
+
+					_.forEach(encounter.groups, function(group) {
+						qty += group.qty;
+					});
+
+					return qty;
+				},
+
+				get exp() {
+					if (_.isEmpty(encounter.groups)) return undefined;
+
+					var exp = 0;
+
+					_.forEach(encounter.groups, function(group) {
+						exp += (group.monster.cr.exp * group.qty);
+					});
+
+					return exp;
 				}
 		};
 
@@ -77,7 +101,6 @@
 
 			encounter.groups[monster.id].qty += qty;
 			encounter.qty += qty;
-			encounter.exp += monster.cr.exp * qty;
 
 			encounter.reference = null;
 		}
@@ -151,7 +174,7 @@
 		function remove(monster, removeAll) {
 			encounter.groups[monster.id].qty--;
 			encounter.qty--;
-			encounter.exp -= monster.cr.exp;
+
 			if ( encounter.groups[monster.id].qty === 0 ) {
 				delete encounter.groups[monster.id];
 			} else if ( removeAll ) {
@@ -166,7 +189,6 @@
 		function reset(storedEncounter) {
 			encounter.reference = null;
 			encounter.qty = 0;
-			encounter.exp = 0;
 			encounter.groups = {};
 			encounter.threat = {};
 

@@ -39,20 +39,49 @@ describe('Encounter Service', function() {
   });
 
   describe('adjustedExp', function() {
-    
     it('should exist', function() {
       expect(encounter.adjustedExp).toBeDefined();
     });
     
-    it('should return multiple', function() {
+    it('should return zero if exp is not a number', function() {
+      encounter.groups = {};
+      expect(encounter.adjustedExp).toEqual(0);
+    });
+
+    it('should return exp', function() {
       encounter.qty = 1;
-      encounter.exp = 100;
+      encounter.groups = {
+        "A": {
+          qty: 1,
+          monster: {
+            cr: {
+              exp: 100
+            }
+          }
+        }
+      };
       expect(encounter.adjustedExp).toEqual(100);
+    });
+
+    it('should return multiplied exp', function() {
+      encounter.qty = 2;
+      encounter.groups = {
+        "A": {
+          qty: 2,
+          monster: {
+            cr: {
+              exp: 100
+            }
+          }
+        }
+      };
+
+      expect(encounter.adjustedExp).toEqual(300);
     });
   });
   
   describe('difficulty', function() {
-    
+
     beforeEach(function() {
       encounter.playerCount = 4;
       encounter.partyLevel = {
@@ -64,6 +93,7 @@ describe('Encounter Service', function() {
     });
       
     it('should return false if the adjusted exp is zero', function() {
+      encounter.groups = {};
       expect(encounter.difficulty).toEqual(false);
     });
     
@@ -76,9 +106,19 @@ describe('Encounter Service', function() {
     ].forEach(function(run) {
       it('should be ' + run.result, function() {
         encounter.qty = 1;
+
         // Multiply by player count because if we change the qty it will change the multiplier
-        encounter.exp = run.exp * encounter.playerCount;
-        
+        encounter.groups = {
+          "A": {
+            qty: 1,
+            monster: {
+              cr: {
+                exp: run.exp * encounter.playerCount
+              }
+            }
+          }
+        };
+
         expect(encounter.difficulty).toEqual(run.result);
       });
     });
@@ -106,7 +146,7 @@ describe('Encounter Service', function() {
         cr: {
           exp: 50
         }
-      }
+      };
       var monsters = [
         { monster: monsterA, qty: 1 },
         { monster: monsterB, qty: 2}
@@ -200,5 +240,52 @@ describe('Encounter Service', function() {
     });
   });
     
+  describe('qty', function() {
+    it('should give correct total quantity', function() {
+      var monsterA = { 
+        id: "golem",
+        cr: {
+          exp: 100
+        }
+      },
+      monsterB = {
+        id: "goblin",
+        cr: {
+          exp: 50
+        }
+      };
+
+      encounter.add(monsterA, 1);
+      encounter.add(monsterB, 2);
+
+      expect(encounter.qty).toEqual(3);
+    });
+  });
+
+  describe('exp', function() {
+    it('should be undefined if there are no monsters in the encounter', function() {
+      expect(encounter.exp).not.toBeDefined();
+    });
+
+    it('should give correct total exp', function() {
+      var monsterA = { 
+        id: "golem",
+        cr: {
+          exp: 100
+        }
+      },
+      monsterB = {
+        id: "goblin",
+        cr: {
+          exp: 50
+        }
+      };
+
+      encounter.add(monsterA, 2);
+      encounter.add(monsterB, 1);
+
+      expect(encounter.exp).toEqual(250);
+    });
+  });
 });
   
