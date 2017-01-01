@@ -2,7 +2,7 @@
 	/* global requirejs */
 	"use strict";
 
-	var myapp = angular
+	var myApp = angular
 		.module("app", [
 			"ui.router",
 			"ngTouch",
@@ -10,10 +10,20 @@
 			"LocalStorageModule"
 		]);
 
-	myapp.config(function(localStorageServiceProvider) {
+	myApp.config(function(localStorageServiceProvider) {
 		localStorageServiceProvider
     		.setPrefix('');
 	});
+
+	myApp.run(serviceInitialization);
+
+	serviceInitialization.$inject = ['$log', 'encounter', 'players'];
+
+	function serviceInitialization($log, encounter, players) {
+		$log.log("Service initialization on app run");
+		encounter.initialize();
+		players.initialize();
+	}
 })();
 (function() {
 	'use strict';
@@ -247,6 +257,17 @@
         function activate() { }
     }
 })();
+(function () {
+	"use strict";
+
+	angular.module("app")
+		.constant("combatConstants", {
+			READY       : 1,
+			NO_MONSTERS : 2,
+			NO_PLAYERS  : 4
+		})
+		.constant("AppVersion", 1);
+})();
 (function() {
     'use strict';
 
@@ -315,17 +336,6 @@
 	}
 })();
 
-(function () {
-	"use strict";
-
-	angular.module("app")
-		.constant("combatConstants", {
-			READY       : 1,
-			NO_MONSTERS : 2,
-			NO_PLAYERS  : 4
-		})
-		.constant("AppVersion", 1);
-})();
 (function() { 
 	"use strict";
 
@@ -13831,6 +13841,7 @@
 
 		{
 			name: "Abjurer",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 84, init: 2, cr: 9,
 			alignment: alignments.any,
@@ -13839,6 +13850,7 @@
 		},
 		{
 			name: "Apprentice Wizard",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 10, hp: 9, init: 0, cr: "1/4",
 			alignment: alignments.any,
@@ -13847,6 +13859,7 @@
 		},
 		{
 			name: "Archdruid",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 16, hp: 132, init: 2, cr: 12,
 			alignment: alignments.any,
@@ -13855,6 +13868,7 @@
 		},
 		{
 			name: "Archer",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 16, hp: 75, init: 4, cr: 3,
 			alignment: alignments.any,
@@ -13863,6 +13877,7 @@
 		},
 		{
 			name: "Bard",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 15, hp: 44, init: 2, cr: 2,
 			alignment: alignments.any,
@@ -13871,6 +13886,7 @@
 		},
 		{
 			name: "Blackguard",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 18, hp: 153, init: 0, cr: 8,
 			alignment: alignments.non_good,
@@ -13879,6 +13895,7 @@
 		},
 		{
 			name: "Champion",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 18, hp: 143, init: 2, cr: 9,
 			alignment: alignments.any,
@@ -13887,6 +13904,7 @@
 		},
 		{
 			name: "Conjurer",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 40, init: 2, cr: 6,
 			alignment: alignments.any,
@@ -13895,6 +13913,7 @@
 		},
 		{
 			name: "Diviner",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 67, init: 2, cr: 8,
 			alignment: alignments.any,
@@ -13903,6 +13922,7 @@
 		},
 		{
 			name: "Enchanter",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 40, init: 2, cr: 5,
 			alignment: alignments.any,
@@ -13911,6 +13931,7 @@
 		},
 		{
 			name: "Evoker",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 66, init: 2, cr: 9,
 			alignment: alignments.any,
@@ -13919,6 +13940,7 @@
 		},
 		{
 			name: "Illusionist",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 38, init: 2, cr: 3,
 			alignment: alignments.any,
@@ -13927,6 +13949,7 @@
 		},
 		{
 			name: "Kraken Priest",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 10, hp: 75, init: 0, cr: 5,
 			alignment: alignments.any,
@@ -13935,6 +13958,7 @@
 		},
 		{
 			name: "Martial Arts Adept",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 16, hp: 60, init: 3, cr: 3,
 			alignment: alignments.any,
@@ -13943,6 +13967,7 @@
 		},
 		{
 			name: "Master Thief",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 16, hp: 84, init: 4, cr: 5,
 			alignment: alignments.any,
@@ -13951,6 +13976,7 @@
 		},
 		{
 			name: "Necromancer",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 66, init: 2, cr: 9,
 			alignment: alignments.any,
@@ -13959,6 +13985,7 @@
 		},
 		{
 			name: "Swashbuckler",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 17, hp: 66, init: 4, cr: 3,
 			alignment: alignments.non_lawful,
@@ -13967,6 +13994,7 @@
 		},
 		{
 			name: "Transmuter",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 40, init: 2, cr: 5,
 			alignment: alignments.any,
@@ -13975,6 +14003,7 @@
 		},
 		{
 			name: "War Priest",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 18, hp: 117, init: 0, cr: 9,
 			alignment: alignments.any,
@@ -13983,6 +14012,7 @@
 		},
 		{
 			name: "Warlock of the Archfey",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 11, hp: 49, init: 1, cr: 4,
 			alignment: alignments.any,
@@ -13991,6 +14021,7 @@
 		},
 		{
 			name: "Warlock of the Fiend",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 78, init: 2, cr: 7,
 			alignment: alignments.any,
@@ -13999,6 +14030,7 @@
 		},
 		{
 			name: "Warlock of the Great Old One",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 91, init: 2, cr: 6,
 			alignment: alignments.any,
@@ -14007,6 +14039,7 @@
 		},
 		{
 			name: "Warlord",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 18, hp: 229, init: 3, cr: 12,
 			alignment: alignments.any,
@@ -15116,21 +15149,53 @@
 	angular.module("app")
 		.controller("EncounterBuilderController", EncounterBuilderController);
 
-	EncounterBuilderController.$inject = ['$scope', 'store', 'actionQueue', 'encounter', 'monsters', 'sources'];
+	EncounterBuilderController.$inject = ['$scope', '$log', 'store', 'actionQueue', 'encounter', 'monsters', 'sources'];
 
-	function EncounterBuilderController($scope, store, actionQueue, encounter, monsters, sources) {
+	function EncounterBuilderController($scope, $log, store, actionQueue, encounter, monsters, sources) {
 		var vm = this;
 
-		// There's no way to tell when they're done building an encounter, so clear the queue if they ever make it here.
-		actionQueue.clear();
-
-		vm.filters = {
-			source: sources.filters,
-			pageSize: 10,
-		};
 		vm.encounter = encounter;
+		vm.getMonsterQtyString = getMonsterQtyString;
 
-		vm.getMonsterQtyString = function () {
+		activate();
+
+		function activate() {
+			// There's no way to tell when they're done building an encounter, so clear the queue if they ever make it here.
+			actionQueue.clear();
+
+			vm.filters = {
+				source: sources.filters,
+				pageSize: 10,
+			};
+
+			$scope.$watch(function (scope) { return vm.encounter.groups; }, function (newValue, oldValue) {
+				var subtotal = 0;
+
+				_.forEach(newValue, function(item, idx) {
+					var groupQty = item.qty;
+					var groupMonster = monsters.byId[idx];
+
+					subtotal += groupMonster.cr.exp * groupQty;
+				});
+
+				vm.encounter.exp = subtotal;
+			}, true);
+
+			store.get("5em-filters").then(function (frozen) {
+				if (frozen) {
+					$log.log('Thaw filters');
+					vm.filters = frozen;
+				}
+			})
+			.finally(function() {
+				$scope.$watch("vm.filters", function () {
+					$log.log('Freeze filters');
+					store.set("5em-filters", vm.filters);
+				}, true);
+			});
+		}
+
+		function getMonsterQtyString() {
 			var qty = Object.keys(vm.encounter.groups).reduce(function (sum, key) {
 				return sum + vm.encounter.groups[key].qty;
 			}, 0);
@@ -15141,30 +15206,6 @@
 
 			return qty + " enemies";
 		};
-
-		$scope.$watch(function (scope) { return vm.encounter.groups; }, function (newValue, oldValue) {
-			var subtotal = 0;
-
-			_.forEach(newValue, function(item, idx) {
-				var groupQty = item.qty;
-				var groupMonster = monsters.byId[idx];
-
-				subtotal += groupMonster.cr.exp * groupQty;
-			});
-
-			vm.encounter.exp = subtotal;
-		}, true);
-
-		store.get("5em-filters").then(function (frozen) {
-			if (frozen) {
-				vm.filters = frozen;
-			}
-		})
-		.finally(function() {
-			$scope.$watch("vm.filters", function () {
-				store.set("5em-filters", vm.filters);
-			}, true);
-		});
 	}
 })();
 
@@ -15174,25 +15215,37 @@
     angular
         .module('app')
         .component('groupInfo', {
-            controller: GroupInfoController,
+            controller: 'GroupInfoController',
             controllerAs: 'vm',
             templateUrl: 'app/encounter-builder/group-info.html'
         });
+})();
+(function() {
+'use strict';
 
-    GroupInfoController.$inject = ['encounter', 'metaInfo'];
+  angular
+    .module('app')
+    .controller('GroupInfoController', GroupInfoController);
 
-    function GroupInfoController(encounter, metaInfo) {
-        var vm = this;
-        
-        vm.encounter = encounter;
-        vm.levels = metaInfo.levels;
+  GroupInfoController.$inject = ['encounter', 'playerLevels'];
+  function GroupInfoController(encounter, playerLevels) {
+    var vm = this;
 
-        activate();
+    vm.encounter = encounter;
+    vm.levels = playerLevels;
+    vm.updateAndSave = updateAndSave;
+    
+    activate();
 
-        ////////////////
+    ////////////////
 
-        function activate() { }
+    function activate() { }
+
+    function updateAndSave() {      
+      encounter.recalculateThreatLevels();
+      encounter.freeze();
     }
+  }
 })();
 (function() {
 'use strict';
@@ -15747,110 +15800,33 @@
 })();
 
 (function() {
-	"use strict";
+'use strict';
 
-	angular.module("app")
-		.factory('misc', MiscService);
-
-	function MiscService() {
-
-		var crs = [],
-			sourceFilters = {},
-			sources = [],
-			shortNames = {},
-			tags = {},
-			levels = [
-				{ level: 1,		easy: 25,	medium: 50,		hard: 75,	deadly: 100 },
-				{ level: 2,		easy: 50,	medium: 100,	hard: 150,	deadly: 200 },
-				{ level: 3,		easy: 75,	medium: 150,	hard: 225,	deadly: 400 },
-				{ level: 4,		easy: 125,	medium: 250,	hard: 375,	deadly: 500 },
-				{ level: 5,		easy: 250,	medium: 500,	hard: 750,	deadly: 1100 },
-				{ level: 6,		easy: 300,	medium: 600,	hard: 900,	deadly: 1400 },
-				{ level: 7,		easy: 350,	medium: 750,	hard: 1100,	deadly: 1700 },
-				{ level: 8,		easy: 450,	medium: 900,	hard: 1400,	deadly: 2100 },
-				{ level: 9,		easy: 550,	medium: 1100,	hard: 1600,	deadly: 2400 },
-				{ level: 10,	easy: 600,	medium: 1200,	hard: 1900,	deadly: 2800 },
-				{ level: 11,	easy: 800,	medium: 1600,	hard: 2400,	deadly: 3600 },
-				{ level: 12,	easy: 1000,	medium: 2000,	hard: 3000,	deadly: 4500 },
-				{ level: 13,	easy: 1100,	medium: 2200,	hard: 3400,	deadly: 5100 },
-				{ level: 14,	easy: 1250,	medium: 2500,	hard: 3800,	deadly: 5700 },
-				{ level: 15,	easy: 1400,	medium: 2800,	hard: 4300,	deadly: 6400 },
-				{ level: 16,	easy: 1600,	medium: 3200,	hard: 4800,	deadly: 7200 },
-				{ level: 17,	easy: 2000,	medium: 3900,	hard: 5900,	deadly: 8800 },
-				{ level: 18,	easy: 2100,	medium: 4200,	hard: 6300,	deadly: 9500 },
-				{ level: 19,	easy: 2400,	medium: 4900,	hard: 7300,	deadly: 10900 },
-				{ level: 20,	easy: 2800,	medium: 5700,	hard: 8500,	deadly: 12700 },
-			],
-			i;
-
-		crs.push({ text: "0", value: 0 });
-		crs.push({ text: "1/8", value: 0.125 });
-		crs.push({ text: "1/4", value: 0.25 });
-		crs.push({ text: "1/2", value: 0.5 });
-		for ( i = 1; i < 25; i++ ) {
-			crs.push({ text: i.toString(), value: i });
-		}
-
-		var service = {
-			d: d,
-			getMultiplier: getMultiplier,
-			levels: levels,
-			sourceFilters: sourceFilters,
-			sources: sources,
-			shortNames: shortNames,
-			tags: tags,
-		};
-
-		return service;
-
-		//////
-
-		function getMultiplier(playerCount, monsterCount) {
-			var multiplierCategory,
-				multipliers = [
-					0.5,
-					1,
-					1.5,
-					2,
-					2.5,
-					3,
-					4,
-					5,
-				];
-
-			if ( monsterCount === 0 ) {
-				return 0;
-			} else if ( monsterCount === 1 ) {
-				multiplierCategory = 1;
-			} else if ( monsterCount === 2 ) {
-				multiplierCategory = 2;
-			} else if ( monsterCount < 7 ) {
-				multiplierCategory = 3;
-			} else if ( monsterCount < 11 ) {
-				multiplierCategory = 4;
-			} else if ( monsterCount < 15 ) {
-				multiplierCategory = 5;
-			} else {
-				multiplierCategory = 6;
-			}
-
-			if ( playerCount < 3 ) {
-				// Increase multiplier for parties of one and two
-				multiplierCategory++;
-			} else if ( playerCount > 5 ) {
-				// Decrease multiplier for parties of six through eight
-				multiplierCategory--;
-			}
-
-			return multipliers[multiplierCategory];
-		}
-
-		function d(n) {
-			return Math.floor(Math.random() * n) + 1;
-		}
-	}
+  angular
+    .module('app')
+    .value('playerLevels', {
+      1: { level: 1,		easy: 25,	medium: 50,		hard: 75,	deadly: 100 },
+      2: { level: 2,		easy: 50,	medium: 100,	hard: 150,	deadly: 200 },
+      3: { level: 3,		easy: 75,	medium: 150,	hard: 225,	deadly: 400 },
+      4: { level: 4,		easy: 125,	medium: 250,	hard: 375,	deadly: 500 },
+      5: { level: 5,		easy: 250,	medium: 500,	hard: 750,	deadly: 1100 },
+      6: { level: 6,		easy: 300,	medium: 600,	hard: 900,	deadly: 1400 },
+      7: { level: 7,		easy: 350,	medium: 750,	hard: 1100,	deadly: 1700 },
+      8: { level: 8,		easy: 450,	medium: 900,	hard: 1400,	deadly: 2100 },
+      9: { level: 9,		easy: 550,	medium: 1100,	hard: 1600,	deadly: 2400 },
+      10: { level: 10,	easy: 600,	medium: 1200,	hard: 1900,	deadly: 2800 },
+      11: { level: 11,	easy: 800,	medium: 1600,	hard: 2400,	deadly: 3600 },
+      12: { level: 12,	easy: 1000,	medium: 2000,	hard: 3000,	deadly: 4500 },
+      13: { level: 13,	easy: 1100,	medium: 2200,	hard: 3400,	deadly: 5100 },
+      14: { level: 14,	easy: 1250,	medium: 2500,	hard: 3800,	deadly: 5700 },
+      15: { level: 15,	easy: 1400,	medium: 2800,	hard: 4300,	deadly: 6400 },
+      16: { level: 16,	easy: 1600,	medium: 3200,	hard: 4800,	deadly: 7200 },
+      17: { level: 17,	easy: 2000,	medium: 3900,	hard: 5900,	deadly: 8800 },
+      18: { level: 18,	easy: 2100,	medium: 4200,	hard: 6300,	deadly: 9500 },
+      19: { level: 19,	easy: 2400,	medium: 4900,	hard: 7300,	deadly: 10900 },
+      20: { level: 20,	easy: 2800,	medium: 5700,	hard: 8500,	deadly: 12700 }
+    });
 })();
-
 (function() {
 	"use strict";
 
@@ -16127,9 +16103,9 @@
 	angular.module("app")
 		.factory("combat", CombatService);
 
-	CombatService.$inject = ['store', 'encounter', 'integration', 'players', 'monsters', 'misc', 'combatConstants'];
+	CombatService.$inject = ['store', 'encounter', 'integration', 'players', 'monsters', 'combatConstants'];
 
-	function CombatService(store, encounter, integration, players, monsters, miscLib, constants) {
+	function CombatService(store, encounter, integration, players, monsters, constants) {
 		var combat = {
 			active: 0,
 			combatants: [],
@@ -16263,7 +16239,8 @@
 				combat.combatants[combat.active].active = true;
 			},
 			rollInitiative: function (combatant) {
-				combatant.initiative = miscLib.d(20) + combatant.initiativeMod;
+				var initRoll = _.random(20) + 1;
+				combatant.initiative = initRoll + combatant.initiativeMod;
 				combatant.initiativeRolled = true;
 			},
 		};
@@ -16280,13 +16257,12 @@
 	angular.module("app")
 		.factory("encounter", EncounterService);
 
-	EncounterService.$inject = ['$rootScope', 'randomEncounter', 'store', 'metaInfo', 'monsters', 'players', 'misc'];
+	EncounterService.$inject = ['$rootScope', '$log', 'randomEncounter', 'store', 'monsters', 'players', 'misc', 'playerLevels'];
 
-	function EncounterService($rootScope, randomEncounter, store, metaInfo, monsters, players, miscLib) {
+	function EncounterService($rootScope, $log, randomEncounter, store, monsters, players, miscLib, playerLevels) {
 		var encounter = {
-				getMultiplier: miscLib.getMultiplier,
 				groups: {},
-				partyLevel: metaInfo.levels[0],
+				partyLevel: playerLevels[1],
 				playerCount: 4,
 				reference: null,
 				threat: {},
@@ -16346,7 +16322,7 @@
 						pairMultiplier    = 1.5,
 						groupMultiplier   = 2,
 						trivialMultiplier = 2.5;
-
+					
 					if ( count < 3 ) {
 						// For small groups, increase multiplier
 						singleMultiplier  = 1.5;
@@ -16368,13 +16344,6 @@
 					encounter.threat.pair    = mediumExp / ( 2 * pairMultiplier );
 					encounter.threat.group   = mediumExp / ( 4 * groupMultiplier );
 					encounter.threat.trivial = mediumExp / ( 8 * trivialMultiplier );
-
-					if ( $rootScope.$$phase !== "$digest" ) {
-						// This function gets called when encounter builder is being set up, before 
-						// the saved values from the cloud are returned. All other updates seem to
-						// happen during the $apply phase, so hopefully this should be safe...
-						freeze();
-					}
 				},
 				remove: function (monster, removeAll) {
 					encounter.groups[monster.id].qty--;
@@ -16411,44 +16380,49 @@
 
 					encounter.recalculateThreatLevels();
 				},
+
+				get adjustedExp() {
+					var qty = encounter.qty,
+					exp = encounter.exp,
+					multiplier = miscLib.getMultiplier(encounter.playerCount, qty);
+
+					return Math.floor(exp * multiplier);
+				},
+
+				get difficulty() {
+					var exp = encounter.adjustedExp,
+						count = encounter.playerCount,
+						level = encounter.partyLevel;
+
+					if ( exp === 0 ) {
+						return false;
+					}
+
+					if ( exp < ( count * level.easy ) ) {
+						return '';
+					} else if ( exp < ( count * level.medium ) ) {
+						return "Easy";
+					} else if ( exp < ( count * level.hard ) ) {
+						return "Medium";
+					} else if ( exp < ( count * level.deadly ) ) {
+						return "Hard";
+					} else {
+						return "Deadly";
+					}
+				},
+
+				initialize: initialize,
+				thaw: thaw,
+				freeze: freeze
 		};
 
-		Object.defineProperty(encounter, "adjustedExp", {
-			get: function () {
-				var qty = encounter.qty,
-					exp = encounter.exp,
-					multiplier = encounter.getMultiplier(encounter.playerCount, qty);
-
-				return Math.floor(exp * multiplier);
-			},
-		});
-
-		Object.defineProperty(encounter, "difficulty", {
-			get: function () {
-				var exp = encounter.adjustedExp,
-					count = encounter.playerCount,
-					level = encounter.partyLevel;
-
-				if ( exp === 0 ) {
-					return false;
-				}
-
-				if ( exp < ( count * level.easy ) ) {
-					return '';
-				} else if ( exp < ( count * level.medium ) ) {
-					return "Easy";
-				} else if ( exp < ( count * level.hard ) ) {
-					return "Medium";
-				} else if ( exp < ( count * level.deadly ) ) {
-					return "Hard";
-				} else {
-					return "Deadly";
-				}
-			},
-		});
-
-		thaw();
-		encounter.recalculateThreatLevels();
+		return encounter;
+		
+		function initialize() {
+			thaw().then(function () {
+				encounter.recalculateThreatLevels();
+			});
+		}
 
 		function freeze() {
 			var o = {
@@ -16456,6 +16430,8 @@
 				partyLevel: encounter.partyLevel.level,
 				playerCount: encounter.playerCount,
 			};
+
+			$log.log("Freezing party info", o);
 
 			Object.keys(encounter.groups).forEach(function (monsterId) {
 				o.groups[monsterId] = encounter.groups[monsterId].qty;
@@ -16465,19 +16441,19 @@
 		}
 
 		function thaw() {
+			$log.log('Thawing party info');
 			encounter.reset();
 
-			store.get("5em-encounter").then(function (frozen) {
+			return store.get("5em-encounter").then(function (frozen) {
 				if ( !frozen ) {
 					return;
 				}
 
-				encounter.partyLevel = miscLib.levels[frozen.partyLevel - 1]; // level 1 is index 0, etc
+				$log.log('Load party level (' + frozen.partyLevel + ') and player count (' + frozen.playerCount + ') from the store');
+				encounter.partyLevel = playerLevels[frozen.partyLevel];
 				encounter.playerCount = frozen.playerCount;
 			});
 		}
-
-		return encounter;
 	}
 })();
 (function() {
@@ -16622,9 +16598,9 @@
 	angular.module("app")
 		.factory("library", LibraryService);
 
-	LibraryService.$inject = ["$rootScope", "store"];
+	LibraryService.$inject = ["$rootScope", "$log", "store"];
 
-	function LibraryService($rootScope, store) {
+	function LibraryService($rootScope, $log, store) {
 		var library = {
 				encounters: [],
 				remove: function (storedEncounter) {
@@ -16649,10 +16625,12 @@
 		thaw();
 
 		function freeze() {
+			$log.log('Freeze library');
 			store.set("5em-library", library.encounters);
 		}
 
 		function thaw() {
+			$log.log('Thaw library');
 			store.get("5em-library").then(function (frozen) {
 				if (frozen) {
 					library.encounters = frozen;
@@ -16703,7 +16681,6 @@
 				"underground",
 				"urban",
 			],
-			levels: miscLib.levels,
 			tags: miscLib.tags,
 			sizes: [
 				"Tiny",
@@ -16734,6 +16711,83 @@
 		return metaInfo;
 	}
 })();
+(function() {
+	"use strict";
+
+	angular.module("app")
+		.factory('misc', MiscService);
+
+	function MiscService() {
+
+		var crs = [],
+			sourceFilters = {},
+			sources = [],
+			shortNames = {},
+			tags = {},
+			i;
+
+		crs.push({ text: "0", value: 0 });
+		crs.push({ text: "1/8", value: 0.125 });
+		crs.push({ text: "1/4", value: 0.25 });
+		crs.push({ text: "1/2", value: 0.5 });
+		for ( i = 1; i < 25; i++ ) {
+			crs.push({ text: i.toString(), value: i });
+		}
+
+		var service = {		
+			getMultiplier: getMultiplier,
+			sourceFilters: sourceFilters,
+			sources: sources,
+			shortNames: shortNames,
+			tags: tags,
+		};
+
+		return service;
+
+		//////
+
+		function getMultiplier(playerCount, monsterCount) {
+			var multiplierCategory,
+				multipliers = [
+					0.5,
+					1,
+					1.5,
+					2,
+					2.5,
+					3,
+					4,
+					5,
+				];
+
+			if ( monsterCount === 0 ) {
+				return 0;
+			} else if ( monsterCount === 1 ) {
+				multiplierCategory = 1;
+			} else if ( monsterCount === 2 ) {
+				multiplierCategory = 2;
+			} else if ( monsterCount < 7 ) {
+				multiplierCategory = 3;
+			} else if ( monsterCount < 11 ) {
+				multiplierCategory = 4;
+			} else if ( monsterCount < 15 ) {
+				multiplierCategory = 5;
+			} else {
+				multiplierCategory = 6;
+			}
+
+			if ( playerCount < 3 ) {
+				// Increase multiplier for parties of one and two
+				multiplierCategory++;
+			} else if ( playerCount > 5 ) {
+				// Decrease multiplier for parties of six through eight
+				multiplierCategory--;
+			}
+
+			return multipliers[multiplierCategory];
+		}
+	}
+})();
+
 (function() {
 	"use strict";
 
@@ -16808,9 +16862,9 @@
 	angular.module("app")
 		.factory("players", PlayersService);
 
-	PlayersService.$inject = ["$rootScope", "store"];
+	PlayersService.$inject = ["$rootScope", "$log", "store"];
 
-	function PlayersService($rootScope, store) {
+	function PlayersService($rootScope, $log, store) {
 		var players = {
 				selectedParty: null,
 				selectParty: function (party) {
@@ -16826,6 +16880,7 @@
 						}
 					}
 				},
+				initialize: initialize
 			},
 			rawDirty = true,
 			rawText = "",
@@ -16859,8 +16914,6 @@
 			}
 		});
 
-		thaw();
-
 		function compileParties() {
 			var i, j, m;
 			partiesDirty = false;
@@ -16884,7 +16937,7 @@
 							hp: parseInt(m[4]),
 						};
 					} else {
-						console.warn("Can't match:", parties[i][j]);
+						$log.warn("Can't match:", parties[i][j]);
 					}
 				}
 
@@ -16918,11 +16971,17 @@
 			rawText = newRaw.join("\n\n");
 		}
 
+		function initialize() {
+			thaw();
+		}
+
 		function freeze() {
+			$log.log('Freeze players');
 			store.set("5em-players", parties);
 		}
 
 		function thaw() {
+			$log.log('Thaw players');
 			store.get("5em-players").then(function (frozen) {
 				if (frozen) {
 					parties = frozen;
@@ -17261,7 +17320,7 @@ $templateCache.put('app/common/difficulty-legend.html','<h3 ng-if=vm.showHeader>
 $templateCache.put('app/common/number-input.html','<span class=number-input><button class="number-input--button number-input--button__negative" ng-class="{\'number-input--button__hidden\' : vm.hideNegative()}" ng-repeat="mod in vm.mods | negative" ng-click=vm.modify(mod)>{{ mod }}</button> <span class=number-input--value>{{ vm.value }}</span> <button class="number-input--button number-input--button__positive" ng-repeat="mod in vm.mods | positive" ng-click=vm.modify(mod)>+{{ mod }}</button></span>');
 $templateCache.put('app/encounter-builder/current-encounter.html','<h2>Encounter Info<div class="btn-group pull-right"><button class="btn btn-info" ng-click=vm.generateRandom()>{{vm.randomButtonText()}}</button> <button type=button class="btn btn-info dropdown-toggle" data-toggle=dropdown aria-haspopup=true aria-expanded=false><span class=caret></span> <span class=sr-only>Toggle Dropdown</span></button><ul class=dropdown-menu><li><a href=# ng-click="vm.generateRandom(\'easy\')">Random Easy</a></li><li><a href=# ng-click="vm.generateRandom(\'medium\')">Random Medium</a></li><li><a href=# ng-click="vm.generateRandom(\'hard\')">Random Hard</a></li><li><a href=# ng-click="vm.generateRandom(\'deadly\')">Random Deadly</a></li></ul></div></h2><p class="current-encounter--empty bg-info text-muted" ng-if="vm.encounter.qty == 0">Create an encounter by clicking the Random encounter button or by adding monsters from the monsters table.</p><div class=current-encounter ng-class="{ \'current-encounter__shown\': vm.encounter.qty }"><div class=current-encounter--body><div class=current-encounter--table><div class=current-encounter--row ng-repeat="group in vm.encounter.groups | sortEncounter"><div class=current-encounter--monster-info><span class="current-encounter--monster-name text-capitalized">{{ group.monster.name }}</span><div><span class=current-encounter--monster-cr>CR: {{ group.monster.cr.string }}</span> <span class=current-encounter--monster-xp>XP: {{ group.monster.cr.exp | number}}</span><div class=current-encounter--monster-source ng-repeat="source in group.monster.sources" ng-show=vm.filters.source[source.name] title="{{source.name}} p.{{source.page}}">{{ source.name }} <span ng-if=source.page>p.{{ source.page }}</span> <span ng-if=source.url><a target=_blank href="{{ source.url }}">[Link]</a></span></div></div></div><div class=current-encounter--monster-qty-col><button ng-click="vm.encounter.randomize(group.monster, vm.filters)" class="btn btn-default" title="Randomize Monster"><i class="fa fa-random"></i></button> <input class="current-encounter--monster-qty form-control input-lg" type=number ng-model=group.qty><div class=current-encounter--monster-qty-btns><button ng-click=vm.encounter.add(group.monster) class="btn btn-xs btn-success"><i class="fa fa-plus"></i></button> <button ng-click=vm.encounter.remove(group.monster) class="btn btn-xs btn-danger"><i class="fa fa-minus"></i></button></div></div></div></div><div class=current-encounter--totals><div class=current-encounter--totals-difficulty>Difficulty: {{ vm.encounter.difficulty }}</div><div class=current-encounter--totals-xp><span>Total XP: {{ vm.encounter.exp | number }}</span> <span>Adjusted XP: {{ vm.encounter.adjustedExp | number }}</span></div></div><div class=current-encounter--btns><button class="btn btn-danger btn-new" ng-click=vm.encounter.reset()>New</button> <button class="btn btn-primary" ui-sref=encounter-manager ng-if=!vm.encounter.reference>Save</button></div></div></div>');
 $templateCache.put('app/encounter-builder/encounter-builder.html','<div class="encounter-builder container-fluid" role=main><div class=row><div class=col-md-4><group-info></group-info><div class=encounter-builder--current-encounter-container><div class=encounter-builder--current-encounter-slider ng-class="{\'encounter-builder--current-encounter-slider__shown\': encounterShown }"><div class=encounter-builder--encounter-info-bar ng-click="encounterShown = !encounterShown"><i class="fa encounter-builder--toggle-arrow" ng-class="{ \'fa-toggle-up\': !encounterShown, \'fa-toggle-down\': encounterShown }" aria-hidden=true></i><div class=encounter-builder--encounter-info-text><span ng-if=vm.encounter.exp>{{ vm.getMonsterQtyString() }}, {{ vm.encounter.exp }} exp ({{ vm.encounter.difficulty }})</span> <span ng-if=!vm.encounter.exp><span ng-if=encounterShown>Browse monsters</span> <span ng-if=!encounterShown>Manage encounter</span></span></div></div><div class=encounter-builder--current-encounter><current-encounter filters=vm.filters></current-encounter></div></div></div><div class="difficulty-legend hidden-xs hidden-sm"><button class="btn btn-warning difficulty-legend-button" type=button data-toggle=collapse data-target=#legend-collapse>Legend <i class="fa fa-angle-double-up" aria-hidden=true></i></button><div id=legend-collapse class="difficulty-legend-popout collapse" aria-expanded=false aria-controls=legend-collapse><difficulty-legend></difficulty-legend></div></div></div><div class=col-md-8><search-controls filters=vm.filters></search-controls><monster-table filters=vm.filters></monster-table><div class="difficulty-legend-sm visible-xs visible-sm"><difficulty-legend show-header=true></difficulty-legend></div></div></div></div>');
-$templateCache.put('app/encounter-builder/group-info.html','<div class=group-info><div class=group-info--input><h2 class=group-info--header>Group Info</h2><div><div class=group-info--input-section><label>Players:</label><select ng-model=vm.encounter.playerCount ng-options="count for count in [1,2,3,4,5,6,7,8,9,10,11,12]" ng-change=vm.encounter.recalculateThreatLevels()></select></div><div class=group-info--input-section><label>Level:</label><select ng-model=vm.encounter.partyLevel ng-options="level as level.level for level in vm.levels" ng-change=vm.encounter.recalculateThreatLevels()></select></div></div></div><ul class="group-info--guidelines list-unstyled"><li ng-class="{\'group-info--guidelines-active\': vm.encounter.difficulty === \'Easy\'}"><span>Easy:</span> <span class=group-info--guidelines-values>{{ vm.encounter.partyLevel.easy * vm.encounter.playerCount | number }} exp</span></li><li ng-class="{\'group-info--guidelines-active\': vm.encounter.difficulty === \'Medium\'}"><span>Medium:</span> <span class=group-info--guidelines-values>{{ vm.encounter.partyLevel.medium * vm.encounter.playerCount | number }} exp</span></li><li ng-class="{\'group-info--guidelines-active\': vm.encounter.difficulty === \'Hard\'}"><span>Hard:</span> <span class=group-info--guidelines-values>{{ vm.encounter.partyLevel.hard * vm.encounter.playerCount | number }} exp</span></li><li ng-class="{\'group-info--guidelines-active\': vm.encounter.difficulty === \'Deadly\'}"><span>Deadly:</span> <span class=group-info--guidelines-values>{{ vm.encounter.partyLevel.deadly * vm.encounter.playerCount | number }} exp</span></li></ul></div>');
+$templateCache.put('app/encounter-builder/group-info.html','<div class=group-info><div class=group-info--input><h2 class=group-info--header>Group Info</h2><div><div class=group-info--input-section><label>Players:</label><select ng-model=vm.encounter.playerCount ng-options="count for count in [1,2,3,4,5,6,7,8,9,10,11,12]" ng-change=vm.updateAndSave()></select></div><div class=group-info--input-section><label>Level:</label><select ng-model=vm.encounter.partyLevel ng-options="level as level.level for level in vm.levels" ng-change=vm.updateAndSave()></select></div></div></div><ul class="group-info--guidelines list-unstyled"><li ng-class="{\'group-info--guidelines-active\': vm.encounter.difficulty === \'Easy\'}"><span>Easy:</span> <span class=group-info--guidelines-values>{{ vm.encounter.partyLevel.easy * vm.encounter.playerCount | number }} exp</span></li><li ng-class="{\'group-info--guidelines-active\': vm.encounter.difficulty === \'Medium\'}"><span>Medium:</span> <span class=group-info--guidelines-values>{{ vm.encounter.partyLevel.medium * vm.encounter.playerCount | number }} exp</span></li><li ng-class="{\'group-info--guidelines-active\': vm.encounter.difficulty === \'Hard\'}"><span>Hard:</span> <span class=group-info--guidelines-values>{{ vm.encounter.partyLevel.hard * vm.encounter.playerCount | number }} exp</span></li><li ng-class="{\'group-info--guidelines-active\': vm.encounter.difficulty === \'Deadly\'}"><span>Deadly:</span> <span class=group-info--guidelines-values>{{ vm.encounter.partyLevel.deadly * vm.encounter.playerCount | number }} exp</span></li></ul></div>');
 $templateCache.put('app/encounter-builder/monster-table.html','<div class="monster-table table-responsive"><table class="monster-table--table table table-bordered table-striped"><thead><tr><th class="monster-table--column monster-table--column__button"></th><th class="monster-table--column monster-table--column__sortable monster-table--column__name" ng-click="vm.filters.sort = \'name\'">Name</th><th class="monster-table--column monster-table--column__sortable monster-table--column__cr" ng-click="vm.filters.sort = \'cr\'">CR</th><th class="monster-table--column monster-table--column__sortable monster-table--column__size" ng-click="vm.filters.sort = \'size\'">Size</th><th class="monster-table--column monster-table--column__sortable monster-table--column__type" ng-click="vm.filters.sort = \'type\'">Type</th><th class="monster-table--column monster-table--column__sortable monster-table--column__alignment" ng-click="vm.filters.sort = \'alignment\'">Alignment</th><th class="monster-table--column monster-table--column__source">Source</th></tr></thead><tbody><tr dir-paginate="monster in vm.monsters | monstersFilter:vm.filters | itemsPerPage: vm.filters.pageSize" class=monster-table--row><td class=monster-table--button-cell><button ng-click=vm.encounter.add(monster) class="btn btn-sm btn-success"><i class="fa fa-plus"></i></button></td><td class=monster-table--name-cell><div class=monster-table--name>{{ monster.name }}</div><div ng-if=monster.section class=monster-table--section><span class=monster-table--label>Section:</span> {{ monster.section }}</div></td><td class=monster-table--cr-cell ng-class="\'monster-table--cr-cell__\' + vm.dangerZone(monster)"><span class=monster-table--cr-label>CR</span> {{ monster.cr.string }}</td><td class=monster-table--size-cell><span class=monster-table--label>Size:</span> {{ monster.size }}</td><td class=monster-table--type-cell><span class=monster-table--label>Type:</span> {{ monster.type }} <span ng-if=monster.tags class=monster-table--tags>({{ monster.tags.join(", ") }})</span></td><td class=monster-table--alignment-cell><span ng-if=monster.alignment><span class=monster-table--label>Alignment:</span> {{ monster.alignment.text }}</span></td><td class=monster-table--source-cell><span class=monster-table--label>Source(s):</span><div class=monster-table--sources ng-repeat="source in monster.sources" ng-show=vm.filters.source[source.name]><span class="monster-table--source-name monster-table--source-name__short" title="{{ source.name }}">{{ vm.sources.shortNames[source.name] }}</span> <span class="monster-table--source-name monster-table--source-name__long">{{ source.name }}</span> <span ng-if=source.page>p.{{ source.page }}</span> <span ng-if=source.url><a target=_blank href="{{ source.url }}">[Link]</a></span></div></td></tr></tbody></table></div><div class=pagination-container><dir-pagination-controls></dir-pagination-controls></div>');
 $templateCache.put('app/encounter-builder/search.html','<div class=search><div class="search--search-form form-inline"><label class=sr-only>Search</label> <input class="form-control search-input" type=text ng-model=vm.filters.search placeholder=Search...><select class=form-control ng-model=vm.filters.size ng-options="size for size in vm.sizes"><option value>Any Size</option></select><select class=form-control ng-model=vm.filters.type ng-options="type for type in vm.types"><option value>Any Type</option></select><select class=form-control ng-model=vm.filters.minCr ng-options="cr.numeric as cr.string for cr in vm.crList"><option value>Min CR</option></select><select class=form-control ng-model=vm.filters.maxCr ng-options="cr.numeric as cr.string for cr in vm.crList"><option value>Max CR</option></select><select class=form-control ng-model=vm.filters.alignment ng-options="alignment as alignment.text for (key, alignment) in vm.alignments"><option value>Any Alignment</option></select><select class=form-control ng-model=vm.filters.environment ng-options="environment as environment for environment in vm.environments"><option value>Any Environment</option></select><button type=button class="btn btn-default" data-toggle=modal data-target=#sourcesModal>Set Sources</button></div><div class=search--reset><button class="btn btn-danger" ng-click=vm.resetFilters()>Reset Filters</button><div class=search--size-controls><label>Page size:</label><select class="form-control search--page-size" ng-model=vm.filters.pageSize ng-options="page for page in [10, 25, 50, 100, 250, 500, 1000]"></select></div></div><div class=modal id=sourcesModal tabindex=-1 role=dialog aria-labelledby=myModalLabel><div class=modal-dialog role=document><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-label=Close><span aria-hidden=true>&times;</span></button><h4 class=modal-title id=myModalLabel>Set Source Material</h4></div><div class=modal-body><div class=sources-modal--buttons><button class="btn btn-primary" ng-click="vm.updateSourceFilters(\'all\')">Everything</button> <button class="btn btn-primary" ng-click="vm.updateSourceFilters(\'core\')">Core Books</button> <button class="btn btn-primary" ng-click="vm.updateSourceFilters(\'books\')">All Books</button> <button class="btn btn-primary" ng-click="vm.updateSourceFilters(\'basic\')">Basic</button> <button class="btn btn-primary" ng-click="vm.updateSourceFilters(\'thirdparty\')">Third Party</button></div><ul><li class=search--source ng-repeat="source in vm.sourceNames" ng-class="{ \'search--source__off\': !vm.filters.source[source] }"><label><input type=checkbox ng-model=vm.filters.source[source]> {{ source }}</label></li></ul></div><div class=modal-footer><button type=button class="btn btn-default" data-dismiss=modal>Close</button></div></div></div></div></div>');
 $templateCache.put('app/encounter-manager/encounter-manager.html','<div class=encounter-manager><div class=encounter-manager--no-encounters ng-if="!vm.encounter.qty && !vm.library.encounters.length">You don\'t have any encounters saved. <button ui-sref=encounter-builder>Return to encounter builder</button></div><div class="encounter-manager-encounter encounter-manager-encounter__unsaved" ng-if="vm.encounter.qty && !vm.encounter.reference"><div class=encounter-manager-encounter--controls><input class=encounter-manager-encounter--name-input placeholder="{{ vm.newEncounter.placeholder }}" ng-model=vm.newEncounter.name> <button class=encounter-manager-encounter--save-button ng-click=vm.save()>Save current encounter</button></div><div class=encounter-manager-monster ng-repeat="(id, group) in vm.encounter.groups"><span ng-if="group.qty > 1">{{ group.qty }}x</span> {{ group.monster.name }}</div></div><div ng-repeat="storedEncounter in vm.library.encounters track by $index"><manager-row stored-encounter=storedEncounter></manager-row></div></div>');

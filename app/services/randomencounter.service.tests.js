@@ -4,8 +4,8 @@ describe('Random Encounter Tests', function() {
 
   var testObject;
 
-  beforeEach(inject(function(_randomencounter_) {
-    testObject = _randomencounter_;
+  beforeEach(inject(function(_randomEncounter_) {
+    testObject = _randomEncounter_;
   }));
 
   

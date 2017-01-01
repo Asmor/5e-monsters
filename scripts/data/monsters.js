@@ -12175,6 +12175,7 @@
 
 		{
 			name: "Abjurer",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 84, init: 2, cr: 9,
 			alignment: alignments.any,
@@ -12183,6 +12184,7 @@
 		},
 		{
 			name: "Apprentice Wizard",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 10, hp: 9, init: 0, cr: "1/4",
 			alignment: alignments.any,
@@ -12191,6 +12193,7 @@
 		},
 		{
 			name: "Archdruid",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 16, hp: 132, init: 2, cr: 12,
 			alignment: alignments.any,
@@ -12199,6 +12202,7 @@
 		},
 		{
 			name: "Archer",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 16, hp: 75, init: 4, cr: 3,
 			alignment: alignments.any,
@@ -12207,6 +12211,7 @@
 		},
 		{
 			name: "Bard",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 15, hp: 44, init: 2, cr: 2,
 			alignment: alignments.any,
@@ -12215,6 +12220,7 @@
 		},
 		{
 			name: "Blackguard",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 18, hp: 153, init: 0, cr: 8,
 			alignment: alignments.non_good,
@@ -12223,6 +12229,7 @@
 		},
 		{
 			name: "Champion",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 18, hp: 143, init: 2, cr: 9,
 			alignment: alignments.any,
@@ -12231,6 +12238,7 @@
 		},
 		{
 			name: "Conjurer",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 40, init: 2, cr: 6,
 			alignment: alignments.any,
@@ -12239,6 +12247,7 @@
 		},
 		{
 			name: "Diviner",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 67, init: 2, cr: 8,
 			alignment: alignments.any,
@@ -12247,6 +12256,7 @@
 		},
 		{
 			name: "Enchanter",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 40, init: 2, cr: 5,
 			alignment: alignments.any,
@@ -12255,6 +12265,7 @@
 		},
 		{
 			name: "Evoker",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 66, init: 2, cr: 9,
 			alignment: alignments.any,
@@ -12263,6 +12274,7 @@
 		},
 		{
 			name: "Illusionist",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 38, init: 2, cr: 3,
 			alignment: alignments.any,
@@ -12271,6 +12283,7 @@
 		},
 		{
 			name: "Kraken Priest",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 10, hp: 75, init: 0, cr: 5,
 			alignment: alignments.any,
@@ -12279,6 +12292,7 @@
 		},
 		{
 			name: "Martial Arts Adept",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 16, hp: 60, init: 3, cr: 3,
 			alignment: alignments.any,
@@ -12287,6 +12301,7 @@
 		},
 		{
 			name: "Master Thief",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 16, hp: 84, init: 4, cr: 5,
 			alignment: alignments.any,
@@ -12295,6 +12310,7 @@
 		},
 		{
 			name: "Necromancer",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 66, init: 2, cr: 9,
 			alignment: alignments.any,
@@ -12303,6 +12319,7 @@
 		},
 		{
 			name: "Swashbuckler",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 17, hp: 66, init: 4, cr: 3,
 			alignment: alignments.non_lawful,
@@ -12311,6 +12328,7 @@
 		},
 		{
 			name: "Transmuter",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 40, init: 2, cr: 5,
 			alignment: alignments.any,
@@ -12319,6 +12337,7 @@
 		},
 		{
 			name: "War Priest",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 18, hp: 117, init: 0, cr: 9,
 			alignment: alignments.any,
@@ -12327,6 +12346,7 @@
 		},
 		{
 			name: "Warlock of the Archfey",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 11, hp: 49, init: 1, cr: 4,
 			alignment: alignments.any,
@@ -12335,6 +12355,7 @@
 		},
 		{
 			name: "Warlock of the Fiend",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 78, init: 2, cr: 7,
 			alignment: alignments.any,
@@ -12343,6 +12364,7 @@
 		},
 		{
 			name: "Warlock of the Great Old One",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 12, hp: 91, init: 2, cr: 6,
 			alignment: alignments.any,
@@ -12351,6 +12373,7 @@
 		},
 		{
 			name: "Warlord",
+			section: "NPCs",
 			size: "Medium", type: "Humanoid", tags: [ "Any Race" ], 
 			ac: 18, hp: 229, init: 3, cr: 12,
 			alignment: alignments.any,

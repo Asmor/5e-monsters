@@ -10,6 +10,7 @@
     "angular-ui-router": "^0.3.2"
   },
   "devDependencies": {
+    "bardjs": "^0.1.8",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-angular-templatecache": "^2.0.0",
@@ -33,12 +34,17 @@
     "gulp-util": "^3.0.7",
     "http-server": "^0.9.0",
     "jasmine-core": "^2.5.2",
+    "jasmine-sinon": "^0.4.0",
     "karma": "^1.3.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.0.2",
+    "karma-jasmine-sinon": "^1.0.4",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-sinon": "^1.0.5",
     "node-sass": "^3.11.1",
     "nodemon": "^1.11.0",
+    "sinon": "^1.17.6",
     "wiredep": "^4.0.0",
     "yargs": "^6.5.0"
   },
@@ -51,7 +57,7 @@
     "build": "gulp optimize",
     "watch-css": "gulp sass-watcher",
     "test": "karma start karma.conf.js",
-    "test-single-run": "karma start karma.conf.js --single-run",
+    "test-single": "karma start karma.conf.js --single-run",
     "watch-html": "nodemon -e html -x \"gulp template-cache\""
   },
   "repository": {

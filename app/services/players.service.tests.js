@@ -1,29 +1,22 @@
 
 describe('Players service tests', function() {
     var returnVal;
-    var mockStore = {
-        get: function() {}
-    };
-    beforeEach(module('app', function($provide) {
-        $provide.value('store', mockStore);
-    }));
 
-    describe('thaw tests', function() {
-        var $scope, players;
+    beforeEach(function() {
+        bard.appModule('app');
+        bard.inject(this, '$rootScope', '$q', 'players', 'store');
 
-        beforeEach(inject(function (_$rootScope_, $q, $injector) {
-            $scope = _$rootScope_.$new();
-            
-            spyOn(mockStore, 'get').and.returnValue($q.when([
-                {id: 1}
-            ]));
-            players = $injector.get('players');
-        }));
-            
+        store.get = sinon.stub().returns($q.when([]));
+    });
+
+    describe('initialize', function() {
         it('calls store and gets data', function() {
-            expect(mockStore.get).toHaveBeenCalledWith('5em-players');
-            $scope.$digest();
-            expect(players.parties).toEqual([ { id: 1 } ]);
+            var testPlayers = [ { id: 1 } ];
+            store.get.withArgs('5em-players').returns($q.when(testPlayers));
+            players.initialize();
+            sinon.assert.calledWith(store.get, '5em-players');
+            $rootScope.$apply();
+            expect(players.parties).toEqual(testPlayers);
         });
     });  
 });
