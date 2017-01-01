@@ -5,12 +5,13 @@
     .module('app')
     .controller('GroupInfoController', GroupInfoController);
 
-  GroupInfoController.$inject = ['encounter', 'playerLevels'];
-  function GroupInfoController(encounter, playerLevels) {
+  GroupInfoController.$inject = ['encounter', 'playerLevels', 'partyInfo'];
+  function GroupInfoController(encounter, playerLevels, partyInfo) {
     var vm = this;
 
     vm.encounter = encounter;
     vm.levels = playerLevels;
+    vm.partyInfo = partyInfo;
     vm.updateAndSave = updateAndSave;
     
     activate();
@@ -20,7 +21,7 @@
     function activate() { }
 
     function updateAndSave() {
-      encounter.freeze();
+      partyInfo.freeze();
     }
   }
 })();

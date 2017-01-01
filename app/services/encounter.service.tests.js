@@ -2,39 +2,25 @@
 describe('Encounter Service', function() {
   beforeEach(function() {
     bard.appModule('app');
-    bard.inject(this, '$rootScope', 'encounter', 'store', '$q', 'playerLevels', 'randomEncounter');
+    bard.inject(this, '$rootScope', 'encounter', 'store', '$q', 'playerLevels', 'randomEncounter', 'misc', 'partyInfo');
 
     store.get = sinon.stub();
     randomEncounter.getRandomEncounter = sinon.stub();
+    misc.getMultiplier = sinon.stub().returns(1);
   });
   
   describe('initialize', function() {
-    it('should call store', function() {
-      store.get.withArgs("5em-encounter").returns($q.when({}));
-      encounter.initialize();
-      expect(store.get).toHaveBeenCalledWith('5em-encounter');
-    });
-
-    it('should load info from store', function() {
-      var level = {
-          level: 4,
-          easy: 1,
-          medium: 2,
-          hard: 3,
-          deadly: 4
-        };
-      playerLevels[4] = level;
+    it('should load info from current encounter token', function() {
       var groupInfo = {
-        partyLevel: 4,
-        playerCount: 6
+        groups: {
+          "A": 1,
+          "B": 2
+        }
       };
       store.get.withArgs("5em-encounter").returns($q.when(groupInfo));
       encounter.initialize();
       $rootScope.$apply();
-      expect(encounter.partyLevel).toBe(level);
-      expect(encounter.partyLevel.level).toEqual(4);
-      expect(encounter.playerCount).toEqual(6);
-      expect(encounter.threat.easy).toEqual(12);
+      expect(encounter.groups).toEqual({});
     });
   });
 
@@ -64,6 +50,7 @@ describe('Encounter Service', function() {
     });
 
     it('should return multiplied exp', function() {
+      misc.getMultiplier.onFirstCall().returns(1.5);
       encounter.qty = 2;
       encounter.groups = {
         "A": {
@@ -83,8 +70,8 @@ describe('Encounter Service', function() {
   describe('difficulty', function() {
 
     beforeEach(function() {
-      encounter.playerCount = 4;
-      encounter.partyLevel = {
+      partyInfo.playerCount = 4;
+      partyInfo.partyLevel = {
         easy: 101,
         medium: 201,
         hard: 301,
@@ -105,6 +92,7 @@ describe('Encounter Service', function() {
       {exp: 500, result: "Deadly"}
     ].forEach(function(run) {
       it('should be ' + run.result, function() {
+        var playerCount = 4;
         encounter.qty = 1;
 
         // Multiply by player count because if we change the qty it will change the multiplier
@@ -113,7 +101,7 @@ describe('Encounter Service', function() {
             qty: 1,
             monster: {
               cr: {
-                exp: run.exp * encounter.playerCount
+                exp: run.exp * playerCount
               }
             }
           }
@@ -130,8 +118,8 @@ describe('Encounter Service', function() {
         targetExp = 400,
         filters = {};
       
-      encounter.playerCount = 4;
-      encounter.partyLevel = {
+      partyInfo.playerCount = 4;
+      partyInfo.partyLevel = {
         "easy": targetExp
       };
       
@@ -151,7 +139,7 @@ describe('Encounter Service', function() {
         { monster: monsterA, qty: 1 },
         { monster: monsterB, qty: 2}
       ];
-      randomEncounter.getRandomEncounter.withArgs(encounter.playerCount, targetExp, filters).returns(monsters);
+      randomEncounter.getRandomEncounter.withArgs(partyInfo.playerCount, targetExp, filters).returns(monsters);
 
       encounter.generateRandom(filters, targetDifficulty);
 
@@ -172,19 +160,20 @@ describe('Encounter Service', function() {
     });
 
     it('should default to medium difficulty', function() {
-       var targetExp = 400,
+      var playerCount = 4;
+      var targetExp = 400,
         filters = {};
       
-      encounter.playerCount = 4;
-      encounter.partyLevel = {
+      partyInfo.playerCount = playerCount;
+      partyInfo.partyLevel = {
         "medium": targetExp
       };
       
-      randomEncounter.getRandomEncounter.withArgs(encounter.playerCount, targetExp, filters).returns([]);
+      randomEncounter.getRandomEncounter.withArgs(playerCount, targetExp, filters).returns([]);
 
       encounter.generateRandom(filters);
 
-      expect(randomEncounter.getRandomEncounter).toHaveBeenCalledWith(encounter.playerCount, targetExp, filters);
+      expect(randomEncounter.getRandomEncounter).toHaveBeenCalledWith(playerCount, targetExp, filters);
     });
   });
 
@@ -290,8 +279,8 @@ describe('Encounter Service', function() {
 
   describe('threat', function() {
     it('should be correct when party size is normal', function() {
-      encounter.playerCount = 4;
-      encounter.partyLevel = {
+      partyInfo.playerCount = 4;
+      partyInfo.partyLevel = {
         'easy': 100,
         'medium': 200,
         'hard': 300,
@@ -308,8 +297,8 @@ describe('Encounter Service', function() {
     });
 
     it('should be correct when party size is small', function() {
-      encounter.playerCount = 2;
-      encounter.partyLevel = {
+      partyInfo.playerCount = 2;
+      partyInfo.partyLevel = {
         'easy': 100,
         'medium': 200,
         'hard': 300,
@@ -326,8 +315,8 @@ describe('Encounter Service', function() {
     });
 
     it('should be correct when party size is large', function() {
-      encounter.playerCount = 6;
-      encounter.partyLevel = {
+      partyInfo.playerCount = 6;
+      partyInfo.partyLevel = {
         'easy': 100,
         'medium': 200,
         'hard': 300,

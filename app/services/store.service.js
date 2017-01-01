@@ -25,6 +25,12 @@
 			set: function (key, data) {
 				localStorageService.set(key, data);
 			},
+			remove: function (key) {
+				return localStorageService.remove(key);
+			},
+			hasKey: function (key) {
+				return _.indexOf(localStorageService.keys(), key) >= 0;
+			}
 		};
 
 		return store;

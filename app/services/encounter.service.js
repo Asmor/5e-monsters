@@ -4,13 +4,11 @@
 	angular.module("app")
 		.factory("encounter", EncounterService);
 
-	EncounterService.$inject = ['$rootScope', '$log', 'randomEncounter', 'store', 'monsters', 'players', 'misc', 'playerLevels'];
+	EncounterService.$inject = ['$rootScope', '$log', 'randomEncounter', 'store', 'monsters', 'players', 'misc', 'playerLevels', 'partyInfo'];
 
-	function EncounterService($rootScope, $log, randomEncounter, store, monsters, players, miscLib, playerLevels) {
+	function EncounterService($rootScope, $log, randomEncounter, store, monsters, players, misc, playerLevels, partyInfo) {
 		var encounter = {
 				groups: {},
-				partyLevel: playerLevels[1],
-				playerCount: 4,
 				reference: null,
 
 				// Methods
@@ -24,10 +22,10 @@
 				freeze: freeze,
 
 				// Properties
-				get adjustedExp() {
+				get adjustedExp() {			
 					var qty = encounter.qty,
 					exp = encounter.exp,
-					multiplier = miscLib.getMultiplier(encounter.playerCount, qty);
+					multiplier = misc.getMultiplier(partyInfo.playerCount, qty);
 
 					if (!_.isNumber(exp)) return 0;
 
@@ -36,8 +34,8 @@
 
 				get difficulty() {
 					var exp = encounter.adjustedExp,
-						count = encounter.playerCount,
-						level = encounter.partyLevel;
+						count = partyInfo.playerCount,
+						level = partyInfo.partyLevel;
 
 					if ( exp === 0 ) {
 						return false;
@@ -79,8 +77,8 @@
 				},
 
 				get threat() {
-					var count = encounter.playerCount,
-						level = encounter.partyLevel,
+					var count = partyInfo.playerCount,
+						level = partyInfo.partyLevel,
 						mediumExp = count * level.medium,
 						singleMultiplier  = 1,
 						pairMultiplier    = 1.5,
@@ -136,8 +134,8 @@
 
 		function generateRandom(filters, targetDifficulty) {
 			targetDifficulty = targetDifficulty || 'medium';
-			var targetExp = encounter.partyLevel[targetDifficulty];
-			var monsters = randomEncounter.getRandomEncounter(encounter.playerCount, targetExp, filters),
+			var targetExp = partyInfo.partyLevel[targetDifficulty];
+			var monsters = randomEncounter.getRandomEncounter(partyInfo.playerCount, targetExp, filters),
 				i;
 
 			encounter.reset();
@@ -201,12 +199,10 @@
 
 		function freeze() {
 			var o = {
-				groups: {},
-				partyLevel: encounter.partyLevel.level,
-				playerCount: encounter.playerCount,
+				groups: {}
 			};
 
-			$log.log("Freezing party info", o);
+			$log.log("Freezing encounter info", o);
 
 			Object.keys(encounter.groups).forEach(function (monsterId) {
 				o.groups[monsterId] = encounter.groups[monsterId].qty;
@@ -216,17 +212,14 @@
 		}
 
 		function thaw() {
-			$log.log('Thawing party info');
+			$log.log('Thawing encounter info');
 			encounter.reset();
 
 			return store.get("5em-encounter").then(function (frozen) {
 				if ( !frozen ) {
 					return;
-				}
-
-				$log.log('Load party level (' + frozen.partyLevel + ') and player count (' + frozen.playerCount + ') from the store');
-				encounter.partyLevel = playerLevels[frozen.partyLevel];
-				encounter.playerCount = frozen.playerCount;
+				}				
+				
 			});
 		}
 	}
