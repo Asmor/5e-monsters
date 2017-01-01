@@ -34,20 +34,19 @@
 
 				get difficulty() {
 					var exp = encounter.adjustedExp,
-						count = partyInfo.playerCount,
-						level = partyInfo.partyLevel;
+						levels = partyInfo.totalPartyExpLevels;
 
 					if ( exp === 0 ) {
 						return false;
 					}
 
-					if ( exp < ( count * level.easy ) ) {
+					if ( exp < ( levels.easy ) ) {
 						return '';
-					} else if ( exp < ( count * level.medium ) ) {
+					} else if ( exp < ( levels.medium ) ) {
 						return "Easy";
-					} else if ( exp < ( count * level.hard ) ) {
+					} else if ( exp < ( levels.hard ) ) {
 						return "Medium";
-					} else if ( exp < ( count * level.deadly ) ) {
+					} else if ( exp < ( levels.deadly ) ) {
 						return "Hard";
 					} else {
 						return "Deadly";
@@ -78,8 +77,8 @@
 
 				get threat() {
 					var count = partyInfo.playerCount,
-						level = partyInfo.partyLevel,
-						mediumExp = count * level.medium,
+						levels = partyInfo.totalPartyExpLevels,
+						mediumExp = levels.medium,
 						singleMultiplier  = 1,
 						pairMultiplier    = 1.5,
 						groupMultiplier   = 2,
@@ -100,10 +99,10 @@
 					}
 
 					return {
-						deadly : count * level.deadly / singleMultiplier,
-						hard   : count * level.hard / singleMultiplier,
+						deadly : levels.deadly / singleMultiplier,
+						hard   : levels.hard / singleMultiplier,
 						medium : mediumExp / singleMultiplier,
-						easy   : count * level.easy / singleMultiplier,
+						easy   : levels.easy / singleMultiplier,
 						pair   : mediumExp / ( 2 * pairMultiplier ),
 						group  : mediumExp / ( 4 * groupMultiplier ),
 						trivial: mediumExp / ( 8 * trivialMultiplier ),
@@ -134,8 +133,8 @@
 
 		function generateRandom(filters, targetDifficulty) {
 			targetDifficulty = targetDifficulty || 'medium';
-			var targetExp = partyInfo.partyLevel[targetDifficulty];
-			var monsters = randomEncounter.getRandomEncounter(partyInfo.playerCount, targetExp, filters),
+			var totalTargetExp = partyInfo.totalPartyExpLevels[targetDifficulty];
+			var monsters = randomEncounter.getRandomEncounter(partyInfo.playerCount, totalTargetExp, filters),
 				i;
 
 			encounter.reset();

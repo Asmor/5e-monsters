@@ -90,4 +90,25 @@ describe('PartyLevel Service', function() {
       }]);
     });
   });
+
+  describe('totalPartyExpLevels', function() {
+    beforeEach(function() {
+      partyInfo.partyLevel = {
+        easy: 2,
+        medium: 4,
+        hard: 6,
+        deadly: 8
+      };
+    });
+
+    it('should calculate total exp levels map', function() {
+      partyInfo.playerCount = 4;
+      expect(partyInfo.totalPartyExpLevels).toBeDefined();
+      expect(partyInfo.totalPartyExpLevels.easy).toEqual(8);
+      expect(partyInfo.totalPartyExpLevels.medium).toEqual(16);
+      expect(partyInfo.totalPartyExpLevels.hard).toEqual(24);
+      expect(partyInfo.totalPartyExpLevels.deadly).toEqual(32);
+    });
+    
+  });
 });

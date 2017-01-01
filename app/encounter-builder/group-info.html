@@ -23,19 +23,19 @@
 	<ul class="group-info--guidelines list-unstyled">
 		<li ng-class="{'group-info--guidelines-active': vm.encounter.difficulty === 'Easy'}">
 			<span>Easy:</span>
-			<span class="group-info--guidelines-values">{{ vm.partyInfo.partyLevel.easy * vm.partyInfo.playerCount | number }} exp</span>
+			<span class="group-info--guidelines-values">{{ vm.partyInfo.totalPartyExpLevels.easy | number }} exp</span>
 		</li>
 		<li ng-class="{'group-info--guidelines-active': vm.encounter.difficulty === 'Medium'}">
 			<span>Medium:</span>
-			<span class="group-info--guidelines-values">{{ vm.partyInfo.partyLevel.medium * vm.partyInfo.playerCount | number }} exp</span>
+			<span class="group-info--guidelines-values">{{ vm.partyInfo.totalPartyExpLevels.medium | number }} exp</span>
 		</li>
 		<li ng-class="{'group-info--guidelines-active': vm.encounter.difficulty === 'Hard'}">
 			<span>Hard:</span>
-			<span class="group-info--guidelines-values">{{ vm.partyInfo.partyLevel.hard * vm.partyInfo.playerCount | number }} exp</span>
+			<span class="group-info--guidelines-values">{{ vm.partyInfo.totalPartyExpLevels.hard | number }} exp</span>
 		</li>
 		<li ng-class="{'group-info--guidelines-active': vm.encounter.difficulty === 'Deadly'}">
 			<span>Deadly:</span>
-			<span class="group-info--guidelines-values">{{ vm.partyInfo.partyLevel.deadly * vm.partyInfo.playerCount | number }} exp</span>
+			<span class="group-info--guidelines-values">{{ vm.partyInfo.totalPartyExpLevels.deadly | number }} exp</span>
 		</li>
 	</ul>
 </div>

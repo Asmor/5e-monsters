@@ -115,12 +115,12 @@ describe('Encounter Service', function() {
   describe('generateRandom', function() {
     it('should add random monsters to encounter', function() {
       var targetDifficulty = 'easy',
-        targetExp = 400,
+        targetExp = 1600,
         filters = {};
       
       partyInfo.playerCount = 4;
       partyInfo.partyLevel = {
-        "easy": targetExp
+        "easy": 400
       };
       
       var monsterA = { 
@@ -161,12 +161,12 @@ describe('Encounter Service', function() {
 
     it('should default to medium difficulty', function() {
       var playerCount = 4;
-      var targetExp = 400,
+      var targetExp = 1600,
         filters = {};
       
       partyInfo.playerCount = playerCount;
       partyInfo.partyLevel = {
-        "medium": targetExp
+        "medium": 400
       };
       
       randomEncounter.getRandomEncounter.withArgs(playerCount, targetExp, filters).returns([]);

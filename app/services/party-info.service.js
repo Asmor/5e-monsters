@@ -19,7 +19,18 @@
 			thaw: thaw,
 
       // Properties
+			get totalPlayerCount() {
+				return playerCount;
+			},
 
+			get totalPartyExpLevels() {
+				return {
+					easy: service.playerCount * service.partyLevel.easy,
+					medium: service.playerCount * service.partyLevel.medium,
+					hard: service.playerCount * service.partyLevel.hard,
+					deadly: service.playerCount * service.partyLevel.deadly
+				};
+			}
     };
     
     return service;
@@ -28,9 +39,6 @@
     function initialize() {
 			thaw();
 		}
-
-    // TODO
-    function getPartyLevelExp(difficulty) { }
 
     function freeze() {
 			var o = [{
