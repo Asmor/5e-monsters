@@ -5,12 +5,14 @@
 		.module('app')
 		.controller('BattleSetupController', BattleSetupController);
 
-	BattleSetupController.$inject = ['$state', 'actionQueue', 'combat', 'combatConstants'];
+	BattleSetupController.$inject = ['$state', 'actionQueue', 'combat', 'combatConstants', 'integration'];
 
-	function BattleSetupController($state, actionQueue, combat, constants) {
+	function BattleSetupController($state, actionQueue, combat, combatConstants, integration) {
 		var vm = this;
 		
 		vm.combat = combat;
+
+		vm.launchImpInit = integration.launchImpInit;
 
 		activate();
 
@@ -20,12 +22,12 @@
 			var combatState = combat.init(),
 				forward;
 
-			if ( combatState & constants.NO_PLAYERS ) {
+			if ( combatState & combatConstants.NO_PLAYERS ) {
 				actionQueue.unshift("players.manage", "You must select a party");
 				forward = true;
 			}
 
-			if ( combatState & constants.NO_MONSTERS ) {
+			if ( combatState & combatConstants.NO_MONSTERS ) {
 				actionQueue.unshift("encounter-manager", "You must select an encounter");
 				forward = true;
 			}
