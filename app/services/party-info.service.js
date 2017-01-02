@@ -10,8 +10,12 @@
   function PartyInfo($log, playerLevels, store) {
     var service = {
       // Variables
-      partyLevel: playerLevels[1],
-			playerCount: 4,
+			partyLevels: [
+				{
+					level: playerLevels[1],
+					playerCount: 4
+				}
+			],
 
       // Methods
       initialize: initialize,
@@ -20,15 +24,16 @@
 
       // Properties
 			get totalPlayerCount() {
-				return playerCount;
+				return _.sum(_.map(service.partyLevels, function (pl) { return pl.playerCount; }));
 			},
 
 			get totalPartyExpLevels() {
+				var partyLevel = service.partyLevels[0];
 				return {
-					easy: service.playerCount * service.partyLevel.easy,
-					medium: service.playerCount * service.partyLevel.medium,
-					hard: service.playerCount * service.partyLevel.hard,
-					deadly: service.playerCount * service.partyLevel.deadly
+					easy: partyLevel.playerCount * partyLevel.level.easy,
+					medium: partyLevel.playerCount * partyLevel.level.medium,
+					hard: partyLevel.playerCount * partyLevel.level.hard,
+					deadly: partyLevel.playerCount * partyLevel.level.deadly
 				};
 			}
     };
@@ -41,10 +46,12 @@
 		}
 
     function freeze() {
-			var o = [{
-				level: service.partyLevel.level,
-				playerCount: service.playerCount,
-			}];
+			var o =_.map(service.partyLevels, function (pl) {
+				return {
+					level: pl.level.level,
+					playerCount: pl.playerCount
+				};
+			});
 
 			$log.log("Freezing party info", o);
 
@@ -77,10 +84,15 @@
 				return;
 			}
 
-			var frozenData = frozenDataArray[0];
-			$log.log('Load party level (' + frozenData.level + ') and player count (' + frozenData.playerCount + ') from the store');
-			service.partyLevel = playerLevels[frozenData.level];
-			service.playerCount = frozenData.playerCount;
+			service.partyLevels = [];
+
+			_.forEach(frozenDataArray, function(frozenData) {
+				console.log('Load party level (' + frozenData.level + ') and player count (' + frozenData.playerCount + ') from the store');
+				service.partyLevels.push({
+					level: playerLevels[frozenData.level],
+					playerCount: frozenData.playerCount
+				});
+			});
 		}
 
 		function loadFromEncounterStoreAndConvert(frozenData) {
@@ -89,8 +101,10 @@
 			}
 
 			$log.log('(Encounter) Load party level (' + frozenData.partyLevel + ') and player count (' + frozenData.playerCount + ') from the store');
-			service.partyLevel = playerLevels[frozenData.partyLevel];
-			service.playerCount = frozenData.playerCount;
+			service.partyLevels = [{
+				level: playerLevels[frozenData.partyLevel],
+				playerCount: frozenData.playerCount
+			}];
 
 			$log.log("Removing old encounter store token and replacing it with party info token");
 

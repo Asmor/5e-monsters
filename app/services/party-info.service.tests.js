@@ -34,9 +34,9 @@ describe('PartyLevel Service', function() {
       store.get.withArgs("5em-party-info").returns($q.when([groupInfo]));
       partyInfo.initialize();
       $rootScope.$apply();
-      expect(partyInfo.partyLevel).toEqual(level);
-      expect(partyInfo.partyLevel.level).toEqual(4);
-      expect(partyInfo.playerCount).toEqual(6);
+      expect(partyInfo.partyLevels[0].level).toEqual(level);
+      expect(partyInfo.partyLevels[0].level.level).toEqual(4);
+      expect(partyInfo.totalPlayerCount).toEqual(6);
       expect(store.get.withArgs("5em-encounter")).not.toHaveBeenCalled();
     });
 
@@ -50,8 +50,8 @@ describe('PartyLevel Service', function() {
       store.get.withArgs("5em-encounter").returns($q.when(groupInfo));
       partyInfo.initialize();
       $rootScope.$apply();
-      expect(partyInfo.partyLevel).toEqual(level);
-      expect(partyInfo.playerCount).toEqual(4);
+      expect(partyInfo.partyLevels[0].level).toEqual(level);
+      expect(partyInfo.totalPlayerCount).toEqual(4);
       expect(store.get).not.toHaveBeenCalledWith("5em-party-info");
       expect(store.set).toHaveBeenCalledWith("5em-party-info", [{
         level: 4,
@@ -77,23 +77,50 @@ describe('PartyLevel Service', function() {
 
   describe('freeze', function() {
     it('should save as array', function() {
-      partyInfo.partyLevel = {
-        level: 4
-      };
-      partyInfo.playerCount = 4;
+      partyInfo.partyLevels = [
+        {
+          level: {
+            level: 4,
+            easy: 100
+          },
+          playerCount: 4
+        },
+        {
+          level: {
+            level: 3,
+            easy: 75
+          },
+          playerCount: 1
+        }
+      ];
 
       partyInfo.freeze();
       expect(store.set).toHaveBeenCalledWith('5em-party-info', 
       [{
         level: 4,
         playerCount: 4
+      },
+      {
+        level: 3,
+        playerCount: 1
       }]);
+    });
+  });
+
+  describe('totalPlayerCount', function() {
+    it('sum of all party levels', function() {
+      partyInfo.partyLevels = [
+        { playerCount: 2 },
+        { playerCount: 4 }
+      ];
+      expect(partyInfo.totalPlayerCount).toEqual(6);
     });
   });
 
   describe('totalPartyExpLevels', function() {
     beforeEach(function() {
-      partyInfo.partyLevel = {
+      partyInfo.partyLevels = [{}];
+      partyInfo.partyLevels[0].level = {
         easy: 2,
         medium: 4,
         hard: 6,
@@ -102,7 +129,7 @@ describe('PartyLevel Service', function() {
     });
 
     it('should calculate total exp levels map', function() {
-      partyInfo.playerCount = 4;
+      partyInfo.partyLevels[0].playerCount = 4;
       expect(partyInfo.totalPartyExpLevels).toBeDefined();
       expect(partyInfo.totalPartyExpLevels.easy).toEqual(8);
       expect(partyInfo.totalPartyExpLevels.medium).toEqual(16);

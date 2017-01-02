@@ -25,7 +25,7 @@
 				get adjustedExp() {			
 					var qty = encounter.qty,
 					exp = encounter.exp,
-					multiplier = misc.getMultiplier(partyInfo.playerCount, qty);
+					multiplier = misc.getMultiplier(partyInfo.totalPlayerCount, qty);
 
 					if (!_.isNumber(exp)) return 0;
 
@@ -76,7 +76,7 @@
 				},
 
 				get threat() {
-					var count = partyInfo.playerCount,
+					var count = partyInfo.totalPlayerCount,
 						levels = partyInfo.totalPartyExpLevels,
 						mediumExp = levels.medium,
 						singleMultiplier  = 1,
@@ -134,7 +134,7 @@
 		function generateRandom(filters, targetDifficulty) {
 			targetDifficulty = targetDifficulty || 'medium';
 			var totalTargetExp = partyInfo.totalPartyExpLevels[targetDifficulty];
-			var monsters = randomEncounter.getRandomEncounter(partyInfo.playerCount, totalTargetExp, filters),
+			var monsters = randomEncounter.getRandomEncounter(partyInfo.totalPlayerCount, totalTargetExp, filters),
 				i;
 
 			encounter.reset();

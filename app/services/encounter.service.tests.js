@@ -70,13 +70,15 @@ describe('Encounter Service', function() {
   describe('difficulty', function() {
 
     beforeEach(function() {
-      partyInfo.playerCount = 4;
-      partyInfo.partyLevel = {
-        easy: 101,
-        medium: 201,
-        hard: 301,
-        deadly: 401
-      };
+      partyInfo.partyLevels = [{
+        playerCount: 4,
+        level: {
+          'easy': 101,
+          'medium': 201,
+          'hard': 301,
+          'deadly': 401
+        }
+      }];
     });
       
     it('should return false if the adjusted exp is zero', function() {
@@ -116,12 +118,18 @@ describe('Encounter Service', function() {
     it('should add random monsters to encounter', function() {
       var targetDifficulty = 'easy',
         targetExp = 1600,
-        filters = {};
+        filters = {},
+        playerCount = 4;
       
-      partyInfo.playerCount = 4;
-      partyInfo.partyLevel = {
-        "easy": 400
-      };
+      partyInfo.partyLevels = [{
+        playerCount: playerCount,
+        level: {
+          'easy': 400,
+          'medium': 600,
+          'hard': 800,
+          'deadly': 1000
+        }
+      }];
       
       var monsterA = { 
         id: "golem",
@@ -139,7 +147,7 @@ describe('Encounter Service', function() {
         { monster: monsterA, qty: 1 },
         { monster: monsterB, qty: 2}
       ];
-      randomEncounter.getRandomEncounter.withArgs(partyInfo.playerCount, targetExp, filters).returns(monsters);
+      randomEncounter.getRandomEncounter.withArgs(playerCount, targetExp, filters).returns(monsters);
 
       encounter.generateRandom(filters, targetDifficulty);
 
@@ -164,10 +172,15 @@ describe('Encounter Service', function() {
       var targetExp = 1600,
         filters = {};
       
-      partyInfo.playerCount = playerCount;
-      partyInfo.partyLevel = {
-        "medium": 400
-      };
+      partyInfo.partyLevels = [{
+        playerCount: playerCount,
+        level: {
+          'easy': 200,
+          'medium': 400,
+          'hard': 800,
+          'deadly': 1600
+        }
+      }];
       
       randomEncounter.getRandomEncounter.withArgs(playerCount, targetExp, filters).returns([]);
 
@@ -279,13 +292,15 @@ describe('Encounter Service', function() {
 
   describe('threat', function() {
     it('should be correct when party size is normal', function() {
-      partyInfo.playerCount = 4;
-      partyInfo.partyLevel = {
-        'easy': 100,
-        'medium': 200,
-        'hard': 300,
-        'deadly': 400
-      };
+      partyInfo.partyLevels = [{
+        playerCount: 4,
+        level: {
+          'easy': 100,
+          'medium': 200,
+          'hard': 300,
+          'deadly': 400
+        }
+      }];
 
       expect(encounter.threat.deadly).toEqual(1600);
       expect(encounter.threat.hard).toEqual(1200);
@@ -297,13 +312,15 @@ describe('Encounter Service', function() {
     });
 
     it('should be correct when party size is small', function() {
-      partyInfo.playerCount = 2;
-      partyInfo.partyLevel = {
-        'easy': 100,
-        'medium': 200,
-        'hard': 300,
-        'deadly': 400
-      };
+      partyInfo.partyLevels = [{
+        playerCount: 2,
+        level: {
+          'easy': 100,
+          'medium': 200,
+          'hard': 300,
+          'deadly': 400
+        }
+      }];
 
       expect(encounter.threat.deadly).toEqual(800 / 1.5);
       expect(encounter.threat.hard).toEqual(600 / 1.5);
@@ -315,13 +332,15 @@ describe('Encounter Service', function() {
     });
 
     it('should be correct when party size is large', function() {
-      partyInfo.playerCount = 6;
-      partyInfo.partyLevel = {
-        'easy': 100,
-        'medium': 200,
-        'hard': 300,
-        'deadly': 400
-      };
+      partyInfo.partyLevels = [{
+        playerCount: 6,
+        level: {
+          'easy': 100,
+          'medium': 200,
+          'hard': 300,
+          'deadly': 400
+        }
+      }];
 
       expect(encounter.threat.deadly).toEqual(2400 / 0.5);
       expect(encounter.threat.hard).toEqual(1800 / 0.5);
