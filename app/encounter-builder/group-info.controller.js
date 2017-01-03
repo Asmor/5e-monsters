@@ -12,16 +12,7 @@
     vm.encounter = encounter;
     vm.levels = playerLevels;
     vm.partyInfo = partyInfo;
-    vm.updateAndSave = updateAndSave;
+
     
-    activate();
-
-    ////////////////
-
-    function activate() { }
-
-    function updateAndSave() {
-      partyInfo.freeze();
-    }
   }
 })();
