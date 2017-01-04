@@ -5,23 +5,21 @@
     .module('app')
     .controller('GroupInfoController', GroupInfoController);
 
-  GroupInfoController.$inject = ['encounter', 'playerLevels'];
-  function GroupInfoController(encounter, playerLevels) {
+  GroupInfoController.$inject = ['encounter', 'playerLevels', 'partyInfo'];
+  function GroupInfoController(encounter, playerLevels, partyInfo) {
     var vm = this;
 
     vm.encounter = encounter;
-    vm.levels = playerLevels;
-    vm.updateAndSave = updateAndSave;
-    
-    activate();
+    vm.partyInfo = partyInfo;
+    vm.addPartyLevel = addPartyLevel;
 
-    ////////////////
+    function addPartyLevel() {
+      partyInfo.partyLevels.push({
+        level: playerLevels[1],
+        playerCount: 1
+      });
 
-    function activate() { }
-
-    function updateAndSave() {      
-      encounter.recalculateThreatLevels();
-      encounter.freeze();
+      partyInfo.freeze();
     }
   }
 })();

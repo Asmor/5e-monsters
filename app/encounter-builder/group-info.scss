@@ -9,6 +9,10 @@
 		width: 20rem;
 	}
 
+	&--party-level-row {
+		margin-bottom: 0.5em;
+	}
+
 	&--input {
 		flex-grow: 1;
 
@@ -18,11 +22,15 @@
 
 		&-section {
 			@include make-xs-column(2);
-			width: 9rem;
+			width: 7rem;
 		}
+	}
 
-		&-section:last-child {
-			padding-left: 0;
+	&--add-level {
+		margin-top: 1em;
+
+		.fa-plus {
+			margin-right: 5px;
 		}
 	}
 
