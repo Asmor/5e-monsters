@@ -7493,6 +7493,8 @@ button.close {
     display: inline-block;
     margin-top: 0;
     width: 20rem; }
+  .group-info--party-level-row {
+    margin-bottom: 0.5em; }
   .group-info--input {
     flex-grow: 1; }
     .group-info--input label {
@@ -7504,9 +7506,11 @@ button.close {
       min-height: 1px;
       padding-left: 15px;
       padding-right: 15px;
-      width: 9rem; }
-    .group-info--input-section:last-child {
-      padding-left: 0; }
+      width: 7rem; }
+  .group-info--add-level {
+    margin-top: 1em; }
+    .group-info--add-level .fa-plus {
+      margin-right: 5px; }
   .group-info--guidelines {
     margin-top: 1rem;
     text-align: right; }
@@ -7816,6 +7820,23 @@ button.close {
 
 .combat-setup-controls {
   padding: 10px; }
+  .combat-setup-controls .combat-setup-controls--imp-init-button {
+    background-color: #00643C;
+    color: #FAEBD7;
+    position: relative;
+    padding-left: 40px; }
+    .combat-setup-controls .combat-setup-controls--imp-init-button::before {
+      display: inline-block;
+      content: '';
+      height: calc(100% - 10px);
+      width: 100%;
+      margin-right: 5px;
+      background: url("../images/improved-initiative-logo.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 5px;
+      left: 5px; }
 
 .combatant__player {
   background-color: #66C2A5; }

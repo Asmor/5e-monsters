@@ -23,19 +23,6 @@
 				pageSize: 10,
 			};
 
-			$scope.$watch(function (scope) { return vm.encounter.groups; }, function (newValue, oldValue) {
-				var subtotal = 0;
-
-				_.forEach(newValue, function(item, idx) {
-					var groupQty = item.qty;
-					var groupMonster = monsters.byId[idx];
-
-					subtotal += groupMonster.cr.exp * groupQty;
-				});
-
-				vm.encounter.exp = subtotal;
-			}, true);
-
 			store.get("5em-filters").then(function (frozen) {
 				if (frozen) {
 					$log.log('Thaw filters');

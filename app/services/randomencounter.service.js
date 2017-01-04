@@ -8,9 +8,15 @@
 
 	function RandomEncounterService(monsterLib, miscLib, shuffle, metaInfo, monsters) {
 		var randomEncounter = {
-			getRandomEncounter: function (playerCount, targetExpLevel, filters) {
+			//
+			//	getRandomEncounter
+			//		playerCount: Count of total number of players in party
+			//		targetTotalExp: The experience target value. Takes into account player count, player level, and target difficulty already.
+			//		filters: Any filters that should be applied when making the encounter
+			//
+			getRandomEncounter: function (playerCount, targetTotalExp, filters) {
 				var fudgeFactor = 1.1, // The algorithm is conservative in spending exp, so this tries to get it closer to the actual medium value
-					baseExpBudget = playerCount * targetExpLevel * fudgeFactor,
+					baseExpBudget = targetTotalExp * fudgeFactor,
 					encounterTemplate = getEncounterTemplate(),
 					multiplier = miscLib.getMultiplier(playerCount, encounterTemplate.total),
 					availableExp = baseExpBudget / multiplier,
