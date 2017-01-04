@@ -10,22 +10,11 @@
     .module('app')
     .component('partyLevelSelector', {
       templateUrl: 'app/encounter-builder/party-level-selector.html',
-      controller: PartyLevelSelectorController,
+      controller: 'PartyLevelSelectorController',
       controllerAs: 'vm',
       bindings: {
-        partyLevel: '='
+        partyLevel: '=',
+        first: '<'
       },
     });
-
-  PartyLevelSelectorController.inject = ['playerLevels', 'partyInfo'];
-  function PartyLevelSelectorController(playerLevels, partyInfo) {
-    var vm = this;
-
-    vm.save = save;
-    vm.levels = playerLevels;
-
-    function save() {
-      partyInfo.freeze();
-    }
-  }
 })();

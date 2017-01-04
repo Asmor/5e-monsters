@@ -7493,6 +7493,8 @@ button.close {
     display: inline-block;
     margin-top: 0;
     width: 20rem; }
+  .group-info--party-level-row {
+    margin-bottom: 0.5em; }
   .group-info--input {
     flex-grow: 1; }
     .group-info--input label {
@@ -7504,9 +7506,11 @@ button.close {
       min-height: 1px;
       padding-left: 15px;
       padding-right: 15px;
-      width: 9rem; }
-    .group-info--input-section:last-child {
-      padding-left: 0; }
+      width: 7rem; }
+  .group-info--add-level {
+    margin-top: 1em; }
+    .group-info--add-level .fa-plus {
+      margin-right: 5px; }
   .group-info--guidelines {
     margin-top: 1rem;
     text-align: right; }

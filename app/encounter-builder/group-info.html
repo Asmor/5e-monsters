@@ -1,9 +1,10 @@
 <div class="group-info">
 	<div class="group-info--input">
 		<h2 class="group-info--header">Group Info</h2>
-		<div ng-repeat="partyLevel in vm.partyInfo.partyLevels">
-			<party-level-selector party-level="partyLevel"></party-level-selector>
+		<div class='group-info--party-level-row row' ng-repeat="partyLevel in vm.partyInfo.partyLevels">
+			<party-level-selector party-level="partyLevel" first="$first"></party-level-selector>
 		</div>
+		<button class="btn btn-xs btn-info group-info--add-level" title="Add Another Party Level" ng-click="vm.addPartyLevel()"><i class="fa fa-plus"></i> Add Another Level</button>
 	</div>
 	<ul class="group-info--guidelines list-unstyled">
 		<li ng-class="{'group-info--guidelines-active': vm.encounter.difficulty === 'Easy'}">

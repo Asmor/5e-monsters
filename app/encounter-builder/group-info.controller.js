@@ -10,9 +10,16 @@
     var vm = this;
 
     vm.encounter = encounter;
-    vm.levels = playerLevels;
     vm.partyInfo = partyInfo;
+    vm.addPartyLevel = addPartyLevel;
 
-    
+    function addPartyLevel() {
+      partyInfo.partyLevels.push({
+        level: playerLevels[1],
+        playerCount: 1
+      });
+
+      partyInfo.freeze();
+    }
   }
 })();

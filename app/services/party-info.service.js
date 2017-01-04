@@ -28,17 +28,32 @@
 			},
 
 			get totalPartyExpLevels() {
-				var partyLevel = service.partyLevels[0];
+				var result = _.reduce(service.partyLevels, function(accum, curLevel, key) {
+					var curExpLevels = getExpLevels(curLevel);
+
+					return {
+							easy: accum.easy + curExpLevels.easy,
+							medium: accum.medium + curExpLevels.medium,
+							hard: accum.hard + curExpLevels.hard,
+							deadly: accum.deadly + curExpLevels.deadly
+					};
+					
+					return accum;
+				}, { easy: 0, medium: 0, hard: 0, deadly: 0});
+				return result;
+			}
+    };
+    
+    return service;
+
+		function getExpLevels(partyLevel) {
 				return {
 					easy: partyLevel.playerCount * partyLevel.level.easy,
 					medium: partyLevel.playerCount * partyLevel.level.medium,
 					hard: partyLevel.playerCount * partyLevel.level.hard,
 					deadly: partyLevel.playerCount * partyLevel.level.deadly
 				};
-			}
-    };
-    
-    return service;
+		}
 
     ////////////////
     function initialize() {
@@ -87,7 +102,7 @@
 			service.partyLevels = [];
 
 			_.forEach(frozenDataArray, function(frozenData) {
-				console.log('Load party level (' + frozenData.level + ') and player count (' + frozenData.playerCount + ') from the store');
+				$log.log('Load party level (' + frozenData.level + ') and player count (' + frozenData.playerCount + ') from the store');
 				service.partyLevels.push({
 					level: playerLevels[frozenData.level],
 					playerCount: frozenData.playerCount

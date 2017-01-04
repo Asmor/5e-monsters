@@ -1,5 +1,5 @@
 <div class="group-info--input-section">
-  <label>Players:</label>
+  <label ng-if="vm.first">Players:</label>
   <select
       ng-model="vm.partyLevel.playerCount"
       ng-options="count for count in [1,2,3,4,5,6,7,8,9,10,11,12]"
@@ -7,10 +7,11 @@
     ></select>
 </div>
 <div class="group-info--input-section">
-  <label>Level:</label>
+  <label ng-if="vm.first">Level:</label>
   <select
     ng-model="vm.partyLevel.level"
     ng-options="level as level.level for level in vm.levels"
     ng-change="vm.save()"
   ></select>
 </div>
+<button ng-if="!vm.first" class="btn btn-xs btn-danger group-info--remove-level" title="Add Different Party Level" ng-click="vm.removePartyLevel()" ><i class="fa fa-times"></i></button>

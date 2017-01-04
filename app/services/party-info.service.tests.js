@@ -126,15 +126,36 @@ describe('PartyLevel Service', function() {
         hard: 6,
         deadly: 8
       };
+      partyInfo.partyLevels[0].playerCount = 4;
     });
 
     it('should calculate total exp levels map', function() {
-      partyInfo.partyLevels[0].playerCount = 4;
-      expect(partyInfo.totalPartyExpLevels).toBeDefined();
-      expect(partyInfo.totalPartyExpLevels.easy).toEqual(8);
-      expect(partyInfo.totalPartyExpLevels.medium).toEqual(16);
-      expect(partyInfo.totalPartyExpLevels.hard).toEqual(24);
-      expect(partyInfo.totalPartyExpLevels.deadly).toEqual(32);
+      var totalExp = partyInfo.totalPartyExpLevels;
+      expect(totalExp).toBeDefined();
+      expect(totalExp.easy).toEqual(8);
+      expect(totalExp.medium).toEqual(16);
+      expect(totalExp.hard).toEqual(24);
+      expect(totalExp.deadly).toEqual(32);
+    });
+
+    it('should calculate with multiple levels', function() {
+      partyInfo.partyLevels.push({
+        level: {
+          level: 1,
+          easy: 2,
+          medium: 4,
+          hard: 6,
+          deadly: 8
+        },
+        playerCount: 2
+      });
+
+      var totalExp = partyInfo.totalPartyExpLevels;
+      expect(totalExp).toBeDefined();
+      expect(totalExp.easy).toEqual(12);
+      expect(totalExp.medium).toEqual(24);
+      expect(totalExp.hard).toEqual(36);
+      expect(totalExp.deadly).toEqual(48);
     });
     
   });
