@@ -11696,14 +11696,6 @@
 			id: "4f42ad2b-d9b0-47d7-8fc3-0f446b7ad848",
 		},
 		{
-			name: "Guard Drake",
-			size: "Medium", type: "Dragon",
-			ac: 14, hp: 52, init: 0, cr: 2,
-			alignment: alignments.unaligned,
-			environments: [ "arctic", "desert", "forest", "mountain", "swamp", "underdark", "urban" ],
-			id: "a181ad6a-3e2f-4c45-aefc-2b63ea99b382",
-		},
-		{
 			section: "Hags", name: "Annis Hag",
 			size: "Large", type: "Fey",
 			ac: 17, hp: 75, init: 1, cr: 6,

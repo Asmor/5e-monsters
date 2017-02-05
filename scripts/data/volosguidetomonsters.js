@@ -72,7 +72,7 @@
 				[ "da56cbc6-b72a-4472-9910-07661977337b", 156 ], // Grung
 				[ "5c0f26e8-790f-4c79-a3df-cfaa21537d6f", 157 ], // Grung Elite Warrior
 				[ "4f42ad2b-d9b0-47d7-8fc3-0f446b7ad848", 157 ], // Grung Wildling
-				[ "a181ad6a-3e2f-4c45-aefc-2b63ea99b382", 158 ], // Guard Drake
+				[ "8f11d800-1103-492b-ae24-320ef1013644", 158 ], // Guard Drake
 
 				// Hags
 				[ "f70647ec-88aa-4d87-a389-4d0045bb14a4", 159 ], // Annis Hag
