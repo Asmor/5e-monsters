@@ -11227,7 +11227,7 @@
 			id: "27f5e286-1a17-46e3-bea4-5453c9724b76",
 		},
 		{
-			section: "Villain Codex", name: "Scropion Cultist",
+			section: "Villain Codex", name: "Scorpion Cultist",
 			size: "Medium", type: "Humanoid", tags: [ "any" ], 
 			ac: 13, hp: 19, init: 2, cr: "1/2",
 			alignment: alignments.n,
