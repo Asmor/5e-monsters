@@ -92,7 +92,7 @@
 				combatants.push({
 					Name: monster.name,
 					HP: { Value: monster.hp },
-					InitiativeModifier: monster.init,
+					TotalInitiativeModifier: monster.init,
 					AC: { Value: monster.ac },
 					Player: "npc",
 					Id: fid,
@@ -103,7 +103,7 @@
 		args.players.forEach(function (player) {
 			combatants.push({
 				Name: player.name,
-				InitiativeModifier: player.initiativeMod,
+				TotalInitiativeModifier: player.initiativeMod,
 				HP: { Value: player.hp },
 				Player: "player",
 			});
