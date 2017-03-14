@@ -12894,7 +12894,7 @@
 			id: "27f5e286-1a17-46e3-bea4-5453c9724b76",
 		},
 		{
-			section: "Villain Codex", name: "Scropion Cultist",
+			section: "Villain Codex", name: "Scorpion Cultist",
 			size: "Medium", type: "Humanoid", tags: [ "any" ], 
 			ac: 13, hp: 19, init: 2, cr: "1/2",
 			alignment: alignments.n,
@@ -16597,7 +16597,7 @@
 				combatants.push({
 					Name: monster.name,
 					HP: { Value: monster.hp },
-					InitiativeModifier: monster.init,
+					TotalInitiativeModifier: monster.init,
 					AC: { Value: monster.ac },
 					Player: "npc",
 					Id: fid,
@@ -16608,7 +16608,7 @@
 		args.players.forEach(function (player) {
 			combatants.push({
 				Name: player.name,
-				InitiativeModifier: player.initiativeMod,
+				TotalInitiativeModifier: player.initiativeMod,
 				HP: { Value: player.hp },
 				Player: "player",
 			});
