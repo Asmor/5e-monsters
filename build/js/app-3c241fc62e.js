@@ -1237,7 +1237,6 @@
 			alignments.n,
 			alignments.any,
 		];
-		console.log("alpha", alignmentTestOrder);
 
 		function parseSize(size) {
 			switch ( size ) {

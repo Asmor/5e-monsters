@@ -83,9 +83,6 @@
 				monster.tags
 			).join("|").toLowerCase();
 
-			if ( args.name.match(/chronom/i) ) {
-				console.log(args, monster);
-			}
 		}
 
 		function parseAlignment(alignmentString) {
@@ -145,7 +142,6 @@
 			alignments.n,
 			alignments.any,
 		];
-		console.log("alpha", alignmentTestOrder);
 
 		function parseSize(size) {
 			switch ( size ) {
