@@ -39,7 +39,7 @@
 			<option value="">Any Environment</option>
 		</select>
 		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#sourcesModal">
-		  Set Sources
+		Set Sources
 		</button>
 	</div>
 	<div class="search--reset">
@@ -55,33 +55,33 @@
 	</div>
 	<!-- Modal -->
 	<div class="modal" id="sourcesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Set Source Material</h4>
-	      </div>
-	      <div class="modal-body">
-	      	<div class="sources-modal--buttons">
-	      		<button class="btn btn-primary" ng-click="vm.updateSourceFilters('all')">Everything</button>
-	      		<button class="btn btn-primary" ng-click="vm.updateSourceFilters('core')">Core Books</button>
-	      		<button class="btn btn-primary" ng-click="vm.updateSourceFilters('none')">None</button>
-	      	</div>
-	        <ul>
-						<li class="search--source"
-							ng-repeat="source in vm.sourceNames"
-							ng-class="{ 'search--source__off': !vm.filters.source[source] }">
-							<label>
-								<input type="checkbox" ng-model="vm.filters.source[source]">
-								{{ source }}
-							</label>
-						</li>
-					</ul>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	      </div>
-	    </div>
-	  </div>
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">Set Source Material</h4>
+		</div>
+		<div class="modal-body">
+			<div class="sources-modal--buttons">
+				<button class="btn btn-primary" ng-click="vm.updateSourceFilters('all')">Everything</button>
+				<button class="btn btn-primary" ng-click="vm.updateSourceFilters('core')">Core Books</button>
+				<button class="btn btn-primary" ng-click="vm.updateSourceFilters('none')">None</button>
+			</div>
+			<ul>
+				<li class="search--source"
+					ng-repeat="source in vm.sourceNames"
+					ng-class="{ 'search--source__off': !vm.filters.source[source] }">
+					<label>
+						<input type="checkbox" ng-model="vm.filters.source[source]">
+						{{ source }}
+					</label>
+				</li>
+			</ul>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+		</div>
+	</div>
 	</div>
 </div>
