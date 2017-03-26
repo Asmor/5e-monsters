@@ -11,7 +11,7 @@ Nothing special needed to run it. Just open index.html in firefox. You can run i
 - npm run build-css - Compile sass into css
 - npm run watch-css - Watch folder for changes and run build-css if needed
 
-* Contributing content to Kobold Fight Club
+# Contributing content to Kobold Fight Club
 
 Links:
 * Master sheet: https://docs.google.com/spreadsheets/d/19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I/
