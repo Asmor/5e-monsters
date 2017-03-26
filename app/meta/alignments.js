@@ -16,7 +16,7 @@
 			ne = Math.pow(2, i++),
 			ce = Math.pow(2, i++),
 			unaligned = Math.pow(2, i++);
-		return {
+		var alignments = {
 			any: {
 				text: "any",
 				flags: lg | ng | cg | ln | n | cn | le | ne | ce
@@ -61,18 +61,6 @@
 				text: "unaligned",
 				flags: unaligned 
 			},
-			ln_le: {
-				text: "lawful neutral or lawful evil",
-				flags: ln | le
-			}, 
-			ne_le: {
-				text: "neutral evil or lawful evil",
-				flags: ne | le
-			}, 
-			cg_cn: {
-				text: "chaotic good or chaotic neutral",
-				flags: cg | cn
-			}, 
 			lg: { flags: lg, text: "lawful good" },
 			ng: { flags: ng, text: "neutral good" },
 			cg: { flags: cg, text: "chaotic good" },
@@ -83,5 +71,12 @@
 			ne: { flags: ne, text: "neutral evil" },
 			ce: { flags: ce, text: "chaotic evil" },
 		};
-	};
+
+		Object.keys(alignments).forEach(function (alignmentKey) {
+			var alignment = alignments[alignmentKey];
+			alignment.regex = new RegExp(alignment.text.replace(/[- ]/, "[- ]?"), "i");
+		});
+
+		return alignments;
+	}
 })();
