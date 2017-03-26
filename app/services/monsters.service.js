@@ -1,67 +1,70 @@
 (function() {
 	"use strict";
 
-	angular.module("app")
-		.factory("monsters", Monsters);
+	angular.module("app").factory("monsters", Monsters);
 
-	Monsters.$inject = ['monsterData', 'misc', 'monsterFactory', 'metaInfo'];
+	// https://docs.google.com/spreadsheets/d/19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I/edit
+	var masterSheetId = "19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I";
 
-	function Monsters(data, miscLib, monsterLib, metaInfo) {
-		var i, j, m, source,
-			all = [],
-			byId = {},
-			byCr = {};
+	Monsters.$inject = [
+		"googleSheetLoader",
+		"misc",
+		"monsterFactory",
+	];
 
-		window.metaInfo = metaInfo;
+	function Monsters(
+		googleSheetLoader,
+		miscLib,
+		monsterFactory
+	) {
+		var registedSources = {};
+		var all = [];
+		var byId = {};
+		var byCr = {};
 
-		for ( i = 0; i < data.monsters.length; i++ ) {
-			m = new monsterLib.Monster(data.monsters[i]);
+		googleSheetLoader(masterSheetId)
+		.then(function (sheets) {
+			sheets.Monsters.forEach(function (monsterData) {
+				var monster = new monsterFactory.Monster(monsterData);
 
-			all.push(m);
-			byId[m.id] = m;
+				all.push(monster);
+				byId[monster.id] = monster;
 
-			if ( ! m.special ) {
-				if ( ! byCr[m.cr.string] ) {
-					byCr[m.cr.string] = [];
+				if ( ! monster.special ) {
+					if ( ! byCr[monster.cr.string] ) {
+						byCr[monster.cr.string] = [];
+					}
+
+					byCr[monster.cr.string].push(monster);
+				}
+			});
+
+			sheets.Sources.forEach(function (sourceData) {
+				var name = sourceData.name;
+				var shortName = sourceData.shortname;
+				var initialState = !!(sourceData.defaultselected || "").match(/yes/i);
+
+				if ( registedSources[name] ) {
+					return;
 				}
 
-				byCr[m.cr.string].push(m);
-			}
+				registedSources[name] = true;
 
-			// TODO: CP from addMonster. Is this actually used?
-			// if (args.tags) {
-			// 	register(miscLib.tags, args.tags);
-			// }
-		}
+				miscLib.sources.push(name);
+				miscLib.sourceFilters[name] = initialState;
+				miscLib.shortNames[name] = shortName;
+			});
 
-		for ( i = 0; i < data.sources.length; i++ ) {
-			source = data.sources[i];
-
-			miscLib.sources.push(source.name);
-			miscLib.sourceFilters[source.name] = source.initialState;
-			miscLib.shortNames[source.name] = source.shortName;
-
-			for ( j = 0; j < source.contents.length; j++ ) {
-				m = source.contents[j];
-				byId[m[0]].sources.push({
-					name: source.name,
-					page: m[1],
-					url: m[2]
-				});
-			}
-		}
-		
-		all.sort(function (a, b) {
-			return (a.name > b.name) ? 1 : -1;
+			all.sort(function (a, b) {
+				return (a.name > b.name) ? 1 : -1;
+			});
 		});
 
-		var service = {
+		return {
 			all: all,
 			byCr: byCr,
 			byId: byId,
-			check: monsterLib.checkMonster,
+			check: monsterFactory.checkMonster,
 		};
-
-		return service;
-	};
+	}
 })();
