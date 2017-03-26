@@ -86,6 +86,27 @@
 								}
 							});
 
+							if ( !fid || !name ) {
+								// All the errors use fid, so error messages are going to be meaningless at this point
+								return;
+							}
+
+							var fidMatch = fid.match(/^([-\w]+\.)([-\w]+)$/);
+
+							if ( !fidMatch ) {
+								err(fid, "fid", "Invalid fid", fid);
+							} else {
+								var expectedFid = fidMatch[1] + name
+										.toLowerCase()
+										.replace(/ /g, "-")
+										.replace(/--+/g, "-")
+										.replace(/[^-a-z0-9]/g, "");
+
+								if ( expectedFid !== fid ) {
+									err(fid, "fid", "Possibly improper fid, expected " + expectedFid, fid);
+								}
+							}
+
 							if ( special ) {
 								// These are the placeholders and are missing a lot of stuff everything else require
 								return;
