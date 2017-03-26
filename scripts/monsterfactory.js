@@ -38,7 +38,7 @@
 			monster.tags = args.tags ? args.tags.split(/\s*,\s*/).sort() : null;
 			monster.size = args.size;
 			monster.alignment = parseAlignment(args.alignment);
-			monster.environments = (args.environments) ? args.environments.sort() : [];
+			monster.environments = (args.environment || "").split(/\s*,\s*/).sort();
 			// Special, legendary, lair, and unique are stored in spreadsheet as strings to make it
 			// easy to read a row, but should be translated to booleans
 			monster.special = !!args.special;
@@ -82,7 +82,6 @@
 			).concat(
 				monster.tags
 			).join("|").toLowerCase();
-
 		}
 
 		function parseAlignment(alignmentString) {

@@ -22,6 +22,7 @@
 		var byId = {};
 		var byCr = {};
 
+window.monsters = all;
 		googleSheetLoader(masterSheetId)
 		.then(function (sheets) {
 			sheets.Monsters.forEach(function (monsterData) {
