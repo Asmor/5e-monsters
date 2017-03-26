@@ -23,7 +23,8 @@
 		"primevalthuleSource",
 		"primevalthulegmcSource",
 		"tomeofbeastsSource", 
-		"volosguidetomonstersSource"
+		"volosguidetomonstersSource",
+		"talesfromtheyawningportalSource"
 	];
 
 	function MonsterData(monsters) {

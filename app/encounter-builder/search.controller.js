@@ -61,6 +61,7 @@
                 select.push("Out of the Abyss");
                 select.push("Curse of Strahd");
                 select.push("Storm King's Thunder"); 
+				select.push("Tales from the Yawning Portal");
             }
 
             if ( sourceTypes.match(/all|basic/) ) {
