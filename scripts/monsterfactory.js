@@ -12,27 +12,63 @@
 			Monster: Monster,
 		};
 
-		return factory;
-
 		function Monster(args) {
 			var monster = this;
-			monster.id = args.id;
+			// guid is deprecated. Still need to work out plan to get rid of it, but for the time
+			// being we can at least make it so new things don't need one by falling back to fid if
+			// guid isn't supplied
+			monster.id = args.guid || args.fid;
+			monster.fid = args.fid;
 			monster.name = args.name;
 			monster.section = args.section;
-			monster.ac = args.ac;
-			monster.hp = args.hp;
-			monster.init = args.init;
+			["ac", "hp", "init"].forEach(function (key) {
+				// Try to parse each of these into a number, but if that fails then just give the
+				// original string value, which presumably is either an empty string or something
+				// complicated
+				var parsed = Number.parseInt(args[key]);
+
+				if ( isNaN(parsed) ) {
+					parsed = args[key];
+				}
+
+				monster[key] = parsed;
+			});
 			monster.cr = crInfo[args.cr];
 			monster.type = args.type;
-			monster.tags = (args.tags) ? args.tags.sort() : undefined;
+			monster.tags = args.tags ? args.tags.split(/\s*,\s*/).sort() : null;
 			monster.size = args.size;
-			monster.alignment = args.alignment || alignments.unaligned;
-			monster.special = args.special;
-			monster.environments = (args.environments) ? args.environments.sort() : [];
-			monster.legendary = args.legendary;
-			monster.lair = args.lair;
-			monster.unique = args.unique;
-			monster.sources = [];
+			monster.alignment = parseAlignment(args.alignment);
+			monster.environments = (args.environment || "").split(/\s*,\s*/).sort();
+			// Special, legendary, lair, and unique are stored in spreadsheet as strings to make it
+			// easy to read a row, but should be translated to booleans
+			monster.special = !!args.special;
+			monster.legendary = !!args.legendary;
+			monster.lair = !!args.lair;
+			monster.unique = !!args.unique;
+			monster.sources = args.sources
+				.split(/\s*,\s*/)
+				.map(function (rawSource) {
+					var sourceMatch = rawSource.match(/([^:]*): (.*)/);
+
+					if ( !sourceMatch ) {
+						// Just a source with no page or URL
+						return { name: rawSource };
+					}
+
+					var name = sourceMatch[1];
+					var where = sourceMatch[2];
+					var out = {
+						name: name,
+					};
+
+					if ( where.match(/^\d+$/) ) {
+						out.page = Number.parseInt(where, 10);
+					} else {
+						out.url = where;
+					}
+
+					return out;
+				});
 
 			monster.sizeSort = parseSize(monster.size);
 			monster.searchable = [
@@ -42,11 +78,69 @@
 				monster.size,
 				(monster.alignment) ? monster.alignment.text : "",
 			].concat(
-				monster.cr
+				monster.cr.string
 			).concat(
 				monster.tags
 			).join("|").toLowerCase();
 		}
+
+		function parseAlignment(alignmentString) {
+			var flags = (alignmentString || "")
+				// alignmentString should be a string of alignments, seperated by commas, "or", or
+				// commas followed by "or" (I'm pro-Oxford comma)
+				.split(/\s*(,|or|,\s*or)\s*/i)
+				.reduce(function (total, current) {
+					return total | parseSingleAlignmentFlags(current);
+				}, 0);
+
+			if ( !flags ) {
+				console.warn("Couldn't parse alignments: ", alignmentString);
+				flags = alignments.unaligned.flags;
+			}
+
+			return {
+				text: alignmentString,
+				flags: flags,
+			};
+		}
+
+		function parseSingleAlignmentFlags(alignment) {
+			var flags;
+
+			alignmentTestOrder.some(function (alignmentDefinition) {
+				if ( alignment.match(alignmentDefinition.regex) ) {
+					flags = alignmentDefinition.flags;
+					return true;
+				}
+			});
+
+			return flags;
+		}
+
+		// Check "neutral" and "any" last, since those are substrings found in more specific
+		// alignments
+		var alignmentTestOrder = [
+			alignments.any_chaotic,
+			alignments.any_evil,
+			alignments.any_good,
+			alignments.any_lawful,
+			alignments.any_neutral,
+			alignments.non_chaotic,
+			alignments.non_evil,
+			alignments.non_good,
+			alignments.non_lawful,
+			alignments.unaligned,
+			alignments.lg,
+			alignments.ng,
+			alignments.cg,
+			alignments.ln,
+			alignments.cn,
+			alignments.le,
+			alignments.ne,
+			alignments.ce,
+			alignments.n,
+			alignments.any,
+		];
 
 		function parseSize(size) {
 			switch ( size ) {
@@ -123,5 +217,7 @@
 
 			return false;
 		}
+
+		return factory;
 	}
 })();
