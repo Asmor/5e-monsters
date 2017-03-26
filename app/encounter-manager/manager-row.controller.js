@@ -2,27 +2,27 @@
 	/* global _ */
 	'use strict';
 
-    angular
-        .module('app')
-        .controller('managerRowController', ManagerRowController);
+	angular
+		.module('app')
+		.controller('managerRowController', ManagerRowController);
 
-    ManagerRowController.$inject = ['$state', 'encounter', 'monsters', 'actionQueue', 'library'];
-    function ManagerRowController($state, encounter, monsters, actionQueue, library) {
-        var vm = this;
+	ManagerRowController.$inject = ['$state', 'encounter', 'monsters', 'actionQueue', 'library'];
+	function ManagerRowController($state, encounter, monsters, actionQueue, library) {
+		var vm = this;
 
-        vm.calculateExp = calculateExp;
-        vm.load = load;
-        vm.remove = remove;
-        vm.encounter = encounter;
-        vm.monsters = monsters;
+		vm.calculateExp = calculateExp;
+		vm.load = load;
+		vm.remove = remove;
+		vm.encounter = encounter;
+		vm.monsters = monsters;
 
-        activate();
+		activate();
 
-        ////////////////
+		////////////////
 
-        function activate() { }
+		function activate() { }
 
-        function calculateExp(storedEncounter) {
+		function calculateExp(storedEncounter) {
 			var exp = 0;
 
 			_.forEach(storedEncounter.groups, function (value, id) {
@@ -44,12 +44,12 @@
 			}
 		}
 
-        function remove( storedEncounter ) {
+		function remove( storedEncounter ) {
 			library.remove(storedEncounter);
 
 			if ( angular.equals(encounter.reference, storedEncounter) ) {
 				encounter.reference = null;
 			}
-		};
-    }
+		}
+	}
 })();
