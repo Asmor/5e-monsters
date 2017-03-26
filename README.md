@@ -67,6 +67,7 @@ Links:
 			* Curse of Strahd: `Strahd`
 			* Fifth Edition Foes: `5eF`
 			* Primeval Thule Campaign Setting: `ThuleCS`
+		* **link** is a link to the source. This should be a landing page of some sort, not a direct link to a PDF. For example, a blog post, a reddit threat, an online store front.
 3. Go to the sheet checker (see links section above). Put the URL for your sheet in the box and click the button. Fix any errors you get and try again.
 4. Once you're done, click "Manage Custom Content" in KFC. Put the URL for your sheet in the field that says URL, give it a name, and click add. If you've done everything correctly, your monsters will now be integrated into the list.
 5. Feel free to send the sheet to me at itoltz@gmail.com for consideration to add it into KFC officially.
