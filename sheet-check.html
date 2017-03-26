@@ -21,15 +21,16 @@
 				scope.sheetId = "";
 				// Just a shortcut
 				function log(message) {
-					scope.messages.push(message);
+					scope.messages.push({message: message});
 				}
 
 				function err(fid, field, reason, value) {
-					var message = "[" + fid + "] " + field + ": " + reason
-					if (value) {
-						message += " (" + value + ")"
-					}
-					log(message);
+					scope.messages.push({
+						fid: fid,
+						field: field,
+						reason: reason,
+						value: value
+					});
 				}
 
 				scope.test = function () {
@@ -225,9 +226,15 @@
 <script id="sheet-checker-template" language="template/angular">
 	<input ng-model="sheetId">
 	<button ng-click="test()">Test</button>
-	<ul>
-		<li ng-repeat="message in messages">{{message}}</li>
-	</ul>
+	<table>
+		<tr ng-repeat="message in messages">
+			<td ng-if="message.message" colspan="4">{{ message.message }}</td>
+			<td ng-if="!message.message">{{ message.fid }}</td>
+			<td ng-if="!message.message">{{ message.field }}</td>
+			<td ng-if="!message.message">{{ message.reason }}</td>
+			<td ng-if="!message.message">{{ message.value }}</td>
+		</tr>
+	</table>
 </script>
 <script src="app/meta/alignments.js"></script>
 <script src="app/meta/crInfo.js"></script>
