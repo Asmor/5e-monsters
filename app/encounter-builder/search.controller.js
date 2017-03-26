@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('SearchController', SearchController);
 
-	SearchController.$inject = ['$scope', 'sources', 'metaInfo', 'store'];
-	function SearchController($scope, sources, metaInfo, store) {
+	SearchController.$inject = ['$scope', 'sources', 'metaInfo'];
+	function SearchController($scope, sources, metaInfo) {
 		var vm = this;
 
 		vm.alignments = metaInfo.alignments;
@@ -16,20 +16,26 @@
 		vm.sourceNames = sources.all;
 		vm.types = metaInfo.types;
 
+		$scope.customContent = sources.customContent;
+
 		vm.resetFilters = resetFilters;
 		vm.updateSourceFilters = updateSourceFilters;
-
-		activate();
 
 		$scope.$on("custom-source-added", function (event, sourceName) {
 			// Custom content should be enabled by default
 			vm.filters.source[sourceName] = true;
 		});
 
-		////////////////
+		$scope.addCustom = function () {
+			var added = sources.addCustomContent($scope.customName, $scope.customUrl);
 
-		function activate() {
-		}
+			if ( added ) {
+				$scope.customName = null;
+				$scope.customUrl = null;
+			}
+		};
+
+		$scope.removeCustom = sources.removeCustomContent;
 
 		function resetFilters() {
 			vm.filters.size = null;
@@ -41,7 +47,6 @@
 		}
 
 		function updateSourceFilters(newValue) {
-			console.log("TODO", newValue);
 			if (newValue) {
 				vm.filters.sources = newValue;
 			}

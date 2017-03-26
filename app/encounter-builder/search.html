@@ -39,7 +39,10 @@
 			<option value="">Any Environment</option>
 		</select>
 		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#sourcesModal">
-		Set Sources
+			Set Sources
+		</button>
+		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#contentModal">
+			Manage Custom Content
 		</button>
 	</div>
 	<div class="search--reset">
@@ -53,35 +56,85 @@
 			></select>
 		</div>
 	</div>
-	<!-- Modal -->
+	<!-- Sources Modal -->
 	<div class="modal" id="sourcesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<h4 class="modal-title" id="myModalLabel">Set Source Material</h4>
-		</div>
-		<div class="modal-body">
-			<div class="sources-modal--buttons">
-				<button class="btn btn-primary" ng-click="vm.updateSourceFilters('all')">Everything</button>
-				<button class="btn btn-primary" ng-click="vm.updateSourceFilters('core')">Core Books</button>
-				<button class="btn btn-primary" ng-click="vm.updateSourceFilters('none')">None</button>
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Set Source Material</h4>
 			</div>
-			<ul>
-				<li class="search--source"
-					ng-repeat="source in vm.sourceNames"
-					ng-class="{ 'search--source__off': !vm.filters.source[source] }">
-					<label>
-						<input type="checkbox" ng-model="vm.filters.source[source]">
-						{{ source }}
-					</label>
-				</li>
-			</ul>
-		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		</div>
+			<div class="modal-body">
+				<div class="sources-modal--buttons">
+					<button class="btn btn-primary" ng-click="vm.updateSourceFilters('all')">Everything</button>
+					<button class="btn btn-primary" ng-click="vm.updateSourceFilters('core')">Core Books</button>
+					<button class="btn btn-primary" ng-click="vm.updateSourceFilters('none')">None</button>
+				</div>
+				<ul>
+					<li class="search--source"
+						ng-repeat="source in vm.sourceNames"
+						ng-class="{ 'search--source__off': !vm.filters.source[source] }">
+						<label>
+							<input type="checkbox" ng-model="vm.filters.source[source]">
+							{{ source }}
+						</label>
+					</li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+			</div>
 		</div>
 	</div>
+	<!-- Custom Content Modal -->
+	<div class="modal" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Manage Custom Content</h4>
+			</div>
+			<div class="modal-body">
+				<ul>
+					<li class="row search--content-row" ng-repeat="contentDefinition in customContent">
+						<div class="col-lg-1">
+							<button
+								class="btn btn-danger"
+								ng-click="removeCustom(contentDefinition.id)"
+							>
+								<i class="fa fa-trash-o"></i>
+							</button>
+						</div>
+						<div class="col-lg-9">
+							{{ contentDefinition.name }}
+							<a
+								class="search--sheet-link"
+								ng-href="https://docs.google.com/spreadsheets/d/{{ contentDefinition.id }}/"
+							>{{ contentDefinition.id }}</a>
+						</div>
+					</li>
+					<li class="row search--content-row">
+						<div class="col-lg-5">
+							<input class="form-control" placeholder="Name" ng-model="customName">
+						</div>
+						<div class="col-lg-5">
+							<input class="form-control" placeholder="URL or ID" ng-model="customUrl">
+						</div>
+						<div class="col-lg-2">
+							<button class="btn btn-primary" ng-click="addCustom()">Add</button>
+						</div>
+					</li>
+				</ul>
+
+				<a class="btn btn-info" href="https://github.com/Asmor/5e-monsters#contributing-content-to-kobold-fight-club">
+					Instructions
+				</a>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+			</div>
+		</div>
 	</div>
 </div>

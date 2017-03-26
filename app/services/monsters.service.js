@@ -9,6 +9,7 @@
 	var byId = {};
 	var byCr = {};
 	var loaded = {};
+	var sourcesById = {};
 
 	Monsters.$inject = ["$rootScope", "googleSheetLoader", "misc", "monsterFactory"];
 	function Monsters($rootScope, googleSheetLoader, miscLib, monsterFactory) {
@@ -24,7 +25,6 @@
 		}
 
 		loadSheet(masterSheetId);
-		window.loadSheet = loadSheet;
 
 		return {
 			all: all,
@@ -32,6 +32,7 @@
 			byId: byId,
 			check: monsterFactory.checkMonster,
 			loadSheet: loadSheet,
+			removeSheet: removeSheet.bind(null, miscLib),
 		};
 	}
 
@@ -39,6 +40,7 @@
 		googleSheetLoader(sheetId)
 		.then(function (sheets) {
 			sheets.Monsters.forEach(function (monsterData) {
+				monsterData.sheetId = sheetId;
 				var monster = new monsterFactory.Monster(monsterData);
 
 				all.push(monster);
@@ -53,11 +55,13 @@
 				}
 			});
 
+			sourcesById[sheetId] = [];
 			sheets.Sources.forEach(function (sourceData) {
 				var name = sourceData.name;
 				var shortName = sourceData.shortname;
 				var initialState = custom || !!(sourceData.defaultselected || "").match(/yes/i);
 
+				sourcesById[sheetId].push(name);
 				miscLib.sources.push(name);
 				miscLib.sourceFilters[name] = initialState;
 				miscLib.shortNames[name] = shortName;
@@ -73,5 +77,29 @@
 				return (a.name > b.name) ? 1 : -1;
 			});
 		});
+	}
+
+	function removeSheet(miscLib, id) {
+		var i = 0;
+		while ( all[i] ) {
+			if ( all[i].sheetId === id ) {
+				all.splice(i, 1);
+			} else {
+				i++;
+			}
+		}
+
+		if ( !sourcesById[id] ) {
+			return;
+		}
+
+		sourcesById[id].forEach(function (sourceName) {
+			i = miscLib.sources.indexOf(sourceName);
+			miscLib.sources.splice(i, 1);
+			delete miscLib.sourceFilters[name];
+			delete miscLib.shortNames[name];
+		});
+
+		delete sourcesById[id];
 	}
 })();

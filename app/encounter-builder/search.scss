@@ -32,7 +32,16 @@
 	}
 
 	&--section {
-		margin-left: 1rem;
+		margin-left: 1.2rem;
+	}
+
+	&--content-row {
+		margin-top: 10px;
+	}
+
+	&--sheet-link {
+		font-size: 1rem;
+		font-family: monospace;
 	}
 }
 

@@ -8,7 +8,7 @@
             controller: 'SearchController',
             controllerAs: 'vm',
             bindings: {
-                filters: '<'
+                filters: '<',
             },
         });
 })();

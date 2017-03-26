@@ -7653,7 +7653,12 @@ button.close {
   .search--page-size {
     width: 10rem; }
   .search--section {
-    margin-left: 1rem; }
+    margin-left: 1.2rem; }
+  .search--content-row {
+    margin-top: 10px; }
+  .search--sheet-link {
+    font-size: 1rem;
+    font-family: monospace; }
 
 .sources-modal--buttons {
   margin-bottom: 2rem; }

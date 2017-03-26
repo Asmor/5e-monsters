@@ -5,7 +5,6 @@
 		.factory("monsterFactory", MonsterFactory);
 
 	MonsterFactory.$inject = ["alignments", "crInfo"];
-
 	function MonsterFactory(alignments, crInfo) {
 		var factory = {
 			checkMonster: checkMonster,
@@ -14,6 +13,7 @@
 
 		function Monster(args) {
 			var monster = this;
+			monster.sheetId = args.sheetId;
 			// guid is deprecated. Still need to work out plan to get rid of it, but for the time
 			// being we can at least make it so new things don't need one by falling back to fid if
 			// guid isn't supplied
