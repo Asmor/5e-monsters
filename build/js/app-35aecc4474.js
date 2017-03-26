@@ -2713,7 +2713,11 @@
 		}
 
 		// Cache results for each id
-		function load($q, id) {
+		function load($q, id, args) {
+			if ( args.noCache ) {
+				delete sheets[id];
+			}
+
 			sheets[id] = sheets[id] || getWorksheets($q, id);
 
 			return sheets[id];

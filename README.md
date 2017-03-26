@@ -16,6 +16,7 @@ Nothing special needed to run it. Just open index.html in firefox. You can run i
 Links:
 * Master sheet: https://docs.google.com/spreadsheets/d/19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I/
 * Template: https://docs.google.com/spreadsheets/d/1_cFPf4OGh9QC0WN-cvEWGBNYzCTw--GnPQLzpibkOwk/
+* Sheet checker: http://kobold.club/5e-monsters/sheet-check.html
 
 1. Make a copy of the template
 	1. Go to the template
@@ -71,4 +72,5 @@ Links:
 			* Curse of Strahd: `Strahd`
 			* Fifth Edition Foes: `5eF`
 			* Primeval Thule Campaign Setting: `ThuleCS`
-3. Once you're done, share the sheet with me at itoltz@gmail.com
+3. Go to the sheet checker (see links section above). Put the URL for your sheet in the box and click the button. Fix any errors you get and try again.
+4. Once you're done, share the sheet with me at itoltz@gmail.com
