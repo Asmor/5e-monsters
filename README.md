@@ -42,19 +42,14 @@ Links:
 			* coast
 			* desert
 			* dungeon
-			* environment
 			* forest
 			* grassland
-			* hill
 			* mountain
 			* planar
 			* ruins
 			* swamp
-			* underdark
 			* underground
-			* underwater
 			* urban
-			* swamp
 		* **lair**, **legendary**, and **unique** are all qualities the monster entry might have. If a monster has that quality, you should put that word in that column (e.g. if a monster is unique, write "unique" in that column). Otherwise leave that column blank.
 			* **lair** means the monster is being encountered in its lair. Often monsters will have a different CR when in their lair, so you'll have two entries for the monster; one in lair, one not. You should also include (in lair) at the end of the monster's name for the row where it's in its lair.
 			* **legendary** means the monster has legendary actions.
