@@ -7,27 +7,6 @@
 
 	// var payload = [{ "Name": "Nemo", "HP": { "Value": 10 } }, { "Name": "Fat Goblin", "HP": { "Value": 20 }, "Id": "mm.goblin"}, { "Id": "mm.goblin"}];
 	var target = "http://improved-initiative.com/launchencounter/";
-	var sourcePrefixes = [
-		// Core books
-		{ name: "Monster Manual", prefix: "mm" },
-		{ name: "Volo's Guide to Monsters", prefix: "volo" },
-
-		// Official adventures
-		{ name: "Curse of Strahd", prefix: "strahd" },
-		{ name: "Hoard of the Dragon Queen", prefix: "hoard" },
-		{ name: "Out of the Abyss", prefix: "abyss" },
-		{ name: "Princes of the Apocalypse", prefix: "apoc" },
-		{ name: "Rise of Tiamat", prefix: "tiamat" },
-		{ name: "Storm King's Thunder", prefix: "sking" },
-
-		// Third-party
-		{ name: "Fifth Edition Foes", prefix: "5ef" },
-		{ name: "Monster-A-Day", prefix: "mad" },
-		{ name: "Primeval Thule Campaign Setting", prefix: "thule-cs" },
-		{ name: "Primeval Thule Gamemaster's Companion", prefix: "thule-gm" },
-		{ name: "Tome of Beasts", prefix: "tob" },
-	];
-
 	ExportService.$inject = ["$document", "encounter", "players"];
 	function ExportService($document, encounter, players) {
 		function launchImpInit() {
@@ -53,30 +32,6 @@
 		};
 	}
 
-	function generateFid(monster) {
-		// Sources in order of precedence
-		var prefix = "unknown";
-		sourcePrefixes.some(function (definition) {
-			var monsterInSource = monster.sources.some(function (monsterSource) {
-				return (monsterSource.name == definition.name);
-			});
-
-			if ( monsterInSource ) {
-				prefix = definition.prefix;
-			}
-
-			return monsterInSource;
-		});
-
-		var scrubbedName = monster.name
-			.toLowerCase()
-			.replace(/ /g, "-")
-			.replace(/--+/g, "-")
-			.replace(/[^-a-z0-9]/g, "");
-
-		return [prefix, scrubbedName].join(".");
-	}
-
 	function generatePayload(args) {
 		var combatants = [];
 
@@ -84,7 +39,6 @@
 			var monsterGroup = args.monsters[guid];
 			var monster = monsterGroup.monster;
 			var qty = monsterGroup.qty;
-			var fid = generateFid(monster);
 
 			var i;
 			for ( i = 1; i <= qty; i++ ) {
@@ -95,7 +49,7 @@
 					TotalInitiativeModifier: monster.init,
 					AC: { Value: monster.ac },
 					Player: "npc",
-					Id: fid,
+					Id: monster.fid,
 				});
 			}
 		});
