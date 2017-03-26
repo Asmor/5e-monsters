@@ -2714,6 +2714,7 @@
 
 		// Cache results for each id
 		function load($q, id, args) {
+			args = args || {};
 			if ( args.noCache ) {
 				delete sheets[id];
 			}
