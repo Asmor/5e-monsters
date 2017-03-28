@@ -158,11 +158,12 @@ function sheetManager($q, googleSheetLoader, monsters, store) {
 			sheetMetaData[legacyData.id] = {
 				name: legacyData.name,
 				timestamp: 0,
+				custom: true,
 			};
 		});
 
 		// Clear out legacy data now that they've been integrated
-		// store.set(legacySheetDataKey, []); // TODO: Uncomment this!
+		store.set(legacySheetDataKey, []);
 
 		// Finally, parse the sheets!
 		Object.keys(sheetMetaData).forEach(function (sheetId) {
