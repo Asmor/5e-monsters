@@ -7,6 +7,7 @@
 <body>
 <script src="thirdparty/angular/angular.js"></script>
 <script>
+	"use strict";
 	var SC = angular.module("app", []);
 
 	SC.directive("sheetChecker", function (googleSheetLoader) {
@@ -49,7 +50,10 @@
 					log("Attempting to load ID:" + id);
 					log("If it doesn't load, make sure you've published it (not just shared!) File -> Publish to the web");
 
-					googleSheetLoader(id, { noCache: true })
+					googleSheetLoader.loadIndex(id, { noCache: true })
+					.then(function (index) {
+						return index.loadSheets();
+					})
 					.then(function (sheets) {
 						// Remove the message about publishing
 						scope.messages.pop();

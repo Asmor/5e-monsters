@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('SearchController', SearchController);
 
-	SearchController.$inject = ['$scope', 'sources', 'metaInfo'];
-	function SearchController($scope, sources, metaInfo) {
+	SearchController.$inject = ["$scope", "metaInfo", "sheetManager", "sources"];
+	function SearchController($scope, metaInfo, sheetManager, sources) {
 		var vm = this;
 
 		vm.alignments = metaInfo.alignments;
@@ -16,7 +16,47 @@
 		vm.sourceNames = sources.all;
 		vm.types = metaInfo.types;
 
-		$scope.customContent = sources.customContent;
+		// Cache sorted data to avoid infinite digest
+		var contentCacheKey;
+		var contentCache;
+		$scope.getContent = function () {
+			var metadata = sheetManager.getSheetMetaData();
+			var metadataKeys = Object.keys(metadata);
+			var cacheKey = metadataKeys
+				.sort()
+				.map(function (sheetId) {
+					return sheetId + metadata[sheetId].timestamp;
+				})
+				.join("|");
+
+			if ( contentCacheKey !== cacheKey ) {
+				contentCacheKey = cacheKey;
+
+				contentCache = metadataKeys
+				.map(function (sheetId) {
+					var data = metadata[sheetId];
+					var date = (new Date(data.timestamp));
+					return {
+						name: data.name,
+						id: sheetId,
+						custom: data.custom,
+						updated: [date.toLocaleDateString(), date.toLocaleTimeString()].join(" "),
+					};
+				})
+				.sort(function (a, b) {
+					var aCustom = !!a.custom;
+					var bCustom = !!b.custom;
+
+					if ( aCustom !== bCustom ) {
+						// true is "greater than" false, so custom is sorted to bottom
+						return (aCustom > bCustom) ? 1 : -1;
+					}
+
+					return (a.name > b.name) ? 1 : -1;
+				});
+			}
+			return contentCache;
+		};
 
 		vm.resetFilters = resetFilters;
 		vm.updateSourceFilters = updateSourceFilters;
@@ -27,7 +67,7 @@
 		});
 
 		$scope.addCustom = function () {
-			var added = sources.addCustomContent($scope.customName, $scope.customUrl);
+			var added = sheetManager.addContent($scope.customName, $scope.customUrl);
 
 			if ( added ) {
 				$scope.customName = null;
@@ -35,7 +75,7 @@
 			}
 		};
 
-		$scope.removeCustom = sources.removeCustomContent;
+		$scope.removeCustom = sheetManager.removeContent;
 
 		function resetFilters() {
 			vm.filters.size = null;

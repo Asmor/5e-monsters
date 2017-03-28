@@ -3,17 +3,19 @@
 
 	angular.module("app").factory("monsters", Monsters);
 
-	// https://docs.google.com/spreadsheets/d/19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I/edit
-	var masterSheetId = "19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I";
 	var all = [];
 	var byId = {};
 	var byCr = {};
 	var loaded = {};
 	var sourcesById = {};
 
-	Monsters.$inject = ["$rootScope", "googleSheetLoader", "misc", "monsterFactory"];
-	function Monsters($rootScope, googleSheetLoader, miscLib, monsterFactory) {
-		function loadSheet(sheetId, custom) {
+	Monsters.$inject = ["$rootScope", "misc", "monsterFactory"];
+	function Monsters($rootScope, miscLib, monsterFactory) {
+		function loadSheet(args) {
+			var sheets = args.sheets;
+			var sheetId = args.sheetId;
+			var custom = args.custom;
+
 			if ( loaded[sheetId] ) {
 				// Don't allow a source to be loaded multiple times
 				return;
@@ -21,10 +23,15 @@
 
 			loaded[sheetId] = true;
 
-			loadMonsters($rootScope, googleSheetLoader, miscLib, monsterFactory, sheetId, custom);
+			loadMonsters({
+				$rootScope: $rootScope,
+				miscLib: miscLib,
+				monsterFactory: monsterFactory,
+				sheetId: sheetId,
+				custom: custom,
+				sheets: sheets,
+			});
 		}
-
-		loadSheet(masterSheetId);
 
 		return {
 			all: all,
@@ -36,46 +43,50 @@
 		};
 	}
 
-	function loadMonsters($rootScope, googleSheetLoader, miscLib, monsterFactory, sheetId, custom) {
-		googleSheetLoader(sheetId)
-		.then(function (sheets) {
-			sheets.Monsters.forEach(function (monsterData) {
-				monsterData.sheetId = sheetId;
-				var monster = new monsterFactory.Monster(monsterData);
+	function loadMonsters(args) {
+		var $rootScope = args.$rootScope;
+		var miscLib = args.miscLib;
+		var monsterFactory = args.monsterFactory;
+		var sheetId = args.sheetId;
+		var custom = args.custom;
+		var sheets = args.sheets;
 
-				all.push(monster);
-				byId[monster.id] = monster;
+		sheets.Monsters.forEach(function (monsterData) {
+			monsterData.sheetId = sheetId;
+			var monster = new monsterFactory.Monster(monsterData);
 
-				if ( ! monster.special ) {
-					if ( ! byCr[monster.cr.string] ) {
-						byCr[monster.cr.string] = [];
-					}
+			all.push(monster);
+			byId[monster.id] = monster;
 
-					byCr[monster.cr.string].push(monster);
+			if ( ! monster.special ) {
+				if ( ! byCr[monster.cr.string] ) {
+					byCr[monster.cr.string] = [];
 				}
-			});
 
-			sourcesById[sheetId] = [];
-			sheets.Sources.forEach(function (sourceData) {
-				var name = sourceData.name;
-				var shortName = sourceData.shortname;
-				var initialState = custom || !!(sourceData.defaultselected || "").match(/yes/i);
+				byCr[monster.cr.string].push(monster);
+			}
+		});
 
-				sourcesById[sheetId].push(name);
-				miscLib.sources.push(name);
-				miscLib.sourceFilters[name] = initialState;
-				miscLib.shortNames[name] = shortName;
+		sourcesById[sheetId] = [];
+		sheets.Sources.forEach(function (sourceData) {
+			var name = sourceData.name;
+			var shortName = sourceData.shortname;
+			var initialState = custom || !!(sourceData.defaultselected || "").match(/yes/i);
 
-				if ( custom ) {
-					$rootScope.$broadcast("custom-source-added", name);
-				}
-			});
+			sourcesById[sheetId].push(name);
+			miscLib.sources.push(name);
+			miscLib.sourceFilters[name] = initialState;
+			miscLib.shortNames[name] = shortName;
 
-			miscLib.sources.sort();
+			if ( custom ) {
+				$rootScope.$broadcast("custom-source-added", name);
+			}
+		});
 
-			all.sort(function (a, b) {
-				return (a.name > b.name) ? 1 : -1;
-			});
+		miscLib.sources.sort();
+
+		all.sort(function (a, b) {
+			return (a.name > b.name) ? 1 : -1;
 		});
 	}
 

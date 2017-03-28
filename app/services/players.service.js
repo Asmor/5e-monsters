@@ -4,9 +4,9 @@
 	angular.module("app")
 		.factory("players", PlayersService);
 
-	PlayersService.$inject = ["$rootScope", "$log", "store"];
+	PlayersService.$inject = ["$rootScope", "store"];
 
-	function PlayersService($rootScope, $log, store) {
+	function PlayersService($rootScope, store) {
 		var players = {
 				selectedParty: null,
 				selectParty: function (party) {
@@ -78,8 +78,6 @@
 							damage: (m[3]) ? m[4] - m[3] : 0,
 							hp: parseInt(m[4]),
 						};
-					} else {
-						$log.warn("Can't match:", parties[i][j]);
 					}
 				}
 
@@ -118,12 +116,10 @@
 		}
 
 		function freeze() {
-			$log.log('Freeze players');
 			store.set("5em-players", parties);
 		}
 
 		function thaw() {
-			$log.log('Thaw players');
 			store.get("5em-players").then(function (frozen) {
 				if (frozen) {
 					parties = frozen;

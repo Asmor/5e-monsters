@@ -4,9 +4,9 @@
 	angular.module("app")
 		.factory("encounter", EncounterService);
 
-	EncounterService.$inject = ['$rootScope', '$log', 'randomEncounter', 'store', 'monsters', 'players', 'misc', 'playerLevels', 'partyInfo'];
+	EncounterService.$inject = ['$rootScope', 'randomEncounter', 'store', 'monsters', 'players', 'misc', 'playerLevels', 'partyInfo'];
 
-	function EncounterService($rootScope, $log, randomEncounter, store, monsters, players, misc, playerLevels, partyInfo) {
+	function EncounterService($rootScope, randomEncounter, store, monsters, players, misc, playerLevels, partyInfo) {
 		var encounter = {
 				groups: {},
 				reference: null,
@@ -201,8 +201,6 @@
 				groups: {}
 			};
 
-			$log.log("Freezing encounter info", o);
-
 			Object.keys(encounter.groups).forEach(function (monsterId) {
 				o.groups[monsterId] = encounter.groups[monsterId].qty;
 			});
@@ -211,7 +209,6 @@
 		}
 
 		function thaw() {
-			$log.log('Thawing encounter info');
 			encounter.reset();
 
 			return store.get("5em-encounter").then(function (frozen) {

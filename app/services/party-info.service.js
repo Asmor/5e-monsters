@@ -1,13 +1,14 @@
 (function() {
+/* global _ */
 'use strict';
 
   angular
     .module('app')
     .factory('partyInfo', PartyInfo);
 
-  PartyInfo.inject = ['$log', 'playerLevels', 'store'];
+  PartyInfo.inject = ['playerLevels', 'store'];
 
-  function PartyInfo($log, playerLevels, store) {
+  function PartyInfo(playerLevels, store) {
     var service = {
       // Variables
 			partyLevels: [
@@ -28,7 +29,7 @@
 			},
 
 			get totalPartyExpLevels() {
-				var result = _.reduce(service.partyLevels, function(accum, curLevel, key) {
+				var result = _.reduce(service.partyLevels, function(accum, curLevel) {
 					var curExpLevels = getExpLevels(curLevel);
 
 					return {
@@ -37,8 +38,6 @@
 							hard: accum.hard + curExpLevels.hard,
 							deadly: accum.deadly + curExpLevels.deadly
 					};
-					
-					return accum;
 				}, { easy: 0, medium: 0, hard: 0, deadly: 0});
 				return result;
 			}
@@ -68,14 +67,10 @@
 				};
 			});
 
-			$log.log("Freezing party info", o);
-
 			store.set("5em-party-info", o);
 		}
 
 		function thaw() {
-			$log.log('Thawing party info');
-
 			if (store.hasKey('5em-party-info')) {
 				return store.get("5em-party-info").then(loadPartyInfoFromStore);
 			} else {
@@ -102,7 +97,6 @@
 			service.partyLevels = [];
 
 			_.forEach(frozenDataArray, function(frozenData) {
-				$log.log('Load party level (' + frozenData.level + ') and player count (' + frozenData.playerCount + ') from the store');
 				service.partyLevels.push({
 					level: playerLevels[frozenData.level],
 					playerCount: frozenData.playerCount
@@ -115,13 +109,10 @@
 				return;
 			}
 
-			$log.log('(Encounter) Load party level (' + frozenData.partyLevel + ') and player count (' + frozenData.playerCount + ') from the store');
 			service.partyLevels = [{
 				level: playerLevels[frozenData.partyLevel],
 				playerCount: frozenData.playerCount
 			}];
-
-			$log.log("Removing old encounter store token and replacing it with party info token");
 
 			var newFrozenData = [
 				{

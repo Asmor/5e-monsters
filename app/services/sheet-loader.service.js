@@ -26,13 +26,13 @@
 
 		// 2: Empty cells will be omitted from the individual objects lacking entries for those
 		// cells
-		return loadGS.bind(null, $q);
+		return {
+			loadIndex: partialLoader.bind(null, $q),
+		};
 	}
 
-	// Modified version of my gs-loader script to use $q and output tabular arrays of objects
-	// instead of lists
-	var loadGS = (function () {
-
+	// Heavily modified version of my gs-loader script
+	var partialLoader = (function () {
 		var jsonpcount = 0;
 		var sheets = {};
 
@@ -43,7 +43,11 @@
 			var deferred = $q.defer();
 
 			window[callbackName] = function jsonpCallback(data) {
-				deferred.resolve(data.feed.entry);
+				var timestamp = data.feed.updated.$t;
+				deferred.resolve({
+					timestamp: timestamp,
+					data: data.feed.entry
+				});
 				delete window[callbackName];
 			};
 
@@ -80,32 +84,46 @@
 			});
 		}
 
-		function getWorksheets($q, id) {
+		function loadIndex($q, id) {
 			var url = "https://spreadsheets.google.com/feeds/worksheets/" + id + "/public/full";
+
+			// Step 1: Get a list of all the worksheets in the spreadsheet
+			return getSheetsJsonp($q, url)
+			.then(function (indexData) {
+				return {
+					timestamp: indexData.timestamp,
+					loadSheets: loadSheets.bind(null, $q, indexData.data),
+				};
+			});
+		}
+
+		function loadSheets($q, indexData) {
 			var worksheetPromises = [];
 			var worksheets = {};
 
-			// Step 1: Get a list of all the worksheets in the spreadsheet
-			return getSheetsJsonp($q, url).then(function (data) {
-				data.forEach(function (worksheet) {
-					var name = worksheet.title.$t;
-					var ws = worksheets[name] = [];
+			indexData.forEach(function (worksheet) {
+				var name = worksheet.title.$t;
+				var ws = worksheets[name] = [];
 
-					// Step 2: For each worksheet, parse its listfeed
-					worksheet.link.some(function (link) {
-						if ( link.rel.match(/listfeed/) ) {
-							worksheetPromises.push(
-								getSheetsJsonp($q, link.href)
-								.then(parseLine.bind(null, ws))
-							);
-							return true;
-						}
-					});
+				// Step 2: For each worksheet, parse its listfeed
+				worksheet.link.some(function (link) {
+					if ( link.rel.match(/listfeed/) ) {
+						worksheetPromises.push(
+							getSheetsJsonp($q, link.href)
+							.then(function (sheetData) {
+								// Don't care about timestamp of individual sheets
+								return sheetData.data;
+							})
+							.then(parseLine.bind(null, ws))
+						);
+						return true;
+					}
 				});
+			});
 
-				return $q.all(worksheetPromises).then(function () {
-					return worksheets;
-				});
+			return $q.all(worksheetPromises)
+			.then(function () {
+				return worksheets;
 			});
 		}
 
@@ -116,7 +134,7 @@
 				delete sheets[id];
 			}
 
-			sheets[id] = sheets[id] || getWorksheets($q, id);
+			sheets[id] = sheets[id] || loadIndex($q, id);
 
 			return sheets[id];
 		}
