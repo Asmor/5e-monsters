@@ -6,6 +6,8 @@ angular.module("app").factory("sheetManager", sheetManager);
 var sheetMetaData = {
 	// https://docs.google.com/spreadsheets/d/19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I/edit
 	"19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I": { name: "Master List", timestamp: 0 },
+	"1YR8NBDp8BP4Lz-CWChh6-8dOPN7aYV_dRD6g9ZBvNqM": { name: "Third-Party", timestamp: 0 },
+	"1x6xC8fHZ6N6M2wOuwPTNdn0ObCPtdqeIBtXaLjHBMYQ": { name: "Community", timestamp: 0 },
 };
 var sheetMetaStorageKey = "5em-sheet-meta";
 var sheetCachePartialKey = "5em-sheet-cache";
