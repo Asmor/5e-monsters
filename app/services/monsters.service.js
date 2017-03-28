@@ -55,6 +55,11 @@
 			monsterData.sheetId = sheetId;
 			var monster = new monsterFactory.Monster(monsterData);
 
+			if ( byId[monster.id] ) {
+				console.warn("Duplicate ID", monster.id, monster.fid);
+				return;
+			}
+
 			all.push(monster);
 			byId[monster.id] = monster;
 
