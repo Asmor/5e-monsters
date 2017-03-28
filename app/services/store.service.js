@@ -4,9 +4,9 @@
 	angular.module("app")
 		.factory("store", StoreService);
 
-	StoreService.$inject = ['$q', '$log', 'localStorageService'];
+	StoreService.$inject = ['$q', 'localStorageService'];
 
-	function StoreService($q, $log, localStorageService) {
+	function StoreService($q, localStorageService) {
 		var store = {
 			get: function (key) {
 				return $q(function(resolve, reject) {
@@ -16,7 +16,6 @@
 						data = localStorageService.get(key);
 						resolve(data);
 					} catch (ex) {
-						$log.warn("Unable to parse stored value for " + key);
 						data = undefined;
 						reject("Unable to parse stored value for " + key);
 					}

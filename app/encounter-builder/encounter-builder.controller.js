@@ -4,9 +4,9 @@
 	angular.module("app")
 		.controller("EncounterBuilderController", EncounterBuilderController);
 
-	EncounterBuilderController.$inject = ['$scope', '$log', 'store', 'actionQueue', 'encounter', 'monsters', 'sources'];
+	EncounterBuilderController.$inject = ['$scope', 'store', 'actionQueue', 'encounter', 'monsters', 'sources'];
 
-	function EncounterBuilderController($scope, $log, store, actionQueue, encounter, monsters, sources) {
+	function EncounterBuilderController($scope, store, actionQueue, encounter, monsters, sources) {
 		var vm = this;
 
 		vm.encounter = encounter;
@@ -25,13 +25,11 @@
 
 			store.get("5em-filters").then(function (frozen) {
 				if (frozen) {
-					$log.log('Thaw filters');
 					vm.filters = frozen;
 				}
 			})
 			.finally(function() {
 				$scope.$watch("vm.filters", function () {
-					$log.log('Freeze filters');
 					store.set("5em-filters", vm.filters);
 				}, true);
 			});

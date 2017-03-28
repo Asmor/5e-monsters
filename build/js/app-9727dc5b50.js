@@ -17,15 +17,15 @@
 
 	myApp.run(serviceInitialization);
 
-	serviceInitialization.$inject = ['$log', 'encounter', 'players', 'partyInfo'];
+	serviceInitialization.$inject = ['encounter', 'players', 'partyInfo'];
 
-	function serviceInitialization($log, encounter, players, partyInfo) {
-		$log.log("Service initialization on app run");
+	function serviceInitialization(encounter, players, partyInfo) {
 		partyInfo.initialize();
 		encounter.initialize();
 		players.initialize();
 	}
 })();
+
 (function() {
 	'use strict';
 
@@ -385,9 +385,9 @@
 	angular.module("app")
 		.controller("EncounterBuilderController", EncounterBuilderController);
 
-	EncounterBuilderController.$inject = ['$scope', '$log', 'store', 'actionQueue', 'encounter', 'monsters', 'sources'];
+	EncounterBuilderController.$inject = ['$scope', 'store', 'actionQueue', 'encounter', 'monsters', 'sources'];
 
-	function EncounterBuilderController($scope, $log, store, actionQueue, encounter, monsters, sources) {
+	function EncounterBuilderController($scope, store, actionQueue, encounter, monsters, sources) {
 		var vm = this;
 
 		vm.encounter = encounter;
@@ -406,13 +406,11 @@
 
 			store.get("5em-filters").then(function (frozen) {
 				if (frozen) {
-					$log.log('Thaw filters');
 					vm.filters = frozen;
 				}
 			})
 			.finally(function() {
 				$scope.$watch("vm.filters", function () {
-					$log.log('Freeze filters');
 					store.set("5em-filters", vm.filters);
 				}, true);
 			});
@@ -614,8 +612,8 @@
 		.module('app')
 		.controller('SearchController', SearchController);
 
-	SearchController.$inject = ['$scope', 'sources', 'metaInfo'];
-	function SearchController($scope, sources, metaInfo) {
+	SearchController.$inject = ["$scope", "metaInfo", "sheetManager", "sources"];
+	function SearchController($scope, metaInfo, sheetManager, sources) {
 		var vm = this;
 
 		vm.alignments = metaInfo.alignments;
@@ -625,7 +623,47 @@
 		vm.sourceNames = sources.all;
 		vm.types = metaInfo.types;
 
-		$scope.customContent = sources.customContent;
+		// Cache sorted data to avoid infinite digest
+		var contentCacheKey;
+		var contentCache;
+		$scope.getContent = function () {
+			var metadata = sheetManager.getSheetMetaData();
+			var metadataKeys = Object.keys(metadata);
+			var cacheKey = metadataKeys
+				.sort()
+				.map(function (sheetId) {
+					return sheetId + metadata[sheetId].timestamp;
+				})
+				.join("|");
+
+			if ( contentCacheKey !== cacheKey ) {
+				contentCacheKey = cacheKey;
+
+				contentCache = metadataKeys
+				.map(function (sheetId) {
+					var data = metadata[sheetId];
+					var date = (new Date(data.timestamp));
+					return {
+						name: data.name,
+						id: sheetId,
+						custom: data.custom,
+						updated: [date.toLocaleDateString(), date.toLocaleTimeString()].join(" "),
+					};
+				})
+				.sort(function (a, b) {
+					var aCustom = !!a.custom;
+					var bCustom = !!b.custom;
+
+					if ( aCustom !== bCustom ) {
+						// true is "greater than" false, so custom is sorted to bottom
+						return (aCustom > bCustom) ? 1 : -1;
+					}
+
+					return (a.name > b.name) ? 1 : -1;
+				});
+			}
+			return contentCache;
+		};
 
 		vm.resetFilters = resetFilters;
 		vm.updateSourceFilters = updateSourceFilters;
@@ -636,7 +674,7 @@
 		});
 
 		$scope.addCustom = function () {
-			var added = sources.addCustomContent($scope.customName, $scope.customUrl);
+			var added = sheetManager.addContent($scope.customName, $scope.customUrl);
 
 			if ( added ) {
 				$scope.customName = null;
@@ -644,7 +682,7 @@
 			}
 		};
 
-		$scope.removeCustom = sources.removeCustomContent;
+		$scope.removeCustom = sheetManager.removeContent;
 
 		function resetFilters() {
 			vm.filters.size = null;
@@ -1609,9 +1647,9 @@
 	angular.module("app")
 		.factory("encounter", EncounterService);
 
-	EncounterService.$inject = ['$rootScope', '$log', 'randomEncounter', 'store', 'monsters', 'players', 'misc', 'playerLevels', 'partyInfo'];
+	EncounterService.$inject = ['$rootScope', 'randomEncounter', 'store', 'monsters', 'players', 'misc', 'playerLevels', 'partyInfo'];
 
-	function EncounterService($rootScope, $log, randomEncounter, store, monsters, players, misc, playerLevels, partyInfo) {
+	function EncounterService($rootScope, randomEncounter, store, monsters, players, misc, playerLevels, partyInfo) {
 		var encounter = {
 				groups: {},
 				reference: null,
@@ -1806,8 +1844,6 @@
 				groups: {}
 			};
 
-			$log.log("Freezing encounter info", o);
-
 			Object.keys(encounter.groups).forEach(function (monsterId) {
 				o.groups[monsterId] = encounter.groups[monsterId].qty;
 			});
@@ -1816,7 +1852,6 @@
 		}
 
 		function thaw() {
-			$log.log('Thawing encounter info');
 			encounter.reset();
 
 			return store.get("5em-encounter").then(function (frozen) {
@@ -1828,6 +1863,7 @@
 		}
 	}
 })();
+
 (function() {
 	"use strict";
 
@@ -1924,9 +1960,9 @@
 	angular.module("app")
 		.factory("library", LibraryService);
 
-	LibraryService.$inject = ["$rootScope", "$log", "store"];
+	LibraryService.$inject = ["$rootScope", "store"];
 
-	function LibraryService($rootScope, $log, store) {
+	function LibraryService($rootScope, store) {
 		var library = {
 				encounters: [],
 				remove: function (storedEncounter) {
@@ -1951,12 +1987,10 @@
 		thaw();
 
 		function freeze() {
-			$log.log('Freeze library');
 			store.set("5em-library", library.encounters);
 		}
 
 		function thaw() {
-			$log.log('Thaw library');
 			store.get("5em-library").then(function (frozen) {
 				if (frozen) {
 					library.encounters = frozen;
@@ -2119,17 +2153,19 @@
 
 	angular.module("app").factory("monsters", Monsters);
 
-	// https://docs.google.com/spreadsheets/d/19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I/edit
-	var masterSheetId = "19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I";
 	var all = [];
 	var byId = {};
 	var byCr = {};
 	var loaded = {};
 	var sourcesById = {};
 
-	Monsters.$inject = ["$rootScope", "googleSheetLoader", "misc", "monsterFactory"];
-	function Monsters($rootScope, googleSheetLoader, miscLib, monsterFactory) {
-		function loadSheet(sheetId, custom) {
+	Monsters.$inject = ["$rootScope", "misc", "monsterFactory"];
+	function Monsters($rootScope, miscLib, monsterFactory) {
+		function loadSheet(args) {
+			var sheets = args.sheets;
+			var sheetId = args.sheetId;
+			var custom = args.custom;
+
 			if ( loaded[sheetId] ) {
 				// Don't allow a source to be loaded multiple times
 				return;
@@ -2137,10 +2173,15 @@
 
 			loaded[sheetId] = true;
 
-			loadMonsters($rootScope, googleSheetLoader, miscLib, monsterFactory, sheetId, custom);
+			loadMonsters({
+				$rootScope: $rootScope,
+				miscLib: miscLib,
+				monsterFactory: monsterFactory,
+				sheetId: sheetId,
+				custom: custom,
+				sheets: sheets,
+			});
 		}
-
-		loadSheet(masterSheetId);
 
 		return {
 			all: all,
@@ -2152,46 +2193,50 @@
 		};
 	}
 
-	function loadMonsters($rootScope, googleSheetLoader, miscLib, monsterFactory, sheetId, custom) {
-		googleSheetLoader(sheetId)
-		.then(function (sheets) {
-			sheets.Monsters.forEach(function (monsterData) {
-				monsterData.sheetId = sheetId;
-				var monster = new monsterFactory.Monster(monsterData);
+	function loadMonsters(args) {
+		var $rootScope = args.$rootScope;
+		var miscLib = args.miscLib;
+		var monsterFactory = args.monsterFactory;
+		var sheetId = args.sheetId;
+		var custom = args.custom;
+		var sheets = args.sheets;
 
-				all.push(monster);
-				byId[monster.id] = monster;
+		sheets.Monsters.forEach(function (monsterData) {
+			monsterData.sheetId = sheetId;
+			var monster = new monsterFactory.Monster(monsterData);
 
-				if ( ! monster.special ) {
-					if ( ! byCr[monster.cr.string] ) {
-						byCr[monster.cr.string] = [];
-					}
+			all.push(monster);
+			byId[monster.id] = monster;
 
-					byCr[monster.cr.string].push(monster);
+			if ( ! monster.special ) {
+				if ( ! byCr[monster.cr.string] ) {
+					byCr[monster.cr.string] = [];
 				}
-			});
 
-			sourcesById[sheetId] = [];
-			sheets.Sources.forEach(function (sourceData) {
-				var name = sourceData.name;
-				var shortName = sourceData.shortname;
-				var initialState = custom || !!(sourceData.defaultselected || "").match(/yes/i);
+				byCr[monster.cr.string].push(monster);
+			}
+		});
 
-				sourcesById[sheetId].push(name);
-				miscLib.sources.push(name);
-				miscLib.sourceFilters[name] = initialState;
-				miscLib.shortNames[name] = shortName;
+		sourcesById[sheetId] = [];
+		sheets.Sources.forEach(function (sourceData) {
+			var name = sourceData.name;
+			var shortName = sourceData.shortname;
+			var initialState = custom || !!(sourceData.defaultselected || "").match(/yes/i);
 
-				if ( custom ) {
-					$rootScope.$broadcast("custom-source-added", name);
-				}
-			});
+			sourcesById[sheetId].push(name);
+			miscLib.sources.push(name);
+			miscLib.sourceFilters[name] = initialState;
+			miscLib.shortNames[name] = shortName;
 
-			miscLib.sources.sort();
+			if ( custom ) {
+				$rootScope.$broadcast("custom-source-added", name);
+			}
+		});
 
-			all.sort(function (a, b) {
-				return (a.name > b.name) ? 1 : -1;
-			});
+		miscLib.sources.sort();
+
+		all.sort(function (a, b) {
+			return (a.name > b.name) ? 1 : -1;
 		});
 	}
 
@@ -2221,15 +2266,16 @@
 })();
 
 (function() {
+/* global _ */
 'use strict';
 
   angular
     .module('app')
     .factory('partyInfo', PartyInfo);
 
-  PartyInfo.inject = ['$log', 'playerLevels', 'store'];
+  PartyInfo.inject = ['playerLevels', 'store'];
 
-  function PartyInfo($log, playerLevels, store) {
+  function PartyInfo(playerLevels, store) {
     var service = {
       // Variables
 			partyLevels: [
@@ -2250,7 +2296,7 @@
 			},
 
 			get totalPartyExpLevels() {
-				var result = _.reduce(service.partyLevels, function(accum, curLevel, key) {
+				var result = _.reduce(service.partyLevels, function(accum, curLevel) {
 					var curExpLevels = getExpLevels(curLevel);
 
 					return {
@@ -2259,8 +2305,6 @@
 							hard: accum.hard + curExpLevels.hard,
 							deadly: accum.deadly + curExpLevels.deadly
 					};
-					
-					return accum;
 				}, { easy: 0, medium: 0, hard: 0, deadly: 0});
 				return result;
 			}
@@ -2290,14 +2334,10 @@
 				};
 			});
 
-			$log.log("Freezing party info", o);
-
 			store.set("5em-party-info", o);
 		}
 
 		function thaw() {
-			$log.log('Thawing party info');
-
 			if (store.hasKey('5em-party-info')) {
 				return store.get("5em-party-info").then(loadPartyInfoFromStore);
 			} else {
@@ -2324,7 +2364,6 @@
 			service.partyLevels = [];
 
 			_.forEach(frozenDataArray, function(frozenData) {
-				$log.log('Load party level (' + frozenData.level + ') and player count (' + frozenData.playerCount + ') from the store');
 				service.partyLevels.push({
 					level: playerLevels[frozenData.level],
 					playerCount: frozenData.playerCount
@@ -2337,13 +2376,10 @@
 				return;
 			}
 
-			$log.log('(Encounter) Load party level (' + frozenData.partyLevel + ') and player count (' + frozenData.playerCount + ') from the store');
 			service.partyLevels = [{
 				level: playerLevels[frozenData.partyLevel],
 				playerCount: frozenData.playerCount
 			}];
-
-			$log.log("Removing old encounter store token and replacing it with party info token");
 
 			var newFrozenData = [
 				{
@@ -2359,15 +2395,16 @@
 		}
   }
 })();
+
 (function () {
 	"use strict";
 
 	angular.module("app")
 		.factory("players", PlayersService);
 
-	PlayersService.$inject = ["$rootScope", "$log", "store"];
+	PlayersService.$inject = ["$rootScope", "store"];
 
-	function PlayersService($rootScope, $log, store) {
+	function PlayersService($rootScope, store) {
 		var players = {
 				selectedParty: null,
 				selectParty: function (party) {
@@ -2439,8 +2476,6 @@
 							damage: (m[3]) ? m[4] - m[3] : 0,
 							hp: parseInt(m[4]),
 						};
-					} else {
-						$log.warn("Can't match:", parties[i][j]);
 					}
 				}
 
@@ -2479,12 +2514,10 @@
 		}
 
 		function freeze() {
-			$log.log('Freeze players');
 			store.set("5em-players", parties);
 		}
 
 		function thaw() {
-			$log.log('Thaw players');
 			store.get("5em-players").then(function (frozen) {
 				if (frozen) {
 					parties = frozen;
@@ -2656,9 +2689,125 @@
 
 		// 2: Empty cells will be omitted from the individual objects lacking entries for those
 		// cells
-		return loadGS.bind(null, $q);
+		return {
+			legacy: loadGS.bind(null, $q),
+			loadIndex: partialLoader.bind(null, $q),
+		};
 	}
 
+	// Modified version of my gs-loader script to use $q and output tabular arrays of objects
+	// instead of lists
+	var partialLoader = (function () {
+		var jsonpcount = 0;
+		var sheets = {};
+
+		// Get AJAX using jsonp
+		function getSheetsJsonp($q, url) {
+			var callbackName = "__jsonpcallback" + jsonpcount++;
+
+			var deferred = $q.defer();
+
+			window[callbackName] = function jsonpCallback(data) {
+				var timestamp = data.feed.updated.$t;
+				deferred.resolve({
+					timestamp: timestamp,
+					data: data.feed.entry
+				});
+				delete window[callbackName];
+			};
+
+			var script = document.createElement("script");
+			script.src = url + "?alt=json-in-script&callback=" + callbackName;
+			script.addEventListener("load", function () {
+				this.parentNode.removeChild(this);
+			}, false);
+
+			document.head.appendChild(script);
+
+			return deferred.promise;
+		}
+
+		function parseLine(ws, data) {
+			data.forEach(function (line) {
+				var parsedObject = {};
+				Object.keys(line).forEach(function (key) {
+					var val = line[key].$t;
+
+					if ( !val ) { return; }
+
+					// The fields that contain the cell values are named "gsx$colName"
+					var match = key.match(/^gsx\$(.+)/);
+
+					if ( !match ) { return; }
+
+					var col = match[1];
+
+					parsedObject[col] = val;
+
+				});
+				ws.push(parsedObject);
+			});
+		}
+
+		function loadIndex($q, id) {
+			var url = "https://spreadsheets.google.com/feeds/worksheets/" + id + "/public/full";
+
+			// Step 1: Get a list of all the worksheets in the spreadsheet
+			return getSheetsJsonp($q, url)
+			.then(function (indexData) {
+				return {
+					timestamp: indexData.timestamp,
+					loadSheets: loadSheets.bind(null, $q, indexData.data),
+				};
+			});
+		}
+
+		function loadSheets($q, indexData) {
+			var worksheetPromises = [];
+			var worksheets = {};
+
+			indexData.forEach(function (worksheet) {
+				var name = worksheet.title.$t;
+				var ws = worksheets[name] = [];
+
+				// Step 2: For each worksheet, parse its listfeed
+				worksheet.link.some(function (link) {
+					if ( link.rel.match(/listfeed/) ) {
+						worksheetPromises.push(
+							getSheetsJsonp($q, link.href)
+							.then(function (sheetData) {
+								// Don't care about timestamp of individual sheets
+								return sheetData.data;
+							})
+							.then(parseLine.bind(null, ws))
+						);
+						return true;
+					}
+				});
+			});
+
+			return $q.all(worksheetPromises)
+			.then(function () {
+				return worksheets;
+			});
+		}
+
+		// Cache results for each id
+		function load($q, id, args) {
+			args = args || {};
+			if ( args.noCache ) {
+				delete sheets[id];
+			}
+
+			sheets[id] = sheets[id] || loadIndex($q, id);
+
+			return sheets[id];
+		}
+
+		return load;
+	}());
+
+	// LEGACY BELOW DELETE THIS EVENTUALLY
 	// Modified version of my gs-loader script to use $q and output tabular arrays of objects
 	// instead of lists
 	var loadGS = (function () {
@@ -2668,7 +2817,7 @@
 
 		// Get AJAX using jsonp
 		function getSheetsJsonp($q, url) {
-			var callbackName = "__jsonpcallback" + jsonpcount++;
+			var callbackName = "__legacycallback" + jsonpcount++;
 
 			var deferred = $q.defer();
 
@@ -2756,30 +2905,184 @@
 })();
 
 (function() {
-	"use strict";
+"use strict";
 
-	angular.module("app")
-		.factory('sources', SourcesService);
+angular.module("app").factory("sheetManager", sheetManager);
 
-	SourcesService.$inject = ["misc", "monsters", "store"];
+var sheetMetaData = {
+	// https://docs.google.com/spreadsheets/d/19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I/edit
+	"19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I": { name: "Master List", timestamp: 0 },
+};
+var sheetMetaStorageKey = "5em-sheet-meta";
+var sheetCachePartialKey = "5em-sheet-cache";
+var legacySheetDataKey = "5em-custom-content";
+var logging = false;
 
-	function SourcesService(misc, monsters, store) {
-		var customContent = [];
-		var customContentKey = "5em-custom-content";
+function generateCacheId(sheetId) {
+	return [sheetCachePartialKey, sheetId].join(":");
+}
 
-		store.get(customContentKey).then(function (data) {
-			if ( !data ) {
-				return;
-			}
+function loadFromCache(args) {
+	if (logging) console.log("Loading from cache");
+	var store = args.store;
+	var sheetId = args.sheetId;
+	var cacheId = generateCacheId(sheetId);
 
-			customContent.length = 0;
-			data.forEach(function (content) {
-				customContent.push(content);
-				monsters.loadSheet(content.id);
+	return store.get(cacheId);
+}
+
+function loadLive(args) {
+	if (logging) console.log("Loading live");
+	var store = args.store;
+	var sheetId = args.sheetId;
+	var googleSheetLoader = args.googleSheetLoader;
+	var timestamp = args.timestamp;
+
+	return googleSheetLoader.loadIndex(sheetId)
+	.then(function (sheetIndex) {
+		var remoteTimestamp = Date.parse(sheetIndex.timestamp);
+		if (logging) console.log("Loaded sheetIndex, remote timestamp:", remoteTimestamp);
+
+		if ( remoteTimestamp > timestamp ) {
+			if (logging) console.log("We're out of date", timestamp);
+			// We're out of date, load remotely
+			return sheetIndex.loadSheets()
+				.then(function (sheetData) {
+					if (logging) console.log("Sheet data loaded", sheetData);
+					updateTimestamp({
+						store: store,
+						sheetId: sheetId,
+						timestamp: remoteTimestamp,
+					});
+
+					var cacheId = generateCacheId(sheetId);
+					store.set(cacheId, sheetData);
+					return sheetData;
+				});
+		} else {
+			if (logging) console.log("We're fresh", timestamp);
+			// Our data are fresh, load from cache
+			return loadFromCache({
+				store: store,
+				sheetId: sheetId,
 			});
+		}
+	})
+	.catch(function () {
+		if (logging) console.log("There was an error live loading");
+		return loadFromCache({
+			store: store,
+			sheetId: sheetId,
+		});
+	})
+	;
+}
+
+function updateTimestamp(args) {
+	var store = args.store;
+	var sheetId = args.sheetId;
+	var timestamp = args.timestamp;
+
+	sheetMetaData[sheetId].timestamp = timestamp;
+	saveMetaData(store);
+}
+
+function insertSheet(args) {
+	var sheetId = args.sheetId;
+	var store = args.store;
+	var googleSheetLoader = args.googleSheetLoader;
+	var monsters = args.monsters;
+	var custom = args.custom;
+	var name = args.name;
+
+	if (logging) console.log("Processing sheet", args);
+	var sheetPromise;
+	if ( !sheetMetaData[sheetId] ) {
+		sheetMetaData[sheetId] = {
+			name: name,
+			timestamp: 0,
+			custom: custom,
+		};
+		saveMetaData(store);
+	}
+	var timestamp = sheetMetaData[sheetId].timestamp;
+
+	if ( navigator.onLine ) {
+		if (logging) console.log("We're online");
+		sheetPromise = loadLive({
+			store: store,
+			sheetId: sheetId,
+			googleSheetLoader: googleSheetLoader,
+			timestamp: timestamp,
+		});
+	} else {
+		if (logging) console.log("We're offline");
+		sheetPromise = loadFromCache({
+			store: store,
+			sheetId: sheetId,
+		});
+	}
+
+	sheetPromise.then(function (sheets) {
+		if (logging) console.log("Got sheets!", sheets);
+		monsters.loadSheet({
+			sheets: sheets,
+			sheetId: sheetId,
+			custom: custom,
+		});
+	});
+}
+
+function saveMetaData(store) {
+	if (logging) console.log("Storing sheetMetaData", sheetMetaData);
+	store.set(sheetMetaStorageKey, sheetMetaData);
+}
+
+sheetManager.$inject = ["$q", "googleSheetLoader", "monsters", "store"];
+function sheetManager($q, googleSheetLoader, monsters, store) {
+	$q.all([
+		store.get(sheetMetaStorageKey).catch(function () { return null; }),
+		store.get(legacySheetDataKey).catch(function () { return []; }),
+	])
+	.then(function (stored) {
+		var cachedMetaData = stored[0];
+		var legacySheetData = stored[1];
+		// sheetMetaData is initialized to default values; if we have cached data, overwrite the
+		// defaults
+		if ( cachedMetaData ) {
+			// integrate in all the default IDs in case any are new since last time metadata were cached
+			Object.keys(sheetMetaData).forEach(function (sheetId) {
+				if ( !cachedMetaData[sheetId] ) {
+					cachedMetaData[sheetId] = sheetMetaData[sheetId];
+				}
+			});
+			sheetMetaData = cachedMetaData;
+		}
+
+		// Integrate legacy data into the sheetMetaData
+		(legacySheetData || []).forEach(function (legacyData) {
+			sheetMetaData[legacyData.id] = {
+				name: legacyData.name,
+				timestamp: 0,
+			};
 		});
 
-		function addCustomContent(name, url) {
+		// Clear out legacy data now that they've been integrated
+		// store.set(legacySheetDataKey, []); // TODO: Uncomment this!
+
+		// Finally, parse the sheets!
+		Object.keys(sheetMetaData).forEach(function (sheetId) {
+			insertSheet({
+				sheetId: sheetId,
+				store: store,
+				googleSheetLoader: googleSheetLoader,
+				monsters: monsters,
+			});
+		});
+	});
+
+	return {
+		addContent: function (name, url) {
 			if ( !name || !url ) {
 				console.log("No name or URL");
 				return;
@@ -2794,53 +3097,51 @@
 
 			var id = idMatch[1];
 
-			if ( customContent.some(function (content) { return content.id === id; }) ) {
+			if ( sheetMetaData[id] ) {
 				console.log("Duplicate ID");
 				return;
 			}
 
-			monsters.loadSheet(id, true);
-			customContent.push({
+			insertSheet({
+				sheetId: id,
 				name: name,
-				id: id,
+				custom: true,
+				store: store,
+				googleSheetLoader: googleSheetLoader,
+				monsters: monsters,
 			});
-
-			customContent.sort(function (a, b) {
-				return (a.name < b.name) ? 1 : -1;
-			});
-
-			store.set(customContentKey, customContent);
 
 			return true;
-		}
-
-		function removeCustomContent(id) {
-			var contentIndex = null;
-
-			customContent.some(function (content, index) {
-				if ( content.id === id ) {
-					contentIndex = index;
-					return true;
-				}
-			});
-
-			if ( contentIndex === null ) {
+		},
+		getSheetMetaData: function () {
+			return sheetMetaData;
+		},
+		removeContent: function (id) {
+			if ( !sheetMetaData[id] ) {
 				return;
 			}
 
-			customContent.splice(contentIndex, 1);
+			delete sheetMetaData[id];
+			saveMetaData(store);
 			monsters.removeSheet(id);
+		},
+	};
+}
+}());
 
-			store.set(customContentKey, customContent);
-		}
+(function() {
+	"use strict";
 
+	angular.module("app")
+		.factory('sources', SourcesService);
+
+	SourcesService.$inject = ["misc"];
+
+	function SourcesService(misc) {
 		return {
 			all: misc.sources,
-			customContent: customContent,
 			filters: misc.sourceFilters,
 			shortNames: misc.shortNames,
-			addCustomContent: addCustomContent,
-			removeCustomContent: removeCustomContent,
 		};
 	}
 })();
@@ -2851,9 +3152,9 @@
 	angular.module("app")
 		.factory("store", StoreService);
 
-	StoreService.$inject = ['$q', '$log', 'localStorageService'];
+	StoreService.$inject = ['$q', 'localStorageService'];
 
-	function StoreService($q, $log, localStorageService) {
+	function StoreService($q, localStorageService) {
 		var store = {
 			get: function (key) {
 				return $q(function(resolve, reject) {
@@ -2863,7 +3164,6 @@
 						data = localStorageService.get(key);
 						resolve(data);
 					} catch (ex) {
-						$log.warn("Unable to parse stored value for " + key);
 						data = undefined;
 						reject("Unable to parse stored value for " + key);
 					}
@@ -3038,7 +3338,7 @@ $templateCache.put('app/encounter-builder/encounter-builder.html','<div class="e
 $templateCache.put('app/encounter-builder/group-info.html','<div class=group-info><div class=group-info--input><h2 class=group-info--header>Group Info</h2><div class="group-info--party-level-row row" ng-repeat="partyLevel in vm.partyInfo.partyLevels"><party-level-selector party-level=partyLevel first=$first></party-level-selector></div><button class="btn btn-xs btn-info group-info--add-level" title="Add Another Party Level" ng-click=vm.addPartyLevel()><i class="fa fa-plus"></i> Add Another Level</button></div><ul class="group-info--guidelines list-unstyled"><li ng-class="{\'group-info--guidelines-active\': vm.encounter.difficulty === \'Easy\'}"><span>Easy:</span> <span class=group-info--guidelines-values>{{ vm.partyInfo.totalPartyExpLevels.easy | number }} exp</span></li><li ng-class="{\'group-info--guidelines-active\': vm.encounter.difficulty === \'Medium\'}"><span>Medium:</span> <span class=group-info--guidelines-values>{{ vm.partyInfo.totalPartyExpLevels.medium | number }} exp</span></li><li ng-class="{\'group-info--guidelines-active\': vm.encounter.difficulty === \'Hard\'}"><span>Hard:</span> <span class=group-info--guidelines-values>{{ vm.partyInfo.totalPartyExpLevels.hard | number }} exp</span></li><li ng-class="{\'group-info--guidelines-active\': vm.encounter.difficulty === \'Deadly\'}"><span>Deadly:</span> <span class=group-info--guidelines-values>{{ vm.partyInfo.totalPartyExpLevels.deadly | number }} exp</span></li></ul></div>');
 $templateCache.put('app/encounter-builder/monster-table.html','<div class="monster-table table-responsive"><table class="monster-table--table table table-bordered table-striped"><thead><tr><th class="monster-table--column monster-table--column__button"></th><th class="monster-table--column monster-table--column__sortable monster-table--column__name" ng-click="vm.filters.sort = \'name\'">Name</th><th class="monster-table--column monster-table--column__sortable monster-table--column__cr" ng-click="vm.filters.sort = \'cr\'">CR</th><th class="monster-table--column monster-table--column__sortable monster-table--column__size" ng-click="vm.filters.sort = \'size\'">Size</th><th class="monster-table--column monster-table--column__sortable monster-table--column__type" ng-click="vm.filters.sort = \'type\'">Type</th><th class="monster-table--column monster-table--column__sortable monster-table--column__alignment" ng-click="vm.filters.sort = \'alignment\'">Alignment</th><th class="monster-table--column monster-table--column__source">Source</th></tr></thead><tbody><tr dir-paginate="monster in vm.monsters | monstersFilter:vm.filters | itemsPerPage: vm.filters.pageSize" class=monster-table--row><td class=monster-table--button-cell><button ng-click=vm.encounter.add(monster) class="btn btn-sm btn-success"><i class="fa fa-plus"></i></button></td><td class=monster-table--name-cell><div class=monster-table--name>{{ monster.name }}</div><div ng-if=monster.section class=monster-table--section><span class=monster-table--label>Section:</span> {{ monster.section }}</div></td><td class=monster-table--cr-cell ng-class="\'monster-table--cr-cell__\' + vm.dangerZone(monster)"><span class=monster-table--cr-label>CR</span> {{ monster.cr.string }}</td><td class=monster-table--size-cell><span class=monster-table--label>Size:</span> {{ monster.size }}</td><td class=monster-table--type-cell><span class=monster-table--label>Type:</span> {{ monster.type }} <span ng-if=monster.tags class=monster-table--tags>({{ monster.tags.join(", ") }})</span></td><td class=monster-table--alignment-cell><span ng-if=monster.alignment><span class=monster-table--label>Alignment:</span> {{ monster.alignment.text }}</span></td><td class=monster-table--source-cell><span class=monster-table--label>Source(s):</span><div class=monster-table--sources ng-repeat="source in monster.sources" ng-show=vm.filters.source[source.name]><span class="monster-table--source-name monster-table--source-name__short" title="{{ source.name }}">{{ vm.sources.shortNames[source.name] }}</span> <span class="monster-table--source-name monster-table--source-name__long">{{ source.name }}</span> <span ng-if=source.page>p.{{ source.page }}</span> <span ng-if=source.url><a target=_blank href="{{ source.url }}">[Link]</a></span></div></td></tr></tbody></table></div><div class=pagination-container><dir-pagination-controls></dir-pagination-controls></div>');
 $templateCache.put('app/encounter-builder/party-level-selector.html','<div class=group-info--input-section><label ng-if=vm.first>Players:</label><select ng-model=vm.partyLevel.playerCount ng-options="count for count in [1,2,3,4,5,6,7,8,9,10,11,12]" ng-change=vm.save()></select></div><div class=group-info--input-section><label ng-if=vm.first>Level:</label><select ng-model=vm.partyLevel.level ng-options="level as level.level for level in vm.levels" ng-change=vm.save()></select></div><button ng-if=!vm.first class="btn btn-xs btn-danger group-info--remove-level" title="Add Different Party Level" ng-click=vm.removePartyLevel()><i class="fa fa-times"></i></button>');
-$templateCache.put('app/encounter-builder/search.html','<div class=search><div class="search--search-form form-inline"><label class=sr-only>Search</label> <input class="form-control search-input" type=text ng-model=vm.filters.search placeholder=Search...><select class=form-control ng-model=vm.filters.size ng-options="size for size in vm.sizes"><option value>Any Size</option></select><select class=form-control ng-model=vm.filters.type ng-options="type for type in vm.types"><option value>Any Type</option></select><select class=form-control ng-model=vm.filters.minCr ng-options="cr.numeric as cr.string for cr in vm.crList"><option value>Min CR</option></select><select class=form-control ng-model=vm.filters.maxCr ng-options="cr.numeric as cr.string for cr in vm.crList"><option value>Max CR</option></select><select class=form-control ng-model=vm.filters.alignment ng-options="alignment as alignment.text for (key, alignment) in vm.alignments"><option value>Any Alignment</option></select><select class=form-control ng-model=vm.filters.environment ng-options="environment as environment for environment in vm.environments"><option value>Any Environment</option></select><button type=button class="btn btn-default" data-toggle=modal data-target=#sourcesModal>Set Sources</button> <button type=button class="btn btn-default" data-toggle=modal data-target=#contentModal>Manage Custom Content</button></div><div class=search--reset><button class="btn btn-danger" ng-click=vm.resetFilters()>Reset Filters</button><div class=search--size-controls><label>Page size:</label><select class="form-control search--page-size" ng-model=vm.filters.pageSize ng-options="page for page in [10, 25, 50, 100, 250, 500, 1000]"></select></div></div><div class=modal id=sourcesModal tabindex=-1 role=dialog aria-labelledby=myModalLabel><div class=modal-dialog role=document><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-label=Close><span aria-hidden=true>&times;</span></button><h4 class=modal-title id=myModalLabel>Set Source Material</h4></div><div class=modal-body><div class=sources-modal--buttons><button class="btn btn-primary" ng-click="vm.updateSourceFilters(\'all\')">Everything</button> <button class="btn btn-primary" ng-click="vm.updateSourceFilters(\'core\')">Core Books</button> <button class="btn btn-primary" ng-click="vm.updateSourceFilters(\'none\')">None</button></div><ul><li class=search--source ng-repeat="source in vm.sourceNames" ng-class="{ \'search--source__off\': !vm.filters.source[source] }"><label><input type=checkbox ng-model=vm.filters.source[source]> {{ source }}</label></li></ul></div><div class=modal-footer><button type=button class="btn btn-default" data-dismiss=modal>Close</button></div></div></div></div><div class=modal id=contentModal tabindex=-1 role=dialog aria-labelledby=myModalLabel><div class=modal-dialog role=document><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-label=Close><span aria-hidden=true>&times;</span></button><h4 class=modal-title id=myModalLabel>Manage Custom Content</h4></div><div class=modal-body><ul><li class="row search--content-row" ng-repeat="contentDefinition in customContent"><div class=col-lg-1><button class="btn btn-danger" ng-click=removeCustom(contentDefinition.id)><i class="fa fa-trash-o"></i></button></div><div class=col-lg-9>{{ contentDefinition.name }} <a class=search--sheet-link ng-href="https://docs.google.com/spreadsheets/d/{{ contentDefinition.id }}/">{{ contentDefinition.id }}</a></div></li><li class="row search--content-row"><div class=col-lg-5><input class=form-control placeholder=Name ng-model=customName></div><div class=col-lg-5><input class=form-control placeholder="URL or ID" ng-model=customUrl></div><div class=col-lg-2><button class="btn btn-primary" ng-click=addCustom()>Add</button></div></li></ul><a class="btn btn-info" href=https://github.com/Asmor/5e-monsters#contributing-content-to-kobold-fight-club>Instructions</a></div><div class=modal-footer><button type=button class="btn btn-default" data-dismiss=modal>Close</button></div></div></div></div></div>');
+$templateCache.put('app/encounter-builder/search.html','<div class=search><div class="search--search-form form-inline"><label class=sr-only>Search</label> <input class="form-control search-input" type=text ng-model=vm.filters.search placeholder=Search...><select class=form-control ng-model=vm.filters.size ng-options="size for size in vm.sizes"><option value>Any Size</option></select><select class=form-control ng-model=vm.filters.type ng-options="type for type in vm.types"><option value>Any Type</option></select><select class=form-control ng-model=vm.filters.minCr ng-options="cr.numeric as cr.string for cr in vm.crList"><option value>Min CR</option></select><select class=form-control ng-model=vm.filters.maxCr ng-options="cr.numeric as cr.string for cr in vm.crList"><option value>Max CR</option></select><select class=form-control ng-model=vm.filters.alignment ng-options="alignment as alignment.text for (key, alignment) in vm.alignments"><option value>Any Alignment</option></select><select class=form-control ng-model=vm.filters.environment ng-options="environment as environment for environment in vm.environments"><option value>Any Environment</option></select><button type=button class="btn btn-default" data-toggle=modal data-target=#sourcesModal>Set Sources</button> <button type=button class="btn btn-default" data-toggle=modal data-target=#contentModal>Manage Content</button></div><div class=search--reset><button class="btn btn-danger" ng-click=vm.resetFilters()>Reset Filters</button><div class=search--size-controls><label>Page size:</label><select class="form-control search--page-size" ng-model=vm.filters.pageSize ng-options="page for page in [10, 25, 50, 100, 250, 500, 1000]"></select></div></div><div class=modal id=sourcesModal tabindex=-1 role=dialog aria-labelledby=myModalLabel><div class=modal-dialog role=document><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-label=Close><span aria-hidden=true>&times;</span></button><h4 class=modal-title id=myModalLabel>Set Source Material</h4></div><div class=modal-body><div class=sources-modal--buttons><button class="btn btn-primary" ng-click="vm.updateSourceFilters(\'all\')">Everything</button> <button class="btn btn-primary" ng-click="vm.updateSourceFilters(\'core\')">Core Books</button> <button class="btn btn-primary" ng-click="vm.updateSourceFilters(\'none\')">None</button></div><ul><li class=search--source ng-repeat="source in vm.sourceNames" ng-class="{ \'search--source__off\': !vm.filters.source[source] }"><label><input type=checkbox ng-model=vm.filters.source[source]> {{ source }}</label></li></ul></div><div class=modal-footer><button type=button class="btn btn-default" data-dismiss=modal>Close</button></div></div></div></div><div class=modal id=contentModal tabindex=-1 role=dialog aria-labelledby=myModalLabel><div class=modal-dialog role=document><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-label=Close><span aria-hidden=true>&times;</span></button><h4 class=modal-title id=myModalLabel>Manage Content</h4></div><div class=modal-body><ul><li class="row search--content-row" ng-repeat="contentDefinition in getContent()"><div class=col-lg-1><button ng-disabled=!contentDefinition.custom class="btn btn-danger" ng-click=removeCustom(contentDefinition.id)><i class="fa fa-trash-o"></i></button></div><div class=col-lg-9>{{ contentDefinition.name }} (Last updated: {{ contentDefinition.updated }})<div><a class=search--sheet-link ng-href="https://docs.google.com/spreadsheets/d/{{ contentDefinition.id }}/">{{ contentDefinition.id }}</a></div></div></li><li class="row search--content-row"><div class=col-lg-5><input class=form-control placeholder=Name ng-model=customName></div><div class=col-lg-5><input class=form-control placeholder="URL or ID" ng-model=customUrl></div><div class=col-lg-2><button class="btn btn-primary" ng-click=addCustom()>Add</button></div></li></ul><a class="btn btn-info" href=https://github.com/Asmor/5e-monsters#contributing-content-to-kobold-fight-club>Instructions</a></div><div class=modal-footer><button type=button class="btn btn-default" data-dismiss=modal>Close</button></div></div></div></div></div>');
 $templateCache.put('app/encounter-manager/encounter-manager.html','<div class=encounter-manager><div class=encounter-manager--no-encounters ng-if="!vm.encounter.qty && !vm.library.encounters.length">You don\'t have any encounters saved. <button ui-sref=encounter-builder>Return to encounter builder</button></div><div class="encounter-manager-encounter encounter-manager-encounter__unsaved" ng-if="vm.encounter.qty && !vm.encounter.reference"><div class=encounter-manager-encounter--controls><input class=encounter-manager-encounter--name-input placeholder="{{ vm.newEncounter.placeholder }}" ng-model=vm.newEncounter.name> <button class=encounter-manager-encounter--save-button ng-click=vm.save()>Save current encounter</button></div><div class=encounter-manager-monster ng-repeat="(id, group) in vm.encounter.groups"><span ng-if="group.qty > 1">{{ group.qty }}x</span> {{ group.monster.name }}</div></div><div ng-repeat="storedEncounter in vm.library.encounters track by $index"><manager-row stored-encounter=storedEncounter></manager-row></div></div>');
 $templateCache.put('app/encounter-manager/manager-row.html','<div class=encounter-manager-row><div class=encounter-manager-row--controls><div class=encounter-manager-row--name>{{ vm.storedEncounter.name }}</div><div class=encounter-manager-row--exp>Exp: {{ vm.calculateExp(vm.storedEncounter) }}</div><button class=encounter-manager-row--load-button ng-click=vm.load(vm.storedEncounter) ng-if="vm.encounter.reference != vm.storedEncounter">Choose</button> <button class=encounter-manager-row--remove-button ng-click=vm.remove(vm.storedEncounter)>Remove</button> <span class=encounter-manager-row--active ng-if="vm.encounter.reference == vm.storedEncounter">Active</span></div><div class=encounter-manager-monster ng-repeat="(id, qty) in vm.storedEncounter.groups"><span ng-if="qty > 1">{{ qty }}x</span> {{ vm.monsters.byId[id].name }}</div></div>');
 $templateCache.put('app/navbar/navbar.html','<nav class="navbar navbar-inverse navbar-fixed-top"><div class=container-fluid><div class=navbar-header><button type=button class="navbar-toggle collapsed" data-toggle=collapse data-target=.navbar-collapse aria-expanded=false aria-controls=navbar><span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span></button> <a class=navbar-brand href=#>Kobold Fight Club</a></div><div id=navbar class="collapse navbar-collapse"><ul class="nav navbar-nav navbar-right"><li ui-sref-active=active data-toggle=collapse data-target=.navbar-collapse.in><a ui-sref=encounter-builder>Home</a></li><li ui-sref-active=active data-toggle=collapse data-target=.navbar-collapse.in><a ui-sref=encounter-manager>Manage Encounters</a></li><li ui-sref-active=active data-toggle=collapse data-target=.navbar-collapse.in><a ui-sref=players.manage>Manage Players</a></li><li ui-sref-active=active data-toggle=collapse data-target=.navbar-collapse.in><a ui-sref=battle-setup>Run Encounters</a></li><li ui-sref-active=active data-toggle=collapse data-target=.navbar-collapse.in><a ui-sref=about>About</a></li></ul></div></div></nav>');

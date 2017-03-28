@@ -4,7 +4,7 @@ describe('Encounter Builder Controller', function() {
   var scope;
   beforeEach(function() {
     bard.appModule('app');
-    bard.inject(this, '$controller', '$rootScope', '$log', 'store', 'actionQueue', 'encounter', 'monsters', 'sources', '$q');
+    bard.inject(this, '$controller', '$rootScope', 'store', 'actionQueue', 'encounter', 'monsters', 'sources', '$q');
 
     scope = $rootScope.$new();
     actionQueue.clear = sinon.stub();
