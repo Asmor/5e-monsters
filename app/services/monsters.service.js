@@ -63,13 +63,11 @@
 			all.push(monster);
 			byId[monster.id] = monster;
 
-			if ( ! monster.special ) {
-				if ( ! byCr[monster.cr.string] ) {
-					byCr[monster.cr.string] = [];
-				}
-
-				byCr[monster.cr.string].push(monster);
+			if ( ! byCr[monster.cr.string] ) {
+				byCr[monster.cr.string] = [];
 			}
+
+			byCr[monster.cr.string].push(monster);
 		});
 
 		sourcesById[sheetId] = [];
