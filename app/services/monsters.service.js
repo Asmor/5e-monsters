@@ -97,8 +97,11 @@
 
 	function removeSheet(miscLib, id) {
 		var i = 0;
+		var monsterId;
 		while ( all[i] ) {
 			if ( all[i].sheetId === id ) {
+				monsterId = all[i].id;
+				delete byId[monsterId];
 				all.splice(i, 1);
 			} else {
 				i++;
@@ -117,5 +120,6 @@
 		});
 
 		delete sourcesById[id];
+		delete loaded[id];
 	}
 })();
