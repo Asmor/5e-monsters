@@ -96,10 +96,22 @@
 	function removeSheet(miscLib, id) {
 		var i = 0;
 		var monsterId;
+		var crString;
+		var crIndex;
+
+		// No longer mark sheet as loaded
+		delete loaded[id];
+
+		// Loop through all the monsters and remove them from all and byCr
 		while ( all[i] ) {
 			if ( all[i].sheetId === id ) {
 				monsterId = all[i].id;
 				delete byId[monsterId];
+				crString = all[i].cr.string;
+				crIndex = byCr[crString].indexOf(all[i]);
+				if ( crIndex !== -1 ) {
+					byCr.splice(crIndex, 1);
+				}
 				all.splice(i, 1);
 			} else {
 				i++;
@@ -110,6 +122,7 @@
 			return;
 		}
 
+		// Loop through sources and remove them
 		sourcesById[id].forEach(function (sourceName) {
 			i = miscLib.sources.indexOf(sourceName);
 			miscLib.sources.splice(i, 1);
@@ -118,6 +131,5 @@
 		});
 
 		delete sourcesById[id];
-		delete loaded[id];
 	}
 })();
