@@ -76,6 +76,11 @@
 			var shortName = sourceData.shortname;
 			var initialState = custom || !!(sourceData.defaultselected || "").match(/yes/i);
 
+			if ( miscLib.sourceFilters[name] ) {
+				console.warn("Duplicate source", name);
+				return;
+			}
+
 			sourcesById[sheetId].push(name);
 			miscLib.sources.push(name);
 			miscLib.sourceFilters[name] = initialState;
