@@ -4,11 +4,11 @@
 angular.module("app").factory("sheetManager", sheetManager);
 
 var sheetMetaData = {
-	// https://docs.google.com/spreadsheets/d/19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I/edit
-	"19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I": { name: "Master List", timestamp: 0 },
+	"1I5W-x8QOcP2siGCPIhWWzKGWt4vyBivYLbmkv_G1B24": { name: "Official", timestamp: 0 },
 	"1YR8NBDp8BP4Lz-CWChh6-8dOPN7aYV_dRD6g9ZBvNqM": { name: "Third-Party", timestamp: 0 },
 	"1x6xC8fHZ6N6M2wOuwPTNdn0ObCPtdqeIBtXaLjHBMYQ": { name: "Community", timestamp: 0 },
 };
+var remove = ["19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I"];
 var sheetMetaStorageKey = "5em-sheet-meta";
 var sheetCachePartialKey = "5em-sheet-cache";
 var legacySheetDataKey = "5em-custom-content";
@@ -154,6 +154,11 @@ function sheetManager($q, googleSheetLoader, monsters, store) {
 			});
 			sheetMetaData = cachedMetaData;
 		}
+
+		// For compatibility reasons, may need to remove access to some sheets
+		remove.forEach(function (sheetId) {
+			delete sheetMetaData[sheetId];
+		});
 
 		// Integrate legacy data into the sheetMetaData
 		(legacySheetData || []).forEach(function (legacyData) {
