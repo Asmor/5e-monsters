@@ -2205,16 +2205,19 @@
 			monsterData.sheetId = sheetId;
 			var monster = new monsterFactory.Monster(monsterData);
 
+			if ( byId[monster.id] ) {
+				console.warn("Duplicate ID", monster.id, monster.fid);
+				return;
+			}
+
 			all.push(monster);
 			byId[monster.id] = monster;
 
-			if ( ! monster.special ) {
-				if ( ! byCr[monster.cr.string] ) {
-					byCr[monster.cr.string] = [];
-				}
-
-				byCr[monster.cr.string].push(monster);
+			if ( ! byCr[monster.cr.string] ) {
+				byCr[monster.cr.string] = [];
 			}
+
+			byCr[monster.cr.string].push(monster);
 		});
 
 		sourcesById[sheetId] = [];
@@ -2222,6 +2225,11 @@
 			var name = sourceData.name;
 			var shortName = sourceData.shortname;
 			var initialState = custom || !!(sourceData.defaultselected || "").match(/yes/i);
+
+			if ( miscLib.sourceFilters[name] ) {
+				console.warn("Duplicate source", name);
+				return;
+			}
 
 			sourcesById[sheetId].push(name);
 			miscLib.sources.push(name);
@@ -2242,8 +2250,23 @@
 
 	function removeSheet(miscLib, id) {
 		var i = 0;
+		var monsterId;
+		var crString;
+		var crIndex;
+
+		// No longer mark sheet as loaded
+		delete loaded[id];
+
+		// Loop through all the monsters and remove them from all and byCr
 		while ( all[i] ) {
 			if ( all[i].sheetId === id ) {
+				monsterId = all[i].id;
+				delete byId[monsterId];
+				crString = all[i].cr.string;
+				crIndex = byCr[crString].indexOf(all[i]);
+				if ( crIndex !== -1 ) {
+					byCr.splice(crIndex, 1);
+				}
 				all.splice(i, 1);
 			} else {
 				i++;
@@ -2254,6 +2277,7 @@
 			return;
 		}
 
+		// Loop through sources and remove them
 		sourcesById[id].forEach(function (sourceName) {
 			i = miscLib.sources.indexOf(sourceName);
 			miscLib.sources.splice(i, 1);
@@ -2812,9 +2836,11 @@
 angular.module("app").factory("sheetManager", sheetManager);
 
 var sheetMetaData = {
-	// https://docs.google.com/spreadsheets/d/19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I/edit
-	"19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I": { name: "Master List", timestamp: 0 },
+	"1I5W-x8QOcP2siGCPIhWWzKGWt4vyBivYLbmkv_G1B24": { name: "Official", timestamp: 0 },
+	"1YR8NBDp8BP4Lz-CWChh6-8dOPN7aYV_dRD6g9ZBvNqM": { name: "Third-Party", timestamp: 0 },
+	"1x6xC8fHZ6N6M2wOuwPTNdn0ObCPtdqeIBtXaLjHBMYQ": { name: "Community", timestamp: 0 },
 };
+var remove = ["19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I"];
 var sheetMetaStorageKey = "5em-sheet-meta";
 var sheetCachePartialKey = "5em-sheet-cache";
 var legacySheetDataKey = "5em-custom-content";
@@ -2960,6 +2986,11 @@ function sheetManager($q, googleSheetLoader, monsters, store) {
 			});
 			sheetMetaData = cachedMetaData;
 		}
+
+		// For compatibility reasons, may need to remove access to some sheets
+		remove.forEach(function (sheetId) {
+			delete sheetMetaData[sheetId];
+		});
 
 		// Integrate legacy data into the sheetMetaData
 		(legacySheetData || []).forEach(function (legacyData) {
