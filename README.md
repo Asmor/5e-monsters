@@ -11,7 +11,7 @@ Nothing special needed to run it. Just open index.html in firefox. You can run i
 - npm run build-css - Compile sass into css
 - npm run watch-css - Watch folder for changes and run build-css if needed
 
-# Contributing content to Kobold Fight Club
+# Adding your own custom content to Kobold Fight Club
 
 Links:
 * Master sheet: https://docs.google.com/spreadsheets/d/19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I/
@@ -60,6 +60,19 @@ Links:
 			* `Monster-A-Day: https://www.reddit.com/r/monsteraday/comments/3rdrry/day_79_chronomancers/`
 				* In this case the monster comes from a website, and we give a specific URL. KFC will provide a link to the monster.
 	* Specific notes for **Sources** sheet
+		* **type** is what sort of content this is. In a future update, KFC will sort sources based on their type. Standard types are:
+			* Official
+				* 5th edition books published by Wizards of the Coast
+			* Official Adventure
+				* 5th edition adventures published by Wizards of the Coast
+			* Official Web Supplement
+				* 5th edition supplements published online by Wizards of the Coast
+			* Third-Party
+				* 5th edition books published by companies other than Wizards of the Coast
+			* Community
+				* Content created by fans
+			* Other
+				* You can use any type you want. I recommend "Homebrew" for your own personal content.
 		* **name** is the full name of the source, and should exactly match the name of the source as you used it in the monsters sheet. If the names don't match exactly, monsters won't be linked to their sources correctly.
 		* **short name** is the short name for the source. This is used on narrow screens such as phones. It should be something easily identifiable and unique. It may be the same as the fid code, but doesn't have to be. Examples:
 			* Monster Manual: `MM`
@@ -70,4 +83,17 @@ Links:
 		* **link** is a link to the source. This should be a landing page of some sort, not a direct link to a PDF. For example, a blog post, a reddit threat, an online store front.
 3. Go to the sheet checker (see links section above). Put the URL for your sheet in the box and click the button. Fix any errors you get and try again.
 4. Once you're done, click "Manage Custom Content" in KFC. Put the URL for your sheet in the field that says URL, give it a name, and click add. If you've done everything correctly, your monsters will now be integrated into the list.
-5. Feel free to send the sheet to me at itoltz@gmail.com for consideration to add it into KFC officially.
+
+# Contributing content to Kobold Fight Club
+
+If you'd like to submit content to KFC, please follow the steps above for adding content. Make sure that you run your custom content through the sheet checker and that it doesn't give any errors or warnings.
+
+Once you've completed that, please create an issue here on GitHub with a link to the spreadsheet.
+
+If you're going to be working on a large book that has hundreds of monsters, consider opening a ticket on GitHub before you start. This way other people can see that someone is working on it, and you might even find someone to collaborate with and share the load. Similarly, before starting on such a project search the open issues and see if anyone else is already working on it.
+
+## Contributing Community content
+
+I have one caveat. For community content, it must be submitted to the [Best of Homebrew 5e subreddit](https://www.reddit.com/r/boh5e/), and must have a score of at least 8.0 or higher. If submitting community content, please include a link in the GitHub issue to the reddit thread in /r/boh5e.
+
+Some community content is already included in KFC; this content is from before I instituted this rule, and is grandfathered in.
