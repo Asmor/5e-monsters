@@ -2,7 +2,7 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: 'Open Sans', sans-serif; }
+  font-family: Sans-Serif; }
 
 body {
   padding-top: 70px; }
@@ -7852,8 +7852,9 @@ button.close {
 .combatant__lair {
   background-color: #E78AC3; }
 
-.combatant__active .combatant--name {
-  font-weight: bold; }
+.combatant__active  {
+  box-shadow: inset 5px 5px 4px #FFD700, inset -5px -5px 4px #FFD700;
+  font-weight: bold;}
 
 .combatant--name {
   display: inline-block;
