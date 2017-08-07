@@ -4,25 +4,34 @@
 	@include combatant-colors;
 
 	&__active {
-		.combatant--name {
-			font-weight: bold;
-		}
+		box-shadow: inset 5px 5px 4px #FFD700, inset -5px -5px 4px #FFD700;
+		font-weight: 600;
 	}
 
 	&--apply-button {
 		@extend .encounter-button;
 	}
 
-	&--name {
+	& > * {
 		display: inline-block;
+	}
+
+	&--name {
 		width: 250px;
 	}
 
+	&--initiative-label {
+		width: 65px;
+	}
+
 	&--initiative {
-		display: inline-block;
 		width: 30px;
 		text-align: right;
-		margin-right: 20px;
+		margin-right: 30px;
+	}
+
+	&--hp-label {
+		width: 28px;
 	}
 
 	&--hp {
