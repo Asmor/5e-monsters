@@ -99,14 +99,50 @@
 			sources.all.forEach(function (sourceName) {
 				vm.filters.source[sourceName] = (sourceTypes === "all");
 			});
-			if ( sourceTypes === "core" ) {
-				[
-					"Player's Handbook",
-					"Monster Manual",
-					"Volo's Guide to Monsters",
-				].forEach(function (sourceName) {
-					vm.filters.source[sourceName] = true;
-				});
+			
+			switch (sourceTypes) {
+				// non-core WotC products
+				case "official":
+					[
+						"Curse of Strahd",
+						"Hoard of the Dragon Queen",
+						"HotDQ supplement",
+						"Out of the Abyss",
+						"Princes of the Apocalypse",
+						"Princes of the Apocalypse Online Supplement v1.0",
+						"Rise of Tiamat",
+						"Storm King's Thunder",
+						"Tales from the Yawning Portal",
+					].forEach(function (sourceName) {
+						vm.filters.source[sourceName] = true;
+					});
+					// no break here
+				case "core":
+					[
+						"Basic Rules v1",
+						"Player's Handbook",
+						"Monster Manual",
+						"Volo's Guide to Monsters",
+						// "Xanathar's Guide to Everything",
+					].forEach(function (sourceName) {
+						vm.filters.source[sourceName] = true;
+					});
+					break;
+				// non-WotC products
+				case "3rdparty":
+					[
+						"Fifth Edition Foes",
+						"Monster Module",
+						"Monster-A-Day",
+						"Monsters of the Orient",
+						"Nerzugal's Extended Bestiary",
+						"Primeval Thule Campaign Setting",
+						"Primeval Thule Gamemaster's Companion",
+						"Tome of Beasts",
+					].forEach(function (sourceName) {
+						vm.filters.source[sourceName] = true;
+					});
+					break;
 			}
 		}
 	}
