@@ -168,7 +168,7 @@
 
 				if (legendaryFilter) {
 					if (!monster[legendaryFilter]) return false;
-                } else  {
+				} else  {
 					if (monster.legendary || monster.lair) return false;
 				}
 			}
