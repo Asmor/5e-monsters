@@ -38,6 +38,11 @@
 				ng-options="environment as environment for environment in vm.environments">
 			<option value="">Any Environment</option>
 		</select>
+		<select class="form-control"
+				ng-model="vm.filters.legendary"
+				ng-options="legendary as legendary for legendary in vm.legendaryList">
+			<option value="">Any Legendary</option>
+		</select>
 		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#sourcesModal">
 			Set Sources
 		</button>
