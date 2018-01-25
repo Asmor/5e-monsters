@@ -36,9 +36,10 @@
 							easy: accum.easy + curExpLevels.easy,
 							medium: accum.medium + curExpLevels.medium,
 							hard: accum.hard + curExpLevels.hard,
-							deadly: accum.deadly + curExpLevels.deadly
+							deadly: accum.deadly + curExpLevels.deadly,
+							budget: accum.budget + curExpLevels.budget
 					};
-				}, { easy: 0, medium: 0, hard: 0, deadly: 0});
+				}, { easy: 0, medium: 0, hard: 0, deadly: 0, budget: 0});
 				return result;
 			}
     };
@@ -50,7 +51,8 @@
 					easy: partyLevel.playerCount * partyLevel.level.easy,
 					medium: partyLevel.playerCount * partyLevel.level.medium,
 					hard: partyLevel.playerCount * partyLevel.level.hard,
-					deadly: partyLevel.playerCount * partyLevel.level.deadly
+					deadly: partyLevel.playerCount * partyLevel.level.deadly,
+					budget: partyLevel.playerCount * partyLevel.level.budget
 				};
 		}
 
