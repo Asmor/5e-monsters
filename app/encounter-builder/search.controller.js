@@ -108,6 +108,27 @@
 					vm.filters.source[sourceName] = true;
 				});
 			}
+			if ( sourceTypes === "official" ) {
+				[
+					"Basic Rules v1",
+					"Curse of Strahd",
+					"Hoard of the Dragon Queen",
+					"HotDQ supplement",
+					"Monster Manual",
+					"Out of the Abyss",
+					"Player's Handbook",
+					"Princes of the Apocalypse",
+					"Princes of the Apocalypse Online Supplement v1.0",
+					"Rise of Tiamat",
+					"Storm King's Thunder",
+					"Tales from the Yawning Portal",
+					"The Tortle Package",
+					"Tomb of Annihilation",
+					"Volo's Guide to Monsters",
+				].forEach(function (sourceName) {
+					vm.filters.source[sourceName] = true;
+				});
+			}
 		}
 	}
 })();
