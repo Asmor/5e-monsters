@@ -63,6 +63,7 @@
 
 					if ( where.match(/^\d+$/) ) {
 						out.page = Number.parseInt(where, 10);
+						out.url = "https://www.dndbeyond.com/monsters/" + monster.name.toLowerCase().split(" ").join("-")
 					} else {
 						out.url = where;
 					}
