@@ -113,6 +113,8 @@
 						"Rise of Tiamat",
 						"Storm King's Thunder",
 						"Tales from the Yawning Portal",
+						"The Tortle Package",
+						"Tomb of Annihilation",
 					].forEach(function (sourceName) {
 						vm.filters.source[sourceName] = true;
 					});
@@ -123,7 +125,7 @@
 						"Player's Handbook",
 						"Monster Manual",
 						"Volo's Guide to Monsters",
-						// "Xanathar's Guide to Everything",
+						// "Mordenkainen's Tome of Foes",
 					].forEach(function (sourceName) {
 						vm.filters.source[sourceName] = true;
 					});
@@ -131,6 +133,7 @@
 				// non-WotC products
 				case "3rdparty":
 					[
+						"Demon Cults & Secret Societies",
 						"Fifth Edition Foes",
 						"Monster Module",
 						"Monster-A-Day",
@@ -139,6 +142,7 @@
 						"Primeval Thule Campaign Setting",
 						"Primeval Thule Gamemaster's Companion",
 						"Tome of Beasts",
+						"Ultimate Bestiary Revenge of the Horde",
 					].forEach(function (sourceName) {
 						vm.filters.source[sourceName] = true;
 					});
