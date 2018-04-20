@@ -124,10 +124,10 @@
 				case "core":
 					[
 						"Basic Rules v1",
-						"Player's Handbook",
 						"Monster Manual",
-						"Volo's Guide to Monsters",
 						// "Mordenkainen's Tome of Foes",
+						"Player's Handbook",
+						"Volo's Guide to Monsters",
 					].forEach(function (sourceName) {
 						vm.filters.source[sourceName] = true;
 					});
