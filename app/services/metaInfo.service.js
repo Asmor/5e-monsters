@@ -21,6 +21,11 @@
 				crInfo["25"],	crInfo["26"],	crInfo["27"],	crInfo["28"],
 				crInfo["29"],	crInfo["30"],
 			],
+			legendaryList: [
+				"Ordinary",
+				"Legendary",
+				"Legendary (in lair)"
+			],
 			environments: [
 				"aquatic",
 				"arctic",

@@ -15,6 +15,7 @@
 		vm.sizes = metaInfo.sizes;
 		vm.sourceNames = sources.all;
 		vm.types = metaInfo.types;
+		vm.legendaryList = metaInfo.legendaryList;
 
 		// Cache sorted data to avoid infinite digest
 		var contentCacheKey;
@@ -84,6 +85,7 @@
 			vm.filters.minCr = null;
 			vm.filters.maxCr = null;
 			vm.filters.environment = null;
+			vm.filters.legendary = null;
 		}
 
 		function updateSourceFilters(newValue) {

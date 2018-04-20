@@ -157,6 +157,22 @@
 		function checkMonster(monster, filters, args) {
 			args = args || {};
 
+			var legendaryMap = {
+				'Legendary': 'legendary',
+				'Legendary (in lair)': 'lair',
+				'Ordinary': false
+			};
+
+			if (filters.legendary) {
+				var legendaryFilter = legendaryMap[filters.legendary];
+
+				if (legendaryFilter) {
+					if (!monster[legendaryFilter]) return false;
+				} else  {
+					if (monster.legendary || monster.lair) return false;
+				}
+			}
+
 			if ( filters.type && monster.type !== filters.type ) {
 				return false;
 			}
