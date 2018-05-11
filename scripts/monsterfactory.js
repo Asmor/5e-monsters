@@ -25,7 +25,7 @@
 				// Try to parse each of these into a number, but if that fails then just give the
 				// original string value, which presumably is either an empty string or something
 				// complicated
-				var parsed = Number.parseInt(args[key]);
+				var parsed = parseInt(args[key]);
 
 				if ( isNaN(parsed) ) {
 					parsed = args[key];
@@ -62,7 +62,7 @@
 					};
 
 					if ( where.match(/^\d+$/) ) {
-						out.page = Number.parseInt(where, 10);
+						out.page = parseInt(where, 10);
 					} else {
 						out.url = where;
 					}
