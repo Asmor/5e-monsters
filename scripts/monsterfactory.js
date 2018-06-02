@@ -218,7 +218,7 @@
 			}
 
 			if ( filters.search ) {
-				let checkRegex = filters.search.match(/^\/(.+)\/?$/);
+				let checkRegex = filters.search.match(/^\/(.*)\/?$/);
 				if ( checkRegex ) {
 					let regex;
 					let raw = checkRegex[1];
