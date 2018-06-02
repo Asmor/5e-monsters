@@ -125,7 +125,7 @@
 					[
 						"Basic Rules v1",
 						"Monster Manual",
-						// "Mordenkainen's Tome of Foes",
+						"Mordenkainen's Tome of Foes",
 						"Player's Handbook",
 						"Volo's Guide to Monsters",
 					].forEach(function (sourceName) {

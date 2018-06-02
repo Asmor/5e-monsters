@@ -2,6 +2,11 @@
 	/* global requirejs */
 	"use strict";
 
+	// polyfill for older browsers that don't support Number.parseInt natively
+	if ( !Number.parseInt ) {
+		Number.parseInt = window.parseInt;
+	}
+
 	var myApp = angular
 		.module("app", [
 			"ui.router",
@@ -23,11 +28,6 @@
 		partyInfo.initialize();
 		encounter.initialize();
 		players.initialize();
-	}
-
-	// polyfill for older browsers that don't support Number.parseInt natively
-	if ( !Number.parseInt ) {
-		Number.parseInt = window.parseInt;
 	}
 })();
 
@@ -737,7 +737,7 @@
 					[
 						"Basic Rules v1",
 						"Monster Manual",
-						// "Mordenkainen's Tome of Foes",
+						"Mordenkainen's Tome of Foes",
 						"Player's Handbook",
 						"Volo's Guide to Monsters",
 					].forEach(function (sourceName) {
