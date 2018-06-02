@@ -24,6 +24,11 @@
 		encounter.initialize();
 		players.initialize();
 	}
+
+	// polyfill for older browsers that don't support Number.parseInt natively
+	if ( !Number.parseInt ) {
+		Number.parseInt = window.parseInt;
+	}
 })();
 
 (function() {
@@ -722,6 +727,8 @@
 						"Rise of Tiamat",
 						"Storm King's Thunder",
 						"Tales from the Yawning Portal",
+						"The Tortle Package",
+						"Tomb of Annihilation",
 					].forEach(function (sourceName) {
 						vm.filters.source[sourceName] = true;
 					});
@@ -729,10 +736,10 @@
 				case "core":
 					[
 						"Basic Rules v1",
-						"Player's Handbook",
 						"Monster Manual",
+						// "Mordenkainen's Tome of Foes",
+						"Player's Handbook",
 						"Volo's Guide to Monsters",
-						// "Xanathar's Guide to Everything",
 					].forEach(function (sourceName) {
 						vm.filters.source[sourceName] = true;
 					});
@@ -740,6 +747,7 @@
 				// non-WotC products
 				case "3rdparty":
 					[
+						"Demon Cults & Secret Societies",
 						"Fifth Edition Foes",
 						"Monster Module",
 						"Monster-A-Day",
@@ -748,6 +756,7 @@
 						"Primeval Thule Campaign Setting",
 						"Primeval Thule Gamemaster's Companion",
 						"Tome of Beasts",
+						"Ultimate Bestiary Revenge of the Horde",
 					].forEach(function (sourceName) {
 						vm.filters.source[sourceName] = true;
 					});

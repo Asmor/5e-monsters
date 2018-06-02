@@ -7439,6 +7439,7 @@ button.close {
     margin-top: 2rem;
     padding: 1rem; }
   .current-encounter--row {
+    clear: right;
     margin-bottom: 2rem;
     display: flex;
     flex-direction: row; }
