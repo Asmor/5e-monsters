@@ -154,6 +154,10 @@
 			}
 		}
 
+		var regexCache = {
+			"": new RegExp(""),
+		};
+		var lastRegex = regexCache[""];
 		function checkMonster(monster, filters, args) {
 			args = args || {};
 
@@ -213,8 +217,44 @@
 				return false;
 			}
 
-			if ( filters.search && monster.searchable.indexOf(filters.search.toLowerCase()) === -1 ) {
-				return false;
+			if ( filters.search ) {
+				let checkRegex = filters.search.match(/^\/(.+)\/?$/);
+				if ( checkRegex ) {
+					let regex;
+					let raw = checkRegex[1];
+					try {
+						// Two goals here.
+						// 1. Avoid making new RegExp objects every time this function is run
+						// 2. Maintain results while user is typing even if it might not be a valid regex after every keystroke
+
+						// First check the cache to avoid remaking regex objects every time this
+						// function is called (can be tens of thousands of times per keystroke)
+
+						// If no cache hit, try to make a new regex. If that fails, we'll catch and
+						// use the last good regex we have.
+
+						// Finally, if we sucessfully get a cache hit or create a new regex, we'll
+						// set lastRegex to this for future runs
+						regex = regexCache[raw] || new RegExp(raw);
+
+						if ( regex ) {
+							// This regex is good, so save it for the future
+							lastRegex = regex;
+						}
+					} catch (ex) {
+						// We know this doesn't give a good regex, so avoid trying again
+						regexCache[raw] = null;
+					}
+
+					regex = regex || lastRegex;
+
+					if ( !monster.searchable.match(regex) ) {
+						return false;
+					}
+				} else if ( monster.searchable.indexOf(filters.search.toLowerCase()) === -1 ) {
+					return false;
+				}
+
 			}
 
 			return true;
