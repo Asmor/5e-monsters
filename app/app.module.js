@@ -2,6 +2,11 @@
 	/* global requirejs */
 	"use strict";
 
+	// polyfill for older browsers that don't support Number.parseInt natively
+	if ( !Number.parseInt ) {
+		Number.parseInt = window.parseInt;
+	}
+
 	var myApp = angular
 		.module("app", [
 			"ui.router",
@@ -23,10 +28,5 @@
 		partyInfo.initialize();
 		encounter.initialize();
 		players.initialize();
-	}
-
-	// polyfill for older browsers that don't support Number.parseInt natively
-	if ( !Number.parseInt ) {
-		Number.parseInt = window.parseInt;
 	}
 })();
