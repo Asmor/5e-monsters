@@ -16,6 +16,7 @@
 		vm.sourceNames = sources.all;
 		vm.types = metaInfo.types;
 		vm.legendaryList = metaInfo.legendaryList;
+		vm.sortChoices = metaInfo.sortChoices;
 
 		// Cache sorted data to avoid infinite digest
 		var contentCacheKey;

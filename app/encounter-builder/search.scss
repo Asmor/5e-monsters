@@ -3,6 +3,10 @@
 
 	&--search-form {
 		flex-grow: 1;
+
+		&--sort-control {
+			display: none !important;
+		}
 	}
 
 	&--search-form * {
@@ -48,5 +52,11 @@
 .sources-modal {
 	&--buttons {
 		margin-bottom: 2rem;
+	}
+}
+
+@media (max-width: 768px) {
+	.search--search-form--sort-control {
+		display: inline-block !important;
 	}
 }

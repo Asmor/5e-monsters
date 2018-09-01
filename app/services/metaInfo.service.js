@@ -67,6 +67,13 @@
 				"Plant",
 				"Undead",
 			],
+			sortChoices: [
+				{ value: 'name', text: 'Name' },
+				{ value: 'cr', text: 'CR' },
+				{ value: 'size', text: 'Size' },
+				{ value: 'type', text: 'Type' },
+				{ value: 'alignment', text: 'Alignment' },
+			],
 		};
 
 		return metaInfo;
