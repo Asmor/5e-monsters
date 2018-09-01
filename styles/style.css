@@ -7485,6 +7485,9 @@ button.close {
       text-align: right; }
       .current-encounter--totals-xp span {
         display: block; }
+    .current-encounter--totals-individual-xp {
+      font-style: italic;
+      font-size: 70%; }
 
 .group-info {
   display: flex;
