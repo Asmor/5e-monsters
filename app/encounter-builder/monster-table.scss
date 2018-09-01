@@ -43,6 +43,12 @@
 			}
 		}
 	}
+
+	&--filter-warning-cell {
+		background-color: darken($state-warning-bg, 5%);
+		text-align: center;
+		font-style: italic;
+	}
 }
 
 @media (max-width: 768px) {
@@ -78,7 +84,16 @@
 		}
 	}
 
+	.monster-table--warning-row {
+		display: block;
+		position: relative;
+		&:not(:last-child) {
+			border-bottom: 1px solid #ddd;
+		}
+	}
+
 	// Cells; double-classed to override precedence of libraries so borders are actually removed.
+	.monster-table--filter-warning-cell.monster-table--filter-warning-cell,
 	.monster-table--button-cell.monster-table--button-cell,
 	.monster-table--name-cell.monster-table--name-cell,
 	.monster-table--cr-cell.monster-table--cr-cell,
@@ -90,6 +105,10 @@
 		border: 0;
 		padding: 0;
 		margin: 0 $spacing;
+	}
+
+	.monster-table--filter-warning-cell.monster-table--filter-warning-cell {
+		width: 100%;
 	}
 
 	.monster-table--name-cell.monster-table--name-cell {
