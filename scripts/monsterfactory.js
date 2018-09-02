@@ -4,8 +4,8 @@
 	angular.module("app")
 		.factory("monsterFactory", MonsterFactory);
 
-	MonsterFactory.$inject = ["alignments", "crInfo"];
-	function MonsterFactory(alignments, crInfo) {
+	MonsterFactory.$inject = ["alignments", "crInfo", "library"];
+	function MonsterFactory(alignments, crInfo, library) {
 		var factory = {
 			checkMonster: checkMonster,
 			Monster: Monster,
@@ -157,6 +157,8 @@
 		var regexCache = {
 			"": new RegExp(""),
 		};
+		var poolCache = {
+		};
 		var lastRegex = regexCache[""];
 		function checkMonster(monster, filters, args) {
 			args = args || {};
@@ -211,6 +213,17 @@
 
 			if ( filters.environment && monster.environments.indexOf(filters.environment) === -1 ) {
 				return false;
+			}
+
+			if ( filters.pool ) {
+				let pool = poolCache[filters.pool];
+				if (!pool) {
+					pool = library.encounters.filter(encounter => encounter.type == 'pool' && encounter.name == filters.pool)[0];
+					poolCache[filters.pool] = pool;
+				}
+				if ( pool && !pool.groups[monster.id] ) {
+					return false;
+				}
 			}
 
 			if ( !isInSource(monster, filters.source) ) {

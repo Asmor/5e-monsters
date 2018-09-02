@@ -27,7 +27,7 @@
 				placeholder.push([
 					(encounter.groups[id].qty > 1) ? encounter.groups[id].qty + "x" : "",
 					encounter.groups[id].monster.name,
-				].join(" "));
+				].join(" ").trim());
 			});
 
 			vm.newEncounter = {
@@ -48,6 +48,7 @@
 			});
 			
 			encounter.reference = library.store(newLibraryEntry);
+			encounter.reset(newLibraryEntry);
 		}
 
 		vm.load = function (storedEncounter) {
