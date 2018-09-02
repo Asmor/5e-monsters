@@ -1,6 +1,6 @@
 <h2>
 	<span ng-if="!vm.isPool">Encounter Info</span>
-	<span ng-if="vm.isPool">Random Encounter Pool</span>
+	<span ng-if="vm.isPool">Random Encounter Table</span>
 	<div ng-if="!vm.isPool" class="btn-group pull-right">
 		<button class="btn btn-info" ng-click="vm.generateRandom()">{{vm.randomButtonText()}}</button>
 		<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

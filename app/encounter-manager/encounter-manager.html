@@ -22,7 +22,7 @@
 			<button
 				class="encounter-manager-encounter--save-button"
 				ng-click="vm.save('pool')"
-			>Save as Pool</button>
+			>Save as Table</button>
 		</div>
 
 		<div
@@ -39,7 +39,7 @@
 		<manager-row stored-encounter='storedEncounter'></manager-row>
 	</div>
 
-	<h3>Random Encounter Pools</h3>
+	<h3>Random Encounter Tables</h3>
 	<div class="random-encounter-pools" ng-repeat="storedEncounter in vm.library.encounters | filter:{type:'pool'} track by $index">
 		<manager-row stored-encounter='storedEncounter'></manager-row>
 	</div>
