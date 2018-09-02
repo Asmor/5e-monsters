@@ -28,3 +28,7 @@
 	border-bottom: 1px solid #000;
 	background-color: $combatant-enemy;
 }
+
+.random-encounter-pools .encounter-manager-monster {
+	background-color: lighten(#ebf, 7%);
+}

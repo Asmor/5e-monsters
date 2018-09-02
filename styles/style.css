@@ -7792,6 +7792,9 @@ button.close {
   border-bottom: 1px solid #000;
   background-color: #FC8D62; }
 
+.random-encounter-pools .encounter-manager-monster {
+  background-color: #f7dfff; }
+
 .combatant-setup__player {
   background-color: #66C2A5; }
 

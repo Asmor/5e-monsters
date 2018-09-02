@@ -184,6 +184,7 @@
 			encounter.groups = {};
 
 			if (storedEncounter) {
+				encounter.type = storedEncounter.type || 'encounter';
 				Object.keys(storedEncounter.groups).forEach(function (id) {
 					encounter.add(
 						monsters.byId[id],

@@ -12,6 +12,8 @@
         vm.encounter = encounter;
         vm.generateRandom = generateRandom;
         vm.randomButtonText = randomButtonText;
+        vm.isPool = vm.encounter.type == 'pool';
+        vm.newEncounter = newEncounter;
 
         var lastDifficulty = "medium";
         
@@ -19,6 +21,11 @@
             difficulty = difficulty || lastDifficulty;
             encounter.generateRandom(vm.filters, difficulty);
             lastDifficulty = difficulty;
+        }
+
+        function newEncounter() {
+            vm.encounter.reset();
+            vm.isPool = false;
         }
 
         function randomButtonText() {

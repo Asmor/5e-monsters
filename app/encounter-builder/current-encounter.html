@@ -1,6 +1,7 @@
 <h2>
-	Encounter Info
-	<div class="btn-group pull-right"> 
+	<span ng-if="!vm.isPool">Encounter Info</span>
+	<span ng-if="vm.isPool">Random Encounter Pool</span>
+	<div ng-if="!vm.isPool" class="btn-group pull-right">
 		<button class="btn btn-info" ng-click="vm.generateRandom()">{{vm.randomButtonText()}}</button>
 		<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="caret"></span>
@@ -33,7 +34,7 @@
 								</div>
 						</div>
 					</div>
-					<div class="current-encounter--monster-qty-col">
+					<div class="current-encounter--monster-qty-col" ng-if="!vm.isPool">
 						<button ng-click="vm.encounter.randomize(group.monster, vm.filters)" class="btn btn-default" title="Randomize Monster">
 							<i class="fa fa-random"></i>
 						</button>
@@ -49,7 +50,7 @@
 					</div>
 			</div>
 		</div>
-		<div class="current-encounter--totals">
+		<div class="current-encounter--totals" ng-if="!vm.isPool">
 			<div class="current-encounter--totals-difficulty">Difficulty: {{ vm.encounter.difficulty }}</div>
 			<div class="current-encounter--totals-xp">
 				<span>Total XP: {{ vm.encounter.exp | number }}</span>
@@ -57,7 +58,7 @@
 			</div>
 		</div>
 		<div class="current-encounter--btns">
-			<button class="btn btn-danger btn-new" ng-click="vm.encounter.reset()">New</button>
+			<button class="btn btn-danger btn-new" ng-click="vm.newEncounter()">New</button>
 			<button class="btn btn-primary" ui-sref="encounter-manager" ng-if="!vm.encounter.reference">Save</button>
 		</div>
 	</div>

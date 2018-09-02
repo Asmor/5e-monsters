@@ -36,14 +36,15 @@
 			};
 		}
 
-		function save() {
+		function save(type) {
 			var newLibraryEntry = {
 					name: vm.newEncounter.name || vm.newEncounter.placeholder,
+					type: type || 'encounter',
 					groups: {},
 			};
 
 			Object.keys(encounter.groups).forEach(function (id) {
-				newLibraryEntry.groups[id] = encounter.groups[id].qty;
+				newLibraryEntry.groups[id] = (type == 'pool') ? 1 : encounter.groups[id].qty;
 			});
 			
 			encounter.reference = library.store(newLibraryEntry);
