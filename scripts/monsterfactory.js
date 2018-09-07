@@ -235,7 +235,7 @@
 
 						// Finally, if we sucessfully get a cache hit or create a new regex, we'll
 						// set lastRegex to this for future runs
-						regex = regexCache[raw] || new RegExp(raw);
+						regex = regexCache[raw] || new RegExp(raw, "i");
 
 						if ( regex ) {
 							// This regex is good, so save it for the future
