@@ -35,9 +35,11 @@
 		}
 
 		function thaw() {
-			store.get("5em-library").then(function (frozen) {
+			store.get("5em-library").then(function(frozen) {
 				if (frozen) {
-					library.encounters = frozen;
+					for ( var i = 0; i < frozen.length; i++ ) {
+						library.encounters.push(frozen[i]);
+					}
 				}
 			});
 		}

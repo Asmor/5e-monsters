@@ -7,6 +7,10 @@
 		&--sort-control {
 			display: none !important;
 		}
+
+		&--pool-control {
+			max-width: 300px;
+		}
 	}
 
 	&--search-form * {

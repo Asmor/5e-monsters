@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('SearchController', SearchController);
 
-	SearchController.$inject = ["$scope", "metaInfo", "sheetManager", "sources"];
-	function SearchController($scope, metaInfo, sheetManager, sources) {
+	SearchController.$inject = ["$scope", "metaInfo", "sheetManager", "sources", "library"];
+	function SearchController($scope, metaInfo, sheetManager, sources, library) {
 		var vm = this;
 
 		vm.alignments = metaInfo.alignments;
@@ -16,6 +16,7 @@
 		vm.sourceNames = sources.all;
 		vm.types = metaInfo.types;
 		vm.legendaryList = metaInfo.legendaryList;
+		vm.encounters = library.encounters;
 		vm.sortChoices = metaInfo.sortChoices;
 
 		// Cache sorted data to avoid infinite digest
