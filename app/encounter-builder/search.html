@@ -44,7 +44,7 @@
 			<option value="">Any Legendary</option>
 		</select>
 		<span ng-if="(vm.encounters | filter:{type:'pool'}).length > 0">
-			<select class="form-control"
+			<select class="form-control search--search-form--pool-control"
 					ng-model="vm.filters.pool"
 					ng-options="pool.name as pool.name+' Table' for pool in vm.encounters | filter:{type:'pool'}">
 				<option value="">Any Table</option>

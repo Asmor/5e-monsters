@@ -35,7 +35,6 @@
 		}
 
 		function thaw() {
-			console.log("thawing library");
 			store.get("5em-library").then(function(frozen) {
 				if (frozen) {
 					for ( var i = 0; i < frozen.length; i++ ) {

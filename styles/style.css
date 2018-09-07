@@ -7650,6 +7650,8 @@ button.close {
     flex-grow: 1; }
     .search--search-form--sort-control {
       display: none !important; }
+    .search--search-form--pool-control {
+      max-width: 605px; }
   .search--search-form * {
     margin-bottom: 1rem;
     margin-right: 0.5rem; }
