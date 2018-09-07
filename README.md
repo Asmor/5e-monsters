@@ -86,14 +86,15 @@ Links:
 
 # Contributing content to Kobold Fight Club
 
-If you'd like to submit content to KFC, please follow the steps above for adding content. Make sure that you run your custom content through the sheet checker and that it doesn't give any errors or warnings.
+User-submitted content is no longer accepted directly into KFC. Instead, if you'd like to share, post a link to that content in [This reddit thread](https://www.reddit.com/r/asmor/comments/9dpyxv/list_of_communityadded_kfc_content/?) with a link to the sheet and a description of its contents.
 
-Once you've completed that, please create an issue here on GitHub with a link to the spreadsheet.
+I _may_ end up making a wiki page to organize and curate these links, but I make no promises.
 
-If you're going to be working on a large book that has hundreds of monsters, consider opening a ticket on GitHub before you start. This way other people can see that someone is working on it, and you might even find someone to collaborate with and share the load. Similarly, before starting on such a project search the open issues and see if anyone else is already working on it.
+# Why is KFC no longer accepting user-submitted content?
 
-## Contributing Community content
+Two reasons, both ultimately my own fault.
 
-I have one caveat. For community content, it must be submitted to the [Best of Homebrew 5e subreddit](https://www.reddit.com/r/boh5e/), and must have a score of at least 8.0 or higher. If submitting community content, please include a link in the GitHub issue to the reddit thread in /r/boh5e.
+1. It was really unsustainable. I haven't run into any issues yet, but eventually there would be so many entries that something would give (browser storage limits, performance, Google Sheets' API, etc). I'm not really doing things in a very efficient way, and it would be a nightmare to put that genie back in the battle if/when that happens, so better to take care of it now.
+2. Due to various poor design decisions, it's very difficult and time consuming to add new content to the existing sheets. I've recently started turning down many requests, which understandably upset people.
 
-Some community content is already included in KFC; this content is from before I instituted this rule, and is grandfathered in.
+I've already got a lot of difficulty motivating myself to maintain KFC (even if that maintenance at this point is largely just testing and accepting pull requests from the excellent contributors to this project), and having this cloud of outstanding submissions that I either had to add or turn down was really killing my morale.
