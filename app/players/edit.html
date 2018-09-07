@@ -1,6 +1,6 @@
 <div class="edit-players">
 	<p>
-		One character per line. Blank line to separate different parties. Format:<br/>
+		One character per line. Blank line to separate different parties. Add an exclamation point (!) to an initiative modifier to indicate advantage. Format:<br/>
 		<samp>&lt;CHARACTER NAME&gt; &lt;INITIATIVE MOD&gt; &lt;MAX HP&gt;</samp> <br/>
 		<samp>&lt;CHARACTER NAME&gt; &lt;INITIATIVE MOD&gt; &lt;CURRENT HP&gt; / &lt;MAX HP&gt;</samp>
 	</p>
@@ -9,7 +9,7 @@
 		class="edit-players--text-input form-control"
 		ng-model="vm.players.raw"
 		rows="10"
-		placeholder="Smush 3 55 / 55
+		placeholder="Smush 3! 55 / 55
 Mercedes 2 34"
 	></textarea>
 </div>

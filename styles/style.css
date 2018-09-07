@@ -7445,7 +7445,8 @@ button.close {
     flex-direction: row; }
   .current-encounter--monster-info {
     flex-grow: 1;
-    padding-bottom: 0.5rem; }
+    padding-bottom: 0.5rem;
+    min-width: 0; }
   .current-encounter--monster-name {
     font-size: 2.25em;
     font-weight: 300; }
@@ -7485,6 +7486,9 @@ button.close {
       text-align: right; }
       .current-encounter--totals-xp span {
         display: block; }
+    .current-encounter--totals-individual-xp {
+      font-style: italic;
+      font-size: 70%; }
 
 .group-info {
   display: flex;
@@ -7557,6 +7561,10 @@ button.close {
       display: none; }
     .monster-table--source-name__long {
       display: inline; } }
+  .monster-table--filter-warning-cell {
+    background-color: #faf2cc;
+    text-align: center;
+    font-style: italic; }
 
 @media (max-width: 768px) {
   .monster-table--table {
@@ -7572,6 +7580,12 @@ button.close {
     min-height: 100px; }
     .monster-table--row:not(:last-child) {
       border-bottom: 1px solid #ddd; }
+  .monster-table--warning-row {
+    display: block;
+    position: relative; }
+    .monster-table--warning-row:not(:last-child) {
+      border-bottom: 1px solid #ddd; }
+  .monster-table--filter-warning-cell.monster-table--filter-warning-cell,
   .monster-table--button-cell.monster-table--button-cell,
   .monster-table--name-cell.monster-table--name-cell,
   .monster-table--cr-cell.monster-table--cr-cell,
@@ -7583,6 +7597,8 @@ button.close {
     border: 0;
     padding: 0;
     margin: 0 3px; }
+  .monster-table--filter-warning-cell.monster-table--filter-warning-cell {
+    width: 100%; }
   .monster-table--name-cell.monster-table--name-cell {
     display: block;
     font-size: 1.25em; }
@@ -7632,6 +7648,8 @@ button.close {
   display: flex; }
   .search--search-form {
     flex-grow: 1; }
+    .search--search-form--sort-control {
+      display: none !important; }
   .search--search-form * {
     margin-bottom: 1rem;
     margin-right: 0.5rem; }
@@ -7663,6 +7681,10 @@ button.close {
 
 .sources-modal--buttons {
   margin-bottom: 2rem; }
+
+@media (max-width: 768px) {
+  .search--search-form--sort-control {
+    display: inline-block !important; } }
 
 .encounter-builder .encounter-builder--encounter-info-bar {
   display: none; }

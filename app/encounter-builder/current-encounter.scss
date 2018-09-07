@@ -23,6 +23,7 @@
 	&--monster-info {
 		flex-grow: 1;
 		padding-bottom: 0.5rem;
+		min-width: 0;
 	}
 
 	&--monster-name {
@@ -89,6 +90,11 @@
 			span {
 				display: block;
 			}
+		}
+
+		&-individual-xp {
+			font-style: italic;
+			font-size: 70%;
 		}
 	}
 }

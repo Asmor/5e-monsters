@@ -8,6 +8,7 @@
 	function MonsterFactory(alignments, crInfo, library) {
 		var factory = {
 			checkMonster: checkMonster,
+			checkIsMonsterFoundAndFiltered: checkIsMonsterFoundAndFiltered,
 			Monster: Monster,
 		};
 
@@ -161,6 +162,14 @@
 		};
 		var lastRegex = regexCache[""];
 		function checkMonster(monster, filters, args) {
+			return !isFiltered(monster, filters, args) && isNameMatched(monster, filters);
+		}
+
+		function checkIsMonsterFoundAndFiltered(monster, filters, args) {
+			return isNameMatched(monster, filters) && isFiltered(monster, filters, args);
+		}
+
+		function isFiltered(monster, filters, args) {
 			args = args || {};
 
 			var legendaryMap = {
@@ -173,46 +182,46 @@
 				var legendaryFilter = legendaryMap[filters.legendary];
 
 				if (legendaryFilter) {
-					if (!monster[legendaryFilter]) return false;
+					if (!monster[legendaryFilter]) return true;
 				} else  {
-					if (monster.legendary || monster.lair) return false;
+					if (monster.legendary || monster.lair) return true;
 				}
 			}
 
 			if ( filters.type && monster.type !== filters.type ) {
-				return false;
+				return true;
 			}
 
 			if ( filters.size && monster.size !== filters.size ) {
-				return false;
+				return true;
 			}
 
 			if ( args.nonUnique && monster.unique ) {
-				return false;
+				return true;
 			}
 
 			if ( filters.alignment ) {
 				if ( !monster.alignment ) {
-					return false;
+					return true;
 				}
 
 				if ( ! (filters.alignment.flags & monster.alignment.flags) ) {
-					return false;
+					return true;
 				}
 			}
 
 			if ( !args.skipCrCheck ) {
 				if ( filters.minCr && monster.cr.numeric < filters.minCr ) {
-					return false;
+					return true;
 				}
 
 				if ( filters.maxCr && monster.cr.numeric > filters.maxCr ) {
-					return false;
+					return true;
 				}
 			}
 
 			if ( filters.environment && monster.environments.indexOf(filters.environment) === -1 ) {
-				return false;
+				return true;
 			}
 
 			if ( filters.pool ) {
@@ -222,14 +231,18 @@
 					poolCache[filters.pool] = pool;
 				}
 				if ( pool && !pool.groups[monster.id] ) {
-					return false;
+					return true;
 				}
 			}
 
 			if ( !isInSource(monster, filters.source) ) {
-				return false;
+				return true;
 			}
 
+			return false;
+		}
+
+		function isNameMatched(monster, filters) {
 			if ( filters.search ) {
 				let checkRegex = filters.search.match(/^\/(.*?)\/?$/);
 				if ( checkRegex ) {
@@ -248,7 +261,7 @@
 
 						// Finally, if we sucessfully get a cache hit or create a new regex, we'll
 						// set lastRegex to this for future runs
-						regex = regexCache[raw] || new RegExp(raw);
+						regex = regexCache[raw] || new RegExp(raw, "i");
 
 						if ( regex ) {
 							// This regex is good, so save it for the future
@@ -267,7 +280,6 @@
 				} else if ( monster.searchable.indexOf(filters.search.toLowerCase()) === -1 ) {
 					return false;
 				}
-
 			}
 
 			return true;

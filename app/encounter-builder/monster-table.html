@@ -34,6 +34,13 @@
 			</tr>
 		</thead>
 		<tbody>
+			<tr class="monster-table--warning-row" ng-if="vm.filters.search && (vm.monsters | countHiddenMonstersFilter:vm.filters) > 0">
+				<td colspan="7" class="monster-table--filter-warning-cell">
+					{{ vm.monsters | countHiddenMonstersFilter:vm.filters }} monsters hidden by filters or in unselected sources
+				</td>
+			</tr>
+		</tbody>
+		<tbody>
 			<tr
 				dir-paginate="monster in vm.monsters | monstersFilter:vm.filters | itemsPerPage: vm.filters.pageSize"
 				class="monster-table--row">

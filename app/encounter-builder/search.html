@@ -50,6 +50,10 @@
 				<option value="">Any Table</option>
 			</select>
 		</span>
+		<select class="form-control search--search-form--sort-control"
+			ng-model="vm.filters.sort"
+			ng-options="sortChoice.value as 'Sort by ' + sortChoice.text for sortChoice in vm.sortChoices">
+		</select>
 		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#sourcesModal">
 			Set Sources
 		</button>

@@ -53,8 +53,15 @@
 		<div class="current-encounter--totals" ng-if="!vm.isPool">
 			<div class="current-encounter--totals-difficulty">Difficulty: {{ vm.encounter.difficulty }}</div>
 			<div class="current-encounter--totals-xp">
-				<span>Total XP: {{ vm.encounter.exp | number }}</span>
-				<span>Adjusted XP: {{ vm.encounter.adjustedExp | number }}</span>
+				<span>
+					Total XP: {{ vm.encounter.exp | number }}
+					<span class="current-encounter--totals-individual-xp" ng-if="vm.partyInfo.totalPlayerCount > 0">({{ (vm.encounter.exp / vm.partyInfo.totalPlayerCount) | number:0 }} per player)
+				</span>
+				</span>
+				<span>
+					Adjusted XP: {{ vm.encounter.adjustedExp | number }}
+					<span class="current-encounter--totals-individual-xp" ng-if="vm.partyInfo.totalPlayerCount > 0">({{ (vm.encounter.adjustedExp / vm.partyInfo.totalPlayerCount) | number:0 }} per player)
+				</span>
 			</div>
 		</div>
 		<div class="current-encounter--btns">

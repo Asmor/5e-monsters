@@ -5,8 +5,8 @@
         .module('app')
         .controller('CurrentEncounterController', CurrentEncounterController);
 
-    CurrentEncounterController.$inject = ['encounter'];
-    function CurrentEncounterController(encounter) {
+    CurrentEncounterController.$inject = ['encounter','partyInfo'];
+    function CurrentEncounterController(encounter, partyInfo) {
         var vm = this;
         
         vm.encounter = encounter;
@@ -14,6 +14,7 @@
         vm.randomButtonText = randomButtonText;
         vm.isPool = vm.encounter.type == 'pool';
         vm.newEncounter = newEncounter;
+        vm.partyInfo = partyInfo;
 
         var lastDifficulty = "medium";
         
