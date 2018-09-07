@@ -68,13 +68,14 @@
 					// 2: Initiative mod
 					// 3: Remaining HP (optional)
 					// 4: Max HP
-					//                       1       2               3              4
-					m = parties[i][j].match(/(.*?)\s+([-+]?\d+)\s+(?:(\d+)\s*\/\s*)?(\d+)\s*$/);
+					//                       1       2                   3              4
+					m = parties[i][j].match(/(.*?)\s+([-+]?\d+[!]?)\s+(?:(\d+)\s*\/\s*)?(\d+)\s*$/);
 
 					if ( m ) {
 						parties[i][j] = {
 							name: m[1],
-							initiativeMod: parseInt(m[2]),
+							initiativeMod: parseInt(m[2].replace(/!$/, '')),
+							advantageOnInitiative: m[2].endsWith('!'),
 							damage: (m[3]) ? m[4] - m[3] : 0,
 							hp: parseInt(m[4]),
 						};
@@ -98,7 +99,7 @@
 					p = players.parties[i][j];
 					newRaw[i].push([
 						p.name,
-						(p.initiativeMod >= 0) ? "+" + p.initiativeMod : p.initiativeMod,
+						((p.initiativeMod >= 0) ? "+" + p.initiativeMod : p.initiativeMod) + (p.advantageOnInitiative ? '!' : ''),
 						p.hp - p.damage,
 						"/",
 						p.hp,

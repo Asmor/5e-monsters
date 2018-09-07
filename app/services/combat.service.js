@@ -49,6 +49,7 @@
 					type: "player",
 					name: player.name,
 					initiativeMod: player.initiativeMod,
+					advantageOnInitiative: player.advantageOnInitiative,
 					initiative: player.initiative,
 					hp: player.hp,
 					damage: player.damage,
@@ -114,6 +115,7 @@
 					combat.addPlayer({
 						name: player.name,
 						initiativeMod: player.initiativeMod,
+						advantageOnInitiative: player.advantageOnInitiative,
 						initiative: player.initiativeMod + 10,
 						hp: player.hp,
 						damage: player.damage,
@@ -140,7 +142,11 @@
 				combat.combatants[combat.active].active = true;
 			},
 			rollInitiative: function (combatant) {
-				var initRoll = _.random(20) + 1;
+				var initRoll = _.random(1, 20);
+				if (combatant.advantageOnInitiative) {
+					var secondRoll = _.random(1, 20);
+					if (secondRoll > initRoll) initRoll = secondRoll;
+				}
 				combatant.initiative = initRoll + combatant.initiativeMod;
 				combatant.initiativeRolled = true;
 			},

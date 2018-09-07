@@ -8,6 +8,7 @@
 	<span class="combatant-setup--initative-mod">
 		<span ng-if="!vm.combatant.fixedInitiative">
 			Initiative Mod: <span ng-if="vm.combatant.initiativeMod >= 0">+</span>{{ vm.combatant.initiativeMod }}
+			<span ng-if="vm.combatant.advantageOnInitiative">(A)</span>
 		</span>
 	</span>
 	<span class="combatant-setup--initative">

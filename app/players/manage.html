@@ -14,7 +14,7 @@
 				{{ player.name }}
 			</span>
 			<span class="manage-players--player--init">
-				Initiative: <span ng-if="player.initiativeMod >= 0">+</span>{{ player.initiativeMod }}
+				Initiative: <span ng-if="player.initiativeMod >= 0">+</span>{{ player.initiativeMod }} <span ng-if="player.advantageOnInitiative">(Adv)</span>
 			</span>
 			<span class="manage-players--player--hp">
 				HP: {{ player.hp - player.damage }} / {{ player.hp }}
