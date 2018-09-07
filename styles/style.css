@@ -7647,6 +7647,8 @@ button.close {
   display: flex; }
   .search--search-form {
     flex-grow: 1; }
+    .search--search-form--sort-control {
+      display: none !important; }
   .search--search-form * {
     margin-bottom: 1rem;
     margin-right: 0.5rem; }
@@ -7678,6 +7680,10 @@ button.close {
 
 .sources-modal--buttons {
   margin-bottom: 2rem; }
+
+@media (max-width: 768px) {
+  .search--search-form--sort-control {
+    display: inline-block !important; } }
 
 .encounter-builder .encounter-builder--encounter-info-bar {
   display: none; }
