@@ -6,14 +6,13 @@ SC.directive("sheetChecker", function (testSheet) {
 	var template = document.getElementById("sheet-checker-template").innerHTML;
 
 	function getSheetId(s) {
-		var idMatch = sheetId.match(/\b([-a-z0-9_]{44})\b/i);
+		var idMatch = s.match(/\b([-a-z0-9_]{44})\b/i);
 
-		if ( !idMatch ) {
-			log("Can't find valid google sheets ID in: " + sheetId);
-			return;
+		if ( idMatch ) {
+			return idMatch[1];
 		}
 
-		return idMatch[1];
+		return s;
 	}
 
 	var sheetMetaStorageKey = "5em-sheet-meta";
@@ -71,6 +70,7 @@ SC.directive("sheetChecker", function (testSheet) {
 				scope.messages = [{ message: "Loading..." }]
 				scope.untested = true;
 				scope.sharableLink = "";
+				scope.sheetId = getSheetId(scope.sheetId);
 
 				testSheet(scope.sheetId)
 				.then(results => {
