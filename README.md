@@ -1,15 +1,8 @@
 Kobold Fight Club
 =================
 
-An encounter builder and combat manager for D&D 5th edition
-
-Nothing special needed to run it. Just open index.html in firefox. You can run it in Chrome as well, but you'll need to start a webserver because Chrome doesn't like running this sort of stuff from file:///
-
-## Node Commands
-- npm install - Install necessary dependencies
-- npm run start - Start an http server for debugging on localhost
-- npm run build-css - Compile sass into css
-- npm run watch-css - Watch folder for changes and run build-css if needed
+# Finding Extra Content
+A curated list of extra content is available [here](https://github.com/Asmor/5e-monsters/wiki/Extra-content-for-KFC). Additionally, anyone can submit extra content to the stickied thread on [/r/asmor](https://www.reddit.com/r/asmor/comments/9dpyxv/list_of_communityadded_kfc_content/)
 
 # Adding your own custom content to Kobold Fight Club
 
@@ -98,3 +91,13 @@ Two reasons, both ultimately my own fault.
 2. Due to various poor design decisions, it's very difficult and time consuming to add new content to the existing sheets. I've recently started turning down many requests, which understandably upset people.
 
 I've already got a lot of difficulty motivating myself to maintain KFC (even if that maintenance at this point is largely just testing and accepting pull requests from the excellent contributors to this project), and having this cloud of outstanding submissions that I either had to add or turn down was really killing my morale.
+
+# Technical stuff
+
+In case you're interested in contributing code
+
+## Node Commands
+- npm install - Install necessary dependencies
+- npm run start - Start an http server for debugging on localhost
+- npm run build-css - Compile sass into css
+- npm run watch-css - Watch folder for changes and run build-css if needed
