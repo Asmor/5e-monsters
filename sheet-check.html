@@ -3,15 +3,36 @@
 <head>
 	<title>KFC Sheet Checker</title>
 	<meta charset="utf-8">
+	<style>
+	tr[data-severity="fail"] {
+		color: red;
+	}
+
+	tr[data-severity="warn"] {
+		color: goldenrod;
+	}
+
+	tr[data-severity="good"] {
+		color: green;
+	}
+	</style>
 </head>
 <body>
 <script src="thirdparty/angular/angular.js"></script>
 <script src="scripts/sheetchecker.js"></script>
 <script id="sheet-checker-template" language="template/angular">
-	<input ng-model="sheetId">
+	<input ng-model="name" placeholder="Name (optional)">
+	<input ng-model="sheetId" placeholder="Sheet ID or URL">
 	<button ng-click="test()">Test</button>
+	<button ng-click="add()" ng-disabled="untested || !name">Add to KFC {{ name ? "" : "(requires name)"}}</button>
+	<div ng-if="sharableLink && !untested">
+		Sharable link: <a href="{{ sharableLink }}">{{ sharableLink }}</a>
+	</div>
 	<table>
-		<tr ng-repeat="message in messages">
+		<tr
+			ng-repeat="message in messages"
+			data-severity="{{ message.severity }}"
+		>
 			<td ng-if="message.message" colspan="4">{{ message.message }}</td>
 			<td ng-if="!message.message">{{ message.fid }}</td>
 			<td ng-if="!message.message">{{ message.field }}</td>

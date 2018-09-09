@@ -174,11 +174,17 @@ function sheetManager($q, googleSheetLoader, monsters, store) {
 
 		// Finally, parse the sheets!
 		Object.keys(sheetMetaData).forEach(function (sheetId) {
+			var timestamp = sheetMetaData[sheetId].timestamp;
+			var custom = sheetMetaData[sheetId].custom;
+			// If it's a custom sheet and it's never been loaded before, enable it by default
+			var enbleByDefault = custom && !timestamp;
+
 			insertSheet({
 				sheetId: sheetId,
 				store: store,
 				googleSheetLoader: googleSheetLoader,
 				monsters: monsters,
+				custom: enbleByDefault,
 			});
 		});
 	});
