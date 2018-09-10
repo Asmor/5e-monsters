@@ -57,6 +57,17 @@ SC.directive("sheetChecker", function (testSheet) {
 
 			var sheetParamMatch = document.location.search.match(/\bsheetid=([-a-z0-9_]{44})\b/i);
 			var nameParamMatch = document.location.search.match(/\bname=([^&]+)($|&)/i);
+			scope.viaSharable = sheetParamMatch && nameParamMatch;
+			scope.secureType = "HTTP";
+			scope.otherType = "HTTPS";
+			scope.otherTypeLink = document.location.toString().replace(/^http:/, "https:");
+
+			if ( document.location.protocol === "https:" ) {
+				scope.secureType = "HTTPS";
+				scope.otherType = "HTTP";
+				scope.otherTypeLink = document.location.toString().replace(/^https:/, "http:");
+			}
+
 
 			if ( sheetParamMatch ) {
 				scope.sheetId = sheetParamMatch[1];

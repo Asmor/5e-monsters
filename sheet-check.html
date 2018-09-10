@@ -15,12 +15,23 @@
 	tr[data-severity="good"] {
 		color: green;
 	}
+
+	.notice {
+		padding-bottom: 20px;
+	}
 	</style>
 </head>
 <body>
 <script src="thirdparty/angular/angular.js"></script>
 <script src="sheetchecker.js"></script>
 <script id="sheet-checker-template" language="template/angular">
+	<div ng-if="viaSharable">
+		<h1>IMPORTANT</h1>
+		<div class="notice">
+			If you usually use the secure HTTPS version of KFC, you'll need to use an HTTPS link to load this content, and vice versa. You're currently looking at the {{ secureType }} version.
+			<a ng-href="{{ otherTypeLink }}">Switch to {{ otherType }}</a>
+		</div>
+	</div>
 	<input ng-model="name" placeholder="Name (optional)">
 	<input ng-model="sheetId" placeholder="Sheet ID or URL">
 	<button ng-click="test()">Test</button>
