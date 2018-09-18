@@ -103,7 +103,7 @@
 			sources.all.forEach(function (sourceName) {
 				vm.filters.source[sourceName] = (sourceTypes === "all");
 			});
-			
+
 			switch (sourceTypes) {
 				// non-core WotC products
 				case "official":
@@ -137,12 +137,17 @@
 				// non-WotC products
 				case "3rdparty":
 					[
+						"Critter Compendium",
 						"Demon Cults & Secret Societies",
 						"Fifth Edition Foes",
 						"Monster Module",
 						"Monster-A-Day",
+						"Monsters of the Guild",
 						"Monsters of the Orient",
+						"Nerzugal's Dungeon Master Toolkit 2",
 						"Nerzugal's Extended Bestiary",
+						"Quests of Doom Volume 1",
+						"Quests of Doom Volume 2",
 						"Primeval Thule Campaign Setting",
 						"Primeval Thule Gamemaster's Companion",
 						"Tome of Beasts",
