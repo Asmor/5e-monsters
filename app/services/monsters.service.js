@@ -115,7 +115,7 @@
 				crString = all[i].cr.string;
 				crIndex = byCr[crString].indexOf(all[i]);
 				if ( crIndex !== -1 ) {
-					byCr.splice(crIndex, 1);
+					byCr[crString].splice(crIndex, 1);
 				}
 				all.splice(i, 1);
 			} else {
