@@ -76,7 +76,7 @@
 			var shortName = sourceData.shortname;
 			var initialState = custom || !!(sourceData.defaultselected || "").match(/yes/i);
 
-			if ( miscLib.sourceFilters[name] ) {
+			if ( miscLib.sourceFilters[name] !== undefined ) {
 				console.warn("Duplicate source", name);
 				return;
 			}
