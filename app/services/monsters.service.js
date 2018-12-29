@@ -86,6 +86,12 @@
 			miscLib.sourceFilters[name] = initialState;
 			miscLib.shortNames[name] = shortName;
 
+			if ( !miscLib.sourcesByType[sourceData.type] ) {
+				miscLib.sourcesByType[sourceData.type] = [];
+			}
+
+			miscLib.sourcesByType[sourceData.type].push(name);
+
 			if ( custom ) {
 				$rootScope.$broadcast("custom-source-added", name);
 			}

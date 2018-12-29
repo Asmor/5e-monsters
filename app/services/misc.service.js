@@ -9,6 +9,7 @@
 		var crs = [],
 			sourceFilters = {},
 			sources = [],
+			sourcesByType = {},
 			shortNames = {},
 			tags = {},
 			i;
@@ -25,6 +26,7 @@
 			getMultiplier: getMultiplier,
 			sourceFilters: sourceFilters,
 			sources: sources,
+			sourcesByType: sourcesByType,
 			shortNames: shortNames,
 			tags: tags,
 		};

@@ -81,23 +81,29 @@
 				<h4 class="modal-title" id="myModalLabel">Set Source Material</h4>
 			</div>
 			<div class="modal-body">
-				<div class="sources-modal--buttons">
-					<button class="btn btn-primary" ng-click="vm.updateSourceFilters('all')">Everything</button>
-					<button class="btn btn-primary" ng-click="vm.updateSourceFilters('official')">Official WotC</button>
-					<button class="btn btn-primary" ng-click="vm.updateSourceFilters('core')">Core Books</button>
-					<button class="btn btn-primary" ng-click="vm.updateSourceFilters('3rdparty')">Third Party</button>
-					<button class="btn btn-primary" ng-click="vm.updateSourceFilters('none')">None</button>
+				<div
+					class="sources-modal--source-section"
+					ng-repeat="section in getSourceSections()"
+				>
+
+					<button class="btn btn-primary" ng-click="vm.updateSourceFilters({ type: section.name, enabled: true })">All</button>
+					<button class="btn btn-primary" ng-click="vm.updateSourceFilters({ type: section.name, enabled: false })">None</button>
+					<span class="sources-modal--source-section-header">
+						{{ section.name }}
+					</span>
+
+					<ul>
+						<li class="search--source"
+							ng-repeat="source in section.sources"
+							ng-class="{ 'search--source__off': !vm.filters.source[source] }">
+							<label>
+								<input type="checkbox" ng-model="vm.filters.source[source]">
+								{{ source }}
+							</label>
+						</li>
+					</ul>
+
 				</div>
-				<ul>
-					<li class="search--source"
-						ng-repeat="source in vm.sourceNames"
-						ng-class="{ 'search--source__off': !vm.filters.source[source] }">
-						<label>
-							<input type="checkbox" ng-model="vm.filters.source[source]">
-							{{ source }}
-						</label>
-					</li>
-				</ul>
 				<div>
 					<a href="https://github.com/Asmor/5e-monsters/wiki/Extra-content-for-KFC">Add additional content</a>
 				</div>

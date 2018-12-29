@@ -7681,8 +7681,9 @@ button.close {
     font-size: 1rem;
     font-family: monospace; }
 
-.sources-modal--buttons {
-  margin-bottom: 2rem; }
+.sources-modal--source-section-header {
+  font-weight: bold;
+  font-size: 2rem; }
 
 @media (max-width: 768px) {
   .search--search-form--sort-control {

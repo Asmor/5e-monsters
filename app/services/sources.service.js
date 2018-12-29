@@ -11,6 +11,7 @@
 			all: misc.sources,
 			filters: misc.sourceFilters,
 			shortNames: misc.shortNames,
+			sourcesByType: misc.sourcesByType,
 		};
 	}
 })();

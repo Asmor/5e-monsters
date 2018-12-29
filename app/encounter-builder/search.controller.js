@@ -18,6 +18,7 @@
 		vm.legendaryList = metaInfo.legendaryList;
 		vm.encounters = library.encounters;
 		vm.sortChoices = metaInfo.sortChoices;
+		window.sources = sources;
 
 		// Cache sorted data to avoid infinite digest
 		var contentCacheKey;
@@ -90,73 +91,45 @@
 			vm.filters.legendary = null;
 		}
 
-		function updateSourceFilters(newValue) {
-			if (newValue) {
-				vm.filters.sources = newValue;
+		function updateSourceFilters({ type, enabled }) {
+			sources.sourcesByType[type].forEach(name => vm.filters.source[name] = enabled);
+		}
+
+		let sourceSections = [];
+		let sourceSectionKey;
+		$scope.getSourceSections = function () {
+			let key = sources.all.join();
+
+			if ( key !== sourceSectionKey ) {
+				sourceSectionKey = key;
+
+				sourceSections = Object.keys(sources.sourcesByType).map(sourceType => ({
+					name: sourceType,
+					sources: sources.sourcesByType[sourceType].slice().sort(),
+				}));
+
+				sourceSections.sort((a, b) => {
+					let aName = a.name;
+					let bName = b.name;
+					let aIsOfficial = aName.match(/Official/);
+					let bIsOfficial = bName.match(/Official/);
+
+					// Sort official types to the top, then sort by name
+					if ( aIsOfficial && !bIsOfficial ) {
+						return -1;
+					} else if ( !aIsOfficial && bIsOfficial ) {
+						return 1;
+					} else {
+						if ( aName > bName ) {
+							return 1;
+						} else {
+							return -1;
+						}
+					}
+				});
 			}
 
-			// The default is core, but for implementation reasons it's represented by the empty string
-			var sourceTypes = vm.filters.sources || "core";
-
-			// If we're selecting everything, turn everything on. Otherwise turn everything off and
-			// then selectively turn things on
-			sources.all.forEach(function (sourceName) {
-				vm.filters.source[sourceName] = (sourceTypes === "all");
-			});
-
-			switch (sourceTypes) {
-				// non-core WotC products
-				case "official":
-					[
-						"Curse of Strahd",
-						"Hoard of the Dragon Queen",
-						"HotDQ supplement",
-						"Out of the Abyss",
-						"Princes of the Apocalypse",
-						"Princes of the Apocalypse Online Supplement v1.0",
-						"Rise of Tiamat",
-						"Storm King's Thunder",
-						"Tales from the Yawning Portal",
-						"The Tortle Package",
-						"Tomb of Annihilation",
-					].forEach(function (sourceName) {
-						vm.filters.source[sourceName] = true;
-					});
-					// no break here
-				case "core":
-					[
-						"Basic Rules v1",
-						"Monster Manual",
-						"Mordenkainen's Tome of Foes",
-						"Player's Handbook",
-						"Volo's Guide to Monsters",
-					].forEach(function (sourceName) {
-						vm.filters.source[sourceName] = true;
-					});
-					break;
-				// non-WotC products
-				case "3rdparty":
-					[
-						"Critter Compendium",
-						"Demon Cults & Secret Societies",
-						"Fifth Edition Foes",
-						"Monster Module",
-						"Monster-A-Day",
-						"Monsters of the Guild",
-						"Monsters of the Orient",
-						"Nerzugal's Dungeon Master Toolkit 2",
-						"Nerzugal's Extended Bestiary",
-						"Quests of Doom Volume 1",
-						"Quests of Doom Volume 2",
-						"Primeval Thule Campaign Setting",
-						"Primeval Thule Gamemaster's Companion",
-						"Tome of Beasts",
-						"Ultimate Bestiary Revenge of the Horde",
-					].forEach(function (sourceName) {
-						vm.filters.source[sourceName] = true;
-					});
-					break;
-			}
+			return sourceSections; 
 		}
 	}
 })();
