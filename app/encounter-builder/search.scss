@@ -20,10 +20,6 @@
 
 	& .search-input {
 		@include make-md-column(6);
-		margin-right: 0;
-		border-top-right-radius: 0;
-		border-bottom-right-radius: 0;
-		border-right-width: 0px;
 	}
 
 	& .search-re-button {
@@ -31,6 +27,7 @@
 		border-top-left-radius: 0;
 		border-bottom-left-radius: 0;
 		border-left-width: 0px;
+		float: left;
 	}
 
 
@@ -74,5 +71,21 @@
 @media (max-width: 768px) {
 	.search--search-form--sort-control {
 		display: inline-block !important;
+	}
+	
+	& .search-re-button {
+		display: none
+	}
+}
+
+
+@media (min-width: 768px) {
+	& .search-input {
+		margin-right: 0;
+		padding-right: 0;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+		border-right-width: 0px;
+		float: left;
 	}
 }

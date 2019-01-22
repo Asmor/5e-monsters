@@ -7659,11 +7659,7 @@ button.close {
     position: relative;
     min-height: 1px;
     padding-left: 15px;
-    padding-right: 15px;
-    margin-right: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-right-width: 0px; }
+    padding-right: 15px; }
     @media (min-width: 992px) {
       .search .search-input {
         float: left;
@@ -7672,7 +7668,8 @@ button.close {
     margin-left: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    border-left-width: 0px; }
+    border-left-width: 0px;
+    float: left; }
   .search--sources-button {
     display: inline-block; }
   .search--size-controls {
@@ -7695,7 +7692,18 @@ button.close {
 
 @media (max-width: 768px) {
   .search--search-form--sort-control {
-    display: inline-block !important; } }
+    display: inline-block !important; }
+  .search-re-button {
+    display: none; } }
+
+@media (min-width: 768px) {
+  .search-input {
+    margin-right: 0;
+    padding-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right-width: 0px;
+    float: left; } }
 
 .encounter-builder .encounter-builder--encounter-info-bar {
   display: none; }
