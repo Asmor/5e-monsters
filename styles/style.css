@@ -7655,17 +7655,21 @@ button.close {
   .search--search-form * {
     margin-bottom: 1rem;
     margin-right: 0.5rem; }
+  .search .search-wrapper {
+    margin-right: 0; }
   .search .search-input {
     position: relative;
     min-height: 1px;
     padding-left: 15px;
-    padding-right: 15px; }
+    padding-right: 15px;
+    margin-bottom: 0; }
     @media (min-width: 992px) {
       .search .search-input {
         float: left;
         width: 50%; } }
   .search .search-re-button {
     margin-left: 0;
+    margin-bottom: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-left-width: 0px;
@@ -7694,7 +7698,9 @@ button.close {
   .search--search-form--sort-control {
     display: inline-block !important; }
   .search-re-button {
-    display: none; } }
+    display: none; }
+  .search-wrapper {
+    display: block; } }
 
 @media (min-width: 768px) {
   .search-input {
@@ -7703,7 +7709,9 @@ button.close {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-right-width: 0px;
-    float: left; } }
+    float: left; }
+  .search-wrapper {
+    display: inline; } }
 
 .encounter-builder .encounter-builder--encounter-info-bar {
   display: none; }

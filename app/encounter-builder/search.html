@@ -1,12 +1,12 @@
 <div class="search">
 	<div class="search--search-form form-inline">
 		<label class="sr-only">Search</label>
-		<span>
+		<div class="search-wrapper">
 			<input class="form-control search-input" type="text" ng-model="vm.filters.search" placeholder="Search...">
 			<button type="button" class="btn btn-primary form-control search-re-button" data-toggle="modal" data-target="#regexModal">
 				/re/
 			</button>
-		</span>
+		</div>
 		<select class="form-control"
 				ng-model="vm.filters.size"
 				ng-options="size for size in vm.sizes">
