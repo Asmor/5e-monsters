@@ -7660,11 +7660,19 @@ button.close {
     min-height: 1px;
     padding-left: 15px;
     padding-right: 15px;
-    margin-right: 1rem; }
+    margin-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right-width: 0px; }
     @media (min-width: 992px) {
       .search .search-input {
         float: left;
         width: 50%; } }
+  .search .search-re-button {
+    margin-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left-width: 0px; }
   .search--sources-button {
     display: inline-block; }
   .search--size-controls {

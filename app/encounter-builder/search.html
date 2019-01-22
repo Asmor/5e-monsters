@@ -1,8 +1,12 @@
 <div class="search">
 	<div class="search--search-form form-inline">
 		<label class="sr-only">Search</label>
-		<input class="form-control search-input" type="text" ng-model="vm.filters.search" placeholder="Search...">
-		
+		<span>
+			<input class="form-control search-input" type="text" ng-model="vm.filters.search" placeholder="Search...">
+			<button type="button" class="btn btn-primary form-control search-re-button" data-toggle="modal" data-target="#regexModal">
+				/re/
+			</button>
+		</span>
 		<select class="form-control"
 				ng-model="vm.filters.size"
 				ng-options="size for size in vm.sizes">
@@ -165,6 +169,29 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
+			</div>
+		</div>
+	</div>	
+	<!-- Regex Content Modal -->
+	<div class="modal" id="regexModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Regular Expressions</h4>
+				</div>
+				<div class="modal-body">
+					<p>
+						This is a quickstart guide to using Regular Expressions. Searching with Regular Expressions (RegExes) drastically increases the power of the search bar. 
+						But much like <em>Augery</em> it can seem a bit of a ritual.
+					</p>
+					<h4>RegEx Basics</h4>
+					<h4>Useful Patterns</h4>
+					<h4>More Advanced RegExes</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
 			</div>
 		</div>
 	</div>

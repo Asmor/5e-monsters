@@ -7,3 +7,7 @@ node_modules
 npm-debug.log*
 temp
 *.npmrc
+
+# Yarn-specific dev files (as npm is reccomended in README.md)
+yarn.lock
+package-lock.json
