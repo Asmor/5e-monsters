@@ -15,12 +15,14 @@
         vm.isPool = vm.encounter.type == 'pool';
         vm.newEncounter = newEncounter;
         vm.partyInfo = partyInfo;
+        vm.totalMonsters = 10;
 
         var lastDifficulty = "medium";
         
         function generateRandom(difficulty) {
+            console.log("gen random", vm.total_monsters);
             difficulty = difficulty || lastDifficulty;
-            encounter.generateRandom(vm.filters, difficulty);
+            encounter.generateRandom(vm.filters, difficulty, vm.totalMonsters);
             lastDifficulty = difficulty;
         }
 

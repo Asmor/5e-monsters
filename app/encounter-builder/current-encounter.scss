@@ -65,6 +65,11 @@
     text-overflow: ellipsis;
 	}
 
+    &--total-monsters {
+        display: inline;
+        width: 4em;
+    }
+
 	&--btns {
 		margin-top: 1rem;
 		text-align: right;
