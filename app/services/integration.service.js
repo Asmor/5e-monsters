@@ -11,8 +11,8 @@
 	function ExportService($document, encounter, players) {
 		function launchImpInit() {
 			var payload = generatePayload({
-				monsters: encounter.groups,
-				players: players.selectedParty,
+				monsters: encounter.groups || [],
+				players: players.selectedParty || [],
 			});
 
 			console.log(payload);
