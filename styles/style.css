@@ -7489,10 +7489,12 @@ button.close {
     white-space: nowrap;
     text-overflow: ellipsis; }
   .current-encounter--btns {
-    margin-top: 1rem;
-    text-align: right; }
-    .current-encounter--btns .btn-new {
-      margin-right: 1rem; }
+    margin-top: 0.5rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end; }
+    .current-encounter--btns .btn {
+      margin: 0.5rem; }
   .current-encounter--totals {
     border-top: 1px solid #ddd;
     display: flex;
