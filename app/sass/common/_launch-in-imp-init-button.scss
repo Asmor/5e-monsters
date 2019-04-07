@@ -1,0 +1,22 @@
+.launch-in-imp-init-button {
+		background-color: #00643C;
+		color: #FAEBD7;
+		position: relative;
+		// Padding is estimate to clear image of boot from the ::before
+		padding-left: 40px;
+
+		&::before {
+			$margin: 5px;
+			display: inline-block;
+			content: '';
+			height: calc(100% - #{$margin * 2});
+			width: 100%;
+			margin-right: 5px;
+			background: url('../images/improved-initiative-logo.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			position: absolute;
+			top: $margin;
+			left: $margin;
+		}
+	}
