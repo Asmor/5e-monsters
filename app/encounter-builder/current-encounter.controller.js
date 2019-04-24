@@ -15,6 +15,7 @@
         vm.isPool = vm.encounter.type == 'pool';
         vm.newEncounter = newEncounter;
         vm.partyInfo = partyInfo;
+        vm.totalMonsters = 10;
 
         vm.launchImpInit = integration.launchImpInit;
 
@@ -22,7 +23,7 @@
         
         function generateRandom(difficulty) {
             difficulty = difficulty || lastDifficulty;
-            encounter.generateRandom(vm.filters, difficulty);
+            encounter.generateRandom(vm.filters, difficulty, vm.totalMonsters);
             lastDifficulty = difficulty;
         }
 

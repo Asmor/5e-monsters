@@ -15,6 +15,12 @@
 		</ul>
 	</div>
 </h2>
+<p>
+	No more than
+	<input class="current-encounter--total-monsters form-control input-sm"
+	type="number" ng-model="vm.totalMonsters">
+	monster<span ng-if="vm.totalMonsters != 1">s</span>
+</p>
  <p class="current-encounter--empty bg-info text-muted" ng-if="vm.encounter.qty == 0">
 	Create an encounter by clicking the Random encounter button or by adding monsters from the monsters table.
 </p>
