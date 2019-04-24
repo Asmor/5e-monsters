@@ -14,10 +14,10 @@
 			//		targetTotalExp: The experience target value. Takes into account player count, player level, and target difficulty already.
 			//		filters: Any filters that should be applied when making the encounter
 			//
-			getRandomEncounter: function (playerCount, targetTotalExp, filters) {
+			getRandomEncounter: function (playerCount, targetTotalExp, filters, maxMonsters) {
 				var fudgeFactor = 1.1, // The algorithm is conservative in spending exp, so this tries to get it closer to the actual medium value
 					baseExpBudget = targetTotalExp * fudgeFactor,
-					encounterTemplate = getEncounterTemplate(),
+					encounterTemplate = getEncounterTemplate(maxMonsters),
 					multiplier = miscLib.getMultiplier(playerCount, encounterTemplate.total),
 					availableExp = baseExpBudget / multiplier,
 					monster,
@@ -54,9 +54,10 @@
 
 		return randomEncounter;
 
-		function getEncounterTemplate() {
+		function getEncounterTemplate(maxMonsters) {
 			var templates = [
 					[ 1 ],
+					[ 1, 1 ],
 					[ 1, 2 ],
 					[ 1, 5 ],
 					[ 1, 1, 1 ],
@@ -65,8 +66,14 @@
 					[ 2, 2 ],
 					[ 2, 4 ],
 					[ 8 ],
-				],
-				groups = JSON.parse(JSON.stringify(templates[Math.floor(Math.random() * templates.length)])),
+				];
+			if (maxMonsters) {
+				templates = templates.filter(function(t) {
+					let sum = t.reduce(function (a, b) { return a+b; });
+					return sum <= maxMonsters;
+				});
+			}
+			var groups = JSON.parse(JSON.stringify(templates[Math.floor(Math.random() * templates.length)])),
 				total = groups.reduce(function (a, b) { return a+b; });
 
 			// Silly hack to clone object

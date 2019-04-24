@@ -131,10 +131,10 @@
 			encounter.reference = null;
 		}
 
-		function generateRandom(filters, targetDifficulty) {
+		function generateRandom(filters, targetDifficulty, maxMonsters) {
 			targetDifficulty = targetDifficulty || 'medium';
 			var totalTargetExp = partyInfo.totalPartyExpLevels[targetDifficulty];
-			var monsters = randomEncounter.getRandomEncounter(partyInfo.totalPlayerCount, totalTargetExp, filters),
+			var monsters = randomEncounter.getRandomEncounter(partyInfo.totalPlayerCount, totalTargetExp, filters, maxMonsters),
 				i;
 
 			encounter.reset();
