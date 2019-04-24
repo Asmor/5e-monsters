@@ -20,7 +20,6 @@
         var lastDifficulty = "medium";
         
         function generateRandom(difficulty) {
-            console.log("gen random", vm.total_monsters);
             difficulty = difficulty || lastDifficulty;
             encounter.generateRandom(vm.filters, difficulty, vm.totalMonsters);
             lastDifficulty = difficulty;

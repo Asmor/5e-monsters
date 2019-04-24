@@ -7470,6 +7470,9 @@ button.close {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis; }
+  .current-encounter--total-monsters {
+    display: inline;
+    width: 4em; }
   .current-encounter--btns {
     margin-top: 1rem;
     text-align: right; }

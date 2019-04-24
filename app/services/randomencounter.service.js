@@ -69,9 +69,9 @@
 				];
 			if (maxMonsters) {
 				templates = templates.filter(function(t) {
-					var sum = t.reduce(function (a, b) { return a+b; });
+					let sum = t.reduce(function (a, b) { return a+b; });
 					return sum <= maxMonsters;
-				})
+				});
 			}
 			var groups = JSON.parse(JSON.stringify(templates[Math.floor(Math.random() * templates.length)])),
 				total = groups.reduce(function (a, b) { return a+b; });
