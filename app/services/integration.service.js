@@ -6,13 +6,13 @@
 
 
 	// var payload = [{ "Name": "Nemo", "HP": { "Value": 10 } }, { "Name": "Fat Goblin", "HP": { "Value": 20 }, "Id": "mm.goblin"}, { "Id": "mm.goblin"}];
-	var target = "http://improved-initiative.com/launchencounter/";
+	var target = "https://www.improved-initiative.com/launchencounter/";
 	ExportService.$inject = ["$document", "encounter", "players"];
 	function ExportService($document, encounter, players) {
 		function launchImpInit() {
 			var payload = generatePayload({
-				monsters: encounter.groups,
-				players: players.selectedParty,
+				monsters: encounter.groups || [],
+				players: players.selectedParty || [],
 			});
 
 			console.log(payload);

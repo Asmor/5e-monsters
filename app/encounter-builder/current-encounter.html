@@ -67,6 +67,10 @@
 		<div class="current-encounter--btns">
 			<button class="btn btn-danger btn-new" ng-click="vm.newEncounter()">New</button>
 			<button class="btn btn-primary" ui-sref="encounter-manager" ng-if="!vm.encounter.reference">Save</button>
+			<button
+				class="btn launch-in-imp-init-button"
+				ng-click="vm.launchImpInit()"
+			>Run in Improved Initiative</button>
 		</div>
 	</div>
 </div>
