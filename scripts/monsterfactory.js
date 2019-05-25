@@ -71,6 +71,8 @@
 					return out;
 				});
 
+			monster.sortSources();
+
 			monster.sizeSort = parseSize(monster.size);
 			monster.searchable = [
 				monster.name,
@@ -84,6 +86,16 @@
 				monster.tags
 			).join("|").toLowerCase();
 		}
+		Monster.prototype.merge = function (monster) {
+			// If the same monster is found in multiple sheets, merge them. Right now that means just combining their sources.
+			monster.sources.forEach(source => this.sources.push(source));
+			this.sortSources();
+		};
+		Monster.prototype.sortSources = function () {
+			this.sources.sort(sourceCompare);
+		};
+
+		const sourceCompare = (a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: "base" });
 
 		function parseAlignment(alignmentString) {
 			var flags = (alignmentString || "")

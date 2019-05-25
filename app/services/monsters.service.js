@@ -56,7 +56,9 @@
 			var monster = new monsterFactory.Monster(monsterData);
 
 			if ( byId[monster.id] ) {
-				console.warn("Duplicate ID", monster.id, monster.fid);
+				// We already have this monster from some other source, so just merge it
+				// with the existing entry
+				byId[monster.id].merge(monster)
 				return;
 			}
 
