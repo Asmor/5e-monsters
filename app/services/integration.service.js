@@ -48,7 +48,7 @@
 					HP: { Value: monster.hp },
 					TotalInitiativeModifier: monster.init,
 					AC: { Value: monster.ac },
-					Player: "npc",
+					Player: "",
 					Id: monster.fid,
 				});
 			}
