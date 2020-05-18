@@ -79,7 +79,7 @@ Links:
 
 # Contributing content to Kobold Fight Club
 
-User-submitted content is no longer accepted directly into KFC. Instead, if you'd like to share, post a link to that content in [This reddit thread](https://www.reddit.com/r/asmor/comments/9dpyxv/list_of_communityadded_kfc_content/?) with a link to the sheet and a description of its contents.
+User-submitted content is no longer accepted directly into KFC. Instead, if you'd like to share, post a link to that content in [This reddit thread](https://www.reddit.com/r/asmor/comments/fgcrif/list_of_communityadded_kfc_content_4_thats_100_in/) with a link to the sheet and a description of its contents.
 
 I _may_ end up making a wiki page to organize and curate these links, but I make no promises.
 
