@@ -73,9 +73,10 @@ Links:
 			* Curse of Strahd: `Strahd`
 			* Fifth Edition Foes: `5eF`
 			* Primeval Thule Campaign Setting: `ThuleCS`
-		* **link** is a link to the source. This should be a landing page of some sort, not a direct link to a PDF. For example, a blog post, a reddit threat, an online store front.
-3. Go to the sheet checker (see links section above). Put the URL for your sheet in the box and click the button. Fix any errors you get and try again.
-4. Once you're done, click "Manage Custom Content" in KFC. Put the URL for your sheet in the field that says URL, give it a name, and click add. If you've done everything correctly, your monsters will now be integrated into the list.
+		* **link** is a link to the source. This should be a landing page of some sort, not a direct link to a PDF. For example, a blog post, a reddit thread, an online store front.
+3. Publish your Google Doc to the web. Select File -> Publish to the web.
+4. Go to the sheet checker (see links section above). Put the URL for your sheet in the box and click the button. Note that this is the URL of your Google doc, *not* its publish URL. Fix any errors you get and try again.
+5. Once you're done, click "Manage Custom Content" in KFC. Put the URL for your sheet in the field that says URL, give it a name, and click add. If you've done everything correctly, your monsters will now be integrated into the list.
 
 # Contributing content to Kobold Fight Club
 
