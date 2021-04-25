@@ -223,11 +223,11 @@
 			}
 
 			if ( !args.skipCrCheck ) {
-				if ( filters.minCr && monster.cr.numeric < filters.minCr ) {
+				if ( (filters.minCr !== null) && monster.cr.numeric < filters.minCr ) {
 					return true;
 				}
 
-				if ( filters.maxCr && monster.cr.numeric > filters.maxCr ) {
+				if ( (filters.maxCr !== null) && monster.cr.numeric > filters.maxCr ) {
 					return true;
 				}
 			}
