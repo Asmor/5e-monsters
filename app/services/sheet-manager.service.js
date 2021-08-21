@@ -11,7 +11,7 @@ var sheetMetaData = {
 var sheetMetaStorageKey = "5em-sheet-meta";
 var sheetCachePartialKey = "5em-sheet-cache";
 var legacySheetDataKey = "5em-custom-content";
-var logging = false;
+var logging = true;
 
 function generateCacheId(sheetId) {
 	return [sheetCachePartialKey, sheetId].join(":");
@@ -52,6 +52,7 @@ function loadLive(args) {
 }
 
 function insertSheet(args) {
+
 	var sheetId = args.sheetId;
 	var store = args.store;
 	var monsters = args.monsters;
@@ -134,9 +135,12 @@ function sheetManager($q, monsters, store) {
 				custom: enableByDefault
 			}));
 		});
+
 		await Promise.allSettled(promises).then(() => {
-			window.dispatchEvent(new CustomEvent("content-loaded"));
-		})
+			if(logging) console.log('finished loading');
+			let scope = angular.element($("html")).scope();
+			scope.$apply()
+		});
 	});
 
 	return {
