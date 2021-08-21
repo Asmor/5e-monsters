@@ -1,6 +1,7 @@
 @import 'global';
 @import 'mixins';
 
+$brand-primary: #2f855a;
 // Font Awesome
 // IMPORTANT: Font path is relative to the compiled CSS file, not this sass file!
 $fa-font-path: "../thirdparty/font-awesome-4.1.0/fonts";
@@ -29,6 +30,37 @@ $combatant-lair: #E78AC3; // Pink
 
 // Line height for things where text should line up with buttons
 $button-line-height: 34px;
+
+.navbar-inverse {
+    background-color: $brand-primary;
+    border-color: $brand-primary;
+
+    .navbar-brand {
+        color: white;
+    }
+
+    .navbar-nav > {
+        li > {
+            a {
+                color: hsla(0,0%,100%,.6);
+        
+                &:hover {
+                    color: white;
+                }
+            }
+        }
+
+        .active, a, a:hover {
+            background-color: transparent;
+        }
+    }
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+    color: white;
+    background-color: transparent;
+}
+
 
 @import 'common/common';
 @import '../encounter-builder/encounter-builder';
