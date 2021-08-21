@@ -57,9 +57,6 @@
 		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#sourcesModal">
 			Set Sources
 		</button>
-		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#contentModal">
-			Manage Content
-		</button>
 	</div>
 	<div class="search--reset">
 		<button class="btn btn-danger" ng-click="vm.resetFilters()">Reset Filters</button>
@@ -104,9 +101,6 @@
 					</ul>
 
 				</div>
-				<div>
-					<a href="https://github.com/Asmor/5e-monsters/wiki/Extra-content-for-KFC">Add additional content</a>
-				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -115,7 +109,7 @@
 		</div>
 	</div>
 	<!-- Custom Content Modal -->
-	<div class="modal" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<!-- <div class="modal" id="contentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 			<div class="modal-header">
@@ -134,16 +128,6 @@
 								<i class="fa fa-trash-o"></i>
 							</button>
 						</div>
-						<div class="col-lg-9">
-							{{ contentDefinition.name }}
-							(Last updated: {{ contentDefinition.updated }})
-							<div>
-								<a
-									class="search--sheet-link"
-									ng-href="https://docs.google.com/spreadsheets/d/{{ contentDefinition.id }}/"
-								>{{ contentDefinition.id }}</a>
-							</div>
-						</div>
 					</li>
 					<li class="row search--content-row">
 						<div class="col-lg-5">
@@ -157,15 +141,11 @@
 						</div>
 					</li>
 				</ul>
-
-				<div>
-					<a href="https://github.com/Asmor/5e-monsters/wiki/Extra-content-for-KFC">Add additional content</a>
-				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>
