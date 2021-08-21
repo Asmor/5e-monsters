@@ -36,7 +36,16 @@ $button-line-height: 34px;
     border-color: $brand-primary;
 
     .navbar-brand {
+        padding:1rem;
         color: white;
+        display: flex;
+        align-items: center;
+
+        img {
+            height:100%;
+            display: initial;
+            margin-right:1rem;
+        }
     }
 
     .navbar-nav > {
