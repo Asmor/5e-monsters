@@ -59,6 +59,8 @@
 				// We already have this monster from some other source, so just merge it
 				// with the existing entry
 				byId[monster.id].merge(monster)
+				let sources = new Set(byId[monster.id].sources.map(source => JSON.stringify(source)))
+				byId[monster.id].sources = Array.from(sources).map(source => JSON.parse(source));
 				return;
 			}
 

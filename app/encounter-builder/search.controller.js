@@ -23,7 +23,8 @@
 		// Cache sorted data to avoid infinite digest
 		var contentCacheKey;
 		var contentCache;
-		$scope.getContent = function () {
+		$scope.getContent = async function () {
+
 			var metadata = sheetManager.getSheetMetaData();
 			var metadataKeys = Object.keys(metadata);
 			var cacheKey = metadataKeys
@@ -59,6 +60,7 @@
 					return (a.name > b.name) ? 1 : -1;
 				});
 			}
+
 			return contentCache;
 		};
 

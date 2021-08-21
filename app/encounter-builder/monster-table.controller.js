@@ -7,7 +7,7 @@
     MonsterTableController.$inject = ['encounter', 'monsters', 'sources'];
     function MonsterTableController(encounter, monsters, sources) {
         var vm = this;
-        
+
         vm.encounter = encounter;
         vm.monsters = monsters.all;
         vm.sources = sources;
