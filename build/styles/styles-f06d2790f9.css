@@ -7399,7 +7399,14 @@ button.close {
   background-color: #2f855a;
   border-color: #2f855a; }
   .navbar-inverse .navbar-brand {
-    color: white; }
+    padding: 1rem;
+    color: white;
+    display: flex;
+    align-items: center; }
+    .navbar-inverse .navbar-brand img {
+      height: 100%;
+      display: initial;
+      margin-right: 1rem; }
   .navbar-inverse .navbar-nav > li > a {
     color: rgba(255, 255, 255, 0.6); }
     .navbar-inverse .navbar-nav > li > a:hover {

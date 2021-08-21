@@ -510,7 +510,7 @@
     MonsterTableController.$inject = ['encounter', 'monsters', 'sources'];
     function MonsterTableController(encounter, monsters, sources) {
         var vm = this;
-        
+
         vm.encounter = encounter;
         vm.monsters = monsters.all;
         vm.sources = sources;
@@ -646,7 +646,8 @@
 		// Cache sorted data to avoid infinite digest
 		var contentCacheKey;
 		var contentCache;
-		$scope.getContent = function () {
+		$scope.getContent = async function () {
+
 			var metadata = sheetManager.getSheetMetaData();
 			var metadataKeys = Object.keys(metadata);
 			var cacheKey = metadataKeys
@@ -682,6 +683,7 @@
 					return (a.name > b.name) ? 1 : -1;
 				});
 			}
+
 			return contentCache;
 		};
 
@@ -2389,6 +2391,8 @@
 				// We already have this monster from some other source, so just merge it
 				// with the existing entry
 				byId[monster.id].merge(monster)
+				let sources = new Set(byId[monster.id].sources.map(source => JSON.stringify(source)))
+				byId[monster.id].sources = Array.from(sources).map(source => JSON.parse(source));
 				return;
 			}
 
@@ -3034,15 +3038,14 @@
 angular.module("app").factory("sheetManager", sheetManager);
 
 var sheetMetaData = {
-	"1I5W-x8QOcP2siGCPIhWWzKGWt4vyBivYLbmkv_G1B24": { name: "Official", timestamp: 0 },
-	"1YR8NBDp8BP4Lz-CWChh6-8dOPN7aYV_dRD6g9ZBvNqM": { name: "Third-Party", timestamp: 0 },
-	"1x6xC8fHZ6N6M2wOuwPTNdn0ObCPtdqeIBtXaLjHBMYQ": { name: "Community", timestamp: 0 },
+	"./json/se_sources.json": { name: "Official", revision: 0, monstersJson: "./json/se_monsters.json" },
+	"./json/se_third_party_sources.json": { name: "Third Party", revision: 0, monstersJson: "./json/se_third_party_monsters.json" },
+	"./json/se_community_sources.json": { name: "Community", revision: 0, monstersJson: "./json/se_community_monsters.json"},
 };
-var remove = ["19ngAA7d1eYKiBtKTsg8Qcsq_zhDSBzEMxXS45eCdd7I"];
 var sheetMetaStorageKey = "5em-sheet-meta";
 var sheetCachePartialKey = "5em-sheet-cache";
 var legacySheetDataKey = "5em-custom-content";
-var logging = false;
+var logging = true;
 
 function generateCacheId(sheetId) {
 	return [sheetCachePartialKey, sheetId].join(":");
@@ -3061,62 +3064,31 @@ function loadLive(args) {
 	if (logging) console.log("Loading live");
 	var store = args.store;
 	var sheetId = args.sheetId;
-	var googleSheetLoader = args.googleSheetLoader;
-	var timestamp = args.timestamp;
+	var revision = args.revision;
 
-	return googleSheetLoader.loadIndex(sheetId)
-	.then(function (sheetIndex) {
-		var remoteTimestamp = Date.parse(sheetIndex.timestamp);
-		if (logging) console.log("Loaded sheetIndex, remote timestamp:", remoteTimestamp);
-
-		if ( remoteTimestamp > timestamp ) {
-			if (logging) console.log("We're out of date", timestamp);
-			// We're out of date, load remotely
-			return sheetIndex.loadSheets()
-				.then(function (sheetData) {
-					if (logging) console.log("Sheet data loaded", sheetData);
-					updateTimestamp({
-						store: store,
-						sheetId: sheetId,
-						timestamp: remoteTimestamp,
-					});
-
+	return fetch(args.sheetId)
+		.then(r => r.json())
+		.then(async (json) => {
+			let sheetData = {
+				Sources: json
+			}
+			return sheetData;
+		}).then(sheetData => {
+			return fetch(sheetMetaData[sheetId].monstersJson)
+				.then(r => r.json())
+				.then(json => {
+					sheetData.Monsters = json;
 					var cacheId = generateCacheId(sheetId);
 					store.set(cacheId, sheetData);
 					return sheetData;
-				});
-		} else {
-			if (logging) console.log("We're fresh", timestamp);
-			// Our data are fresh, load from cache
-			return loadFromCache({
-				store: store,
-				sheetId: sheetId,
-			});
-		}
-	})
-	.catch(function () {
-		if (logging) console.log("There was an error live loading");
-		return loadFromCache({
-			store: store,
-			sheetId: sheetId,
+				})
 		});
-	})
-	;
-}
-
-function updateTimestamp(args) {
-	var store = args.store;
-	var sheetId = args.sheetId;
-	var timestamp = args.timestamp;
-
-	sheetMetaData[sheetId].timestamp = timestamp;
-	saveMetaData(store);
 }
 
 function insertSheet(args) {
+
 	var sheetId = args.sheetId;
 	var store = args.store;
-	var googleSheetLoader = args.googleSheetLoader;
 	var monsters = args.monsters;
 	var custom = args.custom;
 	var name = args.name;
@@ -3126,20 +3098,19 @@ function insertSheet(args) {
 	if ( !sheetMetaData[sheetId] ) {
 		sheetMetaData[sheetId] = {
 			name: name,
-			timestamp: 0,
+			revision: 0,
 			custom: custom,
 		};
 		saveMetaData(store);
 	}
-	var timestamp = sheetMetaData[sheetId].timestamp;
+	var revision = sheetMetaData[sheetId].revision;
 
 	if ( navigator.onLine ) {
 		if (logging) console.log("We're online");
 		sheetPromise = loadLive({
 			store: store,
 			sheetId: sheetId,
-			googleSheetLoader: googleSheetLoader,
-			timestamp: timestamp,
+			revision: revision,
 		});
 	} else {
 		if (logging) console.log("We're offline");
@@ -3149,12 +3120,12 @@ function insertSheet(args) {
 		});
 	}
 
-	sheetPromise.then(function (sheets) {
+	return sheetPromise.then(function (sheets) {
 		if (logging) console.log("Got sheets!", sheets);
 		monsters.loadSheet({
 			sheets: sheets,
 			sheetId: sheetId,
-			custom: custom,
+			custom: custom
 		});
 	});
 }
@@ -3164,17 +3135,15 @@ function saveMetaData(store) {
 	store.set(sheetMetaStorageKey, sheetMetaData);
 }
 
-sheetManager.$inject = ["$q", "googleSheetLoader", "monsters", "store"];
-function sheetManager($q, googleSheetLoader, monsters, store) {
+sheetManager.$inject = ["$q", "monsters", "store"];
+function sheetManager($q, monsters, store) {
 	$q.all([
 		store.get(sheetMetaStorageKey).catch(function () { return null; }),
 		store.get(legacySheetDataKey).catch(function () { return []; }),
 	])
-	.then(function (stored) {
+	.then(async function (stored) {
 		var cachedMetaData = stored[0];
-		var legacySheetData = stored[1];
-		// sheetMetaData is initialized to default values; if we have cached data, overwrite the
-		// defaults
+		// sheetMetaData is initialized to default values; if we have cached data, overwrite the defaults
 		if ( cachedMetaData ) {
 			// integrate in all the default IDs in case any are new since last time metadata were cached
 			Object.keys(sheetMetaData).forEach(function (sheetId) {
@@ -3185,37 +3154,26 @@ function sheetManager($q, googleSheetLoader, monsters, store) {
 			sheetMetaData = cachedMetaData;
 		}
 
-		// For compatibility reasons, may need to remove access to some sheets
-		remove.forEach(function (sheetId) {
-			delete sheetMetaData[sheetId];
-		});
-
-		// Integrate legacy data into the sheetMetaData
-		(legacySheetData || []).forEach(function (legacyData) {
-			sheetMetaData[legacyData.id] = {
-				name: legacyData.name,
-				timestamp: 0,
-				custom: true,
-			};
-		});
-
-		// Clear out legacy data now that they've been integrated
-		store.set(legacySheetDataKey, []);
-
+		let promises = [];
 		// Finally, parse the sheets!
 		Object.keys(sheetMetaData).forEach(function (sheetId) {
-			var timestamp = sheetMetaData[sheetId].timestamp;
+			var revision = sheetMetaData[sheetId].revision;
 			var custom = sheetMetaData[sheetId].custom;
 			// If it's a custom sheet and it's never been loaded before, enable it by default
-			var enbleByDefault = custom && !timestamp;
+			var enableByDefault = custom && !revision;
 
-			insertSheet({
+			promises.push(insertSheet({
 				sheetId: sheetId,
 				store: store,
-				googleSheetLoader: googleSheetLoader,
 				monsters: monsters,
-				custom: enbleByDefault,
-			});
+				custom: enableByDefault
+			}));
+		});
+
+		await Promise.allSettled(promises).then(() => {
+			if(logging) console.log('finished loading');
+			let scope = angular.element($("html")).scope();
+			scope.$apply()
 		});
 	});
 
@@ -3245,7 +3203,6 @@ function sheetManager($q, googleSheetLoader, monsters, store) {
 				name: name,
 				custom: true,
 				store: store,
-				googleSheetLoader: googleSheetLoader,
 				monsters: monsters,
 			});
 
@@ -3480,7 +3437,7 @@ $templateCache.put('app/encounter-builder/party-level-selector.html','<div class
 $templateCache.put('app/encounter-builder/search.html','<div class=search><div class="search--search-form form-inline"><label class=sr-only>Search</label> <input class="form-control search-input" type=text ng-model=vm.filters.search placeholder=Search...><select class=form-control ng-model=vm.filters.size ng-options="size for size in vm.sizes"><option value>Any Size</option></select><select class=form-control ng-model=vm.filters.type ng-options="type for type in vm.types"><option value>Any Type</option></select><select class=form-control ng-model=vm.filters.minCr ng-options="cr.numeric as cr.string for cr in vm.crList"><option value>Min CR</option></select><select class=form-control ng-model=vm.filters.maxCr ng-options="cr.numeric as cr.string for cr in vm.crList"><option value>Max CR</option></select><select class=form-control ng-model=vm.filters.alignment ng-options="alignment as alignment.text for (key, alignment) in vm.alignments"><option value>Any Alignment</option></select><select class=form-control ng-model=vm.filters.environment ng-options="environment as environment for environment in vm.environments"><option value>Any Environment</option></select><select class=form-control ng-model=vm.filters.legendary ng-options="legendary as legendary for legendary in vm.legendaryList"><option value>Any Legendary</option></select><span ng-if="(vm.encounters | filter:{type:\'pool\'}).length > 0"><select class="form-control search--search-form--pool-control" ng-model=vm.filters.pool ng-options="pool.name as pool.name+\' Table\' for pool in vm.encounters | filter:{type:\'pool\'}"><option value>Any Table</option></select></span><select class="form-control search--search-form--sort-control" ng-model=vm.filters.sort ng-options="sortChoice.value as \'Sort by \' + sortChoice.text for sortChoice in vm.sortChoices"></select><button type=button class="btn btn-default" data-toggle=modal data-target=#sourcesModal>Set Sources</button> <button type=button class="btn btn-default" data-toggle=modal data-target=#contentModal>Manage Content</button></div><div class=search--reset><button class="btn btn-danger" ng-click=vm.resetFilters()>Reset Filters</button><div class=search--size-controls><label>Page size:</label><select class="form-control search--page-size" ng-model=vm.filters.pageSize ng-options="page for page in [10, 25, 50, 100, 250, 500, 1000]"></select></div></div><div class=modal id=sourcesModal tabindex=-1 role=dialog aria-labelledby=myModalLabel><div class=modal-dialog role=document><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-label=Close><span aria-hidden=true>&times;</span></button><h4 class=modal-title id=myModalLabel>Set Source Material</h4></div><div class=modal-body><div class=sources-modal--source-section ng-repeat="section in getSourceSections()"><button class="btn btn-primary" ng-click="vm.updateSourceFilters({ type: section.name, enabled: true })">All</button> <button class="btn btn-primary" ng-click="vm.updateSourceFilters({ type: section.name, enabled: false })">None</button> <span class=sources-modal--source-section-header>{{ section.name }}</span><ul><li class=search--source ng-repeat="source in section.sources" ng-class="{ \'search--source__off\': !vm.filters.source[source] }"><label><input type=checkbox ng-model=vm.filters.source[source]> {{ source }}</label></li></ul></div><div><a href=https://github.com/Asmor/5e-monsters/wiki/Extra-content-for-KFC>Add additional content</a></div></div><div class=modal-footer><button type=button class="btn btn-default" data-dismiss=modal>Close</button></div></div></div></div><div class=modal id=contentModal tabindex=-1 role=dialog aria-labelledby=myModalLabel><div class=modal-dialog role=document><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-label=Close><span aria-hidden=true>&times;</span></button><h4 class=modal-title id=myModalLabel>Manage Content</h4></div><div class=modal-body><ul><li class="row search--content-row" ng-repeat="contentDefinition in getContent()"><div class=col-lg-1><button ng-disabled=!contentDefinition.custom class="btn btn-danger" ng-click=removeCustom(contentDefinition.id)><i class="fa fa-trash-o"></i></button></div><div class=col-lg-9>{{ contentDefinition.name }} (Last updated: {{ contentDefinition.updated }})<div><a class=search--sheet-link ng-href="https://docs.google.com/spreadsheets/d/{{ contentDefinition.id }}/">{{ contentDefinition.id }}</a></div></div></li><li class="row search--content-row"><div class=col-lg-5><input class=form-control placeholder=Name ng-model=customName></div><div class=col-lg-5><input class=form-control placeholder="URL or ID" ng-model=customUrl></div><div class=col-lg-2><button class="btn btn-primary" ng-click=addCustom()>Add</button></div></li></ul><div><a href=https://github.com/Asmor/5e-monsters/wiki/Extra-content-for-KFC>Add additional content</a></div></div><div class=modal-footer><button type=button class="btn btn-default" data-dismiss=modal>Close</button></div></div></div></div></div>');
 $templateCache.put('app/encounter-manager/encounter-manager.html','<div class=encounter-manager><div class=encounter-manager--no-encounters ng-if="!vm.encounter.qty && !vm.library.encounters.length">You don\'t have any encounters saved. <button ui-sref=encounter-builder>Return to encounter builder</button></div><div class="encounter-manager-encounter encounter-manager-encounter__unsaved" ng-if="vm.encounter.qty && !vm.encounter.reference"><div class=encounter-manager-encounter--controls><input class=encounter-manager-encounter--name-input placeholder="{{ vm.newEncounter.placeholder }}" ng-model=vm.newEncounter.name> <button class=encounter-manager-encounter--save-button ng-click="vm.save(\'encounter\')">Save as Encounter</button> <button class=encounter-manager-encounter--save-button ng-click="vm.save(\'pool\')">Save as Table</button></div><div class=encounter-manager-monster ng-repeat="(id, group) in vm.encounter.groups"><span ng-if="group.qty > 1">{{ group.qty }}x</span> {{ group.monster.name }}</div></div><h3>Encounters</h3><div ng-repeat="storedEncounter in vm.library.encounters | filter:{type:\'!pool\'} track by $index"><manager-row stored-encounter=storedEncounter></manager-row></div><h3>Random Encounter Tables</h3><div class=random-encounter-pools ng-repeat="storedEncounter in vm.library.encounters | filter:{type:\'pool\'} track by $index"><manager-row stored-encounter=storedEncounter></manager-row></div></div>');
 $templateCache.put('app/encounter-manager/manager-row.html','<div class=encounter-manager-row><div class=encounter-manager-row--controls><div class=encounter-manager-row--name>{{ vm.storedEncounter.name }}</div><div class=encounter-manager-row--exp>Exp: {{ vm.calculateExp(vm.storedEncounter) }}</div><button class=encounter-manager-row--load-button ng-click=vm.load(vm.storedEncounter) ng-if="vm.encounter.reference != vm.storedEncounter">Choose</button> <button class=encounter-manager-row--remove-button ng-click=vm.remove(vm.storedEncounter)>Remove</button> <span class=encounter-manager-row--active ng-if="vm.encounter.reference == vm.storedEncounter">Active</span></div><div class=encounter-manager-monster ng-repeat="(id, qty) in vm.storedEncounter.groups"><span ng-if="qty > 1">{{ qty }}x</span> {{ vm.monsters.byId[id].name }}</div></div>');
-$templateCache.put('app/navbar/navbar.html','<nav class="navbar navbar-inverse navbar-fixed-top"><div class=container-fluid><div class=navbar-header><button type=button class="navbar-toggle collapsed" data-toggle=collapse data-target=.navbar-collapse aria-expanded=false aria-controls=navbar><span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span></button> <a class=navbar-brand href=#>Scaled Encounters</a></div><div id=navbar class="collapse navbar-collapse"><ul class="nav navbar-nav navbar-right"><li ui-sref-active=active data-toggle=collapse data-target=.navbar-collapse.in><a ui-sref=encounter-builder>Home</a></li><li ui-sref-active=active data-toggle=collapse data-target=.navbar-collapse.in><a ui-sref=encounter-manager>Manage Encounters</a></li><li ui-sref-active=active data-toggle=collapse data-target=.navbar-collapse.in><a ui-sref=players.manage>Manage Players</a></li><li ui-sref-active=active data-toggle=collapse data-target=.navbar-collapse.in><a ui-sref=battle-setup>Run Encounters</a></li><li ui-sref-active=active data-toggle=collapse data-target=.navbar-collapse.in><a ui-sref=about>About</a></li></ul></div></div></nav>');
+$templateCache.put('app/navbar/navbar.html','<nav class="navbar navbar-inverse navbar-fixed-top"><div class=container-fluid><div class=navbar-header><button type=button class="navbar-toggle collapsed" data-toggle=collapse data-target=.navbar-collapse aria-expanded=false aria-controls=navbar><span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span></button> <a class=navbar-brand href=#><img class="navbar-logo mr-2" src=images/header_logo.png> Scaled Encounters</a></div><div id=navbar class="collapse navbar-collapse"><ul class="nav navbar-nav navbar-right"><li ui-sref-active=active data-toggle=collapse data-target=.navbar-collapse.in><a ui-sref=encounter-builder>Home</a></li><li ui-sref-active=active data-toggle=collapse data-target=.navbar-collapse.in><a ui-sref=encounter-manager>Manage Encounters</a></li><li ui-sref-active=active data-toggle=collapse data-target=.navbar-collapse.in><a ui-sref=players.manage>Manage Players</a></li><li ui-sref-active=active data-toggle=collapse data-target=.navbar-collapse.in><a ui-sref=battle-setup>Run Encounters</a></li><li ui-sref-active=active data-toggle=collapse data-target=.navbar-collapse.in><a ui-sref=about>About</a></li></ul></div></div></nav>');
 $templateCache.put('app/players/edit.html','<div class=edit-players><p>One character per line. Blank line to separate different parties. Add an exclamation point (!) to an initiative modifier to indicate advantage. Format:<br><samp>&lt;CHARACTER NAME&gt; &lt;INITIATIVE MOD&gt; &lt;MAX HP&gt;</samp><br><samp>&lt;CHARACTER NAME&gt; &lt;INITIATIVE MOD&gt; &lt;CURRENT HP&gt; / &lt;MAX HP&gt;</samp></p><textarea class="edit-players--text-input form-control" ng-model=vm.players.raw rows=10 placeholder="Smush 3! 55 / 55 Mercedes 2 34"></textarea></div>');
 $templateCache.put('app/players/manage.html','<div class=manage-players><div class=manage-players--party ng-repeat="party in vm.players.parties"><button class=manage-players--party-select-button ng-if="vm.players.selectedParty != party" ng-click=vm.select(party)>Select this party</button> <span class=manage-players--selected-party ng-if="vm.players.selectedParty == party">Selected</span><div class=manage-players--player ng-repeat="player in party"><span class=manage-players--player--name>{{ player.name }}</span> <span class=manage-players--player--init>Initiative: <span ng-if="player.initiativeMod >= 0">+</span>{{ player.initiativeMod }} <span ng-if=player.advantageOnInitiative>(Adv)</span></span> <span class=manage-players--player--hp>HP: {{ player.hp - player.damage }} / {{ player.hp }}</span></div></div></div>');
 $templateCache.put('app/players/players.html','<div class=players-controls><button class="btn btn-primary" ui-sref=players.manage>Manage</button> <button class="btn btn-primary" ui-sref=players.edit>Edit</button></div><div ui-view></div>');}]);
