@@ -1,0 +1,105 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "angular-touch",
+        "scope": null,
+        "escapedName": "angular-touch",
+        "name": "angular-touch",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Development\\5e-monsters"
+    ]
+  ],
+  "_from": "angular-touch@latest",
+  "_id": "angular-touch@1.5.9",
+  "_inCache": true,
+  "_location": "/angular-touch",
+  "_nodeVersion": "4.4.7",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/angular-touch-1.5.9.tgz_1480018750319_0.1289754395838827"
+  },
+  "_npmUser": {
+    "name": "angularcore",
+    "email": "angular-core+npm@google.com"
+  },
+  "_npmVersion": "2.15.8",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "angular-touch",
+    "scope": null,
+    "escapedName": "angular-touch",
+    "name": "angular-touch",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-touch/-/angular-touch-1.5.9.tgz",
+  "_shasum": "d280981d9ab9c76f1c8f306bf3997fe92604bf8b",
+  "_shrinkwrap": null,
+  "_spec": "angular-touch",
+  "_where": "C:\\Development\\5e-monsters",
+  "author": {
+    "name": "Angular Core Team",
+    "email": "angular-core+npm@google.com"
+  },
+  "bugs": {
+    "url": "https://github.com/angular/angular.js/issues"
+  },
+  "dependencies": {},
+  "description": "AngularJS module for touch events and helpers for touch-enabled devices",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "d280981d9ab9c76f1c8f306bf3997fe92604bf8b",
+    "tarball": "https://registry.npmjs.org/angular-touch/-/angular-touch-1.5.9.tgz"
+  },
+  "gitHead": "686ab13de4a7f1b00ebbff4dbc9abc9054d65996",
+  "homepage": "http://angularjs.org",
+  "jspm": {
+    "shim": {
+      "angular-touch": {
+        "deps": [
+          "angular"
+        ]
+      }
+    }
+  },
+  "keywords": [
+    "angular",
+    "framework",
+    "browser",
+    "touch",
+    "client-side"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "angularcore",
+      "email": "angular-core+npm@google.com"
+    },
+    {
+      "name": "petebd",
+      "email": "pete@bacondarwin.com"
+    }
+  ],
+  "name": "angular-touch",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular/angular.js.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.5.9"
+}
