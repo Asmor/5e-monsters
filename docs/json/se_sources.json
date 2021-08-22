@@ -2,113 +2,113 @@
     {
       "type": "Official Web Supplement",
       "name": "Basic Rules v1",
-      "short name": "Basic",
+      "shortname": "Basic",
       "link": "",
-      "default selected?": ""
+      "defaultselected": ""
     },
     {
       "type": "Official Adventure",
       "name": "Curse of Strahd",
-      "short name": "Strahd",
+      "shortname": "Strahd",
       "link": "",
-      "default selected?": ""
+      "defaultselected": ""
     },
     {
       "type": "Official Adventure",
       "name": "Hoard of the Dragon Queen",
-      "short name": "Hoard",
+      "shortname": "Hoard",
       "link": "",
-      "default selected?": ""
+      "defaultselected": ""
     },
     {
       "type": "Official Web Supplement",
       "name": "HotDQ supplement",
-      "short name": "HoardSup",
+      "shortname": "HoardSup",
       "link": "",
-      "default selected?": ""
+      "defaultselected": ""
     },
     {
       "type": "Official",
       "name": "Monster Manual",
-      "short name": "MM",
+      "shortname": "MM",
       "link": "",
-      "default selected?": "yes"
+      "defaultselected": "yes"
     },
     {
       "type": "Official",
       "name": "Mordenkainen's Tome of Foes",
-      "short name": "Mord'sToF",
+      "shortname": "Mord'sToF",
       "link": "",
-      "default selected?": ""
+      "defaultselected": ""
     },
     {
       "type": "Official Adventure",
       "name": "Out of the Abyss",
-      "short name": "Abyss",
+      "shortname": "Abyss",
       "link": "",
-      "default selected?": ""
+      "defaultselected": ""
     },
     {
       "type": "Official",
       "name": "Player's Handbook",
-      "short name": "PHB",
+      "shortname": "PHB",
       "link": "",
-      "default selected?": "yes"
+      "defaultselected": "yes"
     },
     {
       "type": "Official Adventure",
       "name": "Princes of the Apocalypse",
-      "short name": "Apoc",
+      "shortname": "Apoc",
       "link": "",
-      "default selected?": ""
+      "defaultselected": ""
     },
     {
       "type": "Official Web Supplement",
       "name": "Princes of the Apocalypse Online Supplement v1.0",
-      "short name": "ApocSup",
+      "shortname": "ApocSup",
       "link": "",
-      "default selected?": ""
+      "defaultselected": ""
     },
     {
       "type": "Official Adventure",
       "name": "Rise of Tiamat",
-      "short name": "Tiamat",
+      "shortname": "Tiamat",
       "link": "",
-      "default selected?": ""
+      "defaultselected": ""
     },
     {
       "type": "Official Adventure",
       "name": "Storm King's Thunder",
-      "short name": "StrmKing",
+      "shortname": "StrmKing",
       "link": "",
-      "default selected?": ""
+      "defaultselected": ""
     },
     {
       "type": "Official Adventure",
       "name": "Tales from the Yawning Portal",
-      "short name": "TftYP",
+      "shortname": "TftYP",
       "link": "",
-      "default selected?": ""
+      "defaultselected": ""
     },
     {
       "type": "Official Web Supplement",
       "name": "The Tortle Package",
-      "short name": "Tortle",
+      "shortname": "Tortle",
       "link": "http://www.dmsguild.com/product/221716/Tortle-Package-5e",
-      "default selected?": ""
+      "defaultselected": ""
     },
     {
       "type": "Official Adventure",
       "name": "Tomb of Annihilation",
-      "short name": "ToA",
+      "shortname": "ToA",
       "link": "",
-      "default selected?": ""
+      "defaultselected": ""
     },
     {
       "type": "Official",
       "name": "Volo's Guide to Monsters",
-      "short name": "Volo",
+      "shortname": "Volo",
       "link": "",
-      "default selected?": ""
+      "defaultselected": ""
     }
   ]
