@@ -54,7 +54,7 @@
     "gulp": "gulp",
     "start-built": "http-server build -a localhost -p 8081 -c-1",
     "gulp-dev": "gulp --dev",
-    "build": "gulp optimize",
+    "build": "gulp optimize &&  cp -RL ./build/. ./docs",
     "watch-css": "gulp sass-watcher",
     "test": "karma start karma.conf.js",
     "test-single": "karma start karma.conf.js --single-run",
