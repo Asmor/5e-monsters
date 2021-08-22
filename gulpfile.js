@@ -13,6 +13,34 @@ var dev = argv.dev;
 gulp.task('help', $.taskListing);
 gulp.task('default', ['inject']);
 
+gulp.task('copy-thirdparty', function() {
+    return gulp.src(config.root + '/thirdparty/**/*')
+        .pipe(gulp.dest(config.root + '/' + config.build + '/thirdparty'));
+});
+
+gulp.task('copy-json', function() {
+    return gulp.src(config.root + '/json/**/*')
+        .pipe(gulp.dest(config.root + '/' + config.build + '/json'));
+});
+
+gulp.task('copy-images', function() {
+    return gulp.src(config.root + '/images/**/*')
+        .pipe(gulp.dest(config.root + '/' + config.build + '/images'));
+});
+
+gulp.task('copy-manifest', function() {
+    return gulp.src(config.root + '/manifest.json')
+        .pipe(gulp.dest(config.root + '/' + config.build));
+});
+
+gulp.task('copy-cname', function() {
+    return gulp.src(config.root + '/CNAME')
+        .pipe(gulp.dest(config.root + '/' + config.build));
+});
+
+gulp.task('copy-resources', ['copy-thirdparty', 'copy-json', 'copy-images', 'copy-manifest']);
+
+
 gulp.task('clean-styles', function (done) {
     clean(config.cssFile, done);
 });
@@ -93,7 +121,7 @@ gulp.task('clean-build', function(done) {
     clean(config.buildFiles, done);
 });
 
-gulp.task('optimize', ['inject', 'clean-build'], function () {
+gulp.task('optimize', ['inject', 'clean-build', 'copy-resources'], function () {
     // TODO: JS filter temporarily disabled until the dependency injection issue is resolved
     var cssFilter = $.filter('./styles/*.css', {restore: true});
     // var jsAppFilter = $.filter('**/' + config.optimized.app, {restore: true});
