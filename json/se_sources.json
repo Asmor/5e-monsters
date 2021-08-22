@@ -1,142 +1,114 @@
 [
     {
-        "type": "Official Web Supplement",
-        "name": "Basic Rules v1",
-        "shortname": "Basic",
-        "link": "",
-        "defaultselected": ""
+      "type": "Official Web Supplement",
+      "name": "Basic Rules v1",
+      "short name": "Basic",
+      "link": "",
+      "default selected?": ""
     },
     {
-        "type": "Official Adventure",
-        "name": "Curse of Strahd",
-        "shortname": "Strahd",
-        "link": "",
-        "defaultselected": ""
+      "type": "Official Adventure",
+      "name": "Curse of Strahd",
+      "short name": "Strahd",
+      "link": "",
+      "default selected?": ""
     },
     {
-        "type": "Third-Party",
-        "name": "Fifth Edition Foes",
-        "shortname": "5eF",
-        "link": "",
-        "defaultselected": ""
+      "type": "Official Adventure",
+      "name": "Hoard of the Dragon Queen",
+      "short name": "Hoard",
+      "link": "",
+      "default selected?": ""
     },
     {
-        "type": "Official Adventure",
-        "name": "Hoard of the Dragon Queen",
-        "shortname": "Hoard",
-        "link": "",
-        "defaultselected": ""
+      "type": "Official Web Supplement",
+      "name": "HotDQ supplement",
+      "short name": "HoardSup",
+      "link": "",
+      "default selected?": ""
     },
     {
-        "type": "Official Web Supplement",
-        "name": "HotDQ supplement",
-        "shortname": "HoardSup",
-        "link": "",
-        "defaultselected": ""
+      "type": "Official",
+      "name": "Monster Manual",
+      "short name": "MM",
+      "link": "",
+      "default selected?": "yes"
     },
     {
-        "type": "Official",
-        "name": "Monster Manual",
-        "shortname": "MM",
-        "link": "",
-        "defaultselected": "yes"
+      "type": "Official",
+      "name": "Mordenkainen's Tome of Foes",
+      "short name": "Mord'sToF",
+      "link": "",
+      "default selected?": ""
     },
     {
-        "type": "Community",
-        "name": "Monster Module",
-        "shortname": "MMod",
-        "link": "https:\/\/www.reddit.com\/r\/UnearthedArcana\/comments\/61fvyr\/the_monster_module_ab_22_pages_of_monsters_to\/",
-        "defaultselected": ""
+      "type": "Official Adventure",
+      "name": "Out of the Abyss",
+      "short name": "Abyss",
+      "link": "",
+      "default selected?": ""
     },
     {
-        "type": "Community",
-        "name": "Monster-A-Day",
-        "shortname": "MAD",
-        "link": "https:\/\/www.reddit.com\/r\/monsteraday\/",
-        "defaultselected": ""
+      "type": "Official",
+      "name": "Player's Handbook",
+      "short name": "PHB",
+      "link": "",
+      "default selected?": "yes"
     },
     {
-        "type": "Community",
-        "name": "Nerzugal's Extended Bestiary",
-        "shortname": "NEB",
-        "link": "http:\/\/www.drivethrurpg.com\/product\/205000\/Nerzugals-Extended-Bestiary",
-        "defaultselected": ""
+      "type": "Official Adventure",
+      "name": "Princes of the Apocalypse",
+      "short name": "Apoc",
+      "link": "",
+      "default selected?": ""
     },
     {
-        "type": "Official Adventure",
-        "name": "Out of the Abyss",
-        "shortname": "Abyss",
-        "link": "",
-        "defaultselected": ""
+      "type": "Official Web Supplement",
+      "name": "Princes of the Apocalypse Online Supplement v1.0",
+      "short name": "ApocSup",
+      "link": "",
+      "default selected?": ""
     },
     {
-        "type": "Official",
-        "name": "Player's Handbook",
-        "shortname": "PHB",
-        "link": "",
-        "defaultselected": "yes"
+      "type": "Official Adventure",
+      "name": "Rise of Tiamat",
+      "short name": "Tiamat",
+      "link": "",
+      "default selected?": ""
     },
     {
-        "type": "Third-Party",
-        "name": "Primeval Thule Campaign Setting",
-        "shortname": "ThuleCS",
-        "link": "",
-        "defaultselected": ""
+      "type": "Official Adventure",
+      "name": "Storm King's Thunder",
+      "short name": "StrmKing",
+      "link": "",
+      "default selected?": ""
     },
     {
-        "type": "Third-Party",
-        "name": "Primeval Thule Gamemaster's Companion",
-        "shortname": "ThuleGM",
-        "link": "",
-        "defaultselected": ""
+      "type": "Official Adventure",
+      "name": "Tales from the Yawning Portal",
+      "short name": "TftYP",
+      "link": "",
+      "default selected?": ""
     },
     {
-        "type": "Official Adventure",
-        "name": "Princes of the Apocalypse",
-        "shortname": "Apoc",
-        "link": "",
-        "defaultselected": ""
+      "type": "Official Web Supplement",
+      "name": "The Tortle Package",
+      "short name": "Tortle",
+      "link": "http://www.dmsguild.com/product/221716/Tortle-Package-5e",
+      "default selected?": ""
     },
     {
-        "type": "Official Web Supplement",
-        "name": "Princes of the Apocalypse Online Supplement v1.0",
-        "shortname": "ApocSup",
-        "link": "",
-        "defaultselected": ""
+      "type": "Official Adventure",
+      "name": "Tomb of Annihilation",
+      "short name": "ToA",
+      "link": "",
+      "default selected?": ""
     },
     {
-        "type": "Official Adventure",
-        "name": "Rise of Tiamat",
-        "shortname": "Tiamat",
-        "link": "",
-        "defaultselected": ""
-    },
-    {
-        "type": "Official Adventure",
-        "name": "Storm King's Thunder",
-        "shortname": "StrmKing",
-        "link": "",
-        "defaultselected": ""
-    },
-    {
-        "type": "Official Adventure",
-        "name": "Tales from the Yawning Portal",
-        "shortname": "TftYP",
-        "link": "",
-        "defaultselected": ""
-    },
-    {
-        "type": "Third-Party",
-        "name": "Tome of Beasts",
-        "shortname": "ToB",
-        "link": "",
-        "defaultselected": ""
-    },
-    {
-        "type": "Official",
-        "name": "Volo's Guide to Monsters",
-        "shortname": "Volo",
-        "link": "",
-        "defaultselected": ""
+      "type": "Official",
+      "name": "Volo's Guide to Monsters",
+      "short name": "Volo",
+      "link": "",
+      "default selected?": ""
     }
-]
+  ]
