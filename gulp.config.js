@@ -1,7 +1,7 @@
 module.exports = function() {
 	var root = './';
 	var temp = './temp/';
-    var build = 'build';
+    var build = 'docs';
 
 	var config = {
 		sassDir: ['app/sass/**/*.scss'],
