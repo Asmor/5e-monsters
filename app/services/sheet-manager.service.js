@@ -11,7 +11,7 @@ var sheetMetaData = {
 var sheetMetaStorageKey = "5em-sheet-meta";
 var sheetCachePartialKey = "5em-sheet-cache";
 var legacySheetDataKey = "5em-custom-content";
-var logging = true;
+var logging = false;
 
 function generateCacheId(sheetId) {
 	return [sheetCachePartialKey, sheetId].join(":");
