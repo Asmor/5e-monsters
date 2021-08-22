@@ -42,19 +42,17 @@ function loadLive(args) {
 		if ( remoteTimestamp > timestamp ) {
 			if (logging) console.log("We're out of date", timestamp);
 			// We're out of date, load remotely
-			return sheetIndex.loadSheets()
-				.then(function (sheetData) {
-					if (logging) console.log("Sheet data loaded", sheetData);
-					updateTimestamp({
-						store: store,
-						sheetId: sheetId,
-						timestamp: remoteTimestamp,
-					});
+			var sheetData = sheetIndex.loadSheets()  // No longer a promise, can access directly
+                if (logging) console.log("Sheet data loaded", sheetData);
+                updateTimestamp({
+                    store: store,
+                    sheetId: sheetId,
+                    timestamp: remoteTimestamp,
+                });
 
-					var cacheId = generateCacheId(sheetId);
-					store.set(cacheId, sheetData);
-					return sheetData;
-				});
+                var cacheId = generateCacheId(sheetId);
+                store.set(cacheId, sheetData);
+                return sheetData;
 		} else {
 			if (logging) console.log("We're fresh", timestamp);
 			// Our data are fresh, load from cache
