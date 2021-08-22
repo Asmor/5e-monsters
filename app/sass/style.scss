@@ -35,6 +35,19 @@ $button-line-height: 34px;
     background-color: $brand-primary;
     border-color: $brand-primary;
 
+    .navbar-toggle {
+        border-color: transparent;
+    }
+
+    .navbar-toggle:hover, .navbar-toggle:focus {
+        background-color: #246645;
+    }
+
+    .navbar-collapse, .navbar-form {
+        // ERM
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
     .navbar-brand {
         padding:1rem;
         color: white;

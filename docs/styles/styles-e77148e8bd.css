@@ -7398,6 +7398,12 @@ button.close {
 .navbar-inverse {
   background-color: #2f855a;
   border-color: #2f855a; }
+  .navbar-inverse .navbar-toggle {
+    border-color: transparent; }
+  .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+    background-color: #246645; }
+  .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: rgba(255, 255, 255, 0.2); }
   .navbar-inverse .navbar-brand {
     padding: 1rem;
     color: white;
