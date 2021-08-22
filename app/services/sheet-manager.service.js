@@ -4,9 +4,9 @@
 angular.module("app").factory("sheetManager", sheetManager);
 
 var sheetMetaData = {
-	"./json/se_sources.json": { name: "Official", revision: 0, monstersJson: "./json/se_monsters.json" },
-	"./json/se_third_party_sources.json": { name: "Third Party", revision: 0, monstersJson: "./json/se_third_party_monsters.json" },
-	"./json/se_community_sources.json": { name: "Community", revision: 0, monstersJson: "./json/se_community_monsters.json"},
+	"json/se_sources.json": { name: "Official", revision: 0, monstersJson: "json/se_monsters.json" },
+	"json/se_third_party_sources.json": { name: "Third Party", revision: 0, monstersJson: "json/se_third_party_monsters.json" },
+	"json/se_community_sources.json": { name: "Community", revision: 0, monstersJson: "json/se_community_monsters.json"},
 };
 var sheetMetaStorageKey = "5em-sheet-meta";
 var sheetCachePartialKey = "5em-sheet-cache";
