@@ -1,1 +1,0 @@
-start-process npm 'run start'
