@@ -49,7 +49,16 @@
 						players: 4,
 						level: 4
 					}
-				]
+				],
+
+				randomEncounter: {
+					open: false,
+					type: "Medium",
+					set(type){
+						this.type = type;
+						this.open = false;
+					}
+				}
 			}
 		}
 	</script>
@@ -96,57 +105,111 @@
 				</div>
 			</div>
 		</nav>
-		<div class="flex flex-row">
+		<div class="flex">
 
-			<div class="flex flex-row p-3 border-2 flex-auto w-4/12 min-h-full">
+			<div class="flex flex-col p-2 border-2 flex-auto w-5/12 min-h-full">
+				
+				<div class="flex w-full border-b-2 p-4">
 
-				<div class="flex flex-col flex-shrink">
+					<div class="flex flex-col">
 
-					<span class="text-3xl font-semibold mb-2">Group Info</span>
+						<span class="text-3xl mb-2">Group Info</span>
 
-					<div class="flex flex-row mb-2">
-						<div class="w-16">
-							<label class="block font-medium text-gray-700">Players</label>
+						<div class="flex mb-2">
+							<div class="w-16">
+								<label class="block font-medium text-gray-700">Players</label>
+							</div>
+							<div class="w-16 ml-4">
+								<label class="block font-medium text-gray-700">Level</label>
+							</div>
 						</div>
-						<div class="w-16 ml-4">
-							<label class="block font-medium text-gray-700">Level</label>
-						</div>
+
+						<template x-for="(party, index) in parties">
+
+							<div class="flex mb-2">
+
+								<div class="w-16">
+									<input type="number" min="1" x-model="party.players" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" value="4">
+								</div>
+
+								<div class="w-16 mx-4">
+									<input type="number" min="1" x-model="party.level" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" value="4">
+								</div>
+
+								<button @click="remove_party" x-show="index > 0" type="button" class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none">
+									<i class="fas fa-times"></i>
+								</button>
+
+							</div>
+
+						</template>
+
+						<button @click="add_party" type="button" class="mt-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+							<i class="fas fa-plus mr-2"></i> Add Another Level
+						</button>
+
 					</div>
 
-					<template x-for="(party, index) in parties">
-
-						<div class="flex flex-row mb-2">
-
-							<div class="w-16">
-								<input type="number" x-model="party.players" x-bind:id="'players_' + index" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" value="4" placeholder="Number of players">
-							</div>
-
-							<div class="w-16 mx-4">
-								<input type="number" x-model="party.level" x-bind:id="'level_' + index" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" value="4" placeholder="Number of players">
-							</div>
-
-							<button @click="remove_party" x-show="index > 0" type="button" class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none">
-								<i class="fas fa-times"></i>
-							</button>
-
-						</div>
-
-					</template>
-
-					<button @click="add_party" type="button" class="mt-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-						<i class="fas fa-plus mr-2"></i> Add Another Level
-					</button>
-
+					<div class="flex flex-col text-right leading-3 flex-1">
+						<p class="mt-2">Easy: <span class="ml-2" x-text="formatNumber(party_xp.easy) + ' exp'"></span></p>
+						<p class="mt-2">Medium: <span class="ml-2" x-text="formatNumber(party_xp.medium) + ' exp'"></span></p>
+						<p class="mt-2">Hard: <span class="ml-2" x-text="formatNumber(party_xp.hard) + ' exp'"></span></p>
+						<p class="mt-2">Deadly: <span class="ml-2" x-text="formatNumber(party_xp.deadly) + ' exp'"></span></p>
+						<p class="mt-2 leading-10">Daily budget: <span class="ml-2" x-text="formatNumber(party_xp.daily) + ' exp'"></span></p>
+					</div>
 				</div>
 
-				<div class="flex flex-col text-right leading-3 self-center flex-1">
+				<div class="flex w-full mt-2">
 
-
-					<p class="mt-2">Easy: <span class="ml-2" x-text="formatNumber(party_xp.easy) + ' exp'"></span></p>
-					<p class="mt-2">Medium: <span class="ml-2" x-text="formatNumber(party_xp.medium) + ' exp'"></span></p>
-					<p class="mt-2">Hard: <span class="ml-2" x-text="formatNumber(party_xp.hard) + ' exp'"></span></p>
-					<p class="mt-2">Deadly: <span class="ml-2" x-text="formatNumber(party_xp.deadly) + ' exp'"></span></p>
-					<p class="mt-2 leading-10">Daily budget: <span class="ml-2" x-text="formatNumber(party_xp.daily) + ' exp'"></span></p>
+					<span class="text-3xl mb-2 flex-1">Encounter Info</span>
+					
+					<div class="self-center" @click.away="randomEncounter.open = false">
+						<span class="relative z-0 inline-flex shadow-sm rounded-md">
+							<button x-text="'Random ' + randomEncounter.type" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+								Random Medium
+							</button>
+							<span class="-ml-px relative block">
+								<button @click="randomEncounter.open = !randomEncounter.open" type="button" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
+									<span class="sr-only">Open options</span>
+									<!-- Heroicon name: solid/chevron-down -->
+									<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+									<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+									</svg>
+								</button>
+							
+								<!--
+									Dropdown menu, show/hide based on menu state.
+							
+									Entering: "transition ease-out duration-100"
+									From: "transform opacity-0 scale-95"
+									To: "transform opacity-100 scale-100"
+									Leaving: "transition ease-in duration-75"
+									From: "transform opacity-100 scale-100"
+									To: "transform opacity-0 scale-95"
+								-->
+								<div x-show="randomEncounter.open" class="origin-top-right absolute right-0 mt-2 -mr-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none w-48" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
+									<div class="py-1" role="none">
+									<!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+									<a href="#" @click="randomEncounter.set('Easy')" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-0">
+										Random Easy
+									</a>
+							
+									<a href="#" @click="randomEncounter.set('Medium')" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-1">
+										Random Medium
+									</a>
+							
+									<a href="#" @click="randomEncounter.set('Hard')" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
+										Random Hard
+									</a>
+							
+									<a href="#" @click="randomEncounter.set('Deadly')" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
+										Random Deadly
+									</a>
+									</div>
+								</div>
+							</span>
+						</span>
+					</div>
 
 				</div>
 		
