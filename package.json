@@ -3,19 +3,17 @@
   "version": "1.0.0",
   "description": "Kobold Fight Club =================",
   "main": "index.html",
-  "dependencies": {},
+  "dependencies": {
+    "alpinejs": "^3.8.1",
+    "browser-sync": "^2.27.7",
+    "intro.js": "^4.3.0",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.15"
+  },
   "devDependencies": {},
   "scripts": {
     "prestart": "npm install",
-    "start": "http-server . -a localhost -p 8080 -c-1",
-    "gulp": "gulp",
-    "start-built": "http-server docs -a localhost -p 8080 -c-1",
-    "gulp-dev": "gulp --dev",
-    "build": "gulp optimize",
-    "watch-css": "gulp sass-watcher",
-    "test": "karma start karma.conf.js",
-    "test-single": "karma start karma.conf.js --single-run",
-    "watch-html": "nodemon -e html -x \"gulp template-cache\""
+    "watch": "browser-sync start --server --files '.'"
   },
   "repository": {
     "type": "git",

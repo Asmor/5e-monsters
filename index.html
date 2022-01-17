@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="app">
 <head>
+
 	<title>Kobold Plus Fight Club - The first rule of Kobold Fight Club is 'Yip Yip!'</title>
 	<meta charset="utf-8">
 	<link rel="manifest" href="manifest.json">
@@ -8,8 +9,55 @@
 	<link rel="icon" href="images/logo.png" sizes="600x600">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600" rel="stylesheet">
+	<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+	
 </head>
 <body>
-	<navbar></navbar>
+
+	<div class="min-h-screen bg-gray-100" x-data="{ menu: true }">
+		<nav class="bg-green-700 border-b border-gray-200">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="flex justify-between h-16 w-full">
+					<div class="flex">
+						<div class="flex-shrink-0 flex items-center">
+							<a href="" class="flex items-center">
+								<img class="h-8 w-auto" src="images/header_logo.png" alt="Fantasy Calender"> <span class="hidden md:inline pl-2 text-lg font-bold text-white">Kobold+ Fight Club</span>
+							</a>
+						</div>
+					</div>
+					<div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8 text-white">
+						<x-nav-link href="">Home</x-nav-link>
+						<x-nav-link href="">Manage Encounters</x-nav-link>
+						<x-nav-link href="">Manage Players</x-nav-link>
+						<x-nav-link href="">Run Encounters</x-nav-link>
+						<x-nav-link href="">Fantasy Calendar</x-nav-link>
+						<x-nav-link href="">About</x-nav-link>
+					</div>
+					<div class="-mr-2 flex items-center sm:hidden">
+						<!-- Mobile menu button -->
+						<button class="inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" @click="menu = !menu">
+							<span class="sr-only">Open main menu</span>
+							<!--
+							  Heroicon name: menu
+							  Menu open: "hidden", Menu closed: "block"
+							-->
+							<svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+							</svg>
+							<!--
+							  Heroicon name: x
+							  Menu open: "block", Menu closed: "hidden"
+							-->
+							<svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+							</svg>
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</nav>
+	</div>
+
 </body>
 </html>
