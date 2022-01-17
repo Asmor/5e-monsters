@@ -1,10 +1,6 @@
 
 module.exports = {
-    content: [
-        "./resources/**/*.blade.php",
-        "./resources/**/*.js",
-        "./resources/**/*.vue",
-    ],
+    content: ["*.{html,js}"],
     theme: {
         colors: {
             transparent: 'transparent',
@@ -126,5 +122,7 @@ module.exports = {
         },
         extend: {},
     },
-    plugins: [],
+    plugins: [
+        require('@tailwindcss/forms')
+    ],
 }

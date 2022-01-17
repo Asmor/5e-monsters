@@ -4,13 +4,16 @@
   "description": "Kobold Fight Club =================",
   "main": "index.html",
   "dependencies": {
+    "@tailwindcss/forms": "^0.4.0",
     "alpinejs": "^3.8.1",
     "browser-sync": "^2.27.7",
     "intro.js": "^4.3.0",
     "postcss": "^8.4.5",
+    "tailwind": "^4.0.0"
+  },
+  "devDependencies": {
     "tailwindcss": "^3.0.15"
   },
-  "devDependencies": {},
   "scripts": {
     "prestart": "npm install",
     "watch": "browser-sync start --server --files '.'"

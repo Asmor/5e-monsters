@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="app">
 <head>
-
 	<title>Kobold Plus Fight Club - The first rule of Kobold Fight Club is 'Yip Yip!'</title>
 	<meta charset="utf-8">
 	<link rel="manifest" href="manifest.json">
@@ -9,14 +8,55 @@
 	<link rel="icon" href="images/logo.png" sizes="600x600">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600" rel="stylesheet">
-	<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-	
+	<script defer src="https://unpkg.com/alpinejs@3.8.1/dist/cdn.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
 
-	<div class="min-h-screen bg-gray-100" x-data="{ menu: true }">
+	<script>
+
+		const internationalNumberFormat = new Intl.NumberFormat('en-US')
+
+		function app() {
+			return { 
+				menu: true,
+
+				add_party() {
+					this.parties.push({
+						...this.parties[this.parties.length-1]
+					});
+				},
+
+				remove_party(){
+					this.parties.pop();
+				},
+
+				formatNumber(num){
+					return internationalNumberFormat.format(num);
+				},
+
+				party_xp: {
+					easy: 1025,
+					medium: 2050,
+					hard: 3075,
+					deadly: 4500,
+					daily: 14300,
+				},
+
+				parties: [
+					{
+						players: 4,
+						level: 4
+					}
+				]
+			}
+		}
+	</script>
+
+	<div class="min-h-screen bg-gray-100" x-data="app()">
 		<nav class="bg-green-700 border-b border-gray-200">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="mx-auto px-4 sm:px-6 lg:px-6">
 				<div class="flex justify-between h-16 w-full">
 					<div class="flex">
 						<div class="flex-shrink-0 flex items-center">
@@ -25,13 +65,13 @@
 							</a>
 						</div>
 					</div>
-					<div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8 text-white">
-						<x-nav-link href="">Home</x-nav-link>
-						<x-nav-link href="">Manage Encounters</x-nav-link>
-						<x-nav-link href="">Manage Players</x-nav-link>
-						<x-nav-link href="">Run Encounters</x-nav-link>
-						<x-nav-link href="">Fantasy Calendar</x-nav-link>
-						<x-nav-link href="">About</x-nav-link>
+					<div class="hidden sm:flex text-white sm:-my-px sm:ml-6 sm:space-x-8 items-center">
+                        <x-nav-link href="">Home</x-nav-link>
+                        <x-nav-link href="">Manage Encounters</x-nav-link>
+                        <x-nav-link href="">Manage Players</x-nav-link>
+                        <x-nav-link href="">Run Encounters</x-nav-link>
+                        <x-nav-link href="">Fantasy Calendar</x-nav-link>
+                        <x-nav-link href="">About</x-nav-link>
 					</div>
 					<div class="-mr-2 flex items-center sm:hidden">
 						<!-- Mobile menu button -->
@@ -55,9 +95,72 @@
 					</div>
 				</div>
 			</div>
-
 		</nav>
+		<div class="flex flex-row">
+
+			<div class="flex flex-row p-3 border-2 flex-auto w-4/12 min-h-full">
+
+				<div class="flex flex-col flex-shrink">
+
+					<span class="text-3xl font-semibold mb-2">Group Info</span>
+
+					<div class="flex flex-row mb-2">
+						<div class="w-16">
+							<label class="block font-medium text-gray-700">Players</label>
+						</div>
+						<div class="w-16 ml-4">
+							<label class="block font-medium text-gray-700">Level</label>
+						</div>
+					</div>
+
+					<template x-for="(party, index) in parties">
+
+						<div class="flex flex-row mb-2">
+
+							<div class="w-16">
+								<input type="number" x-model="party.players" x-bind:id="'players_' + index" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" value="4" placeholder="Number of players">
+							</div>
+
+							<div class="w-16 mx-4">
+								<input type="number" x-model="party.level" x-bind:id="'level_' + index" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" value="4" placeholder="Number of players">
+							</div>
+
+							<button @click="remove_party" x-show="index > 0" type="button" class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none">
+								<i class="fas fa-times"></i>
+							</button>
+
+						</div>
+
+					</template>
+
+					<button @click="add_party" type="button" class="mt-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+						<i class="fas fa-plus mr-2"></i> Add Another Level
+					</button>
+
+				</div>
+
+				<div class="flex flex-col text-right leading-3 self-center flex-1">
+
+
+					<p class="mt-2">Easy: <span class="ml-2" x-text="formatNumber(party_xp.easy) + ' exp'"></span></p>
+					<p class="mt-2">Medium: <span class="ml-2" x-text="formatNumber(party_xp.medium) + ' exp'"></span></p>
+					<p class="mt-2">Hard: <span class="ml-2" x-text="formatNumber(party_xp.hard) + ' exp'"></span></p>
+					<p class="mt-2">Deadly: <span class="ml-2" x-text="formatNumber(party_xp.deadly) + ' exp'"></span></p>
+					<p class="mt-2 leading-10">Daily budget: <span class="ml-2" x-text="formatNumber(party_xp.daily) + ' exp'"></span></p>
+
+				</div>
+		
+			</div>
+
+			<div class="border-2 flex-auto w-8/12 min-h-full">
+
+				
+		
+			</div>
+
+		</div>
 	</div>
+
 
 </body>
 </html>
