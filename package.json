@@ -1,31 +1,31 @@
 {
   "name": "5e-monsters",
   "version": "1.0.0",
-  "description": "Kobold Fight Club =================",
+  "description": "Kobold+ Fight Club",
   "main": "index.html",
   "dependencies": {
     "@tailwindcss/forms": "^0.4.0",
     "alpinejs": "^3.8.1",
     "browser-sync": "^2.27.7",
     "intro.js": "^4.3.0",
-    "postcss": "^8.4.5",
-    "tailwind": "^4.0.0"
+    "postcss": "^8.4.5"
   },
   "devDependencies": {
     "tailwindcss": "^3.0.15"
   },
   "scripts": {
     "prestart": "npm install",
-    "watch": "browser-sync start --server --files '.'"
+    "tw": "tailwindcss -i css/kobold.css -o docs/css/styles.css --watch",
+    "watch": "browser-sync start --host 0.0.0.0 --files '.'"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jbarzilai/5e-monsters.git"
+    "url": "git+https://github.com/fantasycalendar/scaled-encounters.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jbarzilai/5e-monsters/issues"
+    "url": "https://github.com/fantasycalendar/scaled-encounters/issues"
   },
-  "homepage": "https://github.com/jbarzilai/5e-monsters#readme"
+  "homepage": "https://github.com/fantasycalendar/scaled-encounters#readme"
 }
