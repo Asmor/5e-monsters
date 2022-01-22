@@ -47,9 +47,23 @@
 				parties: [
 					{
 						players: 4,
-						level: 4
+						level: 5
+					},
+					{
+						players: 1,
+						level: 1
+					},
+					{
+						players: 1,
+						level: 1
 					}
 				],
+
+				get total_players(){
+					return this.parties.reduce(function(acc, item){
+						return acc + item.players
+					}, 0);
+				},
 
 				randomEncounter: {
 					open: false,
@@ -58,7 +72,22 @@
 						this.type = type;
 						this.open = false;
 					}
-				}
+				},
+
+				monsters: [
+					{
+						name: "Young Blue Dragon",
+						cr: 9,
+						xp: 5000,
+						source: "Monster Manual",
+						source_page: "p.91",
+						count: 1
+					}
+				],
+
+				difficulty: "Easy",
+				total_xp: 2900,
+				adjusted_xp: 1450
 			}
 		}
 	</script>
@@ -83,20 +112,11 @@
                         <a href="" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-green-300 hover:text-white hover:border-gray-300">About</a>
 					</div>
 					<div class="-mr-2 flex items-center sm:hidden">
-						<!-- Mobile menu button -->
 						<button class="inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" @click="menu = !menu">
 							<span class="sr-only">Open main menu</span>
-							<!--
-							  Heroicon name: menu
-							  Menu open: "hidden", Menu closed: "block"
-							-->
 							<svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
 							</svg>
-							<!--
-							  Heroicon name: x
-							  Menu open: "block", Menu closed: "hidden"
-							-->
 							<svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 							</svg>
@@ -105,11 +125,11 @@
 				</div>
 			</div>
 		</nav>
-		<div class="flex">
+		<div class="flex pt-4">
 
-			<div class="flex flex-col p-2 border-2 flex-auto w-5/12 min-h-full">
+			<div class="flex flex-col px-4 flex-auto w-5/12 min-h-full">
 				
-				<div class="flex w-full border-b-2 p-4">
+				<div class="flex w-full border-b-2 pb-4">
 
 					<div class="flex flex-col">
 
@@ -151,73 +171,157 @@
 					</div>
 
 					<div class="flex flex-col text-right leading-3 flex-1">
-						<p class="mt-2">Easy: <span class="ml-2" x-text="formatNumber(party_xp.easy) + ' exp'"></span></p>
-						<p class="mt-2">Medium: <span class="ml-2" x-text="formatNumber(party_xp.medium) + ' exp'"></span></p>
-						<p class="mt-2">Hard: <span class="ml-2" x-text="formatNumber(party_xp.hard) + ' exp'"></span></p>
-						<p class="mt-2">Deadly: <span class="ml-2" x-text="formatNumber(party_xp.deadly) + ' exp'"></span></p>
+						<p :class="difficulty === 'Easy' ? 'font-semibold' : ''" class="mt-2">Easy: <span class="ml-2" x-text="formatNumber(party_xp.easy) + ' exp'"></span></p>
+						<p :class="difficulty === 'Medium' ? 'font-semibold' : ''" class="mt-2">Medium: <span class="ml-2" x-text="formatNumber(party_xp.medium) + ' exp'"></span></p>
+						<p :class="difficulty === 'Hard' ? 'font-semibold' : ''" class="mt-2">Hard: <span class="ml-2" x-text="formatNumber(party_xp.hard) + ' exp'"></span></p>
+						<p :class="difficulty === 'Deadly' ? 'font-semibold' : ''" class="mt-2">Deadly: <span class="ml-2" x-text="formatNumber(party_xp.deadly) + ' exp'"></span></p>
 						<p class="mt-2 leading-10">Daily budget: <span class="ml-2" x-text="formatNumber(party_xp.daily) + ' exp'"></span></p>
 					</div>
 				</div>
 
-				<div class="flex w-full mt-2">
+				<div class="flex-col mt-2">
 
-					<span class="text-3xl mb-2 flex-1">Encounter Info</span>
-					
-					<div class="self-center" @click.away="randomEncounter.open = false">
-						<span class="relative z-0 inline-flex shadow-sm rounded-md">
-							<button x-text="'Random ' + randomEncounter.type" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-								Random Medium
-							</button>
-							<span class="-ml-px relative block">
-								<button @click="randomEncounter.open = !randomEncounter.open" type="button" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
-									<span class="sr-only">Open options</span>
-									<!-- Heroicon name: solid/chevron-down -->
-									<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-									<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-									</svg>
+					<div class="flex w-full">
+
+						<span class="text-3xl mb-2 grow">Encounter Info</span>
+						
+						<div class="self-center" @click.away="randomEncounter.open = false">
+							<span class="relative z-0 inline-flex shadow-sm rounded-md">
+								<button x-text="'Random ' + randomEncounter.type" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+									Random Medium
 								</button>
-							
-								<!--
-									Dropdown menu, show/hide based on menu state.
-							
-									Entering: "transition ease-out duration-100"
-									From: "transform opacity-0 scale-95"
-									To: "transform opacity-100 scale-100"
-									Leaving: "transition ease-in duration-75"
-									From: "transform opacity-100 scale-100"
-									To: "transform opacity-0 scale-95"
-								-->
-								<div x-show="randomEncounter.open" class="origin-top-right absolute right-0 mt-2 -mr-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none w-48" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
-									<div class="py-1" role="none">
-									<!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-									<a href="#" @click="randomEncounter.set('Easy')" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-0">
-										Random Easy
-									</a>
-							
-									<a href="#" @click="randomEncounter.set('Medium')" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-1">
-										Random Medium
-									</a>
-							
-									<a href="#" @click="randomEncounter.set('Hard')" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
-										Random Hard
-									</a>
-							
-									<a href="#" @click="randomEncounter.set('Deadly')" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
-										Random Deadly
-									</a>
+								<span class="-ml-px relative block">
+									<button @click="randomEncounter.open = !randomEncounter.open" type="button" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
+										<span class="sr-only">Open options</span>
+										<!-- Heroicon name: solid/chevron-down -->
+										<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+										<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+										</svg>
+									</button>
+								
+									<!--
+										Dropdown menu, show/hide based on menu state.
+								
+										Entering: "transition ease-out duration-100"
+										From: "transform opacity-0 scale-95"
+										To: "transform opacity-100 scale-100"
+										Leaving: "transition ease-in duration-75"
+										From: "transform opacity-100 scale-100"
+										To: "transform opacity-0 scale-95"
+									-->
+									<div x-show="randomEncounter.open" x-transition class="origin-top-right absolute right-0 mt-2 -mr-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none w-48" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
+										<div class="py-1" role="none">
+										<!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+										<a href="#" @click="randomEncounter.set('Easy')" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-0">
+											Random Easy
+										</a>
+								
+										<a href="#" @click="randomEncounter.set('Medium')" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-1">
+											Random Medium
+										</a>
+								
+										<a href="#" @click="randomEncounter.set('Hard')" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
+											Random Hard
+										</a>
+								
+										<a href="#" @click="randomEncounter.set('Deadly')" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
+											Random Deadly
+										</a>
+										</div>
+									</div>
+								</span>
+							</span>
+						</div>
+					</div>
+
+					<div class="flex-row mt-2">
+						<template x-for="(monster, index) in monsters">
+							<div class="flex flex-row w-full mb-8">
+								<div class="grow pb-2 min-w-0">
+									<span class="text-4xl font-light" x-text="monster.name"></span>
+									<div>
+										<span class="text-lg" x-text="'CR: ' + monster.cr"></span>
+										<span class="text-lg ml-4" x-text="'XP: ' + formatNumber(monster.xp)"></span>
+										<div class='overflow-hidden whitespace-nowrap overflow-ellipsis'>
+											<span x-text="monster.source + (monster.source_page ? ' ' + monster.source_page : '')"></span>
+										</div>
 									</div>
 								</div>
+								<div class="">
+									<button type="button" class="inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+										<i class="fas fa-random"></i>
+									</button>
+									<input type="number" min="1" class="inline align-middle w-24 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" x-model="monster.count"/>
+									<div class="inline-block align-middle">
+										<button @click="monster.count++" type="button" class="block items-center p-1 mb-1 border border-transparent text-xs font-medium rounded text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+											<i class="fas fa-plus"></i>
+										</button>
+										<button @click="monster.count--" type="button" class="block items-center p-1 border border-transparent text-xs font-medium rounded text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+											<i class="fas fa-minus"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</template>
+					</div>
+
+					<div class="flex border-t text-2xl border-t-gray-400 pt-4">
+						<div class="grow" x-text="'Difficulty: ' + difficulty"></div>
+						<div class="text-right">
+							<span class="block">
+								<span x-text="'Total XP: ' + total_xp"></span>
+								<span class="text-base italic block" x-text="'(' + Math.round(total_xp / total_players) + ' per player)'"></span>
 							</span>
-						</span>
+							<span class="block">
+								<span x-text="'Adjusted XP: ' + adjusted_xp"></span>
+								<span class="text-base italic block" x-text="'(' + Math.round(adjusted_xp / total_players) + ' per player)'"></span>
+							</span>
+						</div>
 					</div>
 
 				</div>
 		
 			</div>
 
-			<div class="border-2 flex-auto w-8/12 min-h-full">
+			<div class="flex-auto w-8/12 px-4 min-h-full">
 
-				
+				<div class="flex">
+
+					<div class="grow">
+						
+						<input type="text" class="w-3/6 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md">
+						
+						<select class="inline-block mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+							<option value="any">Any Size</option>
+							<option value="tiny">Tiny</option>
+							<option value="small">Small</option>
+							<option value="medium">Medium</option>
+							<option value="large">Large</option>
+							<option value="huge">Huge</option>
+							<option value="gargantuan">Gargantuan</option>
+						</select>
+						
+						<select class="inline-block mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+							<option>Any Type</option>
+							<option>Aberration</option>
+							<option>Beast</option>
+							<option>Celestial</option>
+							<option>Construct</option>
+							<option>Dragon</option>
+							<option>Elemental</option>
+							<option>Fey</option>
+							<option>Fiend</option>
+							<option>Giant</option>
+							<option>Humanoid</option>
+							<option>Monstrosity</option>
+							<option>Ooze</option>
+							<option>Plant</option>
+							<option>Undead</option>
+						</select>
+
+					</div>
+
+				</div>
 		
 			</div>
 
