@@ -10,7 +10,14 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600" rel="stylesheet">
 	<script defer src="https://unpkg.com/alpinejs@3.8.1/dist/cdn.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="docs/css/styles.css" rel="stylesheet">
+	<link href="docs/css/styles.css" rel="stylesheet">	
+
+	<!-- Include Choices CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
+
+	<!-- Include Choices JavaScript (latest) -->
+	<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
 </head>
 <body>
 
@@ -20,25 +27,17 @@
 
 		function app() {
 
-			const cr_list = [
-				["0", "0"],
-				["1/8", "1/8"],
-				["1/4", "1/4"],
-				["1/2", "1/2"]
-			];
-
-			for(let i = 1; i <= 30; i++) cr_list.push([i.toString(), i.toString()]);
+			const cr_list = ["0", "1/8", "1/4", "1/2"];
+			for(let i = 1; i <= 30; i++) cr_list.push(i.toString());
 
 			return { 
 				menu: true,
 				loading: false,
 				allMonsters: [],
+				cr_list: cr_list,
 
 				init(){
-
-
 					this.fetch_monsters()
-
 				},
 
 				fetch_monsters() {
@@ -125,124 +124,13 @@
 						}, 0);
 					},
 					adjusted_xp: 1450,
-				},
-
-				filters: [
-					{
-						name: "size",
-						selected: "",
-						options: [
-							["", "Any Size"],
-							["tiny", "Tiny"],
-							["small", "Small"],
-							["medium", "Medium"],
-							["large", "Large"],
-							["huge", "Huge"],
-							["gargantuan", "Gargantuan"],
-						]
-					},
-					{
-						name: "size",
-						selected: "",
-						options: [
-							["", "Any Type"],
-							["aberration", "Aberration"],
-							["beast", "Beast"],
-							["celestial", "Celestial"],
-							["construct", "Construct"],
-							["dragon", "Dragon"],
-							["elemental", "Elemental"],
-							["fey", "Fey"],
-							["fiend", "Fiend"],
-							["giant", "Giant"],
-							["humanoid", "Humanoid"],
-							["monstrosity", "Monstrosity"],
-							["ooze", "Ooze"],
-							["plant", "Plant"],
-							["undead", "Undead"],
-						]
-					},
-					{
-						name: "min_cr",
-						selected: "",
-						get options(){
-							const min_cr_list = JSON.parse(JSON.stringify(cr_list))
-							min_cr_list.unshift(["", "Min CR"]);
-							return min_cr_list;
-						}
-					},
-					{
-						name: "max_cr",
-						selected: "",
-						get options(){
-							const max_cr_list = JSON.parse(JSON.stringify(cr_list))
-							max_cr_list.unshift(["", "Max CR"]);
-							return max_cr_list;
-						}
-					},
-					{
-						name: "alignment",
-						selected: "",
-						options: [
-							["", "Any Alignment"],
-							["any chaotic", "any chaotic"],
-							["any evil", "any evil"],
-							["any good", "any good"],
-							["any lawful", "any lawful"],
-							["any neutral", "any neutral"],
-							["non-chaotic", "non-chaotic"],
-							["non-evil", "non-evil"],
-							["non-good", "non-good"],
-							["non-lawful", "non-lawful"],
-							["unaligned", "unaligned"],
-							["lawful good", "lawful good"],
-							["neutral good", "neutral good"],
-							["chaotic good", "chaotic good"],
-							["lawful neutral", "lawful neutral"],
-							["neutral", "neutral"],
-							["chaotic neutral", "chaotic neutral"],
-							["lawful evil", "lawful evil"],
-							["neutral evil", "neutral evil"],
-							["chaotic evil", "chaotic evil"]
-						]
-					},
-					{
-						name: "environment",
-						selected: "",
-						options: [
-							["", "Any Environment"],
-							["aquatic", "Aquatic"],
-							["arctic", "Arctic"],
-							["cave", "Cave"],
-							["coast", "Coast"],
-							["desert", "Desert"],
-							["dungeon", "Dungeon"],
-							["forest", "Forest"],
-							["grassland", "Grassland"],
-							["mountain", "Mountain"],
-							["planar", "Planar"],
-							["ruins", "Ruins"],
-							["swamp", "Swamp"],
-							["underground", "Underground"],
-							["urban", "Urban"],
-						]
-					},
-					{
-						name: "legendary",
-						selected: "",
-						options: [
-							["", "Any Legendary"],
-							["ordinary", "Ordinary"],
-							["legendary", "Legendary"],
-							["legendary_lair", "Legendary (in lair)"]
-						]
-					}
-				]
+				}
 			}
 		}
 	</script>
 
 	<div class="min-h-screen bg-gray-100" x-data="app()">
+
 		<nav class="bg-green-700 border-b border-gray-200">
 			<div class="mx-auto px-4 sm:px-6 lg:px-6">
 				<div class="flex justify-between h-16 w-full">
@@ -435,20 +323,155 @@
 
 			<div class="flex-auto w-8/12 px-4 min-h-full">
 
-
 				<div class="flex">
 
 					<div class="grow">
 						
 						<input type="text" placeholder="Search..." class="w-3/6 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md mr-2 inline-block">
 
-						<template x-for="filter in filters">
-							<select :name="filter.name" x-model="filter.selected" class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-								<template x-for="option in filter.options">
-									<option :value="option[0]" x-text='option[1]'></option>
-								</template>
-							</select>
-						</template>
+						<select x-data="{ choices: new Choices($el).setChoiceByValue(['any']) }" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+							<option value="any">Any Size</option>
+							<option value="tiny">Tiny</option>
+							<option value="small">Small</option>
+							<option value="medium">Medium</option>
+							<option value="large">Large</option>
+							<option value="huge">Huge</option>
+							<option value="gargantuan">Gargantuan</option>
+						</select>
+
+						<select x-data="{ choices: new Choices($el).setChoiceByValue(['any']) }" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+							<option value="any">Any Type</option>
+							<option value="aberration">Aberration</option>
+							<option value="beast">Beast</option>
+							<option value="celestial">Celestial</option>
+							<option value="construct">Construct</option>
+							<option value="dragon">Dragon</option>
+							<option value="elemental">Elemental</option>
+							<option value="fey">Fey</option>
+							<option value="fiend">Fiend</option>
+							<option value="giant">Giant</option>
+							<option value="humanoid">Humanoid</option>
+							<option value="monstrosity">Monstrosity</option>
+							<option value="ooze">Ooze</option>
+							<option value="plant">Plant</option>
+							<option value="undead">Undead</option>
+						</select>
+
+						<select x-data="{ choices: new Choices($el).setChoiceByValue(['any']) }" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+							<option value="any">Min CR</option>
+							<option>0</option>
+							<option>1/8</option>
+							<option>1/4</option>
+							<option>1/2</option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+							<option>13</option>
+							<option>14</option>
+							<option>15</option>
+							<option>16</option>
+							<option>17</option>
+							<option>18</option>
+							<option>19</option>
+							<option>20</option>
+							<option>21</option>
+							<option>22</option>
+							<option>23</option>
+							<option>24</option>
+							<option>25</option>
+							<option>26</option>
+							<option>27</option>
+							<option>28</option>
+							<option>29</option>
+							<option>30</option>
+						</select>
+
+						<select x-data="{ choices: new Choices($el).setChoiceByValue(['any']) }" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+							<option value="any">Max CR</option>
+							<option>0</option>
+							<option>1/8</option>
+							<option>1/4</option>
+							<option>1/2</option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+							<option>13</option>
+							<option>14</option>
+							<option>15</option>
+							<option>16</option>
+							<option>17</option>
+							<option>18</option>
+							<option>19</option>
+							<option>20</option>
+							<option>21</option>
+							<option>22</option>
+							<option>23</option>
+							<option>24</option>
+							<option>25</option>
+							<option>26</option>
+							<option>27</option>
+							<option>28</option>
+							<option>29</option>
+							<option>30</option>
+						</select>
+
+						<select x-data="{ choices: new Choices($el).setChoiceByValue(['any']) }" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+							<option value="any">Any Alignment</option>
+							<option value="chaotic">chaotic</option>
+							<option value="evil">evil</option>
+							<option value="good">good</option>
+							<option value="lawful">lawful</option>
+							<option value="neutral">neutral</option>
+							<option value="non-chaotic">non-chaotic</option>
+							<option value="non-evil">non-evil</option>
+							<option value="non-good">non-good</option>
+							<option value="non-lawful">non-lawful</option>
+							<option value="non-neural">non-neural</option>
+							<option value="unaligned">unaligned</option>
+						</select>
+
+						<select x-data="{ choices: new Choices($el).setChoiceByValue(['any']) }" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+							<option value="any">Any Environment</option>
+							<option value="aquatic">Aquatic</option>
+							<option value="arctic">Arctic</option>
+							<option value="cave">Cave</option>
+							<option value="coast">Coast</option>
+							<option value="desert">Desert</option>
+							<option value="dungeon">Dungeon</option>
+							<option value="forest">Forest</option>
+							<option value="grassland">Grassland</option>
+							<option value="mountain">Mountain</option>
+							<option value="planar">Planar</option>
+							<option value="ruins">Ruins</option>
+							<option value="swamp">Swamp</option>
+							<option value="underground">Underground</option>
+							<option value="urban">Urban</option>
+						</select>
+
+						<select x-data="{ choices: new Choices($el).setChoiceByValue(['any']) }" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+							<option value="any">Any Legendary</option>
+							<option value="ordinary">Ordinary</option>
+							<option value="legendary">Legendary</option>
+							<option value="legendary_lair">Legendary (in lair)</option>
+						</select>
 
 					</div>
 
