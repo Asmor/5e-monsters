@@ -19,8 +19,44 @@
 		const internationalNumberFormat = new Intl.NumberFormat('en-US')
 
 		function app() {
+
+			const cr_list = [
+				["0", "0"],
+				["1/8", "1/8"],
+				["1/4", "1/4"],
+				["1/2", "1/2"]
+			];
+
+			for(let i = 1; i <= 30; i++) cr_list.push([i.toString(), i.toString()]);
+
 			return { 
 				menu: true,
+				loading: false,
+				allMonsters: [],
+
+				init(){
+
+
+					this.fetch_monsters()
+
+				},
+
+				fetch_monsters() {
+
+					this.isLoading = true;
+					fetch("json/se_monsters.json")
+						.then(res => res.json())
+						.then(data => {
+							this.isLoading = false,
+							this.allMonsters = data;
+						})
+
+				},
+
+				get monsters(){
+					console.log(this.allMonsters.slice(0, 10))
+					return this.allMonsters.slice(0, 10)
+				},
 
 				add_party() {
 					this.parties.push({
@@ -71,23 +107,137 @@
 					set(type){
 						this.type = type;
 						this.open = false;
-					}
+					},
+					monsters: [
+						{
+							name: "Young Blue Dragon",
+							cr: 9,
+							xp: 5000,
+							source: "Monster Manual",
+							source_page: "p.91",
+							count: 1
+						}
+					],
+					difficulty: "Easy",
+					get total_xp(){
+						return this.monsters.reduce((acc, monster) => {
+							return acc + monster.xp;
+						}, 0);
+					},
+					adjusted_xp: 1450,
 				},
 
-				monsters: [
+				filters: [
 					{
-						name: "Young Blue Dragon",
-						cr: 9,
-						xp: 5000,
-						source: "Monster Manual",
-						source_page: "p.91",
-						count: 1
+						name: "size",
+						selected: "",
+						options: [
+							["", "Any Size"],
+							["tiny", "Tiny"],
+							["small", "Small"],
+							["medium", "Medium"],
+							["large", "Large"],
+							["huge", "Huge"],
+							["gargantuan", "Gargantuan"],
+						]
+					},
+					{
+						name: "size",
+						selected: "",
+						options: [
+							["", "Any Type"],
+							["aberration", "Aberration"],
+							["beast", "Beast"],
+							["celestial", "Celestial"],
+							["construct", "Construct"],
+							["dragon", "Dragon"],
+							["elemental", "Elemental"],
+							["fey", "Fey"],
+							["fiend", "Fiend"],
+							["giant", "Giant"],
+							["humanoid", "Humanoid"],
+							["monstrosity", "Monstrosity"],
+							["ooze", "Ooze"],
+							["plant", "Plant"],
+							["undead", "Undead"],
+						]
+					},
+					{
+						name: "min_cr",
+						selected: "",
+						get options(){
+							const min_cr_list = JSON.parse(JSON.stringify(cr_list))
+							min_cr_list.unshift(["", "Min CR"]);
+							return min_cr_list;
+						}
+					},
+					{
+						name: "max_cr",
+						selected: "",
+						get options(){
+							const max_cr_list = JSON.parse(JSON.stringify(cr_list))
+							max_cr_list.unshift(["", "Max CR"]);
+							return max_cr_list;
+						}
+					},
+					{
+						name: "alignment",
+						selected: "",
+						options: [
+							["", "Any Alignment"],
+							["any chaotic", "any chaotic"],
+							["any evil", "any evil"],
+							["any good", "any good"],
+							["any lawful", "any lawful"],
+							["any neutral", "any neutral"],
+							["non-chaotic", "non-chaotic"],
+							["non-evil", "non-evil"],
+							["non-good", "non-good"],
+							["non-lawful", "non-lawful"],
+							["unaligned", "unaligned"],
+							["lawful good", "lawful good"],
+							["neutral good", "neutral good"],
+							["chaotic good", "chaotic good"],
+							["lawful neutral", "lawful neutral"],
+							["neutral", "neutral"],
+							["chaotic neutral", "chaotic neutral"],
+							["lawful evil", "lawful evil"],
+							["neutral evil", "neutral evil"],
+							["chaotic evil", "chaotic evil"]
+						]
+					},
+					{
+						name: "environment",
+						selected: "",
+						options: [
+							["", "Any Environment"],
+							["aquatic", "Aquatic"],
+							["arctic", "Arctic"],
+							["cave", "Cave"],
+							["coast", "Coast"],
+							["desert", "Desert"],
+							["dungeon", "Dungeon"],
+							["forest", "Forest"],
+							["grassland", "Grassland"],
+							["mountain", "Mountain"],
+							["planar", "Planar"],
+							["ruins", "Ruins"],
+							["swamp", "Swamp"],
+							["underground", "Underground"],
+							["urban", "Urban"],
+						]
+					},
+					{
+						name: "legendary",
+						selected: "",
+						options: [
+							["", "Any Legendary"],
+							["ordinary", "Ordinary"],
+							["legendary", "Legendary"],
+							["legendary_lair", "Legendary (in lair)"]
+						]
 					}
-				],
-
-				difficulty: "Easy",
-				total_xp: 2900,
-				adjusted_xp: 1450
+				]
 			}
 		}
 	</script>
@@ -171,10 +321,10 @@
 					</div>
 
 					<div class="flex flex-col text-right leading-3 flex-1">
-						<p :class="difficulty === 'Easy' ? 'font-semibold' : ''" class="mt-2">Easy: <span class="ml-2" x-text="formatNumber(party_xp.easy) + ' exp'"></span></p>
-						<p :class="difficulty === 'Medium' ? 'font-semibold' : ''" class="mt-2">Medium: <span class="ml-2" x-text="formatNumber(party_xp.medium) + ' exp'"></span></p>
-						<p :class="difficulty === 'Hard' ? 'font-semibold' : ''" class="mt-2">Hard: <span class="ml-2" x-text="formatNumber(party_xp.hard) + ' exp'"></span></p>
-						<p :class="difficulty === 'Deadly' ? 'font-semibold' : ''" class="mt-2">Deadly: <span class="ml-2" x-text="formatNumber(party_xp.deadly) + ' exp'"></span></p>
+						<p :class="randomEncounter.difficulty === 'Easy' ? 'font-semibold' : ''" class="mt-2">Easy: <span class="ml-2" x-text="formatNumber(party_xp.easy) + ' exp'"></span></p>
+						<p :class="randomEncounter.difficulty === 'Medium' ? 'font-semibold' : ''" class="mt-2">Medium: <span class="ml-2" x-text="formatNumber(party_xp.medium) + ' exp'"></span></p>
+						<p :class="randomEncounter.difficulty === 'Hard' ? 'font-semibold' : ''" class="mt-2">Hard: <span class="ml-2" x-text="formatNumber(party_xp.hard) + ' exp'"></span></p>
+						<p :class="randomEncounter.difficulty === 'Deadly' ? 'font-semibold' : ''" class="mt-2">Deadly: <span class="ml-2" x-text="formatNumber(party_xp.deadly) + ' exp'"></span></p>
 						<p class="mt-2 leading-10">Daily budget: <span class="ml-2" x-text="formatNumber(party_xp.daily) + ' exp'"></span></p>
 					</div>
 				</div>
@@ -235,7 +385,7 @@
 					</div>
 
 					<div class="flex-row mt-2">
-						<template x-for="(monster, index) in monsters">
+						<template x-for="(monster, index) in randomEncounter.monsters">
 							<div class="flex flex-row w-full mb-8">
 								<div class="grow pb-2 min-w-0">
 									<span class="text-4xl font-light" x-text="monster.name"></span>
@@ -266,15 +416,15 @@
 					</div>
 
 					<div class="flex border-t text-2xl border-t-gray-400 pt-4">
-						<div class="grow" x-text="'Difficulty: ' + difficulty"></div>
+						<div class="grow" x-text="'Difficulty: ' + randomEncounter.difficulty"></div>
 						<div class="text-right">
 							<span class="block">
-								<span x-text="'Total XP: ' + total_xp"></span>
-								<span class="text-base italic block" x-text="'(' + Math.round(total_xp / total_players) + ' per player)'"></span>
+								<span x-text="'Total XP: ' + randomEncounter.total_xp"></span>
+								<span class="text-base italic block" x-text="'(' + Math.round(randomEncounter.total_xp / total_players) + ' per player)'"></span>
 							</span>
 							<span class="block">
-								<span x-text="'Adjusted XP: ' + adjusted_xp"></span>
-								<span class="text-base italic block" x-text="'(' + Math.round(adjusted_xp / total_players) + ' per player)'"></span>
+								<span x-text="'Adjusted XP: ' + randomEncounter.adjusted_xp"></span>
+								<span class="text-base italic block" x-text="'(' + Math.round(randomEncounter.adjusted_xp / total_players) + ' per player)'"></span>
 							</span>
 						</div>
 					</div>
@@ -285,41 +435,70 @@
 
 			<div class="flex-auto w-8/12 px-4 min-h-full">
 
+
 				<div class="flex">
 
 					<div class="grow">
 						
-						<input type="text" class="w-3/6 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md">
-						
-						<select class="inline-block mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-							<option value="any">Any Size</option>
-							<option value="tiny">Tiny</option>
-							<option value="small">Small</option>
-							<option value="medium">Medium</option>
-							<option value="large">Large</option>
-							<option value="huge">Huge</option>
-							<option value="gargantuan">Gargantuan</option>
-						</select>
-						
-						<select class="inline-block mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-							<option>Any Type</option>
-							<option>Aberration</option>
-							<option>Beast</option>
-							<option>Celestial</option>
-							<option>Construct</option>
-							<option>Dragon</option>
-							<option>Elemental</option>
-							<option>Fey</option>
-							<option>Fiend</option>
-							<option>Giant</option>
-							<option>Humanoid</option>
-							<option>Monstrosity</option>
-							<option>Ooze</option>
-							<option>Plant</option>
-							<option>Undead</option>
-						</select>
+						<input type="text" placeholder="Search..." class="w-3/6 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md mr-2 inline-block">
+
+						<template x-for="filter in filters">
+							<select :name="filter.name" x-model="filter.selected" class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+								<template x-for="option in filter.options">
+									<option :value="option[0]" x-text='option[1]'></option>
+								</template>
+							</select>
+						</template>
 
 					</div>
+
+				</div>
+
+				<div class="mt-8 overflow-x-auto min-w-0">
+
+					<table class="w-100 mb-5 border-collapse">
+
+						<thead>
+
+							<tr>
+
+								<th class="border border-gray-300 p-2"></th>	
+								<th class="border border-gray-300 p-2">Name</th>	
+								<th class="border border-gray-300 p-2">CR</th>	
+								<th class="border border-gray-300 p-2">Size</th>	
+								<th class="border border-gray-300 p-2">Type</th>	
+								<th class="border border-gray-300 p-2">Alignment</th>	
+								<th class="border border-gray-300 p-2">Source</th>	
+								
+							</tr>
+
+						</thead>
+
+						<tbody class="border-t-2 border-gray-400">
+							
+							<template x-for="monster in monsters">
+
+								<tr class="even:bg-gray-200">
+
+									<td class="align-top p-2 border border-gray-300">
+										<button type="button" class="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+											<i class="fas fa-plus"></i>
+										</button>
+									</td>
+									<td class="align-top p-2 border border-gray-300" x-text="monster.name"></td>
+									<td class="align-top p-2 border border-gray-300" x-text="monster.cr"></td>
+									<td class="align-top p-2 border border-gray-300" x-text="monster.size"></td>
+									<td class="align-top p-2 border border-gray-300" x-text="monster.type"></td>
+									<td class="align-top p-2 border border-gray-300" x-text="monster.alignment"></td>
+									<td class="align-top p-2 border border-gray-300" x-text="monster.sources"></td>
+
+								</td>
+
+							</template>
+
+						</tbody>
+
+					</table>
 
 				</div>
 		
