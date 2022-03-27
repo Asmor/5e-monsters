@@ -2,3 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind forms;
+
+body .choices { @apply leading-6 border-gray-300 rounded-none; }
+body .choices.is-open { @apply ring-4 border-emerald-600 ring-opacity-30 ring-emerald-600; }
+body .is-open .choices__inner { @apply border-gray-300 rounded-none; }
+body .choices .choices__inner { 
+    @apply 
+    bg-white
+    rounded-md
+    shadow-sm
+    focus:outline-none
+    focus:ring-0
+    focus:ring-emerald-600
+    focus:ring-opacity-30
+    focus:border-emerald-600
+    block
+    w-full
+    py-2
+    mb-0
+    text-base
+    border-gray-300
+    focus:outline-none
+    sm:text-sm
+    rounded-md
+    rounded-r-none
+    md:rounded-none;
+}
+body .choices__list--multiple .choices__item { 
+    @apply bg-emerald-700 border-emerald-800 rounded-md mb-0; 
+}
+body .choices__list--multiple .choices__item:hover { @apply bg-emerald-600; }
+body .choices__list--single { @apply py-0; }
+body .choices__item { @apply text-gray-700; }
+body .choices__placeholder { @apply opacity-100; }
+body .choices__list { @apply border-gray-300; }
+body .is-open .choices__list--multiple { @apply border-gray-300 shadow-lg; }
+body .choices__input { @apply focus:ring-0 border-none; }
