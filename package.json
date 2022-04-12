@@ -2,7 +2,7 @@
   "name": "5e-monsters",
   "version": "1.0.0",
   "description": "Kobold+ Fight Club",
-  "main": "index.html",
+  "main": "src/index.html",
   "dependencies": {
     "@tailwindcss/forms": "^0.4.0",
     "alpinejs": "^3.8.1",
@@ -11,14 +11,18 @@
     "postcss": "^8.4.5"
   },
   "devDependencies": {
+    "browser-sync-webpack-plugin": "^2.3.0",
     "concurrently": "^7.0.0",
+    "laravel-mix": "^6.0.43",
     "tailwindcss": "^3.0.15"
   },
   "scripts": {
-    "prestart": "npm install",
-    "tw": "tailwindcss -i css/kobold.css -o docs/css/styles.css --watch",
-    "bsync": "browser-sync start --server --files 'docs' 'index.html'",
-    "watch": "concurrently --kill-others \"npm run bsync\" \"npm run tw\""
+    "development": "mix",
+    "watch": "mix watch",
+    "watch-poll": "mix watch -- --watch-options-poll=1000",
+    "hot": "mix watch --hot",
+    "production": "mix --production",
+    "dev-install-watch": "npm install && npm run watch"
   },
   "repository": {
     "type": "git",

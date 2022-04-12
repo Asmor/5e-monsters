@@ -3,14 +3,15 @@
 <head>
 	<title>Kobold Plus Fight Club - The first rule of Kobold Fight Club is 'Yip Yip!'</title>
 	<meta charset="utf-8">
-	<link rel="manifest" href="manifest.json">
-	<link rel="apple-touch-icon" href="images/logo.png" sizes="600x600">
-	<link rel="icon" href="images/logo.png" sizes="600x600">
+	<link rel="manifest" href="../manifest.json">
+	<link rel="apple-touch-icon" href="../images/logo.png" sizes="600x600">
+	<link rel="icon" href="../images/logo.png" sizes="600x600">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600" rel="stylesheet">
+	<script src="js/app.js"></script>
 	<script defer src="https://unpkg.com/alpinejs@3.8.1/dist/cdn.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link href="docs/css/styles.css" rel="stylesheet">	
+	<link href="css/styles.css" rel="stylesheet">
 
 	<!-- Include Choices CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
@@ -18,159 +19,14 @@
 	<!-- Include Choices JavaScript (latest) -->
 	<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
+
 </head>
 <body>
 
 	<script>
-
-		const internationalNumberFormat = new Intl.NumberFormat('en-US')
-
-		function app() {
-
-			const cr_list = ["0", "1/8", "1/4", "1/2"];
-			for(let i = 1; i <= 30; i++) cr_list.push(i.toString());
-
-			return { 
-				menu: true,
-				loading: false,
-				allMonsters: [],
-				cr_list: cr_list,
-
-				init(){
-					this.fetch_monsters()
-				},
-
-				fetch_monsters() {
-
-					this.isLoading = true;
-					fetch("json/se_monsters.json")
-						.then(res => res.json())
-						.then(data => {
-							this.isLoading = false,
-							this.allMonsters = data;
-						})
-
-				},
-
-				get monsters(){
-					console.log(this.allMonsters.slice(0, 10))
-					return this.allMonsters.slice(0, 10)
-				},
-
-				setSizes(sizes) {
-					this.sizes = sizes;
-				},
-
-				add_party() {
-					this.parties.push({
-						...this.parties[this.parties.length-1]
-					});
-				},
-
-				remove_party(){
-					this.parties.pop();
-				},
-
-				formatNumber(num){
-					return internationalNumberFormat.format(num);
-				},
-
-				party_xp: {
-					easy: 1025,
-					medium: 2050,
-					hard: 3075,
-					deadly: 4500,
-					daily: 14300,
-				},
-
-				parties: [
-					{
-						players: 4,
-						level: 5
-					},
-					{
-						players: 1,
-						level: 1
-					},
-					{
-						players: 1,
-						level: 1
-					}
-				],
-
-				get total_players(){
-					return this.parties.reduce(function(acc, item){
-						return acc + item.players
-					}, 0);
-				},
-
-				randomEncounter: {
-					open: false,
-					type: "Medium",
-					set(type){
-						this.type = type;
-						this.open = false;
-					},
-					monsters: [
-						{
-							name: "Young Blue Dragon",
-							cr: 9,
-							xp: 5000,
-							source: "Monster Manual",
-							source_page: "p.91",
-							count: 1
-						}
-					],
-					difficulty: "Easy",
-					get total_xp(){
-						return this.monsters.reduce((acc, monster) => {
-							return acc + monster.xp;
-						}, 0);
-					},
-					adjusted_xp: 1450,
-				}
-			}
-		}
-
-		function multiSelect($el, options) {
-			return {
-				multiple: true,
-				value: ['any'],
-				options: options,
-				init() {
-					this.$nextTick(() => {
-						let choices = new Choices($el, {
-							allowHTML: true,
-							removeItemButton: true,
-							})
-			
-						let refreshChoices = () => {
-							let selection = this.multiple ? this.value : [this.value]
-			
-							choices.clearStore()
-							choices.setChoices(this.options.map(({ value, label }) => ({
-								value,
-								label,
-								selected: selection.includes(value),
-							})))
-							sizes = this.value;
-						}
-			
-						refreshChoices()
-			
-						$el.addEventListener('change', () => {
-							this.value = choices.getValue(true)
-						})
-			
-						this.$watch('value', () => refreshChoices())
-						this.$watch('options', () => refreshChoices())
-					})
-				}
-			}
-		}
 	</script>
 
-	<div class="min-h-screen bg-gray-100" x-data="app()">
+	<div class="min-h-screen bg-gray-100" x-data="window.app()">
 
 		<nav class="bg-emerald-700 border-b border-gray-200">
 			<div class="mx-auto px-4 sm:px-6 lg:px-6">
@@ -178,7 +34,7 @@
 					<div class="flex">
 						<div class="flex-shrink-0 flex items-center">
 							<a href="" class="flex items-center">
-								<img class="h-8 w-auto" src="images/header_logo.png" alt="Fantasy Calender"> <span class="hidden md:inline pl-2 text-lg font-bold text-white">Kobold+ Fight Club</span>
+								<img class="h-8 w-auto" src="../images/header_logo.png" alt="Fantasy Calender"> <span class="hidden md:inline pl-2 text-lg font-bold text-white">Kobold+ Fight Club</span>
 							</a>
 						</div>
 					</div>

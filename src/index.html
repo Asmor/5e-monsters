@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<title>Kobold Plus Fight Club - The first rule of Kobold Fight Club is 'Yip Yip!'</title>
+	<meta charset="utf-8">
+	<link rel="manifest" href="../manifest.json">
+	<link rel="apple-touch-icon" href="../images/logo.png" sizes="600x600">
+	<link rel="icon" href="../images/logo.png" sizes="600x600">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600" rel="stylesheet">
+	<script src="js/app.js"></script>
+	<script defer src="https://unpkg.com/alpinejs@3.8.1/dist/cdn.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link href="css/styles.css" rel="stylesheet">
+
+	<!-- Include Choices CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
+
+	<!-- Include Choices JavaScript (latest) -->
+	<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
+
+</head>
+<body>
+
+	<script>
+	</script>
+
+	<div class="min-h-screen bg-gray-100" x-data="window.app()">
+
+		<nav class="bg-emerald-700 border-b border-gray-200">
+			<div class="mx-auto px-4 sm:px-6 lg:px-6">
+				<div class="flex justify-between h-16 w-full">
+					<div class="flex">
+						<div class="flex-shrink-0 flex items-center">
+							<a href="" class="flex items-center">
+								<img class="h-8 w-auto" src="../images/header_logo.png" alt="Fantasy Calender"> <span class="hidden md:inline pl-2 text-lg font-bold text-white">Kobold+ Fight Club</span>
+							</a>
+						</div>
+					</div>
+					<div class="hidden sm:flex text-white sm:-my-px sm:ml-6 sm:space-x-8 items-center">
+                        <a href="" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300">Home</a>
+                        <a href="" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300">Manage Encounters</a>
+                        <a href="" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300">Manage Players</a>
+                        <a href="" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300">Run Encounters</a>
+                        <a href="" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300">Fantasy Calendar</a>
+                        <a href="" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300">About</a>
+					</div>
+					<div class="-mr-2 flex items-center sm:hidden">
+						<button class="inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white" @click="menu = !menu">
+							<span class="sr-only">Open main menu</span>
+							<svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+							</svg>
+							<svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+							</svg>
+						</button>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class="flex pt-4">
+
+			<div class="flex flex-col px-4 flex-auto w-5/12 min-h-full">
+				
+				<div class="flex w-full border-b-2 pb-4">
+
+					<div class="flex flex-col">
+
+						<span class="text-3xl mb-2">Group Info</span>
+
+						<div class="flex mb-2">
+							<div class="w-16">
+								<label class="block font-medium text-gray-700">Players</label>
+							</div>
+							<div class="w-16 ml-4">
+								<label class="block font-medium text-gray-700">Level</label>
+							</div>
+						</div>
+
+						<button @click="console.log(sizes)">SHOW SIZES</button>
+
+						<template x-for="(party, index) in parties">
+
+							<div class="flex mb-2">
+
+								<div class="w-16">
+									<input type="number" min="1" x-model="party.players" class="shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block w-full sm:text-sm border-gray-300 rounded-md" value="4">
+								</div>
+
+								<div class="w-16 mx-4">
+									<input type="number" min="1" x-model="party.level" class="shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block w-full sm:text-sm border-gray-300 rounded-md" value="4">
+								</div>
+
+								<button @click="remove_party" x-show="index > 0" type="button" class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none">
+									<i class="fas fa-times"></i>
+								</button>
+
+							</div>
+
+						</template>
+
+						<button @click="add_party" type="button" class="mt-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
+							<i class="fas fa-plus mr-2"></i> Add Another Level
+						</button>
+
+					</div>
+
+					<div class="flex flex-col text-right leading-3 flex-1">
+						<p :class="randomEncounter.difficulty === 'Easy' ? 'font-semibold' : ''" class="mt-2">Easy: <span class="ml-2" x-text="formatNumber(party_xp.easy) + ' exp'"></span></p>
+						<p :class="randomEncounter.difficulty === 'Medium' ? 'font-semibold' : ''" class="mt-2">Medium: <span class="ml-2" x-text="formatNumber(party_xp.medium) + ' exp'"></span></p>
+						<p :class="randomEncounter.difficulty === 'Hard' ? 'font-semibold' : ''" class="mt-2">Hard: <span class="ml-2" x-text="formatNumber(party_xp.hard) + ' exp'"></span></p>
+						<p :class="randomEncounter.difficulty === 'Deadly' ? 'font-semibold' : ''" class="mt-2">Deadly: <span class="ml-2" x-text="formatNumber(party_xp.deadly) + ' exp'"></span></p>
+						<p class="mt-2 leading-10">Daily budget: <span class="ml-2" x-text="formatNumber(party_xp.daily) + ' exp'"></span></p>
+					</div>
+				</div>
+
+				<div class="flex-col mt-2">
+
+					<div class="flex w-full">
+
+						<span class="text-3xl mb-2 grow">Encounter Info</span>
+						
+						<div class="self-center" @click.away="randomEncounter.open = false">
+							<span class="relative z-0 inline-flex shadow-sm rounded-md">
+								<button x-text="'Random ' + randomEncounter.type" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
+									Random Medium
+								</button>
+								<span class="-ml-px relative block">
+									<button @click="randomEncounter.open = !randomEncounter.open" type="button" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
+										<span class="sr-only">Open options</span>
+										<!-- Heroicon name: solid/chevron-down -->
+										<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+										<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+										</svg>
+									</button>
+								
+									<!--
+										Dropdown menu, show/hide based on menu state.
+								
+										Entering: "transition ease-out duration-100"
+										From: "transform opacity-0 scale-95"
+										To: "transform opacity-100 scale-100"
+										Leaving: "transition ease-in duration-75"
+										From: "transform opacity-100 scale-100"
+										To: "transform opacity-0 scale-95"
+									-->
+									<div x-show="randomEncounter.open" x-transition class="origin-top-right absolute right-0 mt-2 -mr-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none w-48" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
+										<div class="py-1" role="none">
+										<!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+										<a href="#" @click="randomEncounter.set('Easy')" :class="{ 'bg-emerald-500 text-white': randomEncounter.type == 'Easy', 'text-gray-700 hover:bg-gray-50': randomEncounter.type !== 'Easy' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-0">
+											Random Easy
+										</a>
+								
+										<a href="#" @click="randomEncounter.set('Medium')" :class="{ 'bg-emerald-500 text-white': randomEncounter.type == 'Medium', 'text-gray-700 hover:bg-gray-50': randomEncounter.type !== 'Medium' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-1">
+											Random Medium
+										</a>
+								
+										<a href="#" @click="randomEncounter.set('Hard')" :class="{ 'bg-emerald-500 text-white': randomEncounter.type == 'Hard', 'text-gray-700 hover:bg-gray-50': randomEncounter.type !== 'Hard' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
+											Random Hard
+										</a>
+								
+										<a href="#" @click="randomEncounter.set('Deadly')" :class="{ 'bg-emerald-500 text-white': randomEncounter.type == 'Deadly', 'text-gray-700 hover:bg-gray-50': randomEncounter.type !== 'Deadly' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
+											Random Deadly
+										</a>
+										</div>
+									</div>
+								</span>
+							</span>
+						</div>
+					</div>
+
+					<div class="flex-row mt-2">
+						<template x-for="(monster, index) in randomEncounter.monsters">
+							<div class="flex flex-row w-full mb-8">
+								<div class="grow pb-2 min-w-0">
+									<span class="text-4xl font-light" x-text="monster.name"></span>
+									<div>
+										<span class="text-lg" x-text="'CR: ' + monster.cr"></span>
+										<span class="text-lg ml-4" x-text="'XP: ' + formatNumber(monster.xp)"></span>
+										<div class='overflow-hidden whitespace-nowrap overflow-ellipsis'>
+											<span x-text="monster.source + (monster.source_page ? ' ' + monster.source_page : '')"></span>
+										</div>
+									</div>
+								</div>
+								<div class="">
+									<button type="button" class="inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
+										<i class="fas fa-random"></i>
+									</button>
+									<input type="number" min="1" class="inline align-middle w-24 shadow-sm focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm border-gray-300 rounded-md" x-model="monster.count"/>
+									<div class="inline-block align-middle">
+										<button @click="monster.count++" type="button" class="block items-center p-1 mb-1 border border-transparent text-xs font-medium rounded text-emerald-700 bg-emerald-100 hover:bg-emerald-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
+											<i class="fas fa-plus"></i>
+										</button>
+										<button @click="monster.count--" type="button" class="block items-center p-1 border border-transparent text-xs font-medium rounded text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
+											<i class="fas fa-minus"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</template>
+					</div>
+
+					<div class="flex border-t text-2xl border-t-gray-400 pt-4">
+						<div class="grow" x-text="'Difficulty: ' + randomEncounter.difficulty"></div>
+						<div class="text-right">
+							<span class="block">
+								<span x-text="'Total XP: ' + randomEncounter.total_xp"></span>
+								<span class="text-base italic block" x-text="'(' + Math.round(randomEncounter.total_xp / total_players) + ' per player)'"></span>
+							</span>
+							<span class="block">
+								<span x-text="'Adjusted XP: ' + randomEncounter.adjusted_xp"></span>
+								<span class="text-base italic block" x-text="'(' + Math.round(randomEncounter.adjusted_xp / total_players) + ' per player)'"></span>
+							</span>
+						</div>
+					</div>
+
+				</div>
+		
+			</div>
+
+			<div class="flex-auto w-8/12 px-4 min-h-full">
+
+				<div class="flex">
+
+					<div class="grow">
+						
+						<input type="text" placeholder="Search..." class="w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block sm:text-sm border-gray-300 rounded-md mr-2 inline-block">
+
+						 
+						<!-- Multi Select -->
+						<div x-data="multiSelect($refs.sizes, [
+							{value: 'any', label: 'Any Size' },
+							{value: 'tiny', label: 'Tiny' },
+							{value: 'small', label: 'Small' },
+							{value: 'medium', label: 'Medium' },
+							{value: 'large', label: 'Large' },
+							{value: 'huge', label: 'Huge' },
+							{value: 'gargantuan', label: 'Gargantuan' }
+						])">
+							<select x-ref="sizes" :multiple="multiple" class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
+						</div>
+
+						<div x-data="multiSelect($refs.creature_type, [
+							{ value: 'any', label: 'Any Type' },
+							{ value: 'aberration', label: 'Aberration' },
+							{ value: 'beast', label: 'Beast' },
+							{ value: 'celestial', label: 'Celestial' },
+							{ value: 'construct', label: 'Construct' },
+							{ value: 'dragon', label: 'Dragon' },
+							{ value: 'elemental', label: 'Elemental' },
+							{ value: 'fey', label: 'Fey' },
+							{ value: 'fiend', label: 'Fiend' },
+							{ value: 'giant', label: 'Giant' },
+							{ value: 'humanoid', label: 'Humanoid' },
+							{ value: 'monstrosity', label: 'Monstrosity' },
+							{ value: 'ooze', label: 'Ooze' },
+							{ value: 'plant', label: 'Plant' },
+							{ value: 'undead', label: 'Undead' },
+						])">
+							<select x-ref="creature_type" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
+						</div>
+
+						<div x-data="multiSelect($refs.min_cr, [
+							{ value: 'any', label: 'Min CR' },
+							{ value: '0', label: '0' },
+							{ value: '1/8', label: '1/8' },
+							{ value: '1/4', label: '1/4' },
+							{ value: '1/2', label: '1/2' },
+							{ value: '1', label: '1' },
+							{ value: '2', label: '2' },
+							{ value: '3', label: '3' },
+							{ value: '4', label: '4' },
+							{ value: '5', label: '5' },
+							{ value: '6', label: '6' },
+							{ value: '7', label: '7' },
+							{ value: '8', label: '8' },
+							{ value: '9', label: '9' },
+							{ value: '10', label: '10' },
+							{ value: '11', label: '11' },
+							{ value: '12', label: '12' },
+							{ value: '13', label: '13' },
+							{ value: '14', label: '14' },
+							{ value: '15', label: '15' },
+							{ value: '16', label: '16' },
+							{ value: '17', label: '17' },
+							{ value: '18', label: '18' },
+							{ value: '19', label: '19' },
+							{ value: '20', label: '20' },
+							{ value: '21', label: '21' },
+							{ value: '22', label: '22' },
+							{ value: '23', label: '23' },
+							{ value: '24', label: '24' },
+							{ value: '25', label: '25' },
+							{ value: '26', label: '26' },
+							{ value: '27', label: '27' },
+							{ value: '28', label: '28' },
+							{ value: '29', label: '29' },
+							{ value: '30', label: '30' },
+						])">
+							<select x-ref="min_cr" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
+						</div>
+
+						<div x-data="multiSelect($refs.max_cr, [
+							{ value: 'any', label: 'Min CR' },
+							{ value: '0', label: '0' },
+							{ value: '1/8', label: '1/8' },
+							{ value: '1/4', label: '1/4' },
+							{ value: '1/2', label: '1/2' },
+							{ value: '1', label: '1' },
+							{ value: '2', label: '2' },
+							{ value: '3', label: '3' },
+							{ value: '4', label: '4' },
+							{ value: '5', label: '5' },
+							{ value: '6', label: '6' },
+							{ value: '7', label: '7' },
+							{ value: '8', label: '8' },
+							{ value: '9', label: '9' },
+							{ value: '10', label: '10' },
+							{ value: '11', label: '11' },
+							{ value: '12', label: '12' },
+							{ value: '13', label: '13' },
+							{ value: '14', label: '14' },
+							{ value: '15', label: '15' },
+							{ value: '16', label: '16' },
+							{ value: '17', label: '17' },
+							{ value: '18', label: '18' },
+							{ value: '19', label: '19' },
+							{ value: '20', label: '20' },
+							{ value: '21', label: '21' },
+							{ value: '22', label: '22' },
+							{ value: '23', label: '23' },
+							{ value: '24', label: '24' },
+							{ value: '25', label: '25' },
+							{ value: '26', label: '26' },
+							{ value: '27', label: '27' },
+							{ value: '28', label: '28' },
+							{ value: '29', label: '29' },
+							{ value: '30', label: '30' },
+						])">
+							<select x-ref="max_cr" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
+						</div>
+
+						<div x-data="multiSelect($refs.alignment, [
+							{ value: 'any', label: 'Any Alignment' },
+							{ value: 'chaotic', label: 'chaotic' },
+							{ value: 'evil', label: 'evil' },
+							{ value: 'good', label: 'good' },
+							{ value: 'lawful', label: 'lawful' },
+							{ value: 'neutral', label: 'neutral' },
+							{ value: 'non-chaotic', label: 'non-chaotic' },
+							{ value: 'non-evil', label: 'non-evil' },
+							{ value: 'non-good', label: 'non-good' },
+							{ value: 'non-lawful', label: 'non-lawful' },
+							{ value: 'non-neural', label: 'non-neural' },
+							{ value: 'unaligned', label: 'unaligned' },
+						])">
+							<select x-ref="alignment" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
+						</div>
+
+						<div x-data="multiSelect($refs.environment, [
+							{ value: 'any', label: 'Any Environment' },
+							{ value: 'aquatic', label: 'Aquatic' },
+							{ value: 'arctic', label: 'Arctic' },
+							{ value: 'cave', label: 'Cave' },
+							{ value: 'coast', label: 'Coast' },
+							{ value: 'desert', label: 'Desert' },
+							{ value: 'dungeon', label: 'Dungeon' },
+							{ value: 'forest', label: 'Forest' },
+							{ value: 'grassland', label: 'Grassland' },
+							{ value: 'mountain', label: 'Mountain' },
+							{ value: 'planar', label: 'Planar' },
+							{ value: 'ruins', label: 'Ruins' },
+							{ value: 'swamp', label: 'Swamp' },
+							{ value: 'underground', label: 'Underground' },
+							{ value: 'urban', label: 'Urban' },
+						])">
+							<select x-ref="environment" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
+						</div>
+
+						<div x-data="multiSelect($refs.legendary, [
+							{ value: 'any', label: 'Any Legendary'},
+							{ value: 'ordinary', label: 'Ordinary'},
+							{ value: 'legendary', label: 'Legendary'},
+							{ value: 'legendary_lair', label: 'Legendary (in lair)'},
+						])">
+							<select x-ref="legendary" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="mt-8 overflow-x-auto min-w-0">
+
+					<table class="w-full mb-5 border-collapse">
+
+						<thead>
+
+							<tr>
+
+								<th class="border border-gray-300 p-2"></th>	
+								<th class="border border-gray-300 p-2">Name</th>	
+								<th class="border border-gray-300 p-2">CR</th>	
+								<th class="border border-gray-300 p-2">Size</th>	
+								<th class="border border-gray-300 p-2">Type</th>	
+								<th class="border border-gray-300 p-2">Alignment</th>	
+								<th class="border border-gray-300 p-2">Source</th>	
+								
+							</tr>
+
+						</thead>
+
+						<tbody class="border-t-2 border-gray-400">
+							
+							<template x-for="monster in monsters">
+
+								<tr class="even:bg-gray-200">
+
+									<td class="align-top p-2 border border-gray-300">
+										<button type="button" class="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
+											<i class="fas fa-plus"></i>
+										</button>
+									</td>
+									<td class="align-top p-2 border border-gray-300" x-text="monster.name"></td>
+									<td class="align-top p-2 border border-gray-300" x-text="monster.cr"></td>
+									<td class="align-top p-2 border border-gray-300" x-text="monster.size"></td>
+									<td class="align-top p-2 border border-gray-300" x-text="monster.type"></td>
+									<td class="align-top p-2 border border-gray-300" x-text="monster.alignment"></td>
+									<td class="align-top p-2 border border-gray-300" x-text="monster.sources"></td>
+
+								</td>
+
+							</template>
+
+						</tbody>
+
+					</table>
+
+				</div>
+		
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
+</html>

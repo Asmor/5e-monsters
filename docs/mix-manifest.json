@@ -1,0 +1,11 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/styles.css": "/css/styles.css",
+    "/index.html": "/index.html",
+    "/json/se_community_monsters.json": "/json/se_community_monsters.json",
+    "/json/se_community_sources.json": "/json/se_community_sources.json",
+    "/json/se_monsters.json": "/json/se_monsters.json",
+    "/json/se_sources.json": "/json/se_sources.json",
+    "/json/se_third_party_monsters.json": "/json/se_third_party_monsters.json",
+    "/json/se_third_party_sources.json": "/json/se_third_party_sources.json"
+}
