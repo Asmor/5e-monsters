@@ -8,7 +8,7 @@ const encounter = {
 
     get totalExp(){
         return this.monsters.reduce((acc, monster) => {
-            return acc + monster.xp;
+            return acc + monster.exp;
         }, 0);
     },
 
@@ -168,59 +168,6 @@ const encounter = {
 
     },
 
-    filterMonsters(crString){
-        const hasFilters = Object.entries(this.app.filters).length > 0;
-        const filters = this.app.filters;
-
-        const legendaryMap = {
-            'Legendary': 'legendary',
-            'Legendary (in lair)': 'lair',
-            'Ordinary': false
-        };
-
-        const monsters = this.app.allMonsters.filter(monster => {
-
-            if(monster.cr.toString() !== crString) return false;
-
-            if(hasFilters){
-
-                if(filters.size?.length && !filters.size?.includes("any")){
-                    if(!filters.size.includes(monster.size.toLowerCase())) return false;
-                }
-
-                if(filters.legendary?.length && !filters.legendary?.includes("any")){
-                    for(let legendary of filters.legendary) {
-                        let legendaryMonsterKey = legendaryMap[filters.legendary];
-
-                        if (legendaryMonsterKey) {
-                            if (!monster[legendaryMonsterKey]) return false;
-                        } else {
-                            if (monster.legendary || monster.lair) return false;
-                        }
-                    }
-                }
-
-                if(filters.type?.length && !filters.type?.includes("any")){
-                    if(!filters.type.includes(monster.type.toLowerCase())) return false;
-                }
-
-                if(filters.alignment?.length && !filters.alignment?.includes("any")){
-                    if(!filters.alignment.includes(monster.alignment.toLowerCase())) return false;
-                }
-
-                if ( filters.environment?.length && monster.environments.indexOf(filters.environment) === -1 ) {
-                    return false;
-                }
-
-            }
-
-            return true;
-
-        });
-
-        return lib.shuffle_array(monsters);
-    },
-
     getBestMonster(targetExp){
 
         let monsterCRIndex;
@@ -234,7 +181,7 @@ const encounter = {
         }
 
         let monsterTargetCR = CONST.CR[CONST.CR.LIST[monsterCRIndex]];
-        let monsterList = this.filterMonsters(monsterTargetCR.string, true);
+        let monsterList = this.app.filterMonsters(monsterTargetCR.string, true);
 
         let monsterCRNewIndex = monsterCRIndex;
         let down = true;
@@ -254,11 +201,11 @@ const encounter = {
             }
 
             let monsterTargetCR = CONST.CR[CONST.CR.LIST[monsterCRNewIndex]];
-            monsterList = this.filterMonsters(monsterTargetCR.string, true);
+            monsterList = this.app.filterMonsters(monsterTargetCR.string, true);
 
         }
 
-        return lib.clone(monsterList[0]);
+        return lib.clone(lib.shuffle_array(monsterList)[0]);
 
     }
 

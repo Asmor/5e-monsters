@@ -15,6 +15,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nouislider__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nouislider__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _lib_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lib.js */ "./src/js/lib.js");
 /* harmony import */ var _constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants.js */ "./src/js/constants.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 
 
@@ -36,7 +41,9 @@ function app() {
     loading: false,
     pages: 1,
     page: 1,
+    monstersPerPage: 10,
     allMonsters: [],
+    filteredMonsters: [],
     searchPlaceholder: "",
     difficultySelectOpen: false,
     minCr: 0,
@@ -73,7 +80,7 @@ function app() {
       }).then(function (data) {
         _this2.isLoading = false;
         _this2.allMonsters = data.map(function (monster) {
-          monster.exp = _constants_js__WEBPACK_IMPORTED_MODULE_4__["default"].CR[monster.cr];
+          monster.cr = _constants_js__WEBPACK_IMPORTED_MODULE_4__["default"].CR[monster.cr];
           monster.sources = monster.sources.split(', ').map(function (source) {
             return {
               book: source.split(": ")[0],
@@ -82,16 +89,87 @@ function app() {
           });
           return monster;
         });
+        _this2.filteredMonsters = _this2.allMonsters;
         _this2.page = 1;
         _this2.pages = Math.floor(_this2.allMonsters.length / 10);
         _this2.searchPlaceholder = _lib_js__WEBPACK_IMPORTED_MODULE_3__.random_array_element(_this2.allMonsters).name;
       });
     },
+    filterMonsters: function filterMonsters() {
+      var crString = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      var hasFilters = Object.entries(this.filters).length > 0;
+      var filters = this.filters;
+      var legendaryMap = {
+        'Legendary': 'legendary',
+        'Legendary (in lair)': 'lair',
+        'Ordinary': false
+      };
+      return this.allMonsters.filter(function (monster) {
+        if (crString && monster.cr.string !== crString) return false;
+
+        if (hasFilters) {
+          var _filters$size, _filters$size2, _filters$legendary, _filters$legendary2, _filters$type, _filters$type2, _filters$alignment, _filters$alignment2, _filters$environment;
+
+          if ((_filters$size = filters.size) !== null && _filters$size !== void 0 && _filters$size.length && !((_filters$size2 = filters.size) !== null && _filters$size2 !== void 0 && _filters$size2.includes("any"))) {
+            if (!filters.size.includes(monster.size.toLowerCase())) return false;
+          }
+
+          if ((_filters$legendary = filters.legendary) !== null && _filters$legendary !== void 0 && _filters$legendary.length && !((_filters$legendary2 = filters.legendary) !== null && _filters$legendary2 !== void 0 && _filters$legendary2.includes("any"))) {
+            var _iterator = _createForOfIteratorHelper(filters.legendary),
+                _step;
+
+            try {
+              for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                var legendary = _step.value;
+                var legendaryMonsterKey = legendaryMap[filters.legendary];
+
+                if (legendaryMonsterKey) {
+                  if (!monster[legendaryMonsterKey]) return false;
+                } else {
+                  if (monster.legendary || monster.lair) return false;
+                }
+              }
+            } catch (err) {
+              _iterator.e(err);
+            } finally {
+              _iterator.f();
+            }
+          }
+
+          if ((_filters$type = filters.type) !== null && _filters$type !== void 0 && _filters$type.length && !((_filters$type2 = filters.type) !== null && _filters$type2 !== void 0 && _filters$type2.includes("any"))) {
+            if (!filters.type.includes(monster.type.toLowerCase())) return false;
+          }
+
+          if ((_filters$alignment = filters.alignment) !== null && _filters$alignment !== void 0 && _filters$alignment.length && !((_filters$alignment2 = filters.alignment) !== null && _filters$alignment2 !== void 0 && _filters$alignment2.includes("any"))) {
+            if (!filters.alignment.includes(monster.alignment.toLowerCase())) return false;
+          }
+
+          if ((_filters$environment = filters.environment) !== null && _filters$environment !== void 0 && _filters$environment.length && monster.environments.indexOf(filters.environment) === -1) {
+            return false;
+          }
+
+          if (!crString && filters !== null && filters !== void 0 && filters.cr) {
+            var _filters$cr, _filters$cr2;
+
+            if (((_filters$cr = filters.cr) === null || _filters$cr === void 0 ? void 0 : _filters$cr.min) !== 0 && monster.cr.numeric < filters.cr.min) {
+              return false;
+            }
+
+            if (((_filters$cr2 = filters.cr) === null || _filters$cr2 === void 0 ? void 0 : _filters$cr2.max) !== 30 && monster.cr.numeric > filters.cr.max) {
+              return false;
+            }
+          }
+        }
+
+        return true;
+      });
+    },
 
     get monsters() {
-      var start = !this.page ? 0 : this.page * 10 + 1;
-      var end = (this.page + 1) * 10;
-      return this.allMonsters.slice(start, end);
+      var page = this.page - 1;
+      var start = !page ? 0 : page * this.monstersPerPage + 1;
+      var end = (page + 1) * this.monstersPerPage;
+      return this.filteredMonsters.slice(start, end);
     },
 
     filtersChanged: function filtersChanged($event) {
@@ -99,6 +177,14 @@ function app() {
           name = _$event$detail.name,
           value = _$event$detail.value;
       this.filters[name] = Object.values(value);
+      this.filteredMonsters = this.filterMonsters();
+    },
+    crChanged: function crChanged($event) {
+      var _$event$detail2 = $event.detail,
+          name = _$event$detail2.name,
+          value = _$event$detail2.value;
+      this.filters[name] = value;
+      this.filteredMonsters = this.filterMonsters();
     },
     formatNumber: function formatNumber(num) {
       return internationalNumberFormat.format(num);
@@ -123,7 +209,18 @@ function multiSlider($el, options, updateCallback) {
         step: 1
       });
       this.slider.on('update', function (values) {
-        updateCallback(options[parseInt(values[0])], options[parseInt(values[1])]);
+        return updateCallback(options[parseInt(values[0])], options[parseInt(values[1])]);
+      });
+      this.slider.on('change', function (values) {
+        window.dispatchEvent(new CustomEvent('cr-changed', {
+          detail: {
+            name: "cr",
+            value: {
+              min: _constants_js__WEBPACK_IMPORTED_MODULE_4__["default"].CR[options[parseInt(values[0])].value].numeric,
+              max: _constants_js__WEBPACK_IMPORTED_MODULE_4__["default"].CR[options[parseInt(values[1])].value].numeric
+            }
+          }
+        }));
       });
     },
     reset: function reset() {
@@ -559,7 +656,7 @@ var encounter = {
 
   get totalExp() {
     return this.monsters.reduce(function (acc, monster) {
-      return acc + monster.xp;
+      return acc + monster.exp;
     }, 0);
   },
 
@@ -720,63 +817,6 @@ var encounter = {
     template.multiplier = template.multiplier || 1;
     return template;
   },
-  filterMonsters: function filterMonsters(crString) {
-    var hasFilters = Object.entries(this.app.filters).length > 0;
-    var filters = this.app.filters;
-    var legendaryMap = {
-      'Legendary': 'legendary',
-      'Legendary (in lair)': 'lair',
-      'Ordinary': false
-    };
-    var monsters = this.app.allMonsters.filter(function (monster) {
-      if (monster.cr.toString() !== crString) return false;
-
-      if (hasFilters) {
-        var _filters$size, _filters$size2, _filters$legendary, _filters$legendary2, _filters$type, _filters$type2, _filters$alignment, _filters$alignment2, _filters$environment;
-
-        if ((_filters$size = filters.size) !== null && _filters$size !== void 0 && _filters$size.length && !((_filters$size2 = filters.size) !== null && _filters$size2 !== void 0 && _filters$size2.includes("any"))) {
-          if (!filters.size.includes(monster.size.toLowerCase())) return false;
-        }
-
-        if ((_filters$legendary = filters.legendary) !== null && _filters$legendary !== void 0 && _filters$legendary.length && !((_filters$legendary2 = filters.legendary) !== null && _filters$legendary2 !== void 0 && _filters$legendary2.includes("any"))) {
-          var _iterator2 = _createForOfIteratorHelper(filters.legendary),
-              _step2;
-
-          try {
-            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-              var legendary = _step2.value;
-              var legendaryMonsterKey = legendaryMap[filters.legendary];
-
-              if (legendaryMonsterKey) {
-                if (!monster[legendaryMonsterKey]) return false;
-              } else {
-                if (monster.legendary || monster.lair) return false;
-              }
-            }
-          } catch (err) {
-            _iterator2.e(err);
-          } finally {
-            _iterator2.f();
-          }
-        }
-
-        if ((_filters$type = filters.type) !== null && _filters$type !== void 0 && _filters$type.length && !((_filters$type2 = filters.type) !== null && _filters$type2 !== void 0 && _filters$type2.includes("any"))) {
-          if (!filters.type.includes(monster.type.toLowerCase())) return false;
-        }
-
-        if ((_filters$alignment = filters.alignment) !== null && _filters$alignment !== void 0 && _filters$alignment.length && !((_filters$alignment2 = filters.alignment) !== null && _filters$alignment2 !== void 0 && _filters$alignment2.includes("any"))) {
-          if (!filters.alignment.includes(monster.alignment.toLowerCase())) return false;
-        }
-
-        if ((_filters$environment = filters.environment) !== null && _filters$environment !== void 0 && _filters$environment.length && monster.environments.indexOf(filters.environment) === -1) {
-          return false;
-        }
-      }
-
-      return true;
-    });
-    return _lib_js__WEBPACK_IMPORTED_MODULE_0__.shuffle_array(monsters);
-  },
   getBestMonster: function getBestMonster(targetExp) {
     var monsterCRIndex;
 
@@ -791,7 +831,7 @@ var encounter = {
     }
 
     var monsterTargetCR = _constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR[_constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR.LIST[monsterCRIndex]];
-    var monsterList = this.filterMonsters(monsterTargetCR.string, true);
+    var monsterList = this.app.filterMonsters(monsterTargetCR.string, true);
     var monsterCRNewIndex = monsterCRIndex;
     var down = true;
 
@@ -812,10 +852,10 @@ var encounter = {
       }
 
       var _monsterTargetCR = _constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR[_constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR.LIST[monsterCRNewIndex]];
-      monsterList = this.filterMonsters(_monsterTargetCR.string, true);
+      monsterList = this.app.filterMonsters(_monsterTargetCR.string, true);
     }
 
-    return _lib_js__WEBPACK_IMPORTED_MODULE_0__.clone(monsterList[0]);
+    return _lib_js__WEBPACK_IMPORTED_MODULE_0__.clone(_lib_js__WEBPACK_IMPORTED_MODULE_0__.shuffle_array(monsterList)[0]);
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (encounter);

@@ -46,6 +46,7 @@
 		class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-300"
 		x-data="window.app()"
 		@filters-changed.window="filtersChanged"
+		@cr-changed.window="crChanged"
 	>
 
 		<div @click="window.toggleTheme()" class="absolute bottom-2 left-2 h-12 w-12 cursor-pointer text-gray-500 grid place-items-center bg-gray-100 border rounded border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:text-gray-300"><i class="fa fa-moon text-gray-800 dark:text-gray-300"></i></div>
@@ -198,7 +199,7 @@
 								<div class="grow pb-2 min-w-0">
 									<span class="text-3xl font-light" x-text="monster.name"></span>
 									<div>
-										<span class="text-lg" x-text="'CR: ' + monster.cr"></span>
+										<span class="text-lg" x-text="'CR: ' + monster.cr.string"></span>
 										<span class="text-lg ml-4" x-text="'XP: ' + formatNumber(monster.exp)"></span>
 										<div class='overflow-hidden whitespace-nowrap overflow-ellipsis'>
 											<ul class="list-none text-s italic">
@@ -447,11 +448,17 @@
 										</button>
 									</td>
 									<td class="align-top p-2 border border-gray-300 dark:border-gray-700" x-text="monster.name"></td>
-									<td class="align-top p-2 border border-gray-300 dark:border-gray-700" x-text="monster.cr"></td>
+									<td class="align-top p-2 border border-gray-300 dark:border-gray-700" x-text="monster.cr.string"></td>
 									<td class="align-top p-2 border border-gray-300 dark:border-gray-700" x-text="monster.size"></td>
 									<td class="align-top p-2 border border-gray-300 dark:border-gray-700" x-text="monster.type"></td>
 									<td class="align-top p-2 border border-gray-300 dark:border-gray-700" x-text="monster.alignment"></td>
-									<td class="align-top p-2 border border-gray-300 dark:border-gray-700" x-text="monster.sources"></td>
+									<td class="align-top p-2 border border-gray-300 dark:border-gray-700">
+										<ul class="list-none">
+											<template x-for="source in monster.sources">
+												<li x-text="source.book + (source.page ? ' p.' + source.page : '')"></li>
+											</template>
+										</ul>
+									</td>
 
 								</tr>
 							</template>

@@ -2,7 +2,6 @@ import encounter from "./encounter.js";
 import party from "./party.js";
 import noUiSlider from "nouislider";
 import * as lib from "./lib.js";
-import { random_array_element } from "./lib.js";
 import CONST from "./constants.js";
 
 const internationalNumberFormat = new Intl.NumberFormat('en-US')
@@ -19,7 +18,9 @@ function app() {
 
         pages: 1,
         page: 1,
+        monstersPerPage: 10,
         allMonsters: [],
+        filteredMonsters: [],
         searchPlaceholder: "",
 
         difficultySelectOpen: false,
@@ -56,7 +57,7 @@ function app() {
                 .then(data => {
                     this.isLoading = false;
                     this.allMonsters = data.map(monster => {
-                        monster.exp = CONST.CR[monster.cr];
+                        monster.cr = CONST.CR[monster.cr];
                         monster.sources = monster.sources.split(', ').map(source => {
                             return {
                                 book: source.split(": ")[0],
@@ -65,6 +66,7 @@ function app() {
                         });
                         return monster;
                     });
+                    this.filteredMonsters = this.allMonsters;
                     this.page = 1;
                     this.pages = Math.floor(this.allMonsters.length / 10);
                     this.searchPlaceholder = lib.random_array_element(this.allMonsters).name;
@@ -72,15 +74,83 @@ function app() {
 
         },
 
+        filterMonsters(crString = false){
+
+            const hasFilters = Object.entries(this.filters).length > 0;
+            const filters = this.filters;
+
+            const legendaryMap = {
+                'Legendary': 'legendary',
+                'Legendary (in lair)': 'lair',
+                'Ordinary': false
+            };
+
+            return this.allMonsters.filter(monster => {
+
+                if (crString && monster.cr.string !== crString) return false;
+
+                if (hasFilters) {
+
+                    if (filters.size?.length && !filters.size?.includes("any")) {
+                        if (!filters.size.includes(monster.size.toLowerCase())) return false;
+                    }
+
+                    if (filters.legendary?.length && !filters.legendary?.includes("any")) {
+                        for (let legendary of filters.legendary) {
+                            let legendaryMonsterKey = legendaryMap[filters.legendary];
+
+                            if (legendaryMonsterKey) {
+                                if (!monster[legendaryMonsterKey]) return false;
+                            } else {
+                                if (monster.legendary || monster.lair) return false;
+                            }
+                        }
+                    }
+
+                    if (filters.type?.length && !filters.type?.includes("any")) {
+                        if (!filters.type.includes(monster.type.toLowerCase())) return false;
+                    }
+
+                    if (filters.alignment?.length && !filters.alignment?.includes("any")) {
+                        if (!filters.alignment.includes(monster.alignment.toLowerCase())) return false;
+                    }
+
+                    if (filters.environment?.length && monster.environments.indexOf(filters.environment) === -1) {
+                        return false;
+                    }
+
+                    if (!crString && filters?.cr) {
+                        if (filters.cr?.min !== 0 && monster.cr.numeric < filters.cr.min) {
+                            return false;
+                        }
+                        if (filters.cr?.max !== 30 && monster.cr.numeric > filters.cr.max) {
+                            return false;
+                        }
+                    }
+                }
+
+                return true;
+
+            });
+        },
+
         get monsters(){
-            const start = !this.page ? 0 : (this.page*10)+1;
-            const end = (this.page+1)*10;
-            return this.allMonsters.slice(start, end);
+            const page = this.page-1;
+            const start = !page ? 0 : (page*this.monstersPerPage)+1;
+            const end = (page+1)*this.monstersPerPage;
+            return this.filteredMonsters.slice(start, end);
         },
 
         filtersChanged($event){
             const { name, value } = $event.detail;
             this.filters[name] = Object.values(value);
+            this.filteredMonsters = this.filterMonsters();
+        },
+
+        crChanged($event){
+            const { name, value } = $event.detail;
+            this.filters[name] = value;
+            this.filteredMonsters = this.filterMonsters();
         },
 
         formatNumber(num){
@@ -107,7 +177,16 @@ function multiSlider($el, options, updateCallback) {
                 step: 1
             });
 
-            this.slider.on('update', (values) => {updateCallback(options[parseInt(values[0])], options[parseInt(values[1])])});
+            this.slider.on('update', (values) => updateCallback(options[parseInt(values[0])], options[parseInt(values[1])]));
+            this.slider.on('change', (values) => {
+                window.dispatchEvent(new CustomEvent('cr-changed', { detail: {
+                    name: "cr",
+                    value: {
+                        min: CONST.CR[options[parseInt(values[0])].value].numeric,
+                        max: CONST.CR[options[parseInt(values[1])].value].numeric
+                    }
+                }}))
+            });
         },
         reset() {
             this.slider.set(this.originals);
