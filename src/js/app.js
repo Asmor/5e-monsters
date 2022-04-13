@@ -18,6 +18,7 @@ function app() {
         pages: 1,
         page: 1,
         allMonsters: [],
+        searchPlaceholder: "",
 
         difficultySelectOpen: false,
 
@@ -36,13 +37,7 @@ function app() {
             this.party.app = this;
         },
 
-        getRandomMonsterName(){
-            if(!this.allMonsters.length) return "";
-            return lib.random_array_element(this.allMonsters).name;
-        },
-
         fetch_monsters() {
-
             this.isLoading = true;
             fetch("/json/se_monsters.json")
                 .then(res => res.json())
@@ -51,6 +46,7 @@ function app() {
                     this.allMonsters = data;
                     this.page = 1;
                     this.pages = Math.floor(this.allMonsters.length / 10);
+                    this.searchPlaceholder = lib.random_array_element(this.allMonsters).name;
                 });
 
         },

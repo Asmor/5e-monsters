@@ -32,6 +32,7 @@ function app() {
     pages: 1,
     page: 1,
     allMonsters: [],
+    searchPlaceholder: "",
     difficultySelectOpen: false,
     cr_list: cr_list,
     encounter: _encounter_js__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -50,10 +51,6 @@ function app() {
       this.encounter.app = this;
       this.party.app = this;
     },
-    getRandomMonsterName: function getRandomMonsterName() {
-      if (!this.allMonsters.length) return "";
-      return _lib_js__WEBPACK_IMPORTED_MODULE_2__.random_array_element(this.allMonsters).name;
-    },
     fetch_monsters: function fetch_monsters() {
       var _this2 = this;
 
@@ -65,6 +62,7 @@ function app() {
         _this2.allMonsters = data;
         _this2.page = 1;
         _this2.pages = Math.floor(_this2.allMonsters.length / 10);
+        _this2.searchPlaceholder = _lib_js__WEBPACK_IMPORTED_MODULE_2__.random_array_element(_this2.allMonsters).name;
       });
     },
 
