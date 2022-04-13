@@ -141,7 +141,7 @@
 
 						<div class="self-center" @click.away="difficultySelectOpen = false">
 							<span class="relative z-0 inline-flex shadow-sm rounded-md">
-								<button x-text="'Random ' + (encounter.difficulty.slice(0,1).toUpperCase() + encounter.difficulty.slice(1))" @click="encounter.generateRandom" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
+								<button x-text="'Random ' + (encounter.difficulty.slice(0,1).toUpperCase() + encounter.difficulty.slice(1))" @click="encounter.generateRandom()" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
 									Random Medium
 								</button>
 								<span class="-ml-px relative block">

@@ -50,8 +50,12 @@ function app() {
         players: 4,
         level: 1
       }];
+      this.encounter.difficulty = localStorage.getItem("difficulty") || "medium";
       this.$watch("party.groups", function () {
         localStorage.setItem("party", JSON.stringify(_this.party.groups));
+      });
+      this.$watch("encounter.difficulty", function () {
+        localStorage.setItem("difficulty", _this.encounter.difficulty);
       });
       this.encounter.app = this;
       this.party.app = this;
@@ -81,6 +85,10 @@ function app() {
       var start = !this.page ? 0 : this.page * 10 + 1;
       var end = (this.page + 1) * 10;
       return this.allMonsters.slice(start, end);
+    },
+
+    get filters() {
+      console.log(this.$refs.sizes.value);
     },
 
     formatNumber: function formatNumber(num) {
@@ -141,6 +149,7 @@ function multiSelect($el, options) {
         refreshChoices();
         $el.addEventListener('change', function () {
           _this3.value = choices.getValue(true);
+          console.log(_this3.value);
         });
 
         _this3.$watch('value', function () {
@@ -315,6 +324,179 @@ var CONST = {
       hard: 8500,
       deadly: 12700
     }
+  },
+  CR: {
+    LIST: ["0", "1/8", "1/4", "1/2", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],
+    "0": {
+      string: "0",
+      numeric: 0,
+      exp: 10
+    },
+    "1/8": {
+      string: "1/8",
+      numeric: 0.125,
+      exp: 25
+    },
+    "1/4": {
+      string: "1/4",
+      numeric: 0.25,
+      exp: 50
+    },
+    "1/2": {
+      string: "1/2",
+      numeric: 0.5,
+      exp: 100
+    },
+    "1": {
+      string: "1",
+      numeric: 1,
+      exp: 200
+    },
+    "2": {
+      string: "2",
+      numeric: 2,
+      exp: 450
+    },
+    "3": {
+      string: "3",
+      numeric: 3,
+      exp: 700
+    },
+    "4": {
+      string: "4",
+      numeric: 4,
+      exp: 1100
+    },
+    "5": {
+      string: "5",
+      numeric: 5,
+      exp: 1800
+    },
+    "6": {
+      string: "6",
+      numeric: 6,
+      exp: 2300
+    },
+    "7": {
+      string: "7",
+      numeric: 7,
+      exp: 2900
+    },
+    "8": {
+      string: "8",
+      numeric: 8,
+      exp: 3900
+    },
+    "9": {
+      string: "9",
+      numeric: 9,
+      exp: 5000
+    },
+    "10": {
+      string: "10",
+      numeric: 10,
+      exp: 5900
+    },
+    "11": {
+      string: "11",
+      numeric: 11,
+      exp: 7200
+    },
+    "12": {
+      string: "12",
+      numeric: 12,
+      exp: 8400
+    },
+    "13": {
+      string: "13",
+      numeric: 13,
+      exp: 10000
+    },
+    "14": {
+      string: "14",
+      numeric: 14,
+      exp: 11500
+    },
+    "15": {
+      string: "15",
+      numeric: 15,
+      exp: 13000
+    },
+    "16": {
+      string: "16",
+      numeric: 16,
+      exp: 15000
+    },
+    "17": {
+      string: "17",
+      numeric: 17,
+      exp: 18000
+    },
+    "18": {
+      string: "18",
+      numeric: 18,
+      exp: 20000
+    },
+    "19": {
+      string: "19",
+      numeric: 19,
+      exp: 22000
+    },
+    "20": {
+      string: "20",
+      numeric: 20,
+      exp: 25000
+    },
+    "21": {
+      string: "21",
+      numeric: 21,
+      exp: 33000
+    },
+    "22": {
+      string: "22",
+      numeric: 22,
+      exp: 41000
+    },
+    "23": {
+      string: "23",
+      numeric: 23,
+      exp: 50000
+    },
+    "24": {
+      string: "24",
+      numeric: 24,
+      exp: 62000
+    },
+    "25": {
+      string: "25",
+      numeric: 25,
+      exp: 75000
+    },
+    "26": {
+      string: "26",
+      numeric: 26,
+      exp: 90000
+    },
+    "27": {
+      string: "27",
+      numeric: 27,
+      exp: 105000
+    },
+    "28": {
+      string: "28",
+      numeric: 28,
+      exp: 120000
+    },
+    "29": {
+      string: "29",
+      numeric: 29,
+      exp: 135000
+    },
+    "30": {
+      string: "30",
+      numeric: 30,
+      exp: 155000
+    }
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CONST);
@@ -332,6 +514,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _lib_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib.js */ "./src/js/lib.js");
+/* harmony import */ var _constants_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants.js */ "./src/js/constants.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
 var encounter = {
   difficulty: "medium",
   monsters: [],
@@ -344,10 +536,10 @@ var encounter = {
 
   getMultiplier: function getMultiplier(numMonsters) {
     var multiplierCategory;
-    var multipliers = [0, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5];
+    var multipliers = [0.5, 1, 1.5, 2, 2.5, 3, 4, 5];
 
-    if (numMonsters < 3) {
-      multiplierCategory = numMonsters;
+    if (numMonsters <= 3) {
+      multiplierCategory = Math.max(1, numMonsters);
     } else if (numMonsters < 7) {
       multiplierCategory = 3;
     } else if (numMonsters < 11) {
@@ -364,7 +556,7 @@ var encounter = {
       multiplierCategory--;
     }
 
-    return multipliers[Math.max(0, multiplierCategory)];
+    return multipliers[multiplierCategory];
   },
 
   get adjustedExp() {
@@ -424,18 +616,88 @@ var encounter = {
   },
 
   generateRandom: function generateRandom() {
-    var totalPlayers = this.app.party.totalPlayers;
-    var totalExperienceTarget = this.party.experience[this.difficulty];
+    var totalExperienceTarget = this.app.party.experience[this.difficulty];
     var fudgeFactor = 1.1; // The algorithm is conservative in spending exp; so this tries to get it closer to the actual medium value
 
     var baseExpBudget = totalExperienceTarget * fudgeFactor;
     var encounterTemplate = this.getEncounterTemplate();
-    var multiplier = this.getMultiplier(totalPlayers, encounterTemplate.total);
-    var availableExp = baseExpBudget / multiplier;
-    var monster;
-    var monsterGroups = [];
-    var currentGroup;
-    var targetExp;
+    var multiplier = this.getMultiplier(encounterTemplate.total) / encounterTemplate.multiplier;
+    var totalAvailableXP = baseExpBudget / multiplier;
+
+    var _iterator = _createForOfIteratorHelper(encounterTemplate.groups),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var group = _step.value;
+        var targetExp = totalAvailableXP * group.ratio / group.count;
+        var monster = this.getBestMonster(targetExp);
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    this.app.$ref;
+  },
+  getEncounterTemplate: function getEncounterTemplate() {
+    var templates = {
+      "boss": {
+        groups: [{
+          count: 1
+        }]
+      },
+      "boss_minions": {
+        groups: [{
+          count: 1,
+          ratio: 0.8
+        }, {
+          count: _lib_js__WEBPACK_IMPORTED_MODULE_0__.random_int_between(4, 8),
+          ratio: 0.2
+        }],
+        multiplier: 3
+      }
+      /*"duo": [],
+      "trio": [],
+      "pack": [],
+      "horde": [],
+      "random": []*/
+
+    };
+    var template = _lib_js__WEBPACK_IMPORTED_MODULE_0__.clone(templates['boss_minions']);
+    template.total = template.groups.reduce(function (acc, group) {
+      return acc + group.count;
+    }, 0);
+    template.overallRatio = template.groups.reduce(function (acc, group) {
+      return acc + (group.ratio || 1);
+    }, 0);
+    template.groups.forEach(function (group) {
+      group.ratio = (group.ratio || 1) / template.overallRatio;
+    });
+    template.multiplier = template.multiplier || 1;
+    return template;
+  },
+  filterMonsters: function filterMonsters(crString) {
+    return _lib_js__WEBPACK_IMPORTED_MODULE_0__.shuffle_array(this.app.allMonsters.filter(function (monster) {
+      return monster.cr.toString() === crString;
+    }));
+  },
+  getBestMonster: function getBestMonster(targetExp) {
+    var monsterCr;
+
+    for (var i = 0; i < _constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR.LIST.length; i++) {
+      var lowerBound = _constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR[_constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR.LIST[i]];
+      var upperBound = _constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR[_constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR.LIST[i + 1]];
+
+      if (upperBound.exp > targetExp) {
+        monsterCr = targetExp - lowerBound.exp < upperBound.exp - targetExp ? lowerBound : upperBound;
+        break;
+      }
+    }
+
+    var monsterList = this.filterMonsters(monsterCr.string, true);
+    console.log(monsterList);
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (encounter);
@@ -595,11 +857,15 @@ var encounter = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "clone": () => (/* binding */ clone),
 /* harmony export */   "random_array_element": () => (/* binding */ random_array_element),
 /* harmony export */   "random_float_between": () => (/* binding */ random_float_between),
 /* harmony export */   "random_int_between": () => (/* binding */ random_int_between),
 /* harmony export */   "shuffle_array": () => (/* binding */ shuffle_array)
 /* harmony export */ });
+function clone(inObj) {
+  return JSON.parse(JSON.stringify(inObj));
+}
 /**
  *  Returns a floating point number between a minimum and maximum value
  *
@@ -607,12 +873,13 @@ __webpack_require__.r(__webpack_exports__);
  * @param  {number}     max                     The maximum value
  * @return {number}                             A random value between the range given
  */
+
 function random_float_between(min, max) {
   var random = Math.random();
 
-  var _max = Math.max(max, min);
+  var _max = Math.max(Number(max), Number(min));
 
-  var _min = Math.min(max, min);
+  var _min = Math.min(Number(max), Number(min));
 
   return random * (_max - _min) + _min;
 }
@@ -635,7 +902,7 @@ function random_int_between(min, max) {
  */
 
 function shuffle_array(inArray) {
-  var shuffled = JSON.parse(JSON.stringify(inArray));
+  var shuffled = clone(inArray);
 
   for (var i = shuffled.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
