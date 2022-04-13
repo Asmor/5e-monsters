@@ -1,3 +1,6 @@
+import encounter from "./encounter.js";
+import party from "./party.js";
+
 const internationalNumberFormat = new Intl.NumberFormat('en-US')
 
 function app() {
@@ -9,13 +12,26 @@ function app() {
         menu: true,
         isLoading: true,
         loading: false,
-        allMonsters: [],
+
         pages: 1,
         page: 1,
-        cr_list: cr_list,
+        allMonsters: [],
+
+        difficultySelectOpen: false,
+
+        cr_list,
+
+        encounter,
+        party,
 
         init(){
-            this.fetch_monsters()
+            this.fetch_monsters();
+            this.party.groups = localStorage.getItem("party") ? JSON.parse(localStorage.getItem("party")) : [{ players: 4, level: 1 }];
+            this.$watch("party.groups", () => {
+                localStorage.setItem("party", JSON.stringify(this.party.groups));
+            });
+            this.encounter.app = this;
+            this.party.app = this;
         },
 
         fetch_monsters() {
@@ -28,10 +44,7 @@ function app() {
                     this.allMonsters = data;
                     this.page = 1;
                     this.pages = Math.floor(this.allMonsters.length / 10);
-                })
-                .catch((err) => {
-                    console.log(err);
-                })
+                });
 
         },
 
@@ -41,78 +54,9 @@ function app() {
             return this.allMonsters.slice(start, end);
         },
 
-        setSizes(sizes) {
-            this.sizes = sizes;
-        },
-
-        add_party() {
-            this.parties.push({
-                ...this.parties[this.parties.length-1]
-            });
-        },
-
-        remove_party(){
-            this.parties.pop();
-        },
-
         formatNumber(num){
             return internationalNumberFormat.format(num);
         },
-
-        party_xp: {
-            easy: 1025,
-            medium: 2050,
-            hard: 3075,
-            deadly: 4500,
-            daily: 14300,
-        },
-
-        parties: [
-            {
-                players: 4,
-                level: 5
-            },
-            {
-                players: 1,
-                level: 1
-            },
-            {
-                players: 1,
-                level: 1
-            }
-        ],
-
-        get total_players(){
-            return this.parties.reduce(function(acc, item){
-                return acc + item.players
-            }, 0);
-        },
-
-        randomEncounter: {
-            open: false,
-            type: "Medium",
-            set(type){
-                this.type = type;
-                this.open = false;
-            },
-            monsters: [
-                {
-                    name: "Young Blue Dragon",
-                    cr: 9,
-                    xp: 5000,
-                    source: "Monster Manual",
-                    source_page: "p.91",
-                    count: 1
-                }
-            ],
-            difficulty: "Easy",
-            get total_xp(){
-                return this.monsters.reduce((acc, monster) => {
-                    return acc + monster.xp;
-                }, 0);
-            },
-            adjusted_xp: 1450,
-        }
     }
 }
 
@@ -137,7 +81,6 @@ function multiSelect($el, options) {
                         label,
                         selected: selection.includes(value),
                     })))
-                    sizes = this.value;
                 }
 
                 refreshChoices()
