@@ -37,6 +37,8 @@ function app() {
     allMonsters: [],
     searchPlaceholder: "",
     difficultySelectOpen: false,
+    minCr: 0,
+    maxCr: 30,
     cr_list: cr_list,
     encounter: _encounter_js__WEBPACK_IMPORTED_MODULE_0__["default"],
     party: _party_js__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -53,6 +55,12 @@ function app() {
       });
       this.encounter.app = this;
       this.party.app = this;
+      this.$watch('minCr', function (value) {
+        console.log(value);
+      });
+      this.$watch('maxCr', function (value) {
+        console.log(value);
+      });
     },
     fetch_monsters: function fetch_monsters() {
       var _this2 = this;
@@ -77,6 +85,27 @@ function app() {
 
     formatNumber: function formatNumber(num) {
       return internationalNumberFormat.format(num);
+    }
+  };
+}
+
+function multiSlider($el, options, updateCallback) {
+  var totalSteps = options.length - 1;
+  return {
+    slider: {},
+    init: function init() {
+      this.slider = nouislider__WEBPACK_IMPORTED_MODULE_2___default().create($el, {
+        start: [0, totalSteps],
+        connect: true,
+        range: {
+          'min': 0,
+          'max': totalSteps
+        },
+        step: 1
+      });
+      this.slider.on('update', function (values) {
+        updateCallback(options[parseInt(values[0])], options[parseInt(values[1])]);
+      });
     }
   };
 }
@@ -128,6 +157,7 @@ function multiSelect($el, options) {
 
 window.app = app;
 window.multiSelect = multiSelect;
+window.multiSlider = multiSlider;
 window.noUiSlider = (nouislider__WEBPACK_IMPORTED_MODULE_2___default());
 
 /***/ }),

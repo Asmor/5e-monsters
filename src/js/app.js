@@ -22,6 +22,8 @@ function app() {
         searchPlaceholder: "",
 
         difficultySelectOpen: false,
+        minCr: 0,
+        maxCr: 30,
 
         cr_list,
 
@@ -36,6 +38,13 @@ function app() {
             });
             this.encounter.app = this;
             this.party.app = this;
+
+            this.$watch('minCr', (value) => {
+                console.log(value);
+            });
+            this.$watch('maxCr', (value) => {
+                console.log(value);
+            })
         },
 
         fetch_monsters() {
@@ -61,6 +70,27 @@ function app() {
         formatNumber(num){
             return internationalNumberFormat.format(num);
         },
+    }
+}
+
+function multiSlider($el, options, updateCallback) {
+    const totalSteps = options.length - 1;
+
+    return {
+        slider: {},
+        init() {
+            this.slider = noUiSlider.create($el, {
+                start: [0, totalSteps],
+                connect: true,
+                range: {
+                    'min': 0,
+                    'max': totalSteps
+                },
+                step: 1
+            });
+
+            this.slider.on('update', (values) => {updateCallback(options[parseInt(values[0])], options[parseInt(values[1])])});
+        }
     }
 }
 
@@ -102,4 +132,5 @@ function multiSelect($el, options) {
 
 window.app = app;
 window.multiSelect = multiSelect;
+window.multiSlider = multiSlider;
 window.noUiSlider = noUiSlider;

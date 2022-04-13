@@ -675,17 +675,13 @@ input[type=text]:disabled{
   margin-left: 1rem;
   margin-right: 1rem;
 }
-.my-8{
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+.my-4{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .mx-2{
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-}
-.my-4{
-  margin-top: 1rem;
-  margin-bottom: 1rem;
 }
 .-mr-2{
   margin-right: -0.5rem;
@@ -1036,6 +1032,14 @@ input[type=text]:disabled{
   padding-top: 0px;
   padding-bottom: 0px;
 }
+.px-8{
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.px-6{
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
 .pl-2{
   padding-left: 0.5rem;
 }
@@ -1068,6 +1072,9 @@ input[type=text]:disabled{
 }
 .pr-10{
   padding-right: 2.5rem;
+}
+.pl-1{
+  padding-left: 0.25rem;
 }
 .text-left{
   text-align: left;
