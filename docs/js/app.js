@@ -11,6 +11,9 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _encounter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./encounter.js */ "./src/js/encounter.js");
 /* harmony import */ var _party_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./party.js */ "./src/js/party.js");
+/* harmony import */ var _lib_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lib.js */ "./src/js/lib.js");
+
+
 
 
 var internationalNumberFormat = new Intl.NumberFormat('en-US');
@@ -46,6 +49,10 @@ function app() {
       });
       this.encounter.app = this;
       this.party.app = this;
+    },
+    getRandomMonsterName: function getRandomMonsterName() {
+      if (!this.allMonsters.length) return "";
+      return _lib_js__WEBPACK_IMPORTED_MODULE_2__.random_array_element(this.allMonsters).name;
     },
     fetch_monsters: function fetch_monsters() {
       var _this2 = this;
@@ -301,17 +308,17 @@ var encounter = {
     }, 0);
   },
 
-  get adjustedExp() {
+  getMultiplier: function getMultiplier(numMonsters) {
     var multiplierCategory;
     var multipliers = [0, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5];
 
-    if (this.monsters.length < 3) {
-      multiplierCategory = this.monsters.length;
-    } else if (this.monsters.length < 7) {
+    if (numMonsters < 3) {
+      multiplierCategory = numMonsters;
+    } else if (numMonsters < 7) {
       multiplierCategory = 3;
-    } else if (this.monsters.length < 11) {
+    } else if (numMonsters < 11) {
       multiplierCategory = 4;
-    } else if (this.monsters.length < 15) {
+    } else if (numMonsters < 15) {
       multiplierCategory = 5;
     } else {
       multiplierCategory = 6;
@@ -326,16 +333,17 @@ var encounter = {
     return multipliers[Math.max(0, multiplierCategory)];
   },
 
+  get adjustedExp() {
+    var multiplier = this.getMultiplier(this.monsters.length);
+    return Math.floor(this.totalExp * multiplier);
+  },
+
   get actualDifficulty() {
     var exp = this.adjustedExp;
     var levels = this.app.party.experience;
 
-    if (exp === 0) {
-      return 'None';
-    }
-
     if (exp < levels.easy) {
-      return '';
+      return 'None';
     } else if (exp < levels.medium) {
       return "Easy";
     } else if (exp < levels.hard) {
@@ -347,9 +355,53 @@ var encounter = {
     return "Deadly";
   },
 
+  get threat() {
+    var totalPlayers = this.app.party.totalPlayers;
+    var experience = this.app.party.experience;
+    var mediumExp = experience.medium;
+    var singleMultiplier = 1;
+    var pairMultiplier = 1.5;
+    var groupMultiplier = 2;
+    var trivialMultiplier = 2.5;
+
+    if (totalPlayers < 3) {
+      // For small groups, increase multiplier
+      singleMultiplier = 1.5;
+      pairMultiplier = 2;
+      groupMultiplier = 2.5;
+      trivialMultiplier = 3;
+    } else if (totalPlayers > 5) {
+      // For large groups, reduce multiplier
+      singleMultiplier = 0.5;
+      pairMultiplier = 1;
+      groupMultiplier = 1.5;
+      trivialMultiplier = 2;
+    }
+
+    return {
+      deadly: totalPlayers.deadly / singleMultiplier,
+      hard: totalPlayers.hard / singleMultiplier,
+      medium: mediumExp / singleMultiplier,
+      easy: totalPlayers.easy / singleMultiplier,
+      pair: mediumExp / (2 * pairMultiplier),
+      group: mediumExp / (4 * groupMultiplier),
+      trivial: mediumExp / (8 * trivialMultiplier)
+    };
+  },
+
   generateRandom: function generateRandom() {
+    var totalPlayers = this.app.party.totalPlayers;
     var totalExperienceTarget = this.party.experience[this.difficulty];
-    console.log(totalExperienceTarget);
+    var fudgeFactor = 1.1; // The algorithm is conservative in spending exp; so this tries to get it closer to the actual medium value
+
+    var baseExpBudget = totalExperienceTarget * fudgeFactor;
+    var encounterTemplate = this.getEncounterTemplate();
+    var multiplier = this.getMultiplier(totalPlayers, encounterTemplate.total);
+    var availableExp = baseExpBudget / multiplier;
+    var monster;
+    var monsterGroups = [];
+    var currentGroup;
+    var targetExp;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (encounter);
@@ -497,6 +549,91 @@ var encounter = {
 
 
  */
+
+/***/ }),
+
+/***/ "./src/js/lib.js":
+/*!***********************!*\
+  !*** ./src/js/lib.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "random_array_element": () => (/* binding */ random_array_element),
+/* harmony export */   "random_float_between": () => (/* binding */ random_float_between),
+/* harmony export */   "random_int_between": () => (/* binding */ random_int_between),
+/* harmony export */   "shuffle_array": () => (/* binding */ shuffle_array)
+/* harmony export */ });
+/**
+ *  Returns a floating point number between a minimum and maximum value
+ *
+ * @param  {number}     min                     The minimum value
+ * @param  {number}     max                     The maximum value
+ * @return {number}                             A random value between the range given
+ */
+function random_float_between(min, max) {
+  var random = Math.random();
+
+  var _max = Math.max(max, min);
+
+  var _min = Math.min(max, min);
+
+  return random * (_max - _min) + _min;
+}
+/**
+ *  Returns an integer between a minimum and maximum value
+ *
+ * @param  {number}     min                     The minimum value
+ * @param  {number}     max                     The maximum value
+ * @return {int}                                A random integer between the range given
+ */
+
+function random_int_between(min, max) {
+  return Math.floor(random_float_between(min, max));
+}
+/**
+ *  Returns a shuffled copy of the original array.
+ *
+ * @param  {array}   inArray
+ * @return {array}
+ */
+
+function shuffle_array(inArray) {
+  var shuffled = JSON.parse(JSON.stringify(inArray));
+
+  for (var i = shuffled.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = shuffled[i];
+    shuffled[i] = shuffled[j];
+    shuffled[j] = temp;
+  }
+
+  return shuffled;
+}
+/**
+ *  Returns a random element in the given array
+ *
+ * @param  {array}   inArray                    An array
+ * @param  {boolean} recurse                    Whether to recurse if the randomly chosen element is also an array
+ * @return {object}                             A random element from the array
+ */
+
+function random_array_element(inArray) {
+  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+      _ref$recurse = _ref.recurse,
+      recurse = _ref$recurse === void 0 ? false : _ref$recurse;
+
+  var choice = inArray[random_int_between(0, inArray.length)];
+
+  if (recurse && Array.isArray(choice)) {
+    return random_array_element(choice, {
+      recurse: true
+    });
+  }
+
+  return choice;
+}
 
 /***/ }),
 

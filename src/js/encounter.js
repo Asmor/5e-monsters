@@ -9,18 +9,18 @@ const encounter = {
         }, 0);
     },
 
-    get adjustedExp(){
+    getMultiplier(numMonsters){
 
         let multiplierCategory;
         const multipliers = [0, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5];
 
-        if ( this.monsters.length < 3 ) {
-            multiplierCategory = this.monsters.length;
-        } else if ( this.monsters.length < 7 ) {
+        if ( numMonsters < 3 ) {
+            multiplierCategory = numMonsters;
+        } else if ( numMonsters < 7 ) {
             multiplierCategory = 3;
-        } else if ( this.monsters.length < 11 ) {
+        } else if ( numMonsters < 11 ) {
             multiplierCategory = 4;
-        } else if ( this.monsters.length < 15 ) {
+        } else if ( numMonsters < 15 ) {
             multiplierCategory = 5;
         } else {
             multiplierCategory = 6;
@@ -36,17 +36,21 @@ const encounter = {
 
     },
 
+    get adjustedExp(){
+
+        const multiplier = this.getMultiplier(this.monsters.length);
+
+        return Math.floor(this.totalExp * multiplier);
+
+    },
+
     get actualDifficulty(){
 
         let exp = this.adjustedExp;
         let levels = this.app.party.experience;
 
-        if ( exp === 0 ) {
-            return 'None';
-        }
-
         if ( exp < ( levels.easy ) ) {
-            return '';
+            return 'None';
         } else if ( exp < ( levels.medium ) ) {
             return "Easy";
         } else if ( exp < ( levels.hard ) ) {
@@ -58,9 +62,55 @@ const encounter = {
         return "Deadly";
     },
 
+    get threat(){
+
+        const totalPlayers = this.app.party.totalPlayers;
+        const experience = this.app.party.experience;
+        let mediumExp = experience.medium;
+        let singleMultiplier  = 1;
+        let pairMultiplier    = 1.5;
+        let groupMultiplier   = 2;
+        let trivialMultiplier = 2.5;
+
+        if ( totalPlayers < 3 ) {
+            // For small groups, increase multiplier
+            singleMultiplier  = 1.5;
+            pairMultiplier    = 2;
+            groupMultiplier   = 2.5;
+            trivialMultiplier = 3;
+        } else if ( totalPlayers > 5 ) {
+            // For large groups, reduce multiplier
+            singleMultiplier  = 0.5;
+            pairMultiplier    = 1;
+            groupMultiplier   = 1.5;
+            trivialMultiplier = 2;
+        }
+
+        return {
+            deadly: totalPlayers.deadly / singleMultiplier,
+            hard: totalPlayers.hard / singleMultiplier,
+            medium: mediumExp / singleMultiplier,
+            easy: totalPlayers.easy / singleMultiplier,
+            pair: mediumExp / ( 2 * pairMultiplier ),
+            group: mediumExp / ( 4 * groupMultiplier ),
+            trivial: mediumExp / ( 8 * trivialMultiplier ),
+        };
+
+    },
+
     generateRandom(){
+        const totalPlayers = this.app.party.totalPlayers;
         const totalExperienceTarget = this.party.experience[this.difficulty];
-        console.log(totalExperienceTarget)
+
+        let fudgeFactor = 1.1; // The algorithm is conservative in spending exp; so this tries to get it closer to the actual medium value
+        let baseExpBudget = totalExperienceTarget * fudgeFactor;
+        let encounterTemplate = this.getEncounterTemplate();
+        let multiplier = this.getMultiplier(totalPlayers, encounterTemplate.total);
+        let availableExp = baseExpBudget / multiplier;
+        let monster;
+        let monsterGroups = [];
+        let currentGroup;
+        let targetExp;
     },
 
 }

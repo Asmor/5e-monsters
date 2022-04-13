@@ -1,5 +1,7 @@
 import encounter from "./encounter.js";
 import party from "./party.js";
+import * as lib from "./lib.js";
+import { random_array_element } from "./lib.js";
 
 const internationalNumberFormat = new Intl.NumberFormat('en-US')
 
@@ -32,6 +34,11 @@ function app() {
             });
             this.encounter.app = this;
             this.party.app = this;
+        },
+
+        getRandomMonsterName(){
+            if(!this.allMonsters.length) return "";
+            return lib.random_array_element(this.allMonsters).name;
         },
 
         fetch_monsters() {
