@@ -14,6 +14,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nouislider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! nouislider */ "./node_modules/nouislider/dist/nouislider.js");
 /* harmony import */ var nouislider__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nouislider__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _lib_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lib.js */ "./src/js/lib.js");
+/* harmony import */ var _constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants.js */ "./src/js/constants.js");
+
 
 
 
@@ -40,6 +42,7 @@ function app() {
     minCr: 0,
     maxCr: 30,
     cr_list: cr_list,
+    filters: {},
     encounter: _encounter_js__WEBPACK_IMPORTED_MODULE_0__["default"],
     party: _party_js__WEBPACK_IMPORTED_MODULE_1__["default"],
     init: function init() {
@@ -65,6 +68,7 @@ function app() {
       this.$watch('maxCr', function (value) {
         console.log(value);
       });
+      console.log(this.$refs.monster);
     },
     fetch_monsters: function fetch_monsters() {
       var _this2 = this;
@@ -74,7 +78,16 @@ function app() {
         return res.json();
       }).then(function (data) {
         _this2.isLoading = false;
-        _this2.allMonsters = data;
+        _this2.allMonsters = data.map(function (monster) {
+          monster.exp = _constants_js__WEBPACK_IMPORTED_MODULE_4__["default"].CR[monster.cr];
+          monster.sources = monster.sources.split(', ').map(function (source) {
+            return {
+              book: source.split(": ")[0],
+              page: source.split(": ")[1]
+            };
+          });
+          return monster;
+        });
         _this2.page = 1;
         _this2.pages = Math.floor(_this2.allMonsters.length / 10);
         _this2.searchPlaceholder = _lib_js__WEBPACK_IMPORTED_MODULE_3__.random_array_element(_this2.allMonsters).name;
@@ -87,10 +100,12 @@ function app() {
       return this.allMonsters.slice(start, end);
     },
 
-    get filters() {
-      console.log(this.$refs.sizes.value);
+    filtersChanged: function filtersChanged($event) {
+      var _$event$detail = $event.detail,
+          name = _$event$detail.name,
+          value = _$event$detail.value;
+      this.filters[name] = Object.values(value);
     },
-
     formatNumber: function formatNumber(num) {
       return internationalNumberFormat.format(num);
     }
@@ -118,10 +133,11 @@ function multiSlider($el, options, updateCallback) {
   };
 }
 
-function multiSelect($el, options) {
+function multiSelect($el, name, options) {
   return {
     multiple: true,
     value: ['any'],
+    name: name,
     options: options,
     init: function init() {
       var _this3 = this;
@@ -149,7 +165,12 @@ function multiSelect($el, options) {
         refreshChoices();
         $el.addEventListener('change', function () {
           _this3.value = choices.getValue(true);
-          console.log(_this3.value);
+          window.dispatchEvent(new CustomEvent('filters-changed', {
+            detail: {
+              name: _this3.name,
+              value: _this3.value
+            }
+          }));
         });
 
         _this3.$watch('value', function () {
@@ -516,6 +537,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _lib_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib.js */ "./src/js/lib.js");
 /* harmony import */ var _constants_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants.js */ "./src/js/constants.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -623,6 +650,7 @@ var encounter = {
     var encounterTemplate = this.getEncounterTemplate();
     var multiplier = this.getMultiplier(encounterTemplate.total) / encounterTemplate.multiplier;
     var totalAvailableXP = baseExpBudget / multiplier;
+    var encounter = [];
 
     var _iterator = _createForOfIteratorHelper(encounterTemplate.groups),
         _step;
@@ -632,6 +660,15 @@ var encounter = {
         var group = _step.value;
         var targetExp = totalAvailableXP * group.ratio / group.count;
         var monster = this.getBestMonster(targetExp);
+
+        if (!monster) {
+          return false;
+        }
+
+        encounter.push(_objectSpread(_objectSpread({}, monster), {}, {
+          exp: _constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR[monster.cr].exp,
+          count: group.count
+        }));
       }
     } catch (err) {
       _iterator.e(err);
@@ -639,7 +676,10 @@ var encounter = {
       _iterator.f();
     }
 
-    this.app.$ref;
+    console.log(encounter.map(function (group) {
+      return "".concat(group.count, " ").concat(group.name);
+    }).join(", and "));
+    this.monsters = encounter;
   },
   getEncounterTemplate: function getEncounterTemplate() {
     var templates = {
@@ -679,140 +719,106 @@ var encounter = {
     return template;
   },
   filterMonsters: function filterMonsters(crString) {
-    return _lib_js__WEBPACK_IMPORTED_MODULE_0__.shuffle_array(this.app.allMonsters.filter(function (monster) {
-      return monster.cr.toString() === crString;
-    }));
+    var hasFilters = Object.entries(this.app.filters).length > 0;
+    var filters = this.app.filters;
+    var legendaryMap = {
+      'Legendary': 'legendary',
+      'Legendary (in lair)': 'lair',
+      'Ordinary': false
+    };
+    var monsters = this.app.allMonsters.filter(function (monster) {
+      if (monster.cr.toString() !== crString) return false;
+
+      if (hasFilters) {
+        var _filters$size, _filters$size2, _filters$legendary, _filters$legendary2, _filters$type, _filters$type2, _filters$alignment, _filters$alignment2, _filters$environment;
+
+        if ((_filters$size = filters.size) !== null && _filters$size !== void 0 && _filters$size.length && !((_filters$size2 = filters.size) !== null && _filters$size2 !== void 0 && _filters$size2.includes("any"))) {
+          if (!filters.size.includes(monster.size.toLowerCase())) return false;
+        }
+
+        if ((_filters$legendary = filters.legendary) !== null && _filters$legendary !== void 0 && _filters$legendary.length && !((_filters$legendary2 = filters.legendary) !== null && _filters$legendary2 !== void 0 && _filters$legendary2.includes("any"))) {
+          var _iterator2 = _createForOfIteratorHelper(filters.legendary),
+              _step2;
+
+          try {
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              var legendary = _step2.value;
+              var legendaryMonsterKey = legendaryMap[filters.legendary];
+
+              if (legendaryMonsterKey) {
+                if (!monster[legendaryMonsterKey]) return false;
+              } else {
+                if (monster.legendary || monster.lair) return false;
+              }
+            }
+          } catch (err) {
+            _iterator2.e(err);
+          } finally {
+            _iterator2.f();
+          }
+        }
+
+        if ((_filters$type = filters.type) !== null && _filters$type !== void 0 && _filters$type.length && !((_filters$type2 = filters.type) !== null && _filters$type2 !== void 0 && _filters$type2.includes("any"))) {
+          if (!filters.type.includes(monster.type.toLowerCase())) return false;
+        }
+
+        if ((_filters$alignment = filters.alignment) !== null && _filters$alignment !== void 0 && _filters$alignment.length && !((_filters$alignment2 = filters.alignment) !== null && _filters$alignment2 !== void 0 && _filters$alignment2.includes("any"))) {
+          if (!filters.alignment.includes(monster.alignment.toLowerCase())) return false;
+        }
+
+        if ((_filters$environment = filters.environment) !== null && _filters$environment !== void 0 && _filters$environment.length && monster.environments.indexOf(filters.environment) === -1) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+    return _lib_js__WEBPACK_IMPORTED_MODULE_0__.shuffle_array(monsters);
   },
   getBestMonster: function getBestMonster(targetExp) {
-    var monsterCr;
+    var monsterCRIndex;
 
     for (var i = 0; i < _constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR.LIST.length; i++) {
       var lowerBound = _constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR[_constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR.LIST[i]];
       var upperBound = _constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR[_constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR.LIST[i + 1]];
 
       if (upperBound.exp > targetExp) {
-        monsterCr = targetExp - lowerBound.exp < upperBound.exp - targetExp ? lowerBound : upperBound;
+        monsterCRIndex = targetExp - lowerBound.exp < upperBound.exp - targetExp ? i : i + 1;
         break;
       }
     }
 
-    var monsterList = this.filterMonsters(monsterCr.string, true);
-    console.log(monsterList);
+    var monsterTargetCR = _constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR[_constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR.LIST[monsterCRIndex]];
+    var monsterList = this.filterMonsters(monsterTargetCR.string, true);
+    var monsterCRNewIndex = monsterCRIndex;
+    var down = true;
+
+    while (!monsterList.length) {
+      if (down) {
+        monsterCRNewIndex--;
+
+        if (monsterCRNewIndex === 0) {
+          monsterCRNewIndex = monsterCRIndex;
+          down = false;
+        }
+      } else {
+        monsterCRNewIndex++;
+
+        if (monsterCRNewIndex === _constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR.LIST.length - 1) {
+          return false;
+        }
+      }
+
+      var _monsterTargetCR = _constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR[_constants_js__WEBPACK_IMPORTED_MODULE_1__["default"].CR.LIST[monsterCRNewIndex]];
+      monsterList = this.filterMonsters(_monsterTargetCR.string, true);
+    }
+
+    return _lib_js__WEBPACK_IMPORTED_MODULE_0__.clone(monsterList[0]);
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (encounter);
 /*
-
-(function() {
-	"use strict";
-
-	angular.module("app")
-		.factory("randomEncounter", RandomEncounterService);
-
-	RandomEncounterService.$inject = ["monsterFactory", "misc", "shuffle", "metaInfo", "monsters"];
-
-	function RandomEncounterService(monsterLib, miscLib, shuffle, metaInfo, monsters) {
-		var randomEncounter = {
-			//
-			//	getRandomEncounter
-			//		playerCount: Count of total number of players in party
-			//		targetTotalExp: The experience target value. Takes into account player count, player level, and target difficulty already.
-			//		filters: Any filters that should be applied when making the encounter
-			//
-			getRandomEncounter: function (playerCount, targetTotalExp, filters, maxMonsters) {
-				var fudgeFactor = 1.1, // The algorithm is conservative in spending exp, so this tries to get it closer to the actual medium value
-					baseExpBudget = targetTotalExp * fudgeFactor,
-					encounterTemplate = getEncounterTemplate(maxMonsters),
-					multiplier = miscLib.getMultiplier(playerCount, encounterTemplate.total),
-					availableExp = baseExpBudget / multiplier,
-					monster,
-					monsterGroups = [],
-					currentGroup, targetExp;
-
-				while ( encounterTemplate.groups[0] ) {
-					// Exp should be shared as equally as possible between groups
-					targetExp = availableExp / encounterTemplate.groups.length;
-					currentGroup = encounterTemplate.groups.shift();
-
-					// We need to find a monster who, in the correct number, is close to the target exp
-					targetExp /= currentGroup;
-
-					monster = getBestMonster(targetExp, filters);
-
-					monsterGroups.push({
-						monster: monster,
-						qty: currentGroup,
-					});
-
-					// Finally, subtract the actual exp value
-					availableExp -= currentGroup * monster.cr.exp;
-				}
-
-				return monsterGroups;
-			},
-			getShuffledMonsterList: function (crString) {
-				var list = monsters.byCr[crString].slice(0);
-
-				return shuffle(list);
-			},
-		};
-
-		return randomEncounter;
-
-		function getEncounterTemplate(maxMonsters) {
-			var templates = [
-					[ 1 ],
-					[ 1, 1 ],
-					[ 1, 2 ],
-					[ 1, 5 ],
-					[ 1, 1, 1 ],
-					[ 1, 1, 2 ],
-					[ 1, 2, 3 ],
-					[ 2, 2 ],
-					[ 2, 4 ],
-					[ 8 ],
-				];
-			if (maxMonsters) {
-				templates = templates.filter(function(t) {
-					let sum = t.reduce(function (a, b) { return a+b; });
-					return sum <= maxMonsters;
-				});
-			}
-			var groups = JSON.parse(JSON.stringify(templates[Math.floor(Math.random() * templates.length)])),
-				total = groups.reduce(function (a, b) { return a+b; });
-
-			// Silly hack to clone object
-			return {
-				total: total,
-				groups: groups,
-			};
-		}
-
 		function getBestMonster(targetExp, filters) {
-			var bestBelow = 0,
-				bestAbove,
-				crIndex,
-				currentIndex,
-				step = -1,
-				monsterList,
-				i;
-
-			for ( i = 1; i < metaInfo.crList.length; i++ ) {
-				if ( metaInfo.crList[i].exp < targetExp ) {
-					bestBelow = i;
-				} else {
-					bestAbove = i;
-					break;
-				}
-			}
-
-			if ( (targetExp - metaInfo.crList[bestBelow].exp) < (metaInfo.crList[bestAbove].exp - targetExp) ) {
-				crIndex = bestBelow;
-			} else {
-				crIndex = bestAbove;
-			}
-
-			currentIndex = crIndex;
 
 			monsterList = randomEncounter.getShuffledMonsterList(metaInfo.crList[crIndex].string);
 

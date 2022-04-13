@@ -3,6 +3,7 @@ import party from "./party.js";
 import noUiSlider from "nouislider";
 import * as lib from "./lib.js";
 import { random_array_element } from "./lib.js";
+import CONST from "./constants.js";
 
 const internationalNumberFormat = new Intl.NumberFormat('en-US')
 
@@ -27,6 +28,8 @@ function app() {
 
         cr_list,
 
+        filters: {},
+
         encounter,
         party,
 
@@ -49,6 +52,8 @@ function app() {
             this.$watch('maxCr', (value) => {
                 console.log(value);
             })
+
+            console.log(this.$refs.monster);
         },
 
         fetch_monsters() {
@@ -57,7 +62,16 @@ function app() {
                 .then(res => res.json())
                 .then(data => {
                     this.isLoading = false;
-                    this.allMonsters = data;
+                    this.allMonsters = data.map(monster => {
+                        monster.exp = CONST.CR[monster.cr];
+                        monster.sources = monster.sources.split(', ').map(source => {
+                            return {
+                                book: source.split(": ")[0],
+                                page: source.split(": ")[1]
+                            };
+                        });
+                        return monster;
+                    });
                     this.page = 1;
                     this.pages = Math.floor(this.allMonsters.length / 10);
                     this.searchPlaceholder = lib.random_array_element(this.allMonsters).name;
@@ -71,8 +85,9 @@ function app() {
             return this.allMonsters.slice(start, end);
         },
 
-        get filters(){
-            console.log(this.$refs.sizes.value);
+        filtersChanged($event){
+            const { name, value } = $event.detail;
+            this.filters[name] = Object.values(value);
         },
 
         formatNumber(num){
@@ -102,10 +117,11 @@ function multiSlider($el, options, updateCallback) {
     }
 }
 
-function multiSelect($el, options) {
+function multiSelect($el, name, options) {
     return {
         multiple: true,
         value: ['any'],
+        name: name,
         options: options,
         init() {
             this.$nextTick(() => {
@@ -128,8 +144,11 @@ function multiSelect($el, options) {
                 refreshChoices()
 
                 $el.addEventListener('change', () => {
-                    this.value = choices.getValue(true)
-                    console.log(this.value)
+                    this.value = choices.getValue(true);
+                    window.dispatchEvent(new CustomEvent('filters-changed', { detail: {
+                        name: this.name,
+                        value: this.value
+                    }}))
                 })
 
                 this.$watch('value', () => refreshChoices())
