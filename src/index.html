@@ -46,7 +46,7 @@
 
 		<div @click="window.toggleTheme()" class="absolute bottom-2 left-2 h-12 w-12 cursor-pointer text-gray-500 grid place-items-center bg-gray-100 border rounded border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:text-gray-300"><i class="fa fa-moon text-gray-800 dark:text-gray-300"></i></div>
 
-		<nav class="bg-emerald-700 border-b border-gray-200 dark:border-gray-900">
+		<nav class="bg-emerald-700 border-b border-gray-200 dark:border-gray-900" x-data="{ menu: false }">
 			<div class="mx-auto px-4 sm:px-6 lg:px-6">
 				<div class="flex justify-between h-16 w-full">
 					<div class="flex">
@@ -77,7 +77,19 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="transition-all duration-400 ease-in-out overflow-hidden md:hidden hidden" :class="{ 'block': menu, 'hidden': !menu }">
+				<div class="pt-2 pb-3 space-y-1">
+					<a href="" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-primary-200 hover:text-white">Home</a>
+					<a href="" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-primary-200 hover:text-white">Manage Encounters</a>
+					<a href="" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-primary-200 hover:text-white">Manage Players</a>
+					<a href="" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-primary-200 hover:text-white">Run Encounters</a>
+					<a href="" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-primary-200 hover:text-white">Fantasy Calendar</a>
+					<a href="" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-primary-200 hover:text-white">About</a>
+				</div>
+			</div>
 		</nav>
+
 		<div class="flex pt-4">
 			<div class="hidden lg:flex flex-col px-4 flex-shrink-0 w-[33rem] min-h-full">
 				<div class="flex w-full border-b-2 dark:border-gray-700 pb-4">

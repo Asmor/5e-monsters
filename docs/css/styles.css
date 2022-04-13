@@ -852,6 +852,11 @@ input[type=text]:disabled {
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
+.space-y-1 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
 .self-center {
   align-self: center;
 }
@@ -898,6 +903,9 @@ input[type=text]:disabled {
 }
 .border-t-2 {
   border-top-width: 2px;
+}
+.border-l-4 {
+  border-left-width: 4px;
 }
 .border-gray-200 {
   --tw-border-opacity: 1;
@@ -1011,6 +1019,15 @@ input[type=text]:disabled {
 }
 .pr-10 {
   padding-right: 2.5rem;
+}
+.pt-2 {
+  padding-top: 0.5rem;
+}
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+.pr-4 {
+  padding-right: 1rem;
 }
 .text-right {
   text-align: right;
@@ -1147,6 +1164,11 @@ input[type=text]:disabled {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
 .duration-100 {
   transition-duration: 100ms;
 }
@@ -1158,6 +1180,9 @@ input[type=text]:disabled {
 }
 .ease-in {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 @tailwind forms;
 
@@ -1486,6 +1511,10 @@ body .choices__input:focus {
 
   .md\:inline {
     display: inline;
+  }
+
+  .md\:hidden {
+    display: none;
   }
 }
 @media (min-width: 1024px) {
