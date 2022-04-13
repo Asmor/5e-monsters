@@ -39,9 +39,8 @@
 			return theme
 		}
 	</script>
-
-
 </head>
+
 <body class="h-full">
 	<div class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-300" x-data="window.app()">
 
@@ -80,13 +79,9 @@
 			</div>
 		</nav>
 		<div class="flex pt-4">
-
 			<div class="hidden lg:flex flex-col px-4 flex-shrink-0 w-[33rem] min-h-full">
-
 				<div class="flex w-full border-b-2 dark:border-gray-700 pb-4">
-
 					<div class="flex flex-col">
-
 						<span class="text-3xl mb-2">Group Info</span>
 
 						<div class="flex mb-2">
@@ -99,7 +94,6 @@
 						</div>
 
 						<template x-for="(group, index) in party.groups">
-
 							<div class="flex mb-2">
 								<div class="w-16">
 									<input type="number" min="1" x-model="group.players" class="shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block w-full sm:text-sm border-gray-300 rounded-md" value="4">
@@ -113,13 +107,11 @@
 									<i class="fas fa-times"></i>
 								</button>
 							</div>
-
 						</template>
 
 						<button @click="party.add_group()" type="button" class="mt-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
 							<i class="fas fa-plus mr-2"></i> Add Another Level
 						</button>
-
 					</div>
 
 					<div class="flex flex-col text-right leading-3 flex-1">
@@ -132,9 +124,7 @@
 				</div>
 
 				<div class="flex-col mt-2">
-
 					<div class="flex w-full">
-
 						<span class="text-3xl mb-2 grow">Encounter Info</span>
 
 						<div class="self-center" @click.away="difficultySelectOpen = false">
@@ -230,17 +220,12 @@
 							</span>
 						</div>
 					</div>
-
 				</div>
-
 			</div>
 
 			<div class="flex-auto w-8/12 px-4 min-h-full">
-
 				<div class="flex">
-
 					<div class="grow">
-
 						<div>
 							<label for="search" class="block text-sm font-medium text-gray-700 sr-only">Search monsters</label>
 
@@ -268,160 +253,160 @@
 						<div class="hidden">
 							<!-- Multi Select -->
 							<div x-data="multiSelect($refs.sizes, [
-							{value: 'any', label: 'Any Size' },
-							{value: 'tiny', label: 'Tiny' },
-							{value: 'small', label: 'Small' },
-							{value: 'medium', label: 'Medium' },
-							{value: 'large', label: 'Large' },
-							{value: 'huge', label: 'Huge' },
-							{value: 'gargantuan', label: 'Gargantuan' }
-						])">
+								{value: 'any', label: 'Any Size' },
+								{value: 'tiny', label: 'Tiny' },
+								{value: 'small', label: 'Small' },
+								{value: 'medium', label: 'Medium' },
+								{value: 'large', label: 'Large' },
+								{value: 'huge', label: 'Huge' },
+								{value: 'gargantuan', label: 'Gargantuan' }
+							])">
 								<select x-ref="sizes" :multiple="multiple" class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 							</div>
 
 							<div x-data="multiSelect($refs.creature_type, [
-							{ value: 'any', label: 'Any Type' },
-							{ value: 'aberration', label: 'Aberration' },
-							{ value: 'beast', label: 'Beast' },
-							{ value: 'celestial', label: 'Celestial' },
-							{ value: 'construct', label: 'Construct' },
-							{ value: 'dragon', label: 'Dragon' },
-							{ value: 'elemental', label: 'Elemental' },
-							{ value: 'fey', label: 'Fey' },
-							{ value: 'fiend', label: 'Fiend' },
-							{ value: 'giant', label: 'Giant' },
-							{ value: 'humanoid', label: 'Humanoid' },
-							{ value: 'monstrosity', label: 'Monstrosity' },
-							{ value: 'ooze', label: 'Ooze' },
-							{ value: 'plant', label: 'Plant' },
-							{ value: 'undead', label: 'Undead' },
-						])">
+								{ value: 'any', label: 'Any Type' },
+								{ value: 'aberration', label: 'Aberration' },
+								{ value: 'beast', label: 'Beast' },
+								{ value: 'celestial', label: 'Celestial' },
+								{ value: 'construct', label: 'Construct' },
+								{ value: 'dragon', label: 'Dragon' },
+								{ value: 'elemental', label: 'Elemental' },
+								{ value: 'fey', label: 'Fey' },
+								{ value: 'fiend', label: 'Fiend' },
+								{ value: 'giant', label: 'Giant' },
+								{ value: 'humanoid', label: 'Humanoid' },
+								{ value: 'monstrosity', label: 'Monstrosity' },
+								{ value: 'ooze', label: 'Ooze' },
+								{ value: 'plant', label: 'Plant' },
+								{ value: 'undead', label: 'Undead' },
+							])">
 								<select x-ref="creature_type" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 							</div>
 
 							<div x-data="multiSelect($refs.min_cr, [
-							{ value: 'any', label: 'Min CR' },
-							{ value: '0', label: '0' },
-							{ value: '1/8', label: '1/8' },
-							{ value: '1/4', label: '1/4' },
-							{ value: '1/2', label: '1/2' },
-							{ value: '1', label: '1' },
-							{ value: '2', label: '2' },
-							{ value: '3', label: '3' },
-							{ value: '4', label: '4' },
-							{ value: '5', label: '5' },
-							{ value: '6', label: '6' },
-							{ value: '7', label: '7' },
-							{ value: '8', label: '8' },
-							{ value: '9', label: '9' },
-							{ value: '10', label: '10' },
-							{ value: '11', label: '11' },
-							{ value: '12', label: '12' },
-							{ value: '13', label: '13' },
-							{ value: '14', label: '14' },
-							{ value: '15', label: '15' },
-							{ value: '16', label: '16' },
-							{ value: '17', label: '17' },
-							{ value: '18', label: '18' },
-							{ value: '19', label: '19' },
-							{ value: '20', label: '20' },
-							{ value: '21', label: '21' },
-							{ value: '22', label: '22' },
-							{ value: '23', label: '23' },
-							{ value: '24', label: '24' },
-							{ value: '25', label: '25' },
-							{ value: '26', label: '26' },
-							{ value: '27', label: '27' },
-							{ value: '28', label: '28' },
-							{ value: '29', label: '29' },
-							{ value: '30', label: '30' },
-						])">
+								{ value: 'any', label: 'Min CR' },
+								{ value: '0', label: '0' },
+								{ value: '1/8', label: '1/8' },
+								{ value: '1/4', label: '1/4' },
+								{ value: '1/2', label: '1/2' },
+								{ value: '1', label: '1' },
+								{ value: '2', label: '2' },
+								{ value: '3', label: '3' },
+								{ value: '4', label: '4' },
+								{ value: '5', label: '5' },
+								{ value: '6', label: '6' },
+								{ value: '7', label: '7' },
+								{ value: '8', label: '8' },
+								{ value: '9', label: '9' },
+								{ value: '10', label: '10' },
+								{ value: '11', label: '11' },
+								{ value: '12', label: '12' },
+								{ value: '13', label: '13' },
+								{ value: '14', label: '14' },
+								{ value: '15', label: '15' },
+								{ value: '16', label: '16' },
+								{ value: '17', label: '17' },
+								{ value: '18', label: '18' },
+								{ value: '19', label: '19' },
+								{ value: '20', label: '20' },
+								{ value: '21', label: '21' },
+								{ value: '22', label: '22' },
+								{ value: '23', label: '23' },
+								{ value: '24', label: '24' },
+								{ value: '25', label: '25' },
+								{ value: '26', label: '26' },
+								{ value: '27', label: '27' },
+								{ value: '28', label: '28' },
+								{ value: '29', label: '29' },
+								{ value: '30', label: '30' },
+							])">
 								<select x-ref="min_cr" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 							</div>
 
 							<div x-data="multiSelect($refs.max_cr, [
-							{ value: 'any', label: 'Min CR' },
-							{ value: '0', label: '0' },
-							{ value: '1/8', label: '1/8' },
-							{ value: '1/4', label: '1/4' },
-							{ value: '1/2', label: '1/2' },
-							{ value: '1', label: '1' },
-							{ value: '2', label: '2' },
-							{ value: '3', label: '3' },
-							{ value: '4', label: '4' },
-							{ value: '5', label: '5' },
-							{ value: '6', label: '6' },
-							{ value: '7', label: '7' },
-							{ value: '8', label: '8' },
-							{ value: '9', label: '9' },
-							{ value: '10', label: '10' },
-							{ value: '11', label: '11' },
-							{ value: '12', label: '12' },
-							{ value: '13', label: '13' },
-							{ value: '14', label: '14' },
-							{ value: '15', label: '15' },
-							{ value: '16', label: '16' },
-							{ value: '17', label: '17' },
-							{ value: '18', label: '18' },
-							{ value: '19', label: '19' },
-							{ value: '20', label: '20' },
-							{ value: '21', label: '21' },
-							{ value: '22', label: '22' },
-							{ value: '23', label: '23' },
-							{ value: '24', label: '24' },
-							{ value: '25', label: '25' },
-							{ value: '26', label: '26' },
-							{ value: '27', label: '27' },
-							{ value: '28', label: '28' },
-							{ value: '29', label: '29' },
-							{ value: '30', label: '30' },
-						])">
+								{ value: 'any', label: 'Min CR' },
+								{ value: '0', label: '0' },
+								{ value: '1/8', label: '1/8' },
+								{ value: '1/4', label: '1/4' },
+								{ value: '1/2', label: '1/2' },
+								{ value: '1', label: '1' },
+								{ value: '2', label: '2' },
+								{ value: '3', label: '3' },
+								{ value: '4', label: '4' },
+								{ value: '5', label: '5' },
+								{ value: '6', label: '6' },
+								{ value: '7', label: '7' },
+								{ value: '8', label: '8' },
+								{ value: '9', label: '9' },
+								{ value: '10', label: '10' },
+								{ value: '11', label: '11' },
+								{ value: '12', label: '12' },
+								{ value: '13', label: '13' },
+								{ value: '14', label: '14' },
+								{ value: '15', label: '15' },
+								{ value: '16', label: '16' },
+								{ value: '17', label: '17' },
+								{ value: '18', label: '18' },
+								{ value: '19', label: '19' },
+								{ value: '20', label: '20' },
+								{ value: '21', label: '21' },
+								{ value: '22', label: '22' },
+								{ value: '23', label: '23' },
+								{ value: '24', label: '24' },
+								{ value: '25', label: '25' },
+								{ value: '26', label: '26' },
+								{ value: '27', label: '27' },
+								{ value: '28', label: '28' },
+								{ value: '29', label: '29' },
+								{ value: '30', label: '30' },
+							])">
 								<select x-ref="max_cr" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 							</div>
 
 							<div x-data="multiSelect($refs.alignment, [
-							{ value: 'any', label: 'Any Alignment' },
-							{ value: 'chaotic', label: 'chaotic' },
-							{ value: 'evil', label: 'evil' },
-							{ value: 'good', label: 'good' },
-							{ value: 'lawful', label: 'lawful' },
-							{ value: 'neutral', label: 'neutral' },
-							{ value: 'non-chaotic', label: 'non-chaotic' },
-							{ value: 'non-evil', label: 'non-evil' },
-							{ value: 'non-good', label: 'non-good' },
-							{ value: 'non-lawful', label: 'non-lawful' },
-							{ value: 'non-neural', label: 'non-neural' },
-							{ value: 'unaligned', label: 'unaligned' },
-						])">
+								{ value: 'any', label: 'Any Alignment' },
+								{ value: 'chaotic', label: 'chaotic' },
+								{ value: 'evil', label: 'evil' },
+								{ value: 'good', label: 'good' },
+								{ value: 'lawful', label: 'lawful' },
+								{ value: 'neutral', label: 'neutral' },
+								{ value: 'non-chaotic', label: 'non-chaotic' },
+								{ value: 'non-evil', label: 'non-evil' },
+								{ value: 'non-good', label: 'non-good' },
+								{ value: 'non-lawful', label: 'non-lawful' },
+								{ value: 'non-neural', label: 'non-neural' },
+								{ value: 'unaligned', label: 'unaligned' },
+							])">
 								<select x-ref="alignment" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 							</div>
 
 							<div x-data="multiSelect($refs.environment, [
-							{ value: 'any', label: 'Any Environment' },
-							{ value: 'aquatic', label: 'Aquatic' },
-							{ value: 'arctic', label: 'Arctic' },
-							{ value: 'cave', label: 'Cave' },
-							{ value: 'coast', label: 'Coast' },
-							{ value: 'desert', label: 'Desert' },
-							{ value: 'dungeon', label: 'Dungeon' },
-							{ value: 'forest', label: 'Forest' },
-							{ value: 'grassland', label: 'Grassland' },
-							{ value: 'mountain', label: 'Mountain' },
-							{ value: 'planar', label: 'Planar' },
-							{ value: 'ruins', label: 'Ruins' },
-							{ value: 'swamp', label: 'Swamp' },
-							{ value: 'underground', label: 'Underground' },
-							{ value: 'urban', label: 'Urban' },
-						])">
+								{ value: 'any', label: 'Any Environment' },
+								{ value: 'aquatic', label: 'Aquatic' },
+								{ value: 'arctic', label: 'Arctic' },
+								{ value: 'cave', label: 'Cave' },
+								{ value: 'coast', label: 'Coast' },
+								{ value: 'desert', label: 'Desert' },
+								{ value: 'dungeon', label: 'Dungeon' },
+								{ value: 'forest', label: 'Forest' },
+								{ value: 'grassland', label: 'Grassland' },
+								{ value: 'mountain', label: 'Mountain' },
+								{ value: 'planar', label: 'Planar' },
+								{ value: 'ruins', label: 'Ruins' },
+								{ value: 'swamp', label: 'Swamp' },
+								{ value: 'underground', label: 'Underground' },
+								{ value: 'urban', label: 'Urban' },
+							])">
 								<select x-ref="environment" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 							</div>
 
 							<div x-data="multiSelect($refs.legendary, [
-							{ value: 'any', label: 'Any Legendary'},
-							{ value: 'ordinary', label: 'Ordinary'},
-							{ value: 'legendary', label: 'Legendary'},
-							{ value: 'legendary_lair', label: 'Legendary (in lair)'},
-						])">
+								{ value: 'any', label: 'Any Legendary'},
+								{ value: 'ordinary', label: 'Ordinary'},
+								{ value: 'legendary', label: 'Legendary'},
+								{ value: 'legendary_lair', label: 'Legendary (in lair)'},
+							])">
 								<select x-ref="legendary" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 							</div>
 						</div>
@@ -431,13 +416,9 @@
 				</div>
 
 				<div class="mt-8 overflow-x-auto min-w-0">
-
 					<table class="w-full mb-5 border-collapse">
-
 						<thead>
-
 							<tr>
-
 								<th class="border border-gray-300 dark:border-gray-700 p-2"></th>
 								<th class="border border-gray-300 dark:border-gray-700 p-2">Name</th>
 								<th class="border border-gray-300 dark:border-gray-700 p-2">CR</th>
@@ -445,17 +426,12 @@
 								<th class="border border-gray-300 dark:border-gray-700 p-2">Type</th>
 								<th class="border border-gray-300 dark:border-gray-700 p-2">Alignment</th>
 								<th class="border border-gray-300 dark:border-gray-700 p-2">Source</th>
-
 							</tr>
-
 						</thead>
 
 						<tbody class="border-t-2 border-gray-400 dark:border-gray-700">
-
 							<template x-for="monster in monsters">
-
 								<tr class="even:bg-gray-200 dark:even:bg-gray-800">
-
 									<td class="align-top p-2 border border-gray-300 dark:border-gray-700">
 										<button type="button" class="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-emerald-600 dark:bg-emerald-800 dark:hover:bg-emerald-700 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
 											<i class="fas fa-plus"></i>
@@ -468,21 +444,13 @@
 									<td class="align-top p-2 border border-gray-300 dark:border-gray-700" x-text="monster.alignment"></td>
 									<td class="align-top p-2 border border-gray-300 dark:border-gray-700" x-text="monster.sources"></td>
 
-								</td>
-
+								</tr>
 							</template>
-
 						</tbody>
-
 					</table>
-
 				</div>
-
 			</div>
-
 		</div>
 	</div>
-
-
 </body>
 </html>
