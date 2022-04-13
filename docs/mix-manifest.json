@@ -7,5 +7,8 @@
     "/json/se_monsters.json": "/json/se_monsters.json",
     "/json/se_sources.json": "/json/se_sources.json",
     "/json/se_third_party_monsters.json": "/json/se_third_party_monsters.json",
-    "/json/se_third_party_sources.json": "/json/se_third_party_sources.json"
+    "/json/se_third_party_sources.json": "/json/se_third_party_sources.json",
+    "/images/header_logo.png": "/images/header_logo.png",
+    "/images/improved-initiative-logo.png": "/images/improved-initiative-logo.png",
+    "/images/logo.png": "/images/logo.png"
 }

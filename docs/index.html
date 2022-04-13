@@ -4,8 +4,8 @@
 	<title>Kobold Plus Fight Club - The first rule of Kobold Fight Club is 'Yip Yip!'</title>
 	<meta charset="utf-8">
 	<link rel="manifest" href="../manifest.json">
-	<link rel="apple-touch-icon" href="../images/logo.png" sizes="600x600">
-	<link rel="icon" href="../images/logo.png" sizes="600x600">
+	<link rel="apple-touch-icon" href="images/logo.png" sizes="600x600">
+	<link rel="icon" href="images/logo.png" sizes="600x600">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600" rel="stylesheet">
 	<script src="js/app.js"></script>
@@ -19,22 +19,41 @@
 	<!-- Include Choices JavaScript (latest) -->
 	<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
+	<script>
+		// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+			window.theme = 'dark'
+			document.documentElement.classList.add('dark')
+		} else {
+			window.theme = 'light'
+			document.documentElement.classList.remove('dark')
+			localStorage.theme = 'light'
+		}
+
+		window.toggleTheme = function() {
+			let theme = (localStorage.theme === 'dark' ? 'light' : 'dark');
+			window.theme = theme;
+			localStorage.theme = theme;
+			document.documentElement.classList.toggle('dark', theme === 'dark');
+
+			return theme
+		}
+	</script>
+
 
 </head>
 <body>
+	<div class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-300" x-data="window.app()">
 
-	<script>
-	</script>
+		<div @click="window.toggleTheme()" class="absolute bottom-2 left-2 h-12 w-12 cursor-pointer text-gray-500 grid place-items-center bg-gray-100 border rounded border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:text-gray-300"><i class="fa fa-moon text-gray-800 dark:text-gray-300"></i></div>
 
-	<div class="min-h-screen bg-gray-100" x-data="window.app()">
-
-		<nav class="bg-emerald-700 border-b border-gray-200">
+		<nav class="bg-emerald-700 border-b border-gray-200 dark:border-gray-900">
 			<div class="mx-auto px-4 sm:px-6 lg:px-6">
 				<div class="flex justify-between h-16 w-full">
 					<div class="flex">
 						<div class="flex-shrink-0 flex items-center">
 							<a href="" class="flex items-center">
-								<img class="h-8 w-auto" src="../images/header_logo.png" alt="Fantasy Calender"> <span class="hidden md:inline pl-2 text-lg font-bold text-white">Kobold+ Fight Club</span>
+								<img class="h-8 w-auto" src="images/header_logo.png" alt="Fantasy Calendar"> <span class="hidden md:inline pl-2 text-lg font-bold text-white">Kobold+ Fight Club</span>
 							</a>
 						</div>
 					</div>
@@ -72,14 +91,12 @@
 
 						<div class="flex mb-2">
 							<div class="w-16">
-								<label class="block font-medium text-gray-700">Players</label>
+								<label class="block font-medium text-gray-700 dark:text-gray-300">Players</label>
 							</div>
 							<div class="w-16 ml-4">
-								<label class="block font-medium text-gray-700">Level</label>
+								<label class="block font-medium text-gray-700 dark:text-gray-300">Level</label>
 							</div>
 						</div>
-
-						<button @click="console.log(sizes)">SHOW SIZES</button>
 
 						<template x-for="(party, index) in parties">
 
@@ -124,7 +141,7 @@
 						
 						<div class="self-center" @click.away="randomEncounter.open = false">
 							<span class="relative z-0 inline-flex shadow-sm rounded-md">
-								<button x-text="'Random ' + randomEncounter.type" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
+								<button x-text="'Random ' + randomEncounter.type" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
 									Random Medium
 								</button>
 								<span class="-ml-px relative block">
@@ -148,20 +165,20 @@
 									-->
 									<div x-show="randomEncounter.open" x-transition class="origin-top-right absolute right-0 mt-2 -mr-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none w-48" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
 										<div class="py-1" role="none">
-										<!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-										<a href="#" @click="randomEncounter.set('Easy')" :class="{ 'bg-emerald-500 text-white': randomEncounter.type == 'Easy', 'text-gray-700 hover:bg-gray-50': randomEncounter.type !== 'Easy' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-0">
+										<!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700 dark:text-gray-300" -->
+										<a href="#" @click="randomEncounter.set('Easy')" :class="{ 'bg-emerald-500 text-white': randomEncounter.type == 'Easy', 'text-gray-700 dark:text-gray-300 hover:bg-gray-50': randomEncounter.type !== 'Easy' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-0">
 											Random Easy
 										</a>
 								
-										<a href="#" @click="randomEncounter.set('Medium')" :class="{ 'bg-emerald-500 text-white': randomEncounter.type == 'Medium', 'text-gray-700 hover:bg-gray-50': randomEncounter.type !== 'Medium' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-1">
+										<a href="#" @click="randomEncounter.set('Medium')" :class="{ 'bg-emerald-500 text-white': randomEncounter.type == 'Medium', 'text-gray-700 dark:text-gray-300 hover:bg-gray-50': randomEncounter.type !== 'Medium' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-1">
 											Random Medium
 										</a>
 								
-										<a href="#" @click="randomEncounter.set('Hard')" :class="{ 'bg-emerald-500 text-white': randomEncounter.type == 'Hard', 'text-gray-700 hover:bg-gray-50': randomEncounter.type !== 'Hard' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
+										<a href="#" @click="randomEncounter.set('Hard')" :class="{ 'bg-emerald-500 text-white': randomEncounter.type == 'Hard', 'text-gray-700 dark:text-gray-300 hover:bg-gray-50': randomEncounter.type !== 'Hard' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
 											Random Hard
 										</a>
 								
-										<a href="#" @click="randomEncounter.set('Deadly')" :class="{ 'bg-emerald-500 text-white': randomEncounter.type == 'Deadly', 'text-gray-700 hover:bg-gray-50': randomEncounter.type !== 'Deadly' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
+										<a href="#" @click="randomEncounter.set('Deadly')" :class="{ 'bg-emerald-500 text-white': randomEncounter.type == 'Deadly', 'text-gray-700 dark:text-gray-300 hover:bg-gray-50': randomEncounter.type !== 'Deadly' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
 											Random Deadly
 										</a>
 										</div>
@@ -175,7 +192,7 @@
 						<template x-for="(monster, index) in randomEncounter.monsters">
 							<div class="flex flex-row w-full mb-8">
 								<div class="grow pb-2 min-w-0">
-									<span class="text-4xl font-light" x-text="monster.name"></span>
+									<span class="text-3xl font-light" x-text="monster.name"></span>
 									<div>
 										<span class="text-lg" x-text="'CR: ' + monster.cr"></span>
 										<span class="text-lg ml-4" x-text="'XP: ' + formatNumber(monster.xp)"></span>
@@ -185,7 +202,7 @@
 									</div>
 								</div>
 								<div class="">
-									<button type="button" class="inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
+									<button type="button" class="inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 dark:text-gray-300 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
 										<i class="fas fa-random"></i>
 									</button>
 									<input type="number" min="1" class="inline align-middle w-24 shadow-sm focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm border-gray-300 rounded-md" x-model="monster.count"/>
@@ -226,7 +243,7 @@
 
 					<div class="grow">
 						
-						<input type="text" placeholder="Search..." class="w-full shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block sm:text-sm border-gray-300 rounded-md mr-2 inline-block">
+						<input type="text" placeholder="Search...">
 
 						 
 						<!-- Multi Select -->
@@ -400,13 +417,13 @@
 
 							<tr>
 
-								<th class="border border-gray-300 p-2"></th>	
-								<th class="border border-gray-300 p-2">Name</th>	
-								<th class="border border-gray-300 p-2">CR</th>	
-								<th class="border border-gray-300 p-2">Size</th>	
-								<th class="border border-gray-300 p-2">Type</th>	
-								<th class="border border-gray-300 p-2">Alignment</th>	
-								<th class="border border-gray-300 p-2">Source</th>	
+								<th class="border border-gray-300 dark:border-gray-600 p-2"></th>
+								<th class="border border-gray-300 dark:border-gray-600 p-2">Name</th>
+								<th class="border border-gray-300 dark:border-gray-600 p-2">CR</th>
+								<th class="border border-gray-300 dark:border-gray-600 p-2">Size</th>
+								<th class="border border-gray-300 dark:border-gray-600 p-2">Type</th>
+								<th class="border border-gray-300 dark:border-gray-600 p-2">Alignment</th>
+								<th class="border border-gray-300 dark:border-gray-600 p-2">Source</th>
 								
 							</tr>
 
@@ -416,19 +433,19 @@
 							
 							<template x-for="monster in monsters">
 
-								<tr class="even:bg-gray-200">
+								<tr class="even:bg-gray-200 dark:even:bg-gray-800">
 
-									<td class="align-top p-2 border border-gray-300">
+									<td class="align-top p-2 border border-gray-300 dark:border-gray-600">
 										<button type="button" class="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
 											<i class="fas fa-plus"></i>
 										</button>
 									</td>
-									<td class="align-top p-2 border border-gray-300" x-text="monster.name"></td>
-									<td class="align-top p-2 border border-gray-300" x-text="monster.cr"></td>
-									<td class="align-top p-2 border border-gray-300" x-text="monster.size"></td>
-									<td class="align-top p-2 border border-gray-300" x-text="monster.type"></td>
-									<td class="align-top p-2 border border-gray-300" x-text="monster.alignment"></td>
-									<td class="align-top p-2 border border-gray-300" x-text="monster.sources"></td>
+									<td class="align-top p-2 border border-gray-300 dark:border-gray-600" x-text="monster.name"></td>
+									<td class="align-top p-2 border border-gray-300 dark:border-gray-600" x-text="monster.cr"></td>
+									<td class="align-top p-2 border border-gray-300 dark:border-gray-600" x-text="monster.size"></td>
+									<td class="align-top p-2 border border-gray-300 dark:border-gray-600" x-text="monster.type"></td>
+									<td class="align-top p-2 border border-gray-300 dark:border-gray-600" x-text="monster.alignment"></td>
+									<td class="align-top p-2 border border-gray-300 dark:border-gray-600" x-text="monster.sources"></td>
 
 								</td>
 
