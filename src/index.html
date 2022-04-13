@@ -200,11 +200,11 @@
 									<span class="text-3xl font-light" x-text="monster.name"></span>
 									<div>
 										<span class="text-lg" x-text="'CR: ' + monster.cr.string"></span>
-										<span class="text-lg ml-4" x-text="'XP: ' + formatNumber(monster.exp)"></span>
+										<span class="text-lg ml-4" x-text="'XP: ' + formatNumber(monster.cr.exp)"></span>
 										<div class='overflow-hidden whitespace-nowrap overflow-ellipsis'>
 											<ul class="list-none text-s italic">
 											<template x-for="source in monster.sources">
-												<li x-text="source.book + (source.page ? ' p.' + source.page : '')"></li>
+												<li x-html="source.link ? `<a class='primary-link' href='${source.link}' target='_blank'>${source.fullText}</a>` : source.fullText"></li>
 											</template>
 											</ul>
 										</div>

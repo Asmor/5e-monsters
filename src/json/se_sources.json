@@ -1,114 +1,114 @@
 [
-    {
-      "type": "Official Web Supplement",
-      "name": "Basic Rules v1",
-      "shortname": "Basic",
-      "link": "",
-      "defaultselected": ""
-    },
-    {
-      "type": "Official Adventure",
-      "name": "Curse of Strahd",
-      "shortname": "Strahd",
-      "link": "",
-      "defaultselected": ""
-    },
-    {
-      "type": "Official Adventure",
-      "name": "Hoard of the Dragon Queen",
-      "shortname": "Hoard",
-      "link": "",
-      "defaultselected": ""
-    },
-    {
-      "type": "Official Web Supplement",
-      "name": "HotDQ supplement",
-      "shortname": "HoardSup",
-      "link": "",
-      "defaultselected": ""
-    },
-    {
-      "type": "Official",
-      "name": "Monster Manual",
-      "shortname": "MM",
-      "link": "",
-      "defaultselected": "yes"
-    },
-    {
-      "type": "Official",
-      "name": "Mordenkainen's Tome of Foes",
-      "shortname": "Mord'sToF",
-      "link": "",
-      "defaultselected": ""
-    },
-    {
-      "type": "Official Adventure",
-      "name": "Out of the Abyss",
-      "shortname": "Abyss",
-      "link": "",
-      "defaultselected": ""
-    },
-    {
-      "type": "Official",
-      "name": "Player's Handbook",
-      "shortname": "PHB",
-      "link": "",
-      "defaultselected": "yes"
-    },
-    {
-      "type": "Official Adventure",
-      "name": "Princes of the Apocalypse",
-      "shortname": "Apoc",
-      "link": "",
-      "defaultselected": ""
-    },
-    {
-      "type": "Official Web Supplement",
-      "name": "Princes of the Apocalypse Online Supplement v1.0",
-      "shortname": "ApocSup",
-      "link": "",
-      "defaultselected": ""
-    },
-    {
-      "type": "Official Adventure",
-      "name": "Rise of Tiamat",
-      "shortname": "Tiamat",
-      "link": "",
-      "defaultselected": ""
-    },
-    {
-      "type": "Official Adventure",
-      "name": "Storm King's Thunder",
-      "shortname": "StrmKing",
-      "link": "",
-      "defaultselected": ""
-    },
-    {
-      "type": "Official Adventure",
-      "name": "Tales from the Yawning Portal",
-      "shortname": "TftYP",
-      "link": "",
-      "defaultselected": ""
-    },
-    {
-      "type": "Official Web Supplement",
-      "name": "The Tortle Package",
-      "shortname": "Tortle",
-      "link": "http://www.dmsguild.com/product/221716/Tortle-Package-5e",
-      "defaultselected": ""
-    },
-    {
-      "type": "Official Adventure",
-      "name": "Tomb of Annihilation",
-      "shortname": "ToA",
-      "link": "",
-      "defaultselected": ""
-    },
-    {
-      "type": "Official",
-      "name": "Volo's Guide to Monsters",
-      "shortname": "Volo",
-      "link": "",
-      "defaultselected": ""
-    }
-  ]
+  {
+    "type": "Official Web Supplement",
+    "name": "Basic Rules v1",
+    "shortname": "Basic",
+    "link": "",
+    "defaultselected": ""
+  },
+  {
+    "type": "Official Adventure",
+    "name": "Curse of Strahd",
+    "shortname": "CoS",
+    "link": "",
+    "defaultselected": ""
+  },
+  {
+    "type": "Official Adventure",
+    "name": "Hoard of the Dragon Queen",
+    "shortname": "HotDQ",
+    "link": "",
+    "defaultselected": ""
+  },
+  {
+    "type": "Official Web Supplement",
+    "name": "HotDQ supplement",
+    "shortname": "HotDQ Sup",
+    "link": "",
+    "defaultselected": ""
+  },
+  {
+    "type": "Official",
+    "name": "Monster Manual",
+    "shortname": "MM",
+    "link": "",
+    "defaultselected": "yes"
+  },
+  {
+    "type": "Official",
+    "name": "Mordenkainen's Tome of Foes",
+    "shortname": "MToF",
+    "link": "",
+    "defaultselected": ""
+  },
+  {
+    "type": "Official Adventure",
+    "name": "Out of the Abyss",
+    "shortname": "OotA",
+    "link": "",
+    "defaultselected": ""
+  },
+  {
+    "type": "Official",
+    "name": "Player's Handbook",
+    "shortname": "PHB",
+    "link": "",
+    "defaultselected": "yes"
+  },
+  {
+    "type": "Official Adventure",
+    "name": "Princes of the Apocalypse",
+    "shortname": "PotA",
+    "link": "",
+    "defaultselected": ""
+  },
+  {
+    "type": "Official Web Supplement",
+    "name": "Princes of the Apocalypse Online Supplement v1.0",
+    "shortname": "PotA Supp",
+    "link": "",
+    "defaultselected": ""
+  },
+  {
+    "type": "Official Adventure",
+    "name": "Rise of Tiamat",
+    "shortname": "RoT",
+    "link": "",
+    "defaultselected": ""
+  },
+  {
+    "type": "Official Adventure",
+    "name": "Storm King's Thunder",
+    "shortname": "SKT",
+    "link": "",
+    "defaultselected": ""
+  },
+  {
+    "type": "Official Adventure",
+    "name": "Tales from the Yawning Portal",
+    "shortname": "TftYP",
+    "link": "",
+    "defaultselected": ""
+  },
+  {
+    "type": "Official Web Supplement",
+    "name": "The Tortle Package",
+    "shortname": "Tortle",
+    "link": "http://www.dmsguild.com/product/221716/Tortle-Package-5e",
+    "defaultselected": ""
+  },
+  {
+    "type": "Official Adventure",
+    "name": "Tomb of Annihilation",
+    "shortname": "ToA",
+    "link": "",
+    "defaultselected": ""
+  },
+  {
+    "type": "Official",
+    "name": "Volo's Guide to Monsters",
+    "shortname": "VGtM",
+    "link": "",
+    "defaultselected": ""
+  }
+]

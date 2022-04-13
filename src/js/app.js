@@ -3,6 +3,7 @@ import party from "./party.js";
 import noUiSlider from "nouislider";
 import * as lib from "./lib.js";
 import CONST from "./constants.js";
+import { isValidHttpUrl } from "./lib.js";
 
 const internationalNumberFormat = new Intl.NumberFormat('en-US')
 
@@ -21,6 +22,9 @@ function app() {
         monstersPerPage: 10,
         allMonsters: [],
         filteredMonsters: [],
+
+        sources: [],
+
         searchPlaceholder: "",
 
         difficultySelectOpen: false,
@@ -35,42 +39,96 @@ function app() {
         party,
 
         init(){
-            this.fetch_monsters();
+            this.encounter.app = this;
+            this.party.app = this;
+            this.loadSettings();
+            this.setupListeners();
+            this.fetchData();
+        },
+
+        loadSettings(){
             this.party.groups = localStorage.getItem("party") ? JSON.parse(localStorage.getItem("party")) : [{ players: 4, level: 1 }];
             this.encounter.difficulty = localStorage.getItem("difficulty") || "medium";
+            this.filters = localStorage.getItem("filters") ? JSON.parse(localStorage.getItem("filters")) : {};
+        },
+
+        setupListeners(){
             this.$watch("party.groups", () => {
                 localStorage.setItem("party", JSON.stringify(this.party.groups));
             });
             this.$watch("encounter.difficulty", () => {
                 localStorage.setItem("difficulty", this.encounter.difficulty);
             });
-            this.encounter.app = this;
-            this.party.app = this;
-
-            console.log(this.$refs.monster);
+            this.$watch("filters", () => {
+                localStorage.setItem("filters", JSON.stringify(this.filters));
+            });
         },
 
-        fetch_monsters() {
+        async fetchData() {
             this.isLoading = true;
-            fetch("/json/se_monsters.json")
+
+            await fetch("/json/se_sources.json")
                 .then(res => res.json())
-                .then(data => {
-                    this.isLoading = false;
-                    this.allMonsters = data.map(monster => {
-                        monster.cr = CONST.CR[monster.cr];
-                        monster.sources = monster.sources.split(', ').map(source => {
-                            return {
-                                book: source.split(": ")[0],
-                                page: source.split(": ")[1]
-                            };
+                .then(this.formatSources.bind(this))
+
+            await fetch("/json/se_third_party_sources.json")
+                .then(res => res.json())
+                .then(this.formatSources.bind(this))
+
+            await fetch("/json/se_community_sources.json")
+                .then(res => res.json())
+                .then(this.formatSources.bind(this))
+
+            await fetch("/json/se_monsters.json")
+                .then(res => res.json())
+                .then(this.formatMonsters.bind(this));
+
+            await fetch("/json/se_third_party_monsters.json")
+                .then(res => res.json())
+                .then(this.formatMonsters.bind(this));
+
+            await fetch("/json/se_community_monsters.json")
+                .then(res => res.json())
+                .then(this.formatMonsters.bind(this));
+
+            this.page = 1;
+            this.pages = Math.floor(this.allMonsters.length / this.monstersPerPage);
+            this.searchPlaceholder = lib.random_array_element(this.allMonsters).name;
+            this.filteredMonsters = this.filterMonsters();
+            this.isLoading = false;
+        },
+
+        formatSources(data){
+            this.sources = this.sources.concat(data);
+            this.sources.sort((a, b) => a.name > b.name ? 1 : -1);
+        },
+
+        formatMonsters(data){
+
+            this.allMonsters = this.allMonsters.concat(data.map(monster => {
+                monster.cr = CONST.CR[monster.cr];
+                monster.sources = monster.sources.split(', ').map(str => {
+                    const [ book, location ] = str.split(": ");
+                    const source = { book }
+                    if(!isNaN(location)){
+                        source.page = location;
+
+                        const bookFound = this.sources.find(src => {
+                            return src.name === book;
                         });
-                        return monster;
-                    });
-                    this.filteredMonsters = this.allMonsters;
-                    this.page = 1;
-                    this.pages = Math.floor(this.allMonsters.length / 10);
-                    this.searchPlaceholder = lib.random_array_element(this.allMonsters).name;
+                        if(bookFound.link){
+                            source.link = bookFound.link;
+                        }
+                        
+                    }else if(lib.isValidHttpUrl(location)){
+                        source.link = location;
+                    }
+
+                    source.fullText = source.book + (source.page ? ' p.' + source.page : '');
+                    return source;
                 });
+                return monster;
+            }));
 
         },
 
@@ -90,6 +148,17 @@ function app() {
                 if (crString && monster.cr.string !== crString) return false;
 
                 if (hasFilters) {
+
+                    if (filters.sources?.length){
+                        let found = false;
+                        for (let source of monster.sources){
+                            if(filters.sources.includes(source.book)){
+                                found = true;
+                                break;
+                            }
+                        }
+                        if(!found) return false;
+                    }
 
                     if (filters.size?.length && !filters.size?.includes("any")) {
                         if (!filters.size.includes(monster.size.toLowerCase())) return false;

@@ -8,7 +8,7 @@ const encounter = {
 
     get totalExp(){
         return this.monsters.reduce((acc, monster) => {
-            return acc + monster.exp;
+            return acc + monster.cr.exp;
         }, 0);
     },
 
@@ -119,7 +119,6 @@ const encounter = {
             }
             encounter.push({
                 ...monster,
-                exp: CONST.CR[monster.cr].exp,
                 count: group.count
             })
         }
