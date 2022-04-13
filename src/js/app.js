@@ -1,5 +1,6 @@
 import encounter from "./encounter.js";
 import party from "./party.js";
+import noUiSlider from "nouislider";
 import * as lib from "./lib.js";
 import { random_array_element } from "./lib.js";
 
@@ -101,3 +102,4 @@ function multiSelect($el, options) {
 
 window.app = app;
 window.multiSelect = multiSelect;
+window.noUiSlider = noUiSlider;

@@ -1,3 +1,5 @@
+@import '~nouislider/dist/nouislider.min.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -29,15 +31,13 @@ body .choices .choices__inner {
     focus:border-emerald-600 dark:border-emerald-800
     block
     w-full
-    py-2
+    py-1
     mb-0
     text-base
     border-gray-300 dark:border-gray-700
     focus:outline-none
     sm:text-sm
-    rounded-md
-    rounded-r-none
-    md:rounded-none;
+    rounded-md;
 }
 body .choices__list--multiple .choices__item { 
     @apply bg-emerald-700 border-emerald-800 rounded-md mb-0; 
