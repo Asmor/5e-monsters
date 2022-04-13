@@ -262,7 +262,7 @@
 										</button>
 									</div>
 
-									<div @click.outside="filtersMenu = false" class="origin-top-right absolute right-0 mt-2 w-96 rounded-md shadow-lg bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1"
+									<div @mousedown.outside="filtersMenu = false" class="origin-top-right absolute right-0 mt-2 w-96 rounded-md shadow-lg bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1"
 										 x-show="filtersMenu"
 										 x-transition:enter="transition ease-out duration-100"
 										 x-transition:enter-start="transform opacity-0 scale-95"
