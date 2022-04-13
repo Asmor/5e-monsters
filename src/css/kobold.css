@@ -9,6 +9,7 @@
     }
 }
 
+
 body .choices { @apply leading-6 border-gray-300 dark:border-gray-700 rounded-none; }
 body .choices.is-open { @apply ring-4 border-emerald-600 dark:border-emerald-800 ring-opacity-30 ring-emerald-600; }
 body .is-open .choices__inner { @apply border-gray-300 dark:border-gray-700 rounded-none; }
