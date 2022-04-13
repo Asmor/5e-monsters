@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html class="h-full">
 <head>
 	<title>Kobold Plus Fight Club - The first rule of Kobold Fight Club is 'Yip Yip!'</title>
 	<meta charset="utf-8">
@@ -42,7 +42,7 @@
 
 
 </head>
-<body>
+<body class="h-full">
 	<div class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-300" x-data="window.app()">
 
 		<div @click="window.toggleTheme()" class="absolute bottom-2 left-2 h-12 w-12 cursor-pointer text-gray-500 grid place-items-center bg-gray-100 border rounded border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:text-gray-300"><i class="fa fa-moon text-gray-800 dark:text-gray-300"></i></div>
@@ -81,8 +81,8 @@
 		</nav>
 		<div class="flex pt-4">
 
-			<div class="flex flex-col px-4 flex-auto w-5/12 min-h-full">
-				
+			<div class="hidden lg:flex flex-col px-4 flex-shrink-0 w-[33rem] min-h-full">
+
 				<div class="flex w-full border-b-2 dark:border-gray-700 pb-4">
 
 					<div class="flex flex-col">
@@ -136,7 +136,7 @@
 					<div class="flex w-full">
 
 						<span class="text-3xl mb-2 grow">Encounter Info</span>
-						
+
 						<div class="self-center" @click.away="randomEncounter.open = false">
 							<span class="relative z-0 inline-flex shadow-sm rounded-md">
 								<button x-text="'Random ' + randomEncounter.type" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
@@ -150,10 +150,10 @@
 										<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
 										</svg>
 									</button>
-								
+
 									<!--
 										Dropdown menu, show/hide based on menu state.
-								
+
 										Entering: "transition ease-out duration-100"
 										From: "transform opacity-0 scale-95"
 										To: "transform opacity-100 scale-100"
@@ -167,15 +167,15 @@
 										<a href="#" @click="randomEncounter.set('Easy')" :class="{ 'bg-emerald-500 text-white': randomEncounter.type == 'Easy', 'text-gray-700 dark:text-gray-300 hover:bg-gray-50': randomEncounter.type !== 'Easy' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-0">
 											Random Easy
 										</a>
-								
+
 										<a href="#" @click="randomEncounter.set('Medium')" :class="{ 'bg-emerald-500 text-white': randomEncounter.type == 'Medium', 'text-gray-700 dark:text-gray-300 hover:bg-gray-50': randomEncounter.type !== 'Medium' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-1">
 											Random Medium
 										</a>
-								
+
 										<a href="#" @click="randomEncounter.set('Hard')" :class="{ 'bg-emerald-500 text-white': randomEncounter.type == 'Hard', 'text-gray-700 dark:text-gray-300 hover:bg-gray-50': randomEncounter.type !== 'Hard' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
 											Random Hard
 										</a>
-								
+
 										<a href="#" @click="randomEncounter.set('Deadly')" :class="{ 'bg-emerald-500 text-white': randomEncounter.type == 'Deadly', 'text-gray-700 dark:text-gray-300 hover:bg-gray-50': randomEncounter.type !== 'Deadly' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
 											Random Deadly
 										</a>
@@ -232,7 +232,7 @@
 					</div>
 
 				</div>
-		
+
 			</div>
 
 			<div class="flex-auto w-8/12 px-4 min-h-full">
@@ -240,10 +240,10 @@
 				<div class="flex">
 
 					<div class="grow">
-						
+
 						<input type="text" placeholder="Search...">
 
-						 
+
 						<!-- Multi Select -->
 						<div x-data="multiSelect($refs.sizes, [
 							{value: 'any', label: 'Any Size' },
@@ -422,13 +422,13 @@
 								<th class="border border-gray-300 dark:border-gray-700 p-2">Type</th>
 								<th class="border border-gray-300 dark:border-gray-700 p-2">Alignment</th>
 								<th class="border border-gray-300 dark:border-gray-700 p-2">Source</th>
-								
+
 							</tr>
 
 						</thead>
 
 						<tbody class="border-t-2 border-gray-400 dark:border-gray-700">
-							
+
 							<template x-for="monster in monsters">
 
 								<tr class="even:bg-gray-200 dark:even:bg-gray-800">
@@ -454,7 +454,7 @@
 					</table>
 
 				</div>
-		
+
 			</div>
 
 		</div>
