@@ -108,11 +108,11 @@
 						<template x-for="(group, index) in party.groups">
 							<div class="flex mb-2">
 								<div class="w-16">
-									<input type="number" min="1" x-model="group.players" class="shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block w-full sm:text-sm border-gray-300 rounded-md" value="4">
+									<input type="number" min="1" x-model="group.players" class="shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block w-full sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 rounded-md" value="4">
 								</div>
 
 								<div class="w-16 mx-4">
-									<input type="number" min="1" x-model="group.level" class="shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block w-full sm:text-sm border-gray-300 rounded-md" value="4">
+									<input type="number" min="1" x-model="group.level" class="shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block w-full sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 rounded-md" value="4">
 								</div>
 
 								<button @click="party.remove_group(index)" x-show="index > 0" type="button" class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none">
@@ -141,11 +141,11 @@
 
 						<div class="self-center" @click.away="difficultySelectOpen = false">
 							<span class="relative z-0 inline-flex shadow-sm rounded-md">
-								<button x-text="'Random ' + (encounter.difficulty.slice(0,1).toUpperCase() + encounter.difficulty.slice(1))" @click="encounter.generateRandom" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
+								<button x-text="'Random ' + (encounter.difficulty.slice(0,1).toUpperCase() + encounter.difficulty.slice(1))" @click="encounter.generateRandom" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
 									Random Medium
 								</button>
 								<span class="-ml-px relative block">
-									<button @click="difficultySelectOpen = !difficultySelectOpen" type="button" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
+									<button @click="difficultySelectOpen = !difficultySelectOpen" type="button" class="relative inline-flex items-center px-2 py-2 rounded-r-md border disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
 										<span class="sr-only">Open options</span>
 										<!-- Heroicon name: solid/chevron-down -->
 										<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
