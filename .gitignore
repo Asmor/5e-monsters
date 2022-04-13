@@ -8,4 +8,4 @@ npm-debug.log*
 temp
 *.npmrc
 .idea/*
-docs/*
+/docs/**/*
