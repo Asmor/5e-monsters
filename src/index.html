@@ -280,9 +280,9 @@
 										 x-transition:leave-start="transform opacity-100 scale-100"
 										 x-transition:leave-end="transform opacity-0 scale-95"
 									>
-										<div class="p-1 space-y-2" role="none">
+										<div class="p-2 space-y-2" role="none">
 											<!-- Multi Select -->
-											<div x-data="multiSelect($refs.sizes, 'size', [
+											<div @mousedown.stop x-data="multiSelect($refs.sizes, 'size', [
 												{value: 'any', label: 'Any Size' },
 												{value: 'tiny', label: 'Tiny' },
 												{value: 'small', label: 'Small' },
