@@ -1,3 +1,6 @@
+import * as lib from "./lib.js";
+import CONST from "./constants.js";
+
 const encounter = {
 
     difficulty: "medium",
@@ -12,10 +15,10 @@ const encounter = {
     getMultiplier(numMonsters){
 
         let multiplierCategory;
-        const multipliers = [0, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5];
+        const multipliers = [0.5, 1, 1.5, 2, 2.5, 3, 4, 5];
 
-        if ( numMonsters < 3 ) {
-            multiplierCategory = numMonsters;
+        if ( numMonsters <= 3 ) {
+            multiplierCategory = Math.max(1, numMonsters);
         } else if ( numMonsters < 7 ) {
             multiplierCategory = 3;
         } else if ( numMonsters < 11 ) {
@@ -32,7 +35,7 @@ const encounter = {
             multiplierCategory--;
         }
 
-        return multipliers[Math.max(0, multiplierCategory)];
+        return multipliers[multiplierCategory];
 
     },
 
@@ -99,19 +102,86 @@ const encounter = {
     },
 
     generateRandom(){
-        const totalPlayers = this.app.party.totalPlayers;
-        const totalExperienceTarget = this.party.experience[this.difficulty];
+        const totalExperienceTarget = this.app.party.experience[this.difficulty];
 
         let fudgeFactor = 1.1; // The algorithm is conservative in spending exp; so this tries to get it closer to the actual medium value
         let baseExpBudget = totalExperienceTarget * fudgeFactor;
         let encounterTemplate = this.getEncounterTemplate();
-        let multiplier = this.getMultiplier(totalPlayers, encounterTemplate.total);
-        let availableExp = baseExpBudget / multiplier;
-        let monster;
-        let monsterGroups = [];
-        let currentGroup;
-        let targetExp;
+        let multiplier = this.getMultiplier(encounterTemplate.total) / encounterTemplate.multiplier;
+        let totalAvailableXP = baseExpBudget / multiplier;
+
+        for(const group of encounterTemplate.groups){
+
+            let targetExp = (totalAvailableXP * group.ratio) / group.count;
+
+            const monster = this.getBestMonster(targetExp)
+
+        }
+        this.app.$ref
+
     },
+
+    getEncounterTemplate(){
+
+        const templates = {
+            "boss": {
+                groups: [
+                    { count: 1 }
+                ]
+            },
+            "boss_minions": {
+                groups: [
+                    { count: 1, ratio: 0.8 },
+                    { count: lib.random_int_between(4, 8), ratio: 0.2 }
+                ],
+                multiplier: 3
+            }
+            /*"duo": [],
+            "trio": [],
+            "pack": [],
+            "horde": [],
+            "random": []*/
+        }
+
+        const template = lib.clone(templates['boss_minions']);
+
+        template.total = template.groups.reduce((acc, group) => acc + group.count, 0);
+
+        template.overallRatio = template.groups.reduce((acc, group) => acc + (group.ratio || 1), 0);
+
+        template.groups.forEach(group => {
+            group.ratio = (group.ratio || 1) / template.overallRatio;
+        });
+
+        template.multiplier = template.multiplier || 1;
+
+        return template;
+
+    },
+
+    filterMonsters(crString){
+        return lib.shuffle_array(this.app.allMonsters.filter(monster => {
+            return monster.cr.toString() === crString;
+        }));
+    },
+
+    getBestMonster(targetExp){
+
+        let monsterCr;
+        for ( let i = 0; i < CONST.CR.LIST.length; i++ ) {
+            const lowerBound = CONST.CR[CONST.CR.LIST[i]];
+            const upperBound = CONST.CR[CONST.CR.LIST[i+1]];
+            if (upperBound.exp > targetExp) {
+                monsterCr = (targetExp - lowerBound.exp) < (upperBound.exp - targetExp) ? lowerBound : upperBound;
+                break;
+            }
+        }
+
+        const monsterList = this.filterMonsters(monsterCr.string, true);
+
+        console.log(monsterList)
+
+    }
 
 }
 

@@ -33,8 +33,12 @@ function app() {
         init(){
             this.fetch_monsters();
             this.party.groups = localStorage.getItem("party") ? JSON.parse(localStorage.getItem("party")) : [{ players: 4, level: 1 }];
+            this.encounter.difficulty = localStorage.getItem("difficulty") || "medium";
             this.$watch("party.groups", () => {
                 localStorage.setItem("party", JSON.stringify(this.party.groups));
+            });
+            this.$watch("encounter.difficulty", () => {
+                localStorage.setItem("difficulty", this.encounter.difficulty);
             });
             this.encounter.app = this;
             this.party.app = this;
@@ -65,6 +69,10 @@ function app() {
             const start = !this.page ? 0 : (this.page*10)+1;
             const end = (this.page+1)*10;
             return this.allMonsters.slice(start, end);
+        },
+
+        get filters(){
+            console.log(this.$refs.sizes.value);
         },
 
         formatNumber(num){
@@ -121,6 +129,7 @@ function multiSelect($el, options) {
 
                 $el.addEventListener('change', () => {
                     this.value = choices.getValue(true)
+                    console.log(this.value)
                 })
 
                 this.$watch('value', () => refreshChoices())

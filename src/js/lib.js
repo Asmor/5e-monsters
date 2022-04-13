@@ -1,3 +1,7 @@
+export function clone(inObj){
+    return JSON.parse(JSON.stringify(inObj));
+}
+
 /**
  *  Returns a floating point number between a minimum and maximum value
  *
@@ -7,8 +11,8 @@
  */
 export function random_float_between(min, max) {
     const random = Math.random();
-    const _max = Math.max(max, min);
-    const _min = Math.min(max, min);
+    const _max = Math.max(Number(max), Number(min));
+    const _min = Math.min(Number(max), Number(min));
     return random * (_max - _min) + _min;
 }
 
@@ -30,7 +34,7 @@ export function random_int_between(min, max) {
  * @return {array}
  */
 export function shuffle_array(inArray) {
-    let shuffled = JSON.parse(JSON.stringify(inArray));
+    let shuffled = clone(inArray);
     for (let i = shuffled.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         let temp = shuffled[i];
