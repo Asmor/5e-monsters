@@ -46,13 +46,6 @@ function app() {
             this.encounter.app = this;
             this.party.app = this;
 
-            this.$watch('minCr', (value) => {
-                console.log(value);
-            });
-            this.$watch('maxCr', (value) => {
-                console.log(value);
-            })
-
             console.log(this.$refs.monster);
         },
 
@@ -101,9 +94,11 @@ function multiSlider($el, options, updateCallback) {
 
     return {
         slider: {},
+        originals: [],
         init() {
+            this.originals = [0, totalSteps];
             this.slider = noUiSlider.create($el, {
-                start: [5, totalSteps - 4],
+                start: [8, totalSteps - 8],
                 connect: true,
                 range: {
                     'min': 0,
@@ -113,6 +108,12 @@ function multiSlider($el, options, updateCallback) {
             });
 
             this.slider.on('update', (values) => {updateCallback(options[parseInt(values[0])], options[parseInt(values[1])])});
+        },
+        reset() {
+            this.slider.set(this.originals);
+        },
+        set($event) {
+            this.slider.set($event.detail);
         }
     }
 }

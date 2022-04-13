@@ -58,9 +58,5 @@ body .choices__input { @apply focus:ring-0 border-none; }
     @apply bg-emerald-400 dark:bg-emerald-600;
 }
 .noUi-handle {
-    @apply shadow-none dark:bg-gray-700 dark:border-gray-600 after:content-none before:content-none rounded-full p-0 !w-8 !h-8;
-}
-
-.noUi-touch-area {
-    @apply w-8 h-8;
+    @apply shadow-none dark:bg-gray-700 dark:border-gray-600 after:content-none before:content-none rounded-md p-0;
 }

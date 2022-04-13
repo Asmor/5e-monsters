@@ -62,12 +62,6 @@ function app() {
       });
       this.encounter.app = this;
       this.party.app = this;
-      this.$watch('minCr', function (value) {
-        console.log(value);
-      });
-      this.$watch('maxCr', function (value) {
-        console.log(value);
-      });
       console.log(this.$refs.monster);
     },
     fetch_monsters: function fetch_monsters() {
@@ -116,9 +110,11 @@ function multiSlider($el, options, updateCallback) {
   var totalSteps = options.length - 1;
   return {
     slider: {},
+    originals: [],
     init: function init() {
+      this.originals = [0, totalSteps];
       this.slider = nouislider__WEBPACK_IMPORTED_MODULE_2___default().create($el, {
-        start: [5, totalSteps - 4],
+        start: [8, totalSteps - 8],
         connect: true,
         range: {
           'min': 0,
@@ -129,6 +125,12 @@ function multiSlider($el, options, updateCallback) {
       this.slider.on('update', function (values) {
         updateCallback(options[parseInt(values[0])], options[parseInt(values[1])]);
       });
+    },
+    reset: function reset() {
+      this.slider.set(this.originals);
+    },
+    set: function set($event) {
+      this.slider.set($event.detail);
     }
   };
 }
