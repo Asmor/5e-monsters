@@ -80,7 +80,7 @@ function multiSlider($el, options, updateCallback) {
         slider: {},
         init() {
             this.slider = noUiSlider.create($el, {
-                start: [0, totalSteps],
+                start: [5, totalSteps - 4],
                 connect: true,
                 range: {
                     'min': 0,

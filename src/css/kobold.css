@@ -11,7 +11,7 @@
     }
 }
 
-
+/* Choices.js Overrides */
 body .choices { @apply leading-6 border-gray-300 dark:border-gray-700 rounded-none; }
 body .choices.is-open { @apply ring-4 border-emerald-600 dark:border-emerald-800 ring-opacity-30 ring-emerald-600; }
 body .is-open .choices__inner { @apply border-gray-300 dark:border-gray-700 rounded-none; }
@@ -34,7 +34,7 @@ body .choices .choices__inner {
     py-1
     mb-0
     text-base
-    border-gray-300 dark:border-gray-700
+    border-gray-300 dark:border-gray-600
     focus:outline-none
     sm:text-sm
     rounded-md;
@@ -49,3 +49,14 @@ body .choices__placeholder { @apply opacity-100; }
 body .choices__list { @apply border-gray-300 dark:border-gray-700; }
 body .is-open .choices__list--multiple { @apply border-gray-300 dark:border-gray-700 shadow-lg; }
 body .choices__input { @apply focus:ring-0 border-none; }
+
+/* noUiSlider overrides */
+.noUi-target {
+    @apply border-gray-700 shadow-none;
+}
+.noUi-connect {
+    @apply bg-emerald-600;
+}
+.noUi-handle {
+    @apply shadow-none bg-gray-700 border-gray-600;
+}

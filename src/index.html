@@ -305,7 +305,7 @@
 												<select x-ref="creature_type" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 											</div>
 
-											<div class="px-4 py-1">
+											<div class="px-4 pt-1 pb-2 bg-white border border-gray-300 dark:bg-gray-800 dark:border-gray-600 rounded-md">
 												<div class="my-4 mx-2" x-data="multiSlider($el, [
 													{ value: '0', label: '0' },
 													{ value: '1/8', label: '1/8' },
@@ -349,9 +349,9 @@
 												<div class="grid place-items-center">
 													<div x-show="minCr.value == 0 && maxCr.value == 30">Any CR</div>
 													<div x-show="(minCr.value != 0 || maxCr.value != 30) && (minCr.value !== maxCr.value)">
-														CR Between: <span class="pl-1" x-text="minCr.label"></span> and <span x-text="maxCr.label"></span>
+														CR between <span x-text="minCr.label"></span> and <span x-text="maxCr.label"></span>
 													</div>
-													<div x-show="minCr.value == maxCr.value">CR is exactly <span class="pl-1" x-text="minCr.label"></span></div>
+													<div x-show="minCr.value == maxCr.value">CR is exactly <span x-text="minCr.label"></span></div>
 												</div>
 											</div>
 

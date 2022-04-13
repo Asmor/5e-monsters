@@ -95,7 +95,7 @@ function multiSlider($el, options, updateCallback) {
     slider: {},
     init: function init() {
       this.slider = nouislider__WEBPACK_IMPORTED_MODULE_2___default().create($el, {
-        start: [0, totalSteps],
+        start: [5, totalSteps - 4],
         connect: true,
         range: {
           'min': 0,
