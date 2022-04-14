@@ -371,22 +371,54 @@
 												<select x-ref="creature_type" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 											</div>
 
-											<div x-data="multiSelect($refs.alignment, 'alignment', [
-												{ value: 'any', label: 'Any Alignment' },
-												{ value: 'chaotic', label: 'chaotic' },
-												{ value: 'evil', label: 'evil' },
-												{ value: 'good', label: 'good' },
-												{ value: 'lawful', label: 'lawful' },
-												{ value: 'neutral', label: 'neutral' },
-												{ value: 'non-chaotic', label: 'non-chaotic' },
-												{ value: 'non-evil', label: 'non-evil' },
-												{ value: 'non-good', label: 'non-good' },
-												{ value: 'non-lawful', label: 'non-lawful' },
-												{ value: 'non-neural', label: 'non-neural' },
-												{ value: 'unaligned', label: 'unaligned' },
-											])">
-												<select x-ref="alignment" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
+											<div class="grid grid-cols-6 grid-rows-[24px_repeat(4, 1fr)] divide divide-gray-200 dark:divide-gray-700 gap-2 rounded-md border border-gray-200 dark:border-gray-600 overflow-hidden" x-data="{
+												lawful_good: 1,
+												neutral_good: 2,
+												chaotic_good: 4,
+												lawful_neutral: 8,
+												neutral: 16,
+												chaotic_neutral: 32,
+												lawful_evil: 64,
+												neutral_evil: 128,
+												chaotic_evil: 256,
+												total: 1023,
+												init() {
+													this.$watch('total', (total) => { console.log(total) })
+												}
+											}">
+												<div :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & (lawful_good | lawful_neutral | lawful_evil), 'bg-gray-100 dark:bg-gray-800': !(total & (lawful_good | lawful_neutral | lawful_evil)) }" class="col-span-2 cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800 rounded-t-md h-6 text-center"><i class="fa fa-times"></i></div>
+												<div @click="total = total ^ (neutral_good | neutral | neutral_evil)" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & (neutral_good | neutral | neutral_evil), 'bg-gray-100 dark:bg-gray-800': !(total & (neutral_good | neutral | neutral_evil)) }" class="col-span-2 cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800 rounded-t-md h-6 text-center"><i class="fa fa-times"></i></div>
+												<div @click="total = total ^ (chaotic_good | chaotic_neutral | chaotic_evil)" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & (chaotic_good | chaotic_neutral | chaotic_evil), 'bg-gray-100 dark:bg-gray-800': !(total & (chaotic_good | chaotic_neutral | chaotic_evil)) }" class="col-span-2 cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800 rounded-t-md h-6 text-center"><i class="fa fa-times"></i></div>
+												<div @click="total = total ^ lawful_good" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & lawful_good, 'bg-gray-100 dark:bg-gray-800': !(total & lawful_good) }" class="cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800" title="Lawful Good">LG</div>
+												<div @click="total = total ^ neutral_good" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & neutral_good, 'bg-gray-100 dark:bg-gray-800': !(total & neutral_good) }" class="cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800" title="Neutral Good">NG</div>
+												<div @click="total = total ^ chaotic_good" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & chaotic_good, 'bg-gray-100 dark:bg-gray-800': !(total & chaotic_good) }" class="cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800" title="Chaotic Good">CG</div>
+												<div @click="total = total ^ lawful_neutral" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & lawful_neutral, 'bg-gray-100 dark:bg-gray-800': !(total & lawful_neutral) }" class="cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800" title="Lawful Neutral">LN</div>
+												<div @click="total = total ^ neutral" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & neutral, 'bg-gray-100 dark:bg-gray-800': !(total & neutral) }" class="cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800" title="Neutral">N</div>
+												<div @click="total = total ^ chaotic_neutral" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & chaotic_neutral, 'bg-gray-100 dark:bg-gray-800': !(total & chaotic_neutral) }" class="cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800" title="Chaotic Neutral">CN</div>
+												<div @click="total = total ^ lawful_evil" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & lawful_evil, 'bg-gray-100 dark:bg-gray-800': !(total & lawful_evil) }" class="cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800" title="Lawful Evil">LE</div>
+												<div @click="total = total ^ neutral_evil" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & neutral_evil, 'bg-gray-100 dark:bg-gray-800': !(total & neutral_evil) }" class="cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800" title="Neutral Evil">NE</div>
+												<div @click="total = total ^ chaotic_evil" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & chaotic_evil, 'bg-gray-100 dark:bg-gray-800': !(total & chaotic_evil) }" class="cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800" title="Chaotic Evil">CE</div>
+
+												<div @click="total = (total === 1023) ? 0 : 1023" :class="{ 'bg-emerald-400 dark:bg-emerald-800': (total & 1023) === 1023, 'bg-gray-100 dark:bg-gray-800': (total & 1023) !== 1023 }" class="cursor-pointer grid place-items-center col-span-3 h-16 bg-gray-100 dark:bg-gray-800">Any</div>
+												<div @click="total = total ^ 512" :class="{ 'bg-emerald-400 dark:bg-emerald-800': (total & 512) === 512, 'bg-gray-100 dark:bg-gray-800': (total & 512) !== 512 }" class="cursor-pointer grid place-items-center col-span-3 h-16 bg-gray-100 dark:bg-gray-800">Unaligned</div>
 											</div>
+
+<!--											<div x-data="multiSelect($refs.alignment, 'alignment', [-->
+<!--												{ value: 'any', label: 'Any Alignment' },-->
+<!--												{ value: 'chaotic', label: 'chaotic' },-->
+<!--												{ value: 'evil', label: 'evil' },-->
+<!--												{ value: 'good', label: 'good' },-->
+<!--												{ value: 'lawful', label: 'lawful' },-->
+<!--												{ value: 'neutral', label: 'neutral' },-->
+<!--												{ value: 'non-chaotic', label: 'non-chaotic' },-->
+<!--												{ value: 'non-evil', label: 'non-evil' },-->
+<!--												{ value: 'non-good', label: 'non-good' },-->
+<!--												{ value: 'non-lawful', label: 'non-lawful' },-->
+<!--												{ value: 'non-neural', label: 'non-neural' },-->
+<!--												{ value: 'unaligned', label: 'unaligned' },-->
+<!--											])">-->
+<!--												<select x-ref="alignment" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>-->
+<!--											</div>-->
 
 											<div x-data="multiSelect($refs.environment, 'environment', [
 												{ value: 'any', label: 'Any Environment' },
