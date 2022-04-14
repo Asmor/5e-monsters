@@ -67,34 +67,19 @@ export default class Monster {
     }
 
     get environments() {
-        return this.data.environments;
+        return this.data.environment;
     }
 
-    static parseAlignment(str) {
-        let bits = (str || "")
-            .split(/\s*(,|or|,\s*or)\s*/i)
-            .reduce(function (total, current) {
-                return total | Monster.parseSingleAlignmentFlags(current);
-            }, 0);
-
-        if (!bits) {
-            bits = CONST.ALIGNMENTS.UNALIGNED.bits;
-        }
-
-        return { string: str, bits: bits };
-    }
-
-    static parseSingleAlignmentFlags(alignment) {
-        let flags;
-
-        alignmentTestOrder.some(function (alignmentDefinition) {
-            if ( alignment.match(alignmentDefinition.regex) ) {
-                flags = alignmentDefinition.bits;
-                return true;
-            }
-        });
-
-        return flags;
+    static parseAlignment(str = "") {
+        return {
+            string: str,
+            bits: str.split(/\s*(,|or|,\s*or)\s*/i)
+                .reduce((total, alignment) => {
+                    return total | (CONST.ALIGNMENT_TEST_ORDER.find(function (alignmentDefinition) {
+                        return alignment.match(alignmentDefinition.regex);
+                    })?.bits ?? CONST.ALIGNMENTS.UNALIGNED.bits);
+                }, 0)
+        };
     }
 
     filter(filters, crString = false) {
@@ -127,6 +112,10 @@ export default class Monster {
             }
         }
 
+        if (filters.alignment !== undefined && !(filters.alignment.bits & this.alignment.bits)){
+            return false;
+        }
+
         if (filters.sources?.length) {
             let found = false;
             for (let source of this.sources) {
@@ -144,7 +133,7 @@ export default class Monster {
 
         if (filters.legendary?.length && !filters.legendary?.includes("any")) {
             for (let legendary of filters.legendary) {
-                let legendaryMonsterKey = legendaryMap[filters.legendary];
+                let legendaryMonsterKey = CONST.LEGENDARY_MAP[filters.legendary];
 
                 if (legendaryMonsterKey) {
                     if (!this[legendaryMonsterKey]) return false;
@@ -158,15 +147,10 @@ export default class Monster {
             if (!filters.type.includes(this.type.toLowerCase())) return false;
         }
 
-        if (filters.alignment?.length && !filters.alignment?.includes("any")) {
-            for(let alignment of filters.alignment){
-
+        if (filters.environment?.length && !filters.environment?.includes("any")) {
+            if(!filters.environment.find(environment => this.environments.indexOf(environment) > -1)) {
+                return false;
             }
-            if (!filters.alignment.includes(this.alignment.toLowerCase())) return false;
-        }
-
-        if (filters.environment?.length && this.environments.indexOf(filters.environment) === -1) {
-            return false;
         }
 
         if (!crString && filters?.cr) {
@@ -183,32 +167,3 @@ export default class Monster {
     }
 
 }
-
-const legendaryMap = {
-    'Legendary': 'legendary',
-    'Legendary (in lair)': 'lair',
-    'Ordinary': false
-};
-
-const alignmentTestOrder = [
-    CONST.ALIGNMENTS.ANY_CHAOTIC,
-    CONST.ALIGNMENTS.ANY_EVIL,
-    CONST.ALIGNMENTS.ANY_GOOD,
-    CONST.ALIGNMENTS.ANY_LAWFUL,
-    CONST.ALIGNMENTS.ANY_NEUTRAL,
-    CONST.ALIGNMENTS.NON_CHAOTIC,
-    CONST.ALIGNMENTS.NON_EVIL,
-    CONST.ALIGNMENTS.NON_GOOD,
-    CONST.ALIGNMENTS.NON_LAWFUL,
-    CONST.ALIGNMENTS.UNALIGNED,
-    CONST.ALIGNMENTS.LAWFUL_GOOD,
-    CONST.ALIGNMENTS.NEUTRAL_GOOD,
-    CONST.ALIGNMENTS.CHAOTIC_GOOD,
-    CONST.ALIGNMENTS.LAWFUL_NEUTRAL,
-    CONST.ALIGNMENTS.CHAOTIC_NEUTRAL,
-    CONST.ALIGNMENTS.LAWFUL_EVIL,
-    CONST.ALIGNMENTS.NEUTRAL_EVIL,
-    CONST.ALIGNMENTS.CHAOTIC_EVIL,
-    CONST.ALIGNMENTS.NEUTRAL,
-    CONST.ALIGNMENTS.ANY
-]

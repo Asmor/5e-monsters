@@ -257,7 +257,7 @@
 										</svg>
 									</div>
 
-									<input type="search" name="search" id="search" @change="$dispatch('filters-changed', { name: 'search', value: $event.target.value })" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600" :placeholder="searchPlaceholder">
+									<input type="search" name="search" id="search" @input.debounce="$dispatch('filters-changed', { name: 'search', value: $event.target.value })" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600" :placeholder="searchPlaceholder">
 								</div>
 								<div class="relative inline-block text-left" x-data="{ filtersMenu: true }">
 									<div>
