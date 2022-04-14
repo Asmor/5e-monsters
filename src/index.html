@@ -384,11 +384,23 @@
 												total: 1023,
 												init() {
 													this.$watch('total', (total) => { console.log(total) })
+												},
+												toggle(value) {
+													const anyLawful = (this.total & value) > 0;
+
+													if(anyLawful) {
+														this.total = (this.total | value) ^ value;
+													} else {
+														this.total = this.total | value;
+													}
+
+                                                    console.log(anyLawful);
+                                                    console.log(this.total, (this.total >>> 0).toString(2));
 												}
 											}">
-												<div :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & (lawful_good | lawful_neutral | lawful_evil), 'bg-gray-100 dark:bg-gray-800': !(total & (lawful_good | lawful_neutral | lawful_evil)) }" class="col-span-2 cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800 rounded-t-md h-6 text-center"><i class="fa fa-times"></i></div>
-												<div @click="total = total ^ (neutral_good | neutral | neutral_evil)" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & (neutral_good | neutral | neutral_evil), 'bg-gray-100 dark:bg-gray-800': !(total & (neutral_good | neutral | neutral_evil)) }" class="col-span-2 cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800 rounded-t-md h-6 text-center"><i class="fa fa-times"></i></div>
-												<div @click="total = total ^ (chaotic_good | chaotic_neutral | chaotic_evil)" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & (chaotic_good | chaotic_neutral | chaotic_evil), 'bg-gray-100 dark:bg-gray-800': !(total & (chaotic_good | chaotic_neutral | chaotic_evil)) }" class="col-span-2 cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800 rounded-t-md h-6 text-center"><i class="fa fa-times"></i></div>
+												<div @click="toggle((lawful_good | lawful_neutral | lawful_evil))" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & (lawful_good | lawful_neutral | lawful_evil), 'bg-gray-100 dark:bg-gray-800': !(total & (lawful_good | lawful_neutral | lawful_evil)) }" class="col-span-2 cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800 rounded-t-md h-6 text-center"><i class="fa fa-times"></i></div>
+												<div @click="toggle((neutral_good | neutral | neutral_evil))" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & (neutral_good | neutral | neutral_evil), 'bg-gray-100 dark:bg-gray-800': !(total & (neutral_good | neutral | neutral_evil)) }" class="col-span-2 cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800 rounded-t-md h-6 text-center"><i class="fa fa-times"></i></div>
+												<div @click="toggle((chaotic_good | chaotic_neutral | chaotic_evil))" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & (chaotic_good | chaotic_neutral | chaotic_evil), 'bg-gray-100 dark:bg-gray-800': !(total & (chaotic_good | chaotic_neutral | chaotic_evil)) }" class="col-span-2 cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800 rounded-t-md h-6 text-center"><i class="fa fa-times"></i></div>
 												<div @click="total = total ^ lawful_good" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & lawful_good, 'bg-gray-100 dark:bg-gray-800': !(total & lawful_good) }" class="cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800" title="Lawful Good">LG</div>
 												<div @click="total = total ^ neutral_good" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & neutral_good, 'bg-gray-100 dark:bg-gray-800': !(total & neutral_good) }" class="cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800" title="Neutral Good">NG</div>
 												<div @click="total = total ^ chaotic_good" :class="{ 'bg-emerald-400 dark:bg-emerald-800': total & chaotic_good, 'bg-gray-100 dark:bg-gray-800': !(total & chaotic_good) }" class="cursor-pointer grid place-items-center col-span-2 h-16 bg-gray-100 dark:bg-gray-800" title="Chaotic Good">CG</div>
