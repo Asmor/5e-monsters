@@ -67,3 +67,7 @@ body .choices__input { @apply focus:ring-0 border-none; }
 .noUi-handle {
     @apply shadow-none dark:bg-gray-700 dark:border-gray-600 after:content-none before:content-none rounded-md p-0;
 }
+
+.primary-link {
+    @apply text-emerald-700 dark:text-emerald-500 dark:hover:text-emerald-600 hover:text-emerald-600;
+}
