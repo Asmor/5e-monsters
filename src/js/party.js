@@ -3,7 +3,6 @@ import CONST from "./constants.js";
 const party = {
 
     groups: [],
-    _experience: false,
 
     add_group() {
         this.groups.push({
@@ -18,19 +17,16 @@ const party = {
     },
 
     get experience(){
-        if(!this._experience) {
-            this._experience = this.groups.reduce((acc, group) => {
-                const groupExp = CONST.EXP[group.level];
-                return {
-                    easy: acc.easy + (groupExp.easy * group.players),
-                    medium: acc.medium + (groupExp.medium * group.players),
-                    hard: acc.hard + (groupExp.hard * group.players),
-                    deadly: acc.deadly + (groupExp.deadly * group.players),
-                    daily: acc.daily + (groupExp.daily * group.players)
-                }
-            }, { easy: 0, medium: 0, hard: 0, deadly: 0, daily: 0 });
-        }
-        return this._experience;
+        return this.groups.reduce((acc, group) => {
+            const groupExp = CONST.EXP[group.level];
+            return {
+                easy: acc.easy + (groupExp.easy * group.players),
+                medium: acc.medium + (groupExp.medium * group.players),
+                hard: acc.hard + (groupExp.hard * group.players),
+                deadly: acc.deadly + (groupExp.deadly * group.players),
+                daily: acc.daily + (groupExp.daily * group.players)
+            }
+        }, { easy: 0, medium: 0, hard: 0, deadly: 0, daily: 0 });
     },
 
     get totalPlayers(){

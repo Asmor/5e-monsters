@@ -178,6 +178,4 @@ Object.keys(CONST.ALIGNMENTS).forEach(function(key) {
     CONST.ALIGNMENTS[key].regex = new RegExp(CONST.ALIGNMENTS[key].string.replace(/[- ]/, "[- ]?"), "i");
 });
 
-console.log(CONST.ALIGNMENTS)
-
 export default CONST;

@@ -4,10 +4,10 @@ import CONST from "./constants.js";
 const encounter = {
 
     difficulty: "medium",
-    monsters: [],
+    groups: [],
 
     get totalExp(){
-        return this.monsters.reduce((acc, group) => {
+        return this.groups.reduce((acc, group) => {
             return acc + group.monster.cr.exp;
         }, 0);
     },
@@ -41,7 +41,7 @@ const encounter = {
 
     get adjustedExp(){
 
-        const multiplier = this.getMultiplier(this.monsters.length);
+        const multiplier = this.getMultiplier(this.groups.length);
 
         return Math.floor(this.totalExp * multiplier);
 
@@ -123,7 +123,7 @@ const encounter = {
             })
         }
 
-        this.monsters = encounter;
+        this.groups = encounter;
 
     },
 
@@ -178,7 +178,7 @@ const encounter = {
         }
 
         let monsterTargetCR = CONST.CR[CONST.CR.LIST[monsterCRIndex]];
-        let monsterList = this.app.filterMonsters(monsterTargetCR.string, true);
+        let monsterList = this.app.filterMonsters(monsterTargetCR.string);
 
         let monsterCRNewIndex = monsterCRIndex;
         let down = true;
@@ -198,12 +198,20 @@ const encounter = {
             }
 
             let monsterTargetCR = CONST.CR[CONST.CR.LIST[monsterCRNewIndex]];
-            monsterList = this.app.filterMonsters(monsterTargetCR.string, true);
+            monsterList = this.app.filterMonsters(monsterTargetCR.string);
 
         }
 
         return lib.random_array_element(monsterList);
 
+    },
+
+    getNewMonster(group) {
+        const monsterList = this.app.allMonsters.filter(monster => {
+            return !this.groups.some(group => group.monster === monster) && monster.filter(this.app.filters, group.monster.cr.string);
+        });
+        if(!monsterList.length) return;
+        group.monster = lib.random_array_element(monsterList);
     }
 
 }

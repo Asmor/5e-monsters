@@ -193,7 +193,7 @@
 					</div>
 
 					<div class="flex-row mt-2">
-						<template x-for="(group, index) in encounter.monsters">
+						<template x-for="(group, index) in encounter.groups">
 							<div class="flex flex-row w-full mb-8">
 								<div class="grow pb-2 min-w-0">
 									<span class="text-3xl font-light" x-text="group.monster.name"></span>
@@ -210,7 +210,7 @@
 									</div>
 								</div>
 								<div class="">
-									<button type="button" class="dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 dark:text-gray-300 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
+									<button type="button" @click="encounter.getNewMonster(group)" class="dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 dark:text-gray-300 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
 										<i class="fas fa-random"></i>
 									</button>
 									<input type="number" min="1" class="inline align-middle w-24 shadow-sm focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm border-gray-300 rounded-md dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300" x-model="group.count"/>

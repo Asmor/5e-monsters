@@ -3,7 +3,6 @@ import party from "./party.js";
 import noUiSlider from "nouislider";
 import * as lib from "./lib.js";
 import CONST from "./constants.js";
-import { isValidHttpUrl } from "./lib.js";
 import Monster from "./monster.js";
 
 const internationalNumberFormat = new Intl.NumberFormat('en-US')
@@ -48,7 +47,11 @@ function app() {
         },
 
         loadSettings(){
-            this.party.groups = localStorage.getItem("party") ? JSON.parse(localStorage.getItem("party")) : [{ players: 4, level: 1 }];
+            this.party.groups = localStorage.getItem("party") ? JSON.parse(localStorage.getItem("party")).map(party => {
+                party.players = Number(party.players);
+                party.level = Number(party.level);
+                return party;
+            }) : [{ players: 4, level: 1 }];
             this.encounter.difficulty = localStorage.getItem("difficulty") || "medium";
             this.filters = localStorage.getItem("filters") ? JSON.parse(localStorage.getItem("filters")) : {};
         },
@@ -97,8 +100,6 @@ function app() {
             this.searchPlaceholder = lib.random_array_element(this.allMonsters).name;
             this.filteredMonsters = this.filterMonsters();
             this.isLoading = false;
-
-            console.log(this.allMonsters)
         },
 
         formatSources(data){
