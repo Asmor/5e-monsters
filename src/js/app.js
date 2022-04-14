@@ -276,7 +276,7 @@ function multiSelect($el, name, options) {
             this.$nextTick(() => {
                 let choices = new Choices($el, {
                     allowHTML: true,
-                    removeItemButton: true,
+                    removeItemButton: true
                 })
 
                 let refreshChoices = () => {
@@ -293,6 +293,7 @@ function multiSelect($el, name, options) {
                 refreshChoices()
 
                 $el.addEventListener('change', () => {
+                    console.log('here');
                     this.value = choices.getValue(true);
                     window.dispatchEvent(new CustomEvent('filters-changed', { detail: {
                         name: this.name,

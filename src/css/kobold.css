@@ -53,7 +53,7 @@ body .choices__list--multiple .choices__item:hover { @apply bg-emerald-600; }
 body .choices__list--single { @apply py-0; }
 body .choices__item { @apply text-gray-700 dark:text-gray-300; }
 body .choices__placeholder { @apply opacity-100; }
-body .choices__list--dropdown { @apply border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 z-10; }
+body .choices__list--dropdown, body .choices__list[aria-expanded] { @apply border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 z-50; }
 body .is-open .choices__list--multiple { @apply border-gray-300 dark:border-gray-700 shadow-lg; }
 body .choices__input { @apply focus:ring-0 border-none; }
 

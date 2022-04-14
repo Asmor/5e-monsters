@@ -281,39 +281,6 @@
 										 x-transition:leave-end="transform opacity-0 scale-95"
 									>
 										<div class="p-2 space-y-2" role="none">
-											<!-- Multi Select -->
-											<div @mousedown.stop x-data="multiSelect($refs.sizes, 'size', [
-												{value: 'any', label: 'Any Size' },
-												{value: 'tiny', label: 'Tiny' },
-												{value: 'small', label: 'Small' },
-												{value: 'medium', label: 'Medium' },
-												{value: 'large', label: 'Large' },
-												{value: 'huge', label: 'Huge' },
-												{value: 'gargantuan', label: 'Gargantuan' }
-											])">
-												<select x-ref="sizes" :multiple="multiple" class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
-											</div>
-
-											<div x-data="multiSelect($refs.creature_type, 'type', [
-												{ value: 'any', label: 'Any Type' },
-												{ value: 'aberration', label: 'Aberration' },
-												{ value: 'beast', label: 'Beast' },
-												{ value: 'celestial', label: 'Celestial' },
-												{ value: 'construct', label: 'Construct' },
-												{ value: 'dragon', label: 'Dragon' },
-												{ value: 'elemental', label: 'Elemental' },
-												{ value: 'fey', label: 'Fey' },
-												{ value: 'fiend', label: 'Fiend' },
-												{ value: 'giant', label: 'Giant' },
-												{ value: 'humanoid', label: 'Humanoid' },
-												{ value: 'monstrosity', label: 'Monstrosity' },
-												{ value: 'ooze', label: 'Ooze' },
-												{ value: 'plant', label: 'Plant' },
-												{ value: 'undead', label: 'Undead' },
-											])">
-												<select x-ref="creature_type" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
-											</div>
-
 											<div class="relative px-4 pt-1 pb-2 bg-white border border-gray-300 dark:bg-gray-800 dark:border-gray-600 rounded-md">
 												<div x-ref="cr_slider" class="my-4 mx-2" x-data="multiSlider($el, [
 													{ value: '0', label: '0' },
@@ -369,6 +336,40 @@
 												<span @click="$dispatch('reset-cr-slider')" x-show="!(minCr.value == 0 && maxCr.value == 30)" class="absolute bottom-1 right-6 cursor-pointer">
 													<i class="fa fa-undo h-6 w-6 text-gray-800 dark:text-gray-300"></i>
 												</span>
+											</div>
+
+
+											<!-- Multi Select -->
+											<div @mousedown.stop x-data="multiSelect($refs.sizes, 'size', [
+												{value: 'any', label: 'Any Size' },
+												{value: 'tiny', label: 'Tiny' },
+												{value: 'small', label: 'Small' },
+												{value: 'medium', label: 'Medium' },
+												{value: 'large', label: 'Large' },
+												{value: 'huge', label: 'Huge' },
+												{value: 'gargantuan', label: 'Gargantuan' }
+											])">
+												<select x-ref="sizes" :multiple="multiple" class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
+											</div>
+
+											<div x-data="multiSelect($refs.creature_type, 'type', [
+												{ value: 'any', label: 'Any Type' },
+												{ value: 'aberration', label: 'Aberration' },
+												{ value: 'beast', label: 'Beast' },
+												{ value: 'celestial', label: 'Celestial' },
+												{ value: 'construct', label: 'Construct' },
+												{ value: 'dragon', label: 'Dragon' },
+												{ value: 'elemental', label: 'Elemental' },
+												{ value: 'fey', label: 'Fey' },
+												{ value: 'fiend', label: 'Fiend' },
+												{ value: 'giant', label: 'Giant' },
+												{ value: 'humanoid', label: 'Humanoid' },
+												{ value: 'monstrosity', label: 'Monstrosity' },
+												{ value: 'ooze', label: 'Ooze' },
+												{ value: 'plant', label: 'Plant' },
+												{ value: 'undead', label: 'Undead' },
+											])">
+												<select x-ref="creature_type" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 											</div>
 
 											<div x-data="multiSelect($refs.alignment, 'alignment', [
