@@ -446,26 +446,9 @@
 												<div @click="toggle(chaotic_evil)" :class="classes(chaotic_evil)" class="col-span-4 h-16" title="Chaotic Evil">CE</div>
 
 												<div @click="toggle((lawful_evil | neutral | chaotic_good))" :class="classes(lawful_evil | neutral | chaotic_good)" class="col-span-2 rounded-bl-md"></div>
-												<div @click="total = (total === 1023) ? 0 : 1023" :class="{ 'bg-emerald-600 dark:bg-emerald-800': (total & 1023) === 1023, 'bg-gray-100 dark:bg-gray-700': (total & 1023) !== 1023 }" class="text-gray-900 dark:text-white col-span-6 cursor-pointer grid place-items-center col-span-3 h-8 bg-gray-100 dark:bg-gray-700">Any</div>
-												<div @click="total = total ^ 512" :class="{ 'bg-emerald-600 dark:bg-emerald-800': (total & 512) === 512, 'bg-gray-100 dark:bg-gray-700': (total & 512) !== 512 }" class="text-gray-900 dark:text-white rounded-br-md col-span-6 cursor-pointer grid place-items-center col-span-3 h-8 bg-gray-100 dark:bg-gray-700">Unaligned</div>
+												<div @click="total = (total === 1023) ? 0 : 1023" :class="{ 'bg-emerald-600 dark:bg-emerald-800': (total & 1023) === 1023, 'bg-gray-100 dark:bg-gray-700': (total & 1023) !== 1023 }" class="select-none text-gray-900 dark:text-white col-span-6 cursor-pointer grid place-items-center col-span-3 h-8 bg-gray-100 dark:bg-gray-700">Any</div>
+												<div @click="total = total ^ 512" :class="{ 'bg-emerald-600 dark:bg-emerald-800': (total & 512) === 512, 'bg-gray-100 dark:bg-gray-700': (total & 512) !== 512 }" class="select-none text-gray-900 dark:text-white rounded-br-md col-span-6 cursor-pointer grid place-items-center col-span-3 h-8 bg-gray-100 dark:bg-gray-700">Unaligned</div>
 											</div>
-
-<!--											<div @mousedown.stop x-data="multiSelect($refs.alignment, 'alignment', [-->
-<!--												{ value: 'any', label: 'Any Alignment' },-->
-<!--												{ value: 'chaotic', label: 'chaotic' },-->
-<!--												{ value: 'evil', label: 'evil' },-->
-<!--												{ value: 'good', label: 'good' },-->
-<!--												{ value: 'lawful', label: 'lawful' },-->
-<!--												{ value: 'neutral', label: 'neutral' },-->
-<!--												{ value: 'non-chaotic', label: 'non-chaotic' },-->
-<!--												{ value: 'non-evil', label: 'non-evil' },-->
-<!--												{ value: 'non-good', label: 'non-good' },-->
-<!--												{ value: 'non-lawful', label: 'non-lawful' },-->
-<!--												{ value: 'non-neural', label: 'non-neural' },-->
-<!--												{ value: 'unaligned', label: 'unaligned' },-->
-<!--											])">-->
-<!--												<select x-ref="alignment" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>-->
-<!--											</div>-->
 
 											<div @mousedown.stop x-data="multiSelect($refs.environment, 'environment', [
 												{ value: 'any', label: 'Any Environment' },
