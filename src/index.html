@@ -351,7 +351,7 @@
 												<select x-ref="sizes" :multiple="multiple" class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 											</div>
 
-											<div x-data="multiSelect($refs.creature_type, 'type', [
+											<div @mousedown.stop x-data="multiSelect($refs.creature_type, 'type', [
 												{ value: 'any', label: 'Any Type' },
 												{ value: 'aberration', label: 'Aberration' },
 												{ value: 'beast', label: 'Beast' },
@@ -403,7 +403,7 @@
 												<div @click="total = total ^ 512" :class="{ 'bg-emerald-400 dark:bg-emerald-800': (total & 512) === 512, 'bg-gray-100 dark:bg-gray-800': (total & 512) !== 512 }" class="cursor-pointer grid place-items-center col-span-3 h-16 bg-gray-100 dark:bg-gray-800">Unaligned</div>
 											</div>
 
-<!--											<div x-data="multiSelect($refs.alignment, 'alignment', [-->
+<!--											<div @mousedown.stop x-data="multiSelect($refs.alignment, 'alignment', [-->
 <!--												{ value: 'any', label: 'Any Alignment' },-->
 <!--												{ value: 'chaotic', label: 'chaotic' },-->
 <!--												{ value: 'evil', label: 'evil' },-->
@@ -420,7 +420,7 @@
 <!--												<select x-ref="alignment" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>-->
 <!--											</div>-->
 
-											<div x-data="multiSelect($refs.environment, 'environment', [
+											<div @mousedown.stop x-data="multiSelect($refs.environment, 'environment', [
 												{ value: 'any', label: 'Any Environment' },
 												{ value: 'aquatic', label: 'Aquatic' },
 												{ value: 'arctic', label: 'Arctic' },
@@ -440,7 +440,7 @@
 												<select x-ref="environment" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 											</div>
 
-											<div x-data="multiSelect($refs.legendary, 'legendary', [
+											<div @mousedown.stop x-data="multiSelect($refs.legendary, 'legendary', [
 												{ value: 'any', label: 'Any Legendary'},
 												{ value: 'ordinary', label: 'Ordinary'},
 												{ value: 'legendary', label: 'Legendary'},
