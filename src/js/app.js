@@ -116,8 +116,10 @@ function app() {
             }));
         },
 
-        filterMonsters(crString = false){
-            return this.allMonsters.filter(monster => monster.filter(this.filters, crString));
+        filterMonsters(crString = false, filterCallback = () => { return true; }){
+            return this.allMonsters.filter(monster => {
+                return filterCallback(monster) && monster.filter(this.filters, crString)
+            });
         },
 
         get monsters(){
