@@ -8,12 +8,10 @@ const party = {
         this.groups.push({
             ...this.groups[this.groups.length-1]
         });
-        this._experience = false;
     },
 
     remove_group(index){
         this.groups.splice(index, 1);
-        this._experience = false;
     },
 
     get experience(){
