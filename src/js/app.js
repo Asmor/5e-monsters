@@ -4,6 +4,7 @@ import noUiSlider from "nouislider";
 import * as lib from "./lib.js";
 import CONST from "./constants.js";
 import { isValidHttpUrl } from "./lib.js";
+import Monster from "./monster.js";
 
 const internationalNumberFormat = new Intl.NumberFormat('en-US')
 
@@ -23,7 +24,7 @@ function app() {
         allMonsters: [],
         filteredMonsters: [],
 
-        sources: [],
+        sources: {},
 
         searchPlaceholder: "",
 
@@ -96,111 +97,26 @@ function app() {
             this.searchPlaceholder = lib.random_array_element(this.allMonsters).name;
             this.filteredMonsters = this.filterMonsters();
             this.isLoading = false;
+
+            console.log(this.allMonsters)
         },
 
         formatSources(data){
-            this.sources = this.sources.concat(data);
-            this.sources.sort((a, b) => a.name > b.name ? 1 : -1);
+            this.sources = data.reduce((acc, source) => {
+                acc[source.name] = source;
+                return acc;
+            }, this.sources);
+            //this.sources.sort((a, b) => a.name > b.name ? 1 : -1);
         },
 
         formatMonsters(data){
-
-            this.allMonsters = this.allMonsters.concat(data.map(monster => {
-                monster.cr = CONST.CR[monster.cr];
-                monster.sources = monster.sources.split(', ').map(str => {
-                    const [ book, location ] = str.split(": ");
-                    const source = { book }
-                    if(!isNaN(location)){
-                        source.page = location;
-
-                        const bookFound = this.sources.find(src => {
-                            return src.name === book;
-                        });
-                        if(bookFound.link){
-                            source.link = bookFound.link;
-                        }
-                        
-                    }else if(lib.isValidHttpUrl(location)){
-                        source.link = location;
-                    }
-
-                    source.fullText = source.book + (source.page ? ' p.' + source.page : '');
-                    return source;
-                });
-                return monster;
+            this.allMonsters = this.allMonsters.concat(data.map(data => {
+                return new Monster(this, data);
             }));
-
         },
 
         filterMonsters(crString = false){
-
-            const hasFilters = Object.entries(this.filters).length > 0;
-            const filters = this.filters;
-
-            const legendaryMap = {
-                'Legendary': 'legendary',
-                'Legendary (in lair)': 'lair',
-                'Ordinary': false
-            };
-
-            return this.allMonsters.filter(monster => {
-
-                if (crString && monster.cr.string !== crString) return false;
-
-                if (hasFilters) {
-
-                    if (filters.sources?.length){
-                        let found = false;
-                        for (let source of monster.sources){
-                            if(filters.sources.includes(source.book)){
-                                found = true;
-                                break;
-                            }
-                        }
-                        if(!found) return false;
-                    }
-
-                    if (filters.size?.length && !filters.size?.includes("any")) {
-                        if (!filters.size.includes(monster.size.toLowerCase())) return false;
-                    }
-
-                    if (filters.legendary?.length && !filters.legendary?.includes("any")) {
-                        for (let legendary of filters.legendary) {
-                            let legendaryMonsterKey = legendaryMap[filters.legendary];
-
-                            if (legendaryMonsterKey) {
-                                if (!monster[legendaryMonsterKey]) return false;
-                            } else {
-                                if (monster.legendary || monster.lair) return false;
-                            }
-                        }
-                    }
-
-                    if (filters.type?.length && !filters.type?.includes("any")) {
-                        if (!filters.type.includes(monster.type.toLowerCase())) return false;
-                    }
-
-                    if (filters.alignment?.length && !filters.alignment?.includes("any")) {
-                        if (!filters.alignment.includes(monster.alignment.toLowerCase())) return false;
-                    }
-
-                    if (filters.environment?.length && monster.environments.indexOf(filters.environment) === -1) {
-                        return false;
-                    }
-
-                    if (!crString && filters?.cr) {
-                        if (filters.cr?.min !== 0 && monster.cr.numeric < filters.cr.min) {
-                            return false;
-                        }
-                        if (filters.cr?.max !== 30 && monster.cr.numeric > filters.cr.max) {
-                            return false;
-                        }
-                    }
-                }
-
-                return true;
-
-            });
+            return this.allMonsters.filter(monster => monster.filter(this.filters, crString));
         },
 
         get monsters(){
@@ -211,14 +127,8 @@ function app() {
         },
 
         filtersChanged($event){
-            const { name, value } = $event.detail;
-            this.filters[name] = Object.values(value);
-            this.filteredMonsters = this.filterMonsters();
-        },
-
-        crChanged($event){
-            const { name, value } = $event.detail;
-            this.filters[name] = value;
+            const { name, value, asArray } = $event.detail;
+            this.filters[name] = asArray ? Object.values(value) : value;
             this.filteredMonsters = this.filterMonsters();
         },
 
@@ -248,7 +158,7 @@ function multiSlider($el, options, updateCallback) {
 
             this.slider.on('update', (values) => updateCallback(options[parseInt(values[0])], options[parseInt(values[1])]));
             this.slider.on('change', (values) => {
-                window.dispatchEvent(new CustomEvent('cr-changed', { detail: {
+                window.dispatchEvent(new CustomEvent('filters-changed', { detail: {
                     name: "cr",
                     value: {
                         min: CONST.CR[options[parseInt(values[0])].value].numeric,
@@ -297,6 +207,7 @@ function multiSelect($el, name, options) {
                     this.value = choices.getValue(true);
                     window.dispatchEvent(new CustomEvent('filters-changed', { detail: {
                         name: this.name,
+                        asArray: true,
                         value: this.value
                     }}))
                 })

@@ -46,7 +46,6 @@
 		class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-300"
 		x-data="window.app()"
 		@filters-changed.window="filtersChanged"
-		@cr-changed.window="crChanged"
 	>
 
 		<div @click="window.toggleTheme()" class="absolute bottom-2 left-2 h-12 w-12 cursor-pointer text-gray-500 grid place-items-center bg-gray-100 border rounded border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:text-gray-300"><i class="fa fa-moon text-gray-800 dark:text-gray-300"></i></div>
@@ -258,7 +257,7 @@
 										</svg>
 									</div>
 
-									<input type="search" name="search" id="search" @change="$dispatch('filters-changed', { name: 'name', value: $event.input.value })" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600" :placeholder="searchPlaceholder">
+									<input type="search" name="search" id="search" @change="$dispatch('filters-changed', { name: 'search', value: $event.target.value })" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600" :placeholder="searchPlaceholder">
 								</div>
 								<div class="relative inline-block text-left" x-data="{ filtersMenu: true }">
 									<div>
@@ -452,7 +451,7 @@
 									<td class="align-top p-2 border border-gray-300 dark:border-gray-700" x-text="monster.cr.string"></td>
 									<td class="align-top p-2 border border-gray-300 dark:border-gray-700" x-text="monster.size"></td>
 									<td class="align-top p-2 border border-gray-300 dark:border-gray-700" x-text="monster.type"></td>
-									<td class="align-top p-2 border border-gray-300 dark:border-gray-700" x-text="monster.alignment"></td>
+									<td class="align-top p-2 border border-gray-300 dark:border-gray-700" x-text="monster.alignment.string"></td>
 									<td class="align-top p-2 border border-gray-300 dark:border-gray-700">
 										<ul class="list-none">
 											<template x-for="source in monster.sources">

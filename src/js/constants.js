@@ -59,7 +59,120 @@ const CONST = {
         "28":	{ string: "28",		numeric: 28,	exp: 120000	},
         "29":	{ string: "29",		numeric: 29,	exp: 135000	},
         "30":	{ string: "30",		numeric: 30,	exp: 155000	},
+    },
+
+    ALIGNMENTS: {
+        ANY: { string: "any" },
+        ANY_LAWFUL: { string: "any lawful" },
+        ANY_CHAOTIC: { string: "any chaotic" },
+        ANY_EVIL: { string: "any evil" },
+        ANY_GOOD: { string: "any good" },
+        ANY_NEUTRAL: { string: "any neutral" },
+        NON_LAWFUL: { string: "non lawful" },
+        NON_CHAOTIC: { string: "non chaotic" },
+        NON_GOOD: { string: "non good" },
+        NON_EVIL: { string: "non evil" },
+        NON_NEUTRAL: { string: "non neutral" },
+
+        LAWFUL_GOOD: { string: "lawful good" },
+        NEUTRAL_GOOD: { string: "neutral good" },
+        CHAOTIC_GOOD: { string: "chaotic good" },
+        LAWFUL_NEUTRAL: { string: "lawful neutral" },
+        NEUTRAL: { string: "neutral" },
+        CHAOTIC_NEUTRAL: { string: "chaotic neutral" },
+        LAWFUL_EVIL: { string: "lawful evil" },
+        NEUTRAL_EVIL: { string: "neutral evil" },
+        CHAOTIC_EVIL: { string: "chaotic evil" },
+        UNALIGNED: { string: "unaligned" },
     }
 }
+
+let i = 0
+CONST.ALIGNMENTS.LAWFUL_GOOD.bitwise = Math.pow(2, i++);
+CONST.ALIGNMENTS.NEUTRAL_GOOD.bitwise = Math.pow(2, i++);
+CONST.ALIGNMENTS.CHAOTIC_GOOD.bitwise = Math.pow(2, i++);
+CONST.ALIGNMENTS.LAWFUL_NEUTRAL.bitwise = Math.pow(2, i++);
+CONST.ALIGNMENTS.NEUTRAL.bitwise = Math.pow(2, i++);
+CONST.ALIGNMENTS.CHAOTIC_NEUTRAL.bitwise = Math.pow(2, i++);
+CONST.ALIGNMENTS.LAWFUL_EVIL.bitwise = Math.pow(2, i++);
+CONST.ALIGNMENTS.NEUTRAL_EVIL.bitwise = Math.pow(2, i++);
+CONST.ALIGNMENTS.CHAOTIC_EVIL.bitwise = Math.pow(2, i++);
+CONST.ALIGNMENTS.UNALIGNED.bitwise = Math.pow(2, i++);
+
+CONST.ALIGNMENTS.ANY.bitwise =
+      CONST.ALIGNMENTS.LAWFUL_GOOD.bitwise
+    | CONST.ALIGNMENTS.NEUTRAL_GOOD.bitwise
+    | CONST.ALIGNMENTS.CHAOTIC_GOOD.bitwise
+    | CONST.ALIGNMENTS.LAWFUL_NEUTRAL.bitwise
+    | CONST.ALIGNMENTS.NEUTRAL.bitwise
+    | CONST.ALIGNMENTS.CHAOTIC_NEUTRAL.bitwise
+    | CONST.ALIGNMENTS.LAWFUL_EVIL.bitwise
+    | CONST.ALIGNMENTS.NEUTRAL_EVIL.bitwise
+    | CONST.ALIGNMENTS.CHAOTIC_EVIL.bitwise;
+
+CONST.ALIGNMENTS.ANY_LAWFUL.bitwise =
+      CONST.ALIGNMENTS.LAWFUL_GOOD.bitwise
+    | CONST.ALIGNMENTS.LAWFUL_NEUTRAL.bitwise
+    | CONST.ALIGNMENTS.LAWFUL_EVIL.bitwise
+
+CONST.ALIGNMENTS.ANY_CHAOTIC.bitwise =
+      CONST.ALIGNMENTS.CHAOTIC_GOOD.bitwise
+    | CONST.ALIGNMENTS.CHAOTIC_NEUTRAL.bitwise
+    | CONST.ALIGNMENTS.CHAOTIC_EVIL.bitwise;
+
+CONST.ALIGNMENTS.ANY_EVIL.bitwise =
+      CONST.ALIGNMENTS.LAWFUL_EVIL.bitwise
+    | CONST.ALIGNMENTS.NEUTRAL_EVIL.bitwise
+    | CONST.ALIGNMENTS.CHAOTIC_EVIL.bitwise;
+
+CONST.ALIGNMENTS.ANY_GOOD.bitwise =
+      CONST.ALIGNMENTS.LAWFUL_GOOD.bitwise
+    | CONST.ALIGNMENTS.NEUTRAL_GOOD.bitwise
+    | CONST.ALIGNMENTS.CHAOTIC_GOOD.bitwise;
+
+CONST.ALIGNMENTS.ANY_NEUTRAL.bitwise =
+      CONST.ALIGNMENTS.NEUTRAL_GOOD.bitwise
+    | CONST.ALIGNMENTS.LAWFUL_NEUTRAL.bitwise
+    | CONST.ALIGNMENTS.NEUTRAL.bitwise
+    | CONST.ALIGNMENTS.CHAOTIC_NEUTRAL.bitwise
+    | CONST.ALIGNMENTS.NEUTRAL_EVIL.bitwise;
+
+CONST.ALIGNMENTS.NON_LAWFUL.bitwise =
+      CONST.ALIGNMENTS.NEUTRAL_GOOD.bitwise
+    | CONST.ALIGNMENTS.CHAOTIC_GOOD.bitwise
+    | CONST.ALIGNMENTS.NEUTRAL.bitwise
+    | CONST.ALIGNMENTS.CHAOTIC_NEUTRAL.bitwise
+    | CONST.ALIGNMENTS.NEUTRAL_EVIL.bitwise
+    | CONST.ALIGNMENTS.CHAOTIC_EVIL.bitwise;
+
+CONST.ALIGNMENTS.NON_CHAOTIC.bitwise =
+      CONST.ALIGNMENTS.LAWFUL_GOOD.bitwise
+    | CONST.ALIGNMENTS.NEUTRAL_GOOD.bitwise
+    | CONST.ALIGNMENTS.LAWFUL_NEUTRAL.bitwise
+    | CONST.ALIGNMENTS.NEUTRAL.bitwise
+    | CONST.ALIGNMENTS.LAWFUL_EVIL.bitwise
+    | CONST.ALIGNMENTS.NEUTRAL_EVIL.bitwise
+
+CONST.ALIGNMENTS.NON_GOOD.bitwise =
+      CONST.ALIGNMENTS.LAWFUL_NEUTRAL.bitwise
+    | CONST.ALIGNMENTS.NEUTRAL.bitwise
+    | CONST.ALIGNMENTS.CHAOTIC_NEUTRAL.bitwise
+    | CONST.ALIGNMENTS.LAWFUL_EVIL.bitwise
+    | CONST.ALIGNMENTS.NEUTRAL_EVIL.bitwise
+    | CONST.ALIGNMENTS.CHAOTIC_EVIL.bitwise;
+
+CONST.ALIGNMENTS.NON_EVIL.bitwise =
+      CONST.ALIGNMENTS.LAWFUL_GOOD.bitwise
+    | CONST.ALIGNMENTS.NEUTRAL_GOOD.bitwise
+    | CONST.ALIGNMENTS.CHAOTIC_GOOD.bitwise
+    | CONST.ALIGNMENTS.LAWFUL_NEUTRAL.bitwise
+    | CONST.ALIGNMENTS.NEUTRAL.bitwise
+    | CONST.ALIGNMENTS.CHAOTIC_NEUTRAL.bitwise;
+
+CONST.ALIGNMENTS.NON_NEUTRAL.bitwise =
+      CONST.ALIGNMENTS.LAWFUL_GOOD.bitwise
+    | CONST.ALIGNMENTS.CHAOTIC_GOOD.bitwise
+    | CONST.ALIGNMENTS.LAWFUL_EVIL.bitwise
+    | CONST.ALIGNMENTS.CHAOTIC_EVIL.bitwise;
 
 export default CONST;

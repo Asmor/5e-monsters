@@ -3,112 +3,96 @@
     "type": "Official Web Supplement",
     "name": "Basic Rules v1",
     "shortname": "Basic",
-    "link": "",
-    "defaultselected": ""
+    "link": "https://media.wizards.com/2014/downloads/dnd/DMDnDBasicRules_v0.1.pdf"
   },
   {
     "type": "Official Adventure",
     "name": "Curse of Strahd",
     "shortname": "CoS",
-    "link": "",
-    "defaultselected": ""
+    "link": "https://www.dndbeyond.com/sources/cos/appendix-d-monsters-and-npcs"
   },
   {
     "type": "Official Adventure",
     "name": "Hoard of the Dragon Queen",
     "shortname": "HotDQ",
-    "link": "",
-    "defaultselected": ""
+    "link": "https://www.dndbeyond.com/sources/hotdq/appendix-d-monsters"
   },
   {
     "type": "Official Web Supplement",
     "name": "HotDQ supplement",
     "shortname": "HotDQ Sup",
-    "link": "",
-    "defaultselected": ""
+    "link": "https://media.wizards.com/2014/downloads/dnd/HoardDragonQueen_Supplement1.pdf"
   },
   {
     "type": "Official",
     "name": "Monster Manual",
     "shortname": "MM",
-    "link": "",
-    "defaultselected": "yes"
+    "link": "https://www.dndbeyond.com/sources/mm"
   },
   {
     "type": "Official",
     "name": "Mordenkainen's Tome of Foes",
     "shortname": "MToF",
-    "link": "",
-    "defaultselected": ""
+    "link": "https://www.dndbeyond.com/sources/mtof"
   },
   {
     "type": "Official Adventure",
     "name": "Out of the Abyss",
     "shortname": "OotA",
-    "link": "",
-    "defaultselected": ""
+    "link": "https://www.dndbeyond.com/sources/oota"
   },
   {
     "type": "Official",
     "name": "Player's Handbook",
     "shortname": "PHB",
-    "link": "",
-    "defaultselected": "yes"
+    "link": "https://www.dndbeyond.com/sources/phb"
   },
   {
     "type": "Official Adventure",
     "name": "Princes of the Apocalypse",
     "shortname": "PotA",
-    "link": "",
-    "defaultselected": ""
+    "link": "https://www.dndbeyond.com/sources/pota"
   },
   {
     "type": "Official Web Supplement",
     "name": "Princes of the Apocalypse Online Supplement v1.0",
     "shortname": "PotA Supp",
-    "link": "",
-    "defaultselected": ""
+    "link": "https://media.wizards.com/2015/downloads/dnd/PrincesApocalypse_AdvSupplementv1.0_PrinterFriendly.pdf"
   },
   {
     "type": "Official Adventure",
     "name": "Rise of Tiamat",
     "shortname": "RoT",
-    "link": "",
-    "defaultselected": ""
+    "link": "https://www.dndbeyond.com/sources/rot"
   },
   {
     "type": "Official Adventure",
     "name": "Storm King's Thunder",
     "shortname": "SKT",
-    "link": "",
-    "defaultselected": ""
+    "link": "https://www.dndbeyond.com/sources/skt"
   },
   {
     "type": "Official Adventure",
     "name": "Tales from the Yawning Portal",
     "shortname": "TftYP",
-    "link": "",
-    "defaultselected": ""
+    "link": "https://www.dndbeyond.com/sources/tftyp"
   },
   {
     "type": "Official Web Supplement",
     "name": "The Tortle Package",
     "shortname": "Tortle",
-    "link": "http://www.dmsguild.com/product/221716/Tortle-Package-5e",
-    "defaultselected": ""
+    "link": "https://www.dndbeyond.com/sources/ttp/the-tortle-package#NewMonsters"
   },
   {
     "type": "Official Adventure",
     "name": "Tomb of Annihilation",
     "shortname": "ToA",
-    "link": "",
-    "defaultselected": ""
+    "link": "https://www.dndbeyond.com/sources/toa"
   },
   {
     "type": "Official",
     "name": "Volo's Guide to Monsters",
     "shortname": "VGtM",
-    "link": "",
-    "defaultselected": ""
+    "link": "https://www.dndbeyond.com/sources/vgtm"
   }
 ]
