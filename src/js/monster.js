@@ -71,15 +71,30 @@ export default class Monster {
     }
 
     static parseAlignment(str) {
-        let flags = (str || "")
+        let bits = (str || "")
             .split(/\s*(,|or|,\s*or)\s*/i)
-            .filter(str => str !== "or")
+            .reduce(function (total, current) {
+                return total | Monster.parseSingleAlignmentFlags(current);
+            }, 0);
 
-        if (!flags) {
-            flags = [CONST.ALIGNMENTS.UNALIGNED];
+        if (!bits) {
+            bits = CONST.ALIGNMENTS.UNALIGNED.bits;
         }
 
-        return { string: str, flags: flags };
+        return { string: str, bits: bits };
+    }
+
+    static parseSingleAlignmentFlags(alignment) {
+        let flags;
+
+        alignmentTestOrder.some(function (alignmentDefinition) {
+            if ( alignment.match(alignmentDefinition.regex) ) {
+                flags = alignmentDefinition.bits;
+                return true;
+            }
+        });
+
+        return flags;
     }
 
     filter(filters, crString = false) {

@@ -7,8 +7,8 @@ const encounter = {
     monsters: [],
 
     get totalExp(){
-        return this.monsters.reduce((acc, monster) => {
-            return acc + monster.cr.exp;
+        return this.monsters.reduce((acc, group) => {
+            return acc + group.monster.cr.exp;
         }, 0);
     },
 
@@ -118,12 +118,10 @@ const encounter = {
                 return false;
             }
             encounter.push({
-                ...monster,
+                monster,
                 count: group.count
             })
         }
-
-        console.log(encounter.map(group => `${group.count} ${group.name}`).join(", and "))
 
         this.monsters = encounter;
 
@@ -204,7 +202,7 @@ const encounter = {
 
         }
 
-        return lib.clone(lib.shuffle_array(monsterList)[0]);
+        return lib.random_array_element(monsterList);
 
     }
 
