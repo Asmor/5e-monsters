@@ -199,6 +199,8 @@ function multiSelect($el, $persist, name, options) {
 
                 this.$watch('value', () => refreshChoices())
                 this.$watch('options', () => refreshChoices())
+
+                this.onFiltersChanged();
             })
         },
         onFiltersChanged() {

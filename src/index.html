@@ -266,7 +266,7 @@
 												<path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
 											</svg>
 											<span>Filter</span>
-											<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">3</span>
+<!--											<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-300 text-gray-800" x-show="nonDefaultFiltersCount" x-text="nonDefaultFiltersCount"></span>-->
 										</button>
 									</div>
 
@@ -527,6 +527,52 @@
 							</template>
 						</tbody>
 					</table>
+				</div>
+			</div>
+		</div>
+
+		<!-- This example requires Tailwind CSS v2.0+ -->
+		<div class="hidden fixed inset-0 z-50 overflow-hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+			<div class="absolute inset-0 overflow-hidden">
+				<!-- Background overlay, show/hide based on slide-over state. -->
+				<div class="absolute inset-0" aria-hidden="true"></div>
+
+				<div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+					<!--
+                      Slide-over panel, show/hide based on slide-over state.
+
+                      x-transition:entering: "transform transition ease-in-out duration-500 sm:duration-700"
+                        x-transition:enteringfrom: "translate-x-full"
+                        x-transition:to: "translate-x-0"
+                      x-transition:leaving: "transform transition ease-in-out duration-500 sm:duration-700"
+                        x-transition:from: "translate-x-0"
+                        x-transition:to: "translate-x-full"
+                    -->
+					<div class="pointer-events-auto w-screen max-w-md">
+						<div class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+							<div class="px-4 sm:px-6">
+								<div class="flex items-start justify-between">
+									<h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Panel title</h2>
+									<div class="ml-3 flex h-7 items-center">
+										<button type="button" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+											<span class="sr-only">Close panel</span>
+											<!-- Heroicon name: outline/x -->
+											<svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+											</svg>
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="relative mt-6 flex-1 px-4 sm:px-6">
+								<!-- Replace with your content -->
+								<div class="absolute inset-0 px-4 sm:px-6">
+									<div class="h-full border-2 border-dashed border-gray-200" aria-hidden="true"></div>
+								</div>
+								<!-- /End replace -->
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
