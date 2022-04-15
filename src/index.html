@@ -338,39 +338,6 @@
 											</div>
 
 
-											<!-- Multi Select -->
-											<div @mousedown.stop x-data="multiSelect($refs.sizes, 'size', [
-												{value: 'any', label: 'Any Size' },
-												{value: 'tiny', label: 'Tiny' },
-												{value: 'small', label: 'Small' },
-												{value: 'medium', label: 'Medium' },
-												{value: 'large', label: 'Large' },
-												{value: 'huge', label: 'Huge' },
-												{value: 'gargantuan', label: 'Gargantuan' }
-											])">
-												<select x-ref="sizes" :multiple="multiple" class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
-											</div>
-
-											<div @mousedown.stop x-data="multiSelect($refs.creature_type, 'type', [
-												{ value: 'any', label: 'Any Type' },
-												{ value: 'aberration', label: 'Aberration' },
-												{ value: 'beast', label: 'Beast' },
-												{ value: 'celestial', label: 'Celestial' },
-												{ value: 'construct', label: 'Construct' },
-												{ value: 'dragon', label: 'Dragon' },
-												{ value: 'elemental', label: 'Elemental' },
-												{ value: 'fey', label: 'Fey' },
-												{ value: 'fiend', label: 'Fiend' },
-												{ value: 'giant', label: 'Giant' },
-												{ value: 'humanoid', label: 'Humanoid' },
-												{ value: 'monstrosity', label: 'Monstrosity' },
-												{ value: 'ooze', label: 'Ooze' },
-												{ value: 'plant', label: 'Plant' },
-												{ value: 'undead', label: 'Undead' },
-											])">
-												<select x-ref="creature_type" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
-											</div>
-
 											<div class="grid grid-cols-[12px_12px_repeat(12,_minmax(0,_1fr))] divide divide-gray-200 dark:divide-gray-700 gap-2 rounded-md bg-gray-800 border border-gray-200 dark:border-gray-600 overflow-hidden p-2" x-data="{
 												lawful_good: 1,
 												neutral_good: 2,
@@ -448,6 +415,40 @@
 												<div @click="toggle((lawful_evil | neutral | chaotic_good))" :class="classes(lawful_evil | neutral | chaotic_good)" class="col-span-2 rounded-bl-md"></div>
 												<div @click="total = (total === 1023) ? 0 : 1023" :class="{ 'bg-emerald-600 dark:bg-emerald-800': (total & 1023) === 1023, 'bg-gray-100 dark:bg-gray-700': (total & 1023) !== 1023 }" class="select-none text-gray-900 dark:text-white col-span-6 cursor-pointer grid place-items-center col-span-3 h-8 bg-gray-100 dark:bg-gray-700">Any</div>
 												<div @click="total = total ^ 512" :class="{ 'bg-emerald-600 dark:bg-emerald-800': (total & 512) === 512, 'bg-gray-100 dark:bg-gray-700': (total & 512) !== 512 }" class="select-none text-gray-900 dark:text-white rounded-br-md col-span-6 cursor-pointer grid place-items-center col-span-3 h-8 bg-gray-100 dark:bg-gray-700">Unaligned</div>
+											</div>
+
+
+											<!-- Multi Select -->
+											<div @mousedown.stop x-data="multiSelect($refs.sizes, 'size', [
+												{value: 'any', label: 'Any Size' },
+												{value: 'tiny', label: 'Tiny' },
+												{value: 'small', label: 'Small' },
+												{value: 'medium', label: 'Medium' },
+												{value: 'large', label: 'Large' },
+												{value: 'huge', label: 'Huge' },
+												{value: 'gargantuan', label: 'Gargantuan' }
+											])">
+												<select x-ref="sizes" :multiple="multiple" class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
+											</div>
+
+											<div @mousedown.stop x-data="multiSelect($refs.creature_type, 'type', [
+												{ value: 'any', label: 'Any Type' },
+												{ value: 'aberration', label: 'Aberration' },
+												{ value: 'beast', label: 'Beast' },
+												{ value: 'celestial', label: 'Celestial' },
+												{ value: 'construct', label: 'Construct' },
+												{ value: 'dragon', label: 'Dragon' },
+												{ value: 'elemental', label: 'Elemental' },
+												{ value: 'fey', label: 'Fey' },
+												{ value: 'fiend', label: 'Fiend' },
+												{ value: 'giant', label: 'Giant' },
+												{ value: 'humanoid', label: 'Humanoid' },
+												{ value: 'monstrosity', label: 'Monstrosity' },
+												{ value: 'ooze', label: 'Ooze' },
+												{ value: 'plant', label: 'Plant' },
+												{ value: 'undead', label: 'Undead' },
+											])">
+												<select x-ref="creature_type" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 											</div>
 
 											<div @mousedown.stop x-data="multiSelect($refs.environment, 'environment', [
