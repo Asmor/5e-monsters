@@ -3,63 +3,62 @@ import CONST from "./constants.js";
 
 const encounter = {
 
-    difficulty: "medium",
-    groups: [],
+    difficulty: "medium", groups: [],
 
-    get totalExp(){
+    get totalExp() {
         return this.groups.reduce((acc, group) => {
             return acc + (group.monster.cr.exp * group.count);
         }, 0);
     },
 
-    get totalMonsters(){
+    get totalMonsters() {
         return this.groups.reduce((acc, group) => acc + group.count, 0);
     },
 
-    get adjustedExp(){
+    get adjustedExp() {
         const multiplier = this.getMultiplier(this.totalMonsters);
         return Math.floor(this.totalExp * multiplier);
     },
 
-    get actualDifficulty(){
+    get actualDifficulty() {
 
         let exp = this.adjustedExp;
         let levels = this.app.party.experience;
 
-        if ( exp < ( levels.easy ) ) {
+        if (exp < (levels.easy)) {
             return 'None';
-        } else if ( exp < ( levels.medium ) ) {
+        } else if (exp < (levels.medium)) {
             return "Easy";
-        } else if ( exp < ( levels.hard ) ) {
+        } else if (exp < (levels.hard)) {
             return "Medium";
-        } else if ( exp < ( levels.deadly ) ) {
+        } else if (exp < (levels.deadly)) {
             return "Hard";
         }
 
         return "Deadly";
     },
 
-    get threat(){
+    get threat() {
 
         const totalPlayers = this.app.party.totalPlayers;
         const experience = this.app.party.experience;
-        let mediumExp = experience.medium;
-        let singleMultiplier  = 1;
-        let pairMultiplier    = 1.5;
-        let groupMultiplier   = 2;
+        const mediumExp = experience.medium;
+        let singleMultiplier = 1;
+        let pairMultiplier = 1.5;
+        let groupMultiplier = 2;
         let trivialMultiplier = 2.5;
 
-        if ( totalPlayers < 3 ) {
+        if (totalPlayers < 3) {
             // For small groups, increase multiplier
-            singleMultiplier  = 1.5;
-            pairMultiplier    = 2;
-            groupMultiplier   = 2.5;
+            singleMultiplier = 1.5;
+            pairMultiplier = 2;
+            groupMultiplier = 2.5;
             trivialMultiplier = 3;
-        } else if ( totalPlayers > 5 ) {
+        } else if (totalPlayers > 5) {
             // For large groups, reduce multiplier
-            singleMultiplier  = 0.5;
-            pairMultiplier    = 1;
-            groupMultiplier   = 1.5;
+            singleMultiplier = 0.5;
+            pairMultiplier = 1;
+            groupMultiplier = 1.5;
             trivialMultiplier = 2;
         }
 
@@ -75,34 +74,7 @@ const encounter = {
 
     },
 
-    getMultiplier(numMonsters){
-
-        let multiplierCategory;
-        const multipliers = [0.5, 1, 1.5, 2, 2.5, 3, 4, 5];
-
-        if ( numMonsters <= 3 ) {
-            multiplierCategory = Math.max(1, numMonsters);
-        } else if ( numMonsters < 7 ) {
-            multiplierCategory = 3;
-        } else if ( numMonsters < 11 ) {
-            multiplierCategory = 4;
-        } else if ( numMonsters < 15 ) {
-            multiplierCategory = 5;
-        } else {
-            multiplierCategory = 6;
-        }
-
-        if ( this.app.party.totalPlayers < 3 ) {
-            multiplierCategory++;
-        } else if ( this.app.party.totalPlayers > 5 ) {
-            multiplierCategory--;
-        }
-
-        return multipliers[multiplierCategory];
-
-    },
-
-    generateRandom(){
+    generateRandom() {
         const totalExperienceTarget = this.app.party.experience[this.difficulty];
         let fudgeFactor = 1.1; // The algorithm is conservative in spending exp; so this tries to get it closer to the actual medium value
         let baseExpBudget = totalExperienceTarget * fudgeFactor;
@@ -112,25 +84,22 @@ const encounter = {
 
         let targetExp;
         const encounter = []
-        for(const group of encounterTemplate.groups){
+        for (const group of encounterTemplate.groups) {
 
-            targetExp = encounterTemplate.subtractive
-                ? (totalAvailableXP / encounterTemplate.groups.length)
-                : (totalAvailableXP * group.ratio);
+            targetExp = encounterTemplate.subtractive ? (totalAvailableXP / encounterTemplate.groups.length) : (totalAvailableXP * group.ratio);
 
             targetExp /= group.count;
 
             const monster = this.getBestMonster(targetExp, encounter);
-            if(!monster){
+            if (!monster) {
                 return false;
             }
 
             encounter.push({
-                monster,
-                count: group.count
+                monster, count: group.count
             })
 
-            if(encounterTemplate.subtractive) {
+            if (encounterTemplate.subtractive) {
                 targetExp -= group.count * monster.cr.exp;
             }
         }
@@ -139,61 +108,73 @@ const encounter = {
 
     },
 
-    getEncounterTemplate(){
+    getBestMonster(targetExp, encounter) {
+
+        let monsterCRIndex;
+        for (let i = 0; i < CONST.CR.LIST.length; i++) {
+            const lowerBound = CONST.CR[CONST.CR.LIST[i]];
+            const upperBound = CONST.CR[CONST.CR.LIST[i + 1]];
+            if (upperBound.exp > targetExp) {
+                monsterCRIndex = (targetExp - lowerBound.exp) < (upperBound.exp - targetExp) ? i : i + 1;
+                break;
+            }
+        }
+
+        let monsterTargetCR = CONST.CR[CONST.CR.LIST[monsterCRIndex]];
+        let monsterList = this.app.filterMonsters(monsterTargetCR.string, (monster) => {
+            return !encounter.some(group => group.monster === monster);
+        });
+
+        let monsterCRNewIndex = monsterCRIndex;
+        let down = true;
+        while (!monsterList.length) {
+
+            if (down) {
+                monsterCRNewIndex--;
+                if (monsterCRNewIndex === 0) {
+                    monsterCRNewIndex = monsterCRIndex;
+                    down = false;
+                }
+            } else {
+                monsterCRNewIndex++;
+                if (monsterCRNewIndex === CONST.CR.LIST.length - 1) {
+                    return false;
+                }
+            }
+
+            let monsterTargetCR = CONST.CR[CONST.CR.LIST[monsterCRNewIndex]];
+            monsterList = this.app.filterMonsters(monsterTargetCR.string, (monster) => {
+                return !encounter.some(group => group.monster === monster);
+            });
+
+        }
+
+        return lib.randomArrayElement(monsterList);
+
+    },
+
+    getEncounterTemplate() {
 
         const templateString = "random";
 
         let template = {
             "boss": {
-                groups: [
-                    { count: 1, ratio: 1.0 }
-                ],
-                multiplier: 1.5
-            },
-            "boss_minions": {
-                groups: [
-                    { count: 1, ratio: 0.8 },
-                    { count: lib.random_int_between(4, 8), ratio: 0.2 }
-                ],
-                multiplier: 3
-            },
-            "duo": {
-                groups: [
-                    { count: 1, ratio: 0.5 },
-                    { count: 1, ratio: 0.5 }
-                ]
-            },
-            "trio": {
-                groups: [
-                    { count: 1, ratio: 0.33 },
-                    { count: 1, ratio: 0.33 },
-                    { count: 1, ratio: 0.33 }
-                ]
-            },
-            "horde": {
-                groups: [
-                    { count: lib.random_int_between(12, 18), ratio: 1.0 }
-                ]
-            },
-            "random": [
-                [ 1 ],
-                [ 1, 1 ],
-                [ 1, 2 ],
-                [ 1, 5 ],
-                [ 1, 1, 1 ],
-                [ 1, 1, 2 ],
-                [ 1, 2, 3 ],
-                [ 2, 2 ],
-                [ 2, 4 ],
-                [ 8 ],
-            ]
+                groups: [{ count: 1, ratio: 1.0 }], multiplier: 1.5
+            }, "boss_minions": {
+                groups: [{ count: 1, ratio: 0.8 }, { count: lib.randomIntBetween(4, 8), ratio: 0.2 }], multiplier: 3
+            }, "duo": {
+                groups: [{ count: 1, ratio: 0.5 }, { count: 1, ratio: 0.5 }]
+            }, "trio": {
+                groups: [{ count: 1, ratio: 0.33 }, { count: 1, ratio: 0.33 }, { count: 1, ratio: 0.33 }]
+            }, "horde": {
+                groups: [{ count: lib.randomIntBetween(12, 18), ratio: 1.0 }]
+            }, "random": [[1], [1, 1], [1, 2], [1, 5], [1, 1, 1], [1, 1, 2], [1, 2, 3], [2, 2], [2, 4], [8],]
         }[templateString];
 
-        if(templateString === "random"){
-            template = lib.random_array_element(template);
+        if (templateString === "random") {
+            template = lib.randomArrayElement(template);
             template = {
-                subtractive: true,
-                groups: template.map(num => {
+                subtractive: true, groups: template.map(num => {
                     return { count: num }
                 })
             };
@@ -201,7 +182,7 @@ const encounter = {
 
         template.total = template.groups.reduce((acc, group) => acc + group.count, 0);
 
-        if(templateString === "random") {
+        if (templateString === "random") {
             template.overallRatio = template.groups.reduce((acc, group) => acc + (group.ratio || 1), 0);
             template.groups.forEach(group => {
                 group.ratio = (group.ratio || 1) / template.overallRatio;
@@ -214,48 +195,30 @@ const encounter = {
 
     },
 
-    getBestMonster(targetExp, encounter){
+    getMultiplier(numMonsters) {
 
-        let monsterCRIndex;
-        for ( let i = 0; i < CONST.CR.LIST.length; i++ ) {
-            const lowerBound = CONST.CR[CONST.CR.LIST[i]];
-            const upperBound = CONST.CR[CONST.CR.LIST[i+1]];
-            if (upperBound.exp > targetExp) {
-                monsterCRIndex = (targetExp - lowerBound.exp) < (upperBound.exp - targetExp) ? i : i+1;
-                break;
-            }
+        let multiplierCategory;
+        const multipliers = [0.5, 1, 1.5, 2, 2.5, 3, 4, 5];
+
+        if (numMonsters <= 3) {
+            multiplierCategory = Math.max(1, numMonsters);
+        } else if (numMonsters < 7) {
+            multiplierCategory = 3;
+        } else if (numMonsters < 11) {
+            multiplierCategory = 4;
+        } else if (numMonsters < 15) {
+            multiplierCategory = 5;
+        } else {
+            multiplierCategory = 6;
         }
 
-        let monsterTargetCR = CONST.CR[CONST.CR.LIST[monsterCRIndex]];
-        let monsterList = this.app.filterMonsters(monsterTargetCR.string, (monster) => {
-            return !encounter.some(group => group.monster === monster);
-        });
-
-        let monsterCRNewIndex = monsterCRIndex;
-        let down = true;
-        while(!monsterList.length){
-
-            if(down){
-                monsterCRNewIndex--;
-                if(monsterCRNewIndex === 0){
-                    monsterCRNewIndex = monsterCRIndex;
-                    down = false;
-                }
-            }else{
-                monsterCRNewIndex++;
-                if(monsterCRNewIndex === CONST.CR.LIST.length-1){
-                    return false;
-                }
-            }
-
-            let monsterTargetCR = CONST.CR[CONST.CR.LIST[monsterCRNewIndex]];
-            monsterList = this.app.filterMonsters(monsterTargetCR.string, (monster) => {
-                return !encounter.some(group => group.monster === monster);
-            });
-
+        if (this.app.party.totalPlayers < 3) {
+            multiplierCategory++;
+        } else if (this.app.party.totalPlayers > 5) {
+            multiplierCategory--;
         }
 
-        return lib.random_array_element(monsterList);
+        return multipliers[multiplierCategory];
 
     },
 
@@ -263,8 +226,8 @@ const encounter = {
         const monsterList = this.app.filterMonsters(group.monster.cr.string, (monster) => {
             return !this.groups.some(group => group.monster === monster);
         });
-        if(!monsterList.length) return;
-        group.monster = lib.random_array_element(monsterList);
+        if (!monsterList.length) return;
+        group.monster = lib.randomArrayElement(monsterList);
     }
 
 }

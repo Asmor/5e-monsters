@@ -6,15 +6,15 @@ const party = {
 
     add_group() {
         this.groups.push({
-            ...this.groups[this.groups.length-1]
+            ...this.groups[this.groups.length - 1]
         });
     },
 
-    remove_group(index){
+    remove_group(index) {
         this.groups.splice(index, 1);
     },
 
-    get experience(){
+    get experience() {
         return this.groups.reduce((acc, group) => {
             const groupExp = CONST.EXP[group.level];
             return {
@@ -27,8 +27,10 @@ const party = {
         }, { easy: 0, medium: 0, hard: 0, deadly: 0, daily: 0 });
     },
 
-    get totalPlayers(){
-        return this.groups.reduce((acc, group) => { return acc + group.players }, 0);
+    get totalPlayers() {
+        return this.groups.reduce((acc, group) => {
+            return acc + group.players
+        }, 0);
     }
 
 }

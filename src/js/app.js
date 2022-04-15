@@ -11,14 +11,10 @@ import persist from '@alpinejs/persist'
 import Alpine from 'alpinejs'
 
 
-
 const internationalNumberFormat = new Intl.NumberFormat('en-US')
 
 function app() {
-
-    const cr_list = ["0", "1/8", "1/4", "1/2"];
-    for(let i = 1; i <= 30; i++) cr_list.push(i.toString());
-
+    
     return {
         menu: true,
         isLoading: true,
@@ -38,8 +34,6 @@ function app() {
         minCr: 0,
         maxCr: 30,
 
-        cr_list,
-
         filters: {},
 
         encounter,
@@ -48,31 +42,7 @@ function app() {
         init(){
             this.encounter.app = this;
             this.party.app = this;
-            this.loadSettings();
-            this.setupListeners();
             this.fetchData();
-        },
-
-        loadSettings(){
-            this.party.groups = localStorage.getItem("party") ? JSON.parse(localStorage.getItem("party")).map(party => {
-                party.players = Number(party.players);
-                party.level = Number(party.level);
-                return party;
-            }) : [{ players: 4, level: 1 }];
-            this.encounter.difficulty = localStorage.getItem("difficulty") || "medium";
-            this.filters = localStorage.getItem("filters") ? JSON.parse(localStorage.getItem("filters")) : {};
-        },
-
-        setupListeners(){
-            this.$watch("party.groups", () => {
-                localStorage.setItem("party", JSON.stringify(this.party.groups));
-            });
-            this.$watch("encounter.difficulty", () => {
-                localStorage.setItem("difficulty", this.encounter.difficulty);
-            });
-            this.$watch("filters", () => {
-                localStorage.setItem("filters", JSON.stringify(this.filters));
-            });
         },
 
         async fetchData() {
@@ -104,7 +74,7 @@ function app() {
 
             this.page = 1;
             this.pages = Math.floor(this.allMonsters.length / this.monstersPerPage);
-            this.searchPlaceholder = lib.random_array_element(this.allMonsters).name;
+            this.searchPlaceholder = lib.randomArrayElement(this.allMonsters).name;
             this.filteredMonsters = this.filterMonsters();
             this.isLoading = false;
         },

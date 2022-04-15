@@ -20,16 +20,7 @@ export default class Monster {
         this.unique = !!this.data.unique;
         this.alignment = this.data.alignment ? Monster.parseAlignment(this.data.alignment) : "";
 
-        this.searchable = [
-            this.data.name,
-            this.data.section,
-            this.data.type,
-            this.data.size,
-            (this.data.alignment) ? this.alignment.text : "",
-            this.data.cr.string
-        ].concat(
-            this.tags
-        ).join("|").toLowerCase();
+        this.searchable = [this.data.name, this.data.section, this.data.type, this.data.size, (this.data.alignment) ? this.alignment.text : "", this.data.cr.string].concat(this.tags).join("|").toLowerCase();
 
         this.sources = this.data.sources.split(', ').map(str => {
             const [book, location] = str.split(": ");
@@ -72,8 +63,7 @@ export default class Monster {
 
     static parseAlignment(str = "") {
         return {
-            string: str,
-            bits: str.split(/\s*(,|or|,\s*or)\s*/i)
+            string: str, bits: str.split(/\s*(,|or|,\s*or)\s*/i)
                 .reduce((total, alignment) => {
                     return total | (CONST.ALIGNMENT_TEST_ORDER.find(function (alignmentDefinition) {
                         return alignment.match(alignmentDefinition.regex);
@@ -112,7 +102,7 @@ export default class Monster {
             }
         }
 
-        if (filters.alignment !== undefined && !(filters.alignment.bits & this.alignment.bits)){
+        if (filters.alignment !== undefined && !(filters.alignment.bits & this.alignment.bits)) {
             return false;
         }
 
@@ -148,7 +138,7 @@ export default class Monster {
         }
 
         if (filters.environment?.length && !filters.environment?.includes("any")) {
-            if(!filters.environment.find(environment => this.environments.indexOf(environment) > -1)) {
+            if (!filters.environment.find(environment => this.environments.indexOf(environment) > -1)) {
                 return false;
             }
         }
