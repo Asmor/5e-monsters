@@ -4,9 +4,11 @@
   "description": "Kobold+ Fight Club",
   "main": "src/index.html",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.1.1",
     "@tailwindcss/forms": "^0.4.1",
-    "alpinejs": "^3.8.1",
+    "alpinejs": "^3.9.6",
     "browser-sync": "^2.27.7",
+    "fontawesome-free": "^1.0.4",
     "intro.js": "^4.3.0",
     "nouislider": "^15.5.1",
     "postcss": "^8.4.5"

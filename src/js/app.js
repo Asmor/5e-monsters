@@ -1,9 +1,13 @@
+require('@fortawesome/fontawesome-free')
+
 import encounter from "./encounter.js";
 import party from "./party.js";
 import noUiSlider from "nouislider";
 import * as lib from "./lib.js";
 import CONST from "./constants.js";
 import Monster from "./monster.js";
+
+import Alpine from 'alpinejs'
 
 const internationalNumberFormat = new Intl.NumberFormat('en-US')
 
@@ -226,3 +230,7 @@ window.app = app;
 window.multiSelect = multiSelect;
 window.multiSlider = multiSlider;
 window.noUiSlider = noUiSlider;
+
+window.Alpine = Alpine
+
+Alpine.start()
