@@ -228,7 +228,10 @@
 					</div>
 
 					<div class="flex border-t text-2xl border-t-gray-400 pt-4">
-						<div class="grow" x-text="'Difficulty: ' + encounter.actualDifficulty"></div>
+						<div class="grow">
+							<div x-text="'Difficulty: ' + encounter.actualDifficulty"></div>
+							<div class="text-sm" x-show="encounter.difficultyFeel" x-text="'Feels like ' + encounter.difficultyFeel"></div>
+						</div>
 						<div class="text-right">
 							<span class="block">
 								<span x-text="'Total XP: ' + encounter.totalExp"></span>

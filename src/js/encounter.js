@@ -22,11 +22,13 @@ const encounter = {
 
     get actualDifficulty() {
 
-        let exp = this.adjustedExp;
-        let levels = this.app.party.experience;
+        const exp = this.adjustedExp;
+        const levels = this.app.party.experience;
 
-        if (exp < (levels.easy)) {
-            return 'None';
+        if (exp === 0){
+            return "None";
+        }else if (exp < (levels.easy)) {
+            return 'Nuisance';
         } else if (exp < (levels.medium)) {
             return "Easy";
         } else if (exp < (levels.hard)) {
@@ -36,6 +38,28 @@ const encounter = {
         }
 
         return "Deadly";
+    },
+
+    get difficultyFeel() {
+        const exp = this.adjustedExp;
+        if(exp === 0) return "";
+
+        const levels = Object.entries(this.app.party.experience);
+        for(let i = 1; i < levels.length; i++){
+            const [lowerKey, lowerValue] = levels[i-1];
+            const [upperKey, upperValue] = levels[i];
+            const ratio = lib.ratio(lowerValue, upperValue, exp);
+            if(ratio >= 0.0 && ratio <= 1.0){
+                if(upperKey === "daily"){
+                    return ratio > 0.5 ? 'extremely deadly' : "really deadly";
+                }
+                if(ratio > 0.8){
+                    return upperKey;
+                }
+                return lowerKey;
+            }
+        }
+        return "really deadly";
     },
 
     get threat() {
@@ -155,20 +179,53 @@ const encounter = {
 
     getEncounterTemplate() {
 
-        const templateString = "random";
+        const templateString = "horde";
 
         let template = {
             "boss": {
-                groups: [{ count: 1, ratio: 1.0 }], multiplier: 1.5
-            }, "boss_minions": {
-                groups: [{ count: 1, ratio: 0.8 }, { count: lib.randomIntBetween(4, 8), ratio: 0.2 }], multiplier: 3
-            }, "duo": {
-                groups: [{ count: 1, ratio: 0.5 }, { count: 1, ratio: 0.5 }]
-            }, "trio": {
-                groups: [{ count: 1, ratio: 0.33 }, { count: 1, ratio: 0.33 }, { count: 1, ratio: 0.33 }]
-            }, "horde": {
-                groups: [{ count: lib.randomIntBetween(12, 18), ratio: 1.0 }]
-            }, "random": [[1], [1, 1], [1, 2], [1, 5], [1, 1, 1], [1, 1, 2], [1, 2, 3], [2, 2], [2, 4], [8],]
+                groups: [
+                    { count: 1, ratio: 1.0 }
+                ],
+                multiplier: 1.5
+            },
+            "boss_minions": {
+                groups: [
+                    { count: 1, ratio: 0.8 },
+                    { count: lib.randomIntBetween(this.app.party.totalPlayers, this.app.party.totalPlayers*2), ratio: 0.2 }
+                ], multiplier: 3
+            },
+            "duo": {
+                groups: [
+                    { count: 1, ratio: 0.5 },
+                    { count: 1, ratio: 0.5 }
+                ]
+            },
+            "trio": {
+                groups: [
+                    { count: 1, ratio: 0.33 },
+                    { count: 1, ratio: 0.33 },
+                    { count: 1, ratio: 0.33 }
+                ]
+            },
+            "horde": {
+                groups: [
+                    { count: lib.randomIntBetween(1, 3), ratio: 0.5 },
+                    { count: lib.randomIntBetween(this.app.party.totalPlayers, this.app.party.totalPlayers*2), ratio: 0.2 },
+                    { count: lib.randomIntBetween(this.app.party.totalPlayers, this.app.party.totalPlayers*2), ratio: 0.3 }
+                ]
+            },
+            "random": [
+                [1],
+                [1, 1],
+                [1, 2],
+                [1, 5],
+                [1, 1, 1],
+                [1, 1, 2],
+                [1, 2, 3],
+                [2, 2],
+                [2, 4],
+                [8]
+            ]
         }[templateString];
 
         if (templateString === "random") {

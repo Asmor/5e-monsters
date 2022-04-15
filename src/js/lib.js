@@ -63,3 +63,7 @@ export function isValidHttpUrl(string) {
     }
     return url.protocol === "http:" || url.protocol === "https:";
 }
+
+export function ratio(start, end, value){
+    return (value-start)/(end-start);
+}
