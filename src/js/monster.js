@@ -6,10 +6,10 @@ let lastRegex = "";
 
 export default class Monster {
 
-    constructor(id, app, data) {
-        this.id = id;
+    constructor(app, data) {
         this.app = app;
         this.data = data;
+        this.slug = lib.slugify(this.data.name+'-'+this.data.sources);
 
         this.cr = CONST.CR[this.data.cr];
 

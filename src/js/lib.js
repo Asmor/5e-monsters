@@ -67,3 +67,12 @@ export function isValidHttpUrl(string) {
 export function ratio(start, end, value){
     return (value-start)/(end-start);
 }
+
+export function slugify(str) {
+    return str
+        .normalize('NFKD')
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .trim()
+        .replace(/[-\s]+/g, '-');
+}

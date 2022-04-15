@@ -137,6 +137,13 @@ const encounter = {
 
         this.groups = encounter;
 
+        this.app.encounterHistory = [...this.app.encounterHistory, this.groups.map(group => {
+            return {
+                monster: group.monster.slug,
+                count: group.count
+            }
+        })];
+
     },
 
     getBestMonster(targetExp, encounter) {
@@ -263,21 +270,56 @@ const encounter = {
     },
 
     addMonster(monster){
-        let group = this.groups.find(group => group.monster === monster)
-        if(!group) {
-            this.groups.push({
+
+        let group;
+        let index = this.groups.findIndex(group => group.monster === monster);
+        if(index === -1) {
+            group = {
                 monster,
-                count: 0
-            });
-            group = this.groups[this.groups.length-1];
+                count: 1
+            };
+        }else{
+            group = this.groups[index];
+            group.count++;
         }
-        group.count++;
+
+        if(!this.groups.length){
+            this.app.encounterHistory.push([{
+                monster: monster.slug,
+                count: 1
+            }])
+        }else{
+            const lastEntry = this.app.encounterHistory[this.app.encounterHistory.length-1];
+            if(index === -1){
+                lastEntry.push({
+                    monster: monster.slug,
+                    count: 1
+                })
+            }else{
+                lastEntry[index].count++;
+            }
+        }
+
+        if(index === -1) {
+            this.groups.push(group)
+        }
     },
 
-    subtractCount(inGroup){
-        inGroup.count--;
-        if(inGroup.count <= 0){
-            this.groups = [...this.groups.filter(group => group !== inGroup)];
+    addCount(index){
+        this.groups[index].count++;
+        this.app.encounterHistory[this.app.encounterHistory.length-1][index].count++;
+    },
+
+    subtractCount(index){
+        this.groups[index].count--;
+        this.app.encounterHistory[this.app.encounterHistory.length-1][index].count--;
+        if(this.groups[index].count <= 0){
+            this.groups.splice(index, 1);
+            const lastEntry = this.app.encounterHistory[this.app.encounterHistory.length-1];
+            lastEntry.splice(index, 1);
+            if(!lastEntry.length){
+                this.app.encounterHistory.pop();
+            }
         }
     }
 

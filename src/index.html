@@ -240,7 +240,7 @@
 					</div>
 
 					<div class="flex-row">
-						<template x-for="(group, index) in encounter.groups" :key="group.monster.id">
+						<template x-for="(group, index) in encounter.groups" :key="group.monster.slug">
 							<div class="flex flex-row w-full my-4">
 								<div class="grow pb-2 min-w-0">
 									<span class="text-3xl font-light" x-text="group.monster.name"></span>
@@ -262,10 +262,10 @@
 									</button>
 									<input type="number" min="1" class="inline align-middle w-24 shadow-sm focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm border-gray-300 rounded-md dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300" x-model="group.count"/>
 									<div class="inline-block align-middle">
-										<button @click="group.count++" type="button" class="block items-center p-1 mb-1 border border-transparent text-xs font-medium rounded text-emerald-700 dark:text-emerald-200 bg-emerald-100 dark:bg-emerald-800 hover:bg-emerald-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
+										<button @click="encounter.addCount(index)" type="button" class="block items-center p-1 mb-1 border border-transparent text-xs font-medium rounded text-emerald-700 dark:text-emerald-200 bg-emerald-100 dark:bg-emerald-800 hover:bg-emerald-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
 											<i class="fas fa-plus"></i>
 										</button>
-										<button @click="encounter.subtractCount(group)" type="button" class="block items-center p-1 border border-transparent text-xs font-medium rounded text-red-700 dark:text-red-200 bg-red-100 dark:bg-red-800 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
+										<button @click="encounter.subtractCount(index)" type="button" class="block items-center p-1 border border-transparent text-xs font-medium rounded text-red-700 dark:text-red-200 bg-red-100 dark:bg-red-800 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
 											<i class="fas fa-minus"></i>
 										</button>
 									</div>

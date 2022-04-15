@@ -26,9 +26,12 @@ function app() {
         loadedSources: Alpine.$persist([]).as('sources'),
         loadedMonsters: Alpine.$persist([]).as('monsters'),
 
+        encounterHistory: Alpine.$persist([]).as('encounterHistory'),
+
         sources: {},
         allMonsters: [],
         filteredMonsters: [],
+        monsterLookupTable: {},
 
         pages: 1,
         page: 1,
@@ -177,8 +180,10 @@ function app() {
         },
 
         formatMonsters(data){
-            this.allMonsters = this.allMonsters.concat(data.map((data, index) => {
-                return new Monster(index+this.allMonsters.length, this, data);
+            this.allMonsters = this.allMonsters.concat(data.map(data => {
+                const monster = new Monster(this, data);
+                this.monsterLookupTable[monster.slug] = monster;
+                return monster;
             }));
         },
 
