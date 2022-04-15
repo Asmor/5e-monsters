@@ -149,8 +149,6 @@ function app() {
 }
 
 function multiSlider($el, $persist, name, options, updateCallback) {
-    const totalSteps = options.length - 1;
-
     return {
         slider: {},
         originals: [],
@@ -174,14 +172,19 @@ function multiSlider($el, $persist, name, options, updateCallback) {
                     max: options[parseInt(values[1])].value
                 };
 
-                window.dispatchEvent(new CustomEvent('filters-changed', { detail: {
+                this.onFiltersChanged();
+            });
+
+            this.onFiltersChanged();
+        },
+        onFiltersChanged() {
+            window.dispatchEvent(new CustomEvent('filters-changed', { detail: {
                     name: "cr",
                     value: {
                         min: CONST.CR[this.value.min].numeric,
                         max: CONST.CR[this.value.max].numeric
                     }
                 }}))
-            });
         },
         reset() {
             this.slider.set(this.originals);
