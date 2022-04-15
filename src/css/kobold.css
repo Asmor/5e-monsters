@@ -17,7 +17,7 @@ body .choices { @apply leading-6 border-gray-300 dark:border-gray-700 rounded-no
 body .choices.is-open { @apply ring-4 border-emerald-600 dark:border-emerald-800 ring-opacity-30 ring-emerald-600; }
 body .is-open .choices__inner { @apply border-gray-300 dark:border-gray-700 rounded-none; }
 body .choices__inner > input {
-    @apply bg-white dark:bg-gray-800;
+    @apply bg-white dark:bg-gray-700;
 }
 .is-open .choices__list--dropdown, .is-open .choices__list[aria-expanded] {
     @apply border-gray-300 dark:border-gray-600;
@@ -29,7 +29,7 @@ body .choices__inner > input {
 body .choices .choices__inner { 
     @apply 
     bg-white
-    dark:bg-gray-800
+    dark:bg-gray-700
     rounded-md
     shadow-sm
     focus:outline-none

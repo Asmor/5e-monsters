@@ -17,6 +17,7 @@ function app() {
         menu: true,
         isLoading: true,
         loading: false,
+        showFilters: true,
 
         filters: {},
 
@@ -168,10 +169,13 @@ function app() {
 function multiSlider($el, name, options, updateCallback) {
     return {
         slider: {},
-        originals: [],
+        originals: {
+            min: '0',
+            max: '30',
+        },
+        options: options,
         value: Alpine.$persist({min: '0', max: '30'}).as(name),
         init() {
-            this.originals = [0, options.findIndex((option) => option.value === '30')];
             this.slider = noUiSlider.create($el, {
                 start: [options.findIndex((option) => option.value === this.value.min), options.findIndex((option) => option.value === this.value.max)],
                 connect: true,
@@ -182,11 +186,11 @@ function multiSlider($el, name, options, updateCallback) {
                 step: 1
             });
 
-            this.slider.on('update', (values) => updateCallback(options[parseInt(values[0])], options[parseInt(values[1])]));
+            this.slider.on('update', (values) => updateCallback(this.options[parseInt(values[0])], this.options[parseInt(values[1])]));
             this.slider.on('change', (values) => {
                 this.value = {
-                    min: options[parseInt(values[0])].value,
-                    max: options[parseInt(values[1])].value
+                    min: this.options[parseInt(values[0])].value,
+                    max: this.options[parseInt(values[1])].value
                 };
 
                 this.onFiltersChanged();
@@ -204,7 +208,8 @@ function multiSlider($el, name, options, updateCallback) {
                 }}))
         },
         reset() {
-            this.slider.set(this.originals);
+            this.value = JSON.parse(JSON.stringify(this.originals));
+            this.slider.set([0, this.options.length - 1]);
         },
         set($event) {
             this.slider.set($event.detail);
@@ -240,6 +245,15 @@ function multiSelect($el, name, options) {
 
                 $el.addEventListener('change', () => {
                     this.value = choices.getValue(true);
+
+                    if(this.value.length > 1 && this.value.includes('any')) {
+                        this.value = this.value.filter(value => value !== 'any');
+                    }
+
+                    if(this.multiple && !this.value.length) {
+                        this.value = ['any'];
+                    }
+
                     this.onFiltersChanged();
                 })
 
