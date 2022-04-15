@@ -155,7 +155,7 @@ function app() {
                     case "cr":
                         return filter.min !== 0 || filter.max !== 30;
                     case "alignment":
-                        return filter !== CONST.ALIGNMENTS.ANY.bits;
+                        return filter !== CONST.ALL_ALIGNMENTS;
                     default:
                         return filter.length && !filter.includes('any');
                 }
