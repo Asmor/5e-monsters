@@ -60,15 +60,14 @@ body .choices__input { @apply focus:ring-0 border-none; }
 
 /* noUiSlider overrides */
 .noUi-target {
-    @apply dark:border-gray-700 shadow-none dark:bg-gray-600;
+    @apply border-none shadow-none dark:bg-gray-800;
 }
 .noUi-connect {
-    @apply bg-emerald-400 dark:bg-emerald-600;
+    @apply bg-emerald-400 dark:bg-emerald-700;
 }
 .noUi-handle {
-    @apply shadow-none dark:bg-gray-700 dark:border-gray-600 after:content-none before:content-none rounded-md p-0;
+    @apply shadow-none dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 after:content-none before:content-none rounded-md p-0;
 }
-
 .primary-link {
     @apply text-emerald-700 dark:text-emerald-500 dark:hover:text-emerald-600 hover:text-emerald-600;
 }
