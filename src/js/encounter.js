@@ -179,57 +179,10 @@ const encounter = {
 
     getEncounterTemplate() {
 
-        const templateString = "horde";
+        let template = CONST.ENCOUNTER_TYPES[this.app.encounter_type];
 
-        let template = {
-            "boss": {
-                groups: [
-                    { count: 1, ratio: 1.0 }
-                ],
-                multiplier: 1.5
-            },
-            "boss_minions": {
-                groups: [
-                    { count: 1, ratio: 0.8 },
-                    { count: lib.randomIntBetween(this.app.party.totalPlayers, this.app.party.totalPlayers*2), ratio: 0.2 }
-                ], multiplier: 3
-            },
-            "duo": {
-                groups: [
-                    { count: 1, ratio: 0.5 },
-                    { count: 1, ratio: 0.5 }
-                ]
-            },
-            "trio": {
-                groups: [
-                    { count: 1, ratio: 0.33 },
-                    { count: 1, ratio: 0.33 },
-                    { count: 1, ratio: 0.33 }
-                ]
-            },
-            "horde": {
-                groups: [
-                    { count: lib.randomIntBetween(1, 3), ratio: 0.5 },
-                    { count: lib.randomIntBetween(this.app.party.totalPlayers, this.app.party.totalPlayers*2), ratio: 0.2 },
-                    { count: lib.randomIntBetween(this.app.party.totalPlayers, this.app.party.totalPlayers*2), ratio: 0.3 }
-                ]
-            },
-            "random": [
-                [1],
-                [1, 1],
-                [1, 2],
-                [1, 5],
-                [1, 1, 1],
-                [1, 1, 2],
-                [1, 2, 3],
-                [2, 2],
-                [2, 4],
-                [8]
-            ]
-        }[templateString];
-
-        if (templateString === "random") {
-            template = lib.randomArrayElement(template);
+        if (this.app.encounter_type === "random") {
+            template = lib.randomArrayElement(template.samples);
             template = {
                 subtractive: true, groups: template.map(num => {
                     return { count: num }
@@ -237,9 +190,16 @@ const encounter = {
             };
         }
 
+        template.groups = template.groups.map(group => {
+            if(typeof group.count === "function"){
+                group.count = group.count(this.app, lib.randomIntBetween);
+            }
+            return group;
+        });
+
         template.total = template.groups.reduce((acc, group) => acc + group.count, 0);
 
-        if (templateString === "random") {
+        if (this.app.encounter_type === "random") {
             template.overallRatio = template.groups.reduce((acc, group) => acc + (group.ratio || 1), 0);
             template.groups.forEach(group => {
                 group.ratio = (group.ratio || 1) / template.overallRatio;

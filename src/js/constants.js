@@ -1,3 +1,5 @@
+import * as lib from "./lib.js";
+
 const CONST = {
 
     EXP: {
@@ -90,6 +92,68 @@ const CONST = {
         'Legendary': 'legendary',
         'Legendary (in lair)': 'lair',
         'Ordinary': false
+    },
+
+    ENCOUNTER_TYPES: {
+        "boss": {
+            name: "Boss",
+            groups: [
+                { count: 1, ratio: 1.0 }
+            ]
+        },
+        "boss_minions": {
+            name: "Boss with minions",
+            groups: [
+                { count: 1, ratio: 0.7 },
+                { count: (app, randomIntBetween) => {
+                    return randomIntBetween(app.party.totalPlayers, app.party.totalPlayers*2)
+                }, ratio: 0.3 }
+            ], multiplier: 1.25
+        },
+        "duo": {
+            name: "Duo monsters",
+            groups: [
+                { count: 1, ratio: 0.5 },
+                { count: 1, ratio: 0.5 }
+            ]
+        },
+        "trio": {
+            name: "Trio of monsters",
+            groups: [
+                { count: 1, ratio: 0.33 },
+                { count: 1, ratio: 0.33 },
+                { count: 1, ratio: 0.33 }
+            ]
+        },
+        "horde": {
+            name: "Horde",
+            groups: [
+                { count: (app, randomIntBetween) => {
+                    return randomIntBetween(1, 3)
+                }, ratio: 0.5 },
+                { count: (app, randomIntBetween) => {
+                    return randomIntBetween(app.party.totalPlayers, app.party.totalPlayers*2)
+                }, ratio: 0.2 },
+                { count: (app, randomIntBetween) => {
+                    return randomIntBetween(app.party.totalPlayers, app.party.totalPlayers*2)
+                }, ratio: 0.3 }
+            ]
+        },
+        "random": {
+            name: "Random",
+            samples: [
+                [1],
+                [1, 1],
+                [1, 2],
+                [1, 5],
+                [1, 1, 1],
+                [1, 1, 2],
+                [1, 2, 3],
+                [2, 2],
+                [2, 4],
+                [8]
+            ]
+        }
     }
 }
 

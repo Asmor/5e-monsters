@@ -28,10 +28,15 @@ function app() {
         pages: 1,
         page: 1,
         monstersPerPage: Alpine.$persist(10).as("monstersPerPage"),
+        encounter_type: Alpine.$persist("random").as("encounter_type"),
 
         searchPlaceholder: "",
 
         nonDefaultFiltersCount: 0,
+
+        encounter_types: Object.entries(CONST.ENCOUNTER_TYPES).map(entry => {
+            return { key: entry[0], label: entry[1].name };
+        }),
 
         difficultySelectOpen: false,
         difficulty: Alpine.$persist("medium").as("difficulty"),
@@ -78,6 +83,8 @@ function app() {
             this.encounter.app = this;
             this.party.app = this;
             this.fetchData();
+
+            console.log(this.encounter_types);
         },
 
         get monsters(){
@@ -148,7 +155,9 @@ function app() {
                 const [name, filter] = entry;
                 switch(name){
                     case "cr":
-                        return filter.min !== 0 && filter.max !== 30;
+                        return filter.min !== 0 || filter.max !== 30;
+                    case "alignment":
+                        return filter !== CONST.ALIGNMENTS.ANY.bits;
                     default:
                         return filter.length && !filter.includes('any');
                 }
