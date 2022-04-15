@@ -28,7 +28,7 @@ const encounter = {
         if (exp === 0){
             return "None";
         }else if (exp < (levels.easy)) {
-            return 'Nuisance';
+            return "Nuisance";
         } else if (exp < (levels.medium)) {
             return "Easy";
         } else if (exp < (levels.hard)) {
@@ -59,7 +59,9 @@ const encounter = {
                 return lowerKey;
             }
         }
-        return "really deadly";
+
+        const ratio = lib.ratio(0, levels[0][1], exp);
+        return ratio > 0.5 ? "a nuisance" : "a minor nuisance";
     },
 
     get threat() {
@@ -245,6 +247,25 @@ const encounter = {
         });
         if (!monsterList.length) return;
         group.monster = lib.randomArrayElement(monsterList);
+    },
+
+    addMonster(monster){
+        let group = this.groups.find(group => group.monster === monster)
+        if(!group) {
+            this.groups.push({
+                monster,
+                count: 0
+            });
+            group = this.groups[this.groups.length-1];
+        }
+        group.count++;
+    },
+
+    subtractCount(inGroup){
+        inGroup.count--;
+        if(inGroup.count <= 0){
+            this.groups = [...this.groups.filter(group => group === inGroup)];
+        }
     }
 
 }
