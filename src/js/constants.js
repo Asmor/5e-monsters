@@ -136,17 +136,45 @@ const CONST = {
         },
         "duo": {
             name: "Duo monsters",
-            groups: [
-                { count: 1, ratio: 0.5 },
-                { count: 1, ratio: 0.5 }
+            samples: [
+                {
+                    groups: [
+                        { count: 1, ratio: 0.5 },
+                        { count: 1, ratio: 0.5 }
+                    ]
+                },
+                {
+                    groups: [
+                        { count: 1, ratio: 0.6 },
+                        { count: 1, ratio: 0.4 }
+                    ]
+                }
             ]
         },
         "trio": {
             name: "Trio of monsters",
-            groups: [
-                { count: 1, ratio: 0.33 },
-                { count: 1, ratio: 0.33 },
-                { count: 1, ratio: 0.33 }
+            samples: [
+                {
+                    groups: [
+                        { count: 1, ratio: 0.33 },
+                        { count: 1, ratio: 0.33 },
+                        { count: 1, ratio: 0.33 }
+                    ]
+                },
+                {
+                    groups: [
+                        { count: 1, ratio: 0.4 },
+                        { count: 1, ratio: 0.3 },
+                        { count: 1, ratio: 0.3 }
+                    ]
+                },
+                {
+                    groups: [
+                        { count: 1, ratio: 0.5 },
+                        { count: 1, ratio: 0.3 },
+                        { count: 1, ratio: 0.2 }
+                    ]
+                }
             ]
         },
         "horde": {
@@ -154,15 +182,15 @@ const CONST = {
             samples: [
                 {
                     groups: [
-                        { count: "1-3", ratio: 0.5 },
-                        { count: "players-players*2", ratio: 0.2 },
-                        { count: "players-players*2", ratio: 0.3 }
+                        { count: "2-4", ratio: 0.5 },
+                        { count: "players+3-players*3", ratio: 0.2 },
+                        { count: "players+3-players*3", ratio: 0.3 }
                     ]
                 },
                 {
                     groups: [
                         { count: "1-players", ratio: 0.6 },
-                        { count: "players-players*2", ratio: 0.4 }
+                        { count: "players+4-players*3", ratio: 0.4 }
                     ]
                 },
                 {

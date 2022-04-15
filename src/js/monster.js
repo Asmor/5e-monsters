@@ -69,6 +69,10 @@ export default class Monster {
         return this.data.environment;
     }
 
+    get isUnique () {
+        return !!this.data["unique?"];
+    }
+
     static parseAlignment(str = "") {
         return {
             string: str, bits: str.split(/\s*(,|or|,\s*or)\s*/i)

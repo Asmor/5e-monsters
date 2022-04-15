@@ -133,7 +133,7 @@ const encounter = {
 
             targetExp /= group.count;
 
-            const monster = this.getBestMonster(targetExp, encounter);
+            const monster = this.getBestMonster(targetExp, encounter, group.count);
             if (!monster) {
                 return false;
             }
@@ -161,7 +161,7 @@ const encounter = {
 
     },
 
-    getBestMonster(targetExp, encounter) {
+    getBestMonster(targetExp, encounter, numMonsters) {
 
         let monsterCRIndex;
         for (let i = 0; i < CONST.CR.LIST.length; i++) {
@@ -175,7 +175,7 @@ const encounter = {
 
         let monsterTargetCR = CONST.CR[CONST.CR.LIST[monsterCRIndex]];
         let monsterList = this.app.filterMonsters(monsterTargetCR.string, (monster) => {
-            return !encounter.some(group => group.monster === monster);
+            return !encounter.some(group => group.monster === monster) && !(numMonsters > 1 && monster.isUnique);
         });
 
         let monsterCRNewIndex = monsterCRIndex;
