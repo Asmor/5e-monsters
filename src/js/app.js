@@ -35,6 +35,7 @@ function app() {
         maxCr: 30,
 
         filters: {},
+        nonDefaultFiltersCount: 0,
 
         encounter,
         party,
@@ -110,6 +111,17 @@ function app() {
             const { name, value, asArray } = $event.detail;
             this.filters[name] = asArray ? Object.values(value) : value;
             this.filteredMonsters = this.filterMonsters();
+            this.nonDefaultFiltersCount = Object.entries(this.filters).filter(entry => {
+                const [name, filter] = entry;
+                switch(name){
+                    case "cr":
+                        return filter.min !== 0 && filter.max !== 30;
+                    case "search":
+                        return false;
+                    default:
+                        return !filter.includes('any');
+                }
+            }).length;
         },
 
         formatNumber(num){
@@ -192,7 +204,6 @@ function multiSelect($el, $persist, name, options) {
                 refreshChoices()
 
                 $el.addEventListener('change', () => {
-                    console.log('here');
                     this.value = choices.getValue(true);
                     this.onFiltersChanged();
                 })
