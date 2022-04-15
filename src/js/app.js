@@ -165,10 +165,10 @@ function multiSlider($el, $persist, name, options, updateCallback) {
     }
 }
 
-function multiSelect($el, name, options) {
+function multiSelect($el, $persist, name, options) {
     return {
         multiple: true,
-        value: ['any'],
+        value: $persist(['any']).as(name),
         name: name,
         options: options,
         init() {
@@ -194,16 +194,19 @@ function multiSelect($el, name, options) {
                 $el.addEventListener('change', () => {
                     console.log('here');
                     this.value = choices.getValue(true);
-                    window.dispatchEvent(new CustomEvent('filters-changed', { detail: {
-                        name: this.name,
-                        asArray: true,
-                        value: this.value
-                    }}))
+                    this.onFiltersChanged();
                 })
 
                 this.$watch('value', () => refreshChoices())
                 this.$watch('options', () => refreshChoices())
             })
+        },
+        onFiltersChanged() {
+            window.dispatchEvent(new CustomEvent('filters-changed', { detail: {
+                name: this.name,
+                asArray: true,
+                value: this.value
+            }}))
         }
     }
 }

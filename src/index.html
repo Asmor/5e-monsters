@@ -419,7 +419,7 @@
 
 
 											<!-- Multi Select -->
-											<div @mousedown.stop x-data="multiSelect($refs.sizes, 'size', [
+											<div @mousedown.stop x-data="multiSelect($refs.sizes, $persist, 'size', [
 												{value: 'any', label: 'Any Size' },
 												{value: 'tiny', label: 'Tiny' },
 												{value: 'small', label: 'Small' },
@@ -431,7 +431,7 @@
 												<select x-ref="sizes" :multiple="multiple" class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 											</div>
 
-											<div @mousedown.stop x-data="multiSelect($refs.creature_type, 'type', [
+											<div @mousedown.stop x-data="multiSelect($refs.creature_type, $persist, 'type', [
 												{ value: 'any', label: 'Any Type' },
 												{ value: 'aberration', label: 'Aberration' },
 												{ value: 'beast', label: 'Beast' },
@@ -451,7 +451,7 @@
 												<select x-ref="creature_type" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 											</div>
 
-											<div @mousedown.stop x-data="multiSelect($refs.environment, 'environment', [
+											<div @mousedown.stop x-data="multiSelect($refs.environment, $persist, 'environment', [
 												{ value: 'any', label: 'Any Environment' },
 												{ value: 'aquatic', label: 'Aquatic' },
 												{ value: 'arctic', label: 'Arctic' },
@@ -471,7 +471,7 @@
 												<select x-ref="environment" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 											</div>
 
-											<div @mousedown.stop x-data="multiSelect($refs.legendary, 'legendary', [
+											<div @mousedown.stop x-data="multiSelect($refs.legendary, $persist, 'legendary', [
 												{ value: 'any', label: 'Any Legendary'},
 												{ value: 'ordinary', label: 'Ordinary'},
 												{ value: 'legendary', label: 'Legendary'},
