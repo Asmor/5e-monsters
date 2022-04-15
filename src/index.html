@@ -48,7 +48,7 @@
 		@filters-changed.window="filtersChanged"
 	>
 
-		<div @click="window.toggleTheme()" class="absolute bottom-2 left-2 h-12 w-12 cursor-pointer text-gray-500 grid place-items-center bg-gray-100 border rounded border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:text-gray-300"><i class="fa fa-moon text-gray-800 dark:text-gray-300"></i></div>
+		<div @click="window.toggleTheme()" class="absolute bottom-2 left-2 h-12 w-12 cursor-pointer text-gray-500 grid place-items-center bg-gray-100 border rounded border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-700 dark:text-gray-300"><i class="fa fa-moon text-gray-800 dark:text-gray-300"></i></div>
 
 		<nav class="bg-emerald-700 border-b border-gray-200 dark:border-gray-900" x-data="{ menu: false }">
 			<div class="mx-auto px-4 sm:px-6 lg:px-6">
@@ -425,7 +425,7 @@
 													Alignment
 												</div>
 
-												<div class="grid grid-cols-[12px_12px_repeat(12,_minmax(0,_1fr))] divide divide-gray-200 dark:divide-gray-700 gap-2 rounded-md bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 overflow-hidden p-2" x-data="{
+												<div class="grid grid-cols-[12px_12px_repeat(12,_minmax(0,_1fr))] divide divide-gray-200 dark:divide-gray-600 gap-2 rounded-md bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 overflow-hidden p-2" x-data="{
 													lawful_good: 1,
 													neutral_good: 2,
 													chaotic_good: 4,
@@ -473,13 +473,13 @@
 													},
 													classes(value) {
 														return {
-															'bg-emerald-600 dark:bg-emerald-800': this.total & value,
-															'bg-gray-100 dark:bg-gray-700': !(this.total & value),
+															'bg-emerald-600 dark:bg-emerald-800 dark:hover:bg-emerald-900': this.total & value,
+															'bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border': !(this.total & value),
 															'cursor-pointer grid place-items-center text-center select-none text-gray-900 dark:text-white': true,
 														};
 													}
 												}">
-													<div @click="toggle((lawful_good | neutral | chaotic_evil))" :class="classes(lawful_good | neutral | chaotic_evil)" class="col-span-2 rounded-tl-md"></div>
+													<div @click="toggle((lawful_good | neutral | chaotic_evil))" :class="classes(lawful_good | neutral | chaotic_evil)" class="col-span-2 rounded-tl-md dark:border-gray-600"></div>
 													<div @click="toggle((lawful_good | lawful_neutral | lawful_evil))" :class="classes(lawful_good | lawful_neutral | lawful_evil)" class="col-span-4 h-8 rounded-t-md"><i class="fa fa-gavel"></i></div>
 													<div @click="toggle((neutral_good | neutral | neutral_evil))" :class="classes(neutral_good | neutral | neutral_evil)" class="col-span-4 h-8 rounded-t-md"><i class="fa fa-scale-balanced"></i></div>
 													<div @click="toggle((chaotic_good | chaotic_neutral | chaotic_evil))" :class="classes(chaotic_good | chaotic_neutral | chaotic_evil)" class="col-span-4 h-8 rounded-t-md"><i :class="{ [randomIcon]: true }"></i></div>
@@ -500,8 +500,8 @@
 													<div @click="toggle(chaotic_evil)" :class="classes(chaotic_evil)" class="col-span-4 h-16" title="Chaotic Evil">CE</div>
 
 													<div @click="toggle((lawful_evil | neutral | chaotic_good))" :class="classes(lawful_evil | neutral | chaotic_good)" class="col-span-2 rounded-bl-md"></div>
-													<div @click="total = (total === 1023) ? 0 : 1023" :class="{ 'bg-emerald-600 dark:bg-emerald-800': (total & 1023) === 1023, 'bg-gray-100 dark:bg-gray-700': (total & 1023) !== 1023 }" class="select-none text-gray-900 dark:text-white col-span-6 cursor-pointer grid place-items-center h-8 bg-gray-100 dark:bg-gray-700">Any</div>
-													<div @click="total = total ^ 512" :class="{ 'bg-emerald-600 dark:bg-emerald-800': (total & 512) === 512, 'bg-gray-100 dark:bg-gray-700': (total & 512) !== 512 }" class="select-none text-gray-900 dark:text-white rounded-br-md col-span-6 cursor-pointer grid place-items-center h-8 bg-gray-100 dark:bg-gray-700">Unaligned</div>
+													<div @click="total = (total === 1023) ? 0 : 1023" :class="{ 'bg-emerald-600 dark:bg-emerald-800 dark:hover:bg-emerald-900': (total & 1023) === 1023, 'bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border': (total & 1023) !== 1023 }" class="select-none text-gray-900 dark:text-white col-span-6 cursor-pointer grid place-items-center h-8 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border">Any</div>
+													<div @click="total = total ^ 512" :class="{ 'bg-emerald-600 dark:bg-emerald-800 dark:hover:bg-emerald-900': (total & 512) === 512, 'bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border': (total & 512) !== 512 }" class="select-none text-gray-900 dark:text-white rounded-br-md col-span-6 cursor-pointer grid place-items-center h-8 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border">Unaligned</div>
 												</div>
 											</div>
 
