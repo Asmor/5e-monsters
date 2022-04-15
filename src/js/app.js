@@ -162,7 +162,7 @@ function multiSlider($el, $persist, name, options, updateCallback) {
                 connect: true,
                 range: {
                     'min': 0,
-                    'max': options.length
+                    'max': options.length - 1
                 },
                 step: 1
             });
