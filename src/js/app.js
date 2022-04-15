@@ -34,6 +34,7 @@ function app() {
 
         nonDefaultFiltersCount: 0,
 
+        encounterTypeSelectOpen: false,
         encounter_types: Object.entries(CONST.ENCOUNTER_TYPES).map(entry => {
             return { key: entry[0], label: entry[1].name };
         }),
