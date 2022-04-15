@@ -344,9 +344,9 @@ const encounter = {
         }
     },
 
-    saveEncounter(){
+    save(){
         if(!this.groups.length) return;
-        this.app.savedEncounters = [...this.app.savedEncounters, this.groups.map(group => {
+        const encounter = this.groups.map(group => {
             return {
                 monster: {
                     name: group.monster.name,
@@ -354,7 +354,23 @@ const encounter = {
                 },
                 count: group.count
             }
-        })];
+        });
+        if(this.app.loadedEncounterIndex){
+            this.app.savedEncounters[this.app.loadedEncounterIndex] = encounter;
+        }else {
+            this.app.savedEncounters = [...this.app.savedEncounters, encounter];
+            this.app.loadedEncounterIndex = this.app.savedEncounters.length - 1;
+        }
+    },
+
+    load(encounter){
+        const groups = lib.clone(encounter).map(group => {
+            group.monster = this.app.monsterLookupTable[group.monster.slug];
+            if (!group.monster) return false;
+            return group;
+        }).filter(Boolean);
+        if(!groups.length) return;
+        this.groups = groups;
     }
 
 }

@@ -29,6 +29,8 @@ function app() {
         encounterHistory: Alpine.$persist([]).as('encounterHistory'),
         savedEncounters: Alpine.$persist([]).as('savedEncounters'),
 
+        loadedEncounterIndex: null,
+
         sources: {},
         allMonsters: [],
         filteredMonsters: [],
@@ -109,16 +111,8 @@ function app() {
             this.isLoading = false;
 
             if(this.encounterHistory.length){
-                this.loadEncounter(this.encounterHistory[this.encounterHistory.length-1]);
+                this.encounter.load(this.encounterHistory[this.encounterHistory.length-1]);
             }
-        },
-
-        loadEncounter(encounter){
-            this.encounter.groups = lib.clone(encounter).map(group => {
-                group.monster = this.monsterLookupTable[group.monster.slug];
-                if (!group.monster) return false;
-                return group;
-            }).filter(Boolean);
         },
 
         async fetchSources(){
