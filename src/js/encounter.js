@@ -342,6 +342,19 @@ const encounter = {
                 this.app.encounterHistory.pop();
             }
         }
+    },
+
+    saveEncounter(){
+        if(!this.groups.length) return;
+        this.app.savedEncounters = [...this.app.savedEncounters, this.groups.map(group => {
+            return {
+                monster: {
+                    name: group.monster.name,
+                    slug: group.monster.slug
+                },
+                count: group.count
+            }
+        })];
     }
 
 }

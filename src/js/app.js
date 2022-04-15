@@ -27,6 +27,7 @@ function app() {
         loadedMonsters: Alpine.$persist([]).as('monsters'),
 
         encounterHistory: Alpine.$persist([]).as('encounterHistory'),
+        savedEncounters: Alpine.$persist([]).as('savedEncounters'),
 
         sources: {},
         allMonsters: [],
@@ -108,12 +109,12 @@ function app() {
             this.isLoading = false;
 
             if(this.encounterHistory.length){
-                this.loadEncounterFromHistory(this.encounterHistory.length-1);
+                this.loadEncounter(this.encounterHistory[this.encounterHistory.length-1]);
             }
         },
 
-        loadEncounterFromHistory(index){
-            this.encounter.groups = lib.clone(this.encounterHistory[index]).map(group => {
+        loadEncounter(encounter){
+            this.encounter.groups = lib.clone(encounter).map(group => {
                 group.monster = this.monsterLookupTable[group.monster.slug];
                 if (!group.monster) return false;
                 return group;
@@ -335,6 +336,9 @@ function multiSelect($el, name, options) {
                 asArray: true,
                 value: this.value
             }}))
+        },
+        reset(){
+            this.value = ['any'];
         }
     }
 }

@@ -462,6 +462,7 @@
 														})"
 														 @set-cr-slider.window="set($event)"
 														 @reset-cr-slider.window="reset()"
+														 @reset-filters.window="reset()"
 													></div>
 
 													<div class="grid place-items-center">
@@ -541,8 +542,11 @@
 															'bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border': !(this.total & value),
 															'cursor-pointer grid place-items-center text-center select-none text-gray-900 dark:text-white': true,
 														};
+													},
+													reset(){
+														this.total = 1023;
 													}
-												}">
+												}" @reset-filters.window="reset()">
 													<div @click="toggle((lawful_good | neutral | chaotic_evil))" :class="classes(lawful_good | neutral | chaotic_evil)" class="col-span-2 rounded-tl-md dark:border-gray-600"></div>
 													<div @click="toggle((lawful_good | lawful_neutral | lawful_evil))" :class="classes(lawful_good | lawful_neutral | lawful_evil)" class="col-span-4 h-8 rounded-t-md"><i class="fa fa-gavel"></i></div>
 													<div @click="toggle((neutral_good | neutral | neutral_evil))" :class="classes(neutral_good | neutral | neutral_evil)" class="col-span-4 h-8 rounded-t-md"><i class="fa fa-scale-balanced"></i></div>
@@ -582,7 +586,7 @@
 													{value: 'large', label: 'Large' },
 													{value: 'huge', label: 'Huge' },
 													{value: 'gargantuan', label: 'Gargantuan' }
-												])">
+												])" @reset-filters.window="reset()">
 													<select x-ref="sizes" :multiple="multiple" class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 												</div>
 											</div>
@@ -606,7 +610,7 @@
 													{ value: 'ooze', label: 'Ooze' },
 													{ value: 'plant', label: 'Plant' },
 													{ value: 'undead', label: 'Undead' },
-												])">
+												])" @reset-filters.window="reset()">
 													<select x-ref="creature_type" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 												</div>
 											</div>
@@ -630,7 +634,7 @@
 													{ value: 'swamp', label: 'Swamp' },
 													{ value: 'underground', label: 'Underground' },
 													{ value: 'urban', label: 'Urban' },
-												])">
+												])" @reset-filters.window="reset()">
 													<select x-ref="environment" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 												</div>
 											</div>
@@ -643,7 +647,7 @@
 													{ value: 'ordinary', label: 'Ordinary'},
 													{ value: 'legendary', label: 'Legendary'},
 													{ value: 'legendary_lair', label: 'Legendary (in lair)'},
-												])">
+												])" @reset-filters.window="reset()">
 													<select x-ref="legendary" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 												</div>
 											</div>
