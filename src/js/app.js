@@ -83,8 +83,6 @@ function app() {
             this.encounter.app = this;
             this.party.app = this;
             this.fetchData();
-
-            console.log(this.encounter_types);
         },
 
         get monsters(){

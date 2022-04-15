@@ -102,7 +102,7 @@ export default class Monster {
 
         if (crString && this.cr.string !== crString) return false;
 
-        if (filters.alignment !== undefined && !(filters.alignment.bits & this.alignment.bits)) {
+        if (filters.alignment !== undefined && !(this.alignment.bits & filters.alignment)) {
             return false;
         }
 

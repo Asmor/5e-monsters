@@ -466,7 +466,12 @@
 														this.$watch('total', (total) => {
 															let newIndex = Math.floor(Math.random() * this.icons.length);
 															this.randomIconIndex = (newIndex === this.randomIconIndex) ? (newIndex + 1) % this.icons.length : newIndex;
+															this.onFiltersChanged();
 														});
+														this.onFiltersChanged();
+													},
+													onFiltersChanged() {
+														window.dispatchEvent(new CustomEvent('filters-changed', { detail: { name: 'alignment', value: this.total }}));
 													},
 													get randomIcon() {
 														return this.icons[this.randomIconIndex];
