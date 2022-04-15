@@ -119,7 +119,7 @@ function app() {
                     case "search":
                         return false;
                     default:
-                        return !filter.includes('any');
+                        return filter.length && !filter.includes('any');
                 }
             }).length;
         },
