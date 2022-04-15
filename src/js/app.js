@@ -7,7 +7,10 @@ import * as lib from "./lib.js";
 import CONST from "./constants.js";
 import Monster from "./monster.js";
 
+import persist from '@alpinejs/persist'
 import Alpine from 'alpinejs'
+
+
 
 const internationalNumberFormat = new Intl.NumberFormat('en-US')
 
@@ -145,31 +148,37 @@ function app() {
     }
 }
 
-function multiSlider($el, options, updateCallback) {
+function multiSlider($el, $persist, name, options, updateCallback) {
     const totalSteps = options.length - 1;
 
     return {
         slider: {},
         originals: [],
+        value: $persist({min: '0', max: '30'}).as(name),
         init() {
-            this.originals = [0, totalSteps];
+            this.originals = [0, options.findIndex((option) => option.value === '30')];
             this.slider = noUiSlider.create($el, {
-                start: [8, totalSteps - 8],
+                start: [options.findIndex((option) => option.value === this.value.min), options.findIndex((option) => option.value === this.value.max)],
                 connect: true,
                 range: {
                     'min': 0,
-                    'max': totalSteps
+                    'max': options.length
                 },
                 step: 1
             });
 
             this.slider.on('update', (values) => updateCallback(options[parseInt(values[0])], options[parseInt(values[1])]));
             this.slider.on('change', (values) => {
+                this.value = {
+                    min: options[parseInt(values[0])].value,
+                    max: options[parseInt(values[1])].value
+                };
+
                 window.dispatchEvent(new CustomEvent('filters-changed', { detail: {
                     name: "cr",
                     value: {
-                        min: CONST.CR[options[parseInt(values[0])].value].numeric,
-                        max: CONST.CR[options[parseInt(values[1])].value].numeric
+                        min: CONST.CR[this.value.min].numeric,
+                        max: CONST.CR[this.value.max].numeric
                     }
                 }}))
             });
@@ -233,4 +242,5 @@ window.noUiSlider = noUiSlider;
 
 window.Alpine = Alpine
 
+Alpine.plugin(persist)
 Alpine.start()

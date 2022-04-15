@@ -4,6 +4,7 @@
   "description": "Kobold+ Fight Club",
   "main": "src/index.html",
   "dependencies": {
+    "@alpinejs/persist": "^3.9.6",
     "@fortawesome/fontawesome-free": "^6.1.1",
     "@tailwindcss/forms": "^0.4.1",
     "alpinejs": "^3.9.6",
