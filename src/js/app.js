@@ -135,8 +135,8 @@ function app() {
         },
 
         formatMonsters(data){
-            this.allMonsters = this.allMonsters.concat(data.map(data => {
-                return new Monster(this, data);
+            this.allMonsters = this.allMonsters.concat(data.map((data, index) => {
+                return new Monster(index+this.allMonsters.length, this, data);
             }));
         },
 

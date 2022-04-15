@@ -6,7 +6,8 @@ let lastRegex = "";
 
 export default class Monster {
 
-    constructor(app, data) {
+    constructor(id, app, data) {
+        this.id = id;
         this.app = app;
         this.data = data;
 
@@ -20,7 +21,14 @@ export default class Monster {
         this.unique = !!this.data.unique;
         this.alignment = this.data.alignment ? Monster.parseAlignment(this.data.alignment) : "";
 
-        this.searchable = [this.data.name, this.data.section, this.data.type, this.data.size, (this.data.alignment) ? this.alignment.text : "", this.data.cr.string].concat(this.tags).join("|").toLowerCase();
+        this.searchable = [
+            this.data.name,
+            this.data.section,
+            this.data.type,
+            this.data.size,
+            (this.data.alignment) ? this.alignment.text : "",
+            this.data.cr.string
+        ].concat(this.tags).join("|").toLowerCase();
 
         this.sources = this.data.sources.split(', ').map(str => {
             const [book, location] = str.split(": ");

@@ -192,8 +192,14 @@
 						</div>
 					</div>
 
+					<select x-model="encounter_type">
+						<template x-for="encounter of encounter_types">
+							<option :selected="encounter_type === encounter.key" :value="encounter.key" x-text="encounter.label"></option>
+						</template>
+					</select>
+
 					<div class="flex-row mt-2">
-						<template x-for="(group, index) in encounter.groups">
+						<template x-for="(group, index) in encounter.groups" :key="group.monster.id">
 							<div class="flex flex-row w-full mb-8">
 								<div class="grow pb-2 min-w-0">
 									<span class="text-3xl font-light" x-text="group.monster.name"></span>
@@ -230,7 +236,7 @@
 					<div class="flex border-t text-2xl border-t-gray-400 pt-4">
 						<div class="grow">
 							<div x-text="'Difficulty: ' + encounter.actualDifficulty"></div>
-							<div class="text-sm" x-show="encounter.difficultyFeel" x-text="'Feels like ' + encounter.difficultyFeel"></div>
+							<div class="text-sm" x-show="encounter.difficultyFeel" x-text="encounter.difficultyFeel"></div>
 						</div>
 						<div class="text-right">
 							<span class="block">
@@ -298,14 +304,7 @@
 													<template x-for="monster in monsters">
 														<tr class="odd:bg-gray-50 even:bg-gray-100 dark:odd:bg-gray-700 dark:even:bg-gray-800">
 															<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-300 text-center">
-<<<<<<< Updated upstream
-																<span class="primary-link cursor-pointer select-none">Add</span>
-=======
-																<span class="primary-link cursor-pointer" @click="encounter.addMonster(monster)">Add</span>
->>>>>>> Stashed changes
-<!--																<button type="button" class="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-emerald-600 dark:bg-emerald-800 dark:hover:bg-emerald-700 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">-->
-<!--																	<i class="fas fa-plus"></i>-->
-<!--																</button>-->
+																<span class="primary-link cursor-pointer select-none" @click="encounter.addMonster(monster)">Add</span>
 															</td>
 															<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 dark:text-gray-100 sm:pl-6" x-text="monster.name"></td>
 															<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-300" x-text="monster.cr.string"></td>

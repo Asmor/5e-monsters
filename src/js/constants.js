@@ -95,6 +95,21 @@ const CONST = {
     },
 
     ENCOUNTER_TYPES: {
+        "random": {
+            name: "Random",
+            samples: [
+                [1],
+                [1, 1],
+                [1, 2],
+                [1, 5],
+                [1, 1, 1],
+                [1, 1, 2],
+                [1, 2, 3],
+                [2, 2],
+                [2, 4],
+                [8]
+            ]
+        },
         "boss": {
             name: "Boss",
             groups: [
@@ -103,12 +118,21 @@ const CONST = {
         },
         "boss_minions": {
             name: "Boss with minions",
-            groups: [
-                { count: 1, ratio: 0.7 },
-                { count: (app, randomIntBetween) => {
-                    return randomIntBetween(app.party.totalPlayers, app.party.totalPlayers*2)
-                }, ratio: 0.3 }
-            ], multiplier: 1.25
+            samples: [
+                {
+                    groups: [
+                        { count: 1, ratio: 0.7 },
+                        { count: "players-players*2", ratio: 0.3 }
+                    ]
+                },
+                {
+                    groups: [
+                        { count: 1, ratio: 0.7 },
+                        { count: "1-3", ratio: 0.2 },
+                        { count: "players-players*2", ratio: 0.1 }
+                    ]
+                }
+            ]
         },
         "duo": {
             name: "Duo monsters",
@@ -127,31 +151,25 @@ const CONST = {
         },
         "horde": {
             name: "Horde",
-            groups: [
-                { count: (app, randomIntBetween) => {
-                    return randomIntBetween(1, 3)
-                }, ratio: 0.5 },
-                { count: (app, randomIntBetween) => {
-                    return randomIntBetween(app.party.totalPlayers, app.party.totalPlayers*2)
-                }, ratio: 0.2 },
-                { count: (app, randomIntBetween) => {
-                    return randomIntBetween(app.party.totalPlayers, app.party.totalPlayers*2)
-                }, ratio: 0.3 }
-            ]
-        },
-        "random": {
-            name: "Random",
             samples: [
-                [1],
-                [1, 1],
-                [1, 2],
-                [1, 5],
-                [1, 1, 1],
-                [1, 1, 2],
-                [1, 2, 3],
-                [2, 2],
-                [2, 4],
-                [8]
+                {
+                    groups: [
+                        { count: "1-3", ratio: 0.5 },
+                        { count: "players-players*2", ratio: 0.2 },
+                        { count: "players-players*2", ratio: 0.3 }
+                    ]
+                },
+                {
+                    groups: [
+                        { count: "1-players", ratio: 0.6 },
+                        { count: "players-players*2", ratio: 0.4 }
+                    ]
+                },
+                {
+                    groups: [
+                        { count: "players*3-players*5", ratio: 1 }
+                    ]
+                }
             ]
         }
     }

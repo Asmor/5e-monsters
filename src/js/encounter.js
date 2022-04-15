@@ -49,19 +49,24 @@ const encounter = {
             const [lowerKey, lowerValue] = levels[i-1];
             const [upperKey, upperValue] = levels[i];
             const ratio = lib.ratio(lowerValue, upperValue, exp);
-            if(ratio >= 0.0 && ratio <= 1.0){
-                if(upperKey === "daily"){
-                    return ratio > 0.5 ? 'extremely deadly' : "really deadly";
+
+            if(upperKey === "daily" && ratio >= 0.0) {
+                if (ratio >= 0.2) {
+                    return ratio >= 1.0
+                        ? "Feels like suicide"
+                        : ratio >= 0.6 ? 'Feels extremely deadly' : "Feels really deadly";
                 }
-                if(ratio > 0.8){
-                    return upperKey;
+                return "Feels " + lowerKey;
+            }else if(ratio >= 0.0 && ratio <= 1.0){
+                if (ratio > 0.7) {
+                    return "Feels " + upperKey;
                 }
-                return lowerKey;
+                return "Feels " + lowerKey;
             }
         }
 
         const ratio = lib.ratio(0, levels[0][1], exp);
-        return ratio > 0.5 ? "a nuisance" : "a minor nuisance";
+        return ratio > 0.5 ? "Feels like a nuisance" : "Feels like a minor nuisance";
     },
 
     get threat() {
@@ -157,7 +162,7 @@ const encounter = {
 
             if (down) {
                 monsterCRNewIndex--;
-                if (monsterCRNewIndex === 0) {
+                if (monsterCRNewIndex < 0) {
                     monsterCRNewIndex = monsterCRIndex;
                     down = false;
                 }
@@ -181,20 +186,28 @@ const encounter = {
 
     getEncounterTemplate() {
 
-        let template = CONST.ENCOUNTER_TYPES[this.app.encounter_type];
+        let template = lib.clone(CONST.ENCOUNTER_TYPES[this.app.encounter_type]);
 
-        if (this.app.encounter_type === "random") {
+        if (template.samples) {
             template = lib.randomArrayElement(template.samples);
-            template = {
-                subtractive: true, groups: template.map(num => {
-                    return { count: num }
-                })
-            };
+            if (this.app.encounter_type === "random") {
+                template = {
+                    subtractive: true,
+                    groups: template.map(num => {
+                        return { count: num }
+                    })
+                };
+            }
         }
 
+        const players = Number(this.app.party.totalPlayers);
         template.groups = template.groups.map(group => {
-            if(typeof group.count === "function"){
-                group.count = group.count(this.app, lib.randomIntBetween);
+            if(typeof group.count === "string"){
+                const parts = group.count.split('-').map(part => {
+                    part = part.replaceAll("players", players);
+                    return eval(part);
+                });
+                group.count = parts.length > 1 ? lib.randomIntBetween(...parts) : parts[0];
             }
             return group;
         });
@@ -264,7 +277,7 @@ const encounter = {
     subtractCount(inGroup){
         inGroup.count--;
         if(inGroup.count <= 0){
-            this.groups = [...this.groups.filter(group => group === inGroup)];
+            this.groups = [...this.groups.filter(group => group !== inGroup)];
         }
     }
 
