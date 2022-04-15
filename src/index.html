@@ -269,7 +269,7 @@
 												<path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
 											</svg>
 											<span>Filter</span>
-											<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-300 text-gray-800" x-show="nonDefaultFiltersCount" x-text="nonDefaultFiltersCount"></span>
+											<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-300 text-gray-800" x-show="nonDefaultFiltersCount > 0" x-text="nonDefaultFiltersCount"></span>
 										</button>
 									</div>
 								</div>
@@ -322,7 +322,7 @@
 					<div class="fixed inset-0 z-50 overflow-hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true" x-show="showFilters" x-cloak>
 						<div class="absolute inset-0 overflow-hidden">
 							<!-- Background overlay, show/hide based on slide-over state. -->
-							<div class="absolute inset-0 bg-gray-500 dark:bg-gray-900 dark:bg-opacity-75 bg-opacity-75 transition-opacity" aria-hidden="true"
+							<div @click="showFilters = false" class="absolute inset-0 bg-gray-500 dark:bg-gray-900 dark:bg-opacity-75 bg-opacity-75 transition-opacity" aria-hidden="true"
 								 x-transition:enter="ease-in-out duration-500"
 								 x-transition:enter-start="opacity-0"
 								 x-transition:enter-end="opacity-100"
@@ -342,12 +342,12 @@
 									 x-transition:leave-end="translate-x-full"
 									 x-show="showFilters"
 								>
-									<div class="flex h-full flex-col overflow-y-scroll bg-white dark:bg-gray-800 py-6 shadow-xl">
-										<div class="px-4 sm:px-6">
+									<div class="flex h-full flex-col overflow-y-auto bg-white dark:bg-gray-800 py-6 shadow-xl">
+										<div class="px-4 sm:px-6 border-b dark:border-gray-700 pb-6">
 											<div class="flex items-start justify-between">
 												<h2 class="text-lg font-medium text-gray-900 dark:text-gray-200" id="slide-over-title">Filter monsters</h2>
 												<div class="ml-3 flex h-7 items-center">
-													<button type="button" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+													<button @click="showFilters = false" type="button" class="rounded-md bg-white dark:bg-gray-800 text-gray-400 dark:text-gray-500 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
 														<span class="sr-only">Close panel</span>
 														<!-- Heroicon name: outline/x -->
 														<svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
