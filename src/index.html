@@ -194,7 +194,7 @@
 						<label id="listbox-label" class="block text-sm font-medium text-gray-700 dark:text-gray-300"> Encounter type </label>
 						<div class="mt-1 relative" @click.outside="encounterTypeSelectOpen = false">
 							<button @click="encounterTypeSelectOpen = true" type="button" class="bg-white dark:bg-gray-700 relative w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
-								<span class="block truncate" x-text="encounter_type"></span>
+								<span class="block truncate" x-text="encounterTypes[encounterType].label"></span>
 								<span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
 									<!-- Heroicon name: solid/selector -->
 									<svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -211,17 +211,17 @@
 								x-transition:leave-start="opacity-100"
 								x-transition:leave-end="opacity-0"
 							>
-								<template x-for="type of encounter_types">
+								<template x-for="type of Object.values(encounterTypes)">
 									<!--
 									  Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
 
 									  Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
 									-->
-									<li @click="encounter_type = type.key; encounterTypeSelectOpen = false;" :class="{ 'text-white bg-emerald-600': encounter_type === type.key, 'text-gray-900 dark:text-gray-300': encounter_type !== type.key }" class="text-gray-900 hover:text-white hover:bg-emerald-600 cursor-default select-none relative py-2 pl-3 pr-9" id="listbox-option-0" role="option">
+									<li @click="encounterType = type.key; encounterTypeSelectOpen = false;" :class="{ 'text-white bg-emerald-600': encounterType === type.key, 'text-gray-900 dark:text-gray-300': encounterType !== type.key }" class="text-gray-900 hover:text-white hover:bg-emerald-600 cursor-default select-none relative py-2 pl-3 pr-9" id="listbox-option-0" role="option">
 										<!-- Selected: "font-semibold", Not Selected: "font-normal" -->
 										<span class="font-normal block truncate" x-text="type.label"> </span>
 
-										<span :class="{ 'text-white': encounter_type === type.key, 'text-emerald-600': encounter_type !== type.key }" class="absolute inset-y-0 right-0 flex items-center pr-4">
+										<span :class="{ 'text-white': encounterType === type.key, 'text-emerald-600': encounterType !== type.key }" class="absolute inset-y-0 right-0 flex items-center pr-4">
 										  <!-- Heroicon name: solid/check -->
 										  <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 											<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
@@ -233,9 +233,9 @@
 						</div>
 					</div>
 
-					<select x-model="encounter_type">
-						<template x-for="encounter of encounter_types">
-							<option :selected="encounter_type === encounter.key" :value="encounter.key" x-text="encounter.label"></option>
+					<select x-model="encounterType">
+						<template x-for="encounter of encounterTypes">
+							<option :selected="encounterType === encounter.key" :value="encounter.key" x-text="encounter.label"></option>
 						</template>
 					</select>
 

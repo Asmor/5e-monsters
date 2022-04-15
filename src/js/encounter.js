@@ -186,11 +186,11 @@ const encounter = {
 
     getEncounterTemplate() {
 
-        let template = lib.clone(CONST.ENCOUNTER_TYPES[this.app.encounter_type]);
+        let template = lib.clone(CONST.ENCOUNTER_TYPES[this.app.encounterType]);
 
         if (template.samples) {
             template = lib.randomArrayElement(template.samples);
-            if (this.app.encounter_type === "random") {
+            if (this.app.encounterType === "random") {
                 template = {
                     subtractive: true,
                     groups: template.map(num => {
@@ -214,7 +214,7 @@ const encounter = {
 
         template.total = template.groups.reduce((acc, group) => acc + group.count, 0);
 
-        if (this.app.encounter_type === "random") {
+        if (this.app.encounterType === "random") {
             template.overallRatio = template.groups.reduce((acc, group) => acc + (group.ratio || 1), 0);
             template.groups.forEach(group => {
                 group.ratio = (group.ratio || 1) / template.overallRatio;

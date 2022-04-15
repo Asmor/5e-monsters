@@ -20,6 +20,11 @@ function app() {
         showFilters: false,
 
         filters: {},
+        searchPlaceholder: "",
+        nonDefaultFiltersCount: 0,
+
+        loadedSources: Alpine.$persist([]).as('sources'),
+        loadedMonsters: Alpine.$persist([]).as('monsters'),
 
         sources: {},
         allMonsters: [],
@@ -28,16 +33,12 @@ function app() {
         pages: 1,
         page: 1,
         monstersPerPage: Alpine.$persist(10).as("monstersPerPage"),
-        encounter_type: Alpine.$persist("random").as("encounter_type"),
 
-        searchPlaceholder: "",
-
-        nonDefaultFiltersCount: 0,
-
+        encounterType: Alpine.$persist("random").as("encounterType"),
         encounterTypeSelectOpen: false,
-        encounter_types: Object.entries(CONST.ENCOUNTER_TYPES).map(entry => {
-            return { key: entry[0], label: entry[1].name };
-        }),
+        encounterTypes: Object.fromEntries(Object.entries(CONST.ENCOUNTER_TYPES).map(entry => {
+            return [entry[0], { key: entry[0], label: entry[1].name }];
+        })),
 
         difficultySelectOpen: false,
         difficulty: Alpine.$persist("medium").as("difficulty"),
@@ -95,36 +96,76 @@ function app() {
 
         async fetchData() {
             this.isLoading = true;
-
-            await fetch("/json/se_sources.json")
-                .then(res => res.json())
-                .then(this.formatSources.bind(this))
-
-            await fetch("/json/se_third_party_sources.json")
-                .then(res => res.json())
-                .then(this.formatSources.bind(this))
-
-            await fetch("/json/se_community_sources.json")
-                .then(res => res.json())
-                .then(this.formatSources.bind(this))
-
-            await fetch("/json/se_monsters.json")
-                .then(res => res.json())
-                .then(this.formatMonsters.bind(this));
-
-            await fetch("/json/se_third_party_monsters.json")
-                .then(res => res.json())
-                .then(this.formatMonsters.bind(this));
-
-            await fetch("/json/se_community_monsters.json")
-                .then(res => res.json())
-                .then(this.formatMonsters.bind(this));
-
+            this.formatSources(await this.fetchSources());
+            this.formatMonsters(await this.fetchMonsters());
             this.page = 1;
             this.pages = Math.floor(this.allMonsters.length / this.monstersPerPage);
             this.searchPlaceholder = lib.randomArrayElement(this.allMonsters).name;
             this.filteredMonsters = this.filterMonsters();
             this.isLoading = false;
+        },
+
+        async fetchSources(){
+
+            if(this.loadedSources.length){
+                return this.loadedSources;
+            }
+
+            let sources = [];
+
+            await fetch("/json/se_sources.json")
+                .then(res => res.json())
+                .then((data) => {
+                    sources = sources.concat(data);
+                });
+
+            await fetch("/json/se_third_party_sources.json")
+                .then(res => res.json())
+                .then((data) => {
+                    sources = sources.concat(data);
+                });
+
+            await fetch("/json/se_community_sources.json")
+                .then(res => res.json())
+                .then((data) => {
+                    sources = sources.concat(data);
+                });
+
+            this.loadedSources = sources;
+
+            return sources;
+
+        },
+
+        async fetchMonsters(){
+
+            if(this.loadedMonsters.length){
+                return this.loadedMonsters;
+            }
+
+            let monsters = [];
+
+            await fetch("/json/se_monsters.json")
+                .then(res => res.json())
+                .then((data) => {
+                    monsters = monsters.concat(data);
+                });
+
+            await fetch("/json/se_third_party_monsters.json")
+                .then(res => res.json())
+                .then((data) => {
+                    monsters = monsters.concat(data);
+                });
+
+            await fetch("/json/se_community_monsters.json")
+                .then(res => res.json())
+                .then((data) => {
+                    monsters = monsters.concat(data);
+                });
+
+            this.loadedMonsters = monsters;
+
+            return monsters;
         },
 
         formatSources(data){
