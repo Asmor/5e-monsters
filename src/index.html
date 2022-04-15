@@ -145,7 +145,7 @@
 
 						<div class="self-center" @click.away="difficultySelectOpen = false">
 							<span class="relative z-0 inline-flex shadow-sm rounded-md">
-								<button x-text="'Random ' + (encounter.difficulty.slice(0,1).toUpperCase() + encounter.difficulty.slice(1))" @click="encounter.generateRandom()" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
+								<button x-text="'Random ' + (difficulty.slice(0,1).toUpperCase() + difficulty.slice(1))" @click="encounter.generateRandom()" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
 									Random Medium
 								</button>
 								<span class="-ml-px relative block">
@@ -170,19 +170,19 @@
 									<div x-show="difficultySelectOpen" @click="difficultySelectOpen = false" x-transition class="origin-top-right absolute right-0 mt-2 -mr-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none w-48" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
 										<div class="py-1" role="none">
 										<!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-										<a href="#" @click="encounter.difficulty = 'easy'" :class="{ 'bg-emerald-500 text-white': encounter.difficulty == 'easy', 'text-gray-700 hover:bg-gray-50': encounter.difficulty !== 'easy' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-0">
+										<a href="#" @click="difficulty = 'easy'" :class="{ 'bg-emerald-500 text-white': difficulty == 'easy', 'text-gray-700 hover:bg-gray-50': difficulty !== 'easy' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-0">
 											Random Easy
 										</a>
 
-										<a href="#" @click="encounter.difficulty = 'medium'" :class="{ 'bg-emerald-500 text-white': encounter.difficulty == 'medium', 'text-gray-700 hover:bg-gray-50': encounter.difficulty !== 'medium' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-1">
+										<a href="#" @click="difficulty = 'medium'" :class="{ 'bg-emerald-500 text-white': difficulty == 'medium', 'text-gray-700 hover:bg-gray-50': difficulty !== 'medium' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-1">
 											Random Medium
 										</a>
 
-										<a href="#" @click="encounter.difficulty = 'hard'" :class="{ 'bg-emerald-500 text-white': encounter.difficulty == 'hard', 'text-gray-700 hover:bg-gray-50': encounter.difficulty !== 'hard' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
+										<a href="#" @click="difficulty = 'hard'" :class="{ 'bg-emerald-500 text-white': difficulty == 'hard', 'text-gray-700 hover:bg-gray-50': difficulty !== 'hard' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
 											Random Hard
 										</a>
 
-										<a href="#" @click="encounter.difficulty = 'deadly'" :class="{ 'bg-emerald-500 text-white': encounter.difficulty == 'deadly', 'text-gray-700 hover:bg-gray-50': encounter.difficulty !== 'deadly' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
+										<a href="#" @click="difficulty = 'deadly'" :class="{ 'bg-emerald-500 text-white': difficulty == 'deadly', 'text-gray-700 hover:bg-gray-50': difficulty !== 'deadly' }" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">
 											Random Deadly
 										</a>
 										</div>
@@ -257,7 +257,7 @@
 										</svg>
 									</div>
 
-									<input type="search" name="search" id="search" @input.debounce="$dispatch('filters-changed', { name: 'search', value: $event.target.value })" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600" :placeholder="searchPlaceholder">
+									<input type="search" name="search" id="search" x-model="search" @input.debounce="updateFilteredMonsters" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600" :placeholder="searchPlaceholder">
 								</div>
 								<div class="relative inline-block text-left" x-data="{ filtersMenu: true }">
 									<div>
@@ -281,7 +281,7 @@
 									>
 										<div class="p-2 space-y-2" role="none">
 											<div class="relative px-4 pt-1 pb-2 bg-white border border-gray-300 dark:bg-gray-800 dark:border-gray-600 rounded-md">
-												<div x-ref="cr_slider" class="my-4 mx-2" x-data="multiSlider($el, $persist, 'challenge_rating', [
+												<div x-ref="cr_slider" class="my-4 mx-2" x-data="multiSlider($el, 'challenge_rating', [
 													{ value: '0', label: '0' },
 													{ value: '1/8', label: '1/8' },
 													{ value: '1/4', label: '1/4' },
@@ -419,7 +419,7 @@
 
 
 											<!-- Multi Select -->
-											<div @mousedown.stop x-data="multiSelect($refs.sizes, $persist, 'size', [
+											<div @mousedown.stop x-data="multiSelect($refs.sizes, 'size', [
 												{value: 'any', label: 'Any Size' },
 												{value: 'tiny', label: 'Tiny' },
 												{value: 'small', label: 'Small' },
@@ -431,7 +431,7 @@
 												<select x-ref="sizes" :multiple="multiple" class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 											</div>
 
-											<div @mousedown.stop x-data="multiSelect($refs.creature_type, $persist, 'type', [
+											<div @mousedown.stop x-data="multiSelect($refs.creature_type, 'type', [
 												{ value: 'any', label: 'Any Type' },
 												{ value: 'aberration', label: 'Aberration' },
 												{ value: 'beast', label: 'Beast' },
@@ -451,7 +451,7 @@
 												<select x-ref="creature_type" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 											</div>
 
-											<div @mousedown.stop x-data="multiSelect($refs.environment, $persist, 'environment', [
+											<div @mousedown.stop x-data="multiSelect($refs.environment, 'environment', [
 												{ value: 'any', label: 'Any Environment' },
 												{ value: 'aquatic', label: 'Aquatic' },
 												{ value: 'arctic', label: 'Arctic' },
@@ -471,7 +471,7 @@
 												<select x-ref="environment" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
 											</div>
 
-											<div @mousedown.stop x-data="multiSelect($refs.legendary, $persist, 'legendary', [
+											<div @mousedown.stop x-data="multiSelect($refs.legendary, 'legendary', [
 												{ value: 'any', label: 'Any Legendary'},
 												{ value: 'ordinary', label: 'Ordinary'},
 												{ value: 'legendary', label: 'Legendary'},

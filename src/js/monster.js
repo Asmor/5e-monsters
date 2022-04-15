@@ -72,13 +72,11 @@ export default class Monster {
         };
     }
 
-    filter(filters, crString = false) {
+    filter(search, filters, crString = false) {
 
-        if (crString && this.cr.string !== crString) return false;
+        if (search) {
 
-        if (filters.search) {
-
-            let checkRegex = filters.search.match(/^\/(.*?)\/?$/);
+            let checkRegex = search.match(/^\/(.*?)\/?$/);
             if (checkRegex) {
                 let regex;
                 let raw = checkRegex[1];
@@ -97,10 +95,12 @@ export default class Monster {
                 if (!this.searchable.match(regex)) {
                     return false;
                 }
-            } else if (this.searchable.indexOf(filters.search.toLowerCase()) === -1) {
+            } else if (this.searchable.indexOf(search.toLowerCase()) === -1) {
                 return false;
             }
         }
+
+        if (crString && this.cr.string !== crString) return false;
 
         if (filters.alignment !== undefined && !(filters.alignment.bits & this.alignment.bits)) {
             return false;

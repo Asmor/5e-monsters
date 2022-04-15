@@ -1,7 +1,6 @@
 require('@fortawesome/fontawesome-free')
 
 import encounter from "./encounter.js";
-import party from "./party.js";
 import noUiSlider from "nouislider";
 import * as lib from "./lib.js";
 import CONST from "./constants.js";
@@ -9,7 +8,6 @@ import Monster from "./monster.js";
 
 import persist from '@alpinejs/persist'
 import Alpine from 'alpinejs'
-
 
 const internationalNumberFormat = new Intl.NumberFormat('en-US')
 
@@ -20,30 +18,72 @@ function app() {
         isLoading: true,
         loading: false,
 
-        pages: 1,
-        page: 1,
-        monstersPerPage: 10,
+        filters: {},
+
+        sources: {},
         allMonsters: [],
         filteredMonsters: [],
 
-        sources: {},
+        pages: 1,
+        page: 1,
+        monstersPerPage: Alpine.$persist(10).as("monstersPerPage"),
 
         searchPlaceholder: "",
 
-        difficultySelectOpen: false,
-        minCr: 0,
-        maxCr: 30,
-
-        filters: {},
         nonDefaultFiltersCount: 0,
 
-        encounter,
-        party,
+        difficultySelectOpen: false,
+        difficulty: Alpine.$persist("medium").as("difficulty"),
+        search: Alpine.$persist("").as("search"),
+
+        encounter: encounter,
+
+        party: {
+
+            groups: Alpine.$persist([{ players: 4, level: 1 }]).as('groups'),
+
+            add_group() {
+                this.groups.push({
+                    ...this.groups[this.groups.length - 1]
+                });
+            },
+
+            remove_group(index) {
+                this.groups.splice(index, 1);
+            },
+
+            get experience() {
+                return this.groups.reduce((acc, group) => {
+                    const groupExp = CONST.EXP[group.level];
+                    return {
+                        easy: acc.easy + (groupExp.easy * group.players),
+                        medium: acc.medium + (groupExp.medium * group.players),
+                        hard: acc.hard + (groupExp.hard * group.players),
+                        deadly: acc.deadly + (groupExp.deadly * group.players),
+                        daily: acc.daily + (groupExp.daily * group.players)
+                    }
+                }, { easy: 0, medium: 0, hard: 0, deadly: 0, daily: 0 });
+            },
+
+            get totalPlayers() {
+                return this.groups.reduce((acc, group) => {
+                    return acc + group.players
+                }, 0);
+            }
+
+        },
 
         init(){
             this.encounter.app = this;
             this.party.app = this;
             this.fetchData();
+        },
+
+        get monsters(){
+            const page = this.page-1;
+            const start = !page ? 0 : (page*this.monstersPerPage)+1;
+            const end = (page+1)*this.monstersPerPage;
+            return this.filteredMonsters.slice(start, end);
         },
 
         async fetchData() {
@@ -96,32 +136,27 @@ function app() {
 
         filterMonsters(crString = false, filterCallback = () => { return true; }){
             return this.allMonsters.filter(monster => {
-                return filterCallback(monster) && monster.filter(this.filters, crString)
+                return filterCallback(monster) && monster.filter(this.search, this.filters, crString)
             });
-        },
-
-        get monsters(){
-            const page = this.page-1;
-            const start = !page ? 0 : (page*this.monstersPerPage)+1;
-            const end = (page+1)*this.monstersPerPage;
-            return this.filteredMonsters.slice(start, end);
         },
 
         filtersChanged($event){
             const { name, value, asArray } = $event.detail;
             this.filters[name] = asArray ? Object.values(value) : value;
-            this.filteredMonsters = this.filterMonsters();
             this.nonDefaultFiltersCount = Object.entries(this.filters).filter(entry => {
                 const [name, filter] = entry;
                 switch(name){
                     case "cr":
                         return filter.min !== 0 && filter.max !== 30;
-                    case "search":
-                        return false;
                     default:
                         return filter.length && !filter.includes('any');
                 }
             }).length;
+            this.updateFilteredMonsters();
+        },
+
+        updateFilteredMonsters(){
+            this.filteredMonsters = this.filterMonsters();
         },
 
         formatNumber(num){
@@ -130,11 +165,11 @@ function app() {
     }
 }
 
-function multiSlider($el, $persist, name, options, updateCallback) {
+function multiSlider($el, name, options, updateCallback) {
     return {
         slider: {},
         originals: [],
-        value: $persist({min: '0', max: '30'}).as(name),
+        value: Alpine.$persist({min: '0', max: '30'}).as(name),
         init() {
             this.originals = [0, options.findIndex((option) => option.value === '30')];
             this.slider = noUiSlider.create($el, {
@@ -177,10 +212,10 @@ function multiSlider($el, $persist, name, options, updateCallback) {
     }
 }
 
-function multiSelect($el, $persist, name, options) {
+function multiSelect($el, name, options) {
     return {
         multiple: true,
-        value: $persist(['any']).as(name),
+        value: Alpine.$persist(['any']).as(name),
         name: name,
         options: options,
         init() {

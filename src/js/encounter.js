@@ -3,7 +3,7 @@ import CONST from "./constants.js";
 
 const encounter = {
 
-    difficulty: "medium", groups: [],
+    groups: [],
 
     get totalExp() {
         return this.groups.reduce((acc, group) => {
@@ -75,7 +75,7 @@ const encounter = {
     },
 
     generateRandom() {
-        const totalExperienceTarget = this.app.party.experience[this.difficulty];
+        const totalExperienceTarget = this.app.party.experience[this.app.difficulty];
         let fudgeFactor = 1.1; // The algorithm is conservative in spending exp; so this tries to get it closer to the actual medium value
         let baseExpBudget = totalExperienceTarget * fudgeFactor;
         let encounterTemplate = this.getEncounterTemplate();
