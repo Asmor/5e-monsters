@@ -398,8 +398,8 @@
 									 x-transition:leave-end="translate-x-full"
 									 x-show="showFilters"
 								>
-									<div class="flex h-full flex-col overflow-y-auto bg-white dark:bg-gray-800 py-6 shadow-xl">
-										<div class="px-4 sm:px-6 border-b dark:border-gray-700 pb-6">
+									<div class="relative flex max-h-screen h-full flex-col overflow-y-hidden bg-white dark:bg-gray-800 shadow-xl">
+										<div class="px-4 sm:px-6 border-b dark:border-gray-700 py-6">
 											<div class="flex items-start justify-between">
 												<h2 class="text-lg font-medium text-gray-900 dark:text-gray-200" id="slide-over-title">Filter monsters</h2>
 												<div class="ml-3 flex h-7 items-center">
@@ -413,7 +413,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="flex h-full flex-col relative mt-6 flex-1 px-4 sm:px-6 space-y-4">
+										<div class="flex h-full flex-col relative flex-1 px-4 py-6 sm:px-6 space-y-4 overflow-y-auto">
 											<div x-data="{ minCr: 0, maxCr: 0 }">
 												<div class="block font-medium text-gray-700 dark:text-gray-300 mb-1">
 													Challenge Rating
@@ -653,10 +653,18 @@
 											</div>
 										</div>
 
-										<div class="align-self-end">
-											<div class="w-full px-6">
+										<div class="justify-self-end"
+											 x-transition:enter="transform transition ease-in-out duration-200 sm:duration-700"
+											 x-transition:enter-start="translate-y-full"
+											 x-transition:enter-end="translate-y-0"
+											 x-transition:leave="transform transition ease-in-out duration-200 sm:duration-700"
+											 x-transition:leave-start="translate-y-0"
+											 x-transition:leave-end="translate-y-full"
+											 x-show="nonDefaultFiltersCount"
+										>
+											<div class="w-full px-6 py-6 border-t border-gray-200 dark:border-gray-700">
 												<button @click="$dispatch('reset-filters')" class="w-full button-secondary-md grid place-items-center text-center">
-													<span class="inline-block"><i class="fa fa-undo pr-1"></i> Reset Filters</span>
+													<span class="inline-block w-full"><i class="fa fa-undo pr-1"></i> Reset Filters</span>
 												</button>
 											</div>
 										</div>

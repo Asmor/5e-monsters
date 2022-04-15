@@ -277,6 +277,8 @@ function multiSlider($el, name, options, updateCallback) {
         reset() {
             this.value = JSON.parse(JSON.stringify(this.originals));
             this.slider.set([0, this.options.length - 1]);
+
+            this.onFiltersChanged();
         },
         set($event) {
             this.slider.set($event.detail);
