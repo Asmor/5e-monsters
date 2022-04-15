@@ -106,6 +106,18 @@ function app() {
             this.searchPlaceholder = lib.randomArrayElement(this.allMonsters).name;
             this.filteredMonsters = this.filterMonsters();
             this.isLoading = false;
+
+            if(this.encounterHistory.length){
+                this.loadEncounterFromHistory(this.encounterHistory.length-1);
+            }
+        },
+
+        loadEncounterFromHistory(index){
+            this.encounter.groups = lib.clone(this.encounterHistory[index]).map(group => {
+                group.monster = this.monsterLookupTable[group.monster.slug];
+                if (!group.monster) return false;
+                return group;
+            }).filter(Boolean);
         },
 
         async fetchSources(){

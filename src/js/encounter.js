@@ -40,6 +40,18 @@ const encounter = {
         return "Deadly";
     },
 
+    insaneDifficultyStrings: [
+        "an incredibly bad idea",
+        "suicide",
+        "/r/rpghorrorstories",
+        "an angry table",
+        "the BBEG wrote this encounter",
+        "the party's final session",
+        "someone forgot to bring snacks",
+        "rocks fall",
+        "someone insulted the DM",
+    ],
+
     get difficultyFeel() {
         const exp = this.adjustedExp;
         if(exp === 0) return "";
@@ -53,7 +65,7 @@ const encounter = {
             if(upperKey === "daily" && ratio >= 0.0) {
                 if (ratio >= 0.2) {
                     return ratio >= 1.0
-                        ? "Feels like suicide"
+                        ? "Feels like " + lib.randomArrayElement(this.insaneDifficultyStrings)
                         : ratio >= 0.6 ? 'Feels extremely deadly' : "Feels really deadly";
                 }
                 return "Feels " + lowerKey;
@@ -139,7 +151,10 @@ const encounter = {
 
         this.app.encounterHistory = [...this.app.encounterHistory, this.groups.map(group => {
             return {
-                monster: group.monster.slug,
+                monster: {
+                    name: group.monster.name,
+                    slug: group.monster.slug
+                },
                 count: group.count
             }
         })];
@@ -285,14 +300,20 @@ const encounter = {
 
         if(!this.groups.length){
             this.app.encounterHistory.push([{
-                monster: monster.slug,
+                monster: {
+                    name: monster.name,
+                    slug: monster.slug
+                },
                 count: 1
             }])
         }else{
             const lastEntry = this.app.encounterHistory[this.app.encounterHistory.length-1];
             if(index === -1){
                 lastEntry.push({
-                    monster: monster.slug,
+                    monster: {
+                        name: monster.name,
+                        slug: monster.slug
+                    },
                     count: 1
                 })
             }else{
