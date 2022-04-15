@@ -96,9 +96,9 @@
 
 		<div class="flex py-4 sm:py-6 lg:py-8">
 			<div class="hidden lg:flex flex-col pl-4 sm:pl-6 lg:pl-8 flex-shrink-0 w-[33rem] min-h-full">
-				<div class="flex w-full border-b dark:border-gray-700 pb-4">
-					<div class="flex flex-col">
-						<span class="text-3xl mb-2">Group</span>
+				<div class="flex flex-col w-full border-b dark:border-gray-700 pb-4">
+					<div class="flex w-full flex-col">
+						<span class="text-2xl mb-2">Group</span>
 
 						<div class="flex mb-2">
 							<div class="w-16">
@@ -125,22 +125,25 @@
 							</div>
 						</template>
 
-						<button @click="party.add_group()" type="button" class="button-secondary-md">
-							<i class="fas fa-plus mr-2"></i> Add Another Level
-						</button>
+						<div>
+							<button @click="party.add_group()" type="button" class="button-secondary-md align-self-start">
+								<i class="fas fa-plus mr-2"></i> Add Another Level
+							</button>
+						</div>
 					</div>
 
-					<div class="flex flex-col text-right leading-3 flex-1">
-						<p :class="encounter.actualDifficulty === 'Easy' ? 'font-semibold' : ''" class="mt-2">Easy: <span class="ml-2" x-text="formatNumber(party.experience.easy) + ' exp'"></span></p>
-						<p :class="encounter.actualDifficulty === 'Medium' ? 'font-semibold' : ''" class="mt-2">Medium: <span class="ml-2" x-text="formatNumber(party.experience.medium) + ' exp'"></span></p>
-						<p :class="encounter.actualDifficulty === 'Hard' ? 'font-semibold' : ''" class="mt-2">Hard: <span class="ml-2" x-text="formatNumber(party.experience.hard) + ' exp'"></span></p>
-						<p :class="encounter.actualDifficulty === 'Deadly' ? 'font-semibold' : ''" class="mt-2">Deadly: <span class="ml-2" x-text="formatNumber(party.experience.deadly) + ' exp'"></span></p>
-						<p class="mt-2 leading-10">Daily budget: <span class="ml-2" x-text="formatNumber(party.experience.daily) + ' exp'"></span></p>
+					<div class="flex w-full flex-reverse justify-between text-right leading-10 mt-2 flex-1 h-full">
+						<div>
+							<p class="font-semibold" x-show="encounter.actualDifficulty !== 'None'" x-text="encounter.actualDifficulty + ' ' + formatNumber(party.experience.easy) + ' exp'"></p>
+						</div>
+						<div>
+							Daily budget <span x-text="formatNumber(party.experience.daily) + ' exp'"></span>
+						</div>
 					</div>
 				</div>
 
 				<div class="flex-col mt-2">
-					<span class="text-3xl grow">Encounter</span>
+					<span class="text-2xl grow">Encounter</span>
 
 					<div class="mt-4 flex w-full space-x-2 items-end justify-between pb-4 border-b dark:border-gray-700">
 						<div class="grid gap-2 w-full place-items-end grid-cols-2 grow">
@@ -243,7 +246,7 @@
 						<template x-for="(group, index) in encounter.groups" :key="group.monster.slug">
 							<div class="flex flex-row w-full my-4">
 								<div class="grow pb-2 min-w-0">
-									<span class="text-3xl font-light" x-text="group.monster.name"></span>
+									<span class="text-xl font-semibold" x-text="group.monster.name"></span>
 									<div>
 										<span class="text-lg" x-text="'CR: ' + group.monster.cr.string"></span>
 										<span class="text-lg ml-4" x-text="'XP: ' + formatNumber(group.monster.cr.exp)"></span>
