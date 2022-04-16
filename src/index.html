@@ -244,32 +244,36 @@
 
 					<div class="flex-row">
 						<template x-for="(group, index) in encounter.groups" :key="group.monster.slug">
-							<div class="flex flex-row w-full my-4">
+							<div class="flex flex-row w-full my-4 relative">
 								<div class="grow pb-2 min-w-0">
-									<span class="text-xl font-semibold" x-text="group.monster.name"></span>
+									<div>
+										<span class="text-xl font-semibold" x-text="group.monster.name"></span>
+										<div @click="encounter.getNewMonster(group)" class="ml-2 inline-flex text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-200 cursor-pointer"><i class="fas fa-random"></i></div>
+<!--										<button type="button" @click="encounter.getNewMonster(group)" class="dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 inline-flex items-center ml-2 px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 dark:text-gray-300 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">-->
+<!--											<i class="fas fa-random"></i>-->
+<!--										</button>-->
+									</div>
+
 									<div>
 										<span class="text-lg" x-text="'CR: ' + group.monster.cr.string"></span>
 										<span class="text-lg ml-4" x-text="'XP: ' + formatNumber(group.monster.cr.exp)"></span>
-										<div class='overflow-hidden whitespace-nowrap overflow-ellipsis'>
-											<ul class="list-none text-s italic">
+										<div class='overflow-hidden whitespace-nowrap overflow-ellipsis pr-40'>
+											<ul class="list-none text-s italic max-w-full">
 											<template x-for="source in group.monster.sources">
-												<li x-html="source.link ? `<a class='primary-link' href='${source.link}' target='_blank'>${source.fullText}</a>` : source.fullText"></li>
+												<li class="max-w-full truncate" x-html="source.link ? `<a class='primary-link' href='${source.link}' target='_blank'>${source.fullText}</a>` : source.fullText"></li>
 											</template>
 											</ul>
 										</div>
 									</div>
 								</div>
-								<div class="">
-									<button type="button" @click="encounter.getNewMonster(group)" class="dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 dark:text-gray-300 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
-										<i class="fas fa-random"></i>
-									</button>
-									<input type="number" min="1" class="inline align-middle w-24 shadow-sm focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm border-gray-300 rounded-md dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300" x-model="group.count"/>
-									<div class="inline-block align-middle">
-										<button @click="encounter.addCount(index)" type="button" class="block items-center p-1 mb-1 border border-transparent text-xs font-medium rounded text-emerald-700 dark:text-emerald-200 bg-emerald-100 dark:bg-emerald-800 hover:bg-emerald-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
-											<i class="fas fa-plus"></i>
+								<div class="absolute bottom-3 right-0 flex shrink-0 items-center">
+									<div class="flex rounded-md shadow-sm">
+										<button @click="encounter.addCount(index)" class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 dark:border-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 text-gray-500 sm:text-sm">
+											<i class="fa fa-plus"></i>
 										</button>
-										<button @click="encounter.subtractCount(index)" type="button" class="block items-center p-1 border border-transparent text-xs font-medium rounded text-red-700 dark:text-red-200 bg-red-100 dark:bg-red-800 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
-											<i class="fas fa-minus"></i>
+										<input type="number" min="1" id="company-website" class="flex-1 min-w-0 block w-16 px-3 py-2 rounded-none dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300" x-model="group.count">
+										<button @click="encounter.subtractCount(index)" class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 dark:border-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 text-gray-500 sm:text-sm">
+											<i class="fa fa-minus"></i>
 										</button>
 									</div>
 								</div>
