@@ -302,6 +302,8 @@ function multiSelect($el, name, options) {
                         label,
                         selected: selection.includes(value),
                     })))
+
+                    this.onFiltersChanged();
                 }
 
                 refreshChoices()
