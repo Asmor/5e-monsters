@@ -327,27 +327,27 @@
 				<div class="px-4 sm:px-6 lg:px-8">
 
 					<div class="-mx-4 mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
-						<table class="min-w-full divide-y divide-gray-300">
-							<thead class="bg-gray-50">
+						<table class="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
+							<thead class="bg-gray-50 dark:bg-gray-600">
 							<tr>
 								<th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
 									<span class="sr-only">Add to encounter</span>
 								</th>
-								<th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">CR</th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Size</th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Type</th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 md:table-cell">Alignment</th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Source</th>
+								<th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 sm:pl-6">Name</th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 sm:table-cell">CR</th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 sm:table-cell">Size</th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 sm:table-cell">Type</th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 md:table-cell">Alignment</th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 lg:table-cell">Source</th>
 							</tr>
 							</thead>
-							<tbody class="divide-y divide-gray-200 bg-white">
+							<tbody class="divide-y divide-gray-200 dark:divide-gray-700 bg-white">
 								<template x-for="monster in monsters">
-									<tr>
+									<tr class="odd:bg-gray-50 even:bg-gray-100 dark:odd:bg-gray-700 dark:even:bg-gray-800">
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-300 text-center">
 											<span class="primary-link cursor-pointer select-none" @click="encounter.addMonster(monster)">Add</span>
 										</td>
-										<td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
+										<td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 dark:text-gray-100 sm:w-auto sm:max-w-none sm:pl-6">
 											<span x-text="monster.name"></span>
 											<dl class="font-normal lg:hidden">
 												<dt class="sr-only">Sources</dt>
@@ -359,20 +359,20 @@
 													</ul>
 												</dd>
 												<dt class="sr-only sm:hidden">CR</dt>
-												<dd class="mt-1 truncate text-gray-500 sm:hidden">CR <span x-text="monster.cr.string"></span></dd>
+												<dd class="mt-1 truncate text-gray-500 dark:text-gray-300 sm:hidden">CR <span x-text="monster.cr.string"></span></dd>
 												<dt class="sr-only sm:hidden">Size</dt>
-												<dd class="mt-1 truncate text-gray-500 sm:hidden" x-text="monster.size"></dd>
+												<dd class="mt-1 truncate text-gray-500 dark:text-gray-300 sm:hidden" x-text="monster.size"></dd>
 												<dt class="sr-only sm:hidden">Type</dt>
-												<dd class="mt-1 truncate text-gray-500 sm:hidden" x-text="monster.type"></dd>
+												<dd class="mt-1 truncate text-gray-500 dark:text-gray-300 sm:hidden" x-text="monster.type"></dd>
 												<dt class="sr-only sm:hidden">Alignment</dt>
-												<dd class="mt-1 truncate text-gray-500 md:hidden" x-text="monster.alignment.string"></dd>
+												<dd class="mt-1 truncate text-gray-500 dark:text-gray-300 md:hidden" x-text="monster.alignment.string"></dd>
 											</dl>
 										</td>
-										<td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell" x-text="monster.cr.string"></td>
-										<td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell" x-text="monster.size"></td>
-										<td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell" x-text="monster.type"></td>
-										<td class="hidden px-3 py-4 text-sm text-gray-500 md:table-cell" x-text="monster.alignment.string"></td>
-										<td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">
+										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 sm:table-cell" x-text="monster.cr.string"></td>
+										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 sm:table-cell" x-text="monster.size"></td>
+										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 sm:table-cell" x-text="monster.type"></td>
+										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 md:table-cell" x-text="monster.alignment.string"></td>
+										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 lg:table-cell">
 											<ul class="list-none">
 												<template x-for="source in monster.sources">
 													<li x-text="source.book + (source.page ? ' p.' + source.page : '')"></li>
