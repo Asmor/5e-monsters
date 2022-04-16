@@ -351,12 +351,9 @@
 											<span x-text="monster.name"></span>
 											<dl class="font-normal lg:hidden">
 												<dt class="sr-only">Sources</dt>
-												<dd class="mt-1 truncate text-gray-500">
-													<ul class="list-none">
-														<template x-for="source in monster.sources">
-															<li x-text="source.shortText"></li>
-														</template>
-													</ul>
+												<dd class="mt-1 truncate text-gray-500"
+													x-text="monster.sources.map(source => source.shortText).join(', ')"
+													:title="monster.sources.map(source => source.fullText).join('\n')">
 												</dd>
 												<dt class="sr-only sm:hidden">CR</dt>
 												<dd class="mt-1 truncate text-gray-500 dark:text-gray-300 sm:hidden">CR <span x-text="monster.cr.string"></span></dd>
@@ -372,12 +369,10 @@
 										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 sm:table-cell" x-text="monster.size"></td>
 										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 sm:table-cell" x-text="monster.type"></td>
 										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 md:table-cell" x-text="monster.alignment.string"></td>
-										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 lg:table-cell">
-											<ul class="list-none">
-												<template x-for="source in monster.sources">
-													<li x-text="source.fullText"></li>
-												</template>
-											</ul>
+										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 lg:table-cell"
+											x-text="monster.sources.map(source => source.shortText).join(', ')"
+											:title="monster.sources.map(source => source.fullText).join('\n')"
+										>
 										</td>
 									</tr>
 								</template>

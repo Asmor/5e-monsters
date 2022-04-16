@@ -97,7 +97,7 @@ function app() {
         get monsters(){
             const currentPage = this.currentPage-1;
             const start = !currentPage ? 0 : (currentPage*this.monstersPerPage)+1;
-            const end = (currentPage+1)*this.monstersPerPage;
+            const end = !currentPage ? this.monstersPerPage : ((currentPage+1)*this.monstersPerPage)+1
             return this.filteredMonsters.slice(start, end);
         },
 
