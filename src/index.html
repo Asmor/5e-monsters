@@ -767,7 +767,9 @@
 
 										<div class="grid md:grid-cols-2 w-full">
 											<template x-for="source of type.values">
-												<button @click="source.enabled =! source.enabled" :class="{ 'button-secondary-md': !source.enabled, 'button-primary-md': source.enabled }" x-text="source.name"></button>
+												<div>
+													<button @click="source.enabled =! source.enabled" :class="{ 'button-secondary-md': !source.enabled, 'button-primary-md': source.enabled }" x-text="source.name"></button>
+												</div>
 											</template>
 										</div>
 									</template>
