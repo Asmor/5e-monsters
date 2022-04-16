@@ -121,7 +121,7 @@ export default class Monster {
         if (filters.sources?.length) {
             let found = false;
             for (let source of this.sources) {
-                if (filters.sources.includes(source.book)) {
+                if (filters.sources.includes(source.name)) {
                     found = true;
                     break;
                 }
@@ -138,7 +138,7 @@ export default class Monster {
                 let legendaryMonsterKey = CONST.LEGENDARY_MAP[filters.legendary];
 
                 if (legendaryMonsterKey) {
-                    if (!this[legendaryMonsterKey]) return false;
+                    if (!this.data.legendary[legendaryMonsterKey]) return false;
                 } else {
                     if (this.legendary || this.lair) return false;
                 }
