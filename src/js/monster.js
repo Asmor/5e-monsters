@@ -32,24 +32,24 @@ export default class Monster {
 
         this.sources = this.data.sources.split(', ').map(str => {
             const [book, location] = str.split(": ");
-            const source = { book }
+            let source;
             if (!isNaN(location)) {
+                source = lib.clone(this.app.sources[book]);
                 source.page = location;
-
-                const bookFound = this.app.sources[book];
-                if (bookFound.link) {
-                    source.link = bookFound.link;
-                }
-
             } else if (lib.isValidHttpUrl(location)) {
-                source.link = location;
+                source = {
+                    name: book,
+                    shortname: book,
+                    link: location
+                }
             }
 
-            source.fullText = source.book + (source.page ? ' p.' + source.page : '');
+            source.fullText = source.name + (source.page ? ' p.' + source.page : '');
+            source.shortText = source.shortname + (source.page ? ' p.' + source.page : '');
             return source;
         });
 
-        this.sources.sort((a, b) => a.book.localeCompare(b.book, 'en', { sensitivity: "base" }))
+        this.sources.sort((a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: "base" }))
 
     }
 

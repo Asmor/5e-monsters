@@ -36,8 +36,9 @@ function app() {
         filteredMonsters: [],
         monsterLookupTable: {},
 
-        pages: 1,
-        page: 1,
+        totalPages: 1,
+        currentPage: 1,
+        pagination: [],
         monstersPerPage: Alpine.$persist(10).as("monstersPerPage"),
 
         encounterType: Alpine.$persist("random").as("encounterType"),
@@ -94,9 +95,9 @@ function app() {
         },
 
         get monsters(){
-            const page = this.page-1;
-            const start = !page ? 0 : (page*this.monstersPerPage)+1;
-            const end = (page+1)*this.monstersPerPage;
+            const currentPage = this.currentPage-1;
+            const start = !currentPage ? 0 : (currentPage*this.monstersPerPage)+1;
+            const end = (currentPage+1)*this.monstersPerPage;
             return this.filteredMonsters.slice(start, end);
         },
 
@@ -104,15 +105,64 @@ function app() {
             this.isLoading = true;
             this.formatSources(await this.fetchSources());
             this.formatMonsters(await this.fetchMonsters());
-            this.page = 1;
-            this.pages = Math.floor(this.allMonsters.length / this.monstersPerPage);
+            this.currentPage = 1;
             this.searchPlaceholder = lib.randomArrayElement(this.allMonsters).name;
             this.filteredMonsters = this.filterMonsters();
             this.isLoading = false;
+            this.updatePagination();
 
             if(this.encounterHistory.length){
                 this.encounter.load(this.encounterHistory[this.encounterHistory.length-1]);
             }
+        },
+
+        setPage(page){
+            if(page.divider) return;
+            this.setPageNumber(page.number)
+        },
+
+        setPageNumber(num){
+            this.currentPage = num;
+            this.updatePagination();
+        },
+
+        updatePagination(){
+
+            this.currentPage = Math.max(1, Math.min(this.totalPages, this.currentPage));
+            this.totalPages = Math.floor(this.filteredMonsters.length / this.monstersPerPage);
+
+            if(this.currentPage < 5){
+                this.pagination = [
+                    { number: 1, active: this.currentPage === 1 },
+                    { number: 2, active: this.currentPage === 2 },
+                    { number: 3, active: this.currentPage === 3 },
+                    { number: 4, active: this.currentPage === 4 },
+                    { number: 5, active: this.currentPage === 5 },
+                    { divider: true },
+                    { number: this.totalPages }
+                ]
+            }else if(this.currentPage > this.totalPages-5){
+                this.pagination = [
+                    { number: 1 },
+                    { divider: true },
+                    { number: this.totalPages-4, active: this.totalPages-4 === this.currentPage },
+                    { number: this.totalPages-3, active: this.totalPages-3 === this.currentPage },
+                    { number: this.totalPages-2, active: this.totalPages-2 === this.currentPage },
+                    { number: this.totalPages-1, active: this.totalPages-1 === this.currentPage },
+                    { number: this.totalPages, active: this.totalPages === this.currentPage  }
+                ]
+            }else{
+                this.pagination = [
+                    { number: 1 },
+                    { divider: true },
+                    { number: this.currentPage-1 },
+                    { number: this.currentPage, active: true },
+                    { number: this.currentPage+1 },
+                    { divider: true },
+                    { number: this.totalPages }
+                ]
+            }
+
         },
 
         async fetchSources(){
@@ -219,6 +269,7 @@ function app() {
 
         updateFilteredMonsters(){
             this.filteredMonsters = this.filterMonsters();
+            this.updatePagination();
         },
 
         formatNumber(num){
