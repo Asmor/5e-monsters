@@ -95,7 +95,7 @@
 		</nav>
 
 		<div class="flex py-4 sm:py-6 lg:py-8 max-w-screen">
-			<div class="hidden lg:flex flex-col pl-4 sm:pl-6 lg:pl-8 flex-shrink-0 w-[30rem] min-h-full">
+			<div class="hidden md:flex flex-col pl-4 sm:pl-6 lg:pl-8 flex-shrink-0 w-[25rem] xl:w-[30rem] min-h-full">
 				<div class="flex flex-col w-full border-b dark:border-gray-700 pb-4">
 					<div class="flex w-full flex-col">
 						<span class="text-2xl mb-2">Group</span>
@@ -146,8 +146,8 @@
 					<span class="text-2xl grow">Encounter</span>
 
 					<div class="mt-4 flex w-full space-x-2 items-end justify-between pb-4 border-b dark:border-gray-700">
-						<div class="grid gap-2 w-full place-items-end grid-cols-2 grow">
-							<div class="w-full">
+						<div class="grid gap-2 w-full place-items-end grid-cols-8 grow">
+							<div class="w-full col-span-3 xl:col-span-4">
 								<label id="difficulty-label" class="block text-sm font-medium text-gray-700 dark:text-gray-300"> Difficulty </label>
 								<div class="mt-1 relative" @click.outside="difficultySelectOpen = false">
 									<button @click="difficultySelectOpen = true" type="button" class="bg-white dark:bg-gray-700 relative w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
@@ -174,9 +174,10 @@
 
                                               Highlighted: "text-white bg-emerald-600", Not Highlighted: "text-gray-900"
                                             -->
-											<li @click="difficulty = option; difficultySelectOpen = false;" :class="{ 'text-white bg-emerald-600': difficulty === option, 'text-gray-900 dark:text-gray-300': difficulty !== option }" class="text-gray-900 hover:text-white hover:bg-emerald-600 cursor-default select-none relative py-2 pl-3 pr-9" id="listbox-option-0" role="option">
+											<li @click="difficulty = option; difficultySelectOpen = false;" :class="{ 'text-white bg-emerald-600': difficulty === option, 'text-gray-900 dark:text-gray-300': difficulty !== option }" class="group text-gray-900 hover:text-white hover:bg-emerald-600 cursor-default select-none relative py-2 pl-3 pr-9" id="listbox-option-0" role="option">
 												<!-- Selected: "font-semibold", Not Selected: "font-normal" -->
-												<span class="font-normal block truncate" x-html="'<strong>' + (option.slice(0,1).toUpperCase() + option.slice(1)) + '</strong> (' + formatNumber(party.experience[option]) + ' exp)'"> </span>
+												<span class="group-hover:text-white font-normal block truncate" x-html="(option.slice(0,1).toUpperCase() + option.slice(1))"> </span>
+												<span :class="{ 'text-gray-200': difficulty === option, 'text-gray-600 dark:text-gray-400': difficulty !== option }" class="text-xs group-hover:text-gray-200" x-text="formatNumber(party.experience[option]) + 'xp'"></span>
 
 											<span x-show="difficulty === option" :class="{ 'text-white': difficulty === option, 'text-emerald-600': difficulty !== option }" class="absolute inset-y-0 right-0 flex items-center pr-4">
 										  <!-- Heroicon name: solid/check -->
@@ -191,7 +192,7 @@
 							</div>
 
 							<!-- This example requires Tailwind CSS v2.0+ -->
-							<div class="w-full">
+							<div class="w-full col-span-5 xl:col-span-4">
 								<label id="listbox-label" class="block text-sm font-medium text-gray-700 dark:text-gray-300"> Composition </label>
 								<div class="mt-1 relative" @click.outside="encounterTypeSelectOpen = false">
 									<button @click="encounterTypeSelectOpen = true" type="button" class="bg-white dark:bg-gray-700 relative w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
@@ -237,7 +238,12 @@
 
 						<div>
 							<button @click="encounter.generateRandom()" class="button-primary-md">
-								Generate
+								<span class="hidden xl:inline">
+									Generate
+								</span>
+								<span class="xl:hidden">
+									<i class="fa fa-refresh"></i>
+								</span>
 							</button>
 						</div>
 					</div>
@@ -334,11 +340,11 @@
 									<span class="sr-only">Add to encounter</span>
 								</th>
 								<th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 sm:pl-6">Name</th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 sm:table-cell">CR</th>
 								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 sm:table-cell">Size</th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 sm:table-cell">Type</th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 md:table-cell">Alignment</th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 lg:table-cell">Source</th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 sm:table-cell">CR</th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 lg:table-cell">Alignment</th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 lg:table-cell">Type</th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 xl:table-cell">Source</th>
 							</tr>
 							</thead>
 							<tbody class="divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-900">
@@ -349,31 +355,29 @@
 										</td>
 										<td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 dark:text-gray-100 sm:w-auto sm:max-w-none sm:pl-6">
 											<span x-text="monster.name"></span>
-											<dl class="font-normal lg:hidden">
+											<dl class="font-normal xl:hidden">
 												<dt class="sr-only">Sources</dt>
 												<dd class="mt-1 truncate text-gray-500"
 													x-text="monster.sources.map(source => source.shortText).join(', ')"
 													:title="monster.sources.map(source => source.fullText).join('\n')">
 												</dd>
-												<dt class="sr-only sm:hidden">CR</dt>
-												<dd class="mt-1 truncate text-gray-500 dark:text-gray-300 sm:hidden">CR <span x-text="monster.cr.string"></span></dd>
 												<dt class="sr-only sm:hidden">Size</dt>
-												<dd class="mt-1 truncate text-gray-500 dark:text-gray-300 sm:hidden" x-text="monster.size"></dd>
-												<dt class="sr-only sm:hidden">Type</dt>
-												<dd class="mt-1 truncate text-gray-500 dark:text-gray-300 sm:hidden" x-text="monster.type"></dd>
+												<dd class="mt-1 truncate text-gray-500 dark:text-gray-500 sm:hidden" x-text="monster.size"></dd>
+												<dt class="sr-only sm:hidden">CR</dt>
+												<dd class="mt-1 truncate text-gray-500 dark:text-gray-500 sm:hidden">CR <span x-text="monster.cr.string"></span></dd>
 												<dt class="sr-only sm:hidden">Alignment</dt>
-												<dd class="mt-1 truncate text-gray-500 dark:text-gray-300 md:hidden" x-text="monster.alignment.string"></dd>
+												<dd class="mt-1 truncate text-gray-500 dark:text-gray-500 lg:hidden" x-text="monster.alignment.string"></dd>
+												<dt class="sr-only sm:hidden">Type</dt>
+												<dd class="mt-1 truncate text-gray-500 dark:text-gray-500 lg:hidden" x-text="monster.type"></dd>
 											</dl>
 										</td>
-										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 sm:table-cell" x-text="monster.cr.string"></td>
 										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 sm:table-cell" x-text="monster.size"></td>
 										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 sm:table-cell" x-text="monster.type"></td>
 										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 md:table-cell" x-text="monster.alignment.string"></td>
-										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 lg:table-cell"
+										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 xl:table-cell"
 											x-text="monster.sources.map(source => source.shortText).join(', ')"
 											:title="monster.sources.map(source => source.fullText).join('\n')"
 										>
-										</td>
 									</tr>
 								</template>
 							</tbody>
@@ -383,26 +387,26 @@
 					<!-- This example requires Tailwind CSS v2.0+ -->
 					<nav x-show="totalPages > 1" x-cloak class="border-t border-gray-300 mt-4 dark:border-gray-700 px-4 flex items-center justify-between sm:px-0">
 						<div class="-mt-px w-0 flex-1 flex">
-							<a @click="setPageNumber(currentPage-1)" :disabled="currentPage === 1" href="#" class="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-400 hover:border-gray-400">
+							<a @click="setPageNumber(currentPage-1)" :disabled="currentPage === 1" href="#" class="border-t-2 border-transparent pt-4 px-2 lg:pr-1 lg:pl-0 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-400 hover:border-gray-400">
 								<!-- Heroicon name: solid/arrow-narrow-left -->
 								<svg class="mr-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 									<path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
 								</svg>
-								Previous
+								<span class="hidden lg:inline">Previous</span>
 							</a>
 						</div>
 						<div class="hidden md:-mt-px md:flex">
 							<template x-for="page of pagination">
 								<span :class="{
 									'cursor-pointer select-none border-emerald-600 text-emerald-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium': page.active && !page.divider,
-									'cursor-pointer select-none border-transparent text-gray-500 hover:text-gray-400 hover:border-gray-400 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium': !page.active && !page.divider,
-									'select-none border-transparent text-gray-500 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium': page.divider
+									'cursor-pointer select-none border-transparent text-gray-500 hover:text-gray-400 hover:border-gray-400 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium hidden lg:inline-block first-of-type:inline-block last-of-type:inline-block': !page.active && !page.divider,
+									'select-none border-transparent text-gray-500 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium': page.divider,
 								}" x-text="page.divider ? '...' : page.number" @click="setPage(page)" :key="page.number"></span>
 							</template>
 						</div>
 						<div class="-mt-px w-0 flex-1 flex justify-end">
-							<a href="#" @click="setPageNumber(currentPage+1)" class="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-400 hover:border-gray-400">
-								Next
+							<a href="#" @click="setPageNumber(currentPage+1)" class="border-t-2 border-transparent pt-4 px-2 lg:pr-1 lg:pl-0 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-400 hover:border-gray-400">
+								<span class="hidden lg:inline">Next</span>
 								<!-- Heroicon name: solid/arrow-narrow-right -->
 								<svg class="ml-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 									<path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
