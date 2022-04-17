@@ -299,9 +299,13 @@ function app() {
             return internationalNumberFormat.format(num);
         },
         setupHotkeys() {
-            hotkeys('ctrl+k', (event, handler) => {
+            hotkeys('ctrl+k,ctrl+shift+\\,ctrl+l', (event, handler) => {
                 switch(handler.key) {
                     case 'ctrl+k': document.getElementById('search').focus();
+                        break;
+                    case 'ctrl+shift+\\': window.toggleTheme();
+                        break;
+                    case 'ctrl+l': this.showFilters =! this.showFilters;
                         break;
                 }
 

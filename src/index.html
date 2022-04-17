@@ -65,7 +65,7 @@
                         <a href="" class="inline-flex items-center px-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300">Run Encounters</a>
                         <a href="" class="inline-flex items-center px-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300">Fantasy Calendar</a>
                         <a href="" class="inline-flex items-center px-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300">About</a>
-						<a @click="window.toggleTheme()" href="javascript:" class="inline-flex items-center px-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300 h-full">
+						<a title="Toggle light mode (ctrl+shift+\)" @click="window.toggleTheme()" href="javascript:" class="inline-flex items-center px-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300 h-full">
 							<i :class="{ 'fa-moon': window.theme !== 'dark', 'fa-sun': window.theme === 'dark' }" class="fa"></i>
 						</a>
 					</div>
@@ -325,7 +325,7 @@
 							<kbd class="inline-flex items-center border border-gray-200 dark:border-gray-600 rounded px-2 text-sm font-sans font-medium text-gray-400"> ⌘K </kbd>
 						</div>
 					</div>
-					<div class="relative inline-block text-left" x-data="{ filtersMenu: true }">
+					<div class="relative inline-block text-left" x-data="{ filtersMenu: true }" title="Filter monsters (Ctrl+L)">
 						<button @click="showFilters =! showFilters" type="button" class="-ml-px h-full relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md bg-white disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 dark:text-gray-400 text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 								<path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
