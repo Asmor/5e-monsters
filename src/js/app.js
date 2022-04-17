@@ -17,8 +17,8 @@ function app() {
         menu: true,
         isLoading: true,
         loading: false,
-        showFilters: true,
-        showSourcesModal: true,
+        showFilters: false,
+        showSourcesModal: false,
 
         filters: {},
         searchPlaceholder: "",
