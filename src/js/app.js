@@ -1,5 +1,6 @@
 require('@fortawesome/fontawesome-free')
 
+import hotkeys from 'hotkeys-js';
 import encounter from "./encounter.js";
 import noUiSlider from "nouislider";
 import * as lib from "./lib.js";
@@ -90,6 +91,7 @@ function app() {
         },
 
         init(){
+            this.setupHotkeys();
             this.encounter.app = this;
             this.party.app = this;
             this.fetchData();
@@ -296,6 +298,16 @@ function app() {
         formatNumber(num){
             return internationalNumberFormat.format(num);
         },
+        setupHotkeys() {
+            hotkeys('ctrl+k', (event, handler) => {
+                switch(handler.key) {
+                    case 'ctrl+k': document.getElementById('search').focus();
+                        break;
+                }
+
+                return false;
+            })
+        }
     }
 }
 
@@ -413,6 +425,7 @@ function multiSelect($el, name, options) {
     }
 }
 
+window.hotkeys = hotkeys;
 window.app = app;
 window.multiSelect = multiSelect;
 window.multiSlider = multiSlider;
