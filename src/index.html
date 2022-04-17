@@ -276,12 +276,12 @@
 								</div>
 								<div class="absolute bottom-3 right-0 flex shrink-0 items-center">
 									<div class="flex rounded-md shadow-sm">
-										<button @click="encounter.addCount(index)" class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 dark:border-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 text-gray-500 sm:text-sm">
-											<i class="fa fa-plus"></i>
+										<button @click="encounter.addCount(index)" class="inline-flex items-center px-2 rounded-l-md border border-r-0 border-gray-300 dark:border-gray-600 dark:text-gray-300 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-500 sm:text-sm">
+											<i class="fa fa-plus w-5"></i>
 										</button>
 										<input type="number" min="1" id="company-website" class="flex-1 min-w-0 block w-16 px-3 py-2 rounded-none dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300" x-model="group.count">
-										<button @click="encounter.subtractCount(index)" class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 dark:border-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 text-gray-500 sm:text-sm">
-											<i class="fa fa-minus"></i>
+										<button @click="encounter.subtractCount(index)" :class="{ 'border-gray-300 dark:border-gray-600 dark:text-gray-300 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-500': group.count > 1, 'border-red-200 dark:border-red-700 dark:text-red-300 bg-red-50 hover:bg-red-100 dark:bg-red-800 dark:hover:bg-red-700 text-red-500': group.count === 1 }" class="inline-flex items-center px-2 rounded-r-md border border-l-0 sm:text-sm">
+											<i :class="{ 'fa-minus': group.count > 1, 'fa-times': group.count === 1 }" class="fa w-5"></i>
 										</button>
 									</div>
 								</div>
@@ -322,7 +322,7 @@
 						<input type="search" name="search" id="search" x-model="search" @input.debounce="updateFilteredMonsters" class="border-gray-300 focus:ring-emerald-500 focus:border-emerald-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600" :placeholder="searchPlaceholder">
 					</div>
 					<div class="relative inline-block text-left" x-data="{ filtersMenu: true }">
-						<button @click="showFilters =! showFilters" type="button" class="-ml-px h-full relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md bg-white disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
+						<button @click="showFilters =! showFilters" type="button" class="-ml-px h-full relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md bg-white disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 dark:text-gray-400 text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 								<path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
 							</svg>
@@ -622,8 +622,8 @@
 										<div @click="toggle(chaotic_evil)" :class="classes(chaotic_evil)" class="col-span-4 h-16" title="Chaotic Evil">CE</div>
 
 										<div @click="toggle((lawful_evil | neutral | chaotic_good))" :class="classes(lawful_evil | neutral | chaotic_good)" class="col-span-2 rounded-bl-md"></div>
-										<div @click="total = (total === 1023) ? 0 : 1023" :class="{ 'bg-emerald-700 hover:bg-emerald-600 dark:bg-emerald-800 dark:hover:bg-emerald-900': (total & 1023) === 1023, 'bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border': (total & 1023) !== 1023 }" class="select-none text-gray-900 text-white col-span-6 cursor-pointer grid place-items-center h-8 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border">Any</div>
-										<div @click="total = total ^ 512" :class="{ 'bg-emerald-700 hover:bg-emerald-600 dark:bg-emerald-800 dark:hover:bg-emerald-900': (total & 512) === 512, 'bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border': (total & 512) !== 512 }" class="select-none text-gray-900 text-white rounded-br-md col-span-6 cursor-pointer grid place-items-center h-8 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border">Unaligned</div>
+										<div @click="total = (total === 1023) ? 0 : 1023" :class="{ 'bg-emerald-700 text-white hover:bg-emerald-600 dark:bg-emerald-800 dark:hover:bg-emerald-900': (total & 1023) === 1023, 'text-gray-900 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border': (total & 1023) !== 1023 }" class="select-none text-gray-900 col-span-6 cursor-pointer grid place-items-center h-8 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border">Any</div>
+										<div @click="total = total ^ 512" :class="{ 'bg-emerald-700 text-white hover:bg-emerald-600 dark:bg-emerald-800 dark:hover:bg-emerald-900': (total & 512) === 512, 'text-gray-900 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border': (total & 512) !== 512 }" class="select-none text-gray-900 rounded-br-md col-span-6 cursor-pointer grid place-items-center h-8 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border">Unaligned</div>
 									</div>
 								</div>
 
