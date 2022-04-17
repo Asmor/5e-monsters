@@ -1,15 +1,23 @@
 [
   {
-    "type": "Official Web Supplement",
-    "name": "Basic Rules v1",
-    "shortname": "Basic",
-    "link": "https://media.wizards.com/2014/downloads/dnd/DMDnDBasicRules_v0.1.pdf"
+    "type": "Official",
+    "name": "Monster Manual",
+    "shortname": "MM",
+    "link": "https://www.dndbeyond.com/sources/mm",
+    "default": true
   },
   {
     "type": "Official Adventure",
     "name": "Curse of Strahd",
     "shortname": "CoS",
     "link": "https://www.dndbeyond.com/sources/cos/appendix-d-monsters-and-npcs"
+  },
+  {
+    "type": "Official Web Supplement",
+    "name": "Basic Rules v1",
+    "shortname": "Basic",
+    "link": "https://media.wizards.com/2014/downloads/dnd/DMDnDBasicRules_v0.1.pdf",
+    "default": true
   },
   {
     "type": "Official Adventure",
@@ -25,15 +33,10 @@
   },
   {
     "type": "Official",
-    "name": "Monster Manual",
-    "shortname": "MM",
-    "link": "https://www.dndbeyond.com/sources/mm"
-  },
-  {
-    "type": "Official",
     "name": "Mordenkainen's Tome of Foes",
     "shortname": "MToF",
-    "link": "https://www.dndbeyond.com/sources/mtof"
+    "link": "https://www.dndbeyond.com/sources/mtof",
+    "default": true
   },
   {
     "type": "Official Adventure",
@@ -45,7 +48,8 @@
     "type": "Official",
     "name": "Player's Handbook",
     "shortname": "PHB",
-    "link": "https://www.dndbeyond.com/sources/phb"
+    "link": "https://www.dndbeyond.com/sources/phb",
+    "default": true
   },
   {
     "type": "Official Adventure",
@@ -93,6 +97,7 @@
     "type": "Official",
     "name": "Volo's Guide to Monsters",
     "shortname": "VGtM",
-    "link": "https://www.dndbeyond.com/sources/vgtm"
+    "link": "https://www.dndbeyond.com/sources/vgtm",
+    "default": true
   }
 ]

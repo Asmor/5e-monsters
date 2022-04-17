@@ -102,6 +102,23 @@ function app() {
             return this.filteredMonsters.slice(start, end);
         },
 
+
+
+        get sourcesByType(){
+            return Object.values(this.sources).reduce((acc, source) => {
+                const container = acc.find(obj => obj.title === source.type);
+                if(!container){
+                    acc.push({
+                        title: source.type,
+                        sources: [source]
+                    })
+                }else{
+                    container.sources.push(source);
+                }
+                return acc;
+            }, []);
+        },
+
         async fetchData() {
             this.isLoading = true;
             this.formatSources(await this.fetchSources());
@@ -111,6 +128,7 @@ function app() {
             this.filteredMonsters = this.filterMonsters();
             this.isLoading = false;
             this.updatePagination();
+            console.log(this.sourcesByType)
 
             if(this.encounterHistory.length){
                 this.encounter.load(this.encounterHistory[this.encounterHistory.length-1]);
@@ -192,7 +210,10 @@ function app() {
                     sources = sources.concat(data);
                 });
 
-            this.loadedSources = sources;
+            this.loadedSources = sources.map(source => {
+                source.enabled = !!source.default;
+                return source;
+            });
 
             return sources;
 
@@ -234,7 +255,6 @@ function app() {
                 acc[source.name] = source;
                 return acc;
             }, this.sources);
-            //this.sources.sort((a, b) => a.name > b.name ? 1 : -1);
         },
 
         formatMonsters(data){
