@@ -60,20 +60,20 @@ body .choices__input { @apply focus:ring-0 border-none; }
 
 /* noUiSlider overrides */
 .noUi-target {
-    @apply border-none shadow-none dark:bg-gray-800;
+    @apply border-none shadow-none bg-gray-100 dark:bg-gray-800;
 }
 .noUi-connect {
-    @apply bg-emerald-400 dark:bg-emerald-700;
+    @apply bg-emerald-700 dark:bg-emerald-700;
 }
 .noUi-handle {
-    @apply shadow-none dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 after:content-none before:content-none rounded-md p-0;
+    @apply shadow-none hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 after:content-none before:content-none rounded-md p-0;
 }
 .primary-link {
     @apply text-emerald-700 dark:text-emerald-500 dark:hover:text-emerald-600 hover:text-emerald-600;
 }
 
 .button-primary-md {
-    @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-emerald-600 dark:bg-emerald-800 dark:hover:bg-emerald-700 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500;
+    @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-emerald-700 dark:bg-emerald-800 dark:hover:bg-emerald-700 hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500;
 }
 .button-secondary-md {
     @apply inline-flex items-center px-4 py-2 border border-transparent dark:border-emerald-800 text-sm font-medium rounded-md text-emerald-700 bg-emerald-100 dark:bg-transparent dark:text-emerald-600 dark:hover:bg-emerald-800 dark:hover:text-white hover:bg-emerald-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500;

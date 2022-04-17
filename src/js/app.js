@@ -17,7 +17,7 @@ function app() {
         menu: true,
         isLoading: true,
         loading: false,
-        showFilters: false,
+        showFilters: true,
         showSourcesModal: false,
 
         filters: {},
