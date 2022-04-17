@@ -299,17 +299,23 @@ function app() {
             return internationalNumberFormat.format(num);
         },
         setupHotkeys() {
-            hotkeys('ctrl+k,ctrl+shift+\\,ctrl+l', (event, handler) => {
+            hotkeys('ctrl+k,ctrl+shift+\\,ctrl+l,ctrl+[,ctrl+],esc', (event, handler) => {
                 switch(handler.key) {
                     case 'ctrl+k': document.getElementById('search').focus();
-                        break;
+                        return false;
                     case 'ctrl+shift+\\': window.toggleTheme();
-                        break;
+                        return false;
                     case 'ctrl+l': this.showFilters =! this.showFilters;
+                        return false;
+                    case 'ctrl+[': this.setPageNumber(this.currentPage-1);
+                        return false;
+                    case 'ctrl+]': this.setPageNumber(this.currentPage+1);
+                        return false;
+                    case 'esc': this.showFilters = this.showSourcesModal = false;
                         break;
                 }
 
-                return false;
+                return true;
             })
         }
     }
