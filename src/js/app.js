@@ -104,10 +104,8 @@ function app() {
             return this.filteredMonsters.slice(start, end);
         },
 
-
-
         get sourcesByType(){
-            return Object.values(this.sources).reduce((acc, source) => {
+            const sources = Object.values(this.sources).reduce((acc, source) => {
                 const container = acc.find(obj => obj.title === source.type);
                 if(!container){
                     acc.push({
@@ -119,6 +117,18 @@ function app() {
                 }
                 return acc;
             }, []);
+
+            const order = ["Official", "Official Adventure", "Official Web Supplement", "Third-Party", "Community"]
+
+            sources.sort((a, b) => {
+                return order.indexOf(a.type) - order.indexOf(b.type);
+            })
+
+            return sources;
+        },
+
+        get enabledSources(){
+            return Object.values(this.sources).filter(source => source.enabled);
         },
 
         async fetchData() {
@@ -130,7 +140,6 @@ function app() {
             this.filteredMonsters = this.filterMonsters();
             this.isLoading = false;
             this.updatePagination();
-            console.log(this.sourcesByType)
 
             if(this.encounterHistory.length){
                 this.encounter.load(this.encounterHistory[this.encounterHistory.length-1]);
@@ -269,7 +278,7 @@ function app() {
 
         filterMonsters(crString = false, filterCallback = () => { return true; }){
             return this.allMonsters.filter(monster => {
-                return filterCallback(monster) && monster.filter(this.search, this.filters, crString)
+                return monster.sourceEnabled && filterCallback(monster) && monster.filter(this.search, this.filters, crString);
             });
         },
 
@@ -298,6 +307,7 @@ function app() {
         formatNumber(num){
             return internationalNumberFormat.format(num);
         },
+
         setupHotkeys() {
             hotkeys('ctrl+k,ctrl+shift+\\,ctrl+l,ctrl+[,ctrl+],esc', (event, handler) => {
                 switch(handler.key) {

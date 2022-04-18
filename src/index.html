@@ -268,7 +268,7 @@
 										<div class='overflow-hidden whitespace-nowrap overflow-ellipsis pr-40'>
 											<ul class="list-none text-s italic max-w-full">
 											<template x-for="source in group.monster.sources">
-												<li class="max-w-full truncate" x-html="source.link ? `<a class='primary-link' href='${source.link}' target='_blank'>${source.fullText}</a>` : source.fullText"></li>
+												<li class="max-w-full truncate" x-html="source.reference.link ? `<a class='primary-link' href='${source.reference.link}' target='_blank'>${source.fullText}</a>` : source.fullText"></li>
 											</template>
 											</ul>
 										</div>
@@ -391,6 +391,9 @@
 							</tbody>
 						</table>
 					</div>
+
+                    <div x-show="enabledSources.length === 0" class="w-full text-center text-xl my-4">No sources are enabled - <span class="primary-link select-none cursor-pointer" @click="showSourcesModal = true">enable some now</span></div>
+                    <div x-show="enabledSources.length > 0 && monsters.length === 0" class="w-full text-center text-xl my-4">No monsters found with the current filter</div>
 
 					<!-- This example requires Tailwind CSS v2.0+ -->
 					<nav x-show="totalPages > 1" x-cloak class="border-t border-gray-300 mt-4 dark:border-gray-700 px-4 flex items-center justify-between sm:px-0">
@@ -775,7 +778,7 @@
 
 											<div class="grid gap-2 md:grid-cols-2 w-full">
 												<template x-for="source of type.sources">
-													<button class="text-left" @click="source.enabled =! source.enabled" :class="{ 'button-secondary-md': !source.enabled, 'button-primary-md': source.enabled }" x-text="source.name"></button>
+													<button class="text-left" @click="source.enabled =! source.enabled; updateFilteredMonsters();" :class="{ 'button-secondary-md': !source.enabled, 'button-primary-md': source.enabled }" x-text="source.name"></button>
 												</template>
 											</div>
 										</div>

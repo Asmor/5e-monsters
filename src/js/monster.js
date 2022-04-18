@@ -32,24 +32,24 @@ export default class Monster {
 
         this.sources = this.data.sources.split(', ').map(str => {
             const [book, location] = str.split(": ");
-            let source;
+            let source = {};
             if (!isNaN(location)) {
-                source = lib.clone(this.app.sources[book]);
+                source.reference = this.app.sources[book];
                 source.page = location;
             } else if (lib.isValidHttpUrl(location)) {
-                source = {
+                source.reference = {
                     name: book,
                     shortname: book,
                     link: location
                 }
             }
 
-            source.fullText = source.name + (source.page ? ' p.' + source.page : '');
-            source.shortText = source.shortname + (source.page ? ' p.' + source.page : '');
+            source.fullText = source.reference.name + (source.reference.page ? ' p.' + source.reference.page : '');
+            source.shortText = source.reference.shortname + (source.reference.page ? ' p.' + source.reference.page : '');
             return source;
         });
 
-        this.sources.sort((a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: "base" }))
+        this.sources.sort((a, b) => a.fullText.localeCompare(b.fullText, 'en', { sensitivity: "base" }))
 
     }
 
@@ -71,6 +71,10 @@ export default class Monster {
 
     get isUnique () {
         return !!this.data["unique?"];
+    }
+
+    get sourceEnabled() {
+        return this.sources.find(source => source.reference.enabled);
     }
 
     static parseAlignment(str = "") {
@@ -116,17 +120,6 @@ export default class Monster {
 
         if (filters.alignment !== undefined && !(this.alignment.bits & filters.alignment)) {
             return false;
-        }
-
-        if (filters.sources?.length) {
-            let found = false;
-            for (let source of this.sources) {
-                if (filters.sources.includes(source.name)) {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) return false;
         }
 
         if (filters.size?.length && !filters.size?.includes("any")) {
