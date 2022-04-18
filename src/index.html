@@ -346,12 +346,54 @@
 								<th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
 									<span class="sr-only">Add to encounter</span>
 								</th>
-								<th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 sm:pl-6">Name</th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 sm:table-cell">Size</th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 sm:table-cell">CR</th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 lg:table-cell">Type</th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 lg:table-cell">Alignment</th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 xl:table-cell">Source</th>
+								<th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer sm:pl-6 group inline-flex" @click="setSortBy('name')">
+                                    Name
+                                    <span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" :class="{ 'invisible': sortBy !== 'name' }">
+                                        <i class="fa-solid" :class="{
+                                            'fa-chevron-down': sortByDesc || sortBy !== 'name',
+                                            'fa-chevron-up': !sortByDesc && sortBy === 'name'
+                                        }"></i>
+                                    </span>
+                                </th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer sm:table-cell group inline-flex" @click="setSortBy('size')">
+                                    Size
+                                    <span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" :class="{ 'invisible': sortBy !== 'size' }">
+                                        <i class="fa-solid" :class="{
+                                            'fa-chevron-down': sortByDesc || sortBy !== 'size',
+                                            'fa-chevron-up': !sortByDesc && sortBy === 'size'
+                                        }"></i>
+                                    </span>
+                                </th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer sm:table-cell group inline-flex" @click="setSortBy('cr')">
+                                    CR
+                                    <span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" :class="{ 'invisible': sortBy !== 'cr' }">
+                                        <i class="fa-solid" :class="{
+                                            'fa-chevron-down': sortByDesc || sortBy !== 'cr',
+                                            'fa-chevron-up': !sortByDesc && sortBy === 'cr'
+                                        }"></i>
+                                    </span>
+                                </th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer lg:table-cell group inline-flex" @click="setSortBy('type')">
+                                    Type
+                                    <span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" :class="{ 'invisible': sortBy !== 'type' }">
+                                        <i class="fa-solid" :class="{
+                                            'fa-chevron-down': sortByDesc || sortBy !== 'type',
+                                            'fa-chevron-up': !sortByDesc && sortBy === 'type'
+                                        }"></i>
+                                    </span>
+                                </th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer lg:table-cell group inline-flex" @click="setSortBy('alignment')">
+                                    Alignment
+                                    <span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" :class="{ 'invisible': sortBy !== 'alignment' }">
+                                        <i class="fa-solid" :class="{
+                                            'fa-chevron-down': sortByDesc || sortBy !== 'alignment',
+                                            'fa-chevron-up': !sortByDesc && sortBy === 'alignment'
+                                        }"></i>
+                                    </span>
+                                </th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer xl:table-cell group inline-flex">
+                                    Source
+                                </th>
 							</tr>
 							</thead>
 							<tbody class="divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-900">
@@ -361,7 +403,7 @@
 											<span class="primary-link cursor-pointer select-none" @click="encounter.addMonster(monster)">Add</span>
 										</td>
 										<td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 dark:text-gray-100 sm:w-auto sm:max-w-none sm:pl-6">
-											<span x-text="monster.name"></span>
+											<span x-text="monster.name" @click="setSortBy('name')"></span>
 											<dl class="font-normal xl:hidden">
 												<dt class="sr-only">Sources</dt>
 												<dd class="mt-1 truncate text-gray-500"
@@ -393,7 +435,7 @@
 					</div>
 
                     <div x-show="enabledSources.length === 0" class="w-full text-center text-xl my-4">No sources are enabled - <span class="primary-link select-none cursor-pointer" @click="showSourcesModal = true">enable some now</span></div>
-                    <div x-show="enabledSources.length > 0 && monsters.length === 0" class="w-full text-center text-xl my-4">No monsters found with the current filter</div>
+                    <div x-show="enabledSources.length > 0 && monsters.length === 0" class="w-full text-center text-xl my-4" x-cloak>No monsters found with the current filter (not sure why this shows up when it's <i>false</i>)</div>
 
 					<!-- This example requires Tailwind CSS v2.0+ -->
 					<nav x-show="totalPages > 1" x-cloak class="border-t border-gray-300 mt-4 dark:border-gray-700 px-4 flex items-center justify-between sm:px-0">

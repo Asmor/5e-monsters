@@ -55,6 +55,19 @@ function app() {
 
         encounter: encounter,
 
+        sortBy: Alpine.$persist("name").as("sortBy"),
+        sortByDesc: Alpine.$persist(true).as("sortByDesc"),
+
+        setSortBy(type){
+            if(type === this.sortBy){
+                this.sortByDesc = !this.sortByDesc;
+            }else{
+                this.sortByDesc = true;
+            }
+            this.sortBy = type;
+            this.updateFilteredMonsters();
+        },
+
         party: {
 
             groups: Alpine.$persist([{ players: 4, level: 1 }]).as('groups'),
@@ -277,9 +290,20 @@ function app() {
         },
 
         filterMonsters(crString = false, filterCallback = () => { return true; }){
-            return this.allMonsters.filter(monster => {
+            const monsters = this.allMonsters.filter(monster => {
                 return monster.sourceEnabled && filterCallback(monster) && monster.filter(this.search, this.filters, crString);
             });
+            monsters.sort((a, b) => {
+                if(this.sortBy === "cr"){
+                    return this.sortByDesc ? a[this.sortBy].numeric - b[this.sortBy].numeric :  b[this.sortBy].numeric - a[this.sortBy].numeric;
+                }else if(this.sortBy === "alignment"){
+                    return this.sortByDesc ? a[this.sortBy].bits - b[this.sortBy].bits : b[this.sortBy].bits - a[this.sortBy].bits;
+                }
+                return this.sortByDesc
+                    ? (a[this.sortBy] > b[this.sortBy] ? 1 : -1)
+                    : (a[this.sortBy] < b[this.sortBy] ? 1 : -1);
+            });
+            return monsters;
         },
 
         filtersChanged($event){
