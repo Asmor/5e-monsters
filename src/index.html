@@ -292,7 +292,9 @@
 					<div class="flex border-t text-2xl border-t-gray-400 dark:border-gray-700 pt-4" x-show="encounter.groups.length">
 						<div class="grow">
 							<div x-text="'Difficulty: ' + encounter.actualDifficulty"></div>
-							<div class="text-sm" x-show="encounter.difficultyFeel" x-text="encounter.difficultyFeel"></div>
+							<div class="text-sm mb-4" x-show="encounter.difficultyFeel" x-text="encounter.difficultyFeel"></div>
+
+                            <button class="button-primary-md !pl-3" @click="sendToImprovedInitiative"><img class="mr-2 fill-white" style="height:20px;" src="images/improved-initiative-logo.svg"/> Send to Improved Initiative</button>
 						</div>
 						<div class="text-right">
 							<span class="block">
@@ -468,7 +470,6 @@
 						</div>
 					</nav>
 				</div>
-
 			</div>
 		</div>
 

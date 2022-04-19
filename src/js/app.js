@@ -351,6 +351,46 @@ function app() {
 
                 return true;
             })
+        },
+
+        sendToImprovedInitiative() {
+
+            const data = {
+                Combatants: []
+            };
+
+            this.encounter.groups.forEach(group => {
+                const monster = group.monster;
+                for(let i = 0; i < group.count; i++) {
+                    data.Combatants.push({
+                        Name: monster.name,
+                        HP: { Value: monster.data.hp },
+                        TotalInitiativeModifier: monster.data.init,
+                        AC: { Value: monster.data.ac },
+                        Player: "npc"
+                    });
+                }
+            });
+
+            const form = document.createElement("form");
+            form.style.display = "none";
+            form.setAttribute("target", "_blank");
+            form.setAttribute("method", "POST");
+            form.setAttribute("action", "https://www.improved-initiative.com/launchencounter/");
+
+            Object.entries(data).forEach((entry) => {
+                const [key, value] = entry;
+                const textarea = document.createElement("input");
+                textarea.setAttribute("type", "hidden");
+                textarea.setAttribute("name", key);
+                textarea.setAttribute("value", JSON.stringify(value));
+                form.appendChild(textarea);
+            });
+
+            document.body.appendChild(form);
+            form.submit();
+            form.parentNode.removeChild(form);
+
         }
     }
 }

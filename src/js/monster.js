@@ -9,9 +9,9 @@ export default class Monster {
     constructor(app, data) {
         this.app = app;
         this.data = data;
-        this.slug = lib.slugify(this.data.name+'-'+this.data.sources);
-
         this.cr = CONST.CR[this.data.cr];
+
+        this.slug = lib.slugify(this.data.name+'-'+this.data.sources+"-"+this.cr.string);
 
         this.tags = this.data.tags ? this.data.tags.split(/\s*,\s*/).sort() : null;
 
