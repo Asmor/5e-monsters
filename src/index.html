@@ -124,14 +124,14 @@
 									<input type="number" min="1" max="20" x-model="group.level" class="border-gray-300 shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block w-full sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 rounded-md" value="4">
 								</div>
 
-								<button @click="party.remove_group(index)" x-show="index > 0" type="button" class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none">
+								<button @click="party.removePlayerGroup(index)" x-show="index > 0" type="button" class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none">
 									<i class="fas fa-times"></i>
 								</button>
 							</div>
 						</template>
 
 						<div>
-							<button @click="party.add_group()" type="button" class="button-secondary-md align-self-start">
+							<button @click="party.addPlayerGroup()" type="button" class="button-secondary-md align-self-start">
 								<i class="fas fa-plus mr-2"></i> Add Another Level
 							</button>
 						</div>

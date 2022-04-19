@@ -31,6 +31,8 @@ function app() {
         encounterHistory: Alpine.$persist([]).as('encounterHistory'),
         savedEncounters: Alpine.$persist([]).as('savedEncounters'),
 
+        savedPlayers: Alpine.$persist([]).as('savedPlayers'),
+
         loadedEncounterIndex: null,
 
         sources: {},
@@ -68,38 +70,58 @@ function app() {
             this.updateFilteredMonsters();
         },
 
+        createPlayer(){
+            this.savedPlayers.push({
+                name: "Player " + this.savedPlayers.length+1,
+                initiativeMod: 0,
+                initiativeAdvantage: false,
+                hp: {
+                    max: 10,
+                    current: 10
+                },
+                active: false
+            });
+        },
+
+        get activePlayers(){
+            return this.savedPlayers.filter(player => player.active);
+        },
+
         party: {
 
-            groups: Alpine.$persist([{ players: 4, level: 1 }]).as('groups'),
+            groups: Alpine.$persist([{ players: 4, level: 1 }]).as("groups"),
 
-            add_group() {
+            addPlayerGroup() {
                 this.groups.push({
                     ...this.groups[this.groups.length - 1]
                 });
             },
 
-            remove_group(index) {
+            removePlayerGroup(index) {
                 this.groups.splice(index, 1);
             },
 
             get experience() {
-                return this.groups.reduce((acc, group) => {
-                    const groupExp = CONST.EXP[group.level];
-                    return {
-                        easy: acc.easy + (groupExp.easy * group.players),
-                        medium: acc.medium + (groupExp.medium * group.players),
-                        hard: acc.hard + (groupExp.hard * group.players),
-                        deadly: acc.deadly + (groupExp.deadly * group.players),
-                        daily: acc.daily + (groupExp.daily * group.players)
-                    }
-                }, { easy: 0, medium: 0, hard: 0, deadly: 0, daily: 0 });
+                const experience = this.groups.reduce(this.getGroupExperience, {});
+                return this.app.activePlayers.reduce(this.getGroupExperience, experience);
+            },
+
+            getGroupExperience(acc, group){
+                const groupExp = CONST.EXP[group.level];
+                return {
+                    easy: (acc?.easy ?? 0) + (groupExp.easy * (group?.players ?? 1)),
+                    medium: (acc?.medium ?? 0) + (groupExp.medium * (group?.players ?? 1)),
+                    hard: (acc?.hard ?? 0) + (groupExp.hard * (group?.players ?? 1)),
+                    deadly: (acc?.deadly ?? 0) + (groupExp.deadly * (group?.players ?? 1)),
+                    daily: (acc?.daily ?? 0) + (groupExp.daily * (group?.players ?? 1))
+                }
             },
 
             get totalPlayers() {
                 return this.groups.reduce((acc, group) => {
                     return acc + group.players
-                }, 0);
-            }
+                }, 0) + this.app.activePlayers.length;
+            },
 
         },
 
