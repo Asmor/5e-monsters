@@ -118,6 +118,9 @@ const encounter = {
     },
 
     generateRandom() {
+
+        this.app.loadedEncounterIndex = null;
+
         const totalExperienceTarget = this.app.party.experience[this.app.difficulty];
         let fudgeFactor = 1.1; // The algorithm is conservative in spending exp; so this tries to get it closer to the actual medium value
         let baseExpBudget = totalExperienceTarget * fudgeFactor;
@@ -149,15 +152,7 @@ const encounter = {
 
         this.groups = encounter;
 
-        this.app.encounterHistory = [...this.app.encounterHistory, this.groups.map(group => {
-            return {
-                monster: {
-                    name: group.monster.name,
-                    slug: group.monster.slug
-                },
-                count: group.count
-            }
-        })];
+        this.saveToHistory(true);
 
     },
 
@@ -289,59 +284,56 @@ const encounter = {
         let group;
         let index = this.groups.findIndex(group => group.monster === monster);
         if(index === -1) {
-            group = {
+            this.groups.push({
                 monster,
                 count: 1
-            };
+            })
         }else{
             group = this.groups[index];
             group.count++;
         }
 
-        if(!this.groups.length){
-            this.app.encounterHistory.push([{
-                monster: {
-                    name: monster.name,
-                    slug: monster.slug
-                },
-                count: 1
-            }])
-        }else{
-            const lastEntry = this.app.encounterHistory[this.app.encounterHistory.length-1];
-            if(index === -1){
-                lastEntry.push({
-                    monster: {
-                        name: monster.name,
-                        slug: monster.slug
-                    },
-                    count: 1
-                })
-            }else{
-                lastEntry[index].count++;
-            }
-        }
-
-        if(index === -1) {
-            this.groups.push(group)
-        }
+        this.saveToHistory();
     },
 
     addCount(index){
         this.groups[index].count++;
-        this.app.encounterHistory[this.app.encounterHistory.length-1][index].count++;
+        this.saveToHistory();
     },
 
     subtractCount(index){
         this.groups[index].count--;
-        this.app.encounterHistory[this.app.encounterHistory.length-1][index].count--;
         if(this.groups[index].count <= 0){
             this.groups.splice(index, 1);
-            const lastEntry = this.app.encounterHistory[this.app.encounterHistory.length-1];
-            lastEntry.splice(index, 1);
-            if(!lastEntry.length){
+        }
+        this.saveToHistory();
+    },
+
+    saveToHistory(newEntry = false){
+        if(!this.groups.length) return;
+        const encounter = this.groups.map(group => {
+            return {
+                monster: {
+                    name: group.monster.name,
+                    slug: group.monster.slug
+                },
+                count: group.count
+            }
+        }).filter(group => group.count);
+
+        const lastEntry = this.app.encounterHistory[this.app.encounterHistory.length-1];
+        if(!encounter.length){
+            if(lastEntry){
                 this.app.encounterHistory.pop();
             }
+            return;
         }
+
+        if(newEntry || !lastEntry){
+            this.app.encounterHistory.push(encounter);
+        }
+
+        this.app.encounterHistory[this.app.encounterHistory.length-1] = encounter;
     },
 
     save(){
@@ -363,13 +355,20 @@ const encounter = {
         }
     },
 
-    loadFromHistory(index){
+    deleteFromHistory(index){
+        this.app.encounterHistory.splice(index, 1);
+    },
 
+    loadFromHistory(index){
+        this.app.loadedEncounterIndex = null;
         const encounter = this.app.encounterHistory.splice(index, 1)[0];
         this.app.encounterHistory.push(encounter);
-
         this.load(encounter);
+    },
 
+    loadFromSaved(index){
+        this.app.loadedEncounterIndex = index;
+        this.load(this.app.savedEncounters[index])
     },
 
     load(encounter){
@@ -385,38 +384,3 @@ const encounter = {
 }
 
 export default encounter;
-
-/*
-		function getBestMonster(targetExp, filters) {
-
-			monsterList = randomEncounter.getShuffledMonsterList(metaInfo.crList[crIndex].string);
-
-			while ( true ) {
-				if ( monsterLib.checkMonster(monsterList[0], filters, { skipCrCheck: true, nonUnique: true }) ) {
-					return monsterList[0];
-				} else {
-					monsterList.shift();
-				}
-
-				// If we run through all the monsters from this level, check a different level
-				if ( monsterList.length === 0 ) {
-					// there were no monsters found lower than target exp, so we have to start checking higher
-					if ( currentIndex === 0 ) {
-						// Reset currentIndex
-						currentIndex = crIndex;
-						// Start looking up instead of down
-						step = 1;
-					}
-
-					currentIndex += step;
-					monsterList = randomEncounter.getShuffledMonsterList(metaInfo.crList[currentIndex].string);
-				}
-			}
-		}
-	}
-})();
-
-
-
-
- */

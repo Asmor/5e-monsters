@@ -20,6 +20,7 @@ function app() {
         loading: false,
         showFilters: false,
         showSourcesModal: false,
+        showEncounterModal: true,
 
         filters: {},
         searchPlaceholder: "",
@@ -31,9 +32,9 @@ function app() {
         encounterHistory: Alpine.$persist([]).as('encounterHistory'),
         savedEncounters: Alpine.$persist([]).as('savedEncounters'),
 
-        savedPlayers: Alpine.$persist([]).as('savedPlayers'),
+        loadedEncounterIndex: Alpine.$persist(null).as('loadedEncounterIndex'),
 
-        loadedEncounterIndex: null,
+        savedPlayers: Alpine.$persist([]).as('savedPlayers'),
 
         sources: {},
         allMonsters: [],
@@ -176,7 +177,9 @@ function app() {
             this.isLoading = false;
             this.updatePagination();
 
-            if(this.encounterHistory.length){
+            if (this.loadedEncounterIndex !== null){
+                this.encounter.load(this.savedEncounters[this.loadedEncounterIndex]);
+            }else if(this.encounterHistory.length){
                 this.encounter.load(this.encounterHistory[this.encounterHistory.length-1]);
             }
         },
