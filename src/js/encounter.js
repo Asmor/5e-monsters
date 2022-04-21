@@ -363,6 +363,15 @@ const encounter = {
         }
     },
 
+    loadFromHistory(index){
+
+        const encounter = this.app.encounterHistory.splice(index, 1)[0];
+        this.app.encounterHistory.push(encounter);
+
+        this.load(encounter);
+
+    },
+
     load(encounter){
         const groups = lib.clone(encounter).map(group => {
             group.monster = this.app.monsterLookupTable[group.monster.slug];
