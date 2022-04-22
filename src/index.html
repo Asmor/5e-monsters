@@ -95,8 +95,8 @@
 			</div>
 		</nav>
 
-		<div class="flex py-4 sm:py-6 lg:py-8 w-full max-w-full relative grow mx-auto">
-			<div class="grow absolute md:inset-y-8 inset-x-0 md:pl-[29rem] 2xl:pl-[35rem] 2xl:pr-[27rem] overflow-y-auto">
+		<div class="flex py-4 sm:py-6 lg:py-8 w-full max-w-[1920px] relative grow mx-auto">
+			<div class="grow absolute md:inset-y-8 inset-x-0 md:pl-[29rem] 2xl:pl-[35rem] overflow-y-auto">
 				<label for="search" class="max-w-full block text-sm font-medium text-gray-700 sr-only">Search monsters</label>
 
 				<div class="max-w-full mt-1 flex rounded-md shadow-sm px-4 sm:px-6 lg:px-8">
@@ -131,10 +131,10 @@
 						<table class="min-w-full divide-y divide-gray-300 dark:divide-gray-600">
 							<thead class="bg-gray-50 dark:bg-gray-700">
 							<tr>
-								<th scope="col" class="py-3.5 pl-4 text-right text-sm font-semibold text-gray-900 sm:pl-6 w-14">
+								<th scope="col" class="py-3.5 px-3 text-center text-sm font-semibold text-gray-900 sm:pl-6 w-8 max-w-8">
 									<span class="sr-only">Add to encounter</span>
 								</th>
-								<th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer sm:pl-6 group whitespace-nowrap w-60" @click="setSortBy('name')">
+								<th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer group whitespace-nowrap w-64" @click="setSortBy('name')">
 									Name
 									<span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" :class="{ 'invisible': sortBy !== 'name' }">
                                         <i class="fa-solid" :class="{
@@ -184,11 +184,11 @@
 							<tbody class="divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-900">
 							<template x-for="monster in monsters">
 								<tr class="odd:bg-gray-50 even:bg-gray-100 dark:odd:bg-gray-700 dark:even:bg-gray-800">
-									<td class="whitespace-nowrap pl-3 py-2 text-sm text-gray-500 dark:text-gray-300 text-right">
+									<td class="whitespace-nowrap px-3 py-2 text-sm text-gray-500 dark:text-gray-300 text-center w-8 max-w-8">
 										<span class="primary-link cursor-pointer select-none" @click="encounter.addMonster(monster)">Add</span>
 									</td>
-									<td class="w-full max-w-0 py-2 pl-4 pr-3 text-sm font-medium text-gray-900 dark:text-gray-100 sm:w-auto sm:max-w-none sm:pl-6">
-										<span x-text="monster.name" @click="setSortBy('name')"></span>
+									<td class="w-full max-w-0 py-2 px-3 text-sm font-medium text-gray-900 dark:text-gray-100 w-64 max-w-64 truncate">
+										<span class="truncate" x-text="monster.name" @click="setSortBy('name')"></span>
 										<dl class="font-normal">
 											<dt class="sr-only">Sources</dt>
 											<dd class="mt-1 truncate text-gray-500 dark:text-gray-400"
@@ -205,10 +205,10 @@
 											<dd class="mt-1 truncate text-gray-500 dark:text-gray-400 lg:hidden" x-text="monster.type"></dd>
 										</dl>
 									</td>
-									<td class="hidden px-3 py-2 text-sm text-gray-500 dark:text-gray-300 sm:table-cell" x-text="monster.size"></td>
-									<td class="hidden px-3 py-2 text-sm text-gray-500 dark:text-gray-300 sm:table-cell" x-text="monster.cr.string"></td>
-									<td class="hidden px-3 py-2 text-sm text-gray-500 dark:text-gray-300 lg:table-cell" x-text="monster.type"></td>
-									<td class="hidden px-3 py-2 text-sm text-gray-500 dark:text-gray-300 lg:table-cell" x-text="monster.alignment.string"></td>
+									<td class="hidden px-3 py-2 text-sm text-gray-500 dark:text-gray-300 sm:table-cell w-32" x-text="monster.size"></td>
+									<td class="hidden px-3 py-2 text-sm text-gray-500 dark:text-gray-300 sm:table-cell w-12" x-text="monster.cr.string"></td>
+									<td class="hidden px-3 py-2 text-sm text-gray-500 dark:text-gray-300 lg:table-cell w-32" x-text="monster.type"></td>
+									<td class="hidden px-3 py-2 text-sm text-gray-500 dark:text-gray-300 lg:table-cell w-32" x-text="monster.alignment.string"></td>
 								</tr>
 							</template>
 							</tbody>
@@ -304,7 +304,7 @@
 					</div>
 
 					<div class="col-span-2">
-						<div class="mt-4">
+						<div class="mt-4 text-right">
 							Daily budget <span x-text="formatNumber(party.experience.daily) + ' exp'"></span>
 						</div>
 					</div>
@@ -476,252 +476,6 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="hidden 2xl:block absolute inset-y-8 right-8 w-[24rem] flex flex-col flex-1 space-y-4 overflow-y-auto">
-				<div class="w-full">
-					<button @click="showSourcesModal = true" class="button-primary-md w-full">
-						<span class="w-full text-center">Manage sources</span>
-					</button>
-				</div>
-
-				<div x-data="{ minCr: 0, maxCr: 0 }">
-					<div class="block font-medium text-gray-700 dark:text-gray-300 mb-1">
-						Challenge Rating
-					</div>
-
-					<div class="relative px-6 pt-1 pb-2 bg-white border border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-md">
-
-						<div x-ref="cr_slider" class="my-4 mx-2" x-data="multiSlider($el, 'challenge_rating', [
-														{ value: '0', label: '0' },
-														{ value: '1/8', label: '1/8' },
-														{ value: '1/4', label: '1/4' },
-														{ value: '1/2', label: '1/2' },
-														{ value: '1', label: '1' },
-														{ value: '2', label: '2' },
-														{ value: '3', label: '3' },
-														{ value: '4', label: '4' },
-														{ value: '5', label: '5' },
-														{ value: '6', label: '6' },
-														{ value: '7', label: '7' },
-														{ value: '8', label: '8' },
-														{ value: '9', label: '9' },
-														{ value: '10', label: '10' },
-														{ value: '11', label: '11' },
-														{ value: '12', label: '12' },
-														{ value: '13', label: '13' },
-														{ value: '14', label: '14' },
-														{ value: '15', label: '15' },
-														{ value: '16', label: '16' },
-														{ value: '17', label: '17' },
-														{ value: '18', label: '18' },
-														{ value: '19', label: '19' },
-														{ value: '20', label: '20' },
-														{ value: '21', label: '21' },
-														{ value: '22', label: '22' },
-														{ value: '23', label: '23' },
-														{ value: '24', label: '24' },
-														{ value: '25', label: '25' },
-														{ value: '26', label: '26' },
-														{ value: '27', label: '27' },
-														{ value: '28', label: '28' },
-														{ value: '29', label: '29' },
-														{ value: '30', label: '30' }
-													], (lower, upper) => {
-														minCr = lower;
-														maxCr = upper;
-													})"
-							 @set-cr-slider.window="set($event)"
-							 @reset-cr-slider.window="reset()"
-							 @reset-filters.window="reset()"
-						></div>
-
-						<div class="grid place-items-center">
-							<div x-show="minCr.value == 0 && maxCr.value == 30">Any CR</div>
-							<div x-show="(minCr.value != 0 || maxCr.value != 30) && (minCr.value !== maxCr.value)">
-								CR between <span x-text="minCr.label"></span> and <span x-text="maxCr.label"></span>
-							</div>
-							<div x-show="minCr.value == maxCr.value">CR is exactly <span x-text="minCr.label"></span></div>
-						</div>
-
-						<span @click="$dispatch('reset-cr-slider')" x-show="!(minCr.value == 0 && maxCr.value == 30)" class="absolute bottom-1 right-6 cursor-pointer">
-													<i class="fa fa-undo h-6 w-6 text-gray-800 dark:text-gray-300"></i>
-												</span>
-					</div>
-				</div>
-
-
-				<div>
-					<div class="block font-medium text-gray-700 dark:text-gray-300 mb-1">
-						Alignment
-					</div>
-
-					<div class="grid grid-cols-[12px_12px_repeat(12,_minmax(0,_1fr))] divide divide-gray-200 dark:divide-gray-600 gap-2 rounded-md dark:bg-gray-700 border border-gray-200 dark:border-gray-600 overflow-hidden p-2" x-data="{
-												lawful_good: 1,
-												neutral_good: 2,
-												chaotic_good: 4,
-												lawful_neutral: 8,
-												neutral: 16,
-												chaotic_neutral: 32,
-												lawful_evil: 64,
-												neutral_evil: 128,
-												chaotic_evil: 256,
-												total: $persist(1023).as('alignment'),
-												randomIconIndex: 0,
-												icons: [
-														'fa-solid fa-dumpster-fire',
-														'fa-solid fa-poo-storm',
-														'fa-solid fa-meteor',
-														'fa-solid fa-arrows-split-up-and-left',
-														'fa-solid fa-arrows-turn-to-dots',
-														'fa-solid fa-candy-cane',
-														'fa-solid fa-stroopwafel',
-														'fa-solid fa-cake-candles',
-														'fa-solid fa-bowling-ball',
-														'fa-solid fa-bath',
-														'fa-solid fa-bomb',
-														'fa-solid fa-business-time',
-														'fa-solid fa-dragon',
-														'fa-solid fa-arrow-up-right-dots',
-														'fa-solid fa-fire',
-														'fa-solid fa-arrows-to-circle',
-														'fa-solid fa-cloud-meatball',
-														'fa-solid fa-arrows-down-to-people',
-														'fa-solid fa-person-walking-arrow-loop-left',
-														'fa-solid fa-person-walking-dashed-line-arrow-right',
-													],
-												init() {
-													this.$watch('total', (total) => {
-														let newIndex = Math.floor(Math.random() * this.icons.length);
-														this.randomIconIndex = (newIndex === this.randomIconIndex) ? (newIndex + 1) % this.icons.length : newIndex;
-														this.onFiltersChanged();
-													});
-													this.onFiltersChanged();
-												},
-												onFiltersChanged() {
-													window.dispatchEvent(new CustomEvent('filters-changed', { detail: { name: 'alignment', value: this.total }}));
-												},
-												get randomIcon() {
-													return this.icons[this.randomIconIndex];
-												},
-												toggle(value) {
-													this.total = ((this.total & value) > 0) ? ((this.total | value) ^ value) : (this.total | value);
-												},
-												classes(value) {
-													return {
-														'bg-emerald-700 hover:bg-emerald-600 dark:bg-emerald-800 dark:hover:bg-emerald-900 text-white': this.total & value,
-														'bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border text-gray-700 dark:text-white': !(this.total & value),
-														'cursor-pointer grid place-items-center text-center select-none text-white': true,
-													};
-												},
-												reset(){
-													this.total = 1023;
-												}
-											}" @reset-filters.window="reset()">
-						<div @click="toggle((lawful_good | neutral | chaotic_evil))" :class="classes(lawful_good | neutral | chaotic_evil)" class="col-span-2 rounded-tl-md dark:border-gray-600"></div>
-						<div @click="toggle((lawful_good | lawful_neutral | lawful_evil))" :class="classes(lawful_good | lawful_neutral | lawful_evil)" class="col-span-4 h-8 rounded-t-md"><i class="fa fa-gavel"></i></div>
-						<div @click="toggle((neutral_good | neutral | neutral_evil))" :class="classes(neutral_good | neutral | neutral_evil)" class="col-span-4 h-8 rounded-t-md"><i class="fa fa-scale-balanced"></i></div>
-						<div @click="toggle((chaotic_good | chaotic_neutral | chaotic_evil))" :class="classes(chaotic_good | chaotic_neutral | chaotic_evil)" class="col-span-4 h-8 rounded-t-md"><i :class="{ [randomIcon]: true }"></i></div>
-
-						<div @click="toggle((lawful_good | neutral_good | chaotic_good))" :class="classes(lawful_good | neutral_good | chaotic_good)" class="col-span-2 w-8 rounded-l-md"><i class="fa fa-dove"></i></div>
-						<div @click="toggle(lawful_good)" :class="classes(lawful_good)" class="col-span-4 h-16" title="Lawful Good">LG</div>
-						<div @click="toggle(neutral_good)" :class="classes(neutral_good)" class="col-span-4 h-16" title="Neutral Good">NG</div>
-						<div @click="toggle(chaotic_good)" :class="classes(chaotic_good)" class="col-span-4 h-16" title="Chaotic Good">CG</div>
-
-						<div @click="toggle((lawful_neutral | neutral | chaotic_neutral))" :class="classes(lawful_neutral | neutral | chaotic_neutral)" class="col-span-2 w-8 rounded-l-md"><i class="fa fa-face-meh"></i></div>
-						<div @click="toggle(lawful_neutral)" :class="classes(lawful_neutral)" class="col-span-4 h-16" title="Lawful Neutral">LN</div>
-						<div @click="toggle(neutral)" :class="classes(neutral)" class="col-span-4 h-16" title="Neutral">N</div>
-						<div @click="toggle(chaotic_neutral)" :class="classes(chaotic_neutral)" class="col-span-4 h-16" title="Chaotic Neutral">CN</div>
-
-						<div @click="toggle((lawful_evil | neutral_evil | chaotic_evil))" :class="classes(lawful_evil | neutral_evil | chaotic_evil)" class="col-span-2 w-8 rounded-l-md"><i class="fa fa-skull"></i></div>
-						<div @click="toggle(lawful_evil)" :class="classes(lawful_evil)" class="col-span-4 h-16" title="Lawful Evil">LE</div>
-						<div @click="toggle(neutral_evil)" :class="classes(neutral_evil)" class="col-span-4 h-16" title="Neutral Evil">NE</div>
-						<div @click="toggle(chaotic_evil)" :class="classes(chaotic_evil)" class="col-span-4 h-16" title="Chaotic Evil">CE</div>
-
-						<div @click="toggle((lawful_evil | neutral | chaotic_good))" :class="classes(lawful_evil | neutral | chaotic_good)" class="col-span-2 rounded-bl-md"></div>
-						<div @click="total = (total === 1023) ? 0 : 1023" :class="{ 'bg-emerald-700 text-white hover:bg-emerald-600 dark:bg-emerald-800 dark:hover:bg-emerald-900': (total & 1023) === 1023, 'text-gray-900 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border': (total & 1023) !== 1023 }" class="select-none text-gray-900 col-span-6 cursor-pointer grid place-items-center h-8 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border">Any</div>
-						<div @click="total = total ^ 512" :class="{ 'bg-emerald-700 text-white hover:bg-emerald-600 dark:bg-emerald-800 dark:hover:bg-emerald-900': (total & 512) === 512, 'text-gray-900 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border': (total & 512) !== 512 }" class="select-none text-gray-900 rounded-br-md col-span-6 cursor-pointer grid place-items-center h-8 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border">Unaligned</div>
-					</div>
-				</div>
-
-
-				<!-- Multi Select -->
-				<div>
-					<div class="block font-medium text-gray-700 dark:text-gray-300 mb-1">Size category</div>
-
-					<div @mousedown.stop x-data="multiSelect($refs.sizes, 'size', [
-												{value: 'any', label: 'Any Size' },
-												{value: 'tiny', label: 'Tiny' },
-												{value: 'small', label: 'Small' },
-												{value: 'medium', label: 'Medium' },
-												{value: 'large', label: 'Large' },
-												{value: 'huge', label: 'Huge' },
-												{value: 'gargantuan', label: 'Gargantuan' }
-											])" @reset-filters.window="reset()">
-						<select x-ref="sizes" :multiple="multiple" class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
-					</div>
-				</div>
-
-				<div>
-					<div class="block font-medium text-gray-700 dark:text-gray-300 mb-1">Creature type</div>
-
-					<div @mousedown.stop x-data="multiSelect($refs.creature_type, 'type', [
-												{ value: 'any', label: 'Any Type' },
-												{ value: 'aberration', label: 'Aberration' },
-												{ value: 'beast', label: 'Beast' },
-												{ value: 'celestial', label: 'Celestial' },
-												{ value: 'construct', label: 'Construct' },
-												{ value: 'dragon', label: 'Dragon' },
-												{ value: 'elemental', label: 'Elemental' },
-												{ value: 'fey', label: 'Fey' },
-												{ value: 'fiend', label: 'Fiend' },
-												{ value: 'giant', label: 'Giant' },
-												{ value: 'humanoid', label: 'Humanoid' },
-												{ value: 'monstrosity', label: 'Monstrosity' },
-												{ value: 'ooze', label: 'Ooze' },
-												{ value: 'plant', label: 'Plant' },
-												{ value: 'undead', label: 'Undead' },
-											])" @reset-filters.window="reset()">
-						<select x-ref="creature_type" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
-					</div>
-				</div>
-
-				<div>
-					<div class="block font-medium text-gray-700 dark:text-gray-300 mb-1">Native environment</div>
-
-					<div @mousedown.stop x-data="multiSelect($refs.environment, 'environment', [
-												{ value: 'any', label: 'Any Environment' },
-												{ value: 'aquatic', label: 'Aquatic' },
-												{ value: 'arctic', label: 'Arctic' },
-												{ value: 'cave', label: 'Cave' },
-												{ value: 'coast', label: 'Coast' },
-												{ value: 'desert', label: 'Desert' },
-												{ value: 'dungeon', label: 'Dungeon' },
-												{ value: 'forest', label: 'Forest' },
-												{ value: 'grassland', label: 'Grassland' },
-												{ value: 'mountain', label: 'Mountain' },
-												{ value: 'planar', label: 'Planar' },
-												{ value: 'ruins', label: 'Ruins' },
-												{ value: 'swamp', label: 'Swamp' },
-												{ value: 'underground', label: 'Underground' },
-												{ value: 'urban', label: 'Urban' },
-											])" @reset-filters.window="reset()">
-						<select x-ref="environment" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
-					</div>
-				</div>
-
-				<div>
-					<div class="block font-medium text-gray-700 dark:text-gray-300 mb-1">Legendary Status</div>
-
-					<div @mousedown.stop x-data="multiSelect($refs.legendary, 'legendary', [
-												{ value: 'any', label: 'Any Legendary'},
-												{ value: 'ordinary', label: 'Ordinary'},
-												{ value: 'legendary', label: 'Legendary'},
-												{ value: 'legendary_lair', label: 'Legendary (in lair)'},
-											])" @reset-filters.window="reset()">
-						<select x-ref="legendary" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
-					</div>
-				</div>
-			</div>
 		</div>
 
 		<div class="fixed inset-0 z-50 overflow-hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true" x-show="showFilters" x-cloak>
@@ -764,8 +518,8 @@
 							</div>
 							<div class="flex h-full flex-col relative flex-1 px-4 py-6 sm:px-6 space-y-4 overflow-y-auto">
 								<div>
-									<button @click="showSourcesModal = true" class="button-primary-md">
-										Manage Sources
+									<button @click="showSourcesModal = true" class="button-primary-md w-full">
+										<span class="w-full text-center">Manage sources</span>
 									</button>
 								</div>
 
