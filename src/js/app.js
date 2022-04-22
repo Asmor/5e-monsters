@@ -20,7 +20,7 @@ function app() {
         loading: false,
         showFilters: false,
         showSourcesModal: false,
-        showEncounterModal: true,
+        showEncounterModal: false,
 
         filters: {},
         searchPlaceholder: "",
