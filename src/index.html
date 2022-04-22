@@ -43,12 +43,12 @@
 
 <body class="h-full">
 	<div
-		class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-300"
+		class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-300 flex flex-col"
 		x-data="window.app()"
 		@filters-changed.window="filtersChanged"
 	>
 
-		<nav class="bg-emerald-700 border-b border-gray-200 dark:border-gray-900" x-data="{ menu: false }">
+		<nav class="bg-emerald-700 border-b border-gray-200 dark:border-gray-900 shrink-0" x-data="{ menu: false }">
 			<div class="mx-auto px-4 sm:px-6 lg:px-6">
 				<div class="flex justify-between h-16 w-full">
 					<div class="flex">
@@ -95,11 +95,167 @@
 			</div>
 		</nav>
 
-		<div class="flex py-4 sm:py-6 lg:py-8 max-w-screen">
-			<div class="hidden md:flex flex-col pl-4 sm:pl-6 lg:pl-8 flex-shrink-0 w-[25rem] xl:w-[30rem] min-h-full">
-				<div class="flex flex-col w-full border-b dark:border-gray-700 pb-4">
-					<div class="flex w-full flex-col">
-						<span class="text-2xl mb-2">Group</span>
+		<div class="flex py-4 sm:py-6 lg:py-8 w-full max-w-full relative grow mx-auto">
+			<div class="grow absolute md:inset-y-8 inset-x-0 md:pl-[29rem] 2xl:pl-[35rem] 2xl:pr-[27rem] overflow-y-auto">
+				<label for="search" class="max-w-full block text-sm font-medium text-gray-700 sr-only">Search monsters</label>
+
+				<div class="max-w-full mt-1 flex rounded-md shadow-sm px-4 sm:px-6 lg:px-8">
+					<div class="relative flex items-stretch flex-grow focus-within:z-10">
+						<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+							</svg>
+						</div>
+
+						<input type="search" name="search" id="search" x-model="search" @input.debounce="updateFilteredMonsters" class="border-gray-300 focus:ring-emerald-500 focus:border-emerald-500 block w-full rounded-none rounded-l-md 2xl:rounded-r-md pl-10 sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600" :placeholder="searchPlaceholder">
+
+						<div class="absolute inset-y-0 right-0 flex py-1.5 pr-2">
+							<kbd class="inline-flex items-center border border-gray-200 dark:border-gray-600 rounded px-2 text-sm font-sans font-medium text-gray-400"> ⌘K </kbd>
+						</div>
+					</div>
+					<div class="relative inline-block text-left 2xl:hidden" x-data="{ filtersMenu: true }" title="Filter monsters (Ctrl+L)">
+						<button @click="showFilters =! showFilters" type="button" class="-ml-px h-full relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md bg-white disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 dark:text-gray-400 text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+							</svg>
+							<span>Filter</span>
+							<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-300 text-gray-800" x-show="nonDefaultFiltersCount > 0" x-text="nonDefaultFiltersCount"></span>
+						</button>
+					</div>
+				</div>
+
+				<!-- This example requires Tailwind CSS v2.0+ -->
+				<div class="px-4 sm:px-6 lg:px-8">
+
+					<div class="-mx-4 mt-8 overflow-x-auto shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
+						<table class="min-w-full divide-y divide-gray-300 dark:divide-gray-600">
+							<thead class="bg-gray-50 dark:bg-gray-700">
+							<tr>
+								<th scope="col" class="py-3.5 pl-4 text-right text-sm font-semibold text-gray-900 sm:pl-6 w-14">
+									<span class="sr-only">Add to encounter</span>
+								</th>
+								<th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer sm:pl-6 group whitespace-nowrap w-60" @click="setSortBy('name')">
+									Name
+									<span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" :class="{ 'invisible': sortBy !== 'name' }">
+                                        <i class="fa-solid" :class="{
+                                            'fa-chevron-down': sortByDesc || sortBy !== 'name',
+                                            'fa-chevron-up': !sortByDesc && sortBy === 'name'
+                                        }"></i>
+                                    </span>
+								</th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer sm:table-cell group whitespace-nowrap w-32" @click="setSortBy('size')">
+									Size
+									<span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" :class="{ 'invisible': sortBy !== 'size' }">
+                                        <i class="fa-solid" :class="{
+                                            'fa-chevron-down': sortByDesc || sortBy !== 'size',
+                                            'fa-chevron-up': !sortByDesc && sortBy === 'size'
+                                        }"></i>
+                                    </span>
+								</th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer sm:table-cell group whitespace-nowrap w-12" @click="setSortBy('cr')">
+									CR
+									<span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" :class="{ 'invisible': sortBy !== 'cr' }">
+                                        <i class="fa-solid" :class="{
+                                            'fa-chevron-down': sortByDesc || sortBy !== 'cr',
+                                            'fa-chevron-up': !sortByDesc && sortBy === 'cr'
+                                        }"></i>
+                                    </span>
+								</th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer lg:table-cell group whitespace-nowrap w-32" @click="setSortBy('type')">
+									Type
+									<span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" :class="{ 'invisible': sortBy !== 'type' }">
+                                        <i class="fa-solid" :class="{
+                                            'fa-chevron-down': sortByDesc || sortBy !== 'type',
+                                            'fa-chevron-up': !sortByDesc && sortBy === 'type'
+                                        }"></i>
+                                    </span>
+								</th>
+								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer lg:table-cell group whitespace-nowrap w-32" @click="setSortBy('alignment')">
+									Alignment
+									<span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" :class="{ 'invisible': sortBy !== 'alignment' }">
+                                        <i class="fa-solid" :class="{
+                                            'fa-chevron-down': sortByDesc || sortBy !== 'alignment',
+                                            'fa-chevron-up': !sortByDesc && sortBy === 'alignment'
+                                        }"></i>
+                                    </span>
+								</th>
+							</tr>
+							</thead>
+							<tbody class="divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-900">
+							<template x-for="monster in monsters">
+								<tr class="odd:bg-gray-50 even:bg-gray-100 dark:odd:bg-gray-700 dark:even:bg-gray-800">
+									<td class="whitespace-nowrap pl-3 py-2 text-sm text-gray-500 dark:text-gray-300 text-right">
+										<span class="primary-link cursor-pointer select-none" @click="encounter.addMonster(monster)">Add</span>
+									</td>
+									<td class="w-full max-w-0 py-2 pl-4 pr-3 text-sm font-medium text-gray-900 dark:text-gray-100 sm:w-auto sm:max-w-none sm:pl-6">
+										<span x-text="monster.name" @click="setSortBy('name')"></span>
+										<dl class="font-normal">
+											<dt class="sr-only">Sources</dt>
+											<dd class="mt-1 truncate text-gray-500 dark:text-gray-400"
+												x-text="monster.sources.map(source => source.shortText).join(', ')"
+												:title="monster.sources.map(source => source.fullText).join('\n')">
+											</dd>
+											<dt class="sr-only sm:hidden">Size</dt>
+											<dd class="mt-1 truncate text-gray-500 dark:text-gray-400 sm:hidden" x-text="monster.size"></dd>
+											<dt class="sr-only sm:hidden">CR</dt>
+											<dd class="mt-1 truncate text-gray-500 dark:text-gray-400 sm:hidden">CR <span x-text="monster.cr.string"></span></dd>
+											<dt class="sr-only sm:hidden">Alignment</dt>
+											<dd class="mt-1 truncate text-gray-500 dark:text-gray-400 lg:hidden" x-text="monster.alignment.string"></dd>
+											<dt class="sr-only sm:hidden">Type</dt>
+											<dd class="mt-1 truncate text-gray-500 dark:text-gray-400 lg:hidden" x-text="monster.type"></dd>
+										</dl>
+									</td>
+									<td class="hidden px-3 py-2 text-sm text-gray-500 dark:text-gray-300 sm:table-cell" x-text="monster.size"></td>
+									<td class="hidden px-3 py-2 text-sm text-gray-500 dark:text-gray-300 sm:table-cell" x-text="monster.cr.string"></td>
+									<td class="hidden px-3 py-2 text-sm text-gray-500 dark:text-gray-300 lg:table-cell" x-text="monster.type"></td>
+									<td class="hidden px-3 py-2 text-sm text-gray-500 dark:text-gray-300 lg:table-cell" x-text="monster.alignment.string"></td>
+								</tr>
+							</template>
+							</tbody>
+						</table>
+					</div>
+
+					<div x-show="enabledSources.length === 0" class="w-full text-center text-lg my-4">No sources are enabled - <span class="primary-link select-none cursor-pointer" @click="showSourcesModal = true">enable some now</span></div>
+					<div x-show="enabledSources.length > 0 && monsters.length === 0" class="w-full text-center text-lg my-4" x-cloak>No monsters found with the current filter (not sure why this shows up when it's <i>false</i>)</div>
+
+					<!-- This example requires Tailwind CSS v2.0+ -->
+					<nav x-show="totalPages > 1" x-cloak class="border-t border-gray-300 mt-4 dark:border-gray-700 px-4 flex items-center justify-between sm:px-0">
+						<div class="-mt-px w-0 flex-1 flex">
+							<a @click="setPageNumber(currentPage-1)" :disabled="currentPage === 1" href="#" class="border-t-2 border-transparent pt-4 px-2 lg:pr-1 lg:pl-0 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-400 hover:border-gray-400">
+								<!-- Heroicon name: solid/arrow-narrow-left -->
+								<svg class="mr-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+									<path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+								</svg>
+								<span class="hidden lg:inline">Previous</span>
+							</a>
+						</div>
+						<div class="hidden md:-mt-px md:flex">
+							<template x-for="page of pagination">
+								<span :class="{
+									'cursor-pointer select-none border-emerald-600 text-emerald-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium': page.active && !page.divider,
+									'cursor-pointer select-none border-transparent text-gray-500 hover:text-gray-400 hover:border-gray-400 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium hidden lg:inline-block first-of-type:inline-block last-of-type:inline-block': !page.active && !page.divider,
+									'select-none border-transparent text-gray-500 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium': page.divider,
+								}" x-text="page.divider ? '...' : page.number" @click="setPage(page)" :key="page.number"></span>
+							</template>
+						</div>
+						<div class="-mt-px w-0 flex-1 flex justify-end">
+							<a href="#" @click="setPageNumber(currentPage+1)" class="border-t-2 border-transparent pt-4 px-2 lg:pr-1 lg:pl-0 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-400 hover:border-gray-400">
+								<span class="hidden lg:inline">Next</span>
+								<!-- Heroicon name: solid/arrow-narrow-right -->
+								<svg class="ml-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+									<path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+								</svg>
+							</a>
+						</div>
+					</nav>
+				</div>
+			</div>
+
+			<div class="hidden absolute inset-y-8 left-8 pr-8 md:flex flex-col flex-shrink-0 w-[28rem] 2xl:w-[34rem] overflow-y-auto divide-y divide-gray-200 dark:divide-gray-800">
+				<div class="grid grid-cols-2 pb-4 flex-col w-full">
+
+					<div>
+						<div class="text-lg mb-2">Group</div>
 
 						<div class="flex mb-2">
 							<div class="w-16">
@@ -137,27 +293,34 @@
 						</div>
 					</div>
 
-					<div class="flex w-full flex-reverse justify-between text-right leading-10 mt-2 flex-1 h-full">
+					<div class="w-full text-right">
 						<div>
-							<p class="font-semibold" x-show="encounter.actualDifficulty !== 'None' && encounter.actualDifficulty !== 'Nuisance'" x-text="encounter.actualDifficulty + ' ' + formatNumber(party.experience[encounter.actualDifficulty.toLowerCase()]) + ' exp'"></p>
+							<p class="font-bold">Goals</p>
+							<p :class="{ 'font-semibold': encounter.actualDifficulty === 'Easy'}" x-text="'Easy ' + formatNumber(party.experience['easy']) + 'xp'"></p>
+							<p :class="{ 'font-semibold': encounter.actualDifficulty === 'Medium'}" x-text="'Medium ' + formatNumber(party.experience['medium']) + 'xp'"></p>
+							<p :class="{ 'font-semibold': encounter.actualDifficulty === 'Hard'}" x-text="'Hard ' + formatNumber(party.experience['hard']) + 'xp'"></p>
+							<p :class="{ 'font-semibold': encounter.actualDifficulty === 'Deadly'}" x-text="'Deadly ' + formatNumber(party.experience['deadly']) + 'xp'"></p>
 						</div>
-						<div>
+					</div>
+
+					<div class="col-span-2">
+						<div class="mt-4">
 							Daily budget <span x-text="formatNumber(party.experience.daily) + ' exp'"></span>
 						</div>
 					</div>
 				</div>
 
-				<div class="flex-col mt-2">
-					<div class="flex justify-between items-center">
-						<span class="text-2xl grow">Encounter</span>
+				<div>
+					<div class="flex pt-4 justify-between items-center 2xl:pb-2">
+						<span class="text-lg grow">Encounter</span>
 
 						<a href="javascript:" class="primary-link" @click="showEncounterModal = true">History</a>
 					</div>
 
-					<div class="mt-4 flex w-full space-x-2 items-end justify-between pb-4 border-b dark:border-gray-700">
+					<div class="flex pb-4 w-full space-x-2 items-end justify-between pb-4 border-b dark:border-gray-700">
 						<div class="grid gap-2 w-full place-items-end grid-cols-8 grow">
-							<div class="w-full col-span-3 xl:col-span-4">
-								<label id="difficulty-label" class="block text-sm font-medium text-gray-700 dark:text-gray-300"> Difficulty </label>
+							<div class="w-full col-span-3 2xl:col-span-4">
+								<label id="difficulty-label" class="hidden 2xl:block text-sm font-medium text-gray-700 dark:text-gray-300"> Difficulty </label>
 								<div class="mt-1 relative" @click.outside="difficultySelectOpen = false">
 									<button @click="difficultySelectOpen = true" type="button" class="bg-white dark:bg-gray-700 relative w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
 										<span class="block truncate" x-text="(difficulty.slice(0,1).toUpperCase() + difficulty.slice(1))"></span>
@@ -188,7 +351,7 @@
 												<span class="group-hover:text-white font-normal block truncate" x-html="(option.slice(0,1).toUpperCase() + option.slice(1))"> </span>
 												<span :class="{ 'text-gray-200': difficulty === option, 'text-gray-600 dark:text-gray-400': difficulty !== option }" class="text-xs group-hover:text-gray-200" x-text="formatNumber(party.experience[option]) + 'xp'"></span>
 
-											<span x-show="difficulty === option" :class="{ 'text-white': difficulty === option, 'text-emerald-600': difficulty !== option }" class="absolute inset-y-0 right-0 flex items-center pr-4">
+												<span x-show="difficulty === option" :class="{ 'text-white': difficulty === option, 'text-emerald-600': difficulty !== option }" class="absolute inset-y-0 right-0 flex items-center pr-4">
 										  <!-- Heroicon name: solid/check -->
 											  <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 												<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
@@ -201,8 +364,8 @@
 							</div>
 
 							<!-- This example requires Tailwind CSS v2.0+ -->
-							<div class="w-full col-span-5 xl:col-span-4">
-								<label id="listbox-label" class="block text-sm font-medium text-gray-700 dark:text-gray-300"> Composition </label>
+							<div class="w-full col-span-5 2xl:col-span-4">
+								<label id="listbox-label" class="hidden 2xl:block text-sm font-medium text-gray-700 dark:text-gray-300"> Composition </label>
 								<div class="mt-1 relative" @click.outside="encounterTypeSelectOpen = false">
 									<button @click="encounterTypeSelectOpen = true" type="button" class="bg-white dark:bg-gray-700 relative w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
 										<span class="block truncate" x-text="encounterTypes[encounterType].label"></span>
@@ -247,232 +410,316 @@
 
 						<div>
 							<button @click="encounter.generateRandom()" class="button-primary-md">
-								<span class="hidden xl:inline">
+								<span class="hidden 2xl:inline">
 									Generate
 								</span>
-								<span class="xl:hidden">
+								<span class="2xl:hidden">
 									<i class="fa fa-refresh"></i>
 								</span>
 							</button>
 						</div>
 					</div>
+				</div>
 
-					<div class="flex-row">
-						<template x-for="(group, index) in encounter.groups" :key="group.monster.slug">
-							<div class="flex flex-row w-full my-4 relative">
-								<div class="grow pb-2 min-w-0">
-									<div>
-										<span class="text-xl font-semibold" x-text="group.monster.name"></span>
-										<div @click="encounter.getNewMonster(group)" class="ml-2 inline-flex text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-200 cursor-pointer"><i class="fas fa-random"></i></div>
-									</div>
+				<div class="flex-row py-4">
+					<template x-for="(group, index) in encounter.groups" :key="group.monster.slug">
+						<div class="flex flex-row w-full mb-4 relative">
+							<div class="grow pb-2 min-w-0">
+								<div>
+									<span class="text-lg font-semibold" x-text="group.monster.name"></span>
+									<div @click="encounter.getNewMonster(group)" class="ml-2 inline-flex text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-200 cursor-pointer"><i class="fas fa-random"></i></div>
+								</div>
 
-									<div>
-										<span class="text-base" x-text="'CR: ' + group.monster.cr.string"></span>
-										<span class="text-base ml-4" x-text="'XP: ' + formatNumber(group.monster.cr.exp)"></span>
-										<div class='overflow-hidden whitespace-nowrap overflow-ellipsis pr-40'>
-											<ul class="list-none text-s italic max-w-full">
+								<div>
+									<span class="text-base" x-text="'CR: ' + group.monster.cr.string"></span>
+									<span class="text-base ml-4" x-text="'XP: ' + formatNumber(group.monster.cr.exp)"></span>
+									<div class='overflow-hidden whitespace-nowrap overflow-ellipsis pr-40'>
+										<ul class="list-none text-s italic max-w-full">
 											<template x-for="source in group.monster.sources">
 												<li class="max-w-full truncate" x-html="source.reference.link ? `<a class='primary-link' href='${source.reference.link}' target='_blank'>${source.fullText}</a>` : source.fullText"></li>
 											</template>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="absolute bottom-3 right-0 flex shrink-0 items-center">
-									<div class="flex rounded-md shadow-sm">
-										<button @click="encounter.addCount(index)" class="inline-flex items-center px-2 rounded-l-md border border-r-0 border-gray-300 dark:border-gray-600 dark:text-gray-300 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-500 sm:text-sm">
-											<i class="fa fa-plus w-5"></i>
-										</button>
-										<input type="number" min="1" id="company-website" class="flex-1 min-w-0 block w-16 px-3 py-2 rounded-none dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300" x-model="group.count">
-										<button @click="encounter.subtractCount(index)" :class="{ 'border-gray-300 dark:border-gray-600 dark:text-gray-300 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-500': group.count > 1, 'border-red-200 dark:border-red-700 dark:text-red-300 bg-red-50 hover:bg-red-100 dark:bg-red-800 dark:hover:bg-red-700 text-red-500': group.count === 1 }" class="inline-flex items-center px-2 rounded-r-md border border-l-0 sm:text-sm">
-											<i :class="{ 'fa-minus': group.count > 1, 'fa-times': group.count === 1 }" class="fa w-5"></i>
-										</button>
+										</ul>
 									</div>
 								</div>
 							</div>
-						</template>
-					</div>
-
-					<div class="flex border-t text-2xl border-t-gray-400 dark:border-gray-700 pt-4" x-show="encounter.groups.length">
-						<div class="grow">
-							<div x-text="'Difficulty: ' + encounter.actualDifficulty"></div>
-							<div class="text-sm mb-4" x-show="encounter.difficultyFeel" x-text="encounter.difficultyFeel"></div>
-
-                            <button class="button-primary-md !pl-3" @click="sendToImprovedInitiative"><img class="mr-2 fill-white" style="height:20px;" src="images/improved-initiative-logo.svg"/> Send to Improved Initiative</button>
+							<div class="absolute bottom-3 right-0 flex shrink-0 items-center">
+								<div class="flex rounded-md shadow-sm">
+									<button @click="encounter.addCount(index)" class="inline-flex items-center px-2 rounded-l-md border border-r-0 border-gray-300 dark:border-gray-600 dark:text-gray-300 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-500 sm:text-sm">
+										<i class="fa fa-plus w-5"></i>
+									</button>
+									<input type="number" min="1" id="company-website" class="flex-1 min-w-0 block w-16 px-3 py-2 rounded-none dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300" x-model="group.count">
+									<button @click="encounter.subtractCount(index)" :class="{ 'border-gray-300 dark:border-gray-600 dark:text-gray-300 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-500': group.count > 1, 'border-red-200 dark:border-red-700 dark:text-red-300 bg-red-50 hover:bg-red-100 dark:bg-red-800 dark:hover:bg-red-700 text-red-500': group.count === 1 }" class="inline-flex items-center px-2 rounded-r-md border border-l-0 sm:text-sm">
+										<i :class="{ 'fa-minus': group.count > 1, 'fa-times': group.count === 1 }" class="fa w-5"></i>
+									</button>
+								</div>
+							</div>
 						</div>
-						<div class="text-right">
-							<span class="block">
-								<span x-text="'Total XP: ' + encounter.totalExp"></span>
-								<span class="text-base italic block" x-text="'(' + Math.round(encounter.totalExp / party.totalPlayers) + ' per player)'"></span>
-							</span>
-							<span class="block">
-								<span x-text="'Adjusted XP: ' + encounter.adjustedExp"></span>
-								<span class="text-base italic block" x-text="'(' + Math.round(encounter.adjustedExp / party.totalPlayers) + ' per player)'"></span>
-							</span>
+					</template>
+				</div>
+
+				<div class="flex 2xl:sticky bottom-0 py-4 border-t text-lg border-t-gray-400 dark:border-gray-700 bg-white dark:bg-gray-900" x-show="encounter.groups.length">
+					<div class="grow">
+						<div x-text="'Difficulty: ' + encounter.actualDifficulty"></div>
+						<div class="text-sm mb-4" x-show="encounter.difficultyFeel" x-text="encounter.difficultyFeel"></div>
+
+						<button class="button-primary-md !pl-3" @click="sendToImprovedInitiative"><img class="mr-2 fill-white" style="height:20px;" src="images/improved-initiative-logo.svg"/> Send to Improved Initiative</button>
+					</div>
+					<div class="text-right">
+						<div>
+							<div x-text="'Total XP: ' + encounter.totalExp"></div>
+							<div class="text-sm italic block" x-text="'(' + Math.round(encounter.totalExp / party.totalPlayers) + ' per player)'"></div>
+						</div>
+						<div>
+							<div x-text="'Adjusted XP: ' + encounter.adjustedExp"></div>
+							<div class="text-sm italic block" x-text="'(' + Math.round(encounter.adjustedExp / party.totalPlayers) + ' per player)'"></div>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="grow">
-				<label for="search" class="max-w-full block text-sm font-medium text-gray-700 sr-only">Search monsters</label>
+			<div class="hidden 2xl:block absolute inset-y-8 right-8 w-[24rem] flex flex-col flex-1 space-y-4 overflow-y-auto">
+				<div class="w-full">
+					<button @click="showSourcesModal = true" class="button-primary-md w-full">
+						<span class="w-full text-center">Manage sources</span>
+					</button>
+				</div>
 
-				<div class="max-w-full mt-1 flex rounded-md shadow-sm px-4 sm:px-6 lg:px-8">
-					<div class="relative flex items-stretch flex-grow focus-within:z-10">
-						<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-								<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-							</svg>
-						</div>
-
-						<input type="search" name="search" id="search" x-model="search" @input.debounce="updateFilteredMonsters" class="border-gray-300 focus:ring-emerald-500 focus:border-emerald-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600" :placeholder="searchPlaceholder">
-
-						<div class="absolute inset-y-0 right-0 flex py-1.5 pr-2">
-							<kbd class="inline-flex items-center border border-gray-200 dark:border-gray-600 rounded px-2 text-sm font-sans font-medium text-gray-400"> ⌘K </kbd>
-						</div>
+				<div x-data="{ minCr: 0, maxCr: 0 }">
+					<div class="block font-medium text-gray-700 dark:text-gray-300 mb-1">
+						Challenge Rating
 					</div>
-					<div class="relative inline-block text-left" x-data="{ filtersMenu: true }" title="Filter monsters (Ctrl+L)">
-						<button @click="showFilters =! showFilters" type="button" class="-ml-px h-full relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md bg-white disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 dark:text-gray-400 text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-								<path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-							</svg>
-							<span>Filter</span>
-							<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-300 text-gray-800" x-show="nonDefaultFiltersCount > 0" x-text="nonDefaultFiltersCount"></span>
-						</button>
+
+					<div class="relative px-6 pt-1 pb-2 bg-white border border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-md">
+
+						<div x-ref="cr_slider" class="my-4 mx-2" x-data="multiSlider($el, 'challenge_rating', [
+														{ value: '0', label: '0' },
+														{ value: '1/8', label: '1/8' },
+														{ value: '1/4', label: '1/4' },
+														{ value: '1/2', label: '1/2' },
+														{ value: '1', label: '1' },
+														{ value: '2', label: '2' },
+														{ value: '3', label: '3' },
+														{ value: '4', label: '4' },
+														{ value: '5', label: '5' },
+														{ value: '6', label: '6' },
+														{ value: '7', label: '7' },
+														{ value: '8', label: '8' },
+														{ value: '9', label: '9' },
+														{ value: '10', label: '10' },
+														{ value: '11', label: '11' },
+														{ value: '12', label: '12' },
+														{ value: '13', label: '13' },
+														{ value: '14', label: '14' },
+														{ value: '15', label: '15' },
+														{ value: '16', label: '16' },
+														{ value: '17', label: '17' },
+														{ value: '18', label: '18' },
+														{ value: '19', label: '19' },
+														{ value: '20', label: '20' },
+														{ value: '21', label: '21' },
+														{ value: '22', label: '22' },
+														{ value: '23', label: '23' },
+														{ value: '24', label: '24' },
+														{ value: '25', label: '25' },
+														{ value: '26', label: '26' },
+														{ value: '27', label: '27' },
+														{ value: '28', label: '28' },
+														{ value: '29', label: '29' },
+														{ value: '30', label: '30' }
+													], (lower, upper) => {
+														minCr = lower;
+														maxCr = upper;
+													})"
+							 @set-cr-slider.window="set($event)"
+							 @reset-cr-slider.window="reset()"
+							 @reset-filters.window="reset()"
+						></div>
+
+						<div class="grid place-items-center">
+							<div x-show="minCr.value == 0 && maxCr.value == 30">Any CR</div>
+							<div x-show="(minCr.value != 0 || maxCr.value != 30) && (minCr.value !== maxCr.value)">
+								CR between <span x-text="minCr.label"></span> and <span x-text="maxCr.label"></span>
+							</div>
+							<div x-show="minCr.value == maxCr.value">CR is exactly <span x-text="minCr.label"></span></div>
+						</div>
+
+						<span @click="$dispatch('reset-cr-slider')" x-show="!(minCr.value == 0 && maxCr.value == 30)" class="absolute bottom-1 right-6 cursor-pointer">
+													<i class="fa fa-undo h-6 w-6 text-gray-800 dark:text-gray-300"></i>
+												</span>
 					</div>
 				</div>
 
-				<!-- This example requires Tailwind CSS v2.0+ -->
-				<div class="px-4 sm:px-6 lg:px-8">
 
-					<div class="-mx-4 mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
-						<table class="min-w-full divide-y divide-gray-300 dark:divide-gray-600">
-							<thead class="bg-gray-50 dark:bg-gray-700">
-							<tr>
-								<th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-									<span class="sr-only">Add to encounter</span>
-								</th>
-								<th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer sm:pl-6 group inline-flex" @click="setSortBy('name')">
-                                    Name
-                                    <span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" :class="{ 'invisible': sortBy !== 'name' }">
-                                        <i class="fa-solid" :class="{
-                                            'fa-chevron-down': sortByDesc || sortBy !== 'name',
-                                            'fa-chevron-up': !sortByDesc && sortBy === 'name'
-                                        }"></i>
-                                    </span>
-                                </th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer sm:table-cell group inline-flex" @click="setSortBy('size')">
-                                    Size
-                                    <span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" :class="{ 'invisible': sortBy !== 'size' }">
-                                        <i class="fa-solid" :class="{
-                                            'fa-chevron-down': sortByDesc || sortBy !== 'size',
-                                            'fa-chevron-up': !sortByDesc && sortBy === 'size'
-                                        }"></i>
-                                    </span>
-                                </th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer sm:table-cell group inline-flex" @click="setSortBy('cr')">
-                                    CR
-                                    <span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" :class="{ 'invisible': sortBy !== 'cr' }">
-                                        <i class="fa-solid" :class="{
-                                            'fa-chevron-down': sortByDesc || sortBy !== 'cr',
-                                            'fa-chevron-up': !sortByDesc && sortBy === 'cr'
-                                        }"></i>
-                                    </span>
-                                </th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer lg:table-cell group inline-flex" @click="setSortBy('type')">
-                                    Type
-                                    <span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" :class="{ 'invisible': sortBy !== 'type' }">
-                                        <i class="fa-solid" :class="{
-                                            'fa-chevron-down': sortByDesc || sortBy !== 'type',
-                                            'fa-chevron-up': !sortByDesc && sortBy === 'type'
-                                        }"></i>
-                                    </span>
-                                </th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer lg:table-cell group inline-flex" @click="setSortBy('alignment')">
-                                    Alignment
-                                    <span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" :class="{ 'invisible': sortBy !== 'alignment' }">
-                                        <i class="fa-solid" :class="{
-                                            'fa-chevron-down': sortByDesc || sortBy !== 'alignment',
-                                            'fa-chevron-up': !sortByDesc && sortBy === 'alignment'
-                                        }"></i>
-                                    </span>
-                                </th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer xl:table-cell group inline-flex">
-                                    Source
-                                </th>
-							</tr>
-							</thead>
-							<tbody class="divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-900">
-								<template x-for="monster in monsters">
-									<tr class="odd:bg-gray-50 even:bg-gray-100 dark:odd:bg-gray-700 dark:even:bg-gray-800">
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-300 text-center">
-											<span class="primary-link cursor-pointer select-none" @click="encounter.addMonster(monster)">Add</span>
-										</td>
-										<td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 dark:text-gray-100 sm:w-auto sm:max-w-none sm:pl-6">
-											<span x-text="monster.name" @click="setSortBy('name')"></span>
-											<dl class="font-normal xl:hidden">
-												<dt class="sr-only">Sources</dt>
-												<dd class="mt-1 truncate text-gray-500"
-													x-text="monster.sources.map(source => source.shortText).join(', ')"
-													:title="monster.sources.map(source => source.fullText).join('\n')">
-												</dd>
-												<dt class="sr-only sm:hidden">Size</dt>
-												<dd class="mt-1 truncate text-gray-500 dark:text-gray-500 sm:hidden" x-text="monster.size"></dd>
-												<dt class="sr-only sm:hidden">CR</dt>
-												<dd class="mt-1 truncate text-gray-500 dark:text-gray-500 sm:hidden">CR <span x-text="monster.cr.string"></span></dd>
-												<dt class="sr-only sm:hidden">Alignment</dt>
-												<dd class="mt-1 truncate text-gray-500 dark:text-gray-500 lg:hidden" x-text="monster.alignment.string"></dd>
-												<dt class="sr-only sm:hidden">Type</dt>
-												<dd class="mt-1 truncate text-gray-500 dark:text-gray-500 lg:hidden" x-text="monster.type"></dd>
-											</dl>
-										</td>
-										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 sm:table-cell" x-text="monster.size"></td>
-										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 sm:table-cell" x-text="monster.cr.string"></td>
-										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 lg:table-cell" x-text="monster.type"></td>
-										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 lg:table-cell" x-text="monster.alignment.string"></td>
-										<td class="hidden px-3 py-4 text-sm text-gray-500 dark:text-gray-300 xl:table-cell"
-											x-text="monster.sources.map(source => source.shortText).join(', ')"
-											:title="monster.sources.map(source => source.fullText).join('\n')"
-										>
-									</tr>
-								</template>
-							</tbody>
-						</table>
+				<div>
+					<div class="block font-medium text-gray-700 dark:text-gray-300 mb-1">
+						Alignment
 					</div>
 
-                    <div x-show="enabledSources.length === 0" class="w-full text-center text-xl my-4">No sources are enabled - <span class="primary-link select-none cursor-pointer" @click="showSourcesModal = true">enable some now</span></div>
-                    <div x-show="enabledSources.length > 0 && monsters.length === 0" class="w-full text-center text-xl my-4" x-cloak>No monsters found with the current filter (not sure why this shows up when it's <i>false</i>)</div>
+					<div class="grid grid-cols-[12px_12px_repeat(12,_minmax(0,_1fr))] divide divide-gray-200 dark:divide-gray-600 gap-2 rounded-md dark:bg-gray-700 border border-gray-200 dark:border-gray-600 overflow-hidden p-2" x-data="{
+												lawful_good: 1,
+												neutral_good: 2,
+												chaotic_good: 4,
+												lawful_neutral: 8,
+												neutral: 16,
+												chaotic_neutral: 32,
+												lawful_evil: 64,
+												neutral_evil: 128,
+												chaotic_evil: 256,
+												total: $persist(1023).as('alignment'),
+												randomIconIndex: 0,
+												icons: [
+														'fa-solid fa-dumpster-fire',
+														'fa-solid fa-poo-storm',
+														'fa-solid fa-meteor',
+														'fa-solid fa-arrows-split-up-and-left',
+														'fa-solid fa-arrows-turn-to-dots',
+														'fa-solid fa-candy-cane',
+														'fa-solid fa-stroopwafel',
+														'fa-solid fa-cake-candles',
+														'fa-solid fa-bowling-ball',
+														'fa-solid fa-bath',
+														'fa-solid fa-bomb',
+														'fa-solid fa-business-time',
+														'fa-solid fa-dragon',
+														'fa-solid fa-arrow-up-right-dots',
+														'fa-solid fa-fire',
+														'fa-solid fa-arrows-to-circle',
+														'fa-solid fa-cloud-meatball',
+														'fa-solid fa-arrows-down-to-people',
+														'fa-solid fa-person-walking-arrow-loop-left',
+														'fa-solid fa-person-walking-dashed-line-arrow-right',
+													],
+												init() {
+													this.$watch('total', (total) => {
+														let newIndex = Math.floor(Math.random() * this.icons.length);
+														this.randomIconIndex = (newIndex === this.randomIconIndex) ? (newIndex + 1) % this.icons.length : newIndex;
+														this.onFiltersChanged();
+													});
+													this.onFiltersChanged();
+												},
+												onFiltersChanged() {
+													window.dispatchEvent(new CustomEvent('filters-changed', { detail: { name: 'alignment', value: this.total }}));
+												},
+												get randomIcon() {
+													return this.icons[this.randomIconIndex];
+												},
+												toggle(value) {
+													this.total = ((this.total & value) > 0) ? ((this.total | value) ^ value) : (this.total | value);
+												},
+												classes(value) {
+													return {
+														'bg-emerald-700 hover:bg-emerald-600 dark:bg-emerald-800 dark:hover:bg-emerald-900 text-white': this.total & value,
+														'bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border text-gray-700 dark:text-white': !(this.total & value),
+														'cursor-pointer grid place-items-center text-center select-none text-white': true,
+													};
+												},
+												reset(){
+													this.total = 1023;
+												}
+											}" @reset-filters.window="reset()">
+						<div @click="toggle((lawful_good | neutral | chaotic_evil))" :class="classes(lawful_good | neutral | chaotic_evil)" class="col-span-2 rounded-tl-md dark:border-gray-600"></div>
+						<div @click="toggle((lawful_good | lawful_neutral | lawful_evil))" :class="classes(lawful_good | lawful_neutral | lawful_evil)" class="col-span-4 h-8 rounded-t-md"><i class="fa fa-gavel"></i></div>
+						<div @click="toggle((neutral_good | neutral | neutral_evil))" :class="classes(neutral_good | neutral | neutral_evil)" class="col-span-4 h-8 rounded-t-md"><i class="fa fa-scale-balanced"></i></div>
+						<div @click="toggle((chaotic_good | chaotic_neutral | chaotic_evil))" :class="classes(chaotic_good | chaotic_neutral | chaotic_evil)" class="col-span-4 h-8 rounded-t-md"><i :class="{ [randomIcon]: true }"></i></div>
 
-					<!-- This example requires Tailwind CSS v2.0+ -->
-					<nav x-show="totalPages > 1" x-cloak class="border-t border-gray-300 mt-4 dark:border-gray-700 px-4 flex items-center justify-between sm:px-0">
-						<div class="-mt-px w-0 flex-1 flex">
-							<a @click="setPageNumber(currentPage-1)" :disabled="currentPage === 1" href="#" class="border-t-2 border-transparent pt-4 px-2 lg:pr-1 lg:pl-0 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-400 hover:border-gray-400">
-								<!-- Heroicon name: solid/arrow-narrow-left -->
-								<svg class="mr-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-									<path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-								</svg>
-								<span class="hidden lg:inline">Previous</span>
-							</a>
-						</div>
-						<div class="hidden md:-mt-px md:flex">
-							<template x-for="page of pagination">
-								<span :class="{
-									'cursor-pointer select-none border-emerald-600 text-emerald-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium': page.active && !page.divider,
-									'cursor-pointer select-none border-transparent text-gray-500 hover:text-gray-400 hover:border-gray-400 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium hidden lg:inline-block first-of-type:inline-block last-of-type:inline-block': !page.active && !page.divider,
-									'select-none border-transparent text-gray-500 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium': page.divider,
-								}" x-text="page.divider ? '...' : page.number" @click="setPage(page)" :key="page.number"></span>
-							</template>
-						</div>
-						<div class="-mt-px w-0 flex-1 flex justify-end">
-							<a href="#" @click="setPageNumber(currentPage+1)" class="border-t-2 border-transparent pt-4 px-2 lg:pr-1 lg:pl-0 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-400 hover:border-gray-400">
-								<span class="hidden lg:inline">Next</span>
-								<!-- Heroicon name: solid/arrow-narrow-right -->
-								<svg class="ml-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-									<path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-								</svg>
-							</a>
-						</div>
-					</nav>
+						<div @click="toggle((lawful_good | neutral_good | chaotic_good))" :class="classes(lawful_good | neutral_good | chaotic_good)" class="col-span-2 w-8 rounded-l-md"><i class="fa fa-dove"></i></div>
+						<div @click="toggle(lawful_good)" :class="classes(lawful_good)" class="col-span-4 h-16" title="Lawful Good">LG</div>
+						<div @click="toggle(neutral_good)" :class="classes(neutral_good)" class="col-span-4 h-16" title="Neutral Good">NG</div>
+						<div @click="toggle(chaotic_good)" :class="classes(chaotic_good)" class="col-span-4 h-16" title="Chaotic Good">CG</div>
+
+						<div @click="toggle((lawful_neutral | neutral | chaotic_neutral))" :class="classes(lawful_neutral | neutral | chaotic_neutral)" class="col-span-2 w-8 rounded-l-md"><i class="fa fa-face-meh"></i></div>
+						<div @click="toggle(lawful_neutral)" :class="classes(lawful_neutral)" class="col-span-4 h-16" title="Lawful Neutral">LN</div>
+						<div @click="toggle(neutral)" :class="classes(neutral)" class="col-span-4 h-16" title="Neutral">N</div>
+						<div @click="toggle(chaotic_neutral)" :class="classes(chaotic_neutral)" class="col-span-4 h-16" title="Chaotic Neutral">CN</div>
+
+						<div @click="toggle((lawful_evil | neutral_evil | chaotic_evil))" :class="classes(lawful_evil | neutral_evil | chaotic_evil)" class="col-span-2 w-8 rounded-l-md"><i class="fa fa-skull"></i></div>
+						<div @click="toggle(lawful_evil)" :class="classes(lawful_evil)" class="col-span-4 h-16" title="Lawful Evil">LE</div>
+						<div @click="toggle(neutral_evil)" :class="classes(neutral_evil)" class="col-span-4 h-16" title="Neutral Evil">NE</div>
+						<div @click="toggle(chaotic_evil)" :class="classes(chaotic_evil)" class="col-span-4 h-16" title="Chaotic Evil">CE</div>
+
+						<div @click="toggle((lawful_evil | neutral | chaotic_good))" :class="classes(lawful_evil | neutral | chaotic_good)" class="col-span-2 rounded-bl-md"></div>
+						<div @click="total = (total === 1023) ? 0 : 1023" :class="{ 'bg-emerald-700 text-white hover:bg-emerald-600 dark:bg-emerald-800 dark:hover:bg-emerald-900': (total & 1023) === 1023, 'text-gray-900 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border': (total & 1023) !== 1023 }" class="select-none text-gray-900 col-span-6 cursor-pointer grid place-items-center h-8 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border">Any</div>
+						<div @click="total = total ^ 512" :class="{ 'bg-emerald-700 text-white hover:bg-emerald-600 dark:bg-emerald-800 dark:hover:bg-emerald-900': (total & 512) === 512, 'text-gray-900 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border': (total & 512) !== 512 }" class="select-none text-gray-900 rounded-br-md col-span-6 cursor-pointer grid place-items-center h-8 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border">Unaligned</div>
+					</div>
+				</div>
+
+
+				<!-- Multi Select -->
+				<div>
+					<div class="block font-medium text-gray-700 dark:text-gray-300 mb-1">Size category</div>
+
+					<div @mousedown.stop x-data="multiSelect($refs.sizes, 'size', [
+												{value: 'any', label: 'Any Size' },
+												{value: 'tiny', label: 'Tiny' },
+												{value: 'small', label: 'Small' },
+												{value: 'medium', label: 'Medium' },
+												{value: 'large', label: 'Large' },
+												{value: 'huge', label: 'Huge' },
+												{value: 'gargantuan', label: 'Gargantuan' }
+											])" @reset-filters.window="reset()">
+						<select x-ref="sizes" :multiple="multiple" class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
+					</div>
+				</div>
+
+				<div>
+					<div class="block font-medium text-gray-700 dark:text-gray-300 mb-1">Creature type</div>
+
+					<div @mousedown.stop x-data="multiSelect($refs.creature_type, 'type', [
+												{ value: 'any', label: 'Any Type' },
+												{ value: 'aberration', label: 'Aberration' },
+												{ value: 'beast', label: 'Beast' },
+												{ value: 'celestial', label: 'Celestial' },
+												{ value: 'construct', label: 'Construct' },
+												{ value: 'dragon', label: 'Dragon' },
+												{ value: 'elemental', label: 'Elemental' },
+												{ value: 'fey', label: 'Fey' },
+												{ value: 'fiend', label: 'Fiend' },
+												{ value: 'giant', label: 'Giant' },
+												{ value: 'humanoid', label: 'Humanoid' },
+												{ value: 'monstrosity', label: 'Monstrosity' },
+												{ value: 'ooze', label: 'Ooze' },
+												{ value: 'plant', label: 'Plant' },
+												{ value: 'undead', label: 'Undead' },
+											])" @reset-filters.window="reset()">
+						<select x-ref="creature_type" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
+					</div>
+				</div>
+
+				<div>
+					<div class="block font-medium text-gray-700 dark:text-gray-300 mb-1">Native environment</div>
+
+					<div @mousedown.stop x-data="multiSelect($refs.environment, 'environment', [
+												{ value: 'any', label: 'Any Environment' },
+												{ value: 'aquatic', label: 'Aquatic' },
+												{ value: 'arctic', label: 'Arctic' },
+												{ value: 'cave', label: 'Cave' },
+												{ value: 'coast', label: 'Coast' },
+												{ value: 'desert', label: 'Desert' },
+												{ value: 'dungeon', label: 'Dungeon' },
+												{ value: 'forest', label: 'Forest' },
+												{ value: 'grassland', label: 'Grassland' },
+												{ value: 'mountain', label: 'Mountain' },
+												{ value: 'planar', label: 'Planar' },
+												{ value: 'ruins', label: 'Ruins' },
+												{ value: 'swamp', label: 'Swamp' },
+												{ value: 'underground', label: 'Underground' },
+												{ value: 'urban', label: 'Urban' },
+											])" @reset-filters.window="reset()">
+						<select x-ref="environment" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
+					</div>
+				</div>
+
+				<div>
+					<div class="block font-medium text-gray-700 dark:text-gray-300 mb-1">Legendary Status</div>
+
+					<div @mousedown.stop x-data="multiSelect($refs.legendary, 'legendary', [
+												{ value: 'any', label: 'Any Legendary'},
+												{ value: 'ordinary', label: 'Ordinary'},
+												{ value: 'legendary', label: 'Legendary'},
+												{ value: 'legendary_lair', label: 'Legendary (in lair)'},
+											])" @reset-filters.window="reset()">
+						<select x-ref="legendary" multiple class="inline-block mb-2 mr-2 mt-1 w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm rounded-md"></select>
+					</div>
 				</div>
 			</div>
 		</div>
