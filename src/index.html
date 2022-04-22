@@ -311,7 +311,7 @@
 				</div>
 
 				<div>
-					<div class="flex pt-4 justify-between items-center 2xl:pb-2">
+					<div class="flex pt-4 justify-between items-center 2xl:pb-4">
 						<span class="text-lg grow">Encounter</span>
 
 						<a href="javascript:" class="primary-link" @click="showEncounterModal = true">History</a>
@@ -421,7 +421,7 @@
 					</div>
 				</div>
 
-				<div class="flex-row py-4">
+				<div class="flex-row py-4" x-show="encounter.groups.length">
 					<template x-for="(group, index) in encounter.groups" :key="group.monster.slug">
 						<div class="flex flex-row w-full mb-4 relative">
 							<div class="grow pb-2 min-w-0">
@@ -474,6 +474,13 @@
 							<div class="text-sm italic block" x-text="'(' + Math.round(encounter.adjustedExp / party.totalPlayers) + ' per player)'"></div>
 						</div>
 					</div>
+				</div>
+
+				<div class="py-4">
+					<button @click="encounter.generateRandom()" x-show="!encounter.groups.length" type="button" class="relative block w-full border-2 border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+						<i class="fa-solid fa-wand-magic-sparkles text-2xl h-12 w-12 mx-auto text-gray-400 dark:text-gray-300"></i>
+						<span class="mt-2 block text-sm font-medium text-gray-900 dark:text-gray-200"> Generate an encounter </span>
+					</button>
 				</div>
 			</div>
 		</div>
