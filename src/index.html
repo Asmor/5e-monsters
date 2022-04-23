@@ -904,22 +904,21 @@
 							<div x-show="tab === 'saved'" class="my-3 sm:mt-0 w-full">
 								<div class="mt-2 max-h-96 overflow-y-auto divide-y divide-gray-200 dark:divide-gray-700 text-gray-700 dark:text-gray-300">
 									<template x-for="(_, index) of savedEncounters">
-										<div class="flex px-2 py-4 dark:border-gray-700 w-100 relative"
+										<div class="flex px-2 py-4 dark:border-gray-700 w-100 relative group hover:bg-gray-50 dark:hover:bg-gray-700"
 											 :title="savedEncounters[savedEncounters.length-index-1].map(group => `${group.monster.name} x${group.count}`).join(', ')"
-											 :class="{ 'group hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer': !(loadedEncounterIndex === null && index === 0 && encounter.groups.length) }"
-											 @click="!(loadedEncounterIndex === null && index === 0 && encounter.groups.length) && encounter.loadFromHistory(savedEncounters.length-index-1)"
 											 :key="index"
 										>
-											<div class="grow flex flex-col justify-center mr-2 grow truncate overflow-ellipsis" :class="{ 'font-medium': loadedEncounterIndex === null && index === 0 && encounter.groups.length }">
+											<div class="grow flex flex-col justify-center mr-2 grow truncate overflow-ellipsis" :class="{ 'font-medium': loadedEncounterIndex === index }">
                                                 <span x-text="savedEncounters[savedEncounters.length-index-1] ? savedEncounters[savedEncounters.length-index-1].map(group => `${group.monster.name} x${group.count}`).join(', ') : ''"
 												></span>
 											</div>
 											<div class="shrink-0 grid grid-cols-[30px_1fr] place-items-center h-full absolute inset-y-0 right-0" type="button">
 												<div class="w-full h-full bg-gradient-to-l from-white dark:from-gray-800 group-hover:from-gray-50 dark:group-hover:from-gray-700 to-transparent"></div>
-												<div class="px-3 bg-white group-hover:bg-gray-50 dark:bg-gray-800 dark:group-hover:bg-gray-700 min-w-4 h-full grid place-items-center">
-													<div class="hidden group-hover:block text-gray-900 dark:text-gray-100">Load <i class="fa fa-arrow-right"></i></div>
-													<div x-show="loadedEncounterIndex === null && index === 0 && encounter.groups.length" class="text-emerald-600"><i class="fa fa-check-circle"></i></div>
-												</div>
+												<div class="px-3 bg-white group-hover:bg-gray-50 dark:bg-gray-800 dark:group-hover:bg-gray-700 min-w-4 h-full grid grid-cols-2 text-right place-items-center space-x-2">
+                                                    <div x-show="loadedEncounterIndex === index" class="text-emerald-600"><i class="fa fa-check-circle"></i> Loaded</div>
+                                                    <div x-show="loadedEncounterIndex !== index" class="cursor-pointer select-none hidden group-hover:block text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100" @click="encounter.loadFromSaved(index)"><i class="fas fa-upload"></i> Load</div>
+                                                    <div class="cursor-pointer select-none hidden group-hover:block text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100" @click="encounter.deleteSaved(index)"><i class="fas fa-times"></i> Delete</div>
+                                                </div>
 											</div>
 										</div>
 									</template>
@@ -1007,7 +1006,7 @@
 							</div>
 							<div class="ml-3 w-0 flex-1 pt-0.5">
 								<p class="text-sm font-medium text-gray-900 dark:text-gray-300" x-text="info.title"></p>
-								<p class="mt-1 text-sm text-gray-500 dark:text-gray-400" x-html="info.body"></p>
+								<p class="mt-1 text-sm text-gray-500 dark:text-gray-400" x-show="info.body" x-html="info.body"></p>
 							</div>
 							<div class="ml-4 flex-shrink-0 flex">
 								<button class="bg-white dark:bg-gray-500 dark:text-gray-800 rounded-md inline-flex text-gray-400 dark:text-gray-800 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500" @click="remove">

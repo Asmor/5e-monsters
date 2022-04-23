@@ -364,19 +364,7 @@ const encounter = {
         const encounter = this.app.encounterHistory.splice(index, 1)[0];
         this.app.encounterHistory.push(encounter);
         this.load(encounter);
-
         dispatchEvent(new CustomEvent('notification', {detail: { title: 'Encounter loaded', body: this.groups.map(group => `${group.monster.name} x${group.count}`).join(', ') }}))
-    },
-
-    loadFromSaved(index){
-        this.app.loadedLastEncounter = false;
-        this.app.loadedEncounterIndex = index;
-        this.load(this.app.savedEncounters[index])
-    },
-
-    clear(){
-        this.groups = [];
-        this.app.loadedLastEncounter = false;
     },
 
     load(encounter){
@@ -387,7 +375,29 @@ const encounter = {
         }).filter(Boolean);
         if(!groups.length) return;
         this.groups = groups;
-    }
+    },
+
+    loadFromSaved(index){
+        this.app.loadedLastEncounter = false;
+        this.app.loadedEncounterIndex = index;
+        this.load(this.app.savedEncounters[index])
+        dispatchEvent(new CustomEvent('notification', {detail: { title: 'Encounter loaded', body: this.groups.map(group => `${group.monster.name} x${group.count}`).join(', ') }}))
+    },
+
+    deleteSaved(index){
+        if(this.app.loadedEncounterIndex === index){
+            this.app.loadedEncounterIndex = null;
+            this.clear();
+        }
+        this.app.savedEncounters.splice(index, 1);
+        dispatchEvent(new CustomEvent('notification', {detail: { title: 'Encounter deleted' }}))
+    },
+
+    clear(){
+        this.groups = [];
+        this.app.loadedLastEncounter = false;
+        this.app.loadedEncounterIndex = null;
+    },
 
 }
 
