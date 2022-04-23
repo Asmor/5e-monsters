@@ -16,7 +16,6 @@ function app() {
     
     return {
         menu: true,
-        isLoading: true,
         loading: false,
         showFilters: false,
         showSourcesModal: false,
@@ -120,8 +119,6 @@ function app() {
             },
 
             get totalPlayers() {
-                console.log(this.groups);
-
                 return this.groups.reduce((acc, group) => {
                     return acc + parseInt(group.players)
                 }, 0) + this.app.activePlayers.length;
@@ -171,14 +168,9 @@ function app() {
         },
 
         async fetchData() {
-            this.isLoading = true;
             this.formatSources(await this.fetchSources());
             this.formatMonsters(await this.fetchMonsters());
-            this.currentPage = 1;
             this.searchPlaceholder = lib.randomArrayElement(this.allMonsters).name;
-            this.filteredMonsters = this.filterMonsters();
-            this.isLoading = false;
-            this.updatePagination();
 
             if (this.loadedEncounterIndex !== null){
                 this.encounter.load(this.savedEncounters[this.loadedEncounterIndex]);
@@ -335,6 +327,7 @@ function app() {
         },
 
         filtersChanged($event){
+            console.log('changed')
             const { name, value, asArray } = $event.detail;
             this.filters[name] = asArray ? Object.values(value) : value;
             this.nonDefaultFiltersCount = Object.entries(this.filters).filter(entry => {

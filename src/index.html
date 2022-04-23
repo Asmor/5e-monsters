@@ -45,7 +45,8 @@
 	<div
 		class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-300 flex flex-col"
 		x-data="window.app()"
-		@filters-changed.window="filtersChanged"
+		@filters-changed.window.debounce.100ms="filtersChanged"
+        @reset-filters.window="search = ''"
 	>
 
 		<nav class="bg-emerald-700 border-b border-gray-200 dark:border-gray-900 shrink-0" x-data="{ menu: false }">
@@ -96,7 +97,7 @@
 		</nav>
 
 		<div class="flex py-4 sm:py-6 lg:py-8 w-full max-w-[1920px] relative grow mx-auto flex-col md:flex-row">
-			<div class="relative self-center mb-6 bg-gray-200 dark:bg-gray-800 rounded-lg p-0.5 flex sm:mt-8 h-10">
+			<div class="relative self-center mb-6 bg-gray-200 dark:bg-gray-800 rounded-lg p-0.5 flex sm:mt-8 h-10 md:hidden">
 				<div class="absolute bg-gray-100 dark:bg-gray-700 w-1/2 transition-all duration-300 inset-y-1 rounded-md" :class="{ 'translate-x-full -ml-1.5': mobileEncounterTab, 'left-1': !mobileEncounterTab }"></div>
 				<button @click="mobileEncounterTab = false" type="button" :class="{ 'text-gray-900 ': !mobileEncounterTab, 'text-gray-700': mobileEncounterTab }" class="relative border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium dark:text-gray-100 whitespace-nowrap focus:outline-none focus:z-10 w-32">Encounter</button>
 				<button @click="mobileEncounterTab = true" type="button" :class="{ 'text-gray-900 ': mobileEncounterTab, 'text-gray-700': !mobileEncounterTab }" class="ml-0.5 relative border border-transparent rounded-md py-2 text-sm font-medium whitespace-nowrap dark:text-gray-100 focus:outline-none focus:z-10 w-32">Monsters</button>
@@ -222,7 +223,7 @@
 					</div>
 
 					<div x-show="enabledSources.length === 0" class="w-full text-center text-lg my-4">No sources are enabled - <span class="primary-link select-none cursor-pointer" @click="showSourcesModal = true">enable some now</span></div>
-					<div x-show="enabledSources.length > 0 && monsters.length === 0" class="w-full text-center text-lg my-4" x-cloak>No monsters found with the current filter (not sure why this shows up when it's <i>false</i>)</div>
+					<div x-show="enabledSources.length > 0 && filteredMonsters.length === 0" class="w-full text-center text-lg my-4" x-cloak>No monsters found with the current filter - <span class="primary-link select-none cursor-pointer" @click="$dispatch('reset-filters')">reset filters</span></div>
 
 					<!-- This example requires Tailwind CSS v2.0+ -->
 					<nav x-show="totalPages > 1" x-cloak class="border-t border-gray-300 mt-4 dark:border-gray-700 px-4 flex items-center justify-between sm:px-0">
@@ -466,17 +467,17 @@
 						<div class="flex items-center justify-between">
 							<dt class="mt-1 text-sm text-gray-600 dark:text-gray-200">
 								<span class="block">Difficulty</span>
-								<span x-show="encounter.actualDifficulty.toLowerCase() !== encounter.difficultyFeel.toLowerCase()" class="block text-gray-500 dark:text-gray-400 text-sm">Feels</span>
+								<span x-show="encounter.difficultyFeel && encounter.actualDifficulty.toLowerCase() !== encounter.difficultyFeel.toLowerCase()" class="block text-gray-500 dark:text-gray-400 text-sm">Feels</span>
 							</dt>
 							<dd class="mt-1 text-sm font-medium text-gray-900 dark:text-gray-300 text-right">
 								<span class="block" x-text="encounter.actualDifficulty"></span>
-								<span class="block text-gray-500 dark:text-gray-400 text-sm" x-show="encounter.actualDifficulty.toLowerCase() !== encounter.difficultyFeel.toLowerCase()" x-text="encounter.difficultyFeel"></span>
+								<span class="block text-gray-500 dark:text-gray-400 text-sm" x-show="encounter.difficultyFeel && encounter.actualDifficulty.toLowerCase() !== encounter.difficultyFeel.toLowerCase()" x-text="encounter.difficultyFeel"></span>
 							</dd>
 						</div>
 
 						<div class="flex items-center justify-between">
 							<dt class="mt-1 text-sm text-gray-600 dark:text-gray-200">Total XP</dt>
-							<dd class="mt-1 text-sm font-medium text-gray-900 dark:text-gray-300" x-text="formatNumber(encounter.totalExp) + ' (' + formatNumber(Math.round(encounter.totalExp / party.totalPlayers)) + '/player)'; console.log(party.totalPlayers)"></dd>
+							<dd class="mt-1 text-sm font-medium text-gray-900 dark:text-gray-300" x-text="formatNumber(encounter.totalExp) + ' (' + formatNumber(Math.round(encounter.totalExp / party.totalPlayers)) + '/player)'"></dd>
 						</div>
 
 						<div class="flex items-center justify-between">
