@@ -33,6 +33,7 @@ function app() {
         savedEncounters: Alpine.$persist([]).as('savedEncounters'),
 
         loadedEncounterIndex: Alpine.$persist(null).as('loadedEncounterIndex'),
+        loadedLastEncounter: Alpine.$persist(false).as('loadedLastEncounter'),
 
         savedPlayers: Alpine.$persist([]).as('savedPlayers'),
 
@@ -174,7 +175,7 @@ function app() {
 
             if (this.loadedEncounterIndex !== null){
                 this.encounter.load(this.savedEncounters[this.loadedEncounterIndex]);
-            }else if(this.encounterHistory.length){
+            }else if(this.encounterHistory.length && this.loadedLastEncounter){
                 this.encounter.load(this.encounterHistory[this.encounterHistory.length-1]);
             }
         },
@@ -327,7 +328,6 @@ function app() {
         },
 
         filtersChanged($event){
-            console.log('changed')
             const { name, value, asArray } = $event.detail;
             this.filters[name] = asArray ? Object.values(value) : value;
             this.nonDefaultFiltersCount = Object.entries(this.filters).filter(entry => {

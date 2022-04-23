@@ -903,19 +903,19 @@
                                     <template x-for="(_, index) of encounterHistory">
                                         <div class="flex px-2 py-4 dark:border-gray-700 w-100 relative"
 											 :title="encounterHistory[encounterHistory.length-index-1].map(group => `${group.monster.name} x${group.count}`).join(', ')"
-											 :class="{ 'group hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer': !(loadedEncounterIndex === null && index === 0) }"
-											 :key="index"
-											 @click="!(loadedEncounterIndex === null && index === 0) && encounter.loadFromHistory(encounterHistory.length-index-1)"
+											 :class="{ 'group hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer': !(loadedEncounterIndex === null && index === 0 && encounter.groups.length) }"
+											 @click="!(loadedEncounterIndex === null && index === 0 && encounter.groups.length) && encounter.loadFromHistory(encounterHistory.length-index-1)"
+                                             :key="index"
 										>
-                                            <div class="grow flex flex-col justify-center mr-2 grow truncate overflow-ellipsis" :class="{ 'font-medium': loadedEncounterIndex === null && index === 0 }">
-                                                <span x-text="encounterHistory[encounterHistory.length-index-1].map(group => `${group.monster.name} x${group.count}`).join(', ')"
+                                            <div class="grow flex flex-col justify-center mr-2 grow truncate overflow-ellipsis" :class="{ 'font-medium': loadedEncounterIndex === null && index === 0 && encounter.groups.length }">
+                                                <span x-text="encounterHistory[encounterHistory.length-index-1] ? encounterHistory[encounterHistory.length-index-1].map(group => `${group.monster.name} x${group.count}`).join(', ') : ''"
 												></span>
                                             </div>
                                             <div class="shrink-0 grid grid-cols-[30px_1fr] place-items-center h-full absolute inset-y-0 right-0" type="button">
 												<div class="w-full h-full bg-gradient-to-l from-white dark:from-gray-800 group-hover:from-gray-50 dark:group-hover:from-gray-700 to-transparent"></div>
 												<div class="px-3 bg-white group-hover:bg-gray-50 dark:bg-gray-800 dark:group-hover:bg-gray-700 min-w-4 h-full grid place-items-center">
 													<div class="hidden group-hover:block text-gray-900 dark:text-gray-100">Load <i class="fa fa-arrow-right"></i></div>
-													<div x-show="loadedEncounterIndex === null && index === 0" class="text-emerald-600"><i class="fa fa-check-circle"></i></div>
+													<div x-show="loadedEncounterIndex === null && index === 0 && encounter.groups.length" class="text-emerald-600"><i class="fa fa-check-circle"></i></div>
 												</div>
 											</div>
                                         </div>

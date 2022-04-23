@@ -310,7 +310,7 @@ const encounter = {
     },
 
     saveToHistory(newEntry = false){
-        if(!this.groups.length) return;
+
         const encounter = this.groups.map(group => {
             return {
                 monster: {
@@ -324,6 +324,7 @@ const encounter = {
         const lastEntry = this.app.encounterHistory[this.app.encounterHistory.length-1];
         if(!encounter.length){
             if(lastEntry){
+                this.app.loadedLastEncounter = false;
                 this.app.encounterHistory.pop();
             }
             return;
@@ -361,12 +362,14 @@ const encounter = {
 
     loadFromHistory(index){
         this.app.loadedEncounterIndex = null;
+        this.app.loadedLastEncounter = true;
         const encounter = this.app.encounterHistory.splice(index, 1)[0];
         this.app.encounterHistory.push(encounter);
         this.load(encounter);
     },
 
     loadFromSaved(index){
+        this.app.loadedLastEncounter = false;
         this.app.loadedEncounterIndex = index;
         this.load(this.app.savedEncounters[index])
     },
