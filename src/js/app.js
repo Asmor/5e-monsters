@@ -19,7 +19,7 @@ function app() {
         loading: false,
         showFilters: false,
         showSourcesModal: false,
-        showEncounterModal: false,
+        showEncounterModal: true,
         mobileEncounterTab: false,
 
         filters: {},
@@ -104,7 +104,7 @@ function app() {
 
         party: {
 
-            groups: Alpine.$persist([{ players: 4, level: 1, followers: false }]).as("groups"),
+            groups: Alpine.$persist([{ players: 4, level: 1, getsXP: true }]).as("groups"),
 
             addPlayerGroup() {
                 this.groups.push({
@@ -140,7 +140,7 @@ function app() {
 
             get totalPlayersToGainXP(){
                 return this.groups.reduce((acc, group) => {
-                    return acc + (!group.followers ? parseInt(group.players) : 0)
+                    return acc + (group.getsXP ? parseInt(group.players) : 0)
                 }, 0) + this.app.activePlayers.length;
             },
             
