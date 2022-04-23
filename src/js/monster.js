@@ -21,6 +21,14 @@ export default class Monster {
         this.unique = !!this.data.unique;
         this.alignment = this.data.alignment ? Monster.parseAlignment(this.data.alignment) : "";
 
+        this.environments.split(',').forEach(environment => {
+            environment = environment.trim()
+            environment = environment.slice(0,1).toUpperCase() + environment.slice(1)
+            if(environment && this.app.environments.indexOf(environment) === -1){
+                this.app.environments.push(environment);
+            }
+        });
+
         this.searchable = [
             this.data.name,
             this.data.section,

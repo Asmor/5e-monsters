@@ -42,6 +42,8 @@ function app() {
         filteredMonsters: [],
         monsterLookupTable: {},
 
+        environments: [],
+
         totalPages: 1,
         currentPage: 1,
         pagination: [],
@@ -314,15 +316,18 @@ function app() {
             this.sources = data.reduce((acc, source) => {
                 acc[source.name] = source;
                 return acc;
-            }, this.sources);
+            }, {});
         },
 
         formatMonsters(data){
-            this.allMonsters = this.allMonsters.concat(data.map(data => {
+            this.allMonsters = data.map(data => {
                 const monster = new Monster(this, data);
                 this.monsterLookupTable[monster.slug] = monster;
                 return monster;
-            }));
+            });
+            this.environments.sort();
+            this.environments.unshift("Any")
+            window.dispatchEvent(new CustomEvent('set-environments', { detail: this.environments.map(environment => ({ value: environment.toLowerCase(), label: environment === 'Any' ? 'Any Environment' : environment })) }))
         },
 
         filterMonsters(crString = false, filterCallback = () => { return true; }){
@@ -491,46 +496,50 @@ function multiSelect($el, name, options) {
         name: name,
         options: options,
         init() {
+            if(!options.length) return;
             this.$nextTick(() => {
-                let choices = new Choices($el, {
-                    allowHTML: true,
-                    removeItemButton: true
-                })
+                this.setUp();
+            })
+        },
+        setUp(){
+            let choices = new Choices($el, {
+                allowHTML: true,
+                removeItemButton: true
+            })
 
-                let refreshChoices = () => {
-                    let selection = this.multiple ? this.value : [this.value]
+            let refreshChoices = () => {
+                let selection = this.multiple ? this.value : [this.value]
 
-                    choices.clearStore()
-                    choices.setChoices(this.options.map(({ value, label }) => ({
-                        value,
-                        label,
-                        selected: selection.includes(value),
-                    })))
+                choices.clearStore()
+                choices.setChoices(this.options.map(({ value, label }) => ({
+                    value,
+                    label,
+                    selected: selection.includes(value),
+                })))
 
-                    this.onFiltersChanged();
+                this.onFiltersChanged();
+            }
+
+            refreshChoices()
+
+            $el.addEventListener('change', () => {
+                this.value = choices.getValue(true);
+
+                if(this.value.length > 1 && this.value.includes('any')) {
+                    this.value = this.value.filter(value => value !== 'any');
                 }
 
-                refreshChoices()
-
-                $el.addEventListener('change', () => {
-                    this.value = choices.getValue(true);
-
-                    if(this.value.length > 1 && this.value.includes('any')) {
-                        this.value = this.value.filter(value => value !== 'any');
-                    }
-
-                    if(this.multiple && !this.value.length) {
-                        this.value = ['any'];
-                    }
-
-                    this.onFiltersChanged();
-                })
-
-                this.$watch('value', () => refreshChoices())
-                this.$watch('options', () => refreshChoices())
+                if(this.multiple && !this.value.length) {
+                    this.value = ['any'];
+                }
 
                 this.onFiltersChanged();
             })
+
+            this.$watch('value', () => refreshChoices())
+            this.$watch('options', () => refreshChoices())
+
+            this.onFiltersChanged();
         },
         onFiltersChanged() {
             window.dispatchEvent(new CustomEvent('filters-changed', { detail: {
