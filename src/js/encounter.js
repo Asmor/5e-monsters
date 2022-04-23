@@ -364,6 +364,8 @@ const encounter = {
         const encounter = this.app.encounterHistory.splice(index, 1)[0];
         this.app.encounterHistory.push(encounter);
         this.load(encounter);
+
+        dispatchEvent(new CustomEvent('notification', {detail: { title: 'Encounter loaded', body: this.groups.map(group => `${group.monster.name} x${group.count}`).join(', ') }}))
     },
 
     loadFromSaved(index){
