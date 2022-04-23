@@ -38,6 +38,8 @@ function app() {
         savedPlayers: Alpine.$persist([]).as('savedPlayers'),
 
         sources: {},
+        enabledSources: [],
+
         allMonsters: [],
         filteredMonsters: [],
         monsterLookupTable: {},
@@ -149,6 +151,8 @@ function app() {
             this.encounter.app = this;
             this.party.app = this;
             this.fetchData();
+
+            this.$watch('sources', () => { this.enabledSources = Object.values(this.sources).filter(source => source.enabled) });
         },
 
         get monsters(){
@@ -179,10 +183,6 @@ function app() {
             })
 
             return sources;
-        },
-
-        get enabledSources(){
-            return Object.values(this.sources).filter(source => source.enabled);
         },
 
         async fetchData() {
@@ -369,6 +369,11 @@ function app() {
             this.updatePagination();
         },
 
+        resetFilters(){
+            this.search = '';
+            Object.values(this.sources).forEach(source => source.enabled = !!source.default);
+        },
+
         formatNumber(num){
             return internationalNumberFormat.format(num);
         },
@@ -550,6 +555,7 @@ function multiSelect($el, name, options) {
         },
         reset(){
             this.value = ['any'];
+            this.onFiltersChanged();
         }
     }
 }

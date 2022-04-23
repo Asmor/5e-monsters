@@ -34,8 +34,8 @@
 
 <body class="h-full"
 	  x-data="window.app()"
-	  @filters-changed.window.debounce.100ms="filtersChanged"
-	  @reset-filters.window="search = ''"
+	  @filters-changed.window="filtersChanged"
+	  @reset-filters.window="resetFilters"
 >
 	<div
 		class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-300 flex flex-col"
