@@ -29,15 +29,6 @@
 			document.documentElement.classList.remove('dark')
 			localStorage.theme = 'light'
 		}
-
-		window.toggleTheme = function() {
-			let theme = (localStorage.theme === 'dark' ? 'light' : 'dark');
-			window.theme = theme;
-			localStorage.theme = theme;
-			document.documentElement.classList.toggle('dark', theme === 'dark');
-
-			return theme
-		}
 	</script>
 </head>
 
@@ -60,14 +51,10 @@
 						</div>
 					</div>
 					<div class="hidden lg:flex text-white lg:-my-px lg:ml-6 lg:space-x-8 items-center">
-                        <a href="" class="inline-flex items-center px-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300">Home</a>
-                        <a href="" class="inline-flex items-center px-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300">Manage Encounters</a>
-                        <a href="" class="inline-flex items-center px-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300">Manage Players</a>
-                        <a href="" class="inline-flex items-center px-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300">Run Encounters</a>
-                        <a href="" class="inline-flex items-center px-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300">Fantasy Calendar</a>
+                        <a href="https://fantasy-calendar.com/" class="inline-flex items-center px-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300">Fantasy Calendar</a>
                         <a href="" class="inline-flex items-center px-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300">About</a>
-						<a title="Toggle light mode (ctrl+shift+\)" @click="window.toggleTheme()" href="javascript:" class="inline-flex items-center px-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300 h-full">
-							<i :class="{ 'fa-moon': window.theme !== 'dark', 'fa-sun': window.theme === 'dark' }" class="fa"></i>
+						<a title="Toggle light mode (ctrl+shift+\)" @click="toggleTheme()" href="javascript:" class="inline-flex items-center px-1 text-sm font-medium text-emerald-300 hover:text-white hover:border-gray-300 h-full">
+							<i :class="{ 'fa-moon': theme === 'light', 'fa-sun': theme === 'dark' }" class="fa"></i>
 						</a>
 					</div>
 					<div class="-mr-2 flex items-center lg:hidden">
@@ -86,12 +73,11 @@
 
 			<div class="transition-all duration-400 ease-in-out overflow-hidden md:hidden hidden" :class="{ 'block': menu, 'hidden': !menu }">
 				<div class="pt-2 pb-3 space-y-1">
-					<a href="" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-primary-200 hover:text-white">Home</a>
-					<a href="" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-primary-200 hover:text-white">Manage Encounters</a>
-					<a href="" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-primary-200 hover:text-white">Manage Players</a>
-					<a href="" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-primary-200 hover:text-white">Run Encounters</a>
-					<a href="" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-primary-200 hover:text-white">Fantasy Calendar</a>
-					<a href="" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-primary-200 hover:text-white">About</a>
+					<a href="https://fantasy-calendar.com/" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-emerald-300 hover:text-white hover:border-gray-300">Fantasy Calendar</a>
+					<a href="" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-emerald-300 hover:text-white hover:border-gray-300">About</a>
+                    <a title="Toggle light mode (ctrl+shift+\)" @click="toggleTheme()" href="javascript:" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-emerald-300 hover:text-white hover:border-gray-300">
+                        <i :class="theme === 'light' ? 'fa-moon' : 'fa-sun'" class="fa"></i> <span x-text="`Toggle theme`"></span>
+                    </a>
 				</div>
 			</div>
 		</nav>
@@ -268,15 +254,18 @@
 							<div class="w-16">
 								<label class="block font-medium text-gray-700 dark:text-gray-300">Players</label>
 							</div>
-							<div class="w-16 ml-4">
+							<div class="w-16 ml-6">
 								<label class="block font-medium text-gray-700 dark:text-gray-300">Level</label>
+							</div>
+							<div class="w-14 ml-2">
+								<label class="block font-medium text-gray-700 dark:text-gray-300">Follower</label>
 							</div>
 						</div>
 
 						<template x-for="(group, index) in party.groups">
 							<div class="flex align-center mb-2 space-x-2">
 								<div class="w-16">
-									<input type="number" min="1" x-model="group.players" class="border-gray-300 shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block w-full sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 rounded-md" value="4">
+									<input type="number" min="1" :value="group.players" @change="group.players = Math.max(1, $event.target.value)" class="border-gray-300 shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block w-full sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 rounded-md" value="4">
 								</div>
 
 								<div class="text-center grid place-items-center text-gray-600 dark:text-gray-400">
@@ -284,7 +273,14 @@
 								</div>
 
 								<div class="w-16">
-									<input type="number" min="1" max="20" x-model="group.level" class="border-gray-300 shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block w-full sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 rounded-md" value="4">
+									<input type="number" min="1" max="20" :value="group.level" @change="group.level = Math.max(1, Math.min(20, $event.target.value))" class="border-gray-300 shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block w-full sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 rounded-md" value="4">
+								</div>
+
+								<div class="w-14 flex items-center justify-center">
+                                    <button type="button" :class="{ 'bg-emerald-600': group.followers, 'bg-gray-200 dark:bg-gray-700': !group.followers }" @click="group.followers = !group.followers" class="bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" role="switch" aria-checked="false">
+                                        <span class="sr-only">Group is followers (gains no XP)</span>
+                                        <span aria-hidden="true" :class="{ 'translate-x-5': group.followers, 'translate-x-0': !group.followers }" class="translate-x-0 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
+                                    </button>
 								</div>
 
 								<button @click="party.removePlayerGroup(index)" x-show="index > 0" type="button" class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none">
@@ -452,7 +448,7 @@
 										<i class="fa fa-plus w-5"></i>
 									</button>
 									<label for="monster-number"></label>
-									<input id="monster-number" type="number" min="1" class="flex-1 min-w-0 block w-16 px-3 py-2 rounded-none dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300" x-model="group.count">
+									<input id="monster-number" type="number" min="1" class="flex-1 min-w-0 block w-16 px-3 py-2 rounded-none dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300" :value="group.count" @change="group.count = Math.max(0, $event.target.value)">
 									<button @click="encounter.subtractCount(index)" :class="{ 'border-gray-300 dark:border-gray-600 dark:text-gray-300 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-500': group.count > 1, 'border-red-200 dark:border-red-700 dark:text-red-300 bg-red-50 hover:bg-red-100 dark:bg-red-800 dark:hover:bg-red-700 text-red-500': group.count === 1 }" class="inline-flex items-center px-2 rounded-r-md border border-l-0 sm:text-sm">
 										<i :class="{ 'fa-minus': group.count > 1, 'fa-times': group.count === 1 }" class="fa w-5"></i>
 									</button>
@@ -467,22 +463,21 @@
 						<div class="flex items-center justify-between">
 							<dt class="mt-1 text-sm text-gray-600 dark:text-gray-200">
 								<span class="block">Difficulty</span>
-								<span x-show="encounter.difficultyFeel && encounter.actualDifficulty.toLowerCase() !== encounter.difficultyFeel.toLowerCase()" class="block text-gray-500 dark:text-gray-400 text-sm">Feels</span>
 							</dt>
 							<dd class="mt-1 text-sm font-medium text-gray-900 dark:text-gray-300 text-right">
 								<span class="block" x-text="encounter.actualDifficulty"></span>
-								<span class="block text-gray-500 dark:text-gray-400 text-sm" x-show="encounter.difficultyFeel && encounter.actualDifficulty.toLowerCase() !== encounter.difficultyFeel.toLowerCase()" x-text="encounter.difficultyFeel"></span>
+								<span class="block text-gray-500 dark:text-gray-400 text-sm" x-show="encounter.difficultyFeel && encounter.actualDifficulty.toLowerCase() !== encounter.difficultyFeel.toLowerCase()" x-text="'Feels '+encounter.difficultyFeel"></span>
 							</dd>
 						</div>
 
 						<div class="flex items-center justify-between">
 							<dt class="mt-1 text-sm text-gray-600 dark:text-gray-200">Total XP</dt>
-							<dd class="mt-1 text-sm font-medium text-gray-900 dark:text-gray-300" x-text="formatNumber(encounter.totalExp) + ' (' + formatNumber(Math.round(encounter.totalExp / party.totalPlayers)) + '/player)'"></dd>
+							<dd class="mt-1 text-sm font-medium text-gray-900 dark:text-gray-300" x-text="formatNumber(encounter.totalExp) + ' (' + formatNumber(Math.round(encounter.totalExp / party.totalPlayersToGainXP)) + '/player)'"></dd>
 						</div>
 
 						<div class="flex items-center justify-between">
 							<dt class="mt-1 text-sm text-gray-600 dark:text-gray-200">Adjusted XP</dt>
-							<dd class="mt-1 text-sm font-medium text-gray-900 dark:text-gray-300" x-text="formatNumber(encounter.adjustedExp) + ' (' + formatNumber(Math.round(encounter.adjustedExp / party.totalPlayers)) + '/player)'"></dd>
+							<dd class="mt-1 text-sm font-medium text-gray-900 dark:text-gray-300" x-text="formatNumber(encounter.adjustedExp) + ' (' + formatNumber(Math.round(encounter.adjustedExp / party.totalPlayersToGainXP)) + '/player)'"></dd>
 						</div>
 					</dl>
 

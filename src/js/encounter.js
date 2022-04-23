@@ -277,6 +277,7 @@ const encounter = {
         });
         if (!monsterList.length) return;
         group.monster = lib.randomArrayElement(monsterList);
+        this.saveToHistory();
     },
 
     addMonster(monster){
@@ -319,7 +320,7 @@ const encounter = {
                 },
                 count: group.count
             }
-        }).filter(group => group.count);
+        }).filter(group => group.count > 0);
 
         const lastEntry = this.app.encounterHistory[this.app.encounterHistory.length-1];
         if(!encounter.length){
@@ -354,10 +355,6 @@ const encounter = {
             this.app.savedEncounters = [...this.app.savedEncounters, encounter];
             this.app.loadedEncounterIndex = this.app.savedEncounters.length - 1;
         }
-    },
-
-    deleteFromHistory(index){
-        this.app.encounterHistory.splice(index, 1);
     },
 
     loadFromHistory(index){

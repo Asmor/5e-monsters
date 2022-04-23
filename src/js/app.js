@@ -72,6 +72,15 @@ function app() {
             this.updateFilteredMonsters();
         },
 
+        theme: window.theme,
+
+        toggleTheme() {
+            let theme = (localStorage.theme === 'dark' ? 'light' : 'dark');
+            this.theme = theme;
+            localStorage.theme = theme;
+            document.documentElement.classList.toggle('dark', theme === 'dark');
+        },
+
         createPlayer(){
             this.savedPlayers.push({
                 name: "Player " + this.savedPlayers.length+1,
@@ -91,7 +100,7 @@ function app() {
 
         party: {
 
-            groups: Alpine.$persist([{ players: 4, level: 1 }]).as("groups"),
+            groups: Alpine.$persist([{ players: 4, level: 1, followers: false }]).as("groups"),
 
             addPlayerGroup() {
                 this.groups.push({
@@ -124,6 +133,12 @@ function app() {
                     return acc + parseInt(group.players)
                 }, 0) + this.app.activePlayers.length;
             },
+
+            get totalPlayersToGainXP(){
+                return this.groups.reduce((acc, group) => {
+                    return acc + (!group.followers ? parseInt(group.players) : 0)
+                }, 0) + this.app.activePlayers.length;
+            }
 
         },
 
