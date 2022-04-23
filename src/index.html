@@ -452,6 +452,13 @@
 					</div>
 				</div>
 
+				<div x-show="!encounter.groups.length" class="pb-4">
+					<button @click="encounter.generateRandom()" type="button" class="relative block w-full border-2 border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
+						<i class="fa-solid fa-wand-sparkles text-2xl h-12 w-12 mx-auto text-gray-400 dark:text-gray-300"></i>
+						<span class="mt-2 block text-sm font-medium text-gray-900 dark:text-gray-200"> Generate an encounter </span>
+					</button>
+				</div>
+
 				<div class="border-t border-gray-200 dark:border-gray-700">
 					<dl class="space-y-1 divide-y divide-dashed divide-gray-400 dark:divide-gray-700">
 						<div class="flex items-center justify-between">
@@ -475,20 +482,17 @@
 						</div>
 					</dl>
 
-					<div class="mt-4">
-						<button :disabled="!encounter.groups.length" class="w-full text-center button-primary-md" @click="sendToImprovedInitiative">
+					<div class="mt-4 flex space-x-2">
+						<button :disabled="!encounter.groups.length" class="grow text-center button-primary-md" @click="sendToImprovedInitiative">
 							<span class="inline-flex justify-center w-full">
 								<img class="mr-2 fill-white" style="height:20px;" src="images/improved-initiative-logo.svg" alt="II"/> Send to Improved Initiative
 							</span>
 						</button>
-					</div>
-				</div>
 
-				<div x-show="!encounter.groups.length" class="py-4">
-					<button @click="encounter.generateRandom()" type="button" class="relative block w-full border-2 border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
-						<i class="fa-solid fa-wand-magic-sparkles text-2xl h-12 w-12 mx-auto text-gray-400 dark:text-gray-300"></i>
-						<span class="mt-2 block text-sm font-medium text-gray-900 dark:text-gray-200"> Generate an encounter </span>
-					</button>
+						<button  :disabled="!encounter.groups.length" class="button-primary-md shrink-0" @click="encounter.save()">
+							<i class="fa fa-save"></i>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -867,11 +871,66 @@
                      x-transition:leave="ease-in duration-200"
                      x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                      x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+					 x-data="{ tab: 'history' }"
                 >
                     <div class="bg-white dark:bg-gray-800 px-4 py-5 sm:p-6">
-                        <div class="sm:flex sm:items-start w-full">
-                            <div class="my-3 text-center sm:mt-0 sm:text-left w-full">
-                                <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100 pb-3"><i class="fa fa-history px-2 text-gray-500"></i> Encounter History</h3>
+                        <div class="sm:flex flex-col sm:items-start w-full">
+							<div class="w-full flex pb-3">
+								<div class="sm:hidden w-full">
+									<label for="tabs" class="sr-only">Select a tab</label>
+									<!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
+									<select x-model="tab" id="tabs" name="tabs" class="text-center border-gray-300 shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block w-full p-1.5 pr-0 sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 rounded-md">
+										<option value="history" selected>Encounter History</option>
+
+										<option value="saved">Saved Encounters</option>
+									</select>
+								</div>
+								<div class="hidden w-full sm:block">
+									<div class="border-b-2 border-gray-200 dark:border-gray-700">
+										<nav class="-mb-[2px] justify-center flex space-x-8" aria-label="Tabs">
+											<!-- Current: "border-emerald-500 text-emerald-600", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" -->
+											<a @click="tab = 'history'" href="javascript:" :class="{ 'border-emerald-500 text-emerald-600': tab === 'history', 'border-transparent text-gray-500 dark:text-gray-400 dark:hover:text-gray-200 dark:hover:border-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'history' }" class="inline-block whitespace-nowrap py-4 px-1 border-b-2 font-medium">
+												<i class="fa fa-history pr-2"></i> Encounter History
+											</a>
+
+											<a @click="tab = 'saved'" href="javascript:" :class="{ 'border-emerald-500 text-emerald-600': tab === 'saved', 'border-transparent text-gray-500 dark:text-gray-400 dark:hover:text-gray-200 dark:hover:border-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'saved' }" class="inline-block whitespace-nowrap py-4 px-1 border-b-2 font-medium">
+												<i class="fa fa-save pr-2"></i> Saved Encounters
+											</a>
+										</nav>
+									</div>
+								</div>
+							</div>
+
+							<div x-show="tab === 'saved'" class="my-3 sm:mt-0 w-full">
+								<div class="mt-2 max-h-96 overflow-y-auto divide-y divide-gray-200 dark:divide-gray-700 text-gray-700 dark:text-gray-300">
+									<template x-for="(_, index) of savedEncounters">
+										<div class="flex px-2 py-4 dark:border-gray-700 w-100 relative"
+											 :title="savedEncounters[savedEncounters.length-index-1].map(group => `${group.monster.name} x${group.count}`).join(', ')"
+											 :class="{ 'group hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer': !(loadedEncounterIndex === null && index === 0 && encounter.groups.length) }"
+											 @click="!(loadedEncounterIndex === null && index === 0 && encounter.groups.length) && encounter.loadFromHistory(savedEncounters.length-index-1)"
+											 :key="index"
+										>
+											<div class="grow flex flex-col justify-center mr-2 grow truncate overflow-ellipsis" :class="{ 'font-medium': loadedEncounterIndex === null && index === 0 && encounter.groups.length }">
+                                                <span x-text="savedEncounters[savedEncounters.length-index-1] ? savedEncounters[savedEncounters.length-index-1].map(group => `${group.monster.name} x${group.count}`).join(', ') : ''"
+												></span>
+											</div>
+											<div class="shrink-0 grid grid-cols-[30px_1fr] place-items-center h-full absolute inset-y-0 right-0" type="button">
+												<div class="w-full h-full bg-gradient-to-l from-white dark:from-gray-800 group-hover:from-gray-50 dark:group-hover:from-gray-700 to-transparent"></div>
+												<div class="px-3 bg-white group-hover:bg-gray-50 dark:bg-gray-800 dark:group-hover:bg-gray-700 min-w-4 h-full grid place-items-center">
+													<div class="hidden group-hover:block text-gray-900 dark:text-gray-100">Load <i class="fa fa-arrow-right"></i></div>
+													<div x-show="loadedEncounterIndex === null && index === 0 && encounter.groups.length" class="text-emerald-600"><i class="fa fa-check-circle"></i></div>
+												</div>
+											</div>
+										</div>
+									</template>
+								</div>
+
+								<div x-show="!savedEncounters.length" type="button" class="relative block w-full border-2 border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
+									<span class="mt-2 block text-sm font-medium text-gray-900 dark:text-gray-200"> You have no encounters saved </span>
+								</div>
+							</div>
+
+                            <div x-show="tab === 'history'" class="my-3 sm:mt-0 w-full">
                                 <div class="mt-2 max-h-96 overflow-y-auto divide-y divide-gray-200 dark:divide-gray-700 text-gray-700 dark:text-gray-300">
                                     <template x-for="(_, index) of encounterHistory">
                                         <div class="flex px-2 py-4 dark:border-gray-700 w-100 relative"

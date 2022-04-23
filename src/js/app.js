@@ -387,7 +387,7 @@ function app() {
         },
 
         setupHotkeys() {
-            hotkeys('ctrl+k,ctrl+shift+\\,ctrl+l,ctrl+[,ctrl+],esc', (event, handler) => {
+            hotkeys('ctrl+k,ctrl+shift+\\,ctrl+l,ctrl+[,ctrl+],ctrl+g,ctrl+s,esc', (event, handler) => {
                 switch(handler.key) {
                     case 'ctrl+k': document.getElementById('search').focus();
                         return false;
@@ -398,6 +398,10 @@ function app() {
                     case 'ctrl+[': this.setPageNumber(this.currentPage-1);
                         return false;
                     case 'ctrl+]': this.setPageNumber(this.currentPage+1);
+                        return false;
+                    case 'ctrl+s': this.encounter.save();
+                        return false;
+                    case 'ctrl+g': this.encounter.generateRandom();
                         return false;
                     case 'esc': this.showFilters = this.showSourcesModal = false;
                         break;
