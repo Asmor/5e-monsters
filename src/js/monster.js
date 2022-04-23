@@ -44,8 +44,7 @@ export default class Monster {
                 }
             }
 
-            source.fullText = source.reference.name + (source.reference.page ? ' p.' + source.reference.page : '');
-            source.shortText = source.reference.shortname + (source.reference.page ? ' p.' + source.reference.page : '');
+            source.fullText = source.reference.name + (source.page ? ' p.' + source.page : '');
             return source;
         });
 
