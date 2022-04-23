@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full">
+<html class="h-full" xmlns:x-transition="http://www.w3.org/1999/xhtml">
 <head>
 	<title>Kobold Plus Fight Club - The first rule of Kobold Fight Club is 'Yip Yip!'</title>
 	<meta charset="utf-8">
@@ -107,13 +107,13 @@
 							</svg>
 						</div>
 
-						<input type="search" name="search" id="search" x-model="search" @input.debounce="updateFilteredMonsters" class="border-gray-300 focus:ring-emerald-500 focus:border-emerald-500 block w-full rounded-none rounded-l-md 2xl:rounded-r-md pl-10 sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600" :placeholder="searchPlaceholder">
+						<input type="search" name="search" id="search" x-model="search" @input.debounce="updateFilteredMonsters" class="border-gray-300 focus:ring-emerald-500 focus:border-emerald-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600" :placeholder="searchPlaceholder">
 
 						<div class="absolute inset-y-0 right-0 flex py-1.5 pr-2">
 							<kbd class="inline-flex items-center border border-gray-200 dark:border-gray-600 rounded px-2 text-sm font-sans font-medium text-gray-400"> ⌘K </kbd>
 						</div>
 					</div>
-					<div class="relative inline-block text-left 2xl:hidden" x-data="{ filtersMenu: true }" title="Filter monsters (Ctrl+L)">
+					<div class="relative inline-block text-left" x-data="{ filtersMenu: true }" title="Filter monsters (Ctrl+L)">
 						<button @click="showFilters =! showFilters" type="button" class="-ml-px h-full relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md bg-white disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 dark:text-gray-400 text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 								<path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
@@ -251,7 +251,7 @@
 				</div>
 			</div>
 
-			<div class="hidden absolute inset-y-8 left-8 pr-8 md:flex flex-col flex-shrink-0 w-[28rem] 2xl:w-[34rem] overflow-y-auto divide-y divide-gray-200 dark:divide-gray-800">
+			<div class="hidden absolute inset-y-8 left-8 pr-8 md:flex flex-col flex-shrink-0 w-[28rem] 2xl:w-[34rem] overflow-y-auto divide-y divide-gray-200 dark:divide-gray-700">
 				<div class="grid grid-cols-2 pb-4 flex-col w-full">
 
 					<div>
@@ -332,7 +332,7 @@
 								  </span>
 									</button>
 
-									<ul x-show="difficultySelectOpen" class="absolute z-10 mt-1 w-full bg-white dark:bg-gray-700 shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3"
+									<ul x-show="difficultySelectOpen" class="absolute z-10 mt-1 w-full bg-white dark:bg-gray-700 shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label"
 										x-transition:enter=""
 										x-transition:enter-start=""
 										x-transition:enter-end=""
@@ -346,7 +346,7 @@
 
                                               Highlighted: "text-white bg-emerald-600", Not Highlighted: "text-gray-900"
                                             -->
-											<li @click="difficulty = option; difficultySelectOpen = false;" :class="{ 'text-white bg-emerald-600': difficulty === option, 'text-gray-900 dark:text-gray-300': difficulty !== option }" class="group text-gray-900 hover:text-white hover:bg-emerald-600 cursor-default select-none relative py-2 pl-3 pr-9" id="listbox-option-0" role="option">
+											<li @click="difficulty = option; difficultySelectOpen = false;" :class="{ 'text-white bg-emerald-600': difficulty === option, 'text-gray-900 dark:text-gray-300': difficulty !== option }" class="group text-gray-900 hover:text-white hover:bg-emerald-600 cursor-default select-none relative py-2 pl-3 pr-9" role="option">
 												<!-- Selected: "font-semibold", Not Selected: "font-normal" -->
 												<span class="group-hover:text-white font-normal block truncate" x-html="(option.slice(0,1).toUpperCase() + option.slice(1))"> </span>
 												<span :class="{ 'text-gray-200': difficulty === option, 'text-gray-600 dark:text-gray-400': difficulty !== option }" class="text-xs group-hover:text-gray-200" x-text="formatNumber(party.experience[option]) + 'xp'"></span>
@@ -377,7 +377,7 @@
 								  </span>
 									</button>
 
-									<ul x-show="encounterTypeSelectOpen" class="absolute z-10 mt-1 w-full bg-white dark:bg-gray-700 shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3"
+									<ul x-show="encounterTypeSelectOpen" class="absolute z-10 mt-1 w-full bg-white dark:bg-gray-700 shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label"
 										x-transition:enter=""
 										x-transition:enter-start=""
 										x-transition:enter-end=""
@@ -391,7 +391,7 @@
 
                                               Highlighted: "text-white bg-emerald-600", Not Highlighted: "text-gray-900"
                                             -->
-											<li @click="encounterType = type.key; encounterTypeSelectOpen = false;" :class="{ 'text-white bg-emerald-600': encounterType === type.key, 'text-gray-900 dark:text-gray-300': encounterType !== type.key }" class="text-gray-900 hover:text-white hover:bg-emerald-600 cursor-default select-none relative py-2 pl-3 pr-9" id="listbox-option-0" role="option">
+											<li @click="encounterType = type.key; encounterTypeSelectOpen = false;" :class="{ 'text-white bg-emerald-600': encounterType === type.key, 'text-gray-900 dark:text-gray-300': encounterType !== type.key }" class="text-gray-900 hover:text-white hover:bg-emerald-600 cursor-default select-none relative py-2 pl-3 pr-9" role="option">
 												<!-- Selected: "font-semibold", Not Selected: "font-normal" -->
 												<span class="font-normal block truncate" x-text="type.label"> </span>
 
@@ -421,7 +421,7 @@
 					</div>
 				</div>
 
-				<div class="flex-row py-4" x-show="encounter.groups.length">
+				<div class="flex-row pt-4" x-show="encounter.groups.length">
 					<template x-for="(group, index) in encounter.groups" :key="group.monster.slug">
 						<div class="flex flex-row w-full mb-4 relative">
 							<div class="grow pb-2 min-w-0">
@@ -447,7 +447,8 @@
 									<button @click="encounter.addCount(index)" class="inline-flex items-center px-2 rounded-l-md border border-r-0 border-gray-300 dark:border-gray-600 dark:text-gray-300 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-500 sm:text-sm">
 										<i class="fa fa-plus w-5"></i>
 									</button>
-									<input type="number" min="1" id="company-website" class="flex-1 min-w-0 block w-16 px-3 py-2 rounded-none dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300" x-model="group.count">
+									<label for="monster-number"></label>
+									<input id="monster-number" type="number" min="1" class="flex-1 min-w-0 block w-16 px-3 py-2 rounded-none dark:bg-gray-700 dark:border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300" x-model="group.count">
 									<button @click="encounter.subtractCount(index)" :class="{ 'border-gray-300 dark:border-gray-600 dark:text-gray-300 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-500': group.count > 1, 'border-red-200 dark:border-red-700 dark:text-red-300 bg-red-50 hover:bg-red-100 dark:bg-red-800 dark:hover:bg-red-700 text-red-500': group.count === 1 }" class="inline-flex items-center px-2 rounded-r-md border border-l-0 sm:text-sm">
 										<i :class="{ 'fa-minus': group.count > 1, 'fa-times': group.count === 1 }" class="fa w-5"></i>
 									</button>
@@ -457,27 +458,41 @@
 					</template>
 				</div>
 
-				<div class="flex 2xl:sticky bottom-0 py-4 border-t text-lg border-t-gray-400 dark:border-gray-700 bg-white dark:bg-gray-900" x-show="encounter.groups.length">
-					<div class="grow">
-						<div x-text="'Difficulty: ' + encounter.actualDifficulty"></div>
-						<div class="text-sm mb-4" x-show="encounter.difficultyFeel" x-text="encounter.difficultyFeel"></div>
+				<div>
+					<dl class="space-y-1 divide-y divide-dashed divide-gray-400 dark:divide-gray-700">
+						<div class="flex items-center justify-between">
+							<dt class="mt-1 text-sm text-gray-600 dark:text-gray-200">
+								<span class="block">Difficulty</span>
+								<span x-show="encounter.actualDifficulty.toLower() !== encounter.difficultyFeel.toLower()" class="block text-gray-500 dark:text-gray-400 text-sm">Feels</span>
+							</dt>
+							<dd class="mt-1 text-sm font-medium text-gray-900 dark:text-gray-300 text-right">
+								<span class="block" x-text="encounter.actualDifficulty"></span>
+								<span class="block text-gray-500 dark:text-gray-400 text-sm" x-show="encounter.actualDifficulty.toLower() !== encounter.difficultyFeel.toLower()" x-text="encounter.difficultyFeel"></span>
+							</dd>
+						</div>
 
-						<button class="button-primary-md !pl-3" @click="sendToImprovedInitiative"><img class="mr-2 fill-white" style="height:20px;" src="images/improved-initiative-logo.svg"/> Send to Improved Initiative</button>
-					</div>
-					<div class="text-right">
-						<div>
-							<div x-text="'Total XP: ' + encounter.totalExp"></div>
-							<div class="text-sm italic block" x-text="'(' + Math.round(encounter.totalExp / party.totalPlayers) + ' per player)'"></div>
+						<div class="flex items-center justify-between">
+							<dt class="mt-1 text-sm text-gray-600 dark:text-gray-200">Total XP</dt>
+							<dd class="mt-1 text-sm font-medium text-gray-900 dark:text-gray-300" x-text="encounter.totalExp + ' (' + Math.round(encounter.totalExp / party.totalPlayers) + '/player)'; console.log(party.totalPlayers)"></dd>
 						</div>
-						<div>
-							<div x-text="'Adjusted XP: ' + encounter.adjustedExp"></div>
-							<div class="text-sm italic block" x-text="'(' + Math.round(encounter.adjustedExp / party.totalPlayers) + ' per player)'"></div>
+
+						<div class="flex items-center justify-between">
+							<dt class="mt-1 text-sm text-gray-600 dark:text-gray-200">Adjusted XP</dt>
+							<dd class="mt-1 text-sm font-medium text-gray-900 dark:text-gray-300" x-text="encounter.adjustedExp + ' (' + Math.round(encounter.adjustedExp / party.totalPlayers) + '/player)'"></dd>
 						</div>
+					</dl>
+
+					<div class="mt-4">
+						<button class="w-full text-center button-primary-md" @click="sendToImprovedInitiative">
+							<span class="inline-flex justify-center w-full">
+								<img class="mr-2 fill-white" style="height:20px;" src="images/improved-initiative-logo.svg" alt="II"/> Send to Improved Initiative
+							</span>
+						</button>
 					</div>
 				</div>
 
-				<div class="py-4">
-					<button @click="encounter.generateRandom()" x-show="!encounter.groups.length" type="button" class="relative block w-full border-2 border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+				<div x-show="!encounter.groups.length" class="py-4">
+					<button @click="encounter.generateRandom()" type="button" class="relative block w-full border-2 border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 						<i class="fa-solid fa-wand-magic-sparkles text-2xl h-12 w-12 mx-auto text-gray-400 dark:text-gray-300"></i>
 						<span class="mt-2 block text-sm font-medium text-gray-900 dark:text-gray-200"> Generate an encounter </span>
 					</button>

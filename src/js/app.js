@@ -119,8 +119,10 @@ function app() {
             },
 
             get totalPlayers() {
+                console.log(this.groups);
+
                 return this.groups.reduce((acc, group) => {
-                    return acc + group.players
+                    return acc + parseInt(group.players)
                 }, 0) + this.app.activePlayers.length;
             },
 

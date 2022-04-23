@@ -65,20 +65,20 @@ const encounter = {
             if(upperKey === "daily" && ratio >= 0.0) {
                 if (ratio >= 0.2) {
                     return ratio >= 1.0
-                        ? "Feels like " + lib.randomArrayElement(this.insaneDifficultyStrings)
-                        : ratio >= 0.6 ? 'Feels extremely deadly' : "Feels really deadly";
+                        ? "like " + lib.randomArrayElement(this.insaneDifficultyStrings)
+                        : ratio >= 0.6 ? 'extremely deadly' : "really deadly";
                 }
-                return "Feels " + lowerKey;
+                return lowerKey;
             }else if(ratio >= 0.0 && ratio <= 1.0){
                 if (ratio > 0.7) {
-                    return "Feels " + upperKey;
+                    return upperKey;
                 }
-                return "Feels " + lowerKey;
+                return lowerKey;
             }
         }
 
         const ratio = lib.ratio(0, levels[0][1], exp);
-        return ratio > 0.5 ? "Feels like a nuisance" : "Feels like a minor nuisance";
+        return ratio > 0.5 ? "like a nuisance" : "like a minor nuisance";
     },
 
     get threat() {
