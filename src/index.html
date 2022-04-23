@@ -95,8 +95,14 @@
 			</div>
 		</nav>
 
-		<div class="flex py-4 sm:py-6 lg:py-8 w-full max-w-[1920px] relative grow mx-auto">
-			<div class="grow absolute md:inset-y-8 inset-x-0 md:pl-[29rem] 2xl:pl-[35rem] overflow-y-auto">
+		<div class="flex py-4 sm:py-6 lg:py-8 w-full max-w-[1920px] relative grow mx-auto flex-col md:flex-row">
+			<div class="relative self-center mb-6 bg-gray-200 dark:bg-gray-800 rounded-lg p-0.5 flex sm:mt-8 h-10">
+				<div class="absolute bg-gray-100 dark:bg-gray-700 w-1/2 transition-all duration-300 inset-y-1 rounded-md" :class="{ 'translate-x-full -ml-1.5': mobileEncounterTab, 'left-1': !mobileEncounterTab }"></div>
+				<button @click="mobileEncounterTab = false" type="button" :class="{ 'text-gray-900 ': !mobileEncounterTab, 'text-gray-700': mobileEncounterTab }" class="relative border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium dark:text-gray-100 whitespace-nowrap focus:outline-none focus:z-10 w-32">Encounter</button>
+				<button @click="mobileEncounterTab = true" type="button" :class="{ 'text-gray-900 ': mobileEncounterTab, 'text-gray-700': !mobileEncounterTab }" class="ml-0.5 relative border border-transparent rounded-md py-2 text-sm font-medium whitespace-nowrap dark:text-gray-100 focus:outline-none focus:z-10 w-32">Monsters</button>
+			</div>
+
+			<div :class="{ 'hidden md:block': !mobileEncounterTab }" class="grow w-full px-8 md:pr-0 md:absolute md:inset-y-8 inset-x-0 md:pl-[29rem] 2xl:pl-[35rem] overflow-y-auto">
 				<label for="search" class="max-w-full block text-sm font-medium text-gray-700 sr-only">Search monsters</label>
 
 				<div class="max-w-full mt-1 flex rounded-md shadow-sm px-4 sm:px-6 lg:px-8">
@@ -251,7 +257,7 @@
 				</div>
 			</div>
 
-			<div class="hidden absolute inset-y-8 left-8 pr-8 md:flex flex-col flex-shrink-0 w-[28rem] 2xl:w-[34rem] overflow-y-auto divide-y divide-gray-200 dark:divide-gray-700">
+			<div :class="{ 'hidden md:flex': mobileEncounterTab }" class="hidden md:absolute md:inset-y-8 md:left-8 md:pr-8 md:pl-0 md:flex w-full px-8 flex-col flex-shrink-0 md:w-[28rem] 2xl:w-[34rem] overflow-y-auto divide-y divide-gray-200 dark:divide-gray-700">
 				<div class="grid grid-cols-2 pb-4 flex-col w-full">
 
 					<div>
@@ -294,18 +300,15 @@
 					</div>
 
 					<div class="w-full text-right">
-						<div>
-							<p class="font-bold">Goals</p>
-							<p :class="{ 'font-semibold': encounter.actualDifficulty === 'Easy'}" x-text="'Easy ' + formatNumber(party.experience['easy']) + 'xp'"></p>
-							<p :class="{ 'font-semibold': encounter.actualDifficulty === 'Medium'}" x-text="'Medium ' + formatNumber(party.experience['medium']) + 'xp'"></p>
-							<p :class="{ 'font-semibold': encounter.actualDifficulty === 'Hard'}" x-text="'Hard ' + formatNumber(party.experience['hard']) + 'xp'"></p>
-							<p :class="{ 'font-semibold': encounter.actualDifficulty === 'Deadly'}" x-text="'Deadly ' + formatNumber(party.experience['deadly']) + 'xp'"></p>
-						</div>
-					</div>
+						<div class="grid">
+							<div class="col-span-2 text-gray-600 dark:text-gray-400">XP Goals</div>
+							<div :class="{ 'font-semibold': encounter.actualDifficulty === 'Easy'}">Easy</div><div :class="{ 'font-semibold': encounter.actualDifficulty === 'Easy'}" x-text="formatNumber(party.experience['easy'])"></div>
+							<div :class="{ 'font-semibold': encounter.actualDifficulty === 'Medium'}">Medium</div><div :class="{ 'font-semibold': encounter.actualDifficulty === 'Medium'}" x-text="formatNumber(party.experience['medium'])"></div>
+							<div :class="{ 'font-semibold': encounter.actualDifficulty === 'Hard'}">Hard</div><div :class="{ 'font-semibold': encounter.actualDifficulty === 'Hard'}" x-text="formatNumber(party.experience['hard'])"></div>
+							<div :class="{ 'font-semibold': encounter.actualDifficulty === 'Deadly'}">Deadly</div><div :class="{ 'font-semibold': encounter.actualDifficulty === 'Deadly'}" x-text="formatNumber(party.experience['deadly'])"></div>
 
-					<div class="col-span-2">
-						<div class="mt-4 text-right">
-							Daily budget <span x-text="formatNumber(party.experience.daily) + ' exp'"></span>
+							<div class="mt-4">Daily budget</div>
+							<div class="mt-4" x-text="formatNumber(party.experience.daily)"></div>
 						</div>
 					</div>
 				</div>
@@ -320,7 +323,7 @@
 					<div class="flex pb-4 w-full space-x-2 items-end justify-between pb-4 border-b dark:border-gray-700">
 						<div class="grid gap-2 w-full place-items-end grid-cols-8 grow">
 							<div class="w-full col-span-3 2xl:col-span-4">
-								<label id="difficulty-label" class="hidden 2xl:block text-sm font-medium text-gray-700 dark:text-gray-300"> Difficulty </label>
+								<label id="difficulty-label" class="sr-only"> Difficulty </label>
 								<div class="mt-1 relative" @click.outside="difficultySelectOpen = false">
 									<button @click="difficultySelectOpen = true" type="button" class="bg-white dark:bg-gray-700 relative w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
 										<span class="block truncate" x-text="(difficulty.slice(0,1).toUpperCase() + difficulty.slice(1))"></span>
@@ -365,9 +368,9 @@
 
 							<!-- This example requires Tailwind CSS v2.0+ -->
 							<div class="w-full col-span-5 2xl:col-span-4">
-								<label id="listbox-label" class="hidden 2xl:block text-sm font-medium text-gray-700 dark:text-gray-300"> Composition </label>
+								<label id="composition-label" class="sr-only"> Composition </label>
 								<div class="mt-1 relative" @click.outside="encounterTypeSelectOpen = false">
-									<button @click="encounterTypeSelectOpen = true" type="button" class="bg-white dark:bg-gray-700 relative w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
+									<button @click="encounterTypeSelectOpen = true" type="button" class="bg-white dark:bg-gray-700 relative w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="composition-label">
 										<span class="block truncate" x-text="encounterTypes[encounterType].label"></span>
 										<span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
 									<!-- Heroicon name: solid/selector -->
@@ -377,7 +380,7 @@
 								  </span>
 									</button>
 
-									<ul x-show="encounterTypeSelectOpen" class="absolute z-10 mt-1 w-full bg-white dark:bg-gray-700 shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label"
+									<ul x-show="encounterTypeSelectOpen" class="absolute z-10 mt-1 w-full bg-white dark:bg-gray-700 shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="composition-label"
 										x-transition:enter=""
 										x-transition:enter-start=""
 										x-transition:enter-end=""
@@ -463,22 +466,22 @@
 						<div class="flex items-center justify-between">
 							<dt class="mt-1 text-sm text-gray-600 dark:text-gray-200">
 								<span class="block">Difficulty</span>
-								<span x-show="encounter.actualDifficulty.toLower() !== encounter.difficultyFeel.toLower()" class="block text-gray-500 dark:text-gray-400 text-sm">Feels</span>
+								<span x-show="encounter.actualDifficulty.toLowerCase() !== encounter.difficultyFeel.toLowerCase()" class="block text-gray-500 dark:text-gray-400 text-sm">Feels</span>
 							</dt>
 							<dd class="mt-1 text-sm font-medium text-gray-900 dark:text-gray-300 text-right">
 								<span class="block" x-text="encounter.actualDifficulty"></span>
-								<span class="block text-gray-500 dark:text-gray-400 text-sm" x-show="encounter.actualDifficulty.toLower() !== encounter.difficultyFeel.toLower()" x-text="encounter.difficultyFeel"></span>
+								<span class="block text-gray-500 dark:text-gray-400 text-sm" x-show="encounter.actualDifficulty.toLowerCase() !== encounter.difficultyFeel.toLowerCase()" x-text="encounter.difficultyFeel"></span>
 							</dd>
 						</div>
 
 						<div class="flex items-center justify-between">
 							<dt class="mt-1 text-sm text-gray-600 dark:text-gray-200">Total XP</dt>
-							<dd class="mt-1 text-sm font-medium text-gray-900 dark:text-gray-300" x-text="encounter.totalExp + ' (' + Math.round(encounter.totalExp / party.totalPlayers) + '/player)'; console.log(party.totalPlayers)"></dd>
+							<dd class="mt-1 text-sm font-medium text-gray-900 dark:text-gray-300" x-text="formatNumber(encounter.totalExp) + ' (' + formatNumber(Math.round(encounter.totalExp / party.totalPlayers)) + '/player)'; console.log(party.totalPlayers)"></dd>
 						</div>
 
 						<div class="flex items-center justify-between">
 							<dt class="mt-1 text-sm text-gray-600 dark:text-gray-200">Adjusted XP</dt>
-							<dd class="mt-1 text-sm font-medium text-gray-900 dark:text-gray-300" x-text="encounter.adjustedExp + ' (' + Math.round(encounter.adjustedExp / party.totalPlayers) + '/player)'"></dd>
+							<dd class="mt-1 text-sm font-medium text-gray-900 dark:text-gray-300" x-text="formatNumber(encounter.adjustedExp) + ' (' + formatNumber(Math.round(encounter.adjustedExp / party.totalPlayers)) + '/player)'"></dd>
 						</div>
 					</dl>
 

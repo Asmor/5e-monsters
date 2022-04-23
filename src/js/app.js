@@ -21,6 +21,7 @@ function app() {
         showFilters: false,
         showSourcesModal: false,
         showEncounterModal: false,
+        mobileEncounterTab: false,
 
         filters: {},
         searchPlaceholder: "",
