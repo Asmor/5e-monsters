@@ -244,7 +244,7 @@
 				</div>
 			</div>
 
-			<div :class="{ 'hidden md:flex': mobileEncounterTab }" class="hidden md:absolute md:inset-y-8 md:left-8 md:pr-8 md:pl-0 md:flex w-full px-8 flex-col flex-shrink-0 md:w-[28rem] 2xl:w-[34rem] overflow-y-auto divide-y divide-gray-200 dark:divide-gray-700">
+			<div :class="{ 'hidden md:flex': mobileEncounterTab }" class="hidden md:absolute md:inset-y-8 md:left-8 md:pr-8 md:pl-0 md:flex w-full px-8 flex-col flex-shrink-0 md:w-[28rem] 2xl:w-[34rem] overflow-y-auto">
 				<div class="grid grid-cols-2 pb-4 flex-col w-full">
 
 					<div>
@@ -310,14 +310,14 @@
 					</div>
 				</div>
 
-				<div>
+				<div class="border-t border-gray-200 dark:border-gray-700">
 					<div class="flex pt-4 justify-between items-center 2xl:pb-4">
 						<span class="text-lg grow">Encounter</span>
 
 						<a href="javascript:" class="primary-link" @click="showEncounterModal = true">History</a>
 					</div>
 
-					<div class="flex pb-4 w-full space-x-2 items-end justify-between pb-4 border-b dark:border-gray-700">
+					<div class="flex pb-4 w-full space-x-2 items-end justify-between pb-4">
 						<div class="grid gap-2 w-full place-items-end grid-cols-8 grow">
 							<div class="w-full col-span-3 2xl:col-span-4">
 								<label id="difficulty-label" class="sr-only"> Difficulty </label>
@@ -421,7 +421,7 @@
 					</div>
 				</div>
 
-				<div class="flex-row pt-4" x-show="encounter.groups.length">
+				<div class="border-t border-gray-200 dark:border-gray-700 pt-4" x-show="encounter.groups.length">
 					<template x-for="(group, index) in encounter.groups" :key="group.monster.slug">
 						<div class="flex flex-row w-full mb-4 relative">
 							<div class="grow pb-2 min-w-0">
@@ -456,9 +456,13 @@
 							</div>
 						</div>
 					</template>
+
+					<div class="-mt-2 text-center pb-4">
+						<a @click="encounter.groups = []" class="select-none text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200" href="javascript:"><i class="fa fa-times"></i> Clear</a>
+					</div>
 				</div>
 
-				<div>
+				<div class="border-t border-gray-200 dark:border-gray-700">
 					<dl class="space-y-1 divide-y divide-dashed divide-gray-400 dark:divide-gray-700">
 						<div class="flex items-center justify-between">
 							<dt class="mt-1 text-sm text-gray-600 dark:text-gray-200">

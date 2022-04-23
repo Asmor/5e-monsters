@@ -378,7 +378,7 @@ function app() {
                 switch(handler.key) {
                     case 'ctrl+k': document.getElementById('search').focus();
                         return false;
-                    case 'ctrl+shift+\\': window.toggleTheme();
+                    case 'ctrl+shift+\\': this.toggleTheme();
                         return false;
                     case 'ctrl+l': this.showFilters =! this.showFilters;
                         return false;
