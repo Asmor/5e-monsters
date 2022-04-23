@@ -142,7 +142,15 @@ function app() {
                 return this.groups.reduce((acc, group) => {
                     return acc + (!group.followers ? parseInt(group.players) : 0)
                 }, 0) + this.app.activePlayers.length;
-            }
+            },
+            
+            get totalExperiencePerPlayer(){
+                return Math.round(this.app.encounter.totalExp / this.totalPlayersToGainXP);
+            },
+
+            get totalAdjustExperiencePerPlayer(){
+                return Math.round(this.app.encounter.adjustedExp / this.totalPlayersToGainXP);
+            },
 
         },
 
