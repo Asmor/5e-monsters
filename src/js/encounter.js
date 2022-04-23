@@ -120,6 +120,7 @@ const encounter = {
     generateRandom() {
 
         this.app.loadedEncounterIndex = null;
+        this.app.loadedLastEncounter = true;
 
         const totalExperienceTarget = this.app.party.experience[this.app.difficulty];
         let fudgeFactor = 1.1; // The algorithm is conservative in spending exp; so this tries to get it closer to the actual medium value
@@ -369,6 +370,11 @@ const encounter = {
         this.app.loadedLastEncounter = false;
         this.app.loadedEncounterIndex = index;
         this.load(this.app.savedEncounters[index])
+    },
+
+    clear(){
+        this.groups = [];
+        this.app.loadedLastEncounter = false;
     },
 
     load(encounter){
