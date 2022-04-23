@@ -148,7 +148,7 @@ function app() {
                 return Math.round(this.app.encounter.totalExp / this.totalPlayersToGainXP);
             },
 
-            get totalAdjustExperiencePerPlayer(){
+            get totalAdjustedExperiencePerPlayer(){
                 return Math.round(this.app.encounter.adjustedExp / this.totalPlayersToGainXP);
             },
 
