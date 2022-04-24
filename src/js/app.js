@@ -1,5 +1,6 @@
 require('@fortawesome/fontawesome-free')
 
+import Choices from 'choices.js';
 import hotkeys from 'hotkeys-js';
 import encounter from "./encounter.js";
 import noUiSlider from "nouislider";
@@ -19,7 +20,7 @@ function app() {
         loading: false,
         showFilters: false,
         showSourcesModal: false,
-        showEncounterModal: true,
+        showEncounterModal: false,
         mobileEncounterTab: false,
 
         filters: {},
@@ -577,6 +578,7 @@ window.app = app;
 window.multiSelect = multiSelect;
 window.multiSlider = multiSlider;
 window.noUiSlider = noUiSlider;
+window.Choices = Choices;
 
 window.Alpine = Alpine
 

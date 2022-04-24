@@ -1,5 +1,6 @@
 @import '~nouislider/dist/nouislider.min.css';
 @import '~@fortawesome/fontawesome-free/css/all.css';
+@import '~choices.js/public/assets/styles/choices.min.css';
 
 @tailwind base;
 @tailwind components;

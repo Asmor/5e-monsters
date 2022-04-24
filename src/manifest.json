@@ -1,6 +1,6 @@
 {
-	"short_name": "KFC",
-	"name": "Kobold Fight Club",
+	"short_name": "K+FC",
+	"name": "Kobold+ Fight Club",
 	"icons": [
 		{
 			"src": "images/logo.png",
@@ -10,5 +10,5 @@
 	],
 	"start_url": "index.html",
 	"display": "fullscreen",
-	"orientation": "portrait"
+	"orientation": "any"
 }

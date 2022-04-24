@@ -3,32 +3,28 @@
 <head>
 	<title>Kobold Plus Fight Club - The first rule of Kobold Fight Club is 'Yip Yip!'</title>
 	<meta charset="utf-8">
-	<link rel="manifest" href="../manifest.json">
+	<link rel="manifest" href="manifest.json">
 	<link rel="apple-touch-icon" href="images/logo.png" sizes="600x600">
 	<link rel="icon" href="images/logo.png" sizes="600x600">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 	<script defer src="js/app.js"></script>
-<!--	<script defer src="https://unpkg.com/alpinejs@3.8.1/dist/cdn.min.js"></script>-->
-<!--	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />-->
+
 	<link href="css/styles.css" rel="stylesheet">
-
-	<!-- Include Choices CSS -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
-
-	<!-- Include Choices JavaScript (latest) -->
-	<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
 	<script>
 		// On page load or when changing themes, best to add inline in `head` to avoid FOUC
 		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
 			window.theme = 'dark'
 			document.documentElement.classList.add('dark')
+			localStorage.theme = 'dark'
 		} else {
 			window.theme = 'light'
 			document.documentElement.classList.remove('dark')
 			localStorage.theme = 'light'
 		}
+
+		console.log(localStorage.theme);
 	</script>
 </head>
 
@@ -871,7 +867,7 @@
                      x-transition:leave="ease-in duration-200"
                      x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                      x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-					 x-data="{ tab: 'history' }"
+					 x-data="{ tab: 'saved' }"
                 >
                     <div class="bg-white dark:bg-gray-800 px-4 py-5 sm:p-6">
                         <div class="sm:flex flex-col sm:items-start w-full">
@@ -904,20 +900,21 @@
 							<div x-show="tab === 'saved'" class="my-3 sm:mt-0 w-full">
 								<div class="mt-2 max-h-96 overflow-y-auto divide-y divide-gray-200 dark:divide-gray-700 text-gray-700 dark:text-gray-300">
 									<template x-for="(_, index) of savedEncounters">
-										<div class="flex px-2 py-4 dark:border-gray-700 w-100 relative group hover:bg-gray-50 dark:hover:bg-gray-700"
+										<div @click="(loadedEncounterIndex !== index) && encounter.loadFromSaved(index)" class="flex px-2 py-4 dark:border-gray-700 w-100 relative"
 											 :title="savedEncounters[savedEncounters.length-index-1].map(group => `${group.monster.name} x${group.count}`).join(', ')"
 											 :key="index"
+											 :class="{ 'group hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer': loadedEncounterIndex !== index }"
 										>
-											<div class="grow flex flex-col justify-center mr-2 grow truncate overflow-ellipsis" :class="{ 'font-medium': loadedEncounterIndex === index }">
+											<div class="grow flex items-center mr-2 grow truncate overflow-ellipsis" :class="{ 'font-medium': loadedEncounterIndex === index }">
                                                 <span x-text="savedEncounters[savedEncounters.length-index-1] ? savedEncounters[savedEncounters.length-index-1].map(group => `${group.monster.name} x${group.count}`).join(', ') : ''"
 												></span>
 											</div>
 											<div class="shrink-0 grid grid-cols-[30px_1fr] place-items-center h-full absolute inset-y-0 right-0" type="button">
 												<div class="w-full h-full bg-gradient-to-l from-white dark:from-gray-800 group-hover:from-gray-50 dark:group-hover:from-gray-700 to-transparent"></div>
-												<div class="px-3 bg-white group-hover:bg-gray-50 dark:bg-gray-800 dark:group-hover:bg-gray-700 min-w-4 h-full grid grid-cols-2 text-right place-items-center space-x-2">
-                                                    <div x-show="loadedEncounterIndex === index" class="text-emerald-600"><i class="fa fa-check-circle"></i> Loaded</div>
-                                                    <div x-show="loadedEncounterIndex !== index" class="cursor-pointer select-none hidden group-hover:block text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100" @click="encounter.loadFromSaved(index)"><i class="fas fa-upload"></i> Load</div>
-                                                    <div class="cursor-pointer select-none hidden group-hover:block text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100" @click="encounter.deleteSaved(index)"><i class="fas fa-times"></i> Delete</div>
+												<div class="flex px-3 bg-white group-hover:bg-gray-50 dark:bg-gray-800 dark:group-hover:bg-gray-700 min-w-4 h-full text-right inset-y-0 right-0 space-x-2 absolute">
+													<div x-show="loadedEncounterIndex === index" class="text-emerald-600 h-full flex items-center justify-center"><i class="fa fa-check-circle pr-1"></i> Loaded</div>
+                                                    <div x-show="loadedEncounterIndex !== index" class="items-center h-full justify-center cursor-pointer select-none hidden group-hover:flex text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"><i class="pr-1 fas fa-upload"></i> Load</div>
+                                                    <div class="items-center justify-center h-full cursor-pointer select-none hidden group-hover:flex text-red-700 dark:text-red-400 hover:text-red-900 dark:hover:text-red-600" @click="encounter.deleteSaved(index)"><i class="pr-1 fas fa-times"></i> Delete</div>
                                                 </div>
 											</div>
 										</div>
