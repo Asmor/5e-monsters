@@ -82,3 +82,26 @@ body .choices__input { @apply focus:ring-0 border-none; }
 [x-cloak] {
     @apply hidden;
 }
+
+@media (horizontal-viewport-segments: 2) {
+    #encounter_box {
+        min-width: env(viewport-segment-right 0 0);
+        margin-right: calc(env(viewport-segment-left 1 0) - env(viewport-segment-right 0 0));
+    }
+
+    #monsters_box{
+        min-width: env(viewport-segment-right 0 0);
+        max-width: env(viewport-segment-right 0 0);
+    }
+}
+
+.surface-duo-2 #monsters_box {
+    right: calc(50% + 16px);
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    @apply py-8 !w-auto !inset-y-0 !left-0;
+}
+.surface-duo-2 #encounter_box {
+    left: calc(50% + 16px);
+    @apply !w-auto !right-0 !px-0 !inset-y-0 py-8;
+}
