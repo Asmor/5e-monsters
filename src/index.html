@@ -241,13 +241,13 @@
 				</div>
 			</div>
 
-			<div :class="{ 'hidden md:flex': mobileEncounterTab }" class="hidden md:absolute md:inset-y-8 md:left-4 md:pr-8 md:pl-4 md:flex w-full px-8 flex-col flex-shrink-0 md:w-[28rem] 2xl:w-[34rem] overflow-y-auto">
-				<div class="grid grid-cols-5 pb-4 flex-col w-full">
+			<div :class="{ 'hidden md:flex': mobileEncounterTab }" class="hidden md:absolute md:inset-y-8 md:left-4 md:pr-8 md:pl-4 pb-8 md:pb-0 md:flex w-full px-8 flex-col flex-shrink-0 md:w-[28rem] 2xl:w-[34rem] overflow-y-auto">
+				<div class="grid grid-cols-3 md:grid-cols-5 pb-4 flex-col w-full">
 
 					<div class="col-span-3">
 						<div class="mb-1 text-gray-600 dark:text-gray-400">Group</div>
 
-						<div class="grid grid-rows-[18px_1fr] grid-cols-[42px_20px_42px_30px_36px] gap-y-2 align-center mb-2">
+						<div class="grid grid-rows-[18px_1fr] grid-cols-[1fr_40px_1fr_50px_36px] md:grid-cols-[42px_20px_42px_30px_36px] gap-y-2 align-center mb-2">
 							<label class="col-span-2 text-sm text-gray-700 dark:text-gray-300">Players</label>
 							<label class="text-sm text-gray-700 dark:text-gray-300">Level</label>
 							<label class="text-center text-sm text-gray-700 dark:text-gray-300" title="Determines whether these characters get a share of XP from the encounter.">XP</label>
@@ -258,13 +258,13 @@
 								<div class="contents">
 									<input type="number" min="1" :value="group.players" @change="group.players = Math.max(1, $event.target.value)" class="border-gray-300 shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block w-full p-1.5 pr-0 sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 rounded-md" value="4">
 
-									<div class="text-center grid place-items-center text-gray-600 dark:text-gray-400">
+									<div class="text-center grid place-items-center text-gray-600 dark:text-gray-400 scale-150 md:transform-none">
 										<i class="fa fa-times"></i>
 									</div>
 
 									<input type="number" min="1" max="20" :value="group.level" @change="group.level = Math.max(1, Math.min(20, $event.target.value))" class="border-gray-300 shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block w-full p-1.5 pr-0 sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 rounded-md" value="4">
 
-									<div class="flex items-center justify-center">
+									<div class="flex items-center justify-center scale-150 md:transform-none">
 										<input :disabled="index === 0" type="checkbox" x-model="group.getsXP" class="focus:ring-emerald-500 h-4 w-4 text-emerald-600 disabled:opacity-70 border-gray-300 rounded">
 									</div>
 
@@ -276,15 +276,17 @@
 						</div>
 
 						<div>
-							<button @click="party.addPlayerGroup()" type="button" class="button-secondary-md align-self-start">
-								<i class="fas fa-plus mr-2"></i> Add Another Level
+							<button @click="party.addPlayerGroup()" type="button" class="button-secondary-md align-self-start w-full mt-4 md:mt-auto md:w-auto flex justify-center">
+								<span>
+									<i class="fas fa-plus mr-2"></i> Add Another Level
+								</span>
 							</button>
 						</div>
 					</div>
 
-					<div class="col-span-2">
+					<div class="hidden md:block col-span-2">
 						<div class="grid text-sm text-right">
-							<div class="mb-1 col-span-2 text-gray-600 text-base dark:text-gray-400">XP Goals</div>
+							<div class="hidden md:block mb-1 col-span-2 text-gray-600 text-base dark:text-gray-400">XP Goals</div>
 							<div :class="{ 'font-semibold': encounter.actualDifficulty === 'Easy'}">Easy</div><div :class="{ 'font-semibold': encounter.actualDifficulty === 'Easy'}" x-text="formatNumber(party.experience['easy'])"></div>
 							<div :class="{ 'font-semibold': encounter.actualDifficulty === 'Medium'}">Medium</div><div :class="{ 'font-semibold': encounter.actualDifficulty === 'Medium'}" x-text="formatNumber(party.experience['medium'])"></div>
 							<div :class="{ 'font-semibold': encounter.actualDifficulty === 'Hard'}">Hard</div><div :class="{ 'font-semibold': encounter.actualDifficulty === 'Hard'}" x-text="formatNumber(party.experience['hard'])"></div>
@@ -292,6 +294,18 @@
 
 							<div class="mt-4">Daily budget</div>
 							<div class="mt-4" x-text="formatNumber(party.experience.daily)"></div>
+						</div>
+					</div>
+
+					<div class="md:hidden col-span-3 pt-4">
+						<div class="mb-1 col-span-2 text-gray-600 text-base dark:text-gray-400">XP Goal</div>
+						<div class="flex justify-between">
+							<div>
+								Daily budget <span x-text="formatNumber(party.experience.daily)"></span>
+							</div>
+							<div>
+								<span class="font-semibold" x-show="['Easy', 'Medium', 'Hard', 'Deadly'].includes(encounter.actualDifficulty)" x-text="encounter.actualDifficulty + ' ' + formatNumber(party.experience[encounter.actualDifficulty.toLowerCase()])"></span>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -411,9 +425,9 @@
 					<template x-for="(group, index) in encounter.groups" :key="group.monster.slug">
 						<div class="flex flex-row w-full mb-4 relative">
 							<div class="grow pb-2 min-w-0">
-								<div>
-									<span class="text-lg font-semibold" x-text="group.monster.name"></span>
-									<div @click="encounter.getNewMonster(group)" class="ml-2 inline-flex text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-200 cursor-pointer"><i class="fas fa-random"></i></div>
+								<div class="grid grid-cols-[1fr_20px] mb-2">
+									<span :title="group.monster.name" class="text-lg pr-3 font-semibold max-w-full overflow-ellipsis truncate" x-text="group.monster.name"></span>
+									<div title="Shuffle monster" @click="encounter.getNewMonster(group)" class="grid place-items-center text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-200 cursor-pointer"><i class="fas fa-random"></i></div>
 								</div>
 
 								<div>
@@ -422,7 +436,7 @@
 									<div class='overflow-hidden whitespace-nowrap overflow-ellipsis pr-40'>
 										<ul class="list-none text-s italic max-w-full">
 											<template x-for="source in group.monster.sources">
-												<li class="max-w-full truncate" x-html="source.reference.link ? `<a class='primary-link' href='${source.reference.link}' target='_blank'>${source.fullText}</a>` : source.fullText"></li>
+												<li class="max-w-full truncate" :title="source.fullText" x-html="source.reference.link ? `<a class='primary-link' href='${source.reference.link}' target='_blank'>${source.fullText}</a>` : source.fullText"></li>
 											</template>
 										</ul>
 									</div>
@@ -444,7 +458,7 @@
 					</template>
 
 					<div x-show="!(encounter.groups.length === 1 && encounter.groups[0].count === 1)" class="-mt-2 text-center pb-4">
-						<a @click="encounter.clear()" class="select-none text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200" href="javascript:"><i class="fa fa-times"></i> Clear</a>
+						<a @click="encounter.clear()" class="select-none text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200" href="javascript:"><i class="fa fa-times"></i> Clear encounter</a>
 					</div>
 				</div>
 
