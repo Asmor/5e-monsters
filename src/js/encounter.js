@@ -356,6 +356,7 @@ const encounter = {
             this.app.savedEncounters = [...this.app.savedEncounters, encounter];
             this.app.loadedEncounterIndex = this.app.savedEncounters.length - 1;
         }
+        dispatchEvent(new CustomEvent('notification', {detail: { title: 'Encounter saved' }}));
     },
 
     loadFromHistory(index){
