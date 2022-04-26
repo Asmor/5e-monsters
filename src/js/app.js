@@ -17,10 +17,11 @@ function app() {
     
     return {
         menu: true,
-        loading: false,
         showFilters: false,
         showSourcesModal: false,
         showEncounterModal: false,
+        showPartyModal: true,
+
         mobileEncounterTab: false,
 
         filters: {},
@@ -36,7 +37,7 @@ function app() {
         loadedEncounterIndex: Alpine.$persist(null).as('loadedEncounterIndex'),
         loadedLastEncounter: Alpine.$persist(false).as('loadedLastEncounter'),
 
-        savedPlayers: Alpine.$persist([]).as('savedPlayers'),
+        savedParties: Alpine.$persist([]).as('savedParties'),
 
         sources: {},
         enabledSources: [],
@@ -86,21 +87,31 @@ function app() {
             document.documentElement.classList.toggle('dark', theme === 'dark');
         },
 
-        createPlayer(){
-            this.savedPlayers.push({
-                name: "Player " + this.savedPlayers.length+1,
+        createParty(){
+            this.savedParties.push({
+                name: "Party " + (this.savedParties.length+1),
+                players: []
+            });
+            this.createPlayer(this.savedParties.length-1);
+        },
+
+        createPlayer(partyIndex){
+            this.savedParties[partyIndex].players.push({
+                name: "Player " + (this.savedParties[partyIndex].players.length+1),
                 initiativeMod: 0,
                 initiativeAdvantage: false,
-                hp: {
-                    max: 10,
-                    current: 10
-                },
-                active: false
+                level: 1,
+                maxHp: 10,
+                currentHp: 10,
+                active: false,
+                partyIndex: 0
             });
         },
 
         get activePlayers(){
-            return this.savedPlayers.filter(player => player.active);
+            return this.savedParties.reduce((acc, party) => {
+                return acc.concat(party.players.filter(player => player.active));
+            }, []);
         },
 
         party: {
@@ -140,6 +151,7 @@ function app() {
             },
 
             get totalPlayersToGainXP(){
+                console.log(this.app.activePlayers);
                 return this.groups.reduce((acc, group) => {
                     return acc + (group.getsXP ? parseInt(group.players) : 0)
                 }, 0) + this.app.activePlayers.length;

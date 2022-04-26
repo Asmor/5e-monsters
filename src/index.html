@@ -44,7 +44,7 @@
 		class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-300 flex flex-col"
 	>
 
-		<nav class="bg-emerald-700 border-b border-gray-200 dark:border-gray-900 shrink-0" x-data="{ menu: false }">
+		<nav class="bg-emerald-700 border-b border-gray-200 dark:border-gray-900 shrink-0">
 			<div class="mx-auto px-4 sm:px-6 lg:px-6">
 				<div class="flex justify-between h-16 w-full">
 					<div class="flex">
@@ -254,6 +254,25 @@
 					<div class="col-span-3">
 						<div class="mb-1 text-gray-600 dark:text-gray-400">Group</div>
 
+						<div class="grid grid-rows-[18px_1fr] grid-cols-[1fr_1fr] md:grid-cols-[120px_42px] gap-y-2 align-center mb-2" x-show="activePlayers.length">
+							<label class="col-span-2 text-sm text-gray-700 dark:text-gray-300">Players</label>
+
+						    <template x-for="(party, index) in savedParties">
+                                <div class="contents">
+                                    <template x-for="(player, index) in party.players.filter(player => player.active)">
+                                    <div class="contents">
+                                        <span x-text="player.name"></span>
+
+                                        <button @click="player.active = false" type="button" class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                    </template>
+								</div>
+						    </template>
+
+						</div>
+
 						<div class="grid grid-rows-[18px_1fr] grid-cols-[1fr_40px_1fr_50px_36px] md:grid-cols-[42px_20px_42px_30px_36px] gap-y-2 align-center mb-2">
 							<label class="col-span-2 text-sm text-gray-700 dark:text-gray-300">Players</label>
 							<label class="text-sm text-gray-700 dark:text-gray-300">Level</label>
@@ -261,7 +280,7 @@
 							<div>&nbsp;</div>
 
 
-						<template x-for="(group, index) in party.groups">
+						    <template x-for="(group, index) in party.groups">
 								<div class="contents">
 									<input type="number" min="1" :value="group.players" @change="group.players = Math.max(1, $event.target.value)" class="border-gray-300 shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block w-full p-1.5 pr-0 sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 rounded-md" value="4">
 
@@ -279,7 +298,8 @@
 										<i class="fas fa-times"></i>
 									</button>
 								</div>
-						</template>
+						    </template>
+
 						</div>
 
 						<div>
@@ -925,7 +945,7 @@
 									</template>
 								</div>
 
-								<div x-show="!savedEncounters.length" type="button" class="relative block w-full border-2 border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
+								<div x-show="!savedEncounters.length" type="button" class="relative block w-full border-2 border-gray-300 dark:border-gray-700 border-dashed rounded-lg p-12 text-center">
 									<span class="mt-2 block text-sm font-medium text-gray-900 dark:text-gray-200"> You have no encounters saved </span>
 								</div>
 							</div>
@@ -963,6 +983,119 @@
                     </div>
                     <div class="bg-gray-50 dark:bg-gray-700 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                         <button @click="showEncounterModal = false" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-emerald-600 text-base font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 sm:ml-3 sm:w-auto sm:text-sm">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+	</div><!-- This example requires Tailwind CSS v2.0+ -->
+        <div x-show="showPartyModal" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" x-cloak>
+            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div class="fixed inset-0 bg-gray-500 dark:bg-gray-900 dark:bg-opacity-75 bg-opacity-75 transition-opacity" aria-hidden="true"
+                     x-show="showPartyModal"
+                     x-transition:enter="ease-out duration-300"
+                     x-transition:enter-start="opacity-0"
+                     x-transition:enter-end="opacity-100"
+                     x-transition:leave="ease-in duration-200"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0"
+                ></div>
+
+                <!-- This element is to trick the browser into centering the modal contents. -->
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+                <div @mousedown.outside="showPartyModal = false" class="relative inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full"
+                     x-show="showPartyModal"
+                     x-transition:enter="ease-out duration-300"
+                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                     x-transition:leave="ease-in duration-200"
+                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                >
+                    <div class="bg-white dark:bg-gray-800 px-4 py-5 sm:p-6">
+                        <div class="sm:flex flex-col sm:items-start w-full">
+							<div class="w-full flex pb-3">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100">Manage your parties and players</h3>
+							</div>
+
+							<div class="my-3 sm:mt-0 w-full">
+								<div class="mt-2 max-h-96 overflow-y-auto divide-y divide-gray-200 dark:divide-gray-700 text-gray-700 dark:text-gray-300">
+									<template x-for="(party, partyIndex) of savedParties">
+										<div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-200">Party Name</label>
+                                                <div class="mt-1">
+                                                    <input type="text" x-model="party.name" class="block w-full sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
+                                                </div>
+                                            </div>
+                                            <div class="grid grid-cols-2 gap-3">
+                                                <template x-for="(player, playerIndex) of party.players">
+                                                    <div class="p-1">
+                                                        <div>
+                                                            <label :for="'name_'+playerIndex" class="block text-sm font-medium text-gray-200">Player Name</label>
+                                                            <div class="mt-1">
+                                                                <input type="text" id="'name_'+playerIndex" x-model="player.name" class="block w-full sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
+                                                            </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <label :for="'level_'+playerIndex" class="block text-sm font-medium text-gray-200">Level</label>
+                                                            <div class="mt-1">
+                                                                <input type="number" :id="'level_'+playerIndex" x-model.number="player.level" class="block w-full sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
+                                                            </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <label :for="'initiativeMod_'+playerIndex" class="block text-sm font-medium text-gray-200">Initiative Modifier</label>
+                                                            <div class="mt-1">
+                                                                <input type="number" :id="'initiativeMod_'+playerIndex" x-model.number="player.initiativeMod" class="block w-full sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="relative flex items-start my-2">
+                                                            <div class="flex items-center h-5">
+                                                                <input :id="'initiativeAdvantage_'+playerIndex" x-model="player.initiativeAdvantage" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                                                            </div>
+                                                            <div class="ml-3 text-sm">
+                                                                <label :for="'initiativeAdvantage_'+playerIndex" class="font-medium text-gray-200">Advantage on initiative</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <label class="block text-sm font-medium text-gray-200">Health</label>
+                                                            <div class="flex mt-1">
+                                                                <input type="number" x-model.number="player.currentHp" class="text-right sm:text-sm rounded-md rounded-r-none dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
+                                                                <div class="grid place-items-center px-1 shrink rounded-none dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300"> / </div>
+                                                                <input type="number" x-model.number="player.maxHp" class="sm:text-sm rounded-md rounded-l-none dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="relative flex items-start my-2">
+                                                            <div class="flex items-center h-5">
+                                                                <input :id="'active_'+playerIndex" x-model="player.active" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                                                            </div>
+                                                            <div class="ml-3 text-sm">
+                                                                <label :for="'active_'+playerIndex" class="font-medium text-gray-200">Active</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                            <button @click="createPlayer(partyIndex)" type="button" class="button-primary-md"> Create player </button>
+                                        </div>
+									</template>
+								</div>
+
+                                <button x-show="!savedParties.length" @click="createParty" type="button" class="relative block w-full border-2 border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
+                                    <i class="fa-solid fa-users text-2xl h-12 w-12 mx-auto text-gray-400 dark:text-gray-300"></i>
+                                    <span class="mt-2 block text-sm font-medium text-gray-900 dark:text-gray-200"> Create player party </span>
+								</button>
+							</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                        <button @click="showPartyModal = false" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-emerald-600 text-base font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 sm:ml-3 sm:w-auto sm:text-sm">Close</button>
                     </div>
                 </div>
             </div>
