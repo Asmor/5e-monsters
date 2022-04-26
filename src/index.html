@@ -1020,9 +1020,9 @@
 							</div>
 
 							<div class="my-3 sm:mt-0 w-full">
-								<div class="mt-2 max-h-96 overflow-y-auto divide-y divide-gray-200 dark:divide-gray-700 text-gray-700 dark:text-gray-300">
+								<div class="my-2 max-h-96 overflow-y-auto overflow-x-hidden divide-y divide-gray-200 dark:divide-gray-700 text-gray-700 dark:text-gray-300">
 									<template x-for="(party, partyIndex) of savedParties">
-										<div>
+										<div class="p-1">
                                             <div>
                                                 <label class="block text-sm font-medium text-gray-200">Party Name</label>
                                                 <div class="mt-1">
@@ -1031,7 +1031,7 @@
                                             </div>
                                             <div class="grid grid-cols-2 gap-3">
                                                 <template x-for="(player, playerIndex) of party.players">
-                                                    <div class="p-1">
+                                                    <div class="space-y-1">
                                                         <div>
                                                             <label :for="'name_'+playerIndex" class="block text-sm font-medium text-gray-200">Player Name</label>
                                                             <div class="mt-1">
@@ -1039,39 +1039,42 @@
                                                             </div>
                                                         </div>
 
-                                                        <div>
+                                                        <div class="grid grid-rows-[18px_1fr] grid-cols-3 gap-2">
                                                             <label :for="'level_'+playerIndex" class="block text-sm font-medium text-gray-200">Level</label>
-                                                            <div class="mt-1">
+                                                            <label class="block text-sm font-medium text-gray-200">Initiative</label>
+                                                            <div> </div>
+                                                            <div class="min-w-0">
                                                                 <input type="number" :id="'level_'+playerIndex" x-model.number="player.level" class="block w-full sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
                                                             </div>
-                                                        </div>
-
-                                                        <div>
-                                                            <label :for="'initiativeMod_'+playerIndex" class="block text-sm font-medium text-gray-200">Initiative Modifier</label>
-                                                            <div class="mt-1">
+                                                            <div class="min-w-0">
                                                                 <input type="number" :id="'initiativeMod_'+playerIndex" x-model.number="player.initiativeMod" class="block w-full sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
                                                             </div>
-                                                        </div>
-
-                                                        <div class="relative flex items-start my-2">
-                                                            <div class="flex items-center h-5">
-                                                                <input :id="'initiativeAdvantage_'+playerIndex" x-model="player.initiativeAdvantage" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-                                                            </div>
-                                                            <div class="ml-3 text-sm">
-                                                                <label :for="'initiativeAdvantage_'+playerIndex" class="font-medium text-gray-200">Advantage on initiative</label>
+                                                            <div class="min-w-0">
+                                                                <div class="relative flex items-center">
+                                                                    <div class="flex items-center h-5">
+                                                                        <input :id="'initiativeAdvantage_'+playerIndex" x-model="player.initiativeAdvantage" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                                                                    </div>
+                                                                    <div class="ml-3 text-sm">
+                                                                        <label :for="'initiativeAdvantage_'+playerIndex" class="font-medium text-gray-200">Advantage</label>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
 
                                                         <div>
                                                             <label class="block text-sm font-medium text-gray-200">Health</label>
-                                                            <div class="flex mt-1">
-                                                                <input type="number" x-model.number="player.currentHp" class="text-right sm:text-sm rounded-md rounded-r-none dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
-                                                                <div class="grid place-items-center px-1 shrink rounded-none dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300"> / </div>
-                                                                <input type="number" x-model.number="player.maxHp" class="sm:text-sm rounded-md rounded-l-none dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
+                                                            <div class="flex -space-x-px">
+                                                                <div class="w-1/2 flex-1 min-w-0">
+                                                                    <input type="number" x-model.number="player.currentHp" class="text-right border-r-0 relative block w-full rounded-none rounded-l-md sm:text-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300"/>
+                                                                </div>
+                                                                <div class="grid place-items-center px-1 shrink rounded-none border border-y-1 dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300"> / </div>
+                                                                <div class="flex-1 min-w-0">
+                                                                    <input type="number" x-model.number="player.maxHp" class="relative border-l-0 block w-full rounded-none rounded-r-md sm:text-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300"/>
+                                                                </div>
                                                             </div>
                                                         </div>
 
-                                                        <div class="relative flex items-start my-2">
+                                                        <div class="relative flex items-start">
                                                             <div class="flex items-center h-5">
                                                                 <input :id="'active_'+playerIndex" x-model="player.active" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
                                                             </div>
