@@ -151,7 +151,6 @@ function app() {
             },
 
             get totalPlayersToGainXP(){
-                console.log(this.app.activePlayers);
                 return this.groups.reduce((acc, group) => {
                     return acc + (group.getsXP ? parseInt(group.players) : 0)
                 }, 0) + this.app.activePlayers.length;
