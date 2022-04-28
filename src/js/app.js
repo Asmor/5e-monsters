@@ -399,13 +399,13 @@ function app() {
         },
 
         setupHotkeys() {
-            hotkeys('ctrl+k,ctrl+shift+\\,ctrl+l,ctrl+[,ctrl+],ctrl+g,ctrl+s,esc', (event, handler) => {
+            hotkeys('ctrl+k,ctrl+shift+\\,ctrl+f,ctrl+[,ctrl+],ctrl+g,ctrl+s,esc', (event, handler) => {
                 switch(handler.key) {
                     case 'ctrl+k': document.getElementById('search').focus();
                         return false;
                     case 'ctrl+shift+\\': this.toggleTheme();
                         return false;
-                    case 'ctrl+l': this.showFilters =! this.showFilters;
+                    case 'ctrl+f': this.showFilters =! this.showFilters;
                         return false;
                     case 'ctrl+[': this.setPageNumber(this.currentPage-1);
                         return false;
