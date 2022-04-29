@@ -22,10 +22,14 @@ export default class Monster {
         this.alignment = this.data.alignment ? Monster.parseAlignment(this.data.alignment) : "";
 
         this.environments.split(',').forEach(environment => {
-            environment = environment.trim()
-            environment = environment.slice(0,1).toUpperCase() + environment.slice(1)
-            if(environment && this.app.environments.indexOf(environment) === -1){
-                this.app.environments.push(environment);
+
+            if(environment && !this.app.environments[environment]){
+                let label = environment = environment.trim();
+                label = label.slice(0,1).toUpperCase() + label.slice(1);
+                this.app.environments[environment] = {
+                    value: environment,
+                    label: label
+                }
             }
         });
 

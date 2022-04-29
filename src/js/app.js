@@ -46,7 +46,7 @@ function app() {
         filteredMonsters: [],
         monsterLookupTable: {},
 
-        environments: [],
+        environments: {},
 
         totalPages: 1,
         currentPage: 1,
@@ -354,9 +354,12 @@ function app() {
                 this.monsterLookupTable[monster.slug] = monster;
                 return monster;
             });
-            this.environments.sort();
-            this.environments.unshift("Any")
-            window.dispatchEvent(new CustomEvent('set-environments', { detail: this.environments.map(environment => ({ value: environment.toLowerCase(), label: environment === 'Any' ? 'Any Environment' : environment })) }))
+            this.environments = Object.values(this.environments);
+            this.environments.sort((a, b) => {
+                return a.value > b.label ? -1 : 1;
+            });
+            this.environments.unshift({ value: "any", label: "Any Environment" });
+            window.dispatchEvent(new CustomEvent('set-environments', { detail: this.environments }));
         },
 
         filterMonsters(crString = false, filterCallback = () => { return true; }){

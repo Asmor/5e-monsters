@@ -57,7 +57,7 @@ body .choices__item { @apply text-gray-700 dark:text-gray-300; }
 body .choices__placeholder { @apply opacity-100; }
 body .choices__list--dropdown, body .choices__list[aria-expanded] { @apply border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 z-50; }
 body .is-open .choices__list--multiple { @apply border-gray-300 dark:border-gray-700 shadow-lg; }
-body .choices__input { @apply focus:ring-0 border-none; }
+body .choices__input { @apply focus:ring-0 border-none px-0; }
 
 /* noUiSlider overrides */
 .noUi-target {
