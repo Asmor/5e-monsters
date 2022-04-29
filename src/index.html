@@ -1079,9 +1079,8 @@
 
 															<div class="relative order-5 md:order-4">
 																<input type="number" :id="'initiativeMod_'+playerIndex" x-model.number="player.initiativeMod" class="pl-1 pr-8 py-1 block w-full sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
-																<div :class="{ 'text-emerald-600 hover:text-emerald-700 dark:text-emerald-600 dark:hover:text-emerald-700': player.initiativeAdvantage, 'text-gray-400 hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-400': !player.initiativeAdvantage }" class="text-2xl text-center w-6 cursor-pointer select-none absolute inset-y-0 right-1 flex justify-center items-center" @click="player.initiativeAdvantage =! player.initiativeAdvantage">
-																	<!-- Unicode Hexagon-->
-																	⬢
+																<div :class="{ 'text-emerald-600 hover:text-emerald-700 dark:text-emerald-600 dark:hover:text-emerald-700': player.initiativeAdvantage, 'text-gray-400 hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-400': !player.initiativeAdvantage }" class="text-2xl text-center w-6 cursor-pointer select-none absolute inset-y-0 right-1 flex justify-center items-center" @click="player.initiativeAdvantage =! player.initiativeAdvantage" title="Advantage on Initiative">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18.5" height="28" viewbox="0 0 173.20508075688772 200" style="fill: currentColor;"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z"></path></svg>
 																</div>
 																<div class="pointer-events-none text-lg text-center text-white dark:text-gray-700 font-bold w-6 cursor-pointer select-none absolute inset-y-0 right-1 flex justify-center items-center">
 																	A
