@@ -95,6 +95,10 @@ function app() {
             this.createPlayer(this.savedParties.length-1);
         },
 
+        deleteParty(partyIndex){
+            this.savedParties.splice(partyIndex, 1);
+        },
+
         createPlayer(partyIndex){
             this.savedParties[partyIndex].players.push({
                 name: "Player " + (this.savedParties[partyIndex].players.length+1),
@@ -106,6 +110,10 @@ function app() {
                 active: false,
                 partyIndex: 0
             });
+        },
+
+        deletePlayer(partyIndex, playerIndex) {
+            this.savedParties[partyIndex].players.splice(playerIndex,1);
         },
 
         get activePlayers(){
