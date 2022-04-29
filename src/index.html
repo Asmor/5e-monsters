@@ -250,27 +250,31 @@
 				<div class="grid grid-cols-3 md:grid-cols-5 pb-4 flex-col w-full">
 
 					<div class="col-span-3">
-						<div class="mb-1 text-gray-600 dark:text-gray-400">Party</div>
+						<div class="flex">
+							<div class="mb-1 text-gray-600 dark:text-gray-400">
+								Party
+							</div>
 
-						<div class="grid grid-rows-[18px_1fr] grid-cols-[1fr_1fr] md:grid-cols-[120px_42px] gap-y-2 align-center mb-2" x-show="activePlayers.length">
+							<a class="primary-link" @click="showPartyModal = true" href="javascript:"><i class="fa fa-cog pl-1 text-sm"></i></a>
+						</div>
+
+						<div class="grid grid-cols-[1fr_34px] gap-y-2 align-center mb-2 pr-2" x-show="activePlayers.length">
 
 						    <template x-for="party in savedParties">
-                                <div class="contents">
                                     <template x-for="player in party.players.filter(player => player.active)">
                                     <div class="contents">
-                                        <span x-text="player.name"></span>
+                                        <div x-text="player.name"></div>
 
-                                        <button @click="player.active = false" type="button" class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none">
+                                        <button @click="player.active = false" type="button" class="button-danger-outline-md inline-flex justify-center !py-0">
                                             <i class="fas fa-times"></i>
                                         </button>
                                     </div>
                                     </template>
-								</div>
 						    </template>
 
 						</div>
 
-						<div class="grid grid-rows-[18px_1fr] grid-cols-[1fr_40px_1fr_50px_36px] md:grid-cols-[42px_20px_42px_30px_36px] gap-y-2 align-center mb-2" x-show="party.totalPlayers">
+						<div class="w-full grid grid-rows-[18px_1fr] grid-cols-[1fr_40px_1fr_50px_36px] pr-2 gap-y-2 align-center mb-2" x-show="party.totalPlayers">
 							<label class="col-span-2 text-sm text-gray-700 dark:text-gray-300">Players</label>
 							<label class="text-sm text-gray-700 dark:text-gray-300">Level</label>
 							<label class="text-center text-sm text-gray-700 dark:text-gray-300" title="Determines whether these characters get a share of XP from the encounter.">XP</label>
@@ -299,8 +303,8 @@
 
 						</div>
 
-						<div>
-							<button @click="party.addPlayerGroup()" type="button" class="button-secondary-md align-self-start w-full mt-4 md:mt-auto md:w-auto flex justify-center">
+						<div class="w-full pr-2">
+							<button @click="party.addPlayerGroup()" type="button" class="button-secondary-md align-self-start w-full mt-4 md:mt-auto flex justify-center">
 								<span>
 									<i class="fas fa-plus mr-2"></i> Add Player Group
 								</span>
