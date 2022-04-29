@@ -250,10 +250,9 @@
 				<div class="grid grid-cols-3 md:grid-cols-5 pb-4 flex-col w-full">
 
 					<div class="col-span-3">
-						<div class="mb-1 text-gray-600 dark:text-gray-400">Group</div>
+						<div class="mb-1 text-gray-600 dark:text-gray-400">Party</div>
 
 						<div class="grid grid-rows-[18px_1fr] grid-cols-[1fr_1fr] md:grid-cols-[120px_42px] gap-y-2 align-center mb-2" x-show="activePlayers.length">
-							<label class="col-span-2 text-sm text-gray-700 dark:text-gray-300">Players</label>
 
 						    <template x-for="(party, index) in savedParties">
                                 <div class="contents">
@@ -271,7 +270,7 @@
 
 						</div>
 
-						<div class="grid grid-rows-[18px_1fr] grid-cols-[1fr_40px_1fr_50px_36px] md:grid-cols-[42px_20px_42px_30px_36px] gap-y-2 align-center mb-2">
+						<div class="grid grid-rows-[18px_1fr] grid-cols-[1fr_40px_1fr_50px_36px] md:grid-cols-[42px_20px_42px_30px_36px] gap-y-2 align-center mb-2" x-show="party.totalPlayers">
 							<label class="col-span-2 text-sm text-gray-700 dark:text-gray-300">Players</label>
 							<label class="text-sm text-gray-700 dark:text-gray-300">Level</label>
 							<label class="text-center text-sm text-gray-700 dark:text-gray-300" title="Determines whether these characters get a share of XP from the encounter.">XP</label>
@@ -289,10 +288,10 @@
 									<input type="number" min="1" max="20" :value="group.level" @change="group.level = Math.max(1, Math.min(20, $event.target.value))" class="border-gray-300 shadow-sm focus:ring-emerald-500 focus:border-emerald-500 block w-full p-1.5 pr-0 sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 rounded-md" value="4">
 
 									<div class="flex items-center justify-center scale-150 md:transform-none">
-										<input :disabled="index === 0" type="checkbox" x-model="group.getsXP" class="focus:ring-emerald-500 h-4 w-4 text-emerald-600 disabled:opacity-70 border-gray-300 rounded">
+										<input type="checkbox" x-model="group.getsXP" class="focus:ring-emerald-500 h-4 w-4 text-emerald-600 disabled:opacity-70 border-gray-300 rounded">
 									</div>
 
-									<button @click="party.removePlayerGroup(index)" :class="{ 'invisible pointer-events-none': !index }" :disabled="!index" type="button" class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none">
+									<button @click="party.removePlayerGroup(index)" type="button" class="inline-flex items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none">
 										<i class="fas fa-times"></i>
 									</button>
 								</div>
@@ -303,7 +302,7 @@
 						<div>
 							<button @click="party.addPlayerGroup()" type="button" class="button-secondary-md align-self-start w-full mt-4 md:mt-auto md:w-auto flex justify-center">
 								<span>
-									<i class="fas fa-plus mr-2"></i> Add Another Level
+									<i class="fas fa-plus mr-2"></i> Add Player Group
 								</span>
 							</button>
 						</div>

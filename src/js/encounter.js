@@ -119,10 +119,17 @@ const encounter = {
 
     generateRandom() {
 
+        if(!this.app.party.totalPlayers){
+            this.app.party.addPlayerGroup();
+        }
+
         this.app.loadedEncounterIndex = null;
         this.app.loadedLastEncounter = true;
 
         const totalExperienceTarget = this.app.party.experience[this.app.difficulty];
+
+        if(!totalExperienceTarget) return;
+
         let fudgeFactor = 1.1; // The algorithm is conservative in spending exp; so this tries to get it closer to the actual medium value
         let baseExpBudget = totalExperienceTarget * fudgeFactor;
         let encounterTemplate = this.getEncounterTemplate();
@@ -130,6 +137,7 @@ const encounter = {
         let totalAvailableXP = baseExpBudget / multiplier;
 
         let targetExp;
+        this.groups = [];
         const encounter = []
         for (const group of encounterTemplate.groups) {
 

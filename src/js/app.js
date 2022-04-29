@@ -127,9 +127,10 @@ function app() {
             groups: Alpine.$persist([{ players: 4, level: 1, getsXP: true }]).as("groups"),
 
             addPlayerGroup() {
-                this.groups.push({
-                    ...this.groups[this.groups.length - 1]
-                });
+
+                const lastGroup = this.groups[this.groups.length - 1] ?? { players: 4, level: 1, getsXP: true }
+
+                this.groups.push({ ...lastGroup });
             },
 
             removePlayerGroup(index) {
@@ -403,6 +404,7 @@ function app() {
         },
 
         formatNumber(num){
+            if(!num) return 0;
             return internationalNumberFormat.format(num);
         },
 
@@ -448,6 +450,15 @@ function app() {
                         Player: "npc"
                     });
                 }
+            });
+
+            this.activePlayers.forEach(player => {
+                data.Combatants.push({
+                    Name: player.name,
+                    TotalInitiativeModifier: player.initiativeMod,
+                    HP: { Value: player.currentHp, Max: player.maxHp },
+                    Player: "player"
+                });
             });
 
             const form = document.createElement("form");
