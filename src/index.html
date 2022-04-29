@@ -1034,8 +1034,12 @@
 													<div class="shrink-0 grid grid-cols-[30px_1fr] place-items-center h-full absolute inset-y-0 right-0">
 														<div class="w-full h-full bg-gradient-to-l from-gray-50 dark:from-gray-700 group-hover:from-gray-100 dark:group-hover:from-gray-600 to-transparent"></div>
 														<div class="px-3 bg-gray-50 group-hover:bg-gray-100 dark:bg-gray-700 dark:group-hover:bg-gray-600 min-w-4 h-full grid place-items-center">
-															<div @click.prevent="activateParty(partyIndex)" x-show="!party.players.filter((player) => player.active).length" class="bg-red-500 hidden group-hover:block text-gray-900 dark:text-gray-100">Play <i class="fa fa-arrow-right"></i></div>
-															<div @click.prevent="deactivateParty(partyIndex)" x-show="party.players.filter((player) => player.active).length" class="bg-red-500 hidden group-hover:block text-red-900 dark:text-red-100">Remove <i class="fa fa-times"></i></div>
+															<div @click.stop="activateParty(partyIndex)" x-show="!party.players.filter((player) => player.active).length" class="h-full hidden place-items-center group-hover:grid text-gray-900 dark:text-gray-100">
+																<div>Make all active <i class="fa fa-arrow-right"></i></div>
+															</div>
+															<div @click.stop="deactivateParty(partyIndex)" x-show="party.players.filter((player) => player.active).length" class="h-full hidden place-items-center group-hover:grid text-gray-900 dark:text-gray-100">
+																<div>Deactivate all <i class="fa fa-times"></i></div>
+															</div>
 														</div>
 													</div>
 												</div>

@@ -96,11 +96,11 @@ function app() {
         },
 
         activateParty(partyIndex){
-            this.savedParties[partyIndex].forEach((player) => player.active = true);
+            this.savedParties[partyIndex].players.forEach((player) => player.active = true);
         },
 
         deactivateParty(partyIndex){
-            this.savedParties[partyIndex].forEach((player) => player.active = false);
+            this.savedParties[partyIndex].players.forEach((player) => player.active = false);
         },
 
         deleteParty(partyIndex){
