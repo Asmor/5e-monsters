@@ -447,21 +447,25 @@ function app() {
                     data.Combatants.push({
                         Name: monster.name,
                         HP: { Value: monster.data.hp },
-                        TotalInitiativeModifier: monster.data.init,
+                        InitiativeModifier: monster.data.init,
                         AC: { Value: monster.data.ac },
                         Player: "npc"
                     });
                 }
             });
 
-            this.activePlayers.forEach(player => {
-                data.Combatants.push({
-                    Name: player.name,
-                    TotalInitiativeModifier: player.initiativeMod,
-                    HP: { Value: player.currentHp, Max: player.maxHp },
-                    Player: "player"
+            this.savedParties.forEach((party, partyIndex) => {
+                party.players.filter(player => player.active).forEach((player, playerIndex) => {
+                    data.Combatants.push({
+                        Id: lib.slugify(`${party.name}-${player.name}`),
+                        Name: player.name,
+                        InitiativeModifier: player.initiativeMod,
+                        InitiativeAdvantage: player.initiativeAdvantage,
+                        HP: { Value: player.currentHp, Max: player.maxHp },
+                        Player: "player"
+                    });
                 });
-            });
+            })
 
             const form = document.createElement("form");
             form.style.display = "none";
