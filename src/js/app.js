@@ -400,7 +400,6 @@ function app() {
 
         resetFilters(){
             this.search = '';
-            Object.values(this.sources).forEach(source => source.enabled = !!source.default);
         },
 
         formatNumber(num){
