@@ -249,7 +249,7 @@
 			<div id="monsters_box" :class="{ 'hidden md:flex': mobileEncounterTab }" class="hidden md:absolute md:inset-y-8 md:left-4 md:pr-8 md:pl-4 pb-8 md:pb-0 md:flex w-full px-8 flex-col flex-shrink-0 md:w-[28rem] 2xl:w-[34rem] overflow-y-auto">
 				<div class="grid grid-cols-3 md:grid-cols-5 pb-4 flex-col w-full">
 
-					<div class="col-span-3">
+					<div class="col-span-3 space-y-2">
 						<div class="flex">
 							<div class="mb-1 text-gray-600 dark:text-gray-400">
 								Party
@@ -258,7 +258,7 @@
 							<a class="primary-link" @click="showPartyModal = true" href="javascript:"><i class="fa fa-cog pl-1 text-sm"></i></a>
 						</div>
 
-						<div class="grid grid-cols-[1fr_34px] gap-y-2 align-center mb-2 pr-2" x-show="activePlayers.length">
+						<div class="grid grid-cols-[1fr_34px] gap-y-2 align-center mb-2 md:pr-2" x-show="activePlayers.length">
 
 						    <template x-for="party in savedParties">
                                     <template x-for="player in party.players.filter(player => player.active)">
@@ -274,7 +274,7 @@
 
 						</div>
 
-						<div class="w-full grid grid-rows-[18px_1fr] grid-cols-[1fr_40px_1fr_50px_36px] pr-2 gap-y-2 align-center mb-2" x-show="party.totalPlayers">
+						<div class="w-full grid grid-rows-[18px_1fr] grid-cols-[1fr_40px_1fr_50px_36px] md:pr-2 gap-y-2 align-center mb-2" x-show="party.totalPlayers">
 							<label class="col-span-2 text-sm text-gray-700 dark:text-gray-300">Players</label>
 							<label class="text-sm text-gray-700 dark:text-gray-300">Level</label>
 							<label class="text-center text-sm text-gray-700 dark:text-gray-300" title="Determines whether these characters get a share of XP from the encounter.">XP</label>
@@ -303,7 +303,7 @@
 
 						</div>
 
-						<div class="w-full pr-2">
+						<div class="w-full md:pr-2">
 							<button @click="party.addPlayerGroup()" type="button" class="button-secondary-md align-self-start w-full mt-4 md:mt-auto flex justify-center">
 								<span>
 									<i class="fas fa-plus mr-2"></i> Add Player Group
