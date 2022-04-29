@@ -95,6 +95,14 @@ function app() {
             this.createPlayer(this.savedParties.length-1);
         },
 
+        activateParty(partyIndex){
+            this.savedParties[partyIndex].forEach((player) => player.active = true);
+        },
+
+        deactivateParty(partyIndex){
+            this.savedParties[partyIndex].forEach((player) => player.active = false);
+        },
+
         deleteParty(partyIndex){
             this.savedParties.splice(partyIndex, 1);
         },
