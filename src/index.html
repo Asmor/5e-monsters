@@ -104,7 +104,7 @@
 
 						<input type="search" name="search" id="search" x-model="search" @input.debounce="updateFilteredMonsters" class="border-gray-300 focus:ring-emerald-500 focus:border-emerald-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600" :placeholder="searchPlaceholder">
 
-						<div class="absolute inset-y-0 right-0 flex py-1.5 pr-2">
+						<div class="absolute inset-y-0 right-0 flex py-1.5 pr-2 hidden md:block">
 							<kbd class="inline-flex items-center border border-gray-200 dark:border-gray-600 rounded px-2 text-sm font-sans font-medium text-gray-400"> ⌘K </kbd>
 						</div>
 					</div>
@@ -1018,12 +1018,13 @@
 							</div>
 
 							<div class="my-3 sm:mt-0 w-full">
-								<div class="my-2 max-h-96 overflow-y-auto overflow-x-hidden divide-y divide-gray-200 dark:divide-gray-700 text-gray-700 dark:text-gray-300">
-									<div class="bg-white dark:bg-gray-700 rounded shadow overflow-hidden border-b dark:border-gray-700">
+								<div class="my-2 max-h-96 overflow-y-auto overflow-x-hidden text-gray-700 dark:text-gray-300">
+									<div class="bg-gray-50 dark:bg-gray-700 rounded shadow overflow-hidden border-b dark:border-gray-700 divide-y divide-gray-200 dark:divide-gray-800 ">
 										<template x-for="(party, partyIndex) of savedParties">
 
-											<div :class="{ 'garbage': partyIsOpen }" x-data="{ partyIsOpen: true }">
-												<div class="flex px-4 py-4 dark:border-gray-700 w-100 relative group hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
+											<div :class="{ 'garbage': partyIsOpen }" x-data="{ partyIsOpen: false }">
+												<div class="flex px-4 py-4 dark:border-gray-700 w-100 relative group hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
+													 :class="{ 'bg-gray-100 hover:bg-gray-50 dark:bg-gray-700': partyIsOpen }"
 													 :title="party.name"
 													 :key="partyIndex"
 													 @click="partyIsOpen =! partyIsOpen"
@@ -1032,24 +1033,26 @@
 														<span x-text="party.name"></span>
 													</div>
 													<div class="shrink-0 grid grid-cols-[30px_1fr] place-items-center h-full absolute inset-y-0 right-0" type="button">
-														<div class="w-full h-full bg-gradient-to-l from-white dark:from-gray-700 group-hover:from-gray-50 dark:group-hover:from-gray-700 to-transparent"></div>
-														<div class="px-3 bg-white group-hover:bg-gray-50 dark:bg-gray-700 dark:group-hover:bg-gray-700 min-w-4 h-full grid place-items-center">
+														<div class="w-full h-full bg-gradient-to-l from-gray-50 dark:from-gray-700 group-hover:from-gray-100 dark:group-hover:from-gray-600 to-transparent"></div>
+														<div class="px-3 bg-gray-50 group-hover:bg-gray-100 dark:bg-gray-700 dark:group-hover:bg-gray-600 min-w-4 h-full grid place-items-center">
 															<div class="hidden group-hover:block text-gray-900 dark:text-gray-100">Load <i class="fa fa-arrow-right"></i></div>
 														</div>
 													</div>
 												</div>
 
-												<div x-show="partyIsOpen" class="border-x dark:border-gray-700 dark:bg-gray-800 grid grid-cols-[60px_1fr_50px_75px_150px_30px] gap-x-1 gap-y-2 px-6 py-3">
-													<div>Active</div>
-													<div>Name</div>
-													<div>Level</div>
-													<div>Initiative</div>
-													<div>HP</div>
-													<div></div>
+												<div x-show="partyIsOpen" class="border-x border-gray-50 dark:border-gray-700 dark:bg-gray-800 flex flex-col gap-x-1 gap-y-2 px-6 py-3">
+													<div class="grid gap-2 grid-cols-[60px_1fr_1fr] md:grid-cols-[60px_1fr_50px_75px_150px_30px]">
+														<div>Active</div>
+														<div>Name</div>
+														<div>Level</div>
+														<div class="md:order-6"></div>
+														<div>Initiative</div>
+														<div>HP</div>
+													</div>
 
 													<template x-for="(player, playerIndex) of party.players">
-														<div class="flex items-center contents">
-															<div class='flex items-center justify-start'>
+														<div class="grid gap-2 grid-cols-[60px_1fr_1fr] md:grid-cols-[60px_1fr_50px_75px_150px_30px]">
+															<div class='order-1 flex justify-center md:justify-start'>
 																<input type="checkbox" class="hidden" x-model="player.active">
 
 																<button
@@ -1067,21 +1070,25 @@
 															</div>
 
 
-															<input type="text" :id="'name_'+playerIndex" x-model="player.name" class="px-1 py-1 !mb-0 block w-full sm:text-sm rounded-md dark:text-gray-300 dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
-															<input type="number" :id="'level_'+playerIndex" x-model.number="player.level" class="px-1 py-1 block w-full sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
+															<div class="order-2">
+																<input type="text" :id="'name_'+playerIndex" x-model="player.name" class="px-1 py-1 !mb-0 block w-full sm:text-sm rounded-md dark:text-gray-200 dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
+															</div>
+															<div class="order-3">
+																<input type="number" :id="'level_'+playerIndex" x-model.number="player.level" class="px-1 py-1 block w-full sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
+															</div>
 
-															<div class="relative">
+															<div class="relative order-5 md:order-4">
 																<input type="number" :id="'initiativeMod_'+playerIndex" x-model.number="player.initiativeMod" class="pl-1 pr-8 py-1 block w-full sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
-																<div :class="{ 'text-emerald-600 hover:text-emerald-700 dark:text-emerald-600 dark:hover:text-emerald-700': player.initiativeAdvantage, 'text-gray-500 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-400': !player.initiativeAdvantage }" class="text-2xl text-center w-6 cursor-pointer select-none absolute inset-y-0 right-1 flex justify-center items-center" @click="player.initiativeAdvantage =! player.initiativeAdvantage">
+																<div :class="{ 'text-emerald-600 hover:text-emerald-700 dark:text-emerald-600 dark:hover:text-emerald-700': player.initiativeAdvantage, 'text-gray-400 hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-400': !player.initiativeAdvantage }" class="text-2xl text-center w-6 cursor-pointer select-none absolute inset-y-0 right-1 flex justify-center items-center" @click="player.initiativeAdvantage =! player.initiativeAdvantage">
 																	<!-- Unicode Hexagon-->
 																	⬢
 																</div>
-																<div class="pointer-events-none text-lg text-center text-gray-900 dark:text-gray-700 font-bold w-6 cursor-pointer select-none absolute inset-y-0 right-1 flex justify-center items-center">
+																<div class="pointer-events-none text-lg text-center text-white dark:text-gray-700 font-bold w-6 cursor-pointer select-none absolute inset-y-0 right-1 flex justify-center items-center">
 																	A
 																</div>
 															</div>
 
-															<div class="flex -space-x-px">
+															<div class="order-6 md:order-5 justify-center md:justify-start flex -space-x-px">
 																<div class="w-1/2 flex-1 min-w-0">
 																	<input type="number" x-model.number="player.currentHp" class="px-1 py-1 text-right border-r-0 relative block w-full rounded-none rounded-l-md sm:text-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300"/>
 																</div>
@@ -1091,7 +1098,7 @@
 																</div>
 															</div>
 
-															<div @click="deletePlayer(partyIndex, playerIndex)" class="group cursor-pointer grid place-items-center">
+															<div @click="deletePlayer(partyIndex, playerIndex)" class="order-4 md:order-6 group cursor-pointer grid place-items-center">
 																<i class="fa fa-times text-red-500 dark:text-red-500 group-hover:text-red-600 dark:group-hover:text-red-700"></i>
 															</div>
 														</div>

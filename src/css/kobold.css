@@ -9,7 +9,7 @@
 
 @layer components {
     input[type=text] {
-        @apply disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 text-gray-600 block w-full px-2 shadow-sm border-gray-300 rounded-md mb-4;
+        @apply disabled:text-gray-500 disabled:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 text-gray-600 block w-full px-2 shadow-sm border-gray-300 rounded-md mb-4;
     }
 }
 
