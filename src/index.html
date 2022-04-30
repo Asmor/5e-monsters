@@ -73,7 +73,7 @@
 				</div>
 			</div>
 
-			<div class="transition-all duration-400 ease-in-out overflow-hidden md:hidden hidden" :class="{ 'block': menu, 'hidden': !menu }">
+			<div class="transition-all duration-400 ease-in-out overflow-hidden hidden" :class="{ 'block': menu, 'hidden': !menu }">
 				<div class="pt-2 pb-3 space-y-1">
 					<a href="https://fantasy-calendar.com/" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-emerald-300 hover:text-white hover:border-gray-300">Fantasy Calendar</a>
 					<a href="" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-emerald-300 hover:text-white hover:border-gray-300">About</a>
@@ -1005,162 +1005,159 @@
             </div>
         </div>
 
-	</div><!-- This example requires Tailwind CSS v2.0+ -->
-        <div x-show="showPartyModal" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" x-cloak>
-            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                <div class="fixed inset-0 bg-gray-500 dark:bg-gray-900 dark:bg-opacity-75 bg-opacity-75 transition-opacity" aria-hidden="true"
-                     x-show="showPartyModal"
-                     x-transition:enter="ease-out duration-300"
-                     x-transition:enter-start="opacity-0"
-                     x-transition:enter-end="opacity-100"
-                     x-transition:leave="ease-in duration-200"
-                     x-transition:leave-start="opacity-100"
-                     x-transition:leave-end="opacity-0"
-                ></div>
+	<div x-show="showPartyModal" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" x-cloak>
+		<div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+			<div class="fixed inset-0 bg-gray-500 dark:bg-gray-900 dark:bg-opacity-75 bg-opacity-75 transition-opacity" aria-hidden="true"
+				 x-show="showPartyModal"
+				 x-transition:enter="ease-out duration-300"
+				 x-transition:enter-start="opacity-0"
+				 x-transition:enter-end="opacity-100"
+				 x-transition:leave="ease-in duration-200"
+				 x-transition:leave-start="opacity-100"
+				 x-transition:leave-end="opacity-0"
+			></div>
 
-                <!-- This element is to trick the browser into centering the modal contents. -->
-                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+			<!-- This element is to trick the browser into centering the modal contents. -->
+			<span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
-                <div @mousedown.outside="showPartyModal = false" class="relative inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full"
-                     x-show="showPartyModal"
-                     x-transition:enter="ease-out duration-300"
-                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                     x-transition:leave="ease-in duration-200"
-                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                >
-                    <div class="bg-white dark:bg-gray-800 px-4 py-5 sm:p-6">
-                        <div class="sm:flex flex-col sm:items-start w-full">
-							<div class="w-full flex pb-3">
-                                <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100">Manage your parties and players</h3>
-							</div>
+			<div @mousedown.outside="showPartyModal = false" class="relative inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full"
+				 x-show="showPartyModal"
+				 x-transition:enter="ease-out duration-300"
+				 x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+				 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+				 x-transition:leave="ease-in duration-200"
+				 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+				 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+			>
+				<div class="bg-white dark:bg-gray-800 px-4 py-5 sm:p-6">
+					<div class="sm:flex flex-col sm:items-start w-full">
+						<div class="w-full flex pb-3">
+							<h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100">Manage your parties and players</h3>
+						</div>
 
-							<div class="my-3 sm:mt-0 w-full">
-								<div class="my-2 max-h-96 overflow-y-auto overflow-x-hidden text-gray-700 dark:text-gray-300">
-									<div x-show="savedParties.length" class="bg-gray-50 dark:bg-gray-700 rounded shadow overflow-hidden border-b dark:border-gray-700 divide-y divide-gray-200 dark:divide-gray-800 ">
-										<template x-for="(party, partyIndex) of savedParties">
+						<div class="my-3 sm:mt-0 w-full">
+							<div class="my-2 max-h-96 overflow-y-auto overflow-x-hidden text-gray-700 dark:text-gray-300">
+								<div x-show="savedParties.length" class="bg-gray-50 dark:bg-gray-700 rounded shadow overflow-hidden border-b dark:border-gray-700 divide-y divide-gray-200 dark:divide-gray-800 ">
+									<template x-for="(party, partyIndex) of savedParties">
 
-											<div>
-												<div class="flex px-4 py-4 dark:border-gray-700 w-100 relative cursor-pointer group hover:bg-gray-100 dark:hover:bg-gray-600"
-													 :class="{ 'bg-gray-100 hover:bg-gray-50 dark:bg-gray-700': party.editing }"
-													 :title="party.name"
-													 :key="partyIndex"
-													 @click="party.editing =! party.editing"
-												>
-													<div class="grow flex flex-col justify-center mr-2 grow truncate overflow-ellipsis">
-														<span x-text="party.name"></span>
-													</div>
-													<div class="shrink-0 grid grid-cols-[30px_1fr] place-items-center h-full absolute inset-y-0 right-0">
-														<div class="w-full h-full bg-gradient-to-l from-gray-50 dark:from-gray-700 group-hover:from-gray-100 dark:group-hover:from-gray-600 to-transparent"></div>
-														<div class="px-3 bg-gray-50 group-hover:bg-gray-100 dark:bg-gray-700 dark:group-hover:bg-gray-600 min-w-4 h-full grid place-items-center">
-															<div @click.stop="activateParty(partyIndex)" x-show="!party.players.filter((player) => player.active).length" class="h-full hidden place-items-center group-hover:grid text-gray-900 dark:text-gray-100">
-																<div>Make all active <i class="fa fa-users"></i></div>
-															</div>
-															<div @click.stop="deactivateParty(partyIndex)" x-show="party.players.filter((player) => player.active).length" class="h-full hidden place-items-center group-hover:grid text-gray-900 dark:text-gray-100">
-																<div>Deactivate all <i class="fa fa-users-slash"></i></div>
-															</div>
-														</div>
-													</div>
+										<div>
+											<div class="flex px-4 py-4 dark:border-gray-700 w-100 relative cursor-pointer group hover:bg-gray-100 dark:hover:bg-gray-600"
+												 :class="{ 'bg-gray-100 hover:bg-gray-50 dark:bg-gray-700': party.editing }"
+												 :title="party.name"
+												 :key="partyIndex"
+												 @click="party.editing =! party.editing"
+											>
+												<div class="grow flex flex-col justify-center mr-2 grow truncate overflow-ellipsis">
+													<span x-text="party.name"></span>
 												</div>
-
-												<div x-show="party.editing" class="border-x border-gray-50 dark:border-gray-700 dark:bg-gray-800 flex flex-col gap-x-1 gap-y-2 px-6 py-3">
-													<div class="flex items-center">
-														<input x-model="party.name"
-															   type="text"
-															   class="!mb-0 py-0.5 text-xl"
-														>
-														<div class="w-[30px] ml-2 flex justify-center">
-															<i @click.stop="deleteParty(partyIndex)" :title="'Delete ' + party.name" class="fa fa-trash hover:text-red-400 dark:hover:text-red-600 cursor-pointer"></i>
+												<div class="shrink-0 grid grid-cols-[30px_1fr] place-items-center h-full absolute inset-y-0 right-0">
+													<div class="w-full h-full bg-gradient-to-l from-gray-50 dark:from-gray-700 group-hover:from-gray-100 dark:group-hover:from-gray-600 to-transparent"></div>
+													<div class="px-3 bg-gray-50 group-hover:bg-gray-100 dark:bg-gray-700 dark:group-hover:bg-gray-600 min-w-4 h-full grid place-items-center">
+														<div @click.stop="activateParty(partyIndex)" x-show="!party.players.filter((player) => player.active).length" class="h-full hidden place-items-center group-hover:grid text-gray-900 dark:text-gray-100">
+															<div>Make all active <i class="fa fa-users"></i></div>
+														</div>
+														<div @click.stop="deactivateParty(partyIndex)" x-show="party.players.filter((player) => player.active).length" class="h-full hidden place-items-center group-hover:grid text-gray-900 dark:text-gray-100">
+															<div>Deactivate all <i class="fa fa-users-slash"></i></div>
 														</div>
 													</div>
-
-													<div class="grid gap-2 grid-cols-[60px_1fr_1fr] md:grid-cols-[60px_1fr_50px_75px_150px_30px]">
-														<div>Active</div>
-														<div>Name</div>
-														<div>Level</div>
-														<div class="md:order-6"></div>
-														<div>Initiative</div>
-														<div>HP</div>
-													</div>
-
-													<template x-for="(player, playerIndex) of party.players">
-														<div class="grid gap-2 grid-cols-[60px_1fr_1fr] md:grid-cols-[60px_1fr_50px_75px_150px_30px]">
-															<div class='order-1 flex justify-center md:justify-start'>
-																<input type="checkbox" class="hidden" x-model="player.active">
-
-																<button
-																		@click="player.active = !player.active"
-																		type="button"
-																		:class="{'bg-gray-200 dark:bg-gray-700': !player.active, 'bg-emerald-600': player.active}"
-																		class="bg-gray-200 dark:bg-gray-700 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
-																		role="switch"
-																		aria-checked="false"
-																		aria-labelledby="availability-label"
-																		aria-describedby="availability-description"
-																>
-																	<span aria-hidden="true" :class="{'translate-x-0': !player.active, 'translate-x-5': player.active}" class="pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
-																</button>
-															</div>
-
-
-															<div class="order-2">
-																<input type="text" :id="'name_'+playerIndex" x-model="player.name" class="px-1 py-1 !mb-0 block w-full sm:text-sm rounded-md dark:text-gray-200 dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
-															</div>
-															<div class="order-3">
-																<input type="number" :id="'level_'+playerIndex" x-model.number="player.level" class="px-1 py-1 block w-full sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
-															</div>
-
-															<div class="relative order-5 md:order-4">
-																<input type="number" :id="'initiativeMod_'+playerIndex" x-model.number="player.initiativeMod" class="pl-1 pr-8 py-1 block w-full sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
-																<div :class="{ 'text-emerald-600 hover:text-emerald-700 dark:text-emerald-600 dark:hover:text-emerald-700': player.initiativeAdvantage, 'text-gray-400 hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-400': !player.initiativeAdvantage }" class="text-2xl text-center w-6 cursor-pointer select-none absolute inset-y-0 right-1 flex justify-center items-center" @click="player.initiativeAdvantage =! player.initiativeAdvantage" title="Advantage on Initiative">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18.5" height="28" viewbox="0 0 173.20508075688772 200" style="fill: currentColor;"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z"></path></svg>
-																</div>
-																<div class="pointer-events-none text-lg text-center text-white dark:text-gray-700 font-bold w-6 cursor-pointer select-none absolute inset-y-0 right-1 flex justify-center items-center">
-																	A
-																</div>
-															</div>
-
-															<div class="order-6 md:order-5 justify-center md:justify-start flex -space-x-px">
-																<div class="w-1/2 flex-1 min-w-0">
-																	<input min="0" @change="if(player.currentHp > player.maxHp) { player.maxHp = player.currentHp }" @blur="if(player.currentHp > player.maxHp) { player.maxHp = player.currentHp }" type="number" x-model.number="player.currentHp" class="px-1 py-1 text-right border-r-0 relative block w-full rounded-none rounded-l-md sm:text-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300"/>
-																</div>
-																<div class="grid place-items-center px-1 shrink rounded-none border border-y-1 bg-white dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300"> / </div>
-																<div class="flex-1 min-w-0">
-																	<input min="1" type="number" x-model.number="player.maxHp" class="px-1 py-1 relative border-l-0 block w-full rounded-none rounded-r-md sm:text-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300"/>
-																</div>
-															</div>
-
-															<div @click="deletePlayer(partyIndex, playerIndex)" class="order-4 md:order-6 group cursor-pointer grid place-items-center">
-																<i class="fa fa-times text-red-500 dark:text-red-500 group-hover:text-red-600 dark:group-hover:text-red-700"></i>
-															</div>
-														</div>
-													</template>
-
-													<button @click="createPlayer(partyIndex)" type="button" class="button-secondary-md col-span-6 justify-center" :class="{ 'h-24': !party.players.length }"> Create player </button>
-													<button x-show="!party.players.length" @click="deleteParty(partyIndex)" type="button" class="button-danger-outline-md col-span-6 justify-center"> Delete Party </button>
 												</div>
 											</div>
-										</template>
-									</div>
+
+											<div x-show="party.editing" class="border-x border-gray-50 dark:border-gray-700 dark:bg-gray-800 flex flex-col gap-x-1 gap-y-2 px-6 py-3">
+												<div class="flex items-center">
+													<input x-model="party.name"
+														   type="text"
+														   class="!mb-0 py-0.5 text-xl"
+													>
+													<div class="w-[30px] ml-2 flex justify-center">
+														<i @click.stop="deleteParty(partyIndex)" :title="'Delete ' + party.name" class="fa fa-trash hover:text-red-400 dark:hover:text-red-600 cursor-pointer"></i>
+													</div>
+												</div>
+
+												<div class="grid gap-2 grid-cols-[60px_1fr_1fr] md:grid-cols-[60px_1fr_50px_75px_150px_30px]">
+													<div>Active</div>
+													<div>Name</div>
+													<div>Level</div>
+													<div class="md:order-6"></div>
+													<div>Initiative</div>
+													<div>HP</div>
+												</div>
+
+												<template x-for="(player, playerIndex) of party.players">
+													<div class="grid gap-2 grid-cols-[60px_1fr_1fr] md:grid-cols-[60px_1fr_50px_75px_150px_30px]">
+														<div class='order-1 flex justify-center md:justify-start'>
+															<input type="checkbox" class="hidden" x-model="player.active">
+
+															<button
+																	@click="player.active = !player.active"
+																	type="button"
+																	:class="{'bg-gray-200 dark:bg-gray-700': !player.active, 'bg-emerald-600': player.active}"
+																	class="bg-gray-200 dark:bg-gray-700 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+																	role="switch"
+																	aria-checked="false"
+																	aria-labelledby="availability-label"
+																	aria-describedby="availability-description"
+															>
+																<span aria-hidden="true" :class="{'translate-x-0': !player.active, 'translate-x-5': player.active}" class="pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
+															</button>
+														</div>
+
+
+														<div class="order-2">
+															<input type="text" :id="'name_'+playerIndex" x-model="player.name" class="px-1 py-1 !mb-0 block w-full sm:text-sm rounded-md dark:text-gray-200 dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
+														</div>
+														<div class="order-3">
+															<input type="number" :id="'level_'+playerIndex" x-model.number="player.level" class="px-1 py-1 block w-full sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
+														</div>
+
+														<div class="relative order-5 md:order-4">
+															<input type="number" :id="'initiativeMod_'+playerIndex" x-model.number="player.initiativeMod" class="pl-1 pr-8 py-1 block w-full sm:text-sm rounded-md dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300">
+															<div :class="{ 'text-emerald-600 hover:text-emerald-700 dark:text-emerald-600 dark:hover:text-emerald-700': player.initiativeAdvantage, 'text-gray-400 hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-400': !player.initiativeAdvantage }" class="text-2xl text-center w-6 cursor-pointer select-none absolute inset-y-0 right-1 flex justify-center items-center" @click="player.initiativeAdvantage =! player.initiativeAdvantage" title="Advantage on Initiative">
+																<svg xmlns="http://www.w3.org/2000/svg" width="18.5" height="28" viewbox="0 0 173.20508075688772 200" style="fill: currentColor;"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z"></path></svg>
+															</div>
+															<div class="pointer-events-none text-lg text-center text-white dark:text-gray-700 font-bold w-6 cursor-pointer select-none absolute inset-y-0 right-1 flex justify-center items-center">
+																A
+															</div>
+														</div>
+
+														<div class="order-6 md:order-5 justify-center md:justify-start flex -space-x-px">
+															<div class="w-1/2 flex-1 min-w-0">
+																<input min="0" @change="if(player.currentHp > player.maxHp) { player.maxHp = player.currentHp }" @blur="if(player.currentHp > player.maxHp) { player.maxHp = player.currentHp }" type="number" x-model.number="player.currentHp" class="px-1 py-1 text-right border-r-0 relative block w-full rounded-none rounded-l-md sm:text-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300"/>
+															</div>
+															<div class="grid place-items-center px-1 shrink rounded-none border border-y-1 bg-white dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300"> / </div>
+															<div class="flex-1 min-w-0">
+																<input min="1" type="number" x-model.number="player.maxHp" class="px-1 py-1 relative border-l-0 block w-full rounded-none rounded-r-md sm:text-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300"/>
+															</div>
+														</div>
+
+														<div @click="deletePlayer(partyIndex, playerIndex)" class="order-4 md:order-6 group cursor-pointer grid place-items-center">
+															<i class="fa fa-times text-red-500 dark:text-red-500 group-hover:text-red-600 dark:group-hover:text-red-700"></i>
+														</div>
+													</div>
+												</template>
+
+												<button @click="createPlayer(partyIndex)" type="button" class="button-secondary-md col-span-6 justify-center" :class="{ 'h-24': !party.players.length }"> Create player </button>
+												<button x-show="!party.players.length" @click="deleteParty(partyIndex)" type="button" class="button-danger-outline-md col-span-6 justify-center"> Delete Party </button>
+											</div>
+										</div>
+									</template>
 								</div>
-
-                                <button x-show="!savedParties.length" @click="createParty" type="button" class="relative block w-full border-2 border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
-                                    <i class="fa-solid fa-users text-2xl h-12 w-12 mx-auto text-gray-400 dark:text-gray-300"></i>
-                                    <span class="mt-2 block text-sm font-medium text-gray-900 dark:text-gray-200"> Create player party </span>
-								</button>
 							</div>
-                        </div>
-                    </div>
 
-                    <div class="bg-gray-50 dark:bg-gray-700 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse sm:justify-between">
-                        <button @click="showPartyModal = false" type="button" class="button-primary-md">Close</button>
-                        <button @click="createParty" type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-emerald-700 dark:bg-emerald-100 dark:bg-transparent dark:text-emerald-500 dark:hover:bg-emerald-800 dark:hover:text-white hover:bg-emerald-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"> <i class="fa fa-plus mr-1"></i> Create party </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+							<button x-show="!savedParties.length" @click="createParty" type="button" class="relative block w-full border-2 border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
+								<i class="fa-solid fa-users text-2xl h-12 w-12 mx-auto text-gray-400 dark:text-gray-300"></i>
+								<span class="mt-2 block text-sm font-medium text-gray-900 dark:text-gray-200"> Create player party </span>
+							</button>
+						</div>
+					</div>
+				</div>
 
+				<div class="bg-gray-50 dark:bg-gray-700 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse sm:justify-between">
+					<button @click="showPartyModal = false" type="button" class="button-primary-md">Close</button>
+					<button @click="createParty" type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-emerald-700 dark:bg-emerald-100 dark:bg-transparent dark:text-emerald-500 dark:hover:bg-emerald-800 dark:hover:text-white hover:bg-emerald-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"> <i class="fa fa-plus mr-1"></i> Create party </button>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div aria-live="assertive" class="fixed inset-0 flex items-end z-50 px-4 py-6 pointer-events-none sm:p-6 sm:items-end" x-data="{ notifications: [], notification: function($event){ this.notifications.push($event.detail) } }" @notification.window="notification">
@@ -1230,5 +1227,7 @@
 			</template>
 		</div>
 	</div>
+
+	</div><!-- This example requires Tailwind CSS v2.0+ -->
 </body>
 </html>
