@@ -361,8 +361,8 @@ const encounter = {
         if(this.app.loadedEncounterIndex){
             this.app.savedEncounters[this.app.loadedEncounterIndex] = encounter;
         }else {
+            this.app.loadedEncounterIndex = this.app.savedEncounters.length;
             this.app.savedEncounters = [...this.app.savedEncounters, encounter];
-            this.app.loadedEncounterIndex = this.app.savedEncounters.length - 1;
         }
         dispatchEvent(new CustomEvent('notification', {detail: { title: 'Encounter saved' }}));
     },
