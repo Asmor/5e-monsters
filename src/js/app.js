@@ -16,11 +16,11 @@ const internationalNumberFormat = new Intl.NumberFormat('en-US')
 function app() {
     
     return {
-        menu: true,
+        menu: false,
         showFilters: false,
         showSourcesModal: false,
         showEncounterModal: false,
-        showPartyModal: true,
+        showPartyModal: false,
 
         mobileEncounterTab: false,
 

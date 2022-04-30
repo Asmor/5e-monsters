@@ -87,14 +87,14 @@
 		<div class="flex py-4 sm:py-6 lg:py-8 w-full max-w-[1920px] relative grow mx-auto flex-col md:flex-row">
 			<div class="relative self-center mb-6 bg-gray-200 dark:bg-gray-800 rounded-lg p-0.5 flex sm:mt-8 h-10 md:hidden">
 				<div class="absolute bg-gray-100 dark:bg-gray-700 w-1/2 transition-all duration-300 inset-y-1 rounded-md" :class="{ 'translate-x-full -ml-1.5': mobileEncounterTab, 'left-1': !mobileEncounterTab }"></div>
-				<button @click="mobileEncounterTab = false" type="button" :class="{ 'text-gray-900 ': !mobileEncounterTab, 'text-gray-700': mobileEncounterTab }" class="relative border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium dark:text-gray-100 whitespace-nowrap focus:outline-none focus:z-10 w-32">Encounter</button>
-				<button @click="mobileEncounterTab = true" type="button" :class="{ 'text-gray-900 ': mobileEncounterTab, 'text-gray-700': !mobileEncounterTab }" class="ml-0.5 relative border border-transparent rounded-md py-2 text-sm font-medium whitespace-nowrap dark:text-gray-100 focus:outline-none focus:z-10 w-32">Monsters</button>
+				<button @click="mobileEncounterTab = false" type="button" :class="{ 'text-gray-900 ': !mobileEncounterTab, 'text-gray-700': mobileEncounterTab }" class="relative border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium dark:text-gray-100 whitespace-nowrap focus:outline-none focus:z-10 w-40">Encounter <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-300 text-gray-800" x-text="encounter.groups.reduce((carry, item) => carry + item.count, 0)" x-show="encounter.groups.length"></span></button>
+				<button @click="mobileEncounterTab = true" type="button" :class="{ 'text-gray-900 ': mobileEncounterTab, 'text-gray-700': !mobileEncounterTab }" class="ml-0.5 relative border border-transparent rounded-md py-2 text-sm font-medium whitespace-nowrap dark:text-gray-100 focus:outline-none focus:z-10 w-40">Monsters</button>
 			</div>
 
-			<div id="encounter_box" :class="{ 'hidden md:block': !mobileEncounterTab }" class="grow w-full px-8 md:pr-0 md:absolute md:inset-y-8 inset-x-0 md:pl-[29rem] 2xl:pl-[35rem] overflow-y-auto">
+			<div id="encounter_box" :class="{ 'hidden md:block': !mobileEncounterTab }" class="grow w-full px-4 md:pr-0 md:absolute md:inset-y-8 inset-x-0 md:pl-[29rem] 2xl:pl-[35rem] overflow-y-auto">
 				<label for="search" class="max-w-full block text-sm font-medium text-gray-700 sr-only">Search monsters</label>
 
-				<div class="max-w-full mt-1 flex rounded-md shadow-sm px-4 sm:px-6 lg:px-8">
+				<div class="max-w-full mt-1 flex rounded-md shadow-sm sm:px-6 lg:px-8">
 					<div class="relative flex items-stretch flex-grow focus-within:z-10">
 						<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -138,7 +138,7 @@
                                         }"></i>
                                     </span>
 								</th>
-								<th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer sm:table-cell group whitespace-nowrap w-32" @click="setSortBy('size')">
+								<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-500 dark:text-gray-300 select-none cursor-pointer table-cell group whitespace-nowrap w-32" @click="setSortBy('size')">
 									Size
 									<span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible" :class="{ 'invisible': sortBy !== 'size' }">
                                         <i class="fa-solid" :class="{
@@ -190,17 +190,19 @@
 												x-text="monster.sources.map(source => source.reference.shortname).join(', ')"
 												:title="monster.sources.map(source => source.fullText).join('\n')">
 											</dd>
-											<dt class="sr-only sm:hidden">Size</dt>
-											<dd class="mt-1 truncate text-gray-500 dark:text-gray-400 sm:hidden" x-text="monster.size"></dd>
-											<dt class="sr-only sm:hidden">CR</dt>
-											<dd class="mt-1 truncate text-gray-500 dark:text-gray-400 sm:hidden">CR <span x-text="monster.cr.string"></span></dd>
-											<dt class="sr-only sm:hidden">Alignment</dt>
-											<dd class="mt-1 truncate text-gray-500 dark:text-gray-400 lg:hidden" x-text="monster.alignment.string"></dd>
 											<dt class="sr-only sm:hidden">Type</dt>
 											<dd class="mt-1 truncate text-gray-500 dark:text-gray-400 lg:hidden" x-text="monster.type"></dd>
 										</dl>
 									</td>
-									<td class="hidden px-3 py-2 text-sm text-gray-500 dark:text-gray-300 sm:table-cell w-32" x-text="monster.size"></td>
+									<td class="px-3 py-2 text-sm text-gray-500 dark:text-gray-300 table-cell w-32 max-w-32 truncate">
+										<span class="truncate" x-text="monster.size"></span>
+										<dl class="font-normal">
+											<dt class="sr-only sm:hidden">CR</dt>
+											<dd class="mt-1 truncate text-gray-500 dark:text-gray-400 sm:hidden">CR <span x-text="monster.cr.string"></span></dd>
+											<dt class="sr-only sm:hidden">Alignment</dt>
+											<dd class="mt-1 truncate text-gray-500 dark:text-gray-400 lg:hidden" x-text="monster.alignment.string"></dd>
+										</dl>
+									</td>
 									<td class="hidden px-3 py-2 text-sm text-gray-500 dark:text-gray-300 sm:table-cell w-12" x-text="monster.cr.string"></td>
 									<td class="hidden px-3 py-2 text-sm text-gray-500 dark:text-gray-300 lg:table-cell w-32" x-text="monster.type"></td>
 									<td class="hidden px-3 py-2 text-sm text-gray-500 dark:text-gray-300 lg:table-cell w-32" x-text="monster.alignment.string"></td>
