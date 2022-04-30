@@ -20,7 +20,7 @@ function app() {
         showFilters: false,
         showSourcesModal: false,
         showEncounterModal: false,
-        showPartyModal: false,
+        showPartyModal: true,
 
         mobileEncounterTab: false,
 
@@ -87,9 +87,19 @@ function app() {
             document.documentElement.classList.toggle('dark', theme === 'dark');
         },
 
+        enablePartyModal() {
+            this.showPartyModal = true;
+
+            if(this.savedParties.length === 1) {
+                this.savedParties[0].editing = true;
+            }
+        },
+
         createParty(){
+            this.savedParties.forEach((party) => party.editing = false);
             this.savedParties.push({
                 name: "Party " + (this.savedParties.length+1),
+                editing: true,
                 players: []
             });
             this.createPlayer(this.savedParties.length-1);
@@ -112,9 +122,9 @@ function app() {
                 name: "Player " + (this.savedParties[partyIndex].players.length+1),
                 initiativeMod: 0,
                 initiativeAdvantage: false,
-                level: 1,
-                maxHp: 10,
-                currentHp: 10,
+                level: this.savedParties[partyIndex].players[this.savedParties[partyIndex].players.length - 1]?.level ?? 1,
+                maxHp: this.savedParties[partyIndex].players[this.savedParties[partyIndex].players.length - 1]?.maxHp ?? 10,
+                currentHp: this.savedParties[partyIndex].players[this.savedParties[partyIndex].players.length - 1]?.currentHp ?? 10,
                 active: false,
                 partyIndex: 0
             });

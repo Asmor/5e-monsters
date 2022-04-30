@@ -247,18 +247,21 @@
 			</div>
 
 			<div id="monsters_box" :class="{ 'hidden md:flex': mobileEncounterTab }" class="hidden md:absolute md:inset-y-8 md:left-4 md:pr-8 md:pl-4 pb-8 md:pb-0 md:flex w-full px-8 flex-col flex-shrink-0 md:w-[28rem] 2xl:w-[34rem] overflow-y-auto">
-				<div class="grid grid-cols-3 md:grid-cols-5 pb-4 flex-col w-full">
+				<div class="grid grid-cols-3 md:pr-2 md:grid-cols-5 pb-4 flex-col w-full">
 
 					<div class="col-span-3 space-y-2">
-						<div class="flex">
+						<div class="flex md:justify-between">
 							<div class="mb-1 text-gray-600 dark:text-gray-400">
 								Party
 							</div>
 
-							<a class="primary-link" @click="showPartyModal = true" href="javascript:"><i class="fa fa-cog pl-1 text-sm"></i></a>
+							<a class="primary-link" @click="showPartyModal = true" href="javascript:">
+								<span class="hidden md:inline text-sm">Parties</span>
+								<i class="fa fa-cog pl-1 text-sm md:hidden"></i>
+							</a>
 						</div>
 
-						<div class="grid grid-cols-[1fr_34px] gap-y-2 align-center mb-2 md:pr-2" x-show="activePlayers.length">
+						<div class="grid grid-cols-[1fr_34px] gap-y-2 align-center mb-2" x-show="activePlayers.length">
 
 						    <template x-for="party in savedParties">
                                     <template x-for="player in party.players.filter(player => player.active)">
@@ -274,7 +277,7 @@
 
 						</div>
 
-						<div class="w-full grid grid-rows-[18px_1fr] grid-cols-[1fr_40px_1fr_50px_36px] md:pr-2 gap-y-2 align-center mb-2" x-show="party.totalPlayers">
+						<div x-show="party.groups.length" class="w-full grid grid-rows-[18px_1fr] grid-cols-[1fr_40px_1fr_50px_36px] gap-y-2 align-center mb-2" x-show="party.totalPlayers">
 							<label class="col-span-2 text-sm text-gray-700 dark:text-gray-300">Players</label>
 							<label class="text-sm text-gray-700 dark:text-gray-300">Level</label>
 							<label class="text-center text-sm text-gray-700 dark:text-gray-300" title="Determines whether these characters get a share of XP from the encounter.">XP</label>
@@ -303,10 +306,18 @@
 
 						</div>
 
-						<div class="w-full md:pr-2">
+						<div class="w-full">
 							<button @click="party.addPlayerGroup()" type="button" class="button-secondary-md align-self-start w-full mt-4 md:mt-auto flex justify-center">
 								<span>
 									<i class="fas fa-plus mr-2"></i> Add Player Group
+								</span>
+							</button>
+						</div>
+
+						<div class="w-full" x-show="!(activePlayers.length || party.groups.length)">
+							<button @click="enablePartyModal" type="button" class="button-secondary-md align-self-start w-full mt-4 md:mt-auto flex justify-center">
+								<span>
+									<i class="fas fa-plus mr-2"></i> Add Premade Party
 								</span>
 							</button>
 						</div>
@@ -1025,12 +1036,12 @@
 									<div x-show="savedParties.length" class="bg-gray-50 dark:bg-gray-700 rounded shadow overflow-hidden border-b dark:border-gray-700 divide-y divide-gray-200 dark:divide-gray-800 ">
 										<template x-for="(party, partyIndex) of savedParties">
 
-											<div x-data="{ partyIsOpen: false }">
-												<div class="flex px-4 py-4 dark:border-gray-700 w-100 relative group hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
-													 :class="{ 'bg-gray-100 hover:bg-gray-50 dark:bg-gray-700': partyIsOpen }"
+											<div>
+												<div class="flex px-4 py-4 dark:border-gray-700 w-100 relative cursor-pointer group hover:bg-gray-100 dark:hover:bg-gray-600"
+													 :class="{ 'bg-gray-100 hover:bg-gray-50 dark:bg-gray-700': party.editing }"
 													 :title="party.name"
 													 :key="partyIndex"
-													 @click="partyIsOpen =! partyIsOpen"
+													 @click="party.editing =! party.editing"
 												>
 													<div class="grow flex flex-col justify-center mr-2 grow truncate overflow-ellipsis">
 														<span x-text="party.name"></span>
@@ -1039,16 +1050,26 @@
 														<div class="w-full h-full bg-gradient-to-l from-gray-50 dark:from-gray-700 group-hover:from-gray-100 dark:group-hover:from-gray-600 to-transparent"></div>
 														<div class="px-3 bg-gray-50 group-hover:bg-gray-100 dark:bg-gray-700 dark:group-hover:bg-gray-600 min-w-4 h-full grid place-items-center">
 															<div @click.stop="activateParty(partyIndex)" x-show="!party.players.filter((player) => player.active).length" class="h-full hidden place-items-center group-hover:grid text-gray-900 dark:text-gray-100">
-																<div>Make all active <i class="fa fa-arrow-right"></i></div>
+																<div>Make all active <i class="fa fa-users"></i></div>
 															</div>
 															<div @click.stop="deactivateParty(partyIndex)" x-show="party.players.filter((player) => player.active).length" class="h-full hidden place-items-center group-hover:grid text-gray-900 dark:text-gray-100">
-																<div>Deactivate all <i class="fa fa-times"></i></div>
+																<div>Deactivate all <i class="fa fa-users-slash"></i></div>
 															</div>
 														</div>
 													</div>
 												</div>
 
-												<div x-show="partyIsOpen" class="border-x border-gray-50 dark:border-gray-700 dark:bg-gray-800 flex flex-col gap-x-1 gap-y-2 px-6 py-3">
+												<div x-show="party.editing" class="border-x border-gray-50 dark:border-gray-700 dark:bg-gray-800 flex flex-col gap-x-1 gap-y-2 px-6 py-3">
+													<div class="flex items-center">
+														<input x-model="party.name"
+															   type="text"
+															   class="!mb-0 py-0.5 text-xl"
+														>
+														<div class="w-[30px] ml-2 flex justify-center">
+															<i @click.stop="deleteParty(partyIndex)" :title="'Delete ' + party.name" class="fa fa-trash hover:text-red-400 dark:hover:text-red-600 cursor-pointer"></i>
+														</div>
+													</div>
+
 													<div class="grid gap-2 grid-cols-[60px_1fr_1fr] md:grid-cols-[60px_1fr_50px_75px_150px_30px]">
 														<div>Active</div>
 														<div>Name</div>
@@ -1097,11 +1118,11 @@
 
 															<div class="order-6 md:order-5 justify-center md:justify-start flex -space-x-px">
 																<div class="w-1/2 flex-1 min-w-0">
-																	<input type="number" x-model.number="player.currentHp" class="px-1 py-1 text-right border-r-0 relative block w-full rounded-none rounded-l-md sm:text-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300"/>
+																	<input min="0" @change="if(player.currentHp > player.maxHp) { player.maxHp = player.currentHp }" @blur="if(player.currentHp > player.maxHp) { player.maxHp = player.currentHp }" type="number" x-model.number="player.currentHp" class="px-1 py-1 text-right border-r-0 relative block w-full rounded-none rounded-l-md sm:text-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300"/>
 																</div>
 																<div class="grid place-items-center px-1 shrink rounded-none border border-y-1 dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300"> / </div>
 																<div class="flex-1 min-w-0">
-																	<input type="number" x-model.number="player.maxHp" class="px-1 py-1 relative border-l-0 block w-full rounded-none rounded-r-md sm:text-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300"/>
+																	<input min="1" type="number" x-model.number="player.maxHp" class="px-1 py-1 relative border-l-0 block w-full rounded-none rounded-r-md sm:text-sm dark:bg-gray-700 dark:border-gray-600 focus:ring-emerald-500 focus:border-emerald-500 border-gray-300"/>
 																</div>
 															</div>
 
