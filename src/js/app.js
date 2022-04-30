@@ -69,18 +69,6 @@ function app() {
         sortBy: Alpine.$persist("name").as("sortBy"),
         sortByDesc: Alpine.$persist(true).as("sortByDesc"),
 
-        keyboardHelp: [
-            { key: 'ctrl+f', description: 'Toggle the filters sidebar' },
-            { key: 'ctrl+/', description: 'Displays this help window' },
-            { key: 'ctrl+shift+\\', description: 'Toggles light/dark theme' },
-            { key: 'ctrl+]', description: 'Next monsters search page' },
-            { key: 'ctrl+k', description: 'Focus the search box' },
-            { key: 'ctrl+[', description: 'Previous monsters search page' },
-            { key: 'ctrl+g', description: 'Generate an encounter' },
-            { key: 'ctrl+s', description: 'Save the current encounter' },
-            { key: 'esc', description: 'Close any open dialogs' },
-        ],
-
         setSortBy(type){
             if(type === this.sortBy){
                 this.sortByDesc = !this.sortByDesc;
@@ -440,6 +428,18 @@ function app() {
             if(!num) return 0;
             return internationalNumberFormat.format(num);
         },
+
+        keyboardHelp: [
+            { key: 'ctrl+f', description: 'Toggle the filters sidebar' },
+            { key: 'ctrl+/', description: 'Displays this help window' },
+            { key: 'ctrl+shift+\\', description: 'Toggles light/dark theme' },
+            { key: 'ctrl+]', description: 'Next monsters search page' },
+            { key: 'ctrl+k', description: 'Focus the search box' },
+            { key: 'ctrl+[', description: 'Previous monsters search page' },
+            { key: 'ctrl+g', description: 'Generate an encounter' },
+            { key: 'ctrl+s', description: 'Save the current encounter' },
+            { key: 'esc', description: 'Close any open dialogs' },
+        ],
 
         setupHotkeys() {
             hotkeys('ctrl+/,ctrl+k,ctrl+shift+\\,ctrl+f,ctrl+[,ctrl+],ctrl+g,ctrl+s,esc', (event, handler) => {
