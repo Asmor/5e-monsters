@@ -21,6 +21,7 @@ function app() {
         showSourcesModal: false,
         showEncounterModal: false,
         showPartyModal: false,
+        showKeyboardModal: false,
 
         mobileEncounterTab: false,
 
@@ -67,6 +68,18 @@ function app() {
 
         sortBy: Alpine.$persist("name").as("sortBy"),
         sortByDesc: Alpine.$persist(true).as("sortByDesc"),
+
+        keyboardHelp: [
+            { key: 'ctrl+f', description: 'Toggle the filters sidebar' },
+            { key: 'ctrl+/', description: 'Displays this help window' },
+            { key: 'ctrl+shift+\\', description: 'Toggles light/dark theme' },
+            { key: 'ctrl+]', description: 'Next monsters search page' },
+            { key: 'ctrl+k', description: 'Focus the search box' },
+            { key: 'ctrl+[', description: 'Previous monsters search page' },
+            { key: 'ctrl+g', description: 'Generate an encounter' },
+            { key: 'ctrl+s', description: 'Save the current encounter' },
+            { key: 'esc', description: 'Close any open dialogs' },
+        ],
 
         setSortBy(type){
             if(type === this.sortBy){
@@ -429,8 +442,10 @@ function app() {
         },
 
         setupHotkeys() {
-            hotkeys('ctrl+k,ctrl+shift+\\,ctrl+f,ctrl+[,ctrl+],ctrl+g,ctrl+s,esc', (event, handler) => {
+            hotkeys('ctrl+/,ctrl+k,ctrl+shift+\\,ctrl+f,ctrl+[,ctrl+],ctrl+g,ctrl+s,esc', (event, handler) => {
                 switch(handler.key) {
+                    case 'ctrl+/': this.showKeyboardModal =! this.showKeyboardModal;
+                        return false;
                     case 'ctrl+k': document.getElementById('search').focus();
                         return false;
                     case 'ctrl+shift+\\': this.toggleTheme();
@@ -445,7 +460,7 @@ function app() {
                         return false;
                     case 'ctrl+g': this.encounter.generateRandom();
                         return false;
-                    case 'esc': this.showFilters = this.showSourcesModal = false;
+                    case 'esc': this.showPartyModal = this.showKeyboardModal = this.showFilters = this.showSourcesModal = false;
                         break;
                 }
 

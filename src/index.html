@@ -320,7 +320,7 @@
 						<div class="w-full" x-show="!(activePlayers.length || party.groups.length)">
 							<button @click="enablePartyModal" type="button" class="button-secondary-md align-self-start w-full md:mt-4 md:mt-auto flex justify-center">
 								<span>
-									<i class="fas fa-plus mr-2"></i> Use Complex Party
+									<i class="fas fa-plus mr-2"></i> Use Detailed Party
 								</span>
 							</button>
 						</div>
@@ -1160,7 +1160,60 @@
 		</div>
 	</div>
 
-	<div aria-live="assertive" class="fixed inset-0 flex items-end z-50 px-4 py-6 pointer-events-none sm:p-6 sm:items-end" x-data="{ notifications: [], notification: function($event){ this.notifications.push($event.detail) } }" @notification.window="notification">
+		<div x-show="showKeyboardModal" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" x-cloak>
+			<div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+				<div class="fixed inset-0 bg-gray-500 dark:bg-gray-900 dark:bg-opacity-75 bg-opacity-75 transition-opacity" aria-hidden="true"
+					 x-show="showKeyboardModal"
+					 x-transition:enter="ease-out duration-300"
+					 x-transition:enter-start="opacity-0"
+					 x-transition:enter-end="opacity-100"
+					 x-transition:leave="ease-in duration-200"
+					 x-transition:leave-start="opacity-100"
+					 x-transition:leave-end="opacity-0"
+				></div>
+
+				<!-- This element is to trick the browser into centering the modal contents. -->
+				<span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+				<div @mousedown.outside="showKeyboardModal = false" class="relative inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full"
+					 x-show="showKeyboardModal"
+					 x-transition:enter="ease-out duration-300"
+					 x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+					 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+					 x-transition:leave="ease-in duration-200"
+					 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+					 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+				>
+					<div class="bg-white dark:bg-gray-800 px-4 py-5 sm:p-6">
+						<div class="sm:flex flex-col sm:items-start w-full">
+							<div class="w-full flex pb-3">
+								<h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100">Keyboard Shortcuts</h3>
+							</div>
+
+							<div class="my-3 sm:mt-0 w-full">
+								<div class="my-2 max-h-96 overflow-y-auto overflow-x-hidden text-gray-700 dark:text-gray-300">
+									<div class="grid grid-cols-2 gap-x-4 gap-y-2">
+										<template x-for="shortcut in keyboardHelp">
+											<div class="flex justify-between">
+												<kbd class="inline-flex items-center border border-gray-200 dark:border-gray-600 rounded px-2 text-sm font-sans font-medium text-gray-400" x-text="shortcut.key"></kbd>
+												<div x-text="shortcut.description"></div>
+											</div>
+										</template>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="bg-gray-50 dark:bg-gray-700 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse sm:justify-between">
+						<button @click="showKeyboardModal = false" type="button" class="button-primary-md">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div aria-live="assertive" class="fixed inset-0 flex items-end z-50 px-4 py-6 pointer-events-none sm:p-6 sm:items-end" x-data="{ notifications: [], notification: function($event){ this.notifications.push($event.detail) } }" @notification.window="notification">
 		<div class="w-full flex flex-col items-center space-y-4 sm:items-end">
 			<template x-for="(notification, index) in notifications">
 				<div class="max-w-sm w-full relative bg-white dark:bg-gray-700 dark:shadow-xl shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden"
