@@ -1,0 +1,56 @@
+[
+  {
+    "type": "Third-Party",
+    "name": "Demon Cults & Secret Societies",
+    "shortname": "DCSS",
+    "link": "https://koboldpress.com/kpstore/product/demon-cults-secret-societies-5e-dnd/"
+  },
+  {
+    "type": "Third-Party",
+    "name": "Fifth Edition Foes",
+    "shortname": "5eF",
+    "link": "https://www.froggodgames.com/product/fifth-edition-foes/"
+  },
+  {
+    "type": "Third-Party",
+    "name": "Monsters of the Orient",
+    "shortname": "moto",
+    "link": "http://www.dmsguild.com/product/215595"
+  },
+  {
+    "type": "Third-Party",
+    "name": "Primeval Thule Campaign Setting",
+    "shortname": "ThuleCS",
+    "link": "https://www.drivethrurpg.com/product/168149/Primeval-Thule-5e-Campaign-Setting"
+  },
+  {
+    "type": "Third-Party",
+    "name": "Primeval Thule Gamemaster's Companion",
+    "shortname": "ThuleGM",
+    "link": "https://www.drivethrurpg.com/product/168153/Primeval-Thule-5e-GM-Companion"
+  },
+  {
+    "type": "Third-Party",
+    "name": "Quests of Doom Volume 1",
+    "shortname": "QoDv1",
+    "link": "https://www.froggodgames.com/quests-doom-5e-volume-1"
+  },
+  {
+    "type": "Third-Party",
+    "name": "Quests of Doom Volume 2",
+    "shortname": "QoDv2",
+    "link": "https://www.froggodgames.com/quests-doom-5e-volume-2"
+  },
+  {
+    "type": "Third-Party",
+    "name": "Tome of Beasts",
+    "shortname": "ToB",
+    "link": "https://koboldpress.com/kpstore/product/tome-of-beasts-for-5th-edition/"
+  },
+  {
+    "type": "Third-Party",
+    "name": "Ultimate Bestiary Revenge of the Horde",
+    "shortname": "UBRotH",
+    "link": "https://nordgamesllc.com/product/ultimate-bestiary-revenge-horde/"
+  }
+]

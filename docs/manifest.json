@@ -1,0 +1,14 @@
+{
+	"short_name": "K+FC",
+	"name": "Kobold+ Fight Club",
+	"icons": [
+		{
+			"src": "images/logo.png",
+			"sizes": "600x600",
+			"type": "image/png"
+		}
+	],
+	"start_url": "index.html",
+	"display": "fullscreen",
+	"orientation": "any"
+}

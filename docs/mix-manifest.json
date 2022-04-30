@@ -1,0 +1,15 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/styles.css": "/css/styles.css",
+    "/index.html": "/index.html",
+    "/manifest.json": "/manifest.json",
+    "/json/se_community_monsters.json": "/json/se_community_monsters.json",
+    "/json/se_community_sources.json": "/json/se_community_sources.json",
+    "/json/se_monsters.json": "/json/se_monsters.json",
+    "/json/se_sources.json": "/json/se_sources.json",
+    "/json/se_third_party_monsters.json": "/json/se_third_party_monsters.json",
+    "/json/se_third_party_sources.json": "/json/se_third_party_sources.json",
+    "/images/header_logo.png": "/images/header_logo.png",
+    "/images/improved-initiative-logo.svg": "/images/improved-initiative-logo.svg",
+    "/images/logo.png": "/images/logo.png"
+}

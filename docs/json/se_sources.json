@@ -1,0 +1,103 @@
+[
+  {
+    "type": "Official",
+    "name": "Monster Manual",
+    "shortname": "MM",
+    "link": "https://www.dndbeyond.com/sources/mm",
+    "default": true
+  },
+  {
+    "type": "Official Adventure",
+    "name": "Curse of Strahd",
+    "shortname": "CoS",
+    "link": "https://www.dndbeyond.com/sources/cos/appendix-d-monsters-and-npcs"
+  },
+  {
+    "type": "Official Web Supplement",
+    "name": "Basic Rules v1",
+    "shortname": "Basic",
+    "link": "https://media.wizards.com/2014/downloads/dnd/DMDnDBasicRules_v0.1.pdf",
+    "default": true
+  },
+  {
+    "type": "Official Adventure",
+    "name": "Hoard of the Dragon Queen",
+    "shortname": "HotDQ",
+    "link": "https://www.dndbeyond.com/sources/hotdq/appendix-d-monsters"
+  },
+  {
+    "type": "Official Web Supplement",
+    "name": "HotDQ supplement",
+    "shortname": "HotDQ Sup",
+    "link": "https://media.wizards.com/2014/downloads/dnd/HoardDragonQueen_Supplement1.pdf"
+  },
+  {
+    "type": "Official",
+    "name": "Mordenkainen's Tome of Foes",
+    "shortname": "MToF",
+    "link": "https://www.dndbeyond.com/sources/mtof",
+    "default": true
+  },
+  {
+    "type": "Official Adventure",
+    "name": "Out of the Abyss",
+    "shortname": "OotA",
+    "link": "https://www.dndbeyond.com/sources/oota"
+  },
+  {
+    "type": "Official",
+    "name": "Player's Handbook",
+    "shortname": "PHB",
+    "link": "https://www.dndbeyond.com/sources/phb",
+    "default": true
+  },
+  {
+    "type": "Official Adventure",
+    "name": "Princes of the Apocalypse",
+    "shortname": "PotA",
+    "link": "https://www.dndbeyond.com/sources/pota"
+  },
+  {
+    "type": "Official Web Supplement",
+    "name": "Princes of the Apocalypse Online Supplement v1.0",
+    "shortname": "PotA Supp",
+    "link": "https://media.wizards.com/2015/downloads/dnd/PrincesApocalypse_AdvSupplementv1.0_PrinterFriendly.pdf"
+  },
+  {
+    "type": "Official Adventure",
+    "name": "Rise of Tiamat",
+    "shortname": "RoT",
+    "link": "https://www.dndbeyond.com/sources/rot"
+  },
+  {
+    "type": "Official Adventure",
+    "name": "Storm King's Thunder",
+    "shortname": "SKT",
+    "link": "https://www.dndbeyond.com/sources/skt"
+  },
+  {
+    "type": "Official Adventure",
+    "name": "Tales from the Yawning Portal",
+    "shortname": "TftYP",
+    "link": "https://www.dndbeyond.com/sources/tftyp"
+  },
+  {
+    "type": "Official Web Supplement",
+    "name": "The Tortle Package",
+    "shortname": "Tortle",
+    "link": "https://www.dndbeyond.com/sources/ttp/the-tortle-package#NewMonsters"
+  },
+  {
+    "type": "Official Adventure",
+    "name": "Tomb of Annihilation",
+    "shortname": "ToA",
+    "link": "https://www.dndbeyond.com/sources/toa"
+  },
+  {
+    "type": "Official",
+    "name": "Volo's Guide to Monsters",
+    "shortname": "VGtM",
+    "link": "https://www.dndbeyond.com/sources/vgtm",
+    "default": true
+  }
+]

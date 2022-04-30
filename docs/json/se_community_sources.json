@@ -1,0 +1,38 @@
+[
+    {
+        "type": "Community",
+        "name": "Critter Compendium",
+        "shortname": "CC",
+        "link": "http://www.dmsguild.com/product/210151/Critter-Compendium"
+    },
+    {
+        "type": "Community",
+        "name": "Monster Module",
+        "shortname": "MMod",
+        "link": "https://www.reddit.com/r/UnearthedArcana/comments/61fvyr/the_monster_module_ab_22_pages_of_monsters_to/"
+    },
+    {
+        "type": "Community",
+        "name": "Monster-A-Day",
+        "shortname": "MAD",
+        "link": "https://www.reddit.com/r/monsteraday/"
+    },
+    {
+        "type": "Community",
+        "name": "Monsters of the Guild",
+        "shortname": "MotG",
+        "link": "http://www.dmsguild.com/product/234150/Monsters-of-the-Guild?src=hottest_filtered&filters=45469"
+    },
+    {
+        "type": "Community",
+        "name": "Nerzugal's Dungeon Master Toolkit 2",
+        "shortname": "NDMT2",
+        "link": "http://www.dmsguild.com/product/242485/Nerzugals-Dungeon-Master-Toolkit-2"
+    },
+    {
+        "type": "Community",
+        "name": "Nerzugal's Extended Bestiary",
+        "shortname": "NEB",
+        "link": "http://www.drivethrurpg.com/product/205000/Nerzugals-Extended-Bestiary"
+    }
+]
